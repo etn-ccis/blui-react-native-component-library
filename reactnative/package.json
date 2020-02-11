@@ -20,7 +20,7 @@
   "main": "core/index.js",
   "types": "core/index.d.ts",
   "scripts": {
-    "build": "cd components && yarn build",
+    "build": "bash ./scripts/buildComponents.sh",
 
     "install:showcase-ios": "cd demos/showcase && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
     "install:showcase-android": "cd demos/showcase && yarn && cd ../.. && yarn link:components",
@@ -28,7 +28,7 @@
     "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
     "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
 
-    "link:components": "bash ./linkComponents.sh",
+    "link:components": "bash ./scripts/linkComponents.sh",
 
     "start:showcase": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
     "start:showcase-ios": "yarn start:showcase",

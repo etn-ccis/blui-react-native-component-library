@@ -24,34 +24,31 @@ mkdir -p "./demos/api/node_modules/@pxblue/react-native-components"
 echo -e "${GREEN}Done${NC}"
 
 echo -en "${BLUE}Copying build output into node_modules...${NC}";
-cp -r ./package.json ./demos/showcase/node_modules/@pxblue/react-native-components/package.json
-cp -r ./core ./demos/showcase/node_modules/@pxblue/react-native-components/core
-cp -r ./package.json ./demos/storybook/node_modules/@pxblue/react-native-components/package.json
-cp -r ./core ./demos/storybook/node_modules/@pxblue/react-native-components/core
-cp -r ./package.json ./demos/api/node_modules/@pxblue/react-native-components/package.json
-cp -r ./core ./demos/api/node_modules/@pxblue/react-native-components/core
+cp -r ./dist/. ./demos/showcase/node_modules/@pxblue/react-native-components
+cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-native-components
+cp -r ./dist/. ./demos/api/node_modules/@pxblue/react-native-components
 echo -e "${GREEN}Done${NC}"
 
 echo -en "\r\n${BRED}Linking Components: ${NC}"
-if [ ! -f ./demos/showcase/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -f ./demos/showcase/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Showcase Not Linked${NC}" && exit 1; fi
 if [ ! -s ./demos/showcase/node_modules/@pxblue/react-native-components/core ];
     then
         if [ ! -f ./demos/showcase/node_modules/@pxblue/react-native-components/core/index.js ];
-        then echo -e "${BRED}Not Linked${NC}" && exit 1; 
+        then echo -e "${BRED}Showcase Not Linked${NC}" && exit 1;
         fi;
 fi
-if [ ! -f ./demos/storybook/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -f ./demos/storybook/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Storybook Not Linked${NC}" && exit 1; fi
 if [ ! -s ./demos/storybook/node_modules/@pxblue/react-native-components/core ];
     then
         if [ ! -f ./demos/storybook/node_modules/@pxblue/react-native-components/core/index.js ];
-        then echo -e "${BRED}Not Linked${NC}" && exit 1;
+        then echo -e "${BRED}Storybook Not Linked${NC}" && exit 1;
         fi;
 fi
-if [ ! -f ./demos/api/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -f ./demos/api/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Storybook API Not Linked${NC}" && exit 1; fi
 if [ ! -s ./demos/api/node_modules/@pxblue/react-native-components/core ];
     then
         if [ ! -f ./demos/api/node_modules/@pxblue/react-native-components/core/index.js ];
-        then echo -e "${BRED}Not Linked${NC}" && exit 1;
+        then echo -e "${BRED}Storyboook API Not Linked${NC}" && exit 1;
         fi;
 fi
 echo -e "${GRAY}Complete${NC}\r\n"
