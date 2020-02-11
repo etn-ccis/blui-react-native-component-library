@@ -5,6 +5,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import { InfoListItem } from '../InfoListItem';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -68,6 +69,7 @@ export type DrawerNavGroupProps = {
     backgroundColor?: string;
     chevron?: boolean;
     content?: ReactNode;
+    divider?: boolean;
     fontColor?: string;
     iconColor?: string;
     items: NavItem[];
@@ -75,7 +77,6 @@ export type DrawerNavGroupProps = {
     open?: boolean;
     title?: string;
     titleColor?: string;
-    divider?: boolean;
 };
 
 function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNode {
@@ -161,3 +162,31 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 };
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
+
+DrawerNavGroup.propTypes = {
+    activeBackgroundColor: PropTypes.string,
+    activeFontColor: PropTypes.string,
+    activeIconColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    chevron: PropTypes.bool,
+    content: PropTypes.element,
+    fontColor: PropTypes.string,
+    iconColor: PropTypes.string,
+    // @ts-ignore
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            active: PropTypes.bool,
+            icon: PropTypes.element,
+            onClick: PropTypes.func,
+            statusColor: PropTypes.string,
+            subtitle: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            divider: PropTypes.bool,
+        })
+    ).isRequired,
+    onSelect: PropTypes.func,
+    open: PropTypes.bool,
+    title: PropTypes.string,
+    titleColor: PropTypes.string,
+    divider: PropTypes.bool,
+};
