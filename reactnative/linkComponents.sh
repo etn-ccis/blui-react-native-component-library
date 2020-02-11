@@ -15,21 +15,32 @@ yarn build
 cd ..
 
 echo -en "${BLUE}Creating new folder in node_modules...${NC}"
-rm -rf "./component-demo/node_modules/@pxblue/react-native-components"
-mkdir -p "./component-demo/node_modules/@pxblue/react-native-components"
+rm -rf "./demos/showcase/node_modules/@pxblue/react-native-components"
+mkdir -p "./demos/showcase/node_modules/@pxblue/react-native-components"
+rm -rf "./demos/storybook/node_modules/@pxblue/react-native-components"
+mkdir -p "./demos/storybook/node_modules/@pxblue/react-native-components"
 echo -e "${GREEN}Done${NC}"
 
 echo -en "${BLUE}Copying build output into node_modules...${NC}";
-cp -r ./package.json ./component-demo/node_modules/@pxblue/react-native-components/package.json
-cp -r ./core ./component-demo/node_modules/@pxblue/react-native-components/core
+cp -r ./package.json ./demos/showcase/node_modules/@pxblue/react-native-components/package.json
+cp -r ./core ./demos/showcase/node_modules/@pxblue/react-native-components/core
+cp -r ./package.json ./demos/storybook/node_modules/@pxblue/react-native-components/package.json
+cp -r ./core ./demos/storybook/node_modules/@pxblue/react-native-components/core
 echo -e "${GREEN}Done${NC}"
 
 echo -en "\r\n${BRED}Linking Components: ${NC}"
-if [ ! -f ./component-demo/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
-if [ ! -s ./component-demo/node_modules/@pxblue/react-native-components/core ]; 
-    then 
-        if [ ! -f ./component-demo/node_modules/@pxblue/react-native-components/core/index.js ];
+if [ ! -f ./demos/showcase/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -s ./demos/showcase/node_modules/@pxblue/react-native-components/core ];
+    then
+        if [ ! -f ./demos/showcase/node_modules/@pxblue/react-native-components/core/index.js ];
         then echo -e "${BRED}Not Linked${NC}" && exit 1; 
+        fi;
+fi
+if [ ! -f ./demos/storybook/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -s ./demos/storybook/node_modules/@pxblue/react-native-components/core ];
+    then
+        if [ ! -f ./demos/storybook/node_modules/@pxblue/react-native-components/core/index.js ];
+        then echo -e "${BRED}Not Linked${NC}" && exit 1;
         fi;
 fi
 echo -e "${GRAY}Complete${NC}\r\n"
