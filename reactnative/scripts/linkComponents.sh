@@ -10,9 +10,7 @@ GRAY='\033[1;30m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}Building components...${NC}"
-cd ./components
-yarn build
-cd ..
+bash ./scripts/buildComponents.sh
 
 echo -en "${BLUE}Creating new folder in node_modules...${NC}"
 rm -rf "./demos/showcase/node_modules/@pxblue/react-native-components"
