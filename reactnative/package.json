@@ -27,22 +27,21 @@
     "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
     "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
     "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
-
     "link:components": "bash ./scripts/linkComponents.sh",
 
-    "start:showcase": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
-    "start:showcase-ios": "yarn start:showcase",
+    "start": "yarn start:showcase",
+    "start:showcase": "yarn start:showcase-ios",
+    "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
     "start:showcase-android": "yarn install:showcase-android && cd demos/showcase && yarn android",
 
-    "start:storybook": "yarn install:storybook-ios && cd demos/storybook && yarn ios",
-    "start:storybook-ios": "yarn start:storybook",
+    "start:storybook": "yarn start:storybook-ios",
+    "start:storybook-ios": "yarn install:storybook-ios && cd demos/storybook && yarn ios",
     "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
 
     "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
-
     "test": "cd components && yarn test",
     "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
-    "prepublish": "cd components && yarn build"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.3",
