@@ -20,15 +20,28 @@
   "main": "core/index.js",
   "types": "core/index.d.ts",
   "scripts": {
-    "build": "cd components && yarn build",
-    "install:dependencies:ios": "cd component-demo && yarn && cd ios && pod install && cd ../.. && yarn link:components",
-    "install:dependencies:android": "cd component-demo && yarn && cd .. && yarn link:components",
-    "link:components": "bash ./linkComponents.sh",
-    "start": "yarn install:dependencies:ios && cd component-demo && yarn ios",
-    "start:android": "yarn install:dependencies:android && cd component-demo && yarn android",
+    "build": "bash ./scripts/buildComponents.sh",
+
+    "install:showcase-ios": "cd demos/showcase && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
+    "install:showcase-android": "cd demos/showcase && yarn && cd ../.. && yarn link:components",
+    "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
+    "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
+    "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
+    "link:components": "bash ./scripts/linkComponents.sh",
+
+    "start": "yarn start:showcase",
+    "start:showcase": "yarn start:showcase-ios",
+    "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
+    "start:showcase-android": "yarn install:showcase-android && cd demos/showcase && yarn android",
+
+    "start:storybook": "yarn start:storybook-ios",
+    "start:storybook-ios": "yarn install:storybook-ios && cd demos/storybook && yarn ios",
+    "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
+
+    "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
     "test": "cd components && yarn test",
     "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
-    "prepublish": "cd components && yarn build"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.3",

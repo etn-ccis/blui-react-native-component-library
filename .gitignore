@@ -3,7 +3,7 @@
 # dependencies
 **/**/node_modules
 **/**/package-lock.json
-reactnative/component-demo/ios/Pods
+reactnative/demos/**/ios/Pods 
 
 # production
 reactnative/core
@@ -11,10 +11,9 @@ react-native/core
 dist
 
 # builds
-reactnative/component-demo/ios/build
-reactnative/component-demo/android/app/build
-reactnative/component-demo/android/.gradle
-
+reactnative/demos/**/ios/build
+reactnative/demos/**/android/app/build
+reactnative/demos/**/android/.gradle
 # misc
 **/**/.DS_Store
 **/**/Thumbs.db
