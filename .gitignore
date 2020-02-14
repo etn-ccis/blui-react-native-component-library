@@ -1,19 +1,17 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-**/**/node_modules
-**/**/package-lock.json
-reactnative/demos/**/ios/Pods 
+node_modules
+package-lock.json
+**/ios/Pods
 
 # production
-reactnative/core
-react-native/core
 dist
 
 # builds
-reactnative/demos/**/ios/build
-reactnative/demos/**/android/app/build
-reactnative/demos/**/android/.gradle
+ios/build
+**/android/app/build
+**/android/.gradle
 # misc
 **/**/.DS_Store
 **/**/Thumbs.db
@@ -24,9 +22,6 @@ reactnative/demos/**/android/.gradle
 .vscode/
 .idea/
 
-**/**/npm-debug.log*
-**/**/yarn-debug.log*
-**/**/yarn-error.log*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

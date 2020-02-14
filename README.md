@@ -1,43 +1,43 @@
-# PX Blue UI Components
-[![](https://img.shields.io/circleci/project/github/pxblue/component-library/master.svg?style=flat)](https://circleci.com/gh/pxblue/component-library/tree/master)
+# PX Blue UI Components for React Native
 
-![npm](https://img.shields.io/npm/v/@pxblue/angular-components?label=%40pxblue%2Fangular-components)
-![npm](https://img.shields.io/npm/v/@pxblue/react-components?label=%40pxblue%2Freact-components)
-![npm](https://img.shields.io/npm/v/@pxblue/react-native-components?label=%40pxblue%2Freact-native-components)
+This is a library of re-usable React Native components for use in PX Blue applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in PX Blue and eliminate the need for multiple teams to build their own components for these.
 
-This is a library of re-usable components for use in PX Blue applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in PX Blue and eliminate the need for multiple teams to build their own components for these.
 
-> See the individual framework packages for information on which components are available.
+Refer to the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for a list of available components.
+
 
 ## Installation
-### React
-To install the PX Blue react components from NPM as a dependency for your project, you can run the following command in your project root:
-```
-yarn add @pxblue/react-components
-```
-
-### Angular
-To install the PX Blue angular components from NPM as a dependency for your project, you can run the following command in your project root:
-```
-yarn add @pxblue/angular-components
-```
-
-### Ionic
-Ionic w/Angular can use the same components as an Angular project.
-
-To install the PX Blue react components from NPM as a dependency for your project, you can run the following command in your project root:
-```
-yarn add @pxblue/angular-components
-```
-
-### React Native
-To install the PX Blue angular components from NPM as a dependency for your project, you can run the following command in your project root:
+To install the PX Blue react native components from NPM as a dependency for your project, you can run the following command in your project root:
 ```
 yarn add @pxblue/react-native-components
 ```
+> **NOTE**: This install command will install the package from NPM. If you are a PX Blue developer working with components locally, you will want to follow the manual linking instructions - see below.
 
-> **NOTE**: Pay close attention to the peer dependencies for this repository. You may need to install additional dependencies in your application to work with these components.
+
+## Building the Library
+To work with this library, first clone down the repository and install dependencies:
+```
+git clone https://github.com/pxblue/react-native-component-library
+cd react-native-component-library
+```
+
+The library can be built by running the following command. The resulting output will be in the /core folder.
+```
+yarn build
+```
+
+There is also a demo project (/demos) in this repository that shows the components in use (via StoryBook). You can automatically build the component library and link them to the node modules for the demo by running:
+```
+yarn link:components
+```
+
+You can also build, link, and start the demo application in a single step by calling ```yarn start``` from the root directory.
+
+## Using the Components
+See the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for information on using these components.
 
 
-## For Developers
-If you are developing this component library locally, there are linking scripts available to automatically link the library into node_modules for the demo project without installing through npm.
+## NOTES
+This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) -this library must be installed in your project in order to use the PX Blue components.
+
+Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up.
