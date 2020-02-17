@@ -21,7 +21,7 @@ jobs:
             - node_modules
           key: v1-dependencies-reactnative-{{ checksum "components/package.json" }}
       - persist_to_workspace:
-          root: components/
+          root: components
           paths:
             - node_modules
   unit-tests:
@@ -41,7 +41,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: reactnative/components
+          at: components
       - run:
           name: Tsc --noEmit
           command: |
@@ -52,7 +52,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: reactnative/components
+          at: components
       - run:
           name: Lint
           command: |
