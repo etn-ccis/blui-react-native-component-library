@@ -1,6 +1,6 @@
-# Storybook Component Demo (React)
-The storybook demo showcases PX Blue components in an editable sandbox environment.
+# Storybook Demo
+The storybook demo shows the API documentation for PX Blue React Native components.
 
-To start the storybook demo, run:
+To start the storybook demo, run from the root folder:
 
-`yarn start`
+`yarn start:storybook-api`

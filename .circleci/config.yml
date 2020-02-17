@@ -1,0 +1,75 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-reactnative-{{ checksum "components/package.json" }}
+            - v1-dependencies-reactnative-
+      - run:
+          name: Install Dependencies
+          command: |
+            cd components
+            yarn install
+            cd ..
+      - save_cache:
+          name: Save Cache
+          paths:
+            - node_modules
+          key: v1-dependencies-reactnative-{{ checksum "components/package.json" }}
+      - persist_to_workspace:
+          root: components/
+          paths:
+            - node_modules
+  unit-tests:
+    docker:
+      - image: circleci/node:10.13.0-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: components
+      - run:
+          name: Unit Test
+          command: |
+            yarn test
+  validate-types:
+    docker:
+      - image: circleci/node:10.13.0-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: reactnative/components
+      - run:
+          name: Tsc --noEmit
+          command: |
+            yarn test:artifacts
+  lint:
+    docker:
+      - image: circleci/node:10.13.0-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: reactnative/components
+      - run:
+          name: Lint
+          command: |
+            cd components
+            yarn lint
+            cd ..
+workflows:
+  version: 2
+  reactnative_library:
+    jobs:
+      - build
+      - unit-tests:
+          requires:
+            - build
+      - validate-types:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build

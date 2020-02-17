@@ -1137,19 +1137,6 @@
   resolved "https://registry.yarnpkg.com/@pxblue/icons-svg/-/icons-svg-1.0.17.tgz#cce36cf2f8806161a20cf694954fc1fca364fedc"
   integrity sha512-HOGsepT6zKnGNzegm4piqUd8WrolB8C/wKdrq5rHIy5ygj+BIlmqgHcjdhDjHeb6rqIEFtnS1Wx+xPIMt2xNwg==
 
-"@pxblue/react-native-components@latest":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-1.0.2.tgz#df44b8987848645840433b8be1e3171acdbd0e6d"
-  integrity sha512-slGAfoQpR/OBH5C2zTBf4kFipKgQbmPC6pnHlthtDlc5fNp0ZzWgcuERJUqywMn8SayyYv7H6ElIyrl7LSJ6RA==
-  dependencies:
-    "@callstack/react-theme-provider" "^3.0.3"
-    "@pxblue/colors" "^1.0.13"
-    "@types/react-native" "^0.60.2"
-    color "^3.1.2"
-    react-native-collapsible "^1.5.0"
-    react-native-keyboard-aware-scroll-view "^0.8.0"
-    react-native-status-bar-height "^2.3.1"
-
 "@pxblue/themes@^2.2.4":
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/@pxblue/themes/-/themes-2.2.4.tgz#ef663d4625c35dc1a2dd813bb65963143b839db0"

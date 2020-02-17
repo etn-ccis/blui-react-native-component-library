@@ -5,7 +5,7 @@
   "description": "Reusable React Native components for PX Blue applications",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pxblue/component-library"
+    "url": "git+https://github.com/pxblue/react-native-component-library"
   },
   "keywords": [
     "react native",
@@ -13,9 +13,9 @@
     "pxblue"
   ],
   "bugs": {
-    "url": "https://github.com/pxblue/component-library/issues"
+    "url": "https://github.com/pxblue/react-native-component-library/issues"
   },
-  "homepage": "https://github.com/pxblue/component-library#readme",
+  "homepage": "https://github.com/pxblue/react-native-component-library#readme",
   "license": "BSD-3-Clause",
   "main": "core/index.js",
   "types": "core/index.d.ts",

@@ -2,7 +2,7 @@
   "name": "@pxblue/react-native-components",
   "version": "0.0.1-alpha.1",
   "description": "Reusable React Native components for PX Blue applications",
-  "repository": "https://github.com/pxblue/component-library/tree/dev/reactnative",
+  "repository": "https://github.com/pxblue/react-native-component-library",
   "license": "BSD-3-Clause",
   "scripts": {
     "lint": "eslint src/**/*.ts src/**/*.tsx",
