@@ -23,7 +23,7 @@ git clone https://github.com/pxblue/react-native-component-library
 cd react-native-component-library
 ```
 
-The library can be built by running the following command. The resulting output will be in the /core folder.
+The library can be built by running the following command. The resulting output will be in the /dist folder.
 ```
 yarn build
 ```
