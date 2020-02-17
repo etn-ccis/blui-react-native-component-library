@@ -1,9 +1,11 @@
-# PX Blue UI Components for React Native
+# PX Blue React Native Components
+[![](https://img.shields.io/circleci/project/github/pxblue/react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/pxblue/react-native-component-library/tree/master)
+![npm](https://img.shields.io/npm/v/@pxblue/react-native-components?label=%40pxblue%2Freact-native-components)
 
 This is a library of re-usable React Native components for use in PX Blue applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in PX Blue and eliminate the need for multiple teams to build their own components for these.
 
 
-Refer to the [documentation](https://github.com/pxblue/component-library/tree/dev/reactnative/docs) for a list of available components.
+Refer to the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for a list of available components.
 
 
 ## Installation
@@ -17,8 +19,8 @@ yarn add @pxblue/react-native-components
 ## Building the Library
 To work with this library, first clone down the repository and install dependencies:
 ```
-git clone https://github.com/pxblue/component-library
-cd component-library/reactnative
+git clone https://github.com/pxblue/react-native-component-library
+cd react-native-component-library
 ```
 
 The library can be built by running the following command. The resulting output will be in the /core folder.
@@ -26,15 +28,36 @@ The library can be built by running the following command. The resulting output 
 yarn build
 ```
 
-There is also a demo project (/component-demo) in this repository that shows the components in use (via StoryBook). You can automatically build the component library and link them to the node modules for the demo by running:
-```
-yarn link:components
-```
 
-You can also build, link, and start the demo application in a single step by calling ```yarn start``` from the /reactnative directory.
+## Running the demo projects
+This repository comes with three demo projects found within the `/demos` folder. 
+The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project that shows a combination of components in the context of a realistic interface.  The third project is our api documentation.
+
+
+You can build, link, and start the demo applications in a single step by calling either 
+
+```
+yarn start:showcase
+``` 
+
+or 
+
+```
+yarn start:storybook
+``` 
+
+or 
+
+```
+yarn start:storybook-api
+``` 
+
+from the root directory.
+
+
 
 ## Using the Components
-See the [documentation](https://github.com/pxblue/component-library/tree/dev/reactnative/docs) for information on using these components.
+See the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for information on using these components.
 
 
 ## NOTES
