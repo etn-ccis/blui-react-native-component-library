@@ -3,7 +3,8 @@ Components in this library are themed using [@callstack/react-theme-provider](ht
 
 ## Overview
 A Theme is a single JSON object with the following structure:
-```
+
+```typescript
 {
   roundness: number
   colors: {
@@ -34,7 +35,8 @@ A Theme is a single JSON object with the following structure:
 }
 ```
 `Font` is another object with the following format:
-```
+
+```typescript
 {
   fontFamily: string
   fontWeight: TextStyle['fontWeight']
@@ -44,7 +46,7 @@ A Theme is a single JSON object with the following structure:
 ## Using the Theme
 To use the theme from this library, simply wrap your application in a ```<ThemeProvider>``` and the rest is handled for you.
 
-```
+```typescript
 import { ThemeProvider } from '@pxblue/react-native-components';
 ...
 <ThemeProvider>
@@ -55,7 +57,7 @@ import { ThemeProvider } from '@pxblue/react-native-components';
 ## Using the Theme in Custom Components
 To use the theme properties in your custom components, you can use the ```withTheme``` HOC to inject the theme into your component.
 
-```
+```typescript
 import { withTheme, WithTheme } from '@pxblue/react-native-components';
 const Example = withTheme(({ theme, ...props }: WithTheme<ViewProps>) => {
   const { colors, roundness } = theme;
@@ -80,7 +82,7 @@ const Example = withTheme(({ theme, ...props }: WithTheme<ViewProps>) => {
 ## Overriding the Theme
 If you need to override the theme, you can do so by providing a ```theme``` property to the ```ThemeProvider```.
 
-```
+```typescript
 <ThemeProvider theme={{
   roundness: 3,
   fonts: {
@@ -131,6 +133,6 @@ If you need to override the theme, you can do so by providing a ```theme``` prop
 ### For a Single Component
 If you don't want to modify the theme for all components, but rather just one individual component, you can do so by directly passing a ```theme``` (or partial theme) property to the component. The following example overrides the text color of the Title component.
 
-```
+```typescript
 <Title theme={{ colors: { text: { 'green' } } }}>My text</Title>
 ```

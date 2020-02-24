@@ -4,7 +4,7 @@ The InfoListItem is intended to be used in List views. It positions a title as w
 <img width="400" alt="Info List Item component" src="./images/infoListItem.png">
 
 ### Usage
-```
+```typescript
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import { wrapIcon } from '@pxblue/react-native-components';
 const LeafIcon = wrapIcon({ IconClass: Leaf });
@@ -20,7 +20,7 @@ const LeafIcon = wrapIcon({ IconClass: Leaf });
 #### Advanced Usage
 You can also supply an array of items that will be displayed as a character-separated subtitle. The separation character is configurable.
 
-```
+```typescript
 <InfoListItem
     title={'Hillman Field East'}
     subtitle={['PXM 2000', 'DT 1150', '113.4 GPM']}

@@ -4,7 +4,7 @@ The EmptyState component is an element that can be used as a placeholder when no
 <img width="500" alt="Empty state with all props" src="./images/emptyState.png">
 
 ## Usage
-```
+```typescript
 import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });

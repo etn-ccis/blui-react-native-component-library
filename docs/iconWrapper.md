@@ -4,7 +4,7 @@ The Icon Wrapper is a utility that allows the PX Blue components to interact nic
 However, the recommended icon libraries, `@pxblue/icons-svg` and `react-native-vector-icons`, do not not conform to this shape. Therefore, this utility exports `wrapIcon`, a Higher Order Component that can be used to convert them.
 
 ### Usage (@pxblue/icons-svg)
-```
+```typescript
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 const LeafIcon = wrapIcon({ IconClass: Leaf });
 ...
@@ -13,7 +13,8 @@ const LeafIcon = wrapIcon({ IconClass: Leaf });
 
 ### Usage (react-native-vector-icons)
 Icons from react-native-vector-icons require a class and a name. Refer to the [documentation](https://github.com/oblador/react-native-vector-icons) for which icons are available in each set.
-```
+
+```typescript
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline' });
 ...
