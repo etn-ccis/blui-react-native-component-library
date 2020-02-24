@@ -74,7 +74,7 @@ jobs:
               yarn add @pxblue/react-native-components
             fi
 
-            yarn build-storybook
+            yarn build
       - run:
           name: Lint
           command: |
