@@ -5,7 +5,7 @@ import { ReactThemes } from '@pxblue/themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import './styles.css';
-import pxblue from './pxblue-theme';
+import { pxblueTheme } from '@pxblue/storybook-themes';
 
 const newViewports = {
     iPhone5: {
@@ -31,12 +31,21 @@ const newViewports = {
     },
 };
 
+pxblueTheme.brandTitle = 'PX Blue React Component Library';
+pxblueTheme.brandImage = require('../assets/pxblue.svg');
+pxblueTheme.brandUrl = 'https://pxblue.github.io';
+
 addParameters({
+    /* Users will see this while the component is loading. */
+    notes: {
+        markdown: '<div> </div>',
+    },
     viewport: {
         viewports: newViewports,
     },
     options: {
-        theme: pxblue,
+        theme: pxblueTheme,
+        showRoots: true,
     },
 });
 
