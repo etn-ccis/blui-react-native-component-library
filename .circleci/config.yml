@@ -79,10 +79,38 @@ jobs:
           name: Lint
           command: |
             echo "LINT HERE"
+
+  # Builds the hosted Storybook app
+  build_storybook_api:
+    docker:
+      - image: circleci/node:12.9.1-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-dependencies-react-native-{{ checksum "demos/api/yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            cd demos/api
+            yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Cache
+          paths:
+            - demos/api/node_modules
+          key: v2-dependencies-react-native-{{ checksum "demos/api/yarn.lock" }}
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build Storybook
+          command: |
+            cd demos/api
+            yarn build-storybook
       - persist_to_workspace:
           root: .
           paths:
-            - demos/storybook/storybook-static
+            - demos/api/storybook-static
+
 
   # Builds the Showcase app using @pxblue/react-native-components persisted in /dist folder.
   build_showcase:
@@ -144,7 +172,7 @@ jobs:
             git config --global user.email "$GH_EMAIL"
             git config --global user.name "$GH_NAME"
 
-            cd demos/storybook
+            cd demos/api
 
             if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
               git clone $MASTER_TARGET out
@@ -178,9 +206,12 @@ workflows:
       - build_storybook:
           requires:
             - build_library
+      - build_storybook_api:
+          requires:
+            - build_library
       - deploy_storybook:
           requires:
-            - build_storybook
+            - build_storybook_api
           filters:
             branches:
               only:
