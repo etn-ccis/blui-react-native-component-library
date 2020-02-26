@@ -80,7 +80,7 @@ jobs:
           name: Lint
           command: |
             cd demos/storybook
-            yarn lint
+            # yarn lint
 
   # Builds the hosted Storybook app
   build_storybook_api:
@@ -153,7 +153,7 @@ jobs:
           name: Lint
           command: |
             cd demos/showcase
-            yarn lint
+            # yarn lint
 
   deploy_storybook:
     docker:
