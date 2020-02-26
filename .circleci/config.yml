@@ -29,7 +29,8 @@ jobs:
       - run:
           name: Lint
           command: |
-            cd components && yarn lint
+            cd components
+            yarn lint
       - run:
           name: Test
           command: |
