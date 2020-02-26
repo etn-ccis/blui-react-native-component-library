@@ -13,7 +13,6 @@
         "@pxblue/themes": "^2.0.0",
         "@sambego/storybook-state": "^1.3.6",
         "@storybook/addon-notes": "^5.3.13",
-        "@storybook/addon-viewport": "^5.3.13",
         "@storybook/addons": "^5.3.13",
         "@storybook/preset-create-react-app": "^1.5.2",
         "@storybook/react": "^5.3.13",

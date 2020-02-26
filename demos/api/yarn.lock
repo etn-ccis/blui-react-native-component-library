@@ -1507,7 +1507,7 @@
 
 "@pxblue/storybook-themes@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.npmjs.org/@pxblue/storybook-themes/-/storybook-themes-1.0.1.tgz#a66be26afbd9e6880ca668084ceb9aa4fec1c2e1"
+  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.0.1.tgz#a66be26afbd9e6880ca668084ceb9aa4fec1c2e1"
   integrity sha512-XktRBQ0bDwUQk6dPHsC2+/XCUP3Lct+Do4lkpPvfBCgQGLtINXfdY1D+mW2LkXRqnHCrQGJO9pIqHzRbKUrHZg==
 
 "@pxblue/themes@^2.0.0":
@@ -1551,23 +1551,6 @@
     core-js "^3.0.1"
     global "^4.3.2"
     markdown-to-jsx "^6.10.3"
-    memoizerific "^1.11.3"
-    prop-types "^15.7.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addon-viewport@^5.3.13":
-  version "5.3.13"
-  resolved "https://registry.npmjs.org/@storybook/addon-viewport/-/addon-viewport-5.3.13.tgz#4a1ea684da2bb444dbe0653d0a27eb8a72cc2c94"
-  integrity sha512-sFhWhyhN1k9VdSXPRkO7QMy1MLib9m6YtBzPCTnNsz8CjAuMNtCA+7zNW/fqGGJAHxuVTTJaHRc51Zk35E4WJA==
-  dependencies:
-    "@storybook/addons" "5.3.13"
-    "@storybook/api" "5.3.13"
-    "@storybook/client-logger" "5.3.13"
-    "@storybook/components" "5.3.13"
-    "@storybook/core-events" "5.3.13"
-    "@storybook/theming" "5.3.13"
-    core-js "^3.0.1"
-    global "^4.3.2"
     memoizerific "^1.11.3"
     prop-types "^15.7.2"
     util-deprecate "^1.0.2"
