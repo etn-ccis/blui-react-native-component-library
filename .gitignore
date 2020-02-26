@@ -13,6 +13,9 @@ dist
 ios/build
 **/android/app/build
 **/android/.gradle
+build.bundle
+storybook-static
+
 # misc
 **/**/.DS_Store
 **/**/Thumbs.db
