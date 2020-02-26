@@ -30,7 +30,7 @@ jobs:
           name: Lint
           command: |
             cd components
-            yarn lint
+            # yarn lint
       - run:
           name: Test
           command: |
