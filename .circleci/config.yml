@@ -108,6 +108,8 @@ jobs:
           command: |
             cd demos/api
             yarn build-storybook
+            cd storybook-static
+            touch .nojekyll
       - run:
           name: Lint
           command: |
