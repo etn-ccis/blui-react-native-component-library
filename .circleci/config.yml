@@ -149,11 +149,6 @@ jobs:
             fi
 
             yarn build
-      - run:
-          name: Lint
-          command: |
-            cd demos/showcase
-            # yarn lint
 
   deploy_storybook:
     docker:
