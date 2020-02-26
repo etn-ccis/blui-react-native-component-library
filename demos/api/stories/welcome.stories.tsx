@@ -2,6 +2,7 @@ import {createStyles, makeStyles, Typography} from "@material-ui/core";
 import {storiesOf} from '@storybook/react';
 import React from 'react';
 import {appliedTheme} from '../.storybook/config';
+/* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg');
 
 export const stories = storiesOf('Intro/Welcome', module);
@@ -53,6 +54,7 @@ stories.addParameters({
 stories.add('to pxblue', () => {
     autoNavToStory();
     const classes = useStyles();
+    /* eslint-disable @typescript-eslint/no-var-requires  */
     const icon = require('../assets/pxb-icon.svg');
     return (
         <div className={classes.root}>
