@@ -108,6 +108,11 @@ jobs:
           command: |
             cd demos/api
             yarn build-storybook
+      - run:
+          name: Lint
+          command: |
+            cd demos/api
+            yarn lint
       - persist_to_workspace:
           root: .
           paths:
