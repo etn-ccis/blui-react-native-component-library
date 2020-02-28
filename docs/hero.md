@@ -11,7 +11,7 @@ The Hero component displays a particular icon, value/units, and a label. The [Ic
 The value section of the Hero utilizes a [ChannelValue](./channel-value.md) component. To display a single simple value, the information can be passed as props (```value```, ```units```, ```valueIcon```). For more complex values (such as a duration that displays hours and minutes), you can pass in ```<ChannelValue/>``` components as children and they will be displayed inline.
 
 ### Hero Usage
-```
+```typescript
 import { Hero, wrapIcon } from '@pxblue/react-native-components';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });
@@ -45,7 +45,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 The HeroBanner component is a simple wrapper component that is used to contain `<Hero/>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero/>` components by default as children. Any children after the ```limit``` will not be rendered.
 
 ### HeroBanner Usage
-```
+```typescript
 import { Hero, HeroBanner, wrapIcon } from '@pxblue/react-native-components';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });

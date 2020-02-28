@@ -5,7 +5,7 @@ Card component that calls attention to particular values.
 <img width="40%" alt="Score Card with multiple highlighted values" src="./images/scorecard_alt.png">
 
 ### Usage
-```
+```typescript
 import { Hero, HeroBanner, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
 import { ListItem } from 'react-native-elements';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -69,7 +69,7 @@ Header icons specified as a JSON object with the following properties:
 #### ScoreCard.ListItem
 ScoreCard.ListItem is a helper component that can be used for the footer of the ScoreCard. 
 
-```
+```typescript
 import { ScoreCard } from '@pxblue/react-native-components';
 ...
 <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
