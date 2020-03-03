@@ -6,12 +6,13 @@ import {
     Hero,
     Header,
     ThemeProvider,
-    H6, Body,
+    H6,
+    Body,
     ChannelValue,
     ScoreCard,
     InfoListItem,
     wrapIcon,
-    EmptyState
+    EmptyState,
 } from '@pxblue/react-native-components';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -48,22 +49,22 @@ export default class App extends React.Component {
                         title={'South Tin Mill'}
                         subtitle={'Gary Steel Works'}
                         info={'Online'}
-                        navigation={{ icon: MenuIcon, onPress: () => { } }}
+                        navigation={{ icon: MenuIcon, onPress: () => {} }}
                         actionItems={[
-                            { icon: MailIcon, onPress: () => { } },
-                            { icon: MoreIcon, onPress: () => { } },
+                            { icon: MailIcon, onPress: () => {} },
+                            { icon: MoreIcon, onPress: () => {} },
                         ]}
                         backgroundImage={backgroundImage}
                         searchableConfig={{ placeholder: 'Search', autoFocus: true }}
                     />
                     <ScrollView>
                         <Card>
-                            <EmptyState 
-                                title={'Nothing Found'} 
+                            <EmptyState
+                                title={'Nothing Found'}
                                 description={'Not a single thing'}
-                                IconClass={ChartLineVariant} 
+                                IconClass={ChartLineVariant}
                                 actions={<Button title={'Add a Device'} type={'outline'} />}
-                                // iconSize={200} 
+                                // iconSize={200}
                                 // iconColor={'red'}
                             />
                         </Card>
@@ -83,20 +84,17 @@ export default class App extends React.Component {
                                     IconClass={Battery}
                                     iconColor={PXBColors.blue[500]}
                                 />
-                                <Hero
-                                    label={'Estimated'}
-                                    IconClass={Clock}
-                                    iconColor={PXBColors.gray[500]}
-                                >
+                                <Hero label={'Estimated'} IconClass={Clock} iconColor={PXBColors.gray[500]}>
                                     <ChannelValue fontSize={'large'} value={1} units={'h'} />
                                     <ChannelValue fontSize={'large'} value={37} units={'m'} />
                                 </Hero>
-                                <Hero
-                                    label={'Loaded'}
-                                    IconClass={Pie}
-                                    iconColor={PXBColors.blue[500]}
-                                >
-                                    <ChannelValue fontSize={'large'} value={65} units={'%'} IconClass={ChartLineVariant} />
+                                <Hero label={'Loaded'} IconClass={Pie} iconColor={PXBColors.blue[500]}>
+                                    <ChannelValue
+                                        fontSize={'large'}
+                                        value={65}
+                                        units={'%'}
+                                        IconClass={ChartLineVariant}
+                                    />
                                 </Hero>
                                 <Hero
                                     label={'Not Shown'}
@@ -109,17 +107,13 @@ export default class App extends React.Component {
                                 topDivider
                                 leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
                                 title={<H6>Temperature</H6>}
-                                rightElement={
-                                    <ChannelValue value={68} units={'°F'} />
-                                }
+                                rightElement={<ChannelValue value={68} units={'°F'} />}
                             />
                             <ListItem
                                 topDivider
                                 leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
                                 title={<H6>Temperature</H6>}
-                                rightElement={
-                                    <ChannelValue value={68} units={'°F'} />
-                                }
+                                rightElement={<ChannelValue value={68} units={'°F'} />}
                             />
                             <ListItem
                                 topDivider
@@ -145,7 +139,7 @@ export default class App extends React.Component {
                             // dense
                             rightComponent={<MatIcon name={'mail'} size={24} color={PXBColors.black[500]} />}
                             divider={'partial'}
-                            onPress={() => { }}
+                            onPress={() => {}}
                         />
                         <InfoListItem
                             title={'South Hills Farm'}
@@ -157,7 +151,7 @@ export default class App extends React.Component {
                             hidePadding={false}
                             color={PXBColors.red[500]}
                             rightComponent={<ChannelValue value={15} units={'A'} />}
-                            onPress={() => { }}
+                            onPress={() => {}}
                         />
                         <InfoListItem
                             title={'Cherry East'}
@@ -165,7 +159,7 @@ export default class App extends React.Component {
                             subtitle={['DG 100', 'EDR 5000', 'Online']}
                             subtitleSeparator={'/'}
                             hidePadding
-                            onPress={() => { }}
+                            onPress={() => {}}
                         />
                         <ScoreCard
                             style={{ margin: PADDING }}
@@ -173,9 +167,7 @@ export default class App extends React.Component {
                             headerSubtitle={'6 UPS Devices'}
                             headerInfo={'Attention Required'}
                             headerBackgroundImage={backgroundImage}
-                            actionItems={[
-                                { icon: MoreIcon, onPress: () => { } }
-                            ]}
+                            actionItems={[{ icon: MoreIcon, onPress: () => {} }]}
                             badgeOffset={-55}
                             badge={
                                 <HeroBanner style={{ flex: 0, minWidth: 80, justifyContent: 'flex-end' }}>
@@ -189,9 +181,7 @@ export default class App extends React.Component {
                                     />
                                 </HeroBanner>
                             }
-                            actionRow={
-                                <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
-                            }
+                            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
                         >
                             <View style={{ justifyContent: 'center' }}>
                                 <ListItem
@@ -219,8 +209,8 @@ export default class App extends React.Component {
                             headerInfo={'5 Devices'}
                             headerBackgroundImage={backgroundImage}
                             actionItems={[
-                                { icon: MailIcon, onPress: () => { } },
-                                { icon: MoreIcon, onPress: () => { } }
+                                { icon: MailIcon, onPress: () => {} },
+                                { icon: MoreIcon, onPress: () => {} },
                             ]}
                             badge={
                                 <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
@@ -242,9 +232,7 @@ export default class App extends React.Component {
                                     />
                                 </HeroBanner>
                             }
-                            actionRow={
-                                <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
-                            }
+                            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
                         >
                             <View style={{ justifyContent: 'center' }}>
                                 <ListItem
@@ -266,7 +254,6 @@ export default class App extends React.Component {
                         </ScoreCard>
                         <SafeAreaView />
                     </ScrollView>
-
                 </View>
             </ThemeProvider>
         );

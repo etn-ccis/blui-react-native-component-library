@@ -1,7 +1,7 @@
 // import { BucketView } from './bucket-view';
 import { ChannelValue } from './channel-value';
 // import { CollapsibleSection } from './collapsible-section';
-import { EmptyState} from "./empty-state";
+import { EmptyState } from './empty-state';
 // export * from './drawer';
 import { Header } from './header';
 import { Hero } from './hero';
@@ -15,20 +15,20 @@ import { Theme, ThemeProvider, withTheme, WithTheme } from './theme';
 export * from './typography';
 
 export {
-  // BucketView,
-  ChannelValue,
-  EmptyState,
-  // CollapsibleSection,
-  Header,
-  Hero,
-  HeroBanner,
-  InfoListItem,
-  // LayoutView,
-  ScoreCard,
-  // SearchScreen,
-  Theme,
-  ThemeProvider,
-  withTheme,
-  WithTheme,
-  wrapIcon
+    // BucketView,
+    ChannelValue,
+    EmptyState,
+    // CollapsibleSection,
+    Header,
+    Hero,
+    HeroBanner,
+    InfoListItem,
+    // LayoutView,
+    ScoreCard,
+    // SearchScreen,
+    Theme,
+    ThemeProvider,
+    withTheme,
+    WithTheme,
+    wrapIcon,
 };

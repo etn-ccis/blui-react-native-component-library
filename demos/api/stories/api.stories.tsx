@@ -1,17 +1,19 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { updateTitle } from '../src/utils';
 
 export const stories = storiesOf('API/Documentation', module);
 
 const autoNavToDocs = (): void => {
-   const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
-   banner.setAttribute('style', 'display: none');
-   // If we are currently on the 'Canvas' tab.
-   if (window.top.location.href.includes('/story/')) {
-      window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
-      //@ts-ignore
-      banner.children[0].children[0].children[0].children[1].click(); // click the Notes tab.
-   }
+    const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
+    banner.setAttribute('style', 'display: none');
+    // If we are currently on the 'Canvas' tab.
+    if (window.top.location.href.includes('/story/')) {
+        window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
+        //@ts-ignore
+        banner.children[0].children[0].children[0].children[1].click(); // click the Notes tab.
+    }
+    updateTitle();
 };
 
 const docFn = (): JSX.Element => <>{autoNavToDocs()}</>;

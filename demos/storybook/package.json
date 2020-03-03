@@ -9,9 +9,9 @@
     "react-native": "react-native",
     "test": "jest",
     "build": "react-native bundle --entry-file=index.js --bundle-output=build.bundle",
-    "prettier": "prettier \"storybook/**/**.{tsx}\" --write",
-    "lint": "eslint storybook/**/*.tsx",
-    "lint:fix": "eslint storybook/**/*.tsx --fix"
+    "prettier": "prettier \"storybook/**/**.{ts,tsx}\" --write",
+    "lint": "eslint storybook/**/*.{ts,tsx}",
+    "lint:fix": "eslint storybook/**/*.{ts,tsx} --fix"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.3",
@@ -61,7 +61,6 @@
     "@types/storybook__addon-links": "^3.3.5",
     "@types/storybook__react": "^4.0.2",
     "@types/storybook__react-native": "^3.0.5",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "jest": "^24.9.0",

@@ -1,2 +1,2 @@
-import './info-list-item';
-import './info-list';
+import "./info-list-item";
+import "./info-list";

@@ -5,98 +5,119 @@ import { Theme, withTheme, WithTheme, ThemeProvider } from '../theme';
 import { Label } from '..';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-export interface HeroProps {
-  /** Label to show */
-  label: string;
+export type HeroProps = {
+    /** Label to show */
+    label: string;
 
-  /** Primary icon */
-  // icon: React.ReactNode;
+    /** Primary icon */
+    // icon: React.ReactNode;
 
-  /** Primary icon */
-  IconClass: ComponentType<{ size: number, color: string }>
+    /** Primary icon */
+    IconClass: ComponentType<{ size: number; color: string }>;
 
-  /** Primary icon color */
-  iconSize?: number
+    /** Primary icon color */
+    iconSize?: number;
 
-  /** Primary icon color */
-  iconColor?: string
+    /** Primary icon color */
+    iconColor?: string;
 
-  /** Primary icon color */
-  iconBackgroundColor?: string
+    /** Primary icon color */
+    iconBackgroundColor?: string;
 
-  /** Primary icon color */
-  fontSize?: keyof Theme['sizes'];
+    /** Primary icon color */
+    fontSize?: keyof Theme['sizes'];
 
-  /** Value for ChannelValue child */
-  value?: number | string;
+    /** Value for ChannelValue child */
+    value?: number | string;
 
-  /** Icon component for ChannelValue child */
-  ValueIconClass?: ComponentType<{ size: number, color: string }>//ReturnType<typeof wrapIcon>;
+    /** Icon component for ChannelValue child */
+    ValueIconClass?: ComponentType<{ size: number; color: string }>; //ReturnType<typeof wrapIcon>;
 
-  /** Value string color */
-  valueColor?: string
+    /** Value string color */
+    valueColor?: string;
 
-  /** Units for value of ChannelValue child */
-  units?: string;
+    /** Units for value of ChannelValue child */
+    units?: string;
 
-  /** Callback for onPress event  */
-  onPress?: () => void;
+    /** Callback for onPress event  */
+    onPress?: () => void;
 
-  /** Style configuration for the wrapper View */
-  style?: StyleProp<ViewStyle>;
+    /** Style configuration for the wrapper View */
+    style?: StyleProp<ViewStyle>;
 
-  /**
-   * TestID
-   */
-  testID?: string;
+    /**
+     * TestID
+     */
+    testID?: string;
 
-  /**
-   * Overrides for theme
-   */
-  theme?: $DeepPartial<Theme>;
+    /**
+     * Overrides for theme
+     */
+    theme?: $DeepPartial<Theme>;
 }
 
 class HeroClass extends Component<WithTheme<HeroProps>> {
-  public render() {
-    const {theme, label, value, ValueIconClass, valueColor, fontSize, units, onPress, iconBackgroundColor, children, style} = this.props;
+    public render() {
+        const {
+            theme,
+            label,
+            value,
+            ValueIconClass,
+            valueColor,
+            fontSize,
+            units,
+            onPress,
+            iconBackgroundColor,
+            children,
+            style,
+        } = this.props;
 
-    return (
-      <TouchableOpacity onPress={onPress} disabled={!onPress} style={[styles.wrapper, style]}>
-        <View style={[styles.icon, {backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24}]}>
-          {this.icon()}
-        </View>
-        <View style={styles.values}>
-          {!children && !!value &&
-            <ChannelValue value={value} units={units} IconClass={ValueIconClass} color={valueColor} fontSize={fontSize || 'large'}/>
-          }
-          {children}
-        </View>
-        <Label style={styles.label} numberOfLines={1} ellipsizeMode={'tail'}>
-          {label}
-        </Label>
-      </TouchableOpacity>
-    )
-  }
-
-  private icon() {
-    const { IconClass, iconColor } = this.props;
-    if (IconClass) {
-      return (
-        <IconClass size={this.normalizeIconSize()} color={this.getColor(iconColor)} />
-      );
+        return (
+            <TouchableOpacity onPress={onPress} disabled={!onPress} style={[styles.wrapper, style]}>
+                <View
+                    style={[
+                        styles.icon,
+                        { backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24 },
+                    ]}
+                >
+                    {this.icon()}
+                </View>
+                <View style={styles.values}>
+                    {!children && !!value && (
+                        <ChannelValue
+                            value={value}
+                            units={units}
+                            IconClass={ValueIconClass}
+                            color={valueColor}
+                            fontSize={fontSize || 'large'}
+                        />
+                    )}
+                    {children}
+                </View>
+                <Label style={styles.label} numberOfLines={1} ellipsizeMode={'tail'}>
+                    {label}
+                </Label>
+            </TouchableOpacity>
+        );
     }
-  }
-  private normalizeIconSize() {
-    const { iconSize } = this.props;
-    if(!iconSize) return 36;
-    return Math.max(10, Math.min(48, iconSize));
-  }
-  private getColor(color: string | undefined) {
-    const { theme } = this.props;
-    if (!color) return theme.colors.text;
-    if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[(color as keyof Theme['colors'])];
-    return color;
-  }
+
+    private icon() {
+        const { IconClass, iconColor } = this.props;
+        if (IconClass) {
+            return <IconClass size={this.normalizeIconSize()} color={this.getColor(iconColor)} />;
+        }
+    }
+    private normalizeIconSize() {
+        const { iconSize } = this.props;
+        if (!iconSize) return 36;
+        return Math.max(10, Math.min(48, iconSize));
+    }
+    private getColor(color: string | undefined) {
+        const { theme } = this.props;
+        if (!color) return theme.colors.text;
+        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+        return color;
+    }
 }
 
 /**
@@ -109,31 +130,31 @@ class HeroClass extends Component<WithTheme<HeroProps>> {
 export const Hero = withTheme(HeroClass);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 8,
-    paddingVertical: 16
-  },
-  icon: {
-    padding: 0,
-    marginBottom: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    height: 48,
-    width: 48
-  },
-  values: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: '100%',
-  },
-  label: {
-    width: '100%',
-    overflow: 'hidden',
-    textAlign: 'center'
-  }
+    wrapper: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        paddingVertical: 16,
+    },
+    icon: {
+        padding: 0,
+        marginBottom: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        height: 48,
+        width: 48,
+    },
+    values: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: '100%',
+    },
+    label: {
+        width: '100%',
+        overflow: 'hidden',
+        textAlign: 'center',
+    },
 });

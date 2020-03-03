@@ -6,6 +6,7 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "lint:fix": "eslint src/**/*.ts src/**/*.tsx  --fix",
     "build": "tsc --p tsconfig.lib.json",
     "test": "jest",
     "test:watch": "jest --watch",
