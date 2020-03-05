@@ -6,7 +6,7 @@ import './rn-addons';
 
 // import stories
 configure(() => {
-  require('./stories');
+    require('./stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
@@ -14,9 +14,9 @@ configure(() => {
 const StorybookUIRoot = getStorybookUI({});
 
 const ThemedStorybook = () => (
-  <ThemeProvider theme={ReactNativeThemes.blue}>
-    <StorybookUIRoot />
-  </ThemeProvider>
+    <ThemeProvider theme={ReactNativeThemes.blue}>
+        <StorybookUIRoot />
+    </ThemeProvider>
 );
 
 export default ThemedStorybook;

@@ -12,44 +12,44 @@ const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
 const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
 
 storiesOf('Hero', module)
-  .addDecorator(withKnobs)
-  .addDecorator(centered)
-  .add('with basic properties', () => (
-    <Hero style={{width: '100%'}}
-      label={text('label', 'Efficiency')} 
-      IconClass={Leaf} 
-      value={text('value', '94')}
-      units={text('units', '%')}
-    />
-  ))
-  .add('with ChannelValue children', () => (
-    <Hero style={{width: '100%'}}
-      label={text('label', 'Duration')} 
-      IconClass={Clock} 
-    >
-      <ChannelValue fontSize={'large'} value={text('hours', '1')} units={'h'}/>
-      <ChannelValue fontSize={'large'} value={text('minutes', '27')} units={'m'}/>
-    </Hero>
-  ))
-  .add('with press event', () => (
-    <Hero style={{width: '100%'}}
-      label={text('label', 'Efficiency')} 
-      IconClass={Leaf} 
-      value={text('value', '94')} 
-      units={text('units', '%')}
-      onPress={() => console.log('pressed')}
-    />
-  ))
-  .add('with full customization', () => (
-    <Hero style={{width: '100%'}}
-      label={text('label', 'Efficiency')} 
-      IconClass={Leaf} 
-      iconSize={48}
-      iconColor={'primary'}
-      fontSize={'extraLarge'}
-      value={text('value', '94')} 
-      ValueIconClass={Line}
-      valueColor={'green'}
-      units={text('units', '%')}
-    />
-  ));
+    .addDecorator(withKnobs)
+    .addDecorator(centered)
+    .add('with basic properties', () => (
+        <Hero
+            style={{ width: '100%' }}
+            label={text('label', 'Efficiency')}
+            IconClass={Leaf}
+            value={text('value', '94')}
+            units={text('units', '%')}
+        />
+    ))
+    .add('with ChannelValue children', () => (
+        <Hero style={{ width: '100%' }} label={text('label', 'Duration')} IconClass={Clock}>
+            <ChannelValue fontSize={'large'} value={text('hours', '1')} units={'h'} />
+            <ChannelValue fontSize={'large'} value={text('minutes', '27')} units={'m'} />
+        </Hero>
+    ))
+    .add('with press event', () => (
+        <Hero
+            style={{ width: '100%' }}
+            label={text('label', 'Efficiency')}
+            IconClass={Leaf}
+            value={text('value', '94')}
+            units={text('units', '%')}
+            onPress={() => console.log('pressed')}
+        />
+    ))
+    .add('with full customization', () => (
+        <Hero
+            style={{ width: '100%' }}
+            label={text('label', 'Efficiency')}
+            IconClass={Leaf}
+            iconSize={48}
+            iconColor={'primary'}
+            fontSize={'extraLarge'}
+            value={text('value', '94')}
+            ValueIconClass={Line}
+            valueColor={'green'}
+            units={text('units', '%')}
+        />
+    ));

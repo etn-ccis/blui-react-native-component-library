@@ -34,13 +34,13 @@ This repository comes with three demo projects found within the `/demos` folder.
 The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project that shows a combination of components in the context of a realistic interface.  The third project is our api documentation.
 
 
-You can build, link, and start the demo applications in a single step by calling either 
+You can build, link, and start the demo applications in a single step by calling from the root directory either 
 
 ```
 yarn start:showcase
 ``` 
 
-or 
+to start a project demo, or 
 
 ```
 yarn start:storybook
@@ -52,7 +52,7 @@ or
 yarn start:storybook-api
 ``` 
 
-from the root directory.
+to bring up a API documentation website.
 
 
 

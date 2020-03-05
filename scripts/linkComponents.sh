@@ -27,7 +27,7 @@ cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-native-components
 cp -r ./dist/. ./demos/api/node_modules/@pxblue/react-native-components
 echo -e "${GREEN}Done${NC}"
 
-echo -en "\r\n${BRED}Linking Components: ${NC}"
+echo -en "\r\n${BBLUE}Linking Components: ${NC}"
 if [ ! -f ./demos/showcase/node_modules/@pxblue/react-native-components/package.json ]; then echo -e "${BRED}Showcase Not Linked${NC}" && exit 1; fi
 if [ ! -s ./demos/showcase/node_modules/@pxblue/react-native-components/core ];
     then

@@ -16,48 +16,34 @@ const WaterIcon = wrapIcon({ IconClass: Water });
 const DeviceIcon = wrapIcon({ IconClass: Device });
 const PxwhiteIcon = wrapIcon({ IconClass: Pxwhite });
 const BasketballIcon = wrapIcon({ IconClass: Basketball });
-const SettingsIcon = wrapIcon({ IconClass: Icon, name: 'settings'});
+const SettingsIcon = wrapIcon({ IconClass: Icon, name: 'settings' });
 
-const item1 = (
-  <Drawer.Item active={true} onPress={() => {}} label={'Environment'} IconClass={LeafIcon}/>
-);
+const item1 = <Drawer.Item active={true} onPress={() => {}} label={'Environment'} IconClass={LeafIcon} />;
 
-const item2 = (
-  <Drawer.Item active={false} onPress={() => {}} label={'Water Pumps'} IconClass={WaterIcon}/>
-);
+const item2 = <Drawer.Item active={false} onPress={() => {}} label={'Water Pumps'} IconClass={WaterIcon} />;
 
-const item3 = (
-  <Drawer.Item active={false} onPress={() => {}} label={'Devices'} IconClass={DeviceIcon}/>
-);
+const item3 = <Drawer.Item active={false} onPress={() => {}} label={'Devices'} IconClass={DeviceIcon} />;
 
-const item4 = (
-  <Drawer.Item active={false} onPress={() => {}} label={'PX White'} IconClass={PxwhiteIcon}/>
-);
+const item4 = <Drawer.Item active={false} onPress={() => {}} label={'PX White'} IconClass={PxwhiteIcon} />;
 
-const item5 = (
-  <Drawer.Item active={false} onPress={() => {}} label={'Shooty Hoops'} IconClass={BasketballIcon}/>
-);
+const item5 = <Drawer.Item active={false} onPress={() => {}} label={'Shooty Hoops'} IconClass={BasketballIcon} />;
 
-const item6 = (
-  <Drawer.Item active={false} onPress={() => {}} label={'Settings'} IconClass={SettingsIcon}/>
-);
+const item6 = <Drawer.Item active={false} onPress={() => {}} label={'Settings'} IconClass={SettingsIcon} />;
 
 storiesOf('Drawer', module)
-  .addDecorator(withKnobs)
-  .addDecorator(safeArea)
-  .add('Drawer.Section', () => (
-    <View>
-      <Drawer.Section title={text('Section 1 title', 'Section 1')}>
-        {item1}
-        {item2}
-        {item3}
-      </Drawer.Section>
-      <Drawer.Section title={text('Section 2 title', 'Section 2')}>
-        {item4}
-        {item5}
-      </Drawer.Section>
-      <Drawer.Section divider={false}>
-        {item6}
-      </Drawer.Section>
-    </View>
-  ));
+    .addDecorator(withKnobs)
+    .addDecorator(safeArea)
+    .add('Drawer.Section', () => (
+        <View>
+            <Drawer.Section title={text('Section 1 title', 'Section 1')}>
+                {item1}
+                {item2}
+                {item3}
+            </Drawer.Section>
+            <Drawer.Section title={text('Section 2 title', 'Section 2')}>
+                {item4}
+                {item5}
+            </Drawer.Section>
+            <Drawer.Section divider={false}>{item6}</Drawer.Section>
+        </View>
+    ));
