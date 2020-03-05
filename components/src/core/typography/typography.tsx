@@ -23,11 +23,11 @@ type TypographyInnerProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-} & TextProps
+} & TextProps;
 
 export type TypographyProps = {
     theme?: $DeepPartial<Theme>;
-} & TypographyInnerProps
+} & TypographyInnerProps;
 
 type Typography = ComponentType<TypographyProps>;
 

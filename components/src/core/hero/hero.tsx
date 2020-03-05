@@ -54,7 +54,7 @@ export type HeroProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-}
+};
 
 class HeroClass extends Component<WithTheme<HeroProps>> {
     public render() {

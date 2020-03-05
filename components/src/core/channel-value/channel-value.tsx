@@ -28,7 +28,7 @@ export type ChannelValueProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-}
+};
 
 class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
     public render() {

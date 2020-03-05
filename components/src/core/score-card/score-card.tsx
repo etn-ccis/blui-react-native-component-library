@@ -12,7 +12,7 @@ export type HeaderIcon = {
 
     /** Callback when icon is pressed */
     onPress: () => void;
-}
+};
 
 export type ScoreCardProps = {
     /** Background color of header */
@@ -55,7 +55,7 @@ export type ScoreCardProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-}
+};
 
 class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
     public static ListItem = ScoreCardListItem;

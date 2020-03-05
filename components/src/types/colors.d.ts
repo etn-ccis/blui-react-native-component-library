@@ -10,7 +10,7 @@ declare module '@pxblue/colors' {
         700: string;
         800: string;
         900: string;
-    }
+    };
 
     export const blue: ColorWeight;
     export const lightBlue: ColorWeight;

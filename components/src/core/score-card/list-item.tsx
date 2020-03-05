@@ -13,7 +13,7 @@ export type ListItemProps = {
      * If onPress is provided, a chevron will be rendered.
      */
     onPress?: () => void;
-}
+};
 
 class ScoreCardListItemClass extends Component<WithTheme<ListItemProps>> {
     public render() {

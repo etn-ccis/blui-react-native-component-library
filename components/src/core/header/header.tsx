@@ -29,7 +29,7 @@ export type HeaderIcon = {
 
     /** Callback when icon is pressed */
     onPress: () => void;
-}
+};
 
 export type SearchableConfig = {
     /** Icon to override default search icon */
@@ -49,7 +49,7 @@ export type SearchableConfig = {
 
     /** TextInput Prop. Determines whether auto-correct is enabled in the search input */
     autoCorrect?: boolean;
-}
+};
 
 export type HeaderProps = {
     /** Header title */
@@ -89,14 +89,14 @@ export type HeaderProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-}
+};
 
 type HeaderState = {
     expanded: boolean;
     searching: boolean;
     query: string;
     headerHeight: Animated.Value;
-}
+};
 
 class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
     static readonly REGULAR_HEIGHT = 56 + getStatusBarHeight(true);
@@ -475,9 +475,8 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
 
         if (searching) {
             return theme.colors.text;
-        } 
-            return fontColor || theme.colors.onPrimary;
-        
+        }
+        return fontColor || theme.colors.onPrimary;
     }
 
     private backgroundColor() {
@@ -486,9 +485,8 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
 
         if (searching) {
             return theme.colors.surface;
-        } 
-            return backgroundColor || theme.colors.primary;
-        
+        }
+        return backgroundColor || theme.colors.primary;
     }
 
     private onPressSearch() {

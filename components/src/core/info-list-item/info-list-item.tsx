@@ -59,7 +59,7 @@ export type InfoListItemProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-}
+};
 
 class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
     private static readonly MAX_SUBTITLE_ELEMENTS = 3;

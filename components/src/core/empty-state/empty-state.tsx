@@ -27,7 +27,7 @@ export type EmptyStateProps = {
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
-}
+};
 
 class EmptyStateClass extends Component<WithTheme<EmptyStateProps>> {
     render() {

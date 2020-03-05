@@ -15,7 +15,7 @@ export type HeroBannerProps = {
 
     /** Style configuration for the wrapper View */
     style?: StyleProp<ViewStyle>;
-}
+};
 
 /**
  * HeroBanner component
