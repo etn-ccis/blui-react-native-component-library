@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.3",
-    "@pxblue/colors": "^1.0.13",
-    "@pxblue/icons-svg": "^1.0.15",
+    "@pxblue/colors": "^2.0.0",
+    "@pxblue/icons-svg": "^1.0.18",
     "@pxblue/themes": "^2.2.4",
     "color": "^3.1.2",
     "faker": "^4.1.0",
@@ -73,6 +73,7 @@
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0"
   },
+  "prettier": "@pxblue/prettier-config",
   "jest": {
     "preset": "react-native",
     "moduleFileExtensions": [

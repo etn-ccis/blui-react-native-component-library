@@ -1132,7 +1132,12 @@
   resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-1.0.13.tgz#1ed76734267f77dd4b390836f61d01439fc35132"
   integrity sha512-tneNNYclHmNNIbo6J7XXEumoJZLBXqeO2LFufWxRvIs5yeVVfaJN3zWREl1oo5KP67aDixYgEKB7LH0oeTL+lQ==
 
-"@pxblue/eslint-config@1.1.4":
+"@pxblue/colors@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-2.0.0.tgz#fa7d2abde80485537f26521df4c3f6e56dd93361"
+  integrity sha512-1JoCVC17nHmC6bbqg2nCAHJgJLHAWNIAmS/UZ3h8u0TnvU5C6qI+CpCrn/sP6bNSQ3LLhEkdVpjKna1kxCXdhg==
+
+"@pxblue/eslint-config@^1.1.4":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-1.1.4.tgz#c4196ee901ac3f21491c24d50b226cbc016c7b2a"
   integrity sha512-hW46xn+jX2J1aCMYWQ7nrU88ZmrA8XhL7+QvIxNUqM6UC1iLN53Vaf1bwlvi1cXTe5/eVrOBuBacXDs0CefiKg==
@@ -1142,12 +1147,12 @@
   optionalDependencies:
     eslint-plugin-react "^7.16.0"
 
-"@pxblue/icons-svg@^1.0.15":
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/@pxblue/icons-svg/-/icons-svg-1.0.17.tgz#cce36cf2f8806161a20cf694954fc1fca364fedc"
-  integrity sha512-HOGsepT6zKnGNzegm4piqUd8WrolB8C/wKdrq5rHIy5ygj+BIlmqgHcjdhDjHeb6rqIEFtnS1Wx+xPIMt2xNwg==
+"@pxblue/icons-svg@^1.0.18":
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/@pxblue/icons-svg/-/icons-svg-1.0.18.tgz#3da719aaaec46cd6b48400995883355f32880519"
+  integrity sha512-T2Vs7Qt8wIMvOYkMR8nkVnUnbPlWpX2nQ3bERdabOJMzfnnWJxLGs/A5CJWCP1FKkjnaryvimaSv/AEaL4DvAQ==
 
-"@pxblue/prettier-config@1.0.2":
+"@pxblue/prettier-config@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
