@@ -10,7 +10,7 @@ package-lock.json
 dist
 
 # builds
-ios/build
+**/ios/build/**
 **/android/app/build
 **/android/.gradle
 build.bundle
