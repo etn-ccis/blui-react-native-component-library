@@ -21,14 +21,15 @@ const getReadMe = (name: string): any => {
 
     // Locate all relative links that use href syntax and replace them with absolute URLs.
     md.default = (md.default).replace(/\(.\/.*md\)/g, (substring: string) => {
-        const root = 'https://pxblue-components.github.io/react-native/';
-        const path = '?path=/info/api-documentation'; // THIS WILL CHANGE
+        // Example: http://localhost:6006/?path=/info/components-hero--get-read-me-story
+        const root = window.top.location.href.split('/?')[0];
+        const path = `?path=/info/api-documentation--`;
 
         // Get component from link. (./HeroBanner.md) => HeroBanner
         const component = substring.split('/')[1].split('.')[0];
         // Storybook uses dash-limited-syntax in their URL schema.
         const dashed = component.replace(/\.?([A-Z])/g, (x) => `-${x.toLowerCase()}`);
-        return `(${root}${path}--${dashed})`;
+        return `(${root}${path}${dashed})`;
     });
     return md;
 };
