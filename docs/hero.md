@@ -25,6 +25,9 @@ const Battery = wrapIcon({ IconClass: _Battery });
 ```
 
 ### Hero API
+
+<div style="overflow: auto">
+
 | Prop Name           | Description                             | Type                                                               | Required | Default                | Examples                       |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|--------------------------------|
 | label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        | 'Status'                       |
@@ -40,6 +43,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | onPress             | A function to execute when clicked      | `function`                                                         | no       |                        | `() => console.log('pressed')` |
 | theme               | Theme partial for default styling       | `DeepPartial<Theme>`                                               | no       |                        | { colors: { text: 'green' } }  |
 
+</div>
 
 ## HeroBanner
 The HeroBanner component is a simple wrapper component that is used to contain `<Hero/>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero/>` components by default as children. Any children after the ```limit``` will not be rendered.
@@ -60,7 +64,12 @@ const Battery = wrapIcon({ IconClass: _Battery });
 ```
 
 ### HeroBanner API
+
+<div style="overflow: auto">
+
 | Prop Name | Description                             | Type      | Required | Default | Examples |
 |-----------|-----------------------------------------|-----------|----------|---------|----------|
 | divider   | Whether to show the line separator      | `boolean` | no       | false   |          |
 | limit     | Max number of children to display       | `number`  | no       | 4       | 3        |
+
+</div>

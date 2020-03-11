@@ -29,6 +29,9 @@ You can also supply an array of items that will be displayed as a character-sepa
 ```
 
 ### API
+
+<div style="overflow: auto">
+
 | Prop Name         | Description                             | Type                                               | Required | Default             | Examples                                |
 |-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
 | title             | The text to show on the first line      | `string`                                           | yes      |                     | 123, 'on'                               |
@@ -47,3 +50,5 @@ You can also supply an array of items that will be displayed as a character-sepa
 | backgroundColor   | The color used for the background       | `string`                                           | no       |                     | 'white', 'blue'                         |
 | onPress           | A function to execute when clicked      | `function`                                         | no       |                     | `() => console.log('pressed')`          |
 | theme             | Theme partial for default styling       | `DeepPartial<Theme>`                               | no       |                     | { colors: { text: 'green' } }           |
+
+</div>
