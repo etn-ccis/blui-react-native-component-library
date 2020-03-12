@@ -19,6 +19,9 @@ const Battery = wrapIcon({ IconClass: _Battery });
 ```
 
 ### API
+
+<div style="overflow: auto">
+
 | Prop Name | Description                             | Type                                                               | Required | Default             | Examples                      |
 |-----------|-----------------------------------------|--------------------------------------------------------------------|----------|---------------------|-------------------------------|
 | value     | The value shown below the icon          | `string` &vert; `number`                                           | yes      |                     | 123, 'on'                     |
@@ -28,3 +31,5 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | fontSize  | The size of the font for the value      | keyof [`theme.sizes`](./theme.md)                                  | no       | 'medium'            | 'extraLarge'                  |
 | color     | The color used for the text elements    | `string`                                                           | no       | `theme.colors.text` | 'black', '#000000'            |
 | theme     | Theme partial for default styling       | `DeepPartial<Theme>`                                               | no       |                     | { colors: { text: 'green' } } |
+
+</div>

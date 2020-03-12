@@ -44,6 +44,9 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 ```
 
 ### API
+
+<div style="overflow: auto">
+
 | Prop Name             | Description                                 | Type                  | Required | Default                  | Examples                              |
 |-----------------------|---------------------------------------------|-----------------------|----------|--------------------------|---------------------------------------|
 | headerTitle           | The primary text                            | `string`              | yes      |                          | 'Dos Valley Field'                    |
@@ -57,6 +60,8 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 | badgeOffset           | Vertical offset for the badge component     | `number`              | no       |                          | -55                                   |
 | actionRow             | Component to render for the footer          | `React.Component`     | no       |                          | `<ScoreCard.ListItem/>                |
 | theme                 | Theme partial for default styling           | `DeepPartial<Theme>`  | no       |                          | { colors: { text: 'green' } }         |
+
+</div>
 
 #### HeaderIcon
 Header icons specified as a JSON object with the following properties:
@@ -75,7 +80,12 @@ import { ScoreCard } from '@pxblue/react-native-components';
 <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
 ```
 
+
+<div style="overflow: auto">
+
 | Prop Name | Description                             | Type       | Required | Default | Examples       |
 |-----------|-----------------------------------------|------------|----------|---------|----------------|
 | label     | Text to show in the action row          | `string`   | yes      |         | 'View Details' |
 | onPress   | Callback function for onPress event     | `function` | no       |         | () => { }      |
+
+</div>

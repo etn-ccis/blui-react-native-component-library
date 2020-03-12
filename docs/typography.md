@@ -27,9 +27,13 @@ import * as Typography from '@pxblue/react-native-components';
 ### API
 All typography components in this library share a common API.
 
+<div style="overflow: auto">
+
 | Prop Name | Description                             | Type                               | Required | Default | Examples                      |
 |-----------|-----------------------------------------|------------------------------------|----------|---------|-------------------------------|
 | font      | The font style (from the theme)         | keyof [`theme.fonts`](./theme.md)  | no       |         | 'bold'                        |
 | fontSize  | The font size (from the theme)          | keyof [`theme.sizes`](./theme.md)  | no       |         | 'large'                       |
 | color     | The font color (from theme palette)     | keyof [`theme.colors`](./theme.md) | no       | 'text'  | 'primary'                     |
 | theme     | Theme partial for default styling       | `DeepPartial<Theme>`               | no       |         | { colors: { text: 'green' } } |
+
+</div>

@@ -22,6 +22,9 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 ```
 
 ### API
+
+<div style="overflow: auto">
+
 | Prop Name         | Description                             | Type                  | Required | Default                  | Examples                                   |
 |-------------------|-----------------------------------------|-----------------------|----------|--------------------------|--------------------------------------------|
 | title             | The text to show on the first line      | `string`              | yes      |                          | 'Hello World'                              |
@@ -37,16 +40,25 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 | searchableConfig  | Configuration for search behavior       | `SearchableConfig`    | no       |                          | { placeholder: 'Search', autoFocus: true } |
 | theme             | Theme partial for default styling       | `DeepPartial<Theme>`  | no       |                          | { colors: { text: 'green' } }              |
 
+</div>
+
 #### HeaderIcon
 Header icons specified as a JSON object with the following properties:
+
+<div style="overflow: auto">
 
 | Key               | Description                             | Type                                               | Required | Default             | Examples                                |
 |-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
 | icon              | A component to render for the icon      | `React.Component<{ size: number, color: string }>` | yes      |                     | `WrappedLeaf`                           |
 | onPress           | A function to execute when clicked      | `function`                                         | yes      |                     | `() => console.log('pressed')`          |
 
+</div>
+
 #### SearchableConfig
 SearchableConfig is an optional object used to configure the search functionality of the header component. It is a JSON object with the following properties:
+
+
+<div style="overflow: auto">
 
 | Key               | Description                             | Type                                               | Required | Default             | Examples                                |
 |-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
@@ -56,3 +68,5 @@ SearchableConfig is an optional object used to configure the search functionalit
 | onChangeText      | Callback when search text changes       | `function`                                         | no       | `null`              | `() => console.log('pressed')`          |
 | autoCapitalize    | Auto-capitalize search input            | [`TextInput.autoCapitalize`](shorturl.at/vzKR7)    | no       | 'none'              | 'words'                                 |
 | autoCorrect       | Auto-correct search input               | `boolean`                                          | no       | `false`             |                                         |
+
+</div>

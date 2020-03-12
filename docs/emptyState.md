@@ -17,6 +17,9 @@ const Battery = wrapIcon({ IconClass: _Battery });
 ```
 
 ## API
+
+<div style="overflow: auto">
+
 | Prop Name   | Description                             | Type                                               | Required | Default | Examples                        |
 |-------------|-----------------------------------------|----------------------------------------------------|----------|---------|---------------------------------|
 | title       | The main text to display                | `string`                                           | yes      |         | 'No Data Found'                 |
@@ -26,3 +29,5 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | iconColor   | The color of the primary icon           | `string`                                           | no       | `text`  | 'red'                           |
 | actions     | Additional components to render below   | `JSX.Element`                                      | no       |         | `<Button title={'click me'} />` |
 | theme       | Theme partial for default styling       | `DeepPartial<Theme>`                               | no       |         | { colors: { text: 'green' } }   |
+
+</div>
