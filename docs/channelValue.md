@@ -22,14 +22,14 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name | Description                             | Type                                                               | Required | Default             | Examples                      |
-|-----------|-----------------------------------------|--------------------------------------------------------------------|----------|---------------------|-------------------------------|
-| value     | The value shown below the icon          | `string` &vert; `number`                                           | yes      |                     | 123, 'on'                     |
-| IconClass | A component to render for the icon      | `React.Component<{ size: number, color: string }>`                 | no       |                     | `<WrappedLeaf/>`              |
-| units     | The units for the supplied value        | `string`                                                           | no       |                     | 'hz', '$'                     |
-| prefix    | If true, shows units before the value   | `boolean`                                                          | no       | false               | true, false                   |
-| fontSize  | The size of the font for the value      | keyof [`theme.sizes`](./theme.md)                                  | no       | 'medium'            | 'extraLarge'                  |
-| color     | The color used for the text elements    | `string`                                                           | no       | `theme.colors.text` | 'black', '#000000'            |
-| theme     | Theme partial for default styling       | `DeepPartial<Theme>`                                               | no       |                     | { colors: { text: 'green' } } |
+| Prop Name | Description                             | Type                                                               | Required | Default             |
+|-----------|-----------------------------------------|--------------------------------------------------------------------|----------|---------------------|
+| value     | The value shown below the icon          | `string` &vert; `number`                                           | yes      |                     |
+| IconClass | A component to render for the icon      | `React.Component<{ size: number, color: string }>`                 | no       |                     |
+| units     | The units for the supplied value        | `string`                                                           | no       |                     |
+| prefix    | If true, shows units before the value   | `boolean`                                                          | no       | false               |
+| fontSize  | The size of the font for the value      | keyof [`theme.sizes`](./theme.md)                                  | no       | 'medium'            |
+| color     | The color used for the text elements    | `string`                                                           | no       | `theme.colors.text` |
+| theme     | Theme partial for default styling       | `DeepPartial<Theme>`                                               | no       |                     |
 
 </div>

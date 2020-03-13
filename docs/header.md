@@ -25,20 +25,20 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                             | Type                  | Required | Default                  | Examples                                   |
-|-------------------|-----------------------------------------|-----------------------|----------|--------------------------|--------------------------------------------|
-| title             | The text to show on the first line      | `string`              | yes      |                          | 'Hello World'                              |
-| subtitle          | The text to show on the second line     | `string`              | no       |                          | 'Subtitle'                                 |
-| info              | Third line of text (hidden on collapse) | `string`              | no       |                          | 'Hidden Text'                              |
-| navigation        | Icon to show left of the title          | `HeaderIcon`          | no       |                          | `{icon: MenuIcon, onClick: () => {}}`      |
-| actionItems       | Icons to show to the right of the title | `HeaderIcon[]`        | no       |                          |                                            |
-| expandable        | Allow the header to expand/collapse     | `boolean`             | no       | `false`                  |                                            |
-| startExpanded     | Default the header to expanded          | `boolean`             | no       | `false`                  |                                            |
-| backgroundColor   | The color used for the background       | `string`              | no       | `theme.colors.primary`   | 'white', 'blue'                            |
-| fontColor         | The color used for the text             | `string`              | no       | `theme.colors.onPrimary` | '#000000'                                  |
-| backgroundImage   | An image to display in the header       | `ImageSourcePropType` | no       |                          | `require('../assets/background.jpg')`      |
-| searchableConfig  | Configuration for search behavior       | `SearchableConfig`    | no       |                          | { placeholder: 'Search', autoFocus: true } |
-| theme             | Theme partial for default styling       | `DeepPartial<Theme>`  | no       |                          | { colors: { text: 'green' } }              |
+| Prop Name         | Description                             | Type                  | Required | Default                  |
+|-------------------|-----------------------------------------|-----------------------|----------|--------------------------|
+| title             | The text to show on the first line      | `string`              | yes      |                          |
+| subtitle          | The text to show on the second line     | `string`              | no       |                          |
+| info              | Third line of text (hidden on collapse) | `string`              | no       |                          |
+| navigation        | Icon to show left of the title          | `HeaderIcon`          | no       |                          |
+| actionItems       | Icons to show to the right of the title | `HeaderIcon[]`        | no       |                          |
+| expandable        | Allow the header to expand/collapse     | `boolean`             | no       | `false`                  |
+| startExpanded     | Default the header to expanded          | `boolean`             | no       | `false`                  |
+| backgroundColor   | The color used for the background       | `string`              | no       | `theme.colors.primary`   |
+| fontColor         | The color used for the text             | `string`              | no       | `theme.colors.onPrimary` |
+| backgroundImage   | An image to display in the header       | `ImageSourcePropType` | no       |                          |
+| searchableConfig  | Configuration for search behavior       | `SearchableConfig`    | no       |                          |
+| theme             | Theme partial for default styling       | `DeepPartial<Theme>`  | no       |                          |
 
 </div>
 
@@ -47,10 +47,10 @@ Header icons specified as a JSON object with the following properties:
 
 <div style="overflow: auto">
 
-| Key               | Description                             | Type                                               | Required | Default             | Examples                                |
-|-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
-| icon              | A component to render for the icon      | `React.Component<{ size: number, color: string }>` | yes      |                     | `WrappedLeaf`                           |
-| onPress           | A function to execute when clicked      | `function`                                         | yes      |                     | `() => console.log('pressed')`          |
+| Key               | Description                             | Type                                               | Required | Default             |
+|-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|
+| icon              | A component to render for the icon      | `React.Component<{ size: number, color: string }>` | yes      |                     |
+| onPress           | A function to execute when clicked      | `function`                                         | yes      |                     |
 
 </div>
 
@@ -60,13 +60,13 @@ SearchableConfig is an optional object used to configure the search functionalit
 
 <div style="overflow: auto">
 
-| Key               | Description                             | Type                                               | Required | Default             | Examples                                |
-|-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
-| icon              | An override for the default search icon | `React.Component<{ size: number, color: string }>` | no       | `SearchIcon`        | `WrappedLeaf`                           |
-| placeholder       | Helper text shown in search field       | `string`                                           | no       | 'Search'            | 'Search by Device'                      |
-| autoFocus         | Gives focus to search input when opened | `boolean`                                          | no       | `false`             |                                         |
-| onChangeText      | Callback when search text changes       | `function`                                         | no       | `null`              | `() => console.log('pressed')`          |
-| autoCapitalize    | Auto-capitalize search input            | [`TextInput.autoCapitalize`](shorturl.at/vzKR7)    | no       | 'none'              | 'words'                                 |
-| autoCorrect       | Auto-correct search input               | `boolean`                                          | no       | `false`             |                                         |
+| Key               | Description                             | Type                                               | Required | Default             |
+|-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|
+| icon              | An override for the default search icon | `React.Component<{ size: number, color: string }>` | no       | `SearchIcon`        |
+| placeholder       | Helper text shown in search field       | `string`                                           | no       | 'Search'            |
+| autoFocus         | Gives focus to search input when opened | `boolean`                                          | no       | `false`             |
+| onChangeText      | Callback when search text changes       | `function`                                         | no       | `null`              |
+| autoCapitalize    | Auto-capitalize search input            | [`TextInput.autoCapitalize`](shorturl.at/vzKR7)    | no       | 'none'              |
+| autoCorrect       | Auto-correct search input               | `boolean`                                          | no       | `false`             |
 
 </div>

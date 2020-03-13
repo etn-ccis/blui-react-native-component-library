@@ -28,20 +28,20 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name           | Description                             | Type                                                               | Required | Default                | Examples                       |
-|---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|--------------------------------|
-| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        | 'Status'                       |
-| IconClass           | The primary icon                        | `React.Component<{ size: number, color: string }>`                 | yes      |                        | `WrappedLeaf`                  |
-| iconSize            | The size of the primary icon (10-48)    | `number`                                                           | no       | 36                     | 24                             |
-| iconColor           | The color of the primary icon           | `string`                                                           | no       | `text`                 | 'red'                          |
-| iconBackgroundColor | The color behind the primary icon       | `string`                                                           | no       | `theme.colors.surface` | 'red'                          |
-| fontSize            | The text size for the value line        | keyof [`theme.sizes`](./theme.md)                                  | no       | 'large'                | 'medium'                       |
-| value               | The value for the channel               | `string` &vert; `number`                                           | no       |                        | 240, 'Off'                     |
-| ValueIconClass      | The icon to show inline with the value  | `React.Component<{ size: number, color: string }>`                 | no       |                        | `WrappedLeaf`                  |
-| valueColor          | Text color for the value line           | `string`                                                           | no       | `text`                 | 'primary'                      |
-| units               | Text to show after the value            | `string`                                                           | no       |                        | 'Hz', '$'                      |
-| onPress             | A function to execute when clicked      | `function`                                                         | no       |                        | `() => console.log('pressed')` |
-| theme               | Theme partial for default styling       | `DeepPartial<Theme>`                                               | no       |                        | { colors: { text: 'green' } }  |
+| Prop Name           | Description                             | Type                                                               | Required | Default                |
+|---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|
+| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
+| IconClass           | The primary icon                        | `React.Component<{ size: number, color: string }>`                 | yes      |                        |
+| iconSize            | The size of the primary icon (10-48)    | `number`                                                           | no       | 36                     |
+| iconColor           | The color of the primary icon           | `string`                                                           | no       | `text`                 |
+| iconBackgroundColor | The color behind the primary icon       | `string`                                                           | no       | `theme.colors.surface` |
+| fontSize            | The text size for the value line        | keyof [`theme.sizes`](./theme.md)                                  | no       | 'large'                |
+| value               | The value for the channel               | `string` &vert; `number`                                           | no       |                        |
+| ValueIconClass      | The icon to show inline with the value  | `React.Component<{ size: number, color: string }>`                 | no       |                        |
+| valueColor          | Text color for the value line           | `string`                                                           | no       | `text`                 |
+| units               | Text to show after the value            | `string`                                                           | no       |                        |
+| onPress             | A function to execute when clicked      | `function`                                                         | no       |                        |
+| theme               | Theme partial for default styling       | `DeepPartial<Theme>`                                               | no       |                        |
 
 </div>
 
@@ -67,9 +67,9 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name | Description                             | Type      | Required | Default | Examples |
-|-----------|-----------------------------------------|-----------|----------|---------|----------|
-| divider   | Whether to show the line separator      | `boolean` | no       | false   |          |
-| limit     | Max number of children to display       | `number`  | no       | 4       | 3        |
+| Prop Name | Description                             | Type      | Required | Default |
+|-----------|-----------------------------------------|-----------|----------|---------|
+| divider   | Whether to show the line separator      | `boolean` | no       | false   |
+| limit     | Max number of children to display       | `number`  | no       | 4       |
 
 </div>
