@@ -4,7 +4,7 @@ The header component is used at the top of the page to display page information.
 <img width="400" alt="Collapsed header" src="./images/header_small.png">
 <img width="400" alt="Expanded header" src="./images/header_large.png">
 
-### Usage
+## Usage
 ```typescript
 import { Header } from '@pxblue/react-native-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -21,7 +21,7 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 />
 ```
 
-### API
+## API
 
 <div style="overflow: auto">
 

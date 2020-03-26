@@ -5,7 +5,7 @@ The ChannelValue component is used to display...a channel value (and units). Thi
 
 > Note: If provided, the IconClass must be a React.ComponentClass or React.FunctionComponent with props of `{ size: number, color: string }`. This library exposes a `wrapIcon` higher-order function that can convert components from `react-native-vector-icons` or from `@pxblue/icons-svg` to this format. See [IconWrapper](./iconWrapper.md).
 
-### Usage
+## Usage
 ```typescript
 import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import _Battery from '@pxblue/icons-svg/battery.svg';
@@ -18,7 +18,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 />
 ```
 
-### API
+## API
 
 <div style="overflow: auto">
 

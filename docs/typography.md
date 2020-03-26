@@ -5,7 +5,7 @@ Typography components are used to render text on the screen. This library provid
 
 We provide components for: ```<H1>```, ```<H2>```, ```<H3>```, ```<H4>```, ```<H5>```, ```<H6>```, ```<Label>```, ```<Body>```, ```<Subtitle>```, ```<Caption>```
 
-### Usage
+## Usage
 
 ```typescript
 import * as Typography from '@pxblue/react-native-components';
@@ -24,7 +24,7 @@ import * as Typography from '@pxblue/react-native-components';
 </View>
 ```
 
-### API
+## API
 All typography components in this library share a common API.
 
 <div style="overflow: auto">
