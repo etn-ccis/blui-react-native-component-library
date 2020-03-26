@@ -1,10 +1,10 @@
-# ScoreCard component
+# ScoreCard 
 Card component that calls attention to particular values.
 
 <img width="40%" alt="Score Card with single highlighted value" src="./images/scorecard.png"><br/>
 <img width="40%" alt="Score Card with multiple highlighted values" src="./images/scorecard_alt.png">
 
-### Usage
+## Usage
 ```typescript
 import { Hero, HeroBanner, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
 import { ListItem } from 'react-native-elements';
@@ -43,7 +43,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 </ScoreCard>
 ```
 
-### API
+## API
 
 <div style="overflow: auto">
 
