@@ -1,4 +1,4 @@
-# ScoreCard component
+# ScoreCard 
 Card component that calls attention to particular values.
 
 <img width="40%" alt="Score Card with single highlighted value" src="./images/scorecard.png"><br/>
