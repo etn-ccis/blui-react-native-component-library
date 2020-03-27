@@ -9,14 +9,14 @@
     "react-native": "react-native",
     "test": "jest",
     "build": "react-native bundle --entry-file=index.js --bundle-output=build.bundle",
-    "prettier": "prettier \"storybook/**/**.{tsx}\" --write",
-    "lint": "eslint storybook/**/*.tsx",
-    "lint:fix": "eslint storybook/**/*.tsx --fix"
+    "prettier": "prettier \"storybook/**/**.{ts,tsx}\" --write",
+    "lint": "eslint storybook/**/*.{ts,tsx}",
+    "lint:fix": "eslint storybook/**/*.{ts,tsx} --fix"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.3",
-    "@pxblue/colors": "^1.0.13",
-    "@pxblue/icons-svg": "^1.0.15",
+    "@pxblue/colors": "^2.0.0",
+    "@pxblue/icons-svg": "^1.0.18",
     "@pxblue/themes": "^2.2.4",
     "color": "^3.1.2",
     "faker": "^4.1.0",
@@ -32,8 +32,8 @@
     "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
-    "@pxblue/eslint-config": "1.1.4",
-    "@pxblue/prettier-config": "1.0.2",
+    "@pxblue/eslint-config": "^1.1.4",
+    "@pxblue/prettier-config": "^1.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-react": "^7.17.0",
@@ -61,7 +61,6 @@
     "@types/storybook__addon-links": "^3.3.5",
     "@types/storybook__react": "^4.0.2",
     "@types/storybook__react-native": "^3.0.5",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "jest": "^24.9.0",
@@ -74,6 +73,7 @@
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0"
   },
+  "prettier": "@pxblue/prettier-config",
   "jest": {
     "preset": "react-native",
     "moduleFileExtensions": [

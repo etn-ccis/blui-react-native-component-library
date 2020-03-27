@@ -8,3 +8,4 @@ We currently have the following components available for React Native applicatio
 - [InfoListItem](https://github.com/pxblue/react-native-component-library/blob/dev/docs/infoListItem.md)
 - [ScoreCard](https://github.com/pxblue/react-native-component-library/blob/dev/docs/scorecard.md)
 - [Typography](https://github.com/pxblue/react-native-component-library/blob/dev/docs/typography.md)
+ 

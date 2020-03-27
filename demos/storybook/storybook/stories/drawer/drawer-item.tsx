@@ -8,13 +8,13 @@ import Leaf from '@pxblue/icons-svg/leaf.svg';
 const LeafIcon = wrapIcon({ IconClass: Leaf });
 
 storiesOf('Drawer', module)
-  .addDecorator(withKnobs)
-  .addDecorator(framedRow)
-  .add('Drawer.Item', () => (
-    <Drawer.Item
-      active={boolean('active', true)}
-      onPress={() => {}}
-      label={text('label', 'Drawer Item')}
-      IconClass={LeafIcon}
-    />
-  ));
+    .addDecorator(withKnobs)
+    .addDecorator(framedRow)
+    .add('Drawer.Item', () => (
+        <Drawer.Item
+            active={boolean('active', true)}
+            onPress={() => {}}
+            label={text('label', 'Drawer Item')}
+            IconClass={LeafIcon}
+        />
+    ));
