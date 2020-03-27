@@ -7,7 +7,7 @@ import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
 import { updateTitle } from '../src/utils';
 
-export const stories = storiesOf('Intro/Welcome', module);
+export const stories = storiesOf('Intro/Overview', module);
 
 const autoNavToStory = (): void => {
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
@@ -85,7 +85,7 @@ stories.addParameters({
     },
 });
 
-stories.add('to pxblue', () => {
+stories.add('PX Blue React Native Components', () => {
     autoNavToStory();
     const classes = useStyles();
     const icon = require('../assets/pxb-icon.svg');
