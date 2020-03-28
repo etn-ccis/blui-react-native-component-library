@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { updateTitle } from '../src/utils';
 
-export const stories = storiesOf('API/Documentation', module);
+export const stories = storiesOf('Components/Documentation', module);
 
 const autoNavToDocs = (): void => {
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
