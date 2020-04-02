@@ -37,7 +37,9 @@ storiesOf('Hero', module)
             value={text('value', '94')}
             units={text('units', '%')}
             action
-            onPress={(): void => { action('clicked alarms') }}
+            onPress={(): void => {
+                action('clicked alarms');
+            }}
         />
     ))
     .add('with full customization', () => (

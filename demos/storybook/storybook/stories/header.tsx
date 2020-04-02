@@ -16,11 +16,31 @@ storiesOf('Header', module)
     .add('standard styling', () => (
         <Header
             title={text('title', 'Title')}
-            navigation={{ icon: MenuIcon, onPress: (): void => { /* do nothing */ } }}
+            navigation={{
+                icon: MenuIcon,
+                onPress: (): void => {
+                    /* do nothing */
+                },
+            }}
             actionItems={[
-                { icon: MailIcon, onPress: (): void => { /* do nothing */ } },
-                { icon: CloudIcon, onPress: (): void => { /* do nothing */ } },
-                { icon: MoreIcon, onPress: (): void => { /* do nothing */ } },
+                {
+                    icon: MailIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: CloudIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
             ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
         />
     ))
@@ -29,11 +49,31 @@ storiesOf('Header', module)
             expandable={true}
             title={text('title', 'Long Title Text')}
             subtitle={text('subtitle', 'Really Really Long Subtitle Text')}
-            navigation={{ icon: MenuIcon, onPress: (): void => { /* do nothing */ } }}
+            navigation={{
+                icon: MenuIcon,
+                onPress: (): void => {
+                    /* do nothing */
+                },
+            }}
             actionItems={[
-                { icon: MailIcon, onPress: (): void => { /* do nothing */ } },
-                { icon: CloudIcon, onPress: (): void => { /* do nothing */ } },
-                { icon: MoreIcon, onPress: (): void => { /* do nothing */ } },
+                {
+                    icon: MailIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: CloudIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
             ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
             backgroundImage={backgroundImage}
         />
@@ -42,22 +82,40 @@ storiesOf('Header', module)
         <Header
             expandable={false}
             title={text('title', 'With Search')}
-            navigation={{ icon: MenuIcon, onPress: (): void => { /* do nothing */ } }}
-            actionItems={[{ icon: MoreIcon, onPress: (): void => { /* do nothing */ } }].slice(
-                0,
-                number('action items', 3, { range: true, min: 0, max: 3, step: 1 })
-            )}
+            navigation={{
+                icon: MenuIcon,
+                onPress: (): void => {
+                    /* do nothing */
+                },
+            }}
+            actionItems={[
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
             searchableConfig={{ placeholder: 'Search', autoFocus: true }}
         />
     ))
     .add('with custom colors', () => (
         <Header
             title={text('title', 'With Custom Colors')}
-            navigation={{ icon: MenuIcon, onPress: (): void => { /* do nothing */ } }}
-            actionItems={[{ icon: MoreIcon, onPress: (): void => { /* do nothing */ } }].slice(
-                0,
-                number('action items', 3, { range: true, min: 0, max: 3, step: 1 })
-            )}
+            navigation={{
+                icon: MenuIcon,
+                onPress: (): void => {
+                    /* do nothing */
+                },
+            }}
+            actionItems={[
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
             fontColor={color('fontColor', green[900])}
             backgroundColor={color('backgroundColor', red[500])}
         />

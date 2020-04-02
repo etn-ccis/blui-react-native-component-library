@@ -26,16 +26,15 @@ const getDateLabel = (data: Data): string => {
         return 'Last Year';
     } else if (diff > 7) {
         return 'Last Month';
-    } 
-        return 'Last Week';
-    
+    }
+    return 'Last Week';
 };
 
 type Device = {
     name: string;
     status: string;
     dateAcquired: Date;
-}
+};
 const devices: Device[] = [
     { name: 'Device A', status: 'started', dateAcquired: new Date('2019-03-21') },
     { name: 'Device A', status: 'stopped', dateAcquired: new Date('2019-03-19') },
@@ -85,5 +84,3 @@ storiesOf('BucketView')
             style={styles.style}
         />
     ));
-
-

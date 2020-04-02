@@ -40,7 +40,9 @@ const createInfoListItemProps = (): InfoListItemProps => {
     }
 
     if (Math.random() < 0.5) {
-        onPress = (): void => { /* do nothing */ };
+        onPress = (): void => {
+            /* do nothing */
+        };
     }
 
     return {
@@ -56,12 +58,26 @@ const data: InfoListItemProps[] = _.range(100).map(createInfoListItemProps);
 
 storiesOf('Search Screen', module).add('search info list items', () => (
     <SearchScreen<InfoListItemProps>
-        filterPredicate={(value: any, query: string): boolean => value.title.toLowerCase().startsWith(query.toLowerCase())}
+        filterPredicate={(value: any, query: string): boolean =>
+            value.title.toLowerCase().startsWith(query.toLowerCase())
+        }
         headerProps={{
             expandable: true,
             title: 'Info List',
-            navigation: { icon: 'menu', onPress: (): void => { /* do nothing */ } },
-            actionItems: [{ icon: 'more-vert', onPress: (): void => { /* do nothing */ } }],
+            navigation: {
+                icon: 'menu',
+                onPress: (): void => {
+                    /* do nothing */
+                },
+            },
+            actionItems: [
+                {
+                    icon: 'more-vert',
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ],
             backgroundColor: blue[500],
             fontColor: white[500],
             searchableConfig: {

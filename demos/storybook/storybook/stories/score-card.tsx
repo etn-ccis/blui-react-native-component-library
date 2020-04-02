@@ -40,9 +40,24 @@ storiesOf('ScoreCard', module)
             headerFontColor={color('fontColor', PXBColors.white[50])}
             headerBackgroundImage={backgroundImage}
             actionItems={[
-                { icon: Clock, onPress: (): void => { /* do nothing */ } },
-                { icon: MailIcon, onPress: (): void => { /* do nothing */ } },
-                { icon: MoreIcon, onPress: (): void => { /* do nothing */ } },
+                {
+                    icon: Clock,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MailIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
             ].slice(
                 0,
                 number('actionItems.length', 2, {
@@ -52,7 +67,14 @@ storiesOf('ScoreCard', module)
                     step: 1,
                 })
             )}
-            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={(): void => { /* do nothing */ }} />}
+            actionRow={
+                <ScoreCard.ListItem
+                    label={'View Location'}
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                />
+            }
         >
             <View style={{ justifyContent: 'center' }}>
                 <ListItem
@@ -82,9 +104,24 @@ storiesOf('ScoreCard', module)
             headerFontColor={color('fontColor', PXBColors.white[50])}
             headerBackgroundImage={backgroundImage}
             actionItems={[
-                { icon: Clock, onPress: (): void => { /* do nothing */ } },
-                { icon: MailIcon, onPress: (): void => { /* do nothing */ } },
-                { icon: MoreIcon, onPress: (): void => { /* do nothing */ } },
+                {
+                    icon: Clock,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MailIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
             ].slice(
                 0,
                 number('actionItems.length', 2, {
@@ -128,7 +165,14 @@ storiesOf('ScoreCard', module)
                     ].slice(0, number('badges.length', 2, { range: true, min: 0, max: 3, step: 1 }))}
                 </HeroBanner>
             }
-            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={(): void => { /* do nothing */ }} />}
+            actionRow={
+                <ScoreCard.ListItem
+                    label={'View Location'}
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                />
+            }
         >
             <View style={{ justifyContent: 'center' }}>
                 <ListItem
