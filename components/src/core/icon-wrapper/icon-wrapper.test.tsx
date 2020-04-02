@@ -2,12 +2,9 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { wrapIcon } from './icon-wrapper';
 import { View } from 'react-native';
-import { SvgProps } from 'react-native-svg';
-import { IconProps } from 'react-native-vector-icons/Icon';
 
-const Icon = (props: IconProps) => <View />;
-
-const Leaf = (props: SvgProps) => <View />;
+const Icon = (): JSX.Element => <View />;
+const Leaf = (): JSX.Element => <View />;
 
 describe('IconWrapper', () => {
     describe('when passed a MaterialCommunity icon', () => {

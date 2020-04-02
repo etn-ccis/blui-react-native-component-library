@@ -15,15 +15,21 @@ type IconArg = IconSetArg | PxBlueIconArg;
 
 const isIconSetArg = (x: IconSetArg | PxBlueIconArg): x is IconSetArg => (x as any).name !== undefined;
 
-export const wrapIcon = (arg: IconArg) => {
+type WrapIconProps = {
+    size: number;
+    color: string;
+};
+export const wrapIcon = (arg: IconArg): ((props: WrapIconProps) => Element) => {
     if (isIconSetArg(arg)) {
         const { name, IconClass } = arg;
-        return (props: { size: number; color: string }) => (
+        // eslint-disable-next-line react/display-name
+        return (props: WrapIconProps): Element => (
             <IconClass name={name} color={props.color} size={props.size} testID={'icon'} />
         );
     }
     const { IconClass } = arg;
-    return (props: { size: number; color: string }) => (
+    // eslint-disable-next-line react/display-name
+    return (props: WrapIconProps): Element => (
         <IconClass fill={props.color} width={props.size} height={props.size} testID={'icon'} />
     );
 };

@@ -9,12 +9,9 @@ import { padded } from '../decorators';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import _A from '@pxblue/icons-svg/grade_a.svg';
-import _Temp from '@pxblue/icons-svg/temp.svg';
-import _Humidity from '@pxblue/icons-svg/moisture';
-import _Battery from '@pxblue/icons-svg/battery.svg';
 
 import * as PXBColors from '@pxblue/colors';
-const backgroundImage = require('../assets/farm.jpg');
+import backgroundImage from '../assets/farm.jpg';
 
 const A = wrapIcon({ IconClass: _A });
 const Clock = wrapIcon({
@@ -43,9 +40,9 @@ storiesOf('ScoreCard', module)
             headerFontColor={color('fontColor', PXBColors.white[50])}
             headerBackgroundImage={backgroundImage}
             actionItems={[
-                { icon: Clock, onPress: () => {} },
-                { icon: MailIcon, onPress: () => {} },
-                { icon: MoreIcon, onPress: () => {} },
+                { icon: Clock, onPress: (): void => { /* do nothing */ } },
+                { icon: MailIcon, onPress: (): void => { /* do nothing */ } },
+                { icon: MoreIcon, onPress: (): void => { /* do nothing */ } },
             ].slice(
                 0,
                 number('actionItems.length', 2, {
@@ -55,7 +52,7 @@ storiesOf('ScoreCard', module)
                     step: 1,
                 })
             )}
-            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
+            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={(): void => { /* do nothing */ }} />}
         >
             <View style={{ justifyContent: 'center' }}>
                 <ListItem
@@ -85,9 +82,9 @@ storiesOf('ScoreCard', module)
             headerFontColor={color('fontColor', PXBColors.white[50])}
             headerBackgroundImage={backgroundImage}
             actionItems={[
-                { icon: Clock, onPress: () => {} },
-                { icon: MailIcon, onPress: () => {} },
-                { icon: MoreIcon, onPress: () => {} },
+                { icon: Clock, onPress: (): void => { /* do nothing */ } },
+                { icon: MailIcon, onPress: (): void => { /* do nothing */ } },
+                { icon: MoreIcon, onPress: (): void => { /* do nothing */ } },
             ].slice(
                 0,
                 number('actionItems.length', 2, {
@@ -102,6 +99,7 @@ storiesOf('ScoreCard', module)
                 <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
                     {[
                         <Hero
+                            key={'hero_1'}
                             label={'Score'}
                             iconSize={48}
                             iconColor={PXBColors.green[500]}
@@ -110,6 +108,7 @@ storiesOf('ScoreCard', module)
                             IconClass={A}
                         />,
                         <Hero
+                            key={'hero_2'}
                             label={'Score'}
                             iconSize={48}
                             iconColor={PXBColors.green[500]}
@@ -118,6 +117,7 @@ storiesOf('ScoreCard', module)
                             IconClass={A}
                         />,
                         <Hero
+                            key={'hero_3'}
                             label={'Score'}
                             iconSize={48}
                             iconColor={PXBColors.green[500]}
@@ -128,7 +128,7 @@ storiesOf('ScoreCard', module)
                     ].slice(0, number('badges.length', 2, { range: true, min: 0, max: 3, step: 1 }))}
                 </HeroBanner>
             }
-            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
+            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={(): void => { /* do nothing */ }} />}
         >
             <View style={{ justifyContent: 'center' }}>
                 <ListItem

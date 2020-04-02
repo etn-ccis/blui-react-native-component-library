@@ -34,11 +34,31 @@ describe('Header', () => {
                 <Header
                     title={'Test Title'}
                     subtitle={'Subtitle'}
-                    navigation={{ icon: MenuIcon, onPress: () => {} }}
+                    navigation={{
+                        icon: MenuIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
+                    }}
                     actionItems={[
-                        { icon: MenuIcon, onPress: () => {} },
-                        { icon: MenuIcon, onPress: () => {} },
-                        { icon: MenuIcon, onPress: () => {} },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
                     ]}
                     backgroundColor={'blue'}
                     fontColor={'white'}
@@ -72,10 +92,30 @@ describe('Header', () => {
                 <Header
                     title={'Test Title'}
                     actionItems={[
-                        { icon: MenuIcon, onPress: () => {} },
-                        { icon: MenuIcon, onPress: () => {} },
-                        { icon: MenuIcon, onPress: () => {} },
-                        { icon: MenuIcon, onPress: () => {} },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
+                        {
+                            icon: MenuIcon,
+                            onPress: (): void => {
+                                /* do nothing */
+                            },
+                        },
                     ]}
                 />
             ).root;

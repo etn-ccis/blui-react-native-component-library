@@ -1,5 +1,5 @@
 {
-    "name": "ComponentDemo",
+    "name": "component-demo",
     "version": "0.0.1",
     "private": true,
     "scripts": {
@@ -43,7 +43,8 @@
         "@types/react-native-vector-icons": "^6.4.5",
         "@types/react-test-renderer": "^16.8.3",
         "@typescript-eslint/eslint-plugin": "^1.13.0",
-        "@pxblue/prettier-config": "1.0.2",
+        "@pxblue/eslint-config": "^1.1.4",
+        "@pxblue/prettier-config": "^1.0.2",
         "babel-jest": "^24.9.0",
         "babel-loader": "^8.0.6",
         "jest": "^24.9.0",

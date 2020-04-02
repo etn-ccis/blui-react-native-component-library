@@ -1,9 +1,39 @@
 import React, { Component, ComponentType } from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import { ChannelValue } from '../channel-value';
-import { Theme, withTheme, WithTheme, ThemeProvider } from '../theme';
+import { Theme, withTheme, WithTheme } from '../theme';
 import { Label } from '..';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        paddingVertical: 16,
+    },
+    icon: {
+        padding: 0,
+        marginBottom: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        height: 48,
+        width: 48,
+    },
+    values: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: '100%',
+    },
+    label: {
+        width: '100%',
+        overflow: 'hidden',
+        textAlign: 'center',
+    },
+});
 
 export type HeroProps = {
     /** Label to show */
@@ -57,7 +87,7 @@ export type HeroProps = {
 };
 
 class HeroClass extends Component<WithTheme<HeroProps>> {
-    public render() {
+    public render(): JSX.Element {
         const {
             theme,
             label,
@@ -101,18 +131,18 @@ class HeroClass extends Component<WithTheme<HeroProps>> {
         );
     }
 
-    private icon() {
+    private icon(): JSX.Element | undefined {
         const { IconClass, iconColor } = this.props;
         if (IconClass) {
             return <IconClass size={this.normalizeIconSize()} color={this.getColor(iconColor)} />;
         }
     }
-    private normalizeIconSize() {
+    private normalizeIconSize(): number {
         const { iconSize } = this.props;
         if (!iconSize) return 36;
         return Math.max(10, Math.min(48, iconSize));
     }
-    private getColor(color: string | undefined) {
+    private getColor(color: string | undefined): string {
         const { theme } = this.props;
         if (!color) return theme.colors.text;
         if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
@@ -128,33 +158,3 @@ class HeroClass extends Component<WithTheme<HeroProps>> {
  * or <ChannelValue/> components may be passed as children.
  */
 export const Hero = withTheme(HeroClass);
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 8,
-        paddingVertical: 16,
-    },
-    icon: {
-        padding: 0,
-        marginBottom: 4,
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        height: 48,
-        width: 48,
-    },
-    values: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: '100%',
-    },
-    label: {
-        width: '100%',
-        overflow: 'hidden',
-        textAlign: 'center',
-    },
-});

@@ -23,6 +23,50 @@ const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
+const styles = StyleSheet.create({
+    bar: {
+        width: '100%',
+        shadowColor: 'rgba(0, 0, 0, 0.3)',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowRadius: 2,
+        shadowOpacity: 1,
+        elevation: 0,
+    },
+    content: {
+        flex: 1,
+        paddingTop: 16,
+        paddingHorizontal: 16,
+        flexDirection: 'row',
+    },
+    navigation: {
+        marginRight: 24,
+        height: 40,
+        width: 40,
+        margin: -8,
+        padding: 8,
+    },
+    titleContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+    },
+    actionPanel: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        position: 'absolute',
+        right: 8,
+        height: 56,
+    },
+    actionItem: {
+        height: 40,
+        width: 40,
+        padding: 8,
+    },
+});
+
 export type HeaderIcon = {
     /** Name of the icon */
     icon: ComponentType<{ size: number; color: string }>;
@@ -133,7 +177,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         });
     }
 
-    render() {
+    render(): JSX.Element {
         const { expandable = false } = this.props;
         const { searching } = this.state;
         const barStyle = this.barStyle();
@@ -142,7 +186,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         return (
             <>
                 <StatusBar barStyle={this.statusBarStyle()} />
-                <TouchableWithoutFeedback onPress={() => this.onPress()} disabled={!expandable || searching}>
+                <TouchableWithoutFeedback onPress={(): void => this.onPress()} disabled={!expandable || searching}>
                     <AnimatedSafeAreaView style={barStyle}>
                         {this.backgroundImage()}
                         <Animated.View style={contentStyle}>
@@ -156,7 +200,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         );
     }
 
-    private onPress() {
+    private onPress(): void {
         const { expanded } = this.state;
         if (expanded) {
             this.contract.start();
@@ -171,7 +215,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         }
     }
 
-    private backgroundImage() {
+    private backgroundImage(): JSX.Element | undefined {
         const { backgroundImage } = this.props;
         const { searching } = this.state;
         if (backgroundImage && !searching) {
@@ -196,7 +240,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         }
     }
 
-    private navigation() {
+    private navigation(): JSX.Element | undefined {
         const { navigation } = this.props;
         const { searching } = this.state;
 
@@ -205,7 +249,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
                 <View>
                     <TouchableOpacity
                         testID={'header-search-close'}
-                        onPress={() => this.onPressSearchClose()}
+                        onPress={(): void => this.onPressSearchClose()}
                         style={styles.navigation}
                     >
                         <Icon name={'arrow-back'} size={HeaderClass.ICON_SIZE} color={this.fontColor()} />
@@ -228,13 +272,13 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         }
     }
 
-    private icon(IconClass: ComponentType<{ size: number; color: string }>) {
+    private icon(IconClass: ComponentType<{ size: number; color: string }>): JSX.Element | undefined {
         if (IconClass) {
             return <IconClass size={HeaderClass.ICON_SIZE} color={this.fontColor()} />;
         }
     }
 
-    private content() {
+    private content(): JSX.Element | undefined {
         const { searchableConfig } = this.props;
         const { searching } = this.state;
         let content = [];
@@ -261,7 +305,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         );
     }
 
-    private title() {
+    private title(): JSX.Element {
         const { title } = this.props;
         return (
             <Animated.Text
@@ -276,7 +320,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         );
     }
 
-    private subtitle() {
+    private subtitle(): JSX.Element | undefined {
         const { subtitle } = this.props;
         if (subtitle) {
             return (
@@ -293,7 +337,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         }
     }
 
-    private info() {
+    private info(): JSX.Element | undefined {
         const { info } = this.props;
         if (info) {
             return (
@@ -310,13 +354,13 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         }
     }
 
-    private search(config: SearchableConfig) {
+    private search(config: SearchableConfig): JSX.Element {
         const placeholderTextColor = color(this.fontColor())
             .fade(0.4)
             .string();
-        const onChangeText = (text: string) => {
+        const onChangeText = (text: string): void => {
             this.setState({ query: text });
-            config.onChangeText && config.onChangeText(text);
+            if (config.onChangeText) config.onChangeText(text);
         };
 
         return (
@@ -338,7 +382,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         );
     }
 
-    private actionItems() {
+    private actionItems(): JSX.Element | undefined {
         const { actionItems, searchableConfig } = this.props;
         const { searching, query } = this.state;
         let items: HeaderIcon[] = actionItems || [];
@@ -348,7 +392,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
                 items = [
                     {
                         icon: ClearIcon,
-                        onPress: () => this.onPressSearchClear(),
+                        onPress: (): void => this.onPressSearchClear(),
                     },
                 ];
             } else {
@@ -358,7 +402,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
             items = [
                 {
                     icon: SearchIcon,
-                    onPress: () => this.onPressSearch(),
+                    onPress: (): void => this.onPressSearch(),
                 },
             ];
             if (actionItems) {
@@ -385,7 +429,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         }
     }
 
-    private barStyle() {
+    private barStyle(): Array<Record<string, any>> {
         return [
             styles.bar,
             {
@@ -395,7 +439,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         ];
     }
 
-    private contentStyle() {
+    private contentStyle(): Array<Record<string, any>> {
         const contractedPadding = this.props.subtitle && !this.state.searching ? 12 : 16;
         return [
             styles.content,
@@ -408,7 +452,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         ];
     }
 
-    private titleStyle() {
+    private titleStyle(): Record<string, any> {
         const { theme } = this.props;
         return {
             color: this.fontColor(),
@@ -424,7 +468,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         };
     }
 
-    private subtitleStyle() {
+    private subtitleStyle(): Record<string, any> {
         const { theme } = this.props;
         return {
             color: this.fontColor(),
@@ -434,7 +478,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         };
     }
 
-    private infoStyle() {
+    private infoStyle(): Record<string, any> {
         const { theme } = this.props;
         return {
             color: this.fontColor(),
@@ -454,7 +498,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         };
     }
 
-    private searchStyle() {
+    private searchStyle(): Record<string, any> {
         const { theme } = this.props;
         return {
             padding: 0, // TextInput on Android has some default padding, so this needs to be explicitly set to 0
@@ -465,11 +509,11 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         };
     }
 
-    private statusBarStyle() {
+    private statusBarStyle(): 'light-content' | 'dark-content' {
         return color(this.backgroundColor()).isDark() ? 'light-content' : 'dark-content';
     }
 
-    private fontColor() {
+    private fontColor(): string {
         const { fontColor, theme } = this.props;
         const { searching } = this.state;
 
@@ -479,7 +523,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         return fontColor || theme.colors.onPrimary;
     }
 
-    private backgroundColor() {
+    private backgroundColor(): string {
         const { backgroundColor, theme } = this.props;
         const { searching } = this.state;
 
@@ -489,17 +533,17 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         return backgroundColor || theme.colors.primary;
     }
 
-    private onPressSearch() {
+    private onPressSearch(): void {
         this.contract.start(() => this.setState({ searching: true }));
         this.setState({
             expanded: false,
         });
     }
 
-    private onPressSearchClose() {
+    private onPressSearchClose(): void {
         const searchInput = this.searchRef.current;
         if (searchInput) {
-            searchInput.props.onChangeText && searchInput.props.onChangeText('');
+            if (searchInput.props.onChangeText) searchInput.props.onChangeText('');
         }
         this.setState({
             searching: false,
@@ -507,18 +551,18 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         });
     }
 
-    private onPressSearchClear() {
+    private onPressSearchClear(): void {
         const searchInput = this.searchRef.current;
         if (searchInput) {
             searchInput.clear();
-            searchInput.props.onChangeText && searchInput.props.onChangeText('');
+            if (searchInput.props.onChangeText) searchInput.props.onChangeText('');
         }
         this.setState({
             query: '',
         });
     }
 
-    private actionPanelWidth() {
+    private actionPanelWidth(): number {
         const { actionItems, searchableConfig } = this.props;
         let length = actionItems ? actionItems.length : 0;
         if (searchableConfig) length++;
@@ -535,47 +579,3 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
  * It can be tapped to expand or contract.
  */
 export const Header = withTheme(HeaderClass);
-
-const styles = StyleSheet.create({
-    bar: {
-        width: '100%',
-        shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowRadius: 2,
-        shadowOpacity: 1,
-        elevation: 0,
-    },
-    content: {
-        flex: 1,
-        paddingTop: 16,
-        paddingHorizontal: 16,
-        flexDirection: 'row',
-    },
-    navigation: {
-        marginRight: 24,
-        height: 40,
-        width: 40,
-        margin: -8,
-        padding: 8,
-    },
-    titleContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-    },
-    actionPanel: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        position: 'absolute',
-        right: 8,
-        height: 56,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
-    },
-});

@@ -25,7 +25,7 @@ const createInfoListItemProps = (): InfoListItemProps => {
     } else if (subtitleNumber < 0.6) {
         subtitle = [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()];
     } else if (subtitleNumber < 0.9) {
-        subtitle = [<Flow width={12} height={12} fill={blue[300]} />, 'GPM'];
+        subtitle = [<Flow key={'flowIcon'} width={12} height={12} fill={blue[300]} />, 'GPM'];
     }
 
     const colorNumber = Math.random();
@@ -40,7 +40,7 @@ const createInfoListItemProps = (): InfoListItemProps => {
     }
 
     if (Math.random() < 0.5) {
-        onPress = () => {};
+        onPress = (): void => { /* do nothing */ };
     }
 
     return {
@@ -52,16 +52,16 @@ const createInfoListItemProps = (): InfoListItemProps => {
     };
 };
 
-const data: Array<InfoListItemProps> = _.range(100).map(createInfoListItemProps);
+const data: InfoListItemProps[] = _.range(100).map(createInfoListItemProps);
 
 storiesOf('Search Screen', module).add('search info list items', () => (
     <SearchScreen<InfoListItemProps>
-        filterPredicate={(value, query) => value.title.toLowerCase().startsWith(query.toLowerCase())}
+        filterPredicate={(value: any, query: string): boolean => value.title.toLowerCase().startsWith(query.toLowerCase())}
         headerProps={{
             expandable: true,
             title: 'Info List',
-            navigation: { icon: 'menu', onPress: () => {} },
-            actionItems: [{ icon: 'more-vert', onPress: () => {} }],
+            navigation: { icon: 'menu', onPress: (): void => { /* do nothing */ } },
+            actionItems: [{ icon: 'more-vert', onPress: (): void => { /* do nothing */ } }],
             backgroundColor: blue[500],
             fontColor: white[500],
             searchableConfig: {
@@ -71,7 +71,8 @@ storiesOf('Search Screen', module).add('search info list items', () => (
         }}
         flatListProps={{
             data: data,
-            renderItem: (item) => <InfoListItem {...item.item} />,
+            //eslint-disable-next-line react/display-name
+            renderItem: (item: any): JSX.Element => <InfoListItem {...item.item} />,
             ItemSeparatorComponent: Separator,
         }}
     />

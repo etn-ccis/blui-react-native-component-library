@@ -20,7 +20,7 @@ const getReadMe = (name: string): any => {
     const md = require(`./../../../docs/${name}`);
 
     // Locate all relative links that use href syntax and replace them with absolute URLs.
-    md.default = (md.default).replace(/\(.\/.*md\)/g, (substring: string) => {
+    md.default = md.default.replace(/\(.\/.*md\)/g, (substring: string) => {
         // Example: http://localhost:6006/?path=/info/components-hero--get-read-me-story
         const root = window.top.location.href.split('/?')[0];
         const path = `?path=/info/api-documentation--`;

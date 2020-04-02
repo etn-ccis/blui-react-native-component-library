@@ -4,6 +4,15 @@ import { Theme, withTheme, WithTheme } from '../theme';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { H6, Subtitle } from '..';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+    },
+});
+
 export type EmptyStateProps = {
     /* Primary text to display */
     title: string;
@@ -30,7 +39,7 @@ export type EmptyStateProps = {
 };
 
 class EmptyStateClass extends Component<WithTheme<EmptyStateProps>> {
-    render() {
+    render(): JSX.Element {
         const { title, description, actions } = this.props;
         return (
             <View style={styles.container}>
@@ -45,18 +54,18 @@ class EmptyStateClass extends Component<WithTheme<EmptyStateProps>> {
             </View>
         );
     }
-    private icon() {
+    private icon(): JSX.Element | undefined {
         const { IconClass, iconColor } = this.props;
         if (IconClass) {
             return <IconClass size={this.normalizeIconSize()} color={this.getColor(iconColor)} />;
         }
     }
-    private normalizeIconSize() {
+    private normalizeIconSize(): number {
         const { iconSize } = this.props;
         if (!iconSize) return 100;
         return Math.max(100, Math.min(200, iconSize));
     }
-    private getColor(color: string | undefined) {
+    private getColor(color: string | undefined): string {
         const { theme } = this.props;
         if (!color) return theme.colors.text;
         if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
@@ -69,12 +78,3 @@ class EmptyStateClass extends Component<WithTheme<EmptyStateProps>> {
  * Used as a placeholder when no content is available for a particular area/screen in your application.
  */
 export const EmptyState = withTheme(EmptyStateClass);
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-    },
-});

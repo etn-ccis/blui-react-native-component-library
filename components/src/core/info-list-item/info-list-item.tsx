@@ -9,6 +9,48 @@ import * as Colors from '@pxblue/colors';
 //@ts-ignore
 import color from 'color';
 
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    withRightPadding: {
+        paddingRight: 16,
+    },
+    iconContainer: {
+        marginLeft: 10,
+        width: 40,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+    },
+    avatar: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+    },
+    contentContainer: {
+        flex: 1,
+        paddingHorizontal: 16,
+    },
+    divider: {
+        height: 1,
+        borderBottomWidth: 1,
+        borderColor: Colors.black['100'],
+    },
+    tab: {
+        width: 6,
+    },
+    withSmallMargins: {
+        marginHorizontal: 4,
+    },
+    fullHeight: {
+        height: '100%',
+    },
+});
+
 export type InfoListItemProps = {
     /** Title to show */
     title: string;
@@ -64,7 +106,7 @@ export type InfoListItemProps = {
 class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
     private static readonly MAX_SUBTITLE_ELEMENTS = 3;
 
-    public render() {
+    public render(): JSX.Element {
         const { title, statusColor, dense, fontColor, backgroundColor, onPress, theme } = this.props;
         const { row, fullHeight, tab, iconContainer, contentContainer, withRightPadding } = styles;
         const style = {
@@ -103,7 +145,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         );
     }
 
-    private icon() {
+    private icon(): JSX.Element | undefined {
         const { IconClass, avatar } = this.props;
         if (IconClass) {
             return (
@@ -114,7 +156,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         }
     }
 
-    private iconColor() {
+    private iconColor(): string {
         const { avatar, statusColor, iconColor, theme } = this.props;
         if (iconColor) return iconColor;
         if (avatar) {
@@ -126,14 +168,14 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         }
         return statusColor ? statusColor : theme.colors.text;
     }
-    private avatarStyle() {
+    private avatarStyle(): Record<string, any> {
         const { statusColor } = this.props;
         const avatarStyle = { ...styles.avatar };
         avatarStyle.backgroundColor = statusColor || Colors.black[500];
         return avatarStyle;
     }
 
-    private rightComponent() {
+    private rightComponent(): JSX.Element | undefined {
         const { chevron, theme, rightComponent } = this.props;
         if (rightComponent) {
             return rightComponent;
@@ -142,7 +184,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         }
     }
 
-    private divider() {
+    private divider(): JSX.Element | undefined {
         const { divider } = this.props;
         if (divider) {
             return (
@@ -161,7 +203,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         }
     }
 
-    private subtitle() {
+    private subtitle(): JSX.Element[] | null {
         const { subtitle } = this.props;
 
         if (!subtitle) {
@@ -176,15 +218,15 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         return this.withKeys(this.separate(renderableSubtitleParts));
     }
 
-    private separate(array: React.ReactNode[]) {
+    private separate(array: React.ReactNode[]): React.ReactNode[] {
         return interleave(array, () => this.interpunct());
     }
 
-    private withKeys(array: React.ReactNode[]) {
+    private withKeys(array: React.ReactNode[]): JSX.Element[] {
         return array.map((element, index) => <Fragment key={index}>{element}</Fragment>);
     }
 
-    private renderableSubtitleComponent(element: React.ReactNode) {
+    private renderableSubtitleComponent(element: React.ReactNode): React.ReactNode {
         switch (typeof element) {
             case 'string':
             case 'number':
@@ -198,7 +240,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         }
     }
 
-    private interpunct() {
+    private interpunct(): JSX.Element {
         const { subtitleSeparator } = this.props;
         const { withSmallMargins } = styles;
         return (
@@ -213,45 +255,3 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
  * A flexible component to be rendered within FlatLists
  */
 export const InfoListItem = withTheme(InfoListItemClass);
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    withRightPadding: {
-        paddingRight: 16,
-    },
-    iconContainer: {
-        marginLeft: 10,
-        width: 40,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-    },
-    avatar: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'transparent',
-    },
-    contentContainer: {
-        flex: 1,
-        paddingHorizontal: 16,
-    },
-    divider: {
-        height: 1,
-        borderBottomWidth: 1,
-        borderColor: Colors.black['100'],
-    },
-    tab: {
-        width: 6,
-    },
-    withSmallMargins: {
-        marginHorizontal: 4,
-    },
-    fullHeight: {
-        height: '100%',
-    },
-});

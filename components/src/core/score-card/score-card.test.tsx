@@ -15,9 +15,9 @@ describe('ScoreCard', () => {
             });
 
             it('finds a single header text element', () => {
-                expect(instance.find((x) => x.props.testID == 'header_title')).toBeTruthy();
-                expect(instance.findAll((x) => x.props.testID == 'header_subtitle')).toHaveLength(0);
-                expect(instance.findAll((x) => x.props.testID == 'header_info')).toHaveLength(0);
+                expect(instance.find((x) => x.props.testID === 'header_title')).toBeTruthy();
+                expect(instance.findAll((x) => x.props.testID === 'header_subtitle')).toHaveLength(0);
+                expect(instance.findAll((x) => x.props.testID === 'header_info')).toHaveLength(0);
             });
         });
 
@@ -34,9 +34,9 @@ describe('ScoreCard', () => {
             });
 
             it('renders at all three', () => {
-                expect(instance.find((x) => x.props.testID == 'header_title')).toBeTruthy();
-                expect(instance.find((x) => x.props.testID == 'header_subtitle')).toBeTruthy();
-                expect(instance.find((x) => x.props.testID == 'header_info')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'header_title')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'header_subtitle')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'header_info')).toBeTruthy();
             });
         });
     });
@@ -51,7 +51,7 @@ describe('ScoreCard', () => {
             });
 
             it('is rendered', () => {
-                expect(instance.find((x) => x.props.testID == 'my-action')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'my-action')).toBeTruthy();
             });
         });
     });
@@ -69,7 +69,7 @@ describe('ScoreCard', () => {
             });
 
             it('is rendered', () => {
-                expect(instance.find((x) => x.props.testID == 'my-badge')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'my-badge')).toBeTruthy();
             });
         });
     });
@@ -94,19 +94,19 @@ describe('ScoreCard', () => {
             });
 
             it('renders two actionItems', () => {
-                expect(instance.find((x) => x.props.testID == 'action-item0')).toBeTruthy();
-                expect(instance.find((x) => x.props.testID == 'action-item1')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'action-item0')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'action-item1')).toBeTruthy();
             });
 
             it('the first button can be pressed', () => {
-                instance.find((x) => x.props.testID == 'action-item0').props.onPress();
+                instance.find((x) => x.props.testID === 'action-item0').props.onPress();
 
                 expect(firstCallback).toHaveBeenCalled();
                 expect(secondCallback).not.toHaveBeenCalled();
             });
 
             it('the second button can be pressed', () => {
-                instance.find((x) => x.props.testID == 'action-item1').props.onPress();
+                instance.find((x) => x.props.testID === 'action-item1').props.onPress();
 
                 expect(firstCallback).not.toHaveBeenCalled();
                 expect(secondCallback).toHaveBeenCalled();
@@ -129,9 +129,9 @@ describe('ScoreCard', () => {
             });
 
             it('renders only the first two items', () => {
-                expect(instance.find((x) => x.props.testID == 'action-item0')).toBeTruthy();
-                expect(instance.find((x) => x.props.testID == 'action-item1')).toBeTruthy();
-                expect(instance.findAll((x) => x.props.testID == 'action-item2')).toHaveLength(0);
+                expect(instance.find((x) => x.props.testID === 'action-item0')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'action-item1')).toBeTruthy();
+                expect(instance.findAll((x) => x.props.testID === 'action-item2')).toHaveLength(0);
             });
         });
     });
