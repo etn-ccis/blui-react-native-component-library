@@ -1,5 +1,5 @@
 {
-  "name": "StorybookDemo",
+  "name": "storybook-demo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,8 +10,8 @@
     "test": "jest",
     "build": "react-native bundle --entry-file=index.js --bundle-output=build.bundle",
     "prettier": "prettier \"storybook/**/**.{ts,tsx}\" --write",
-    "lint": "eslint storybook/**/*.{ts,tsx}",
-    "lint:fix": "eslint storybook/**/*.{ts,tsx} --fix"
+    "lint": "eslint \"storybook/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"storybook/**/*.{ts,tsx}\" --fix"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.3",

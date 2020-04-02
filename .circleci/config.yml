@@ -31,7 +31,6 @@ jobs:
           command: |
             cd components
             yarn lint
-            cd ..
       - run:
           name: Test
           command: |

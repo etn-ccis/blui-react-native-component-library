@@ -1,17 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { InfoListItem } from '@pxblue/react-native-components';
-import { FlatList, View } from 'react-native';
+import { InfoListItem, wrapIcon } from '@pxblue/react-native-components';
+import { FlatList } from 'react-native';
 import Flow from '@pxblue/icons-svg/flow.svg';
 import Apple from '@pxblue/icons-svg/apple.svg';
 import { blue, green } from '@pxblue/colors';
 import * as _ from 'lodash';
 import { InfoListItemProps } from '@pxblue/react-native-components/dist/info-list-item/info-list-item';
-import { wrapIcon } from '@pxblue/react-native-components';
-
-const Separator: React.FunctionComponent = () => (
-    <View style={{ height: 1, marginLeft: 40, backgroundColor: '#cccccc' }} />
-);
 
 const AppleIcon = wrapIcon({ IconClass: Apple });
 
@@ -27,7 +22,7 @@ const createInfoListItemProps = (): InfoListItemProps => {
     } else if (subtitleNumber < 0.6) {
         subtitle = ['A', 'few', 'strings'];
     } else if (subtitleNumber < 0.9) {
-        subtitle = [<Flow width={12} height={12} fill={blue[300]} />, 'GPM'];
+        subtitle = [<Flow key={'flow'} width={12} height={12} fill={blue[300]} />, 'GPM'];
     }
 
     const colorNumber = Math.random();
@@ -42,7 +37,9 @@ const createInfoListItemProps = (): InfoListItemProps => {
     }
 
     if (Math.random() < 0.5) {
-        onPress = () => {};
+        onPress = (): void => {
+            /* do nothing */
+        };
     }
 
     return {
@@ -55,12 +52,12 @@ const createInfoListItemProps = (): InfoListItemProps => {
     };
 };
 
-const data: Array<InfoListItemProps> = _.range(100).map(createInfoListItemProps);
+const data: InfoListItemProps[] = _.range(100).map(createInfoListItemProps);
 storiesOf('InfoListItem', module).add('in FlatList', () => (
     <FlatList<InfoListItemProps>
         data={data}
         style={{ height: '100%', flex: 1000 }}
-        renderItem={({ item }) => <InfoListItem {...item} />}
-        keyExtractor={(_, index) => `${index}`}
+        renderItem={({ item }): JSX.Element => <InfoListItem {...item} />}
+        keyExtractor={(__, index): string => `${index}`}
     />
 ));
