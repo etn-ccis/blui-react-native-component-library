@@ -5,8 +5,8 @@
   "repository": "https://github.com/pxblue/react-native-component-library",
   "license": "BSD-3-Clause",
   "scripts": {
-    "lint": "eslint src/**/*.ts src/**/*.tsx",
-    "lint:fix": "eslint src/**/*.ts src/**/*.tsx  --fix",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "build": "tsc --p tsconfig.lib.json",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -27,8 +27,8 @@
     "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
-    "@pxblue/eslint-config": "1.1.4",
-    "@pxblue/prettier-config": "1.0.2",
+    "@pxblue/eslint-config": "^1.1.4",
+    "@pxblue/prettier-config": "^1.0.2",
     "@pxblue/icons-svg": "^1.0.15",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/color": "^3.0.0",

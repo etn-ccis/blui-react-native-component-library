@@ -10,11 +10,16 @@ const LeafIcon = wrapIcon({ IconClass: Leaf });
 storiesOf('Drawer', module)
     .addDecorator(withKnobs)
     .addDecorator(framedRow)
-    .add('Drawer.Item', () => (
-        <Drawer.Item
-            active={boolean('active', true)}
-            onPress={() => {}}
-            label={text('label', 'Drawer Item')}
-            IconClass={LeafIcon}
-        />
-    ));
+    .add(
+        'Drawer.Item',
+        (): JSX.Element => (
+            <Drawer.Item
+                active={boolean('active', true)}
+                onPress={(): void => {
+                    /* do nothing */
+                }}
+                label={text('label', 'Drawer Item')}
+                IconClass={LeafIcon}
+            />
+        )
+    );

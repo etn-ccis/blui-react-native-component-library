@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { text, withKnobs } from '@storybook/addon-knobs';
 import { Drawer, wrapIcon } from '@pxblue/react-native-components';
 import { safeArea } from '../../decorators';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
@@ -18,17 +18,71 @@ const PxwhiteIcon = wrapIcon({ IconClass: Pxwhite });
 const BasketballIcon = wrapIcon({ IconClass: Basketball });
 const SettingsIcon = wrapIcon({ IconClass: Icon, name: 'settings' });
 
-const item1 = <Drawer.Item active={true} onPress={() => {}} label={'Environment'} IconClass={LeafIcon} />;
+const item1 = (
+    <Drawer.Item
+        active={true}
+        onPress={(): void => {
+            /* do nothing */
+        }}
+        label={'Environment'}
+        IconClass={LeafIcon}
+    />
+);
 
-const item2 = <Drawer.Item active={false} onPress={() => {}} label={'Water Pumps'} IconClass={WaterIcon} />;
+const item2 = (
+    <Drawer.Item
+        active={false}
+        onPress={(): void => {
+            /* do nothing */
+        }}
+        label={'Water Pumps'}
+        IconClass={WaterIcon}
+    />
+);
 
-const item3 = <Drawer.Item active={false} onPress={() => {}} label={'Devices'} IconClass={DeviceIcon} />;
+const item3 = (
+    <Drawer.Item
+        active={false}
+        onPress={(): void => {
+            /* do nothing */
+        }}
+        label={'Devices'}
+        IconClass={DeviceIcon}
+    />
+);
 
-const item4 = <Drawer.Item active={false} onPress={() => {}} label={'PX White'} IconClass={PxwhiteIcon} />;
+const item4 = (
+    <Drawer.Item
+        active={false}
+        onPress={(): void => {
+            /* do nothing */
+        }}
+        label={'PX White'}
+        IconClass={PxwhiteIcon}
+    />
+);
 
-const item5 = <Drawer.Item active={false} onPress={() => {}} label={'Shooty Hoops'} IconClass={BasketballIcon} />;
+const item5 = (
+    <Drawer.Item
+        active={false}
+        onPress={(): void => {
+            /* do nothing */
+        }}
+        label={'Shooty Hoops'}
+        IconClass={BasketballIcon}
+    />
+);
 
-const item6 = <Drawer.Item active={false} onPress={() => {}} label={'Settings'} IconClass={SettingsIcon} />;
+const item6 = (
+    <Drawer.Item
+        active={false}
+        onPress={(): void => {
+            /* do nothing */
+        }}
+        label={'Settings'}
+        IconClass={SettingsIcon}
+    />
+);
 
 storiesOf('Drawer', module)
     .addDecorator(withKnobs)

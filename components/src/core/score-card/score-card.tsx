@@ -1,10 +1,53 @@
 import React, { Component, ComponentType } from 'react';
 import { View, StyleSheet, ImageSourcePropType, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
-import { gray, black } from '@pxblue/colors';
+import { black } from '@pxblue/colors';
 import { ScoreCardListItem } from './list-item';
 import * as Typography from '../typography';
 import { withTheme, WithTheme, Theme } from '../theme';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+
+const PADDING_AMOUNT = 16;
+const ICON_SIZE = 24;
+
+const styles = StyleSheet.create({
+    card: {
+        shadowColor: black[900],
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        elevation: 1,
+        flex: 1,
+    },
+    actionItem: {
+        height: 40,
+        width: 40,
+        padding: 8,
+    },
+    header: {
+        height: 100,
+        overflow: 'hidden',
+    },
+    headerContent: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        padding: PADDING_AMOUNT,
+    },
+    footer: {
+        borderTopColor: black[50],
+        borderTopWidth: 1,
+    },
+    padded: {
+        padding: PADDING_AMOUNT,
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        padding: PADDING_AMOUNT,
+    },
+});
 
 export type HeaderIcon = {
     /** Name of the icon */
@@ -59,10 +102,8 @@ export type ScoreCardProps = {
 
 class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
     public static ListItem = ScoreCardListItem;
-    public static readonly PADDING_AMOUNT = 16;
-    private static readonly ICON_SIZE = 24;
 
-    public render() {
+    public render(): JSX.Element {
         const { children, theme, headerColor = theme.colors.primary, style } = this.props;
         const newStyle = {
             backgroundColor: theme.colors.surface,
@@ -98,7 +139,7 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
         );
     }
 
-    private headerText() {
+    private headerText(): JSX.Element {
         const { headerTitle, headerSubtitle, headerInfo } = this.props;
 
         return (
@@ -138,14 +179,14 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
         );
     }
 
-    private heroes() {
+    private heroes(): JSX.Element | undefined {
         const { badge, badgeOffset = 0 } = this.props;
         if (badge) {
             return <View style={{ flex: 0, marginTop: badgeOffset }}>{badge}</View>;
         }
     }
 
-    private backgroundImage() {
+    private backgroundImage(): JSX.Element | undefined {
         const { headerBackgroundImage } = this.props;
         if (headerBackgroundImage) {
             return (
@@ -164,7 +205,7 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
         }
     }
 
-    private footer() {
+    private footer(): JSX.Element | undefined {
         const { actionRow } = this.props;
 
         if (actionRow) {
@@ -172,7 +213,7 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
         }
     }
 
-    private actionItems() {
+    private actionItems(): JSX.Element | undefined {
         const { actionItems } = this.props;
 
         if (actionItems) {
@@ -193,13 +234,13 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
         }
     }
 
-    private icon(IconClass: ComponentType<{ size: number; color: string }>) {
+    private icon(IconClass: ComponentType<{ size: number; color: string }>): JSX.Element | undefined {
         if (IconClass) {
-            return <IconClass size={ScoreCardClass.ICON_SIZE} color={this.fontColor()} />;
+            return <IconClass size={ICON_SIZE} color={this.fontColor()} />;
         }
     }
 
-    private fontColor() {
+    private fontColor(): string {
         const { headerFontColor, theme } = this.props;
         return headerFontColor || theme.colors.onPrimary;
     }
@@ -211,43 +252,3 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
  * title and subtitles, and actionRow at the bottom.
  */
 export const ScoreCard = withTheme(ScoreCardClass);
-
-const styles = StyleSheet.create({
-    card: {
-        shadowColor: black[900],
-        shadowOpacity: 0.4,
-        shadowRadius: 3,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        elevation: 1,
-        flex: 1,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
-    },
-    header: {
-        height: 100,
-        overflow: 'hidden',
-    },
-    headerContent: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        padding: ScoreCardClass.PADDING_AMOUNT,
-    },
-    footer: {
-        borderTopColor: black[50],
-        borderTopWidth: 1,
-    },
-    padded: {
-        padding: ScoreCardClass.PADDING_AMOUNT,
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'stretch',
-        padding: ScoreCardClass.PADDING_AMOUNT,
-    },
-});

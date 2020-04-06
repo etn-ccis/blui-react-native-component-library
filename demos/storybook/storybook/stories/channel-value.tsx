@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
-import { ChannelValue } from '@pxblue/react-native-components';
+import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import { text, withKnobs, boolean, color, select } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { wrapIcon } from '@pxblue/react-native-components';
 
 const notes = {
     notes:

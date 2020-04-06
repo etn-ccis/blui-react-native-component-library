@@ -30,7 +30,7 @@ jobs:
           name: Lint
           command: |
             cd components
-            # yarn lint
+            yarn lint
       - run:
           name: Test
           command: |
@@ -80,7 +80,7 @@ jobs:
           name: Lint
           command: |
             cd demos/storybook
-            # yarn lint
+            yarn lint
 
   # Builds the hosted Storybook app
   build_storybook_api:

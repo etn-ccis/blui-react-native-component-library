@@ -1,10 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { InfoListItem, ChannelValue } from '@pxblue/react-native-components';
+import { InfoListItem, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import { text, boolean, withKnobs, color } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import { framedRow } from '../../decorators';
-import { wrapIcon } from '@pxblue/react-native-components';
 import * as PXBColors from '@pxblue/colors';
 
 const notes = {
@@ -66,7 +65,13 @@ storiesOf('InfoListItem', module)
                     'subtitle',
                     'this is a really really really really really really really really really really long subtitle'
                 )}
-                onPress={boolean('action', true) ? () => {} : undefined}
+                onPress={
+                    boolean('action', true)
+                        ? (): void => {
+                              /* do nothing */
+                          }
+                        : undefined
+                }
             />
         ),
         notes
@@ -77,7 +82,7 @@ storiesOf('InfoListItem', module)
             <InfoListItem
                 title={text('title', 'Test')}
                 IconClass={LeafIcon}
-                subtitle={['4', <Leaf width={12} height={12} />, 'leaves']}
+                subtitle={['4', <Leaf key={'leaf'} width={12} height={12} />, 'leaves']}
                 subtitleSeparator={text('separator', '-')}
             />
         ),

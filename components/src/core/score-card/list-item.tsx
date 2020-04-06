@@ -4,6 +4,19 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { withTheme, WithTheme } from '../theme';
 import { Body } from '../typography';
 
+const styles = StyleSheet.create({
+    container: {
+        padding: 16,
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    fill: {
+        flex: 1,
+    },
+});
+
 export type ListItemProps = {
     /** Label to be shown on the left */
     label: string;
@@ -16,7 +29,7 @@ export type ListItemProps = {
 };
 
 class ScoreCardListItemClass extends Component<WithTheme<ListItemProps>> {
-    public render() {
+    public render(): JSX.Element {
         const { label, onPress } = this.props;
 
         return (
@@ -29,7 +42,7 @@ class ScoreCardListItemClass extends Component<WithTheme<ListItemProps>> {
         );
     }
 
-    private chevron() {
+    private chevron(): JSX.Element | undefined {
         const { onPress, theme } = this.props;
 
         if (onPress) {
@@ -43,16 +56,3 @@ class ScoreCardListItemClass extends Component<WithTheme<ListItemProps>> {
  */
 export const ScoreCardListItem = withTheme(ScoreCardListItemClass);
 export { ScoreCardListItemClass };
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 16,
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    fill: {
-        flex: 1,
-    },
-});

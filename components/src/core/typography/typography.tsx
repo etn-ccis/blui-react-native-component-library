@@ -67,15 +67,15 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Typ
 /**
  * Typography Components
  */
-export const H1 = createTypography(({ fonts, sizes }) => ({
+export const H1 = createTypography(({ fonts }) => ({
     ...fonts.light,
     fontSize: 96,
 }));
-export const H2 = createTypography(({ fonts, sizes }) => ({
+export const H2 = createTypography(({ fonts }) => ({
     ...fonts.light,
     fontSize: 60,
 }));
-export const H3 = createTypography(({ fonts, sizes }) => ({
+export const H3 = createTypography(({ fonts }) => ({
     ...fonts.regular,
     fontSize: 48,
 }));
@@ -92,7 +92,7 @@ export const H6 = createTypography(({ fonts, sizes }) => ({
     fontSize: sizes.large,
     letterSpacing: 0,
 }));
-export const H7 = createTypography(({ fonts, sizes }) => ({
+export const H7 = createTypography(({ fonts }) => ({
     ...fonts.semiBold,
     fontSize: 18,
 }));

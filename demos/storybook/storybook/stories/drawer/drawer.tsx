@@ -19,7 +19,7 @@ const PxwhiteIcon = wrapIcon({ IconClass: Pxwhite });
 const BasketballIcon = wrapIcon({ IconClass: Basketball });
 const SettingsIcon = wrapIcon({ IconClass: Icon, name: 'settings' });
 
-interface DrawerStoryProps {
+type DrawerStoryProps = {
     pages: 1 | 2;
     title: string;
     subtitle?: string;
@@ -27,11 +27,11 @@ interface DrawerStoryProps {
     footer?: React.ReactNode;
     backgroundColor?: string;
     fontColor?: string;
-}
+};
 
-interface DrawerStoryState {
+type DrawerStoryState = {
     activeItem: string;
-}
+};
 
 class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
     constructor(props: any) {
@@ -42,13 +42,13 @@ class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
         };
     }
 
-    private setActive(item: string) {
+    private setActive(item: string): void {
         this.setState({
             activeItem: item,
         });
     }
 
-    render() {
+    render(): JSX.Element {
         const { pages, title, subtitle, headerContent, footer, backgroundColor, fontColor } = this.props;
         const { activeItem } = this.state;
         if (pages === 1) {
@@ -66,21 +66,21 @@ class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'first'}
-                                onPress={() => this.setActive('first')}
+                                onPress={(): void => this.setActive('first')}
                                 label={'Environment'}
                                 IconClass={LeafIcon}
                             />
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'second'}
-                                onPress={() => this.setActive('second')}
+                                onPress={(): void => this.setActive('second')}
                                 label={'Water Pumps'}
                                 IconClass={WaterIcon}
                             />
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'third'}
-                                onPress={() => this.setActive('third')}
+                                onPress={(): void => this.setActive('third')}
                                 label={'Devices'}
                                 IconClass={DeviceIcon}
                             />
@@ -89,87 +89,87 @@ class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'fourth'}
-                                onPress={() => this.setActive('fourth')}
+                                onPress={(): void => this.setActive('fourth')}
                                 label={'PX White'}
                                 IconClass={PxwhiteIcon}
                             />
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'fifth'}
-                                onPress={() => this.setActive('fifth')}
+                                onPress={(): void => this.setActive('fifth')}
                                 label={'Shooty Hoops'}
                                 IconClass={BasketballIcon}
-                            />
-                        </Drawer.Section>
-                    </Drawer.Page>
-                </Drawer>
-            );
-        } else {
-            return (
-                <Drawer
-                    title={title}
-                    subtitle={subtitle}
-                    headerContent={headerContent}
-                    footer={footer}
-                    backgroundColor={backgroundColor}
-                    fontColor={fontColor}
-                >
-                    <Drawer.Page>
-                        <Drawer.Section title={'Section 1'}>
-                            <Drawer.Item
-                                fontColor={backgroundColor}
-                                active={activeItem === 'first'}
-                                onPress={() => this.setActive('first')}
-                                label={'Environment'}
-                                IconClass={LeafIcon}
-                            />
-                            <Drawer.Item
-                                fontColor={backgroundColor}
-                                active={activeItem === 'second'}
-                                onPress={() => this.setActive('second')}
-                                label={'Water Pumps'}
-                                IconClass={WaterIcon}
-                            />
-                            <Drawer.Item
-                                fontColor={backgroundColor}
-                                active={activeItem === 'third'}
-                                onPress={() => this.setActive('third')}
-                                label={'Devices'}
-                                IconClass={DeviceIcon}
-                            />
-                        </Drawer.Section>
-                        <Drawer.Section title={'Section 2'} divider={false}>
-                            <Drawer.Item
-                                fontColor={backgroundColor}
-                                active={activeItem === 'fourth'}
-                                onPress={() => this.setActive('fourth')}
-                                label={'PX White'}
-                                IconClass={PxwhiteIcon}
-                            />
-                            <Drawer.Item
-                                fontColor={backgroundColor}
-                                active={activeItem === 'fifth'}
-                                onPress={() => this.setActive('fifth')}
-                                label={'Shooty Hoops'}
-                                IconClass={BasketballIcon}
-                            />
-                        </Drawer.Section>
-                    </Drawer.Page>
-
-                    <Drawer.Page>
-                        <Drawer.Section divider={false}>
-                            <Drawer.Item
-                                fontColor={backgroundColor}
-                                active={activeItem === 'sixth'}
-                                onPress={() => this.setActive('sixth')}
-                                label={'Settings'}
-                                IconClass={SettingsIcon}
                             />
                         </Drawer.Section>
                     </Drawer.Page>
                 </Drawer>
             );
         }
+
+        return (
+            <Drawer
+                title={title}
+                subtitle={subtitle}
+                headerContent={headerContent}
+                footer={footer}
+                backgroundColor={backgroundColor}
+                fontColor={fontColor}
+            >
+                <Drawer.Page>
+                    <Drawer.Section title={'Section 1'}>
+                        <Drawer.Item
+                            fontColor={backgroundColor}
+                            active={activeItem === 'first'}
+                            onPress={(): void => this.setActive('first')}
+                            label={'Environment'}
+                            IconClass={LeafIcon}
+                        />
+                        <Drawer.Item
+                            fontColor={backgroundColor}
+                            active={activeItem === 'second'}
+                            onPress={(): void => this.setActive('second')}
+                            label={'Water Pumps'}
+                            IconClass={WaterIcon}
+                        />
+                        <Drawer.Item
+                            fontColor={backgroundColor}
+                            active={activeItem === 'third'}
+                            onPress={(): void => this.setActive('third')}
+                            label={'Devices'}
+                            IconClass={DeviceIcon}
+                        />
+                    </Drawer.Section>
+                    <Drawer.Section title={'Section 2'} divider={false}>
+                        <Drawer.Item
+                            fontColor={backgroundColor}
+                            active={activeItem === 'fourth'}
+                            onPress={(): void => this.setActive('fourth')}
+                            label={'PX White'}
+                            IconClass={PxwhiteIcon}
+                        />
+                        <Drawer.Item
+                            fontColor={backgroundColor}
+                            active={activeItem === 'fifth'}
+                            onPress={(): void => this.setActive('fifth')}
+                            label={'Shooty Hoops'}
+                            IconClass={BasketballIcon}
+                        />
+                    </Drawer.Section>
+                </Drawer.Page>
+
+                <Drawer.Page>
+                    <Drawer.Section divider={false}>
+                        <Drawer.Item
+                            fontColor={backgroundColor}
+                            active={activeItem === 'sixth'}
+                            onPress={(): void => this.setActive('sixth')}
+                            label={'Settings'}
+                            IconClass={SettingsIcon}
+                        />
+                    </Drawer.Section>
+                </Drawer.Page>
+            </Drawer>
+        );
     }
 }
 

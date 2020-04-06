@@ -4,7 +4,7 @@ import { InfoListItem } from '.';
 import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const OtherComponent = () => <View />;
+const OtherComponent = (): JSX.Element => <View />;
 
 describe('InfoListItem', () => {
     describe('subtitle', () => {
@@ -26,13 +26,16 @@ describe('InfoListItem', () => {
 
             beforeEach(() => {
                 instance = TestRenderer.create(
-                    <InfoListItem title={'some title'} subtitle={['details...', <OtherComponent />]} />
+                    <InfoListItem
+                        title={'some title'}
+                        subtitle={['details...', <OtherComponent key={'otherComponent_1'} />]}
+                    />
                 ).root;
                 instance2 = TestRenderer.create(
                     <InfoListItem
                         title={'some title'}
                         subtitleSeparator={'-'}
-                        subtitle={['details...', <OtherComponent />]}
+                        subtitle={['details...', <OtherComponent key={'otherComponent_2'} />]}
                     />
                 ).root;
             });
@@ -94,7 +97,14 @@ describe('InfoListItem', () => {
 
         describe('when not provided', () => {
             beforeEach(() => {
-                instance = TestRenderer.create(<InfoListItem title={'some title'} onPress={() => {}} />).root;
+                instance = TestRenderer.create(
+                    <InfoListItem
+                        title={'some title'}
+                        onPress={(): void => {
+                            /* do nothing */
+                        }}
+                    />
+                ).root;
             });
             it('does not show its chevron', () => {
                 expect(instance.findAllByType(Icon)).toHaveLength(0);

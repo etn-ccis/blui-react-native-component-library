@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { centered } from '../decorators';
-import { Hero, ChannelValue } from '@pxblue/react-native-components';
+import { Hero, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import _Leaf from '@pxblue/icons-svg/leaf.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { wrapIcon } from '@pxblue/react-native-components';
 
 const Leaf = wrapIcon({ IconClass: _Leaf });
 const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
@@ -36,7 +36,10 @@ storiesOf('Hero', module)
             IconClass={Leaf}
             value={text('value', '94')}
             units={text('units', '%')}
-            onPress={() => console.log('pressed')}
+            action
+            onPress={(): void => {
+                action('clicked alarms');
+            }}
         />
     ))
     .add('with full customization', () => (

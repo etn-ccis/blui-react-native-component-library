@@ -5,6 +5,14 @@ import { Label } from '..';
 import { WithTheme } from '../theme/theme';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
+const styles = StyleSheet.create({
+    row: {
+        maxWidth: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+});
+
 export type ChannelValueProps = {
     /** Value to show (bold text) */
     value: string | number;
@@ -31,7 +39,7 @@ export type ChannelValueProps = {
 };
 
 class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
-    public render() {
+    public render(): JSX.Element {
         const { value, fontSize } = this.props;
         const labelOverrides = this.textOverrides();
 
@@ -55,7 +63,7 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
         );
     }
 
-    private icon() {
+    private icon(): JSX.Element | undefined {
         const { IconClass } = this.props;
 
         if (IconClass) {
@@ -67,21 +75,21 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
         }
     }
 
-    private prefixUnits() {
+    private prefixUnits(): JSX.Element | undefined {
         const { prefix = false } = this.props;
         if (prefix) {
             return this.units();
         }
     }
 
-    private suffixUnits() {
+    private suffixUnits(): JSX.Element | undefined {
         const { prefix = false } = this.props;
         if (!prefix) {
             return this.units();
         }
     }
 
-    private textOverrides() {
+    private textOverrides(): WithTheme<TextProps> {
         const { color, theme } = this.props;
 
         const output: WithTheme<TextProps> = { theme };
@@ -91,7 +99,7 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
         return output;
     }
 
-    private units() {
+    private units(): JSX.Element | undefined {
         const { units, fontSize } = this.props;
         const labelOverrides = this.textOverrides();
 
@@ -104,13 +112,13 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
         }
     }
 
-    private getFontSize() {
+    private getFontSize(): number {
         const { theme, fontSize } = this.props;
 
         return theme.sizes[fontSize || 'medium'];
     }
 
-    private getColor() {
+    private getColor(): string {
         const { color, theme } = this.props;
         if (!color) return theme.colors.text;
         if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
@@ -125,11 +133,3 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
  * An arbitrary icon may be added
  */
 export const ChannelValue = withTheme(ChannelValueClass);
-
-const styles = StyleSheet.create({
-    row: {
-        maxWidth: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-});

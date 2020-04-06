@@ -7,6 +7,14 @@ import { safeArea } from '../decorators';
 import { CollapsibleSection } from '@pxblue/react-native-components';
 import { red, blue } from '@pxblue/colors';
 
+const styles = StyleSheet.create({
+    contentContainer: {
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
+
 storiesOf('CollapsibleSection', module)
     .addDecorator(withKnobs)
     .addDecorator(safeArea)
@@ -31,11 +39,3 @@ storiesOf('CollapsibleSection', module)
             </CollapsibleSection>
         </View>
     ));
-
-const styles = StyleSheet.create({
-    contentContainer: {
-        height: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});

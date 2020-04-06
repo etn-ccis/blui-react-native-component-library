@@ -1,14 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { boolean, withKnobs, number } from '@storybook/addon-knobs';
-import { Hero, HeroBanner, ChannelValue } from '@pxblue/react-native-components';
-import _Leaf from '@pxblue/icons-svg/leaf.svg';
+import { Hero, HeroBanner, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { safeArea } from '../decorators';
 import { green, blue, gray } from '@pxblue/colors';
-import { wrapIcon } from '@pxblue/react-native-components';
 
 const ChartLineVariant = wrapIcon({
     IconClass: MaterialCommunityIcon,
@@ -23,16 +21,16 @@ const Clock = wrapIcon({
 });
 
 const heroes = [
-    <Hero label={'Healthy'} value={96} units={'/100'} IconClass={A} iconColor={green[500]} />,
-    <Hero label={'Battery'} value={'Full'} IconClass={Battery} iconColor={blue[500]} />,
-    <Hero label={'Estimated'} IconClass={Clock} iconColor={gray[500]}>
+    <Hero key={'hero_1'} label={'Healthy'} value={96} units={'/100'} IconClass={A} iconColor={green[500]} />,
+    <Hero key={'hero_2'} label={'Battery'} value={'Full'} IconClass={Battery} iconColor={blue[500]} />,
+    <Hero key={'hero_3'} label={'Estimated'} IconClass={Clock} iconColor={gray[500]}>
         <ChannelValue fontSize={'large'} value={1} units={'h'} />
         <ChannelValue fontSize={'large'} value={37} units={'m'} />
     </Hero>,
-    <Hero label={'Loaded'} IconClass={Pie} iconColor={blue[500]}>
+    <Hero key={'hero_4'} label={'Loaded'} IconClass={Pie} iconColor={blue[500]}>
         <ChannelValue fontSize={'large'} value={65} units={'%'} IconClass={ChartLineVariant} />
     </Hero>,
-    <Hero label={'Not Shown'} value={'5th Item'} IconClass={Battery} iconColor={blue[500]} />,
+    <Hero key={'hero_5'} label={'Not Shown'} value={'5th Item'} IconClass={Battery} iconColor={blue[500]} />,
 ];
 
 storiesOf('HeroBanner', module)
