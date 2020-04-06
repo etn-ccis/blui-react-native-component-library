@@ -1,4 +1,7 @@
-export const interleave = <TElement, TSeparator>(array: Array<TElement>, separator: () => TSeparator) => {
+export const interleave = <TElement, TSeparator>(
+    array: TElement[],
+    separator: () => TSeparator
+): Array<TSeparator | TElement> => {
     const output: Array<TSeparator | TElement> = [];
 
     array.forEach((element, index) => {
@@ -12,8 +15,8 @@ export const interleave = <TElement, TSeparator>(array: Array<TElement>, separat
     return output;
 };
 
-export type LabeledArrays<T> = { [label: string]: Array<T> };
-export const groupBy = <T>(getGroup: (data: T) => string, array: Array<T>): LabeledArrays<T> => {
+export type LabeledArrays<T> = { [label: string]: T[] };
+export const groupBy = <T>(getGroup: (data: T) => string, array: T[]): LabeledArrays<T> => {
     const groups: LabeledArrays<T> = {};
 
     array.forEach((element) => {

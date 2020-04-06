@@ -6,7 +6,7 @@ type Font = {
     fontWeight: TextStyle['fontWeight'];
 };
 
-export interface Theme {
+export type Theme = {
     roundness: number;
     colors: {
         primary: string;
@@ -33,7 +33,7 @@ export interface Theme {
         extraLarge: number;
         giant: number;
     };
-}
+};
 
 /* This is the default theme for the component library (Material) */
 const { ThemeProvider, withTheme } = createTheming<Theme>({

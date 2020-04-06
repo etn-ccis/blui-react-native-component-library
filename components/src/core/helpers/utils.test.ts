@@ -16,7 +16,7 @@ describe('utils', () => {
     });
 
     describe('groupBy', () => {
-        const getFirstLetter = (str: string) => str.slice(0, 1);
+        const getFirstLetter = (str: string): string => str.slice(0, 1);
 
         it('returns an empty object when given an empty array', () => {
             const groups = groupBy(getFirstLetter, []);
