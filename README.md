@@ -49,13 +49,13 @@ to start a project demo, or
 yarn start:storybook
 ```
 
-or
+to start an interactive component documentation (will run on a device or a simulator), or
 
 ```
 yarn start:storybook-api
 ```
 
-to bring up a API documentation website.
+to bring up a API documentation website (no interactive components).
 
 ## Using the Components
 

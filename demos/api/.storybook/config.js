@@ -7,8 +7,17 @@ import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
 
 pxblueTheme.brandTitle = 'PX Blue React Native Component Library';
-pxblueTheme.brandImage = require('../assets/pxblue react native.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
+if (window.top.location.hostname === 'localhost') {
+    pxblueTheme.brandImage = require('../assets/pxblue-react-native-alpha.svg');
+}
+else if (window.top.location.pathname.slice(13) === '/angular-dev/') {
+    pxblueTheme.brandImage = require('../assets/pxblue-react-native-beta.svg');
+}
+else {
+    pxblueTheme.brandImage = require('../assets/pxblue-react-native.svg');
+}
+
 
 addParameters({
     /* Users will see this while the component is loading. */

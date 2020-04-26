@@ -1,13 +1,14 @@
 # Typography
+
 Typography components are used to render text on the screen. This library provides several helper components that automatically apply various styles from the theme to avoid repeated custom styling throughout an application.
 
 <img width="20%" alt="Typography Elements" src="./images/typography.png">
 
-We provide components for: ```<H1>```, ```<H2>```, ```<H3>```, ```<H4>```, ```<H5>```, ```<H6>```, ```<Label>```, ```<Body>```, ```<Subtitle>```, ```<Caption>```
+We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Label>`, `<Body>`, `<Subtitle>`, `<Caption>`
 
 ## Usage
 
-```typescript
+```tsx
 import * as Typography from '@pxblue/react-native-components';
 ...
 <View>
@@ -25,15 +26,16 @@ import * as Typography from '@pxblue/react-native-components';
 ```
 
 ## API
+
 All typography components in this library share a common API.
 
 <div style="overflow: auto">
 
-| Prop Name | Description                             | Type                               | Required | Default |
-|-----------|-----------------------------------------|------------------------------------|----------|---------|
-| font      | The font style (from the theme)         | keyof [`theme.fonts`](./theme.md)  | no       |         |
-| fontSize  | The font size (from the theme)          | keyof [`theme.sizes`](./theme.md)  | no       |         |
-| color     | The font color (from theme palette)     | keyof [`theme.colors`](./theme.md) | no       | 'text'  |
-| theme     | Theme partial for default styling       | `DeepPartial<Theme>`               | no       |         |
+| Prop Name | Description                         | Type                               | Required | Default |
+| --------- | ----------------------------------- | ---------------------------------- | -------- | ------- |
+| font      | The font style (from the theme)     | keyof [`theme.fonts`](./Theme.md)  | no       |         |
+| fontSize  | The font size (from the theme)      | keyof [`theme.sizes`](./Theme.md)  | no       |         |
+| color     | The font color (from theme palette) | keyof [`theme.colors`](./Theme.md) | no       | 'text'  |
+| theme     | Theme partial for default styling   | `DeepPartial<Theme>`               | no       |         |
 
 </div>
