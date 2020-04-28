@@ -10,7 +10,7 @@ pxblueTheme.brandTitle = 'PX Blue React Native Component Library';
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
 if (window.top.location.hostname === 'localhost') {
     pxblueTheme.brandImage = require('../assets/pxblue-react-native-alpha.svg');
-} else if (window.top.location.pathname.slice(18) === '/react-native-dev/') {
+} else if (window.top.location.pathname.slice(0, 18) === '/react-native-dev/') {
     pxblueTheme.brandImage = require('../assets/pxblue-react-native-beta.svg');
 } else {
     pxblueTheme.brandImage = require('../assets/pxblue-react-native.svg');
