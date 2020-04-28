@@ -1,11 +1,13 @@
-# ScoreCard 
+# Score Card
+
 Card component that calls attention to particular values.
 
 <img width="40%" alt="Score Card with single highlighted value" src="./images/scorecard.png"><br/>
 <img width="40%" alt="Score Card with multiple highlighted values" src="./images/scorecard_alt.png">
 
 ## Usage
-```typescript
+
+```tsx
 import { Hero, HeroBanner, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
 import { ListItem } from 'react-native-elements';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -48,7 +50,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 <div style="overflow: auto">
 
 | Prop Name             | Description                                 | Type                  | Required | Default                  |
-|-----------------------|---------------------------------------------|-----------------------|----------|--------------------------|
+| --------------------- | ------------------------------------------- | --------------------- | -------- | ------------------------ |
 | headerTitle           | The primary text                            | `string`              | yes      |                          |
 | headerSubtitle        | The secondary text                          | `string`              | no       |                          |
 | headerInfo            | Tertiary text (hidden on collapse)          | `string`              | no       |                          |
@@ -63,33 +65,34 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 </div>
 
-#### HeaderIcon
+#### Header Icon
+
 Header icons specified as a JSON object with the following properties:
 
 <div style="overflow: auto">
 
-| Key               | Description                             | Type                                               | Required | Default             |
-|-------------------|-----------------------------------------|----------------------------------------------------|----------|---------------------|
-| icon              | A component to render for the icon      | `React.Component<{ size: number, color: string }>` | yes      |                     |
-| onPress           | A function to execute when clicked      | `function`                                         | yes      |                     |
+| Key     | Description                        | Type                                               | Required | Default |
+| ------- | ---------------------------------- | -------------------------------------------------- | -------- | ------- |
+| icon    | A component to render for the icon | `React.Component<{ size: number, color: string }>` | yes      |         |
+| onPress | A function to execute when clicked | `function`                                         | yes      |         |
 
 </div>
 
 #### ScoreCard.ListItem
-ScoreCard.ListItem is a helper component that can be used for the footer of the ScoreCard. 
 
-```typescript
+ScoreCard.ListItem is a helper component that can be used for the footer of the `<ScoreCard>`.
+
+```tsx
 import { ScoreCard } from '@pxblue/react-native-components';
 ...
 <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
 ```
 
-
 <div style="overflow: auto">
 
-| Prop Name | Description                             | Type       | Required | Default |
-|-----------|-----------------------------------------|------------|----------|---------|
-| label     | Text to show in the action row          | `string`   | yes      |         |
-| onPress   | Callback function for onPress event     | `function` | no       |         |
+| Prop Name | Description                         | Type       | Required | Default |
+| --------- | ----------------------------------- | ---------- | -------- | ------- |
+| label     | Text to show in the action row      | `string`   | yes      |         |
+| onPress   | Callback function for onPress event | `function` | no       |         |
 
 </div>
