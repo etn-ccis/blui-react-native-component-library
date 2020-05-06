@@ -5,6 +5,7 @@ import { blue as ReactThemes } from '@pxblue/react-themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
+import { CssBaseline } from '@material-ui/core';
 
 pxblueTheme.brandTitle = 'PX Blue React Native Component Library';
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
@@ -31,6 +32,7 @@ export const appliedTheme = createMuiTheme(ReactThemes);
 
 addDecorator((storyFn) => (
     <MuiThemeProvider theme={appliedTheme}>
+        <CssBaseline />
         <div className={'wrapper'} style={{ color: Colors.gray['800'] }}>
             {storyFn()}
         </div>
