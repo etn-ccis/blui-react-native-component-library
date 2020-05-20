@@ -1,9 +1,9 @@
 import React, { Component, ComponentType } from 'react';
 import { View, StyleSheet, TextProps } from 'react-native';
-import { withTheme, Theme } from '../theme';
-import { Label } from '..';
-import { WithTheme } from '../theme/theme';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { withTheme, Theme } from 'react-native-paper';
+import { Label } from '../typography';
+import { SIZES, Sizes } from '../sizes';
+import { WithTheme } from '../__types__';
 
 const styles = StyleSheet.create({
     row: {
@@ -27,7 +27,7 @@ export type ChannelValueProps = {
     prefix?: boolean;
 
     /** Font size for all text */
-    fontSize?: keyof Theme['sizes'];
+    fontSize?: keyof Sizes;
 
     /** Font color for all text */
     color?: string;
@@ -35,7 +35,7 @@ export type ChannelValueProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
 class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
@@ -54,7 +54,7 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
                     {...labelOverrides}
                 >
                     {this.prefixUnits()}
-                    <Label font={'bold'} fontSize={fontSize} {...labelOverrides}>
+                    <Label font={'medium'} fontSize={fontSize} {...labelOverrides}>
                         {value}
                     </Label>
                     {this.suffixUnits()}
@@ -113,9 +113,8 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
     }
 
     private getFontSize(): number {
-        const { theme, fontSize } = this.props;
-
-        return theme.sizes[fontSize || 'medium'];
+        const { fontSize } = this.props;
+        return SIZES[fontSize || 'medium'];
     }
 
     private getColor(): string {

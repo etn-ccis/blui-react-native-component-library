@@ -22,8 +22,9 @@ import _Temp from '@pxblue/icons-svg/temp.svg';
 import _Humidity from '@pxblue/icons-svg/moisture';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 
+import { Provider as PaperProvider } from 'react-native-paper';
 import * as PXBColors from '@pxblue/colors';
-import { ReactNativeThemes } from '@pxblue/themes';
+import { blue } from '@pxblue/react-native-themes';
 const backgroundImage = require('./assets/images/farm.jpg');
 
 const ChartLineVariant = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-line-variant' });
@@ -42,7 +43,7 @@ const PADDING = 10;
 export default class App extends React.Component {
     render() {
         return (
-            <ThemeProvider theme={ReactNativeThemes.blue}>
+            <PaperProvider theme={blue}>
                 <View style={{ flex: 1, backgroundColor: PXBColors.gray[50] }}>
                     <Header
                         expandable={true}
@@ -255,7 +256,7 @@ export default class App extends React.Component {
                         <SafeAreaView />
                     </ScrollView>
                 </View>
-            </ThemeProvider>
+            </PaperProvider>
         );
     }
 }

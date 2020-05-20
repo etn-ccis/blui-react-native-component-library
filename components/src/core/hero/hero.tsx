@@ -1,9 +1,10 @@
 import React, { Component, ComponentType } from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import { ChannelValue } from '../channel-value';
-import { Theme, withTheme, WithTheme } from '../theme';
-import { Label } from '..';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Theme, withTheme } from 'react-native-paper';
+import { Label } from '../typography';
+import { WithTheme } from '../__types__';
+import { Sizes } from '../sizes';
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -55,7 +56,7 @@ export type HeroProps = {
     iconBackgroundColor?: string;
 
     /** Primary icon color */
-    fontSize?: keyof Theme['sizes'];
+    fontSize?: keyof Sizes;
 
     /** Value for ChannelValue child */
     value?: number | string;
@@ -83,7 +84,7 @@ export type HeroProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
 class HeroClass extends Component<WithTheme<HeroProps>> {

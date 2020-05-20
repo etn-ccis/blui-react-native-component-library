@@ -14,9 +14,10 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
-import { withTheme, Theme, WithTheme } from '../theme';
+import { withTheme, Theme } from 'react-native-paper';
 import { wrapIcon } from '../icon-wrapper/icon-wrapper';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { SIZES } from '../sizes';
+import { WithTheme } from '../__types__';
 
 const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
 const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
@@ -132,7 +133,7 @@ export type HeaderProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
 type HeaderState = {
@@ -458,12 +459,12 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
             color: this.fontColor(),
             lineHeight: this.state.headerHeight.interpolate({
                 inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [theme.sizes.large, 30],
+                outputRange: [SIZES.large, 30],
             }),
-            fontFamily: theme.fonts.semiBold.fontFamily,
+            fontFamily: theme.fonts.medium.fontFamily,
             fontSize: this.state.headerHeight.interpolate({
                 inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [theme.sizes.large, 30],
+                outputRange: [SIZES.large, 30],
             }),
         };
     }
@@ -484,7 +485,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
             color: this.fontColor(),
             lineHeight: this.state.headerHeight.interpolate({
                 inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [0.1, theme.sizes.large * 1.05], // Avoid clipping top of CAP letters
+                outputRange: [0.1, SIZES.large * 1.05], // Avoid clipping top of CAP letters
             }),
             opacity: this.state.headerHeight.interpolate({
                 inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
@@ -493,7 +494,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
             fontFamily: theme.fonts.regular.fontFamily,
             fontSize: this.state.headerHeight.interpolate({
                 inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [0.1, theme.sizes.large],
+                outputRange: [0.1, SIZES.large],
             }),
         };
     }
@@ -504,7 +505,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
             padding: 0, // TextInput on Android has some default padding, so this needs to be explicitly set to 0
             color: this.fontColor(),
             fontFamily: theme.fonts.light.fontFamily,
-            fontSize: theme.sizes.large,
+            fontSize: SIZES.large,
             ...theme.fonts.light,
         };
     }
@@ -520,7 +521,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         if (searching) {
             return theme.colors.text;
         }
-        return fontColor || theme.colors.onPrimary;
+        return fontColor || 'white';
     }
 
     private backgroundColor(): string {

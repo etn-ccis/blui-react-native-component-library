@@ -3,8 +3,8 @@ import { View, StyleSheet, ImageSourcePropType, Image, TouchableOpacity, StylePr
 import { black } from '@pxblue/colors';
 import { ScoreCardListItem } from './list-item';
 import * as Typography from '../typography';
-import { withTheme, WithTheme, Theme } from '../theme';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { withTheme, Theme } from 'react-native-paper';
+import { WithTheme } from '../__types__';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
@@ -97,7 +97,7 @@ export type ScoreCardProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
 class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
@@ -147,7 +147,7 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
                 <Typography.H7
                     testID={'header_title'}
                     style={{ color: this.fontColor() }}
-                    font={'semiBold'}
+                    font={'medium'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                 >
@@ -241,8 +241,8 @@ class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
     }
 
     private fontColor(): string {
-        const { headerFontColor, theme } = this.props;
-        return headerFontColor || theme.colors.onPrimary;
+        const { headerFontColor } = this.props;
+        return headerFontColor || 'white';
     }
 }
 

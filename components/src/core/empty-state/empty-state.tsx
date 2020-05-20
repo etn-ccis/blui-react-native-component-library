@@ -1,8 +1,8 @@
 import React, { Component, ComponentType } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Theme, withTheme, WithTheme } from '../theme';
-import { $DeepPartial } from '@callstack/react-theme-provider';
-import { H6, Subtitle } from '..';
+import { Theme, withTheme } from 'react-native-paper';
+import { H6, Subtitle } from '../typography';
+import { WithTheme } from '../__types__';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,7 +35,7 @@ export type EmptyStateProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
 class EmptyStateClass extends Component<WithTheme<EmptyStateProps>> {

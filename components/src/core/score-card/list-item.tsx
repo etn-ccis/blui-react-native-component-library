@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { withTheme, WithTheme } from '../theme';
+import { withTheme, Theme } from 'react-native-paper';
 import { Body } from '../typography';
+import { WithTheme } from '../__types__';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,6 +27,11 @@ export type ListItemProps = {
      * If onPress is provided, a chevron will be rendered.
      */
     onPress?: () => void;
+
+    /**
+     * Overrides for theme
+     */
+    theme?: Theme;
 };
 
 class ScoreCardListItemClass extends Component<WithTheme<ListItemProps>> {
@@ -34,7 +40,7 @@ class ScoreCardListItemClass extends Component<WithTheme<ListItemProps>> {
 
         return (
             <TouchableOpacity style={[styles.container, styles.row]} disabled={!onPress} onPress={onPress}>
-                <Body font={'semiBold'} style={styles.fill}>
+                <Body font={'medium'} style={styles.fill}>
                     {label}
                 </Body>
                 {this.chevron()}

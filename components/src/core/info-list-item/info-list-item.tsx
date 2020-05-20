@@ -2,12 +2,12 @@ import React, { Component, Fragment, ComponentType } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { interleave } from '../helpers/utils';
-import { Theme, withTheme, WithTheme } from '../theme';
+import { Theme, withTheme } from 'react-native-paper';
 import { Body, Subtitle } from '../typography';
-import { $DeepPartial } from '@callstack/react-theme-provider';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import color from 'color';
+import { WithTheme } from '../__types__';
+import { SIZES } from '../sizes';
 
 const styles = StyleSheet.create({
     row: {
@@ -100,7 +100,7 @@ export type InfoListItemProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
 class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
@@ -114,7 +114,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
         };
         const titleStyle = {
             color: fontColor || theme.colors.text,
-            lineHeight: theme.sizes.medium,
+            lineHeight: SIZES.medium,
         };
         const fixedHeight = {
             height: dense ? 52 : 72,
@@ -133,7 +133,7 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
                         <View style={iconContainer}>{this.icon()}</View>
                     ) : null}
                     <View style={contentContainer}>
-                        <Body style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'semiBold'}>
+                        <Body style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'medium'}>
                             {title}
                         </Body>
                         <View style={row}>{this.subtitle()}</View>
