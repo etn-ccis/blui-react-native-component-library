@@ -356,9 +356,7 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
     }
 
     private search(config: SearchableConfig): JSX.Element {
-        const placeholderTextColor = color(this.fontColor())
-            .fade(0.4)
-            .string();
+        const placeholderTextColor = color(this.fontColor()).fade(0.4).string();
         const onChangeText = (text: string): void => {
             this.setState({ query: text });
             if (config.onChangeText) config.onChangeText(text);

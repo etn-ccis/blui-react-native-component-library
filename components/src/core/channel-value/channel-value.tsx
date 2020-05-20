@@ -47,14 +47,14 @@ export type ChannelValueProps = {
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const { value, fontSize, IconClass, color, units, prefix = false } = props;
     const theme = useTheme();
-    
+
     const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);
 
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
         if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
         return color;
-    }, [color, theme])
+    }, [color, theme]);
 
     const getIcon = useCallback(() => {
         if (IconClass) {
@@ -72,7 +72,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
             output.style = { color: getColor() };
         }
         return output;
-    }, [color, theme, getColor])
+    }, [color, theme, getColor]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
         const labelOverrides = textOverrides();
@@ -83,19 +83,19 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 </Label>
             );
         }
-    }, [textOverrides, units, fontSize])
+    }, [textOverrides, units, fontSize]);
 
     const prefixUnits = useCallback((): JSX.Element | undefined => {
         if (prefix) {
             return getUnits();
         }
-    }, [prefix, getUnits])
+    }, [prefix, getUnits]);
 
     const suffixUnits = useCallback((): JSX.Element | undefined => {
         if (!prefix) {
             return getUnits();
         }
-    }, [prefix, getUnits])
+    }, [prefix, getUnits]);
 
     const labelOverrides = textOverrides();
 
@@ -117,4 +117,4 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
             </Label>
         </View>
     );
-}
+};

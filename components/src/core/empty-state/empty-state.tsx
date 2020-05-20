@@ -50,13 +50,16 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;
         return Math.max(100, Math.min(200, iconSize));
-    }, [iconSize])
+    }, [iconSize]);
 
-    const getColor = useCallback((color: string | undefined): string => {
-        if (!color) return theme.colors.text;
-        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
-        return color;
-    }, [theme])
+    const getColor = useCallback(
+        (color: string | undefined): string => {
+            if (!color) return theme.colors.text;
+            if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+            return color;
+        },
+        [theme]
+    );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (IconClass) {
@@ -76,4 +79,4 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
             {actions ? <View style={{ marginTop: 10 }}>{actions}</View> : null}
         </View>
     );
-}
+};
