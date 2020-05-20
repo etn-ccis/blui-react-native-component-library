@@ -1,8 +1,7 @@
-import React, { Component, ComponentType, useCallback } from 'react';
+import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Theme, withTheme, useTheme } from 'react-native-paper';
+import { Theme, useTheme } from 'react-native-paper';
 import { H6, Subtitle } from '../typography';
-import { WithTheme } from '../__types__';
 
 const styles = StyleSheet.create({
     container: {

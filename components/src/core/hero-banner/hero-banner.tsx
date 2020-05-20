@@ -39,7 +39,7 @@ export type HeroBannerProps = {
 export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
     const { divider, children, limit, style } = props;
     const childrenArray = Array.isArray(children) ? children : [children];
-    
+
     return (
         <React.Fragment>
             <View style={[styles.banner, style]}>
@@ -48,4 +48,4 @@ export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
             {divider && <View style={styles.divider} />}
         </React.Fragment>
     );
-}
+};
