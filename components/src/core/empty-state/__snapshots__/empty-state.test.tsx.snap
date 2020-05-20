@@ -48,9 +48,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
         isTVSelectable={true}
-        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -384,9 +382,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
         isTVSelectable={true}
-        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}

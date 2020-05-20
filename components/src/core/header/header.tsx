@@ -504,7 +504,6 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
         return {
             padding: 0, // TextInput on Android has some default padding, so this needs to be explicitly set to 0
             color: this.fontColor(),
-            fontFamily: theme.fonts.light.fontFamily,
             fontSize: SIZES.large,
             ...theme.fonts.light,
         };
