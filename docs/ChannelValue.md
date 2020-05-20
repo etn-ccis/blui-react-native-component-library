@@ -32,6 +32,6 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | prefix    | If true, shows units before the value | `boolean`                                          | no       | false               |
 | fontSize  | The size of the font for the value    | keyof [`theme.sizes`](./Theme.md)                  | no       | 'medium'            |
 | color     | The color used for the text elements  | `string`                                           | no       | `theme.colors.text` |
-| theme     | Theme partial for default styling     | `DeepPartial<Theme>`                               | no       |                     |
+| theme     | Theme partial for default styling     | `Theme`                               | no       |                     |
 
 </div>

@@ -9,7 +9,6 @@ Card component that calls attention to particular values.
 
 ```tsx
 import { Hero, HeroBanner, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
-import { ListItem } from 'react-native-elements';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 const A = wrapIcon({ IconClass: _A });
@@ -38,10 +37,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
         <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
     }
 >
-    <ListItem
-        leftIcon={<MatIcon name={'notifications'} size={24} />}
-        title={<Body color={'error'}>1 Alarm</Body>}
-    />
+    {/* Body Content */}
 </ScoreCard>
 ```
 
@@ -61,7 +57,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 | badge                 | The component to render in the callout area | `React.Component`     | no       |                          |
 | badgeOffset           | Vertical offset for the badge component     | `number`              | no       |                          |
 | actionRow             | Component to render for the footer          | `React.Component`     | no       |                          |
-| theme                 | Theme partial for default styling           | `DeepPartial<Theme>`  | no       |                          |
+| theme                 | Theme partial for default styling           | `Theme`  | no       |                          |
 
 </div>
 
@@ -94,5 +90,6 @@ import { ScoreCard } from '@pxblue/react-native-components';
 | --------- | ----------------------------------- | ---------- | -------- | ------- |
 | label     | Text to show in the action row      | `string`   | yes      |         |
 | onPress   | Callback function for onPress event | `function` | no       |         |
+| theme     | Theme partial for default styling   | `Theme`    | no       |         |
 
 </div>
