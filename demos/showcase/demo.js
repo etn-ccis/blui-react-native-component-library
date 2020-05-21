@@ -132,7 +132,7 @@ export default class App extends React.Component {
                             title={'Emerson Field West'}
                             subtitle={['DG 100', 'EDR 5000', 'Online']}
                             statusColor={PXBColors.red[500]}
-                            fontColor={PXBColors.purple[500]}
+                            fontColor={PXBColors.red[500]}
                             hidePadding={true}
                             backgroundColor={'white'}
                             IconClass={Battery}

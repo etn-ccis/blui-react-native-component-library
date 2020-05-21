@@ -28,7 +28,7 @@ export type HeaderContentProps = {
 
     actionCount?: number;
 
-    theme: Theme
+    theme: Theme;
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
@@ -179,7 +179,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
 
 type SearchContentProps = {
     theme: Theme;
-}
+};
 const SearchContent: React.FC<SearchContentProps> = (props) => {
     const { theme } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();

@@ -110,7 +110,6 @@ export type HeaderProps = {
     theme?: Theme;
 };
 
-
 /**
  * Header component
  *
