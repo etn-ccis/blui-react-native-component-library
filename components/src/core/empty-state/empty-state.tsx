@@ -44,7 +44,7 @@ export type EmptyStateProps = {
  */
 export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const { title, description, actions, IconClass, iconColor, iconSize } = props;
-    const theme = useTheme();
+    const theme = useTheme(props.theme);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;

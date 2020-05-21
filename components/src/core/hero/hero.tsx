@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         style,
     } = props;
 
-    const theme = useTheme();
+    const theme = useTheme(props.theme);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 36;

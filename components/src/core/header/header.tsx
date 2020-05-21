@@ -40,23 +40,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         flexDirection: 'row',
     },
-    titleContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-    },
-    actionPanel: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        position: 'absolute',
-        right: 8,
-        height: 56,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
-    },
 });
 
 export type HeaderIcon = {
@@ -127,12 +110,6 @@ export type HeaderProps = {
     theme?: Theme;
 };
 
-// type HeaderState = {
-//     expanded: boolean;
-//     searching: boolean;
-//     query: string;
-//     headerHeight: Animated.Value;
-// };
 
 /**
  * Header component
@@ -156,7 +133,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
     } = props;
 
     const searchRef = useRef<TextInput>(null);
-    const theme = useTheme();
+    const theme = useTheme(props.theme);
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
     const [query, setQuery] = useState('');
@@ -282,6 +259,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                 <Animated.View style={contentStyle()}>
                                     <HeaderNavigationIcon navigation={navigation} />
                                     <HeaderContent
+                                        theme={theme}
                                         title={title}
                                         subtitle={subtitle}
                                         info={info}

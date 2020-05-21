@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Animated, StyleSheet, TextInput, View } from 'react-native';
 import color from 'color';
-import { useTheme } from 'react-native-paper';
+import { Theme } from 'react-native-paper';
 import { SIZES } from '../sizes';
 import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
@@ -27,22 +27,24 @@ export type HeaderContentProps = {
     info?: string;
 
     actionCount?: number;
+
+    theme: Theme
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
-    const { title, subtitle, info, actionCount = 0 } = props;
+    const { title, subtitle, info, actionCount = 0, theme } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
 
     let content: JSX.Element[] = [];
 
     if (searchConfig && searching) {
-        content = [<SearchContent key={'search-content'} />];
+        content = [<SearchContent key={'search-content'} theme={theme} />];
     } else {
         content = [
-            <HeaderTitle title={title} key="title_key" />,
-            <HeaderInfo info={info} key="info_key" />,
-            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" />,
+            <HeaderTitle title={title} key="title_key" theme={theme} />,
+            <HeaderInfo info={info} key="info_key" theme={theme} />,
+            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} />,
         ];
     }
 
@@ -73,10 +75,10 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
 
 type HeaderTitleProps = {
     title: string;
+    theme: Theme;
 };
 const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
-    const { title } = props;
-    const theme = useTheme();
+    const { title, theme } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
 
@@ -105,10 +107,10 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
 
 type HeaderSubtitleProps = {
     subtitle?: string;
+    theme: Theme;
 };
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
-    const { subtitle } = props;
-    const theme = useTheme();
+    const { subtitle, theme } = props;
     const { color: textColor } = useColor();
 
     const getSubtitleStyle = useCallback(
@@ -138,10 +140,10 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
 
 type HeaderInfoProps = {
     info?: string;
+    theme: Theme;
 };
 const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
-    const { info } = props;
-    const theme = useTheme();
+    const { info, theme } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
 
@@ -175,10 +177,13 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     return null;
 };
 
-const SearchContent: React.FC = () => {
+type SearchContentProps = {
+    theme: Theme;
+}
+const SearchContent: React.FC<SearchContentProps> = (props) => {
+    const { theme } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
     const { color: textColor } = useColor();
-    const theme = useTheme();
     const placeholderTextColor = color(textColor).fade(0.4).string();
 
     return (

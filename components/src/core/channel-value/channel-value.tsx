@@ -46,7 +46,7 @@ export type ChannelValueProps = {
  */
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const { value, fontSize, IconClass, color, units, prefix = false } = props;
-    const theme = useTheme();
+    const theme = useTheme(props.theme);
 
     const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);
 
