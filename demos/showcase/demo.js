@@ -132,7 +132,7 @@ export default class App extends React.Component {
                             title={'Emerson Field West'}
                             subtitle={['DG 100', 'EDR 5000', 'Online']}
                             statusColor={PXBColors.red[500]}
-                            fontColor={PXBColors.purple[500]}
+                            fontColor={PXBColors.red[500]}
                             hidePadding={true}
                             backgroundColor={'white'}
                             IconClass={Battery}
@@ -182,7 +182,9 @@ export default class App extends React.Component {
                                     />
                                 </HeroBanner>
                             }
-                            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
+                            actionRow={
+                                <InfoListItem dense chevron hidePadding title={'View Location'} onPress={() => {}} />
+                            }
                         >
                             <View style={{ justifyContent: 'center' }}>
                                 <ListItem
@@ -233,7 +235,9 @@ export default class App extends React.Component {
                                     />
                                 </HeroBanner>
                             }
-                            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
+                            actionRow={
+                                <InfoListItem dense chevron hidePadding title={'View Location'} onPress={() => {}} />
+                            }
                         >
                             <View style={{ justifyContent: 'center' }}>
                                 <ListItem

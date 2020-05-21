@@ -1,6 +1,6 @@
-import React, { Component, ComponentType } from 'react';
+import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, TextProps } from 'react-native';
-import { withTheme, Theme } from 'react-native-paper';
+import { Theme, useTheme } from 'react-native-paper';
 import { Label } from '../typography';
 import { SIZES, Sizes } from '../sizes';
 import { WithTheme } from '../__types__';
@@ -38,71 +38,44 @@ export type ChannelValueProps = {
     theme?: Theme;
 };
 
-class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
-    public render(): JSX.Element {
-        const { value, fontSize } = this.props;
-        const labelOverrides = this.textOverrides();
+/**
+ * ChannelValue component
+ *
+ * Used to show a channel value and its units.
+ * An arbitrary icon may be added
+ */
+export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
+    const { value, fontSize, IconClass, color, units, prefix = false } = props;
+    const theme = useTheme(props.theme);
 
-        return (
-            <View style={styles.row}>
-                {this.icon()}
-                <Label
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                    testID={'text-wrapper'}
-                    fontSize={fontSize}
-                    {...labelOverrides}
-                >
-                    {this.prefixUnits()}
-                    <Label font={'medium'} fontSize={fontSize} {...labelOverrides}>
-                        {value}
-                    </Label>
-                    {this.suffixUnits()}
-                </Label>
-            </View>
-        );
-    }
+    const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);
 
-    private icon(): JSX.Element | undefined {
-        const { IconClass } = this.props;
+    const getColor = useCallback((): string => {
+        if (!color) return theme.colors.text;
+        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+        return color;
+    }, [color, theme]);
 
+    const getIcon = useCallback(() => {
         if (IconClass) {
             return (
-                <View style={{ marginRight: Math.round(this.getFontSize() / 6) }}>
-                    <IconClass size={this.getFontSize()} color={this.getColor()} />
+                <View style={{ marginRight: Math.round(getFontSize() / 6) }}>
+                    <IconClass size={getFontSize()} color={getColor()} />
                 </View>
             );
         }
-    }
+    }, [IconClass, getFontSize, getColor]);
 
-    private prefixUnits(): JSX.Element | undefined {
-        const { prefix = false } = this.props;
-        if (prefix) {
-            return this.units();
-        }
-    }
-
-    private suffixUnits(): JSX.Element | undefined {
-        const { prefix = false } = this.props;
-        if (!prefix) {
-            return this.units();
-        }
-    }
-
-    private textOverrides(): WithTheme<TextProps> {
-        const { color, theme } = this.props;
-
+    const textOverrides = useCallback((): WithTheme<TextProps> => {
         const output: WithTheme<TextProps> = { theme };
         if (color) {
-            output.style = { color: this.getColor() };
+            output.style = { color: getColor() };
         }
         return output;
-    }
+    }, [color, theme, getColor]);
 
-    private units(): JSX.Element | undefined {
-        const { units, fontSize } = this.props;
-        const labelOverrides = this.textOverrides();
-
+    const getUnits = useCallback((): JSX.Element | undefined => {
+        const labelOverrides = textOverrides();
         if (units) {
             return (
                 <Label font={'light'} {...labelOverrides} fontSize={fontSize}>
@@ -110,25 +83,38 @@ class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
                 </Label>
             );
         }
-    }
+    }, [textOverrides, units, fontSize]);
 
-    private getFontSize(): number {
-        const { fontSize } = this.props;
-        return SIZES[fontSize || 'medium'];
-    }
+    const prefixUnits = useCallback((): JSX.Element | undefined => {
+        if (prefix) {
+            return getUnits();
+        }
+    }, [prefix, getUnits]);
 
-    private getColor(): string {
-        const { color, theme } = this.props;
-        if (!color) return theme.colors.text;
-        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
-        return color;
-    }
-}
+    const suffixUnits = useCallback((): JSX.Element | undefined => {
+        if (!prefix) {
+            return getUnits();
+        }
+    }, [prefix, getUnits]);
 
-/**
- * ChannelValue component
- *
- * Used to show a channel value and its units.
- * An arbitrary icon may be added
- */
-export const ChannelValue = withTheme(ChannelValueClass);
+    const labelOverrides = textOverrides();
+
+    return (
+        <View style={styles.row}>
+            {getIcon()}
+            <Label
+                numberOfLines={1}
+                ellipsizeMode={'tail'}
+                testID={'text-wrapper'}
+                fontSize={fontSize}
+                {...labelOverrides}
+            >
+                {prefixUnits()}
+                <Label font={'medium'} fontSize={fontSize} {...labelOverrides}>
+                    {value}
+                </Label>
+                {suffixUnits()}
+            </Label>
+        </View>
+    );
+};

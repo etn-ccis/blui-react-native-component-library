@@ -8,7 +8,7 @@ Card component that calls attention to particular values.
 ## Usage
 
 ```tsx
-import { Hero, HeroBanner, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
+import { Hero, HeroBanner, InfoListItem, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 const A = wrapIcon({ IconClass: _A });
@@ -34,7 +34,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
         </HeroBanner>
     }
     actionRow={
-        <ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
+        <InfoListItem chevron title={'View More'} onPress={() => { }} />
     }
 >
     {/* Body Content */}
@@ -71,25 +71,5 @@ Header icons specified as a JSON object with the following properties:
 | ------- | ---------------------------------- | -------------------------------------------------- | -------- | ------- |
 | icon    | A component to render for the icon | `React.Component<{ size: number, color: string }>` | yes      |         |
 | onPress | A function to execute when clicked | `function`                                         | yes      |         |
-
-</div>
-
-#### ScoreCard.ListItem
-
-ScoreCard.ListItem is a helper component that can be used for the footer of the `<ScoreCard>`.
-
-```tsx
-import { ScoreCard } from '@pxblue/react-native-components';
-...
-<ScoreCard.ListItem label={'View Location'} onPress={() => { }} />
-```
-
-<div style="overflow: auto">
-
-| Prop Name | Description                         | Type       | Required | Default |
-| --------- | ----------------------------------- | ---------- | -------- | ------- |
-| label     | Text to show in the action row      | `string`   | yes      |         |
-| onPress   | Callback function for onPress event | `function` | no       |         |
-| theme     | Theme partial for default styling   | `Theme`    | no       |         |
 
 </div>

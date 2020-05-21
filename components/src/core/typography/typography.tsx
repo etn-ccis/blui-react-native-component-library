@@ -39,7 +39,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
     style,
     ...props
 }): JSX.Element => {
-    const theme = useTheme();
+    const theme = useTheme(props.theme);
 
     let customStyle: StyleProp<TextStyle> = {};
     if (fontSize) {
