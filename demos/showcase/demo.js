@@ -182,7 +182,9 @@ export default class App extends React.Component {
                                     />
                                 </HeroBanner>
                             }
-                            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
+                            actionRow={
+                                <InfoListItem dense chevron hidePadding title={'View Location'} onPress={() => {}} />
+                            }
                         >
                             <View style={{ justifyContent: 'center' }}>
                                 <ListItem
@@ -233,7 +235,9 @@ export default class App extends React.Component {
                                     />
                                 </HeroBanner>
                             }
-                            actionRow={<ScoreCard.ListItem label={'View Location'} onPress={() => {}} />}
+                            actionRow={
+                                <InfoListItem dense chevron hidePadding title={'View Location'} onPress={() => {}} />
+                            }
                         >
                             <View style={{ justifyContent: 'center' }}>
                                 <ListItem

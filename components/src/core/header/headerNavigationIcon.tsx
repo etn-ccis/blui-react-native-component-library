@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { ICON_SIZE } from './constants';
-import { HeaderIcon as HeaderIconType } from './header';
+import { HeaderIcon as HeaderIconType } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';

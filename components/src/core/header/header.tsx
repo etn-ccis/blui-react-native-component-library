@@ -19,6 +19,7 @@ import { HeaderActionItems } from './headerActionItems';
 import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
+import { HeaderIcon } from '../__types__';
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
@@ -41,14 +42,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 });
-
-export type HeaderIcon = {
-    /** Name of the icon */
-    icon: ComponentType<{ size: number; color: string }>;
-
-    /** Callback when icon is pressed */
-    onPress: () => void;
-};
 
 export type SearchableConfig = {
     /** Icon to override default search icon */

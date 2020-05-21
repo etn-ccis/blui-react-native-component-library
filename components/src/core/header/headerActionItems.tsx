@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { wrapIcon } from '../icon-wrapper/icon-wrapper';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
-import { HeaderIcon as HeaderIconType } from './types';
+import { HeaderIcon as HeaderIconType } from '../__types__';
 
 const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
 const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
