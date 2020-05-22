@@ -63,6 +63,6 @@ See the [documentation](https://github.com/pxblue/react-native-component-library
 
 ## NOTES
 
-This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) -this library must be installed in your project in order to use the PX Blue components.
+This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - this library must be installed in your project in order to use the PX Blue components.
 
 Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up.

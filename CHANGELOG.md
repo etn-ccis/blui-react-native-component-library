@@ -1,4 +1,7 @@
 # Change Log
+## v3.0.0
+- Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+)
+- Added `<Drawer>`
 
 ## v2.0.0
 - PX Blue theme is no longer bundled with the component library
