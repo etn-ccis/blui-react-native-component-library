@@ -1,10 +1,9 @@
-import React, { Component, ComponentType } from 'react';
+import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, ImageSourcePropType, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import { black } from '@pxblue/colors';
-import { ScoreCardListItem } from './list-item';
 import * as Typography from '../typography';
-import { withTheme, WithTheme, Theme } from '../theme';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Theme, useTheme } from 'react-native-paper';
+import { HeaderIcon } from '../__types__';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
@@ -49,14 +48,6 @@ const styles = StyleSheet.create({
     },
 });
 
-export type HeaderIcon = {
-    /** Name of the icon */
-    icon: ComponentType<{ size: number; color: string }>;
-
-    /** Callback when icon is pressed */
-    onPress: () => void;
-};
-
 export type ScoreCardProps = {
     /** Background color of header */
     headerColor?: string;
@@ -97,158 +88,189 @@ export type ScoreCardProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
-
-class ScoreCardClass extends Component<WithTheme<ScoreCardProps>> {
-    public static ListItem = ScoreCardListItem;
-
-    public render(): JSX.Element {
-        const { children, theme, headerColor = theme.colors.primary, style } = this.props;
-        const newStyle = {
-            backgroundColor: theme.colors.surface,
-            borderRadius: theme.roundness,
-        };
-
-        return (
-            <View style={[styles.card, newStyle, style]}>
-                <View
-                    style={[
-                        styles.header,
-                        {
-                            backgroundColor: headerColor,
-                            borderTopLeftRadius: theme.roundness,
-                            borderTopRightRadius: theme.roundness,
-                        },
-                    ]}
-                >
-                    {this.backgroundImage()}
-                    <View style={[styles.padded, styles.headerContent]}>
-                        {this.headerText()}
-                        {this.actionItems()}
-                    </View>
-                </View>
-                <View style={[styles.row]}>
-                    <View style={{ flex: 1, justifyContent: 'center', marginRight: this.props.badge ? 16 : 0 }}>
-                        {children}
-                    </View>
-                    {this.heroes()}
-                </View>
-                {this.footer()}
-            </View>
-        );
-    }
-
-    private headerText(): JSX.Element {
-        const { headerTitle, headerSubtitle, headerInfo } = this.props;
-
-        return (
-            <View style={{ flex: 1 }}>
-                <Typography.H7
-                    testID={'header_title'}
-                    style={{ color: this.fontColor() }}
-                    font={'semiBold'}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                >
-                    {headerTitle}
-                </Typography.H7>
-                {headerSubtitle ? (
-                    <Typography.Subtitle
-                        testID={'header_subtitle'}
-                        style={{ color: this.fontColor() }}
-                        font={'regular'}
-                        numberOfLines={1}
-                        ellipsizeMode={'tail'}
-                    >
-                        {headerSubtitle}
-                    </Typography.Subtitle>
-                ) : null}
-                {headerInfo ? (
-                    <Typography.Subtitle
-                        testID={'header_info'}
-                        style={{ color: this.fontColor() }}
-                        font={'light'}
-                        numberOfLines={1}
-                        ellipsizeMode={'tail'}
-                    >
-                        {headerInfo}
-                    </Typography.Subtitle>
-                ) : null}
-            </View>
-        );
-    }
-
-    private heroes(): JSX.Element | undefined {
-        const { badge, badgeOffset = 0 } = this.props;
-        if (badge) {
-            return <View style={{ flex: 0, marginTop: badgeOffset }}>{badge}</View>;
-        }
-    }
-
-    private backgroundImage(): JSX.Element | undefined {
-        const { headerBackgroundImage } = this.props;
-        if (headerBackgroundImage) {
-            return (
-                <Image
-                    testID={'header-background-image'}
-                    source={headerBackgroundImage}
-                    style={{
-                        position: 'absolute',
-                        width: '100%',
-                        resizeMode: 'cover',
-                        height: '100%',
-                        opacity: 0.1,
-                    }}
-                />
-            );
-        }
-    }
-
-    private footer(): JSX.Element | undefined {
-        const { actionRow } = this.props;
-
-        if (actionRow) {
-            return <View style={[styles.footer]}>{actionRow}</View>;
-        }
-    }
-
-    private actionItems(): JSX.Element | undefined {
-        const { actionItems } = this.props;
-
-        if (actionItems) {
-            return (
-                <View style={{ flexDirection: 'row', margin: -8 }}>
-                    {actionItems.slice(0, 2).map((actionItem, index) => (
-                        <TouchableOpacity
-                            key={`${index}`}
-                            testID={`action-item${index}`}
-                            onPress={actionItem.onPress}
-                            style={styles.actionItem}
-                        >
-                            {this.icon(actionItem.icon)}
-                        </TouchableOpacity>
-                    ))}
-                </View>
-            );
-        }
-    }
-
-    private icon(IconClass: ComponentType<{ size: number; color: string }>): JSX.Element | undefined {
-        if (IconClass) {
-            return <IconClass size={ICON_SIZE} color={this.fontColor()} />;
-        }
-    }
-
-    private fontColor(): string {
-        const { headerFontColor, theme } = this.props;
-        return headerFontColor || theme.colors.onPrimary;
-    }
-}
 
 /**
  * ScoreCard component.
  * This component renders a "score card" with optional Hero badge,
  * title and subtitles, and actionRow at the bottom.
  */
-export const ScoreCard = withTheme(ScoreCardClass);
+export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
+    const theme = useTheme(props.theme);
+    const {
+        actionRow,
+        actionItems,
+        badge,
+        badgeOffset,
+        children,
+        headerBackgroundImage,
+        headerColor = theme.colors.primary,
+        headerTitle,
+        headerSubtitle,
+        headerInfo,
+        headerFontColor,
+        style,
+    } = props;
+
+    const newStyle = {
+        backgroundColor: theme.colors.surface,
+        borderRadius: theme.roundness,
+    };
+
+    return (
+        <View style={[styles.card, newStyle, style]}>
+            <View
+                style={[
+                    styles.header,
+                    {
+                        backgroundColor: headerColor,
+                        borderTopLeftRadius: theme.roundness,
+                        borderTopRightRadius: theme.roundness,
+                    },
+                ]}
+            >
+                <BackgroundImage headerBackgroundImage={headerBackgroundImage} />
+                <View style={[styles.padded, styles.headerContent]}>
+                    <HeaderText
+                        title={headerTitle}
+                        subtitle={headerSubtitle}
+                        info={headerInfo}
+                        color={headerFontColor}
+                    />
+                    <ActionPanel actionItems={actionItems} color={headerFontColor} />
+                </View>
+            </View>
+            <View style={[styles.row]}>
+                <View style={{ flex: 1, justifyContent: 'center', marginRight: badge ? 16 : 0 }}>{children}</View>
+                <HeroPanel badge={badge} badgeOffset={badgeOffset} />
+            </View>
+            <Footer actionRow={actionRow} />
+        </View>
+    );
+};
+type BackgroundImageProps = {
+    /** Background image to render when header is expanded */
+    headerBackgroundImage?: ImageSourcePropType;
+};
+const BackgroundImage: React.FC<BackgroundImageProps> = (props) => {
+    const { headerBackgroundImage } = props;
+    if (headerBackgroundImage) {
+        return (
+            <Image
+                testID={'header-background-image'}
+                source={headerBackgroundImage}
+                style={{
+                    position: 'absolute',
+                    width: '100%',
+                    resizeMode: 'cover',
+                    height: '100%',
+                    opacity: 0.1,
+                }}
+            />
+        );
+    }
+    return null;
+};
+type HeaderTextProps = {
+    title: string;
+    subtitle?: string;
+    info?: string;
+    color?: string;
+};
+const HeaderText: React.FC<HeaderTextProps> = (props) => {
+    const { title, subtitle, info, color } = props;
+    const textColor = color || 'white';
+    return (
+        <View style={{ flex: 1 }}>
+            <Typography.H7
+                testID={'header_title'}
+                style={{ color: textColor }}
+                font={'medium'}
+                numberOfLines={1}
+                ellipsizeMode={'tail'}
+            >
+                {title}
+            </Typography.H7>
+            {subtitle ? (
+                <Typography.Subtitle
+                    testID={'header_subtitle'}
+                    style={{ color: textColor }}
+                    font={'regular'}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                >
+                    {subtitle}
+                </Typography.Subtitle>
+            ) : null}
+            {info ? (
+                <Typography.Subtitle
+                    testID={'header_info'}
+                    style={{ color: textColor }}
+                    font={'light'}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                >
+                    {info}
+                </Typography.Subtitle>
+            ) : null}
+        </View>
+    );
+};
+
+type FooterProps = {
+    actionRow?: JSX.Element;
+};
+const Footer: React.FC<FooterProps> = (props) => {
+    const { actionRow } = props;
+    if (actionRow) {
+        return <View style={[styles.footer]}>{actionRow}</View>;
+    }
+    return null;
+};
+
+type HeroPanelProps = {
+    badge?: JSX.Element;
+    badgeOffset?: number;
+};
+const HeroPanel: React.FC<HeroPanelProps> = (props) => {
+    const { badge, badgeOffset = 0 } = props;
+    if (badge) {
+        return <View style={{ flex: 0, marginTop: badgeOffset }}>{badge}</View>;
+    }
+    return null;
+};
+
+type ActionPanelProps = {
+    actionItems?: HeaderIcon[];
+    color?: string;
+};
+const ActionPanel: React.FC<ActionPanelProps> = (props) => {
+    const { actionItems, color = 'white' } = props;
+
+    const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
+        | JSX.Element
+        | undefined => {
+        if (IconClass) {
+            return <IconClass size={ICON_SIZE} color={color} />;
+        }
+    }, []);
+
+    if (actionItems) {
+        return (
+            <View style={{ flexDirection: 'row', margin: -8 }}>
+                {actionItems.slice(0, 2).map((actionItem, index) => (
+                    <TouchableOpacity
+                        key={`${index}`}
+                        testID={`action-item${index}`}
+                        onPress={actionItem.onPress}
+                        style={styles.actionItem}
+                    >
+                        {getIcon(actionItem.icon)}
+                    </TouchableOpacity>
+                ))}
+            </View>
+        );
+    }
+    return null;
+};

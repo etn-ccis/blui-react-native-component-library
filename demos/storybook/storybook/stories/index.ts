@@ -10,5 +10,4 @@ import './info-list-item';
 // import './layout-view';
 import './score-card';
 // import './search-screen';
-import './theme';
 import './typography';

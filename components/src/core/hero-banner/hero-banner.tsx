@@ -36,17 +36,16 @@ export type HeroBannerProps = {
  * Wrapper for 1-4 Hero components that neatly spaces
  * and displays them in a row.
  */
-export class HeroBanner extends React.Component<HeroBannerProps> {
-    render(): JSX.Element {
-        const { divider, children, limit, style } = this.props;
-        const childrenArray = Array.isArray(children) ? children : [children];
-        return (
-            <React.Fragment>
-                <View style={[styles.banner, style]}>
-                    {!!children && childrenArray.slice(0, limit || 4).map((child: React.ReactNode) => child)}
-                </View>
-                {divider && <View style={styles.divider} />}
-            </React.Fragment>
-        );
-    }
-}
+export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
+    const { divider, children, limit, style } = props;
+    const childrenArray = Array.isArray(children) ? children : [children];
+
+    return (
+        <React.Fragment>
+            <View style={[styles.banner, style]}>
+                {!!children && childrenArray.slice(0, limit || 4).map((child: React.ReactNode) => child)}
+            </View>
+            {divider && <View style={styles.divider} />}
+        </React.Fragment>
+    );
+};

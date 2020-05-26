@@ -20,7 +20,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
@@ -48,9 +48,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
         isTVSelectable={true}
-        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -190,7 +188,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
@@ -206,12 +204,12 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200EE",
+          "color": "#6200ee",
         },
         Object {
           "fontFamily": "System",
           "fontSize": 14,
-          "fontWeight": "600",
+          "fontWeight": "500",
         },
         Object {},
         Object {
@@ -266,7 +264,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
@@ -301,7 +299,7 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
@@ -336,7 +334,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
@@ -352,12 +350,12 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200EE",
+          "color": "#6200ee",
         },
         Object {
           "fontFamily": "System",
           "fontSize": 14,
-          "fontWeight": "600",
+          "fontWeight": "500",
         },
         Object {},
         Object {
@@ -384,9 +382,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
         isTVSelectable={true}
-        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}

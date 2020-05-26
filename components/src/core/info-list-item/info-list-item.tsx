@@ -1,15 +1,29 @@
-import React, { Component, Fragment, ComponentType } from 'react';
+import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { interleave } from '../helpers/utils';
-import { Theme, withTheme, WithTheme } from '../theme';
-import { Body, Subtitle } from '../typography';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Theme, useTheme } from 'react-native-paper';
+import { Body } from '../typography';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import color from 'color';
+import { SIZES } from '../sizes';
+import { renderableSubtitleComponent, withKeys, separate } from './utilities';
+
+const MAX_SUBTITLE_ELEMENTS = 3;
 
 const styles = StyleSheet.create({
+    avatar: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+    },
+    divider: {
+        height: 1,
+        borderBottomWidth: 1,
+        borderColor: Colors.black['100'],
+    },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -23,28 +37,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
     },
-    avatar: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'transparent',
-    },
     contentContainer: {
         flex: 1,
         paddingHorizontal: 16,
     },
-    divider: {
-        height: 1,
-        borderBottomWidth: 1,
-        borderColor: Colors.black['100'],
-    },
     tab: {
         width: 6,
-    },
-    withSmallMargins: {
-        marginHorizontal: 4,
     },
     fullHeight: {
         height: '100%',
@@ -100,64 +98,46 @@ export type InfoListItemProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
 
-class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
-    private static readonly MAX_SUBTITLE_ELEMENTS = 3;
+/**
+ * A flexible component to be rendered within FlatLists
+ */
+export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+    const {
+        avatar,
+        title,
+        rightComponent,
+        chevron,
+        divider,
+        subtitle,
+        subtitleSeparator,
+        statusColor,
+        dense,
+        fontColor,
+        iconColor,
+        backgroundColor,
+        onPress,
+        IconClass,
+        hidePadding,
+    } = props;
+    const { row, fullHeight, tab, iconContainer, contentContainer, withRightPadding } = styles;
 
-    public render(): JSX.Element {
-        const { title, statusColor, dense, fontColor, backgroundColor, onPress, theme } = this.props;
-        const { row, fullHeight, tab, iconContainer, contentContainer, withRightPadding } = styles;
-        const style = {
-            backgroundColor: backgroundColor || 'transparent',
-        };
-        const titleStyle = {
-            color: fontColor || theme.colors.text,
-            lineHeight: theme.sizes.medium,
-        };
-        const fixedHeight = {
-            height: dense ? 52 : 72,
-        };
+    const theme = useTheme(props.theme);
 
-        return (
-            <View style={[fixedHeight, style]}>
-                <TouchableOpacity
-                    onPress={onPress}
-                    style={[fullHeight, row, withRightPadding]}
-                    disabled={!onPress}
-                    activeOpacity={0.7}
-                >
-                    <View style={[fullHeight, tab, { backgroundColor: statusColor }]} />
-                    {this.props.IconClass || !this.props.hidePadding ? (
-                        <View style={iconContainer}>{this.icon()}</View>
-                    ) : null}
-                    <View style={contentContainer}>
-                        <Body style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'semiBold'}>
-                            {title}
-                        </Body>
-                        <View style={row}>{this.subtitle()}</View>
-                    </View>
-                    {this.rightComponent()}
-                    {this.divider()}
-                </TouchableOpacity>
-            </View>
-        );
-    }
+    const style = {
+        backgroundColor: backgroundColor || 'transparent',
+    };
+    const titleStyle = {
+        color: fontColor || theme.colors.text,
+        lineHeight: SIZES.medium,
+    };
+    const fixedHeight = {
+        height: dense ? 52 : 72,
+    };
 
-    private icon(): JSX.Element | undefined {
-        const { IconClass, avatar } = this.props;
-        if (IconClass) {
-            return (
-                <View style={avatar ? this.avatarStyle() : null}>
-                    <IconClass size={24} color={this.iconColor()} />
-                </View>
-            );
-        }
-    }
-
-    private iconColor(): string {
-        const { avatar, statusColor, iconColor, theme } = this.props;
+    const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
         if (avatar) {
             return statusColor
@@ -167,91 +147,86 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
                 : Colors.white[50]; // default avatar is dark gray -> white text
         }
         return statusColor ? statusColor : theme.colors.text;
-    }
-    private avatarStyle(): Record<string, any> {
-        const { statusColor } = this.props;
+    }, [iconColor, avatar, statusColor]);
+
+    const getAvatarStyle = useCallback((): Record<string, any> => {
         const avatarStyle = { ...styles.avatar };
         avatarStyle.backgroundColor = statusColor || Colors.black[500];
         return avatarStyle;
-    }
+    }, [statusColor]);
 
-    private rightComponent(): JSX.Element | undefined {
-        const { chevron, theme, rightComponent } = this.props;
+    const getIcon = useCallback((): JSX.Element | undefined => {
+        if (IconClass) {
+            return (
+                <View style={avatar ? getAvatarStyle() : null}>
+                    <IconClass size={24} color={getIconColor()} />
+                </View>
+            );
+        }
+    }, [IconClass, avatar, getAvatarStyle, getIconColor]);
+
+    const getSubtitle = useCallback((): JSX.Element[] | null => {
+        if (!subtitle) {
+            return null;
+        }
+        const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
+        const renderableSubtitleParts = subtitleParts
+            .splice(0, MAX_SUBTITLE_ELEMENTS)
+            .map((element) => renderableSubtitleComponent(element));
+
+        return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
+    }, [subtitle, subtitleSeparator]);
+
+    const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
             return rightComponent;
         } else if (chevron) {
             return <Icon name="chevron-right" size={24} color={theme.colors.text} />;
         }
-    }
+    }, [rightComponent, chevron, theme]);
 
-    private divider(): JSX.Element | undefined {
-        const { divider } = this.props;
-        if (divider) {
-            return (
-                <View
-                    style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        right: 0,
-                        left: divider === 'partial' ? 72 : 0,
-                        alignItems: 'stretch',
-                    }}
-                >
-                    <View style={[styles.divider]} />
+    return (
+        <View style={[fixedHeight, style]}>
+            <TouchableOpacity
+                onPress={onPress}
+                style={[fullHeight, row, withRightPadding]}
+                disabled={!onPress}
+                activeOpacity={0.7}
+            >
+                <View style={[fullHeight, tab, { backgroundColor: statusColor }]} />
+                {IconClass || !hidePadding ? <View style={iconContainer}>{getIcon()}</View> : null}
+                <View style={contentContainer}>
+                    <Body style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'medium'}>
+                        {title}
+                    </Body>
+                    <View style={row}>{getSubtitle()}</View>
                 </View>
-            );
-        }
-    }
+                {getRightComponent()}
+                <Divider divider={divider} />
+            </TouchableOpacity>
+        </View>
+    );
+};
 
-    private subtitle(): JSX.Element[] | null {
-        const { subtitle } = this.props;
-
-        if (!subtitle) {
-            return null;
-        }
-
-        const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
-        const renderableSubtitleParts = subtitleParts
-            .splice(0, InfoListItemClass.MAX_SUBTITLE_ELEMENTS)
-            .map((element) => this.renderableSubtitleComponent(element));
-
-        return this.withKeys(this.separate(renderableSubtitleParts));
-    }
-
-    private separate(array: React.ReactNode[]): React.ReactNode[] {
-        return interleave(array, () => this.interpunct());
-    }
-
-    private withKeys(array: React.ReactNode[]): JSX.Element[] {
-        return array.map((element, index) => <Fragment key={index}>{element}</Fragment>);
-    }
-
-    private renderableSubtitleComponent(element: React.ReactNode): React.ReactNode {
-        switch (typeof element) {
-            case 'string':
-            case 'number':
-                return (
-                    <Subtitle numberOfLines={1} font={'regular'}>
-                        {`${element}`}
-                    </Subtitle>
-                );
-            default:
-                return element;
-        }
-    }
-
-    private interpunct(): JSX.Element {
-        const { subtitleSeparator } = this.props;
-        const { withSmallMargins } = styles;
+type DividerProps = {
+    divider?: 'full' | 'partial';
+};
+const Divider: React.FC<DividerProps> = (props) => {
+    const { divider } = props;
+    if (divider) {
         return (
-            <Subtitle style={withSmallMargins} font={'regular'}>
-                {subtitleSeparator || '\u00B7'}
-            </Subtitle>
+            <View
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                    left: divider === 'partial' ? 72 : 0,
+                    alignItems: 'stretch',
+                }}
+            >
+                <View style={[styles.divider]} />
+            </View>
         );
     }
-}
-
-/**
- * A flexible component to be rendered within FlatLists
- */
-export const InfoListItem = withTheme(InfoListItemClass);
+    return null;
+};

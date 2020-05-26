@@ -49,6 +49,6 @@ You can also supply an array of items that will be displayed as a character-sepa
 | fontColor         | Title text color                       | `string`                                           | no       |                |
 | backgroundColor   | The color used for the background      | `string`                                           | no       |                |
 | onPress           | A function to execute when clicked     | `function`                                         | no       |                |
-| theme             | Theme partial for default styling      | `DeepPartial<Theme>`                               | no       |                |
+| theme             | Theme partial for default styling      | `Theme`                               | no       |                |
 
 </div>

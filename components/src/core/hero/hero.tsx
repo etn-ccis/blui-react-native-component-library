@@ -1,9 +1,9 @@
-import React, { Component, ComponentType } from 'react';
+import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import { ChannelValue } from '../channel-value';
-import { Theme, withTheme, WithTheme } from '../theme';
-import { Label } from '..';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Theme, useTheme } from 'react-native-paper';
+import { Label } from '../typography';
+import { Sizes } from '../sizes';
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -55,7 +55,7 @@ export type HeroProps = {
     iconBackgroundColor?: string;
 
     /** Primary icon color */
-    fontSize?: keyof Theme['sizes'];
+    fontSize?: keyof Sizes;
 
     /** Value for ChannelValue child */
     value?: number | string;
@@ -83,72 +83,8 @@ export type HeroProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: Theme;
 };
-
-class HeroClass extends Component<WithTheme<HeroProps>> {
-    public render(): JSX.Element {
-        const {
-            theme,
-            label,
-            value,
-            ValueIconClass,
-            valueColor,
-            fontSize,
-            units,
-            onPress,
-            iconBackgroundColor,
-            children,
-            style,
-        } = this.props;
-
-        return (
-            <TouchableOpacity onPress={onPress} disabled={!onPress} style={[styles.wrapper, style]}>
-                <View
-                    style={[
-                        styles.icon,
-                        { backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24 },
-                    ]}
-                >
-                    {this.icon()}
-                </View>
-                <View style={styles.values}>
-                    {!children && !!value && (
-                        <ChannelValue
-                            value={value}
-                            units={units}
-                            IconClass={ValueIconClass}
-                            color={valueColor}
-                            fontSize={fontSize || 'large'}
-                        />
-                    )}
-                    {children}
-                </View>
-                <Label style={styles.label} numberOfLines={1} ellipsizeMode={'tail'}>
-                    {label}
-                </Label>
-            </TouchableOpacity>
-        );
-    }
-
-    private icon(): JSX.Element | undefined {
-        const { IconClass, iconColor } = this.props;
-        if (IconClass) {
-            return <IconClass size={this.normalizeIconSize()} color={this.getColor(iconColor)} />;
-        }
-    }
-    private normalizeIconSize(): number {
-        const { iconSize } = this.props;
-        if (!iconSize) return 36;
-        return Math.max(10, Math.min(48, iconSize));
-    }
-    private getColor(color: string | undefined): string {
-        const { theme } = this.props;
-        if (!color) return theme.colors.text;
-        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
-        return color;
-    }
-}
 
 /**
  * Hero component
@@ -157,4 +93,70 @@ class HeroClass extends Component<WithTheme<HeroProps>> {
  * An arbitrary value, value icon, and units may be added,
  * or <ChannelValue/> components may be passed as children.
  */
-export const Hero = withTheme(HeroClass);
+export const Hero: React.FC<HeroProps> = (props) => {
+    const {
+        label,
+        value,
+        ValueIconClass,
+        valueColor,
+        fontSize,
+        units,
+        onPress,
+        IconClass,
+        iconColor,
+        iconSize,
+        iconBackgroundColor,
+        children,
+        style,
+    } = props;
+
+    const theme = useTheme(props.theme);
+
+    const normalizeIconSize = useCallback((): number => {
+        if (!iconSize) return 36;
+        return Math.max(10, Math.min(48, iconSize));
+    }, [iconSize]);
+
+    const getColor = useCallback(
+        (color: string | undefined): string => {
+            if (!color) return theme.colors.text;
+            if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+            return color;
+        },
+        [theme]
+    );
+
+    const getIcon = useCallback((): JSX.Element | undefined => {
+        if (IconClass) {
+            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} />;
+        }
+    }, [IconClass, normalizeIconSize, getColor, iconColor]);
+
+    return (
+        <TouchableOpacity onPress={onPress} disabled={!onPress} style={[styles.wrapper, style]}>
+            <View
+                style={[
+                    styles.icon,
+                    { backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24 },
+                ]}
+            >
+                {getIcon()}
+            </View>
+            <View style={styles.values}>
+                {!children && !!value && (
+                    <ChannelValue
+                        value={value}
+                        units={units}
+                        IconClass={ValueIconClass}
+                        color={valueColor}
+                        fontSize={fontSize || 'large'}
+                    />
+                )}
+                {children}
+            </View>
+            <Label style={styles.label} numberOfLines={1} ellipsizeMode={'tail'}>
+                {label}
+            </Label>
+        </TouchableOpacity>
+    );
+};

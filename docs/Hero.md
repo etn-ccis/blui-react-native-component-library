@@ -44,7 +44,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | valueColor          | Text color for the value line           | `string`                                           | no       | `text`                 |
 | units               | Text to show after the value            | `string`                                           | no       |                        |
 | onPress             | A function to execute when clicked      | `function`                                         | no       |                        |
-| theme               | Theme partial for default styling       | `DeepPartial<Theme>`                               | no       |                        |
+| theme               | Theme partial for default styling       | `Theme`                               | no       |                        |
 
 </div>
 
