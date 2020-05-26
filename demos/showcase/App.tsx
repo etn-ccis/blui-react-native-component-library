@@ -2,6 +2,10 @@ import * as React from 'react';
 import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Card, ListItem, Button } from 'react-native-elements';
 import {
+    Drawer,
+    DrawerHeader,
+    DrawerSubheader,
+    DrawerFooter,
     HeroBanner,
     Hero,
     Header,
@@ -71,6 +75,15 @@ export const App: React.FC = () => (
                 searchableConfig={{ placeholder: 'Search', autoFocus: true }}
             />
             <ScrollView>
+                <Drawer open={true}>
+                    <DrawerHeader title={'Drawer Title'} />
+                    <DrawerSubheader>
+                        <H6>Subheader goes here</H6>
+                    </DrawerSubheader>
+                    <DrawerFooter>
+                        <H6>Footer goes here</H6>
+                    </DrawerFooter>
+                </Drawer>
                 <Card containerStyle={{ padding: 0, margin: PADDING, marginBottom: 0 }}>
                     <EmptyState
                         title={'Nothing Found'}

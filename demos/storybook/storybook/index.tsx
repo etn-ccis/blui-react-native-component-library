@@ -13,7 +13,7 @@ configure(() => {
 // To find allowed options for getStorybookUI
 const StorybookUIRoot = getStorybookUI({});
 
-const ThemedStorybook = (): JSX.Element => (
+export const ThemedStorybook = (): JSX.Element => (
     <ThemeProvider theme={ReactNativeThemes.blue}>
         <StorybookUIRoot />
     </ThemeProvider>

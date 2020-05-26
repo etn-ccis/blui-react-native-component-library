@@ -11,6 +11,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "verify-build": "tsc --noEmit",
+    "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@pxblue/react-native-components",
+
     "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write"
   },
   "prettier": "@pxblue/prettier-config",
