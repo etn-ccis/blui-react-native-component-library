@@ -3,9 +3,7 @@ import {StyleSheet, View} from "react-native";
 
 const styles = StyleSheet.create({
     footer: {
-        backgroundColor: 'red',
-        flex: 1,
-        justifyContent: 'flex-end',
+        backgroundColor: 'purple',
     }
 });
 

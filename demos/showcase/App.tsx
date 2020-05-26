@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { View, ScrollView, SafeAreaView } from 'react-native';
-import { Card, ListItem, Button } from 'react-native-elements';
+import { Card, ListItem, Button, Icon } from 'react-native-elements';
 import {
     Drawer,
     DrawerHeader,
     DrawerSubheader,
     DrawerFooter,
+    DrawerBody,
+    DrawerNavGroup,
     HeroBanner,
     Hero,
     Header,
@@ -15,6 +17,7 @@ import {
     ScoreCard,
     InfoListItem,
     wrapIcon,
+    NavItem,
     EmptyState,
 } from '@pxblue/react-native-components';
 
@@ -43,8 +46,51 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 const PADDING = 10;
 
+export const navGroupItems1: NavItem[] = [
+    {
+        title: 'Identity Management',
+        itemID: '1',
+        icon: Battery,
+        onPress: () => {
+             console.log('pressed');
+        }
+    },
+    {
+        title: 'Calendar',
+        itemID: '2',
+        icon: Humidity,
+    },
+    {
+        title: 'Accessibility',
+        itemID: '3',
+        icon: Clock,
+    },
+    {
+        subtitle: 'Test',
+        title: 'Notifications',
+        itemID: '4',
+        icon: MailIcon,
+    },
+];
+
 export const App: React.FC = () => (
     <PaperProvider theme={blue}>
+
+        <Drawer open={true}>
+            <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}/>
+            <DrawerSubheader>
+                <H6 style={{backgroundColor: 'cyan'}}>Subheader goes here</H6>
+            </DrawerSubheader>
+            <DrawerBody>
+                <DrawerNavGroup title={'Group 1'} items={navGroupItems1} />
+                <View style={{flex: 2, backgroundColor: 'red', height: 'auto', width: 'auto'}}/>
+
+                <DrawerNavGroup title={'Group 2'} items={navGroupItems1}/>
+            </DrawerBody>
+            <DrawerFooter>
+                <H6>Footer goes here</H6>
+            </DrawerFooter>
+        </Drawer>
         <View style={{ flex: 1, backgroundColor: PXBColors.gray[50] }}>
             <Header
                 expandable={true}
@@ -75,15 +121,6 @@ export const App: React.FC = () => (
                 searchableConfig={{ placeholder: 'Search', autoFocus: true }}
             />
             <ScrollView>
-                <Drawer open={true}>
-                    <DrawerHeader title={'Drawer Title'} />
-                    <DrawerSubheader>
-                        <H6>Subheader goes here</H6>
-                    </DrawerSubheader>
-                    <DrawerFooter>
-                        <H6>Footer goes here</H6>
-                    </DrawerFooter>
-                </Drawer>
                 <Card containerStyle={{ padding: 0, margin: PADDING, marginBottom: 0 }}>
                     <EmptyState
                         title={'Nothing Found'}

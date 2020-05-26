@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { H6 } from '../typography';
 
 const styles = StyleSheet.create({
     container: {
@@ -8,11 +7,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        zIndex: 900,
-
+        zIndex: 2,
         flex: 1,
-        width: '80%',
-        height: '100vh'
+        height: '100%',
+        width: '70%',
     },
 });
 
@@ -41,7 +39,8 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     return <View style={styles.container}>
         {getSection('DrawerHeader')}
         {getSection('DrawerSubheader')}
-        <View />
+        {getSection('DrawerBody')}
+        <View style={{flex: 1, backgroundColor: 'green', height: 'auto', width: 'auto'}}/>
         {getSection('DrawerFooter')}
     </View>
 };
