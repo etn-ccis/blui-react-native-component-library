@@ -6,13 +6,9 @@ import * as Colors from '@pxblue/colors';
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.white[50],
-        position: 'absolute',
-        top: 0,
-        left: 0,
         zIndex: 2,
         flex: 1,
         height: '100%',
-        width: '70%',
     },
 });
 
@@ -29,7 +25,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
         }) || [], [props]);
 
 
-    const getSectionByDisplayName = useCallback((displayName: string, inherit = false): JSX.Element[] =>
+    const getSectionByDisplayName = useCallback( (displayName: string, inherit = false): JSX.Element[] =>
         findChildByType(displayName)
             .slice(0, 1)
             .map((child) => React.cloneElement(child, inherit ? inheritProps(props, child.props) : {} ))

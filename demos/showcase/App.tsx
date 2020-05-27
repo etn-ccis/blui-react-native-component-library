@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Card, ListItem, Button, Icon } from 'react-native-elements';
 import {
-    Drawer,
+    Drawer as PXBlueDrawer,
     DrawerHeader,
     DrawerSubheader,
     DrawerFooter,
@@ -32,6 +32,9 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import * as PXBColors from '@pxblue/colors';
 import { blue } from '@pxblue/react-native-themes';
 import {useState} from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import {createDrawerNavigator} from "@react-navigation/drawer";
+
 const backgroundImage = require('./assets/images/farm.jpg');
 
 const ChartLineVariant = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-line-variant' });
@@ -47,75 +50,8 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 const PADDING = 10;
 
-export const navGroupItems1: NavItem[] = [
-    {
-        title: 'Identity Management',
-        itemID: '1a',
-        icon: Battery,
-        onPress: () => {
-             console.log('pressed');
-        }
-    },
-    {
-        title: 'Calendar',
-        itemID: '2a',
-        icon: Humidity,
-    },
-    {
-        title: 'Accessibility',
-        itemID: '3a',
-        icon: Clock,
-        chevron: true,
-    },
-    {
-        subtitle: 'Test',
-        title: 'Notifications',
-        itemID: '4a',
-        icon: MailIcon,
-    },
-];
-
-export const navGroupItems2: NavItem[] = [
-    {
-        title: 'Notifications',
-        subtitle: '4 new alerts',
-        itemID: '1b',
-        statusColor: PXBColors.yellow[500]
-    },
-    {
-        title: 'Calendar',
-        itemID: '2b',
-        chevron: true,
-    },
-    {
-        title: 'Accessibility',
-        itemID: '3b',
-    },
-    {
-        subtitle: 'Test',
-        title: 'Notifications',
-        itemID: '4b',
-        activeItemBackgroundColor: 'red'
-    },
-];
-
 export const App: React.FC = () => {
-    const [selected, setSelected] = useState('');
-
     return <PaperProvider theme={blue}>
-        <Drawer chevron={true} activeItem={selected} onItemSelect={(id: string) => setSelected(id)}>
-            <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}/>
-            <DrawerSubheader>
-                <H6 style={{backgroundColor: 'cyan'}}>Subheader goes here</H6>
-            </DrawerSubheader>
-            <DrawerBody>
-                <DrawerNavGroup title={'Group 1'} items={navGroupItems1} chevron={false}/>
-                <DrawerNavGroup titleContent={<Subtitle>Custom Navgroup Content</Subtitle>} items={navGroupItems2}/>
-            </DrawerBody>
-            <DrawerFooter>
-                <H6>Footer goes here</H6>
-            </DrawerFooter>
-        </Drawer>
         <View style={{ flex: 1, backgroundColor: PXBColors.gray[50] }}>
             <Header
                 expandable={true}
