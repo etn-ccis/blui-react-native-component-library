@@ -1,24 +1,23 @@
 import React from 'react';
-import {View} from "react-native";
+import {ScrollView} from "react-native";
 import {DrawerNavGroup} from "./drawer-nav-group";
+import {DrawerInheritableProps, inheritProps} from "./inheritable-types";
 
-export const DrawerBody: React.FC<any> = (props) => {
+export const DrawerBody: React.FC<DrawerInheritableProps> = (props) => {
     const children = React.Children.toArray(props.children);
     return (
-        <View>
+        <ScrollView>
             {children.map((child: any, index: number) => {
-                console.log(child);
                 if (!child) {
                     return null;
                 }
 
                 if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
-                const groupProps: any = child.props;
                 return (
-                    <DrawerNavGroup {...groupProps} key={`NavGroup_${index}`}/>
+                    <DrawerNavGroup {...inheritProps(props, child.props)} {...child.props}  key={`NavGroup_${index}`}/>
                 )
             })}
-            </View>
+            </ScrollView>
         );
 };
 

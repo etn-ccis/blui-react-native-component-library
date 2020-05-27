@@ -18,7 +18,7 @@ import {
     InfoListItem,
     wrapIcon,
     NavItem,
-    EmptyState,
+    EmptyState, Subtitle,
 } from '@pxblue/react-native-components';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -49,7 +49,7 @@ const PADDING = 10;
 export const navGroupItems1: NavItem[] = [
     {
         title: 'Identity Management',
-        itemID: '1',
+        itemID: '1a',
         icon: Battery,
         onPress: () => {
              console.log('pressed');
@@ -57,35 +57,74 @@ export const navGroupItems1: NavItem[] = [
     },
     {
         title: 'Calendar',
-        itemID: '2',
+        itemID: '2a',
         icon: Humidity,
     },
     {
         title: 'Accessibility',
-        itemID: '3',
+        itemID: '3a',
         icon: Clock,
+        chevron: true,
     },
     {
         subtitle: 'Test',
         title: 'Notifications',
-        itemID: '4',
+        itemID: '4a',
         icon: MailIcon,
+    },
+];
+
+export const navGroupItems2: NavItem[] = [
+    {
+        title: 'Notifications',
+        subtitle: '4 new alerts',
+        itemID: '1b',
+        statusColor: PXBColors.yellow[500]
+    },
+    {
+        title: 'Calendar',
+        itemID: '2b',
+        chevron: true,
+    },
+    {
+        title: 'Accessibility',
+        itemID: '3b',
+    },
+    {
+        subtitle: 'Test',
+        title: 'Notifications',
+        itemID: '4b',
+    },
+    {
+        subtitle: 'Test',
+        title: 'Notifications',
+        itemID: '4b',
+    },
+    {
+        subtitle: 'Test',
+        title: 'Notifications',
+        itemID: '4b',
+    },
+    {
+        subtitle: 'Test',
+        title: 'Notifications',
+        itemID: '4b',
     },
 ];
 
 export const App: React.FC = () => (
     <PaperProvider theme={blue}>
 
-        <Drawer open={true}>
+        <Drawer chevron={true}>
             <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}/>
             <DrawerSubheader>
                 <H6 style={{backgroundColor: 'cyan'}}>Subheader goes here</H6>
             </DrawerSubheader>
             <DrawerBody>
-                <DrawerNavGroup title={'Group 1'} items={navGroupItems1} />
+                <DrawerNavGroup title={'Group 1'} items={navGroupItems1} chevron={false}/>
                 <View style={{flex: 2, backgroundColor: 'red', height: 'auto', width: 'auto'}}/>
 
-                <DrawerNavGroup title={'Group 2'} items={navGroupItems1}/>
+                <DrawerNavGroup titleContent={<Subtitle>Custom Navgroup Content</Subtitle>} items={navGroupItems2}/>
             </DrawerBody>
             <DrawerFooter>
                 <H6>Footer goes here</H6>
