@@ -95,6 +95,7 @@ export const navGroupItems2: NavItem[] = [
         subtitle: 'Test',
         title: 'Notifications',
         itemID: '4b',
+        activeItemBackgroundColor: 'red'
     },
 ];
 

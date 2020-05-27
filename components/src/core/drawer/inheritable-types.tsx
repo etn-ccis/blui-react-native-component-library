@@ -1,6 +1,8 @@
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
 // these types are inherited from the Drawer level to the NestedNavItem
 // parent props will be overriden by the child props if defined
+import * as Colors from '@pxblue/colors';
+
 export type DrawerInheritableProps = {
     // itemID for the 'active' item
     activeItem?: string;
@@ -69,14 +71,14 @@ export type NavGroupInheritableProps = {
 // Returns inhertiable props with child values taking precedence.
 export const inheritProps = (parent: DrawerInheritableProps, child: DrawerInheritableProps): DrawerInheritableProps => ({
     activeItem: child.activeItem || parent.activeItem,
-    activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor,
+    activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor || Colors.blue[50],
     activeItemFontColor: child.activeItemFontColor || parent.activeItemFontColor,
     activeItemIconColor: child.activeItemIconColor || parent.activeItemIconColor,
-    activeItemBackgroundShape: child.activeItemBackgroundShape || parent.activeItemBackgroundShape,
-    backgroundColor: child.backgroundColor || parent.backgroundColor,
+    activeItemBackgroundShape: child.activeItemBackgroundShape || parent.activeItemBackgroundShape || 'square',
+    backgroundColor: child.backgroundColor || parent.backgroundColor || Colors.white[50],
     chevron: child.chevron === undefined ? parent.chevron : undefined,
     collapseIcon: child.collapseIcon || parent.collapseIcon,
-    divider: child.divider === undefined ? parent.divider : undefined,
+    divider: child.divider === undefined ? parent.divider || true : child.divider,
     expandIcon: child.expandIcon || parent.expandIcon,
     hidePadding: child.hidePadding === undefined ? parent.hidePadding : undefined,
     itemFontColor: child.itemFontColor || parent.itemFontColor,

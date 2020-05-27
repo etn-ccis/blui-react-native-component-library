@@ -3,6 +3,7 @@ import {Subtitle} from '../typography';
 import {StyleSheet, View} from "react-native";
 import {DrawerNavItem, NavItem} from './drawer-nav-item';
 import {inheritProps, NavGroupInheritableProps} from "./inheritable-types";
+import {Divider} from "react-native-elements";
 
 export type DrawerNavGroupProps = {
     // internal API
@@ -19,9 +20,6 @@ export type DrawerNavGroupProps = {
 } & NavGroupInheritableProps;
 
 const styles = StyleSheet.create({
-    root: {
-        backgroundColor: 'blue',
-    },
     subtitle: {
         paddingTop: 8,
         paddingBottom: 8,
@@ -34,9 +32,15 @@ const styles = StyleSheet.create({
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const { title, titleContent, items } = props;
    return (
-        <View style={styles.root}>
+        <View>
             {titleContent}
-            {!titleContent && title && <Subtitle style={styles.subtitle}>{title}</Subtitle>}
+            {!titleContent && title &&
+                <View>
+                    <Divider/>
+                    <Subtitle style={styles.subtitle}>{title}</Subtitle>
+                    <Divider/>
+                </View>
+            }
             {items.map((item: NavItem, index: number) => (
                 <DrawerNavItem
                     depth={0}

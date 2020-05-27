@@ -1,24 +1,19 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useCallback} from 'react';
 import { View, StyleSheet } from 'react-native';
 import {H6, Subtitle} from '../typography';
-import {Divider} from "react-native-paper";
+import {Divider, useTheme} from "react-native-paper";
 import {Icon} from "react-native-elements";
+import * as Colors from '@pxblue/colors';
 
 const styles = StyleSheet.create({
-    root: {
-        display: 'flex',
-        minHeight: 56,
-        backgroundColor: 'blue'
-    },
     icon: {
-        backgroundColor: 'red',
         display: 'flex',
         width: 56,
         height: 56,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     content: {
-        backgroundColor: 'yellow',
+        color: 'blue',
         display: 'flex',
         flexDirection: 'column',
         padding: 4,
@@ -29,7 +24,10 @@ const styles = StyleSheet.create({
 });
 
 export type DrawerHeaderProps = {
+    backgroundColor?: string;
+    backgroundOpacity?: number;
     backgroundImage?: string;
+    fontColor?: string;
     icon?: ReactNode;
     title?: string;
     subtitle?: string;
@@ -38,26 +36,29 @@ export type DrawerHeaderProps = {
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const { title, subtitle, titleContent, backgroundImage } = props;
+    const theme = useTheme();
+   // const color = props.fontColor || Colors.white[50];
+    const bgColor = props.backgroundColor || theme.colors.primary;
 
-    const getIcon = (): ReactNode => (
+    const getIcon = useCallback((): ReactNode => (
         <View style={styles.icon}>
             <Icon name='menu' />
         </View>
-    );
+    ), []);
 
-    const getHeaderContent = (): ReactNode =>
+    const getHeaderContent = useCallback ((): ReactNode =>
         titleContent ||
         <View style={styles.content}>
-            <H6>{title}</H6>
+            <H6 style={{color: Colors.white[50]}}>{title}</H6>
             <Subtitle>{subtitle}</Subtitle>
-        </View>;
+        </View>, [title, subtitle, titleContent]);
 
-    const getBackgroundImage = (): ReactNode => (
+    const getBackgroundImage = useCallback((): ReactNode => (
         <View>{backgroundImage}</View>
-    );
+    ), [backgroundImage]);
 
     return (
-        <View style={styles.root}>
+        <View style={{backgroundColor: bgColor }}>
             {getBackgroundImage()}
             <View style={{display: 'flex', flexDirection: 'row'}}>
                 {getIcon()}

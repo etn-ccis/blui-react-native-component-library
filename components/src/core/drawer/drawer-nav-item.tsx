@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {StyleSheet, View} from "react-native";
 import {InfoListItem} from "../info-list-item";
 import {InfoListItemProps} from "../info-list-item/info-list-item";
@@ -24,33 +24,33 @@ export type DrawerNavItemProps = {
     navItem: NavItem | NestedNavItem;
 };
 
-const styles = StyleSheet.create({
-    root: {
-        backgroundColor: 'orange',
-    },
-    active: {
-        backgroundColor: 'green',
-        zIndex: 0,
-        position: 'absolute',
-        height: '100%',
-        width: `97%`,
-        left: 0,
-        top: 0,
-        borderTopRightRadius: 24,
-        borderBottomRightRadius: 24,
-        opacity: 0.9,
-    },
-    square: {
-        width: '100%',
-        borderRadius: 0,
-    },
-});
+const makeStyles = (props: DrawerNavItemProps): any =>
+    StyleSheet.create({
+        active: {
+            backgroundColor: props.navItem.activeItemBackgroundColor,
+            zIndex: 0,
+            position: 'absolute',
+            height: '100%',
+            width: `97%`,
+            left: 0,
+            top: 0,
+            borderTopRightRadius: 24,
+            borderBottomRightRadius: 24,
+            opacity: 0.9,
+        },
+        square: {
+            width: '100%',
+            borderRadius: 0,
+        },
+    });
+
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { navItem, depth, navGroupProps, expandHandler } = props;
     const { chevron } = navItem;
     const icon = !depth ? (navItem as NavItem).icon : undefined;
     const active = navGroupProps.activeItem === navItem.itemID;
+    const styles = makeStyles(props);
     const onPressAction = (id: string): void => {
         if (navItem.onItemSelect) {
             navItem.onItemSelect(id);
@@ -62,14 +62,17 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         }
     };
     return (
-        <View style={styles.root}>
+        <View>
             {active && <View style={styles.active}/>}
             <InfoListItem
                 dense
-                hidePadding
-                chevron={chevron}
                 {...navItem}
+                hidePadding
+                backgroundColor= { 'transparent' }
+                iconColor={ active ? props.navItem.activeItemIconColor : props.navItem.iconColor }
+                fontColor={ active ? props.navItem.activeItemFontColor : props.navItem.fontColor }
                 onPress={(): void => onPressAction(navItem.itemID)}
+                chevron={chevron}
                 IconClass={icon} />
         </View>
     );

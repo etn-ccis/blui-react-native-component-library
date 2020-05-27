@@ -1,10 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import { View, StyleSheet } from 'react-native';
 import {DrawerInheritableProps, inheritProps} from "./inheritable-types";
+import * as Colors from '@pxblue/colors';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'black',
+        backgroundColor: Colors.white[50],
         position: 'absolute',
         top: 0,
         left: 0,
