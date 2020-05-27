@@ -49,13 +49,11 @@ const styles = StyleSheet.create({
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { navItem, depth, navGroupProps, expandHandler } = props;
     const { chevron } = navItem;
-    console.log(chevron);
     const icon = !depth ? (navItem as NavItem).icon : undefined;
     const active = navGroupProps.activeItem === navItem.itemID;
-    const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
     const onPressAction = (id: string): void => {
-        if (onItemSelect) {
-            onItemSelect(id);
+        if (navItem.onItemSelect) {
+            navItem.onItemSelect(id);
         }
         if (navItem.onPress) {
             navItem.onPress();

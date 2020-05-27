@@ -31,6 +31,7 @@ import _Battery from '@pxblue/icons-svg/battery.svg';
 import { Provider as PaperProvider } from 'react-native-paper';
 import * as PXBColors from '@pxblue/colors';
 import { blue } from '@pxblue/react-native-themes';
+import {useState} from "react";
 const backgroundImage = require('./assets/images/farm.jpg');
 
 const ChartLineVariant = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-line-variant' });
@@ -95,35 +96,19 @@ export const navGroupItems2: NavItem[] = [
         title: 'Notifications',
         itemID: '4b',
     },
-    {
-        subtitle: 'Test',
-        title: 'Notifications',
-        itemID: '4b',
-    },
-    {
-        subtitle: 'Test',
-        title: 'Notifications',
-        itemID: '4b',
-    },
-    {
-        subtitle: 'Test',
-        title: 'Notifications',
-        itemID: '4b',
-    },
 ];
 
-export const App: React.FC = () => (
-    <PaperProvider theme={blue}>
+export const App: React.FC = () => {
+    const [selected, setSelected] = useState('');
 
-        <Drawer chevron={true}>
+    return <PaperProvider theme={blue}>
+        <Drawer chevron={true} activeItem={selected} onItemSelect={(id: string) => setSelected(id)}>
             <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}/>
             <DrawerSubheader>
                 <H6 style={{backgroundColor: 'cyan'}}>Subheader goes here</H6>
             </DrawerSubheader>
             <DrawerBody>
                 <DrawerNavGroup title={'Group 1'} items={navGroupItems1} chevron={false}/>
-                <View style={{flex: 2, backgroundColor: 'red', height: 'auto', width: 'auto'}}/>
-
                 <DrawerNavGroup titleContent={<Subtitle>Custom Navgroup Content</Subtitle>} items={navGroupItems2}/>
             </DrawerBody>
             <DrawerFooter>
@@ -389,4 +374,4 @@ export const App: React.FC = () => (
             </ScrollView>
         </View>
     </PaperProvider>
-);
+};

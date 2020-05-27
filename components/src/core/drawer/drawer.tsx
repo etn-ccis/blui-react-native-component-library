@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import {DrawerInheritableProps, inheritProps} from "./inheritable-types";
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
 
-    const findChildByType = (type: string): JSX.Element[] =>
+    const findChildByType = useCallback((type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
             if (child && child.type) {
                 const name = child.type.displayName;
@@ -25,23 +25,19 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
                     return child;
                 }
             }
-        }) || [];
+        }) || [], [props]);
 
-    const getSectionByDisplayName = (displayName: string): JSX.Element[] =>
+
+    const getSectionByDisplayName = useCallback((displayName: string, inherit = false): JSX.Element[] =>
         findChildByType(displayName)
             .slice(0, 1)
-            .map((child) => React.cloneElement(child));
-
-    const getBody = (): JSX.Element[] =>
-        findChildByType('DrawerBody')
-            .slice(0, 1)
-            .map((child) =>
-                React.cloneElement(child, inheritProps(props, child.props)));
+            .map((child) => React.cloneElement(child, inherit ? inheritProps(props, child.props) : {} ))
+    , [props]);
 
     return <View style={styles.container}>
         {getSectionByDisplayName('DrawerHeader')}
         {getSectionByDisplayName('DrawerSubheader')}
-        {getBody()}
+        {getSectionByDisplayName('DrawerBody', true)}
         <View style={{flex: 1, backgroundColor: 'green', height: 'auto', width: 'auto'}}/>
         {getSectionByDisplayName('DrawerFooter')}
     </View>

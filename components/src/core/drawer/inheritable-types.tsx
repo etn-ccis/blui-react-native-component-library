@@ -82,6 +82,6 @@ export const inheritProps = (parent: DrawerInheritableProps, child: DrawerInheri
     itemFontColor: child.itemFontColor || parent.itemFontColor,
     itemIconColor: child.itemIconColor || parent.itemIconColor,
     ripple: child.ripple === undefined ? parent.ripple : child.ripple,
-    onItemSelect: child.onItemSelect,
+    onItemSelect: child.onItemSelect || parent.onItemSelect,
     ...child
 });
