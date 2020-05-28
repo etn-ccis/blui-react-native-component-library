@@ -55,6 +55,6 @@ Drawer.defaultProps = {
     divider: true,
     hidePadding: true,
     ripple: false, // TODO: Fix me or delete me.
-    expandIcon: <MatIcon name={'arrow-drop-down'} />,
-    collapseIcon: <MatIcon name={'arrow-drop-up'} />
+    expandIcon: <MatIcon name={'expand-more'} size={24}/>,
+    collapseIcon: <MatIcon name={'expand-less'} size={24}/>
 };
