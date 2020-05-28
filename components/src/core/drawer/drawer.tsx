@@ -51,6 +51,8 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
 
 Drawer.defaultProps = {
     activeItemBackgroundShape: 'round',
+    activeItemFontColor: Colors.blue[500],
+    activeItemIconColor: Colors.blue[500],
     chevron: false,
     divider: true,
     hidePadding: true,

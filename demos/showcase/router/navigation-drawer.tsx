@@ -33,35 +33,46 @@ const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
 export const navGroupItems1: NavItem[] = [
     {
         title: 'Identity Management',
-        itemID: '1a',
+        itemID: 'g1i1',
         icon: Battery
     },
     {
         title: 'Calendar',
-        itemID: '2a',
+        itemID: 'g1i2',
         icon: Humidity,
     },
     {
         title: 'Accessibility',
-        itemID: '3a',
+        itemID: 'g1i3',
         icon: Clock,
         chevron: true,
         onItemSelect: (): void => { /* Expand and don't update selected */ },
         items: [
             {
                 title: 'Sub NavItem 1',
-                itemID: '3a1',
+                itemID: 'g1i3i1',
             },
             {
                 title: 'Sub NavItem 2',
-                itemID: '3a2',
+                itemID: 'g1i3i2',
+            },
+            {
+                title: 'Sub NavItem 3',
+                itemID: 'g1i3i3',
+                onItemSelect: (): void => { /* Expand and don't update selected */ },
+                items: [
+                    {
+                        title: 'Deep Nested Nav',
+                        itemID: 'g1i3i3i1'
+                    }
+                ]
             }
         ]
     },
     {
         subtitle: 'Test',
         title: 'Notifications',
-        itemID: '4a',
+        itemID: 'g1i4',
         icon: MailIcon,
     },
 ];
@@ -70,32 +81,39 @@ export const navGroupItems2: NavItem[] = [
     {
         title: 'Notifications',
         subtitle: '4 new alerts',
-        itemID: '1b',
+        itemID: 'g2i1',
         statusColor: PXBColors.yellow[500],
         onItemSelect: (): void => { /* Expand and don't update selected */ },
         items: [
             {
                 title: 'Sub NavItem 1',
-                itemID: '1ba'
+                itemID: 'g2i1i1',
+                onItemSelect: (): void => { /* Expand and don't update selected */ },
+                items: [
+                    {
+                        title: 'Deep Nested Nav',
+                        itemID: 'g2i1i1i1'
+                    }
+                ]
             },
             {
                 title: 'Sub NavItem 2',
-                itemID: '1bb'
+                itemID: 'g2i1i2'
             }
         ]
     },
     {
         title: 'Calendar',
-        itemID: '2b',
+        itemID: 'g2i2',
     },
     {
         title: 'Accessibility',
-        itemID: '3b',
+        itemID: 'g2i3',
     },
     {
         subtitle: 'You cant see me, fix InfoListItem',
         title: 'Notifications',
-        itemID: '4b',
+        itemID: 'g2i4',
         activeItemFontColor: Colors.white[50],
         activeItemBackgroundColor: Colors.blue[900]
     },

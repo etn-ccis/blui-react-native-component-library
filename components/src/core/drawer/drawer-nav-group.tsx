@@ -67,7 +67,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         expanded={expanded}
                         expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                     />
-                    <Collapsible collapsed={!expanded} key={`${item.title}_group_${depth}`} style={{backgroundColor: Colors.black[50]}}>
+                    <Collapsible collapsed={!expanded} key={`${item.title}_group_${depth}`} style={{backgroundColor: Colors.white[200]}}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                         <Divider />
                     </Collapsible>

@@ -62,7 +62,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         }
     };
     return (
-        <View style={{paddingLeft: 8 * (depth > 1 ? (depth - 1) : 0)}}>
+        <View style={{paddingLeft: 16 * (depth > 1 ? (depth - 1) : 0)}}>
             {active && <View style={styles.active}/>}
             <InfoListItem
                 dense
