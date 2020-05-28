@@ -6,7 +6,7 @@ import * as Colors from '@pxblue/colors';
 export type DrawerInheritableProps = {
     // itemID for the 'active' item
     activeItem?: string;
-    
+
     // Background color for the 'active' item
     activeItemBackgroundColor?: string;
 
@@ -57,7 +57,6 @@ export type DrawerInheritableProps = {
 
 // These properties can be applied to NavItems
 export type NavGroupInheritableProps = {
-
     // background color for nested menu items
     nestedBackgroundColor?: string;
 
@@ -69,7 +68,10 @@ export type NavGroupInheritableProps = {
 } & DrawerInheritableProps;
 
 // Returns inheritable props with child values taking precedence.
-export const inheritDrawerProps = (parent: DrawerInheritableProps, child: DrawerInheritableProps): DrawerInheritableProps => ({
+export const inheritDrawerProps = (
+    parent: DrawerInheritableProps,
+    child: DrawerInheritableProps
+): DrawerInheritableProps => ({
     activeItem: child.activeItem || parent.activeItem,
     activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor,
     activeItemFontColor: child.activeItemFontColor || parent.activeItemFontColor,
@@ -89,5 +91,5 @@ export const inheritDrawerProps = (parent: DrawerInheritableProps, child: Drawer
     ripple: child.ripple === undefined ? parent.ripple : child.ripple,
 
     // Used for NavGroup/NavItem props which aren't a part of DrawerInheritableProps.
-    ...child
+    ...child,
 });

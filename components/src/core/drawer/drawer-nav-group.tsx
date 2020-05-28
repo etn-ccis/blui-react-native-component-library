@@ -1,9 +1,9 @@
-import React, {ReactNode, useState} from 'react';
-import {Subtitle} from '../typography';
-import {StyleSheet, View} from "react-native";
-import {DrawerNavItem, NavItem, NestedNavItem} from './drawer-nav-item';
-import {inheritDrawerProps, NavGroupInheritableProps} from "./inheritable-types";
-import {Divider} from "react-native-elements";
+import React, { ReactNode, useState } from 'react';
+import { Subtitle } from '../typography';
+import { StyleSheet, View } from 'react-native';
+import { DrawerNavItem, NavItem, NestedNavItem } from './drawer-nav-item';
+import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
+import { Divider } from 'react-native-elements';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
         paddingLeft: 16,
         height: 52,
-        lineHeight: 36
-    }
+        lineHeight: 36,
+    },
 });
 
 // TODO: Can't this be replaced with a Set of itemIDs?
@@ -67,7 +67,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         expanded={expanded}
                         expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                     />
-                    <Collapsible collapsed={!expanded} key={`${item.title}_group_${depth}`} style={{backgroundColor: Colors.white[200]}}>
+                    <Collapsible
+                        collapsed={!expanded}
+                        key={`${item.title}_group_${depth}`}
+                        style={{ backgroundColor: Colors.white[200] }}
+                    >
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                         <Divider />
                     </Collapsible>
@@ -76,30 +80,33 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         }
 
         // Otherwise, we reached a leaf node. Return.
-        return <DrawerNavItem
-            depth={depth}
-            expanded={false}
-            navItem={inheritDrawerProps(props, item) as NavItem}
-            key={item.itemID}
-            navGroupProps={props} />
+        return (
+            <DrawerNavItem
+                depth={depth}
+                expanded={false}
+                navItem={inheritDrawerProps(props, item) as NavItem}
+                key={item.itemID}
+                navGroupProps={props}
+            />
+        );
     };
 
-   return (
+    return (
         <View>
             {titleContent}
-            {!titleContent && title &&
+            {!titleContent && title && (
                 <View>
-                    <Divider/>
+                    <Divider />
                     <Subtitle style={styles.subtitle}>{title}</Subtitle>
-                    <Divider/>
+                    <Divider />
                 </View>
-            }
+            )}
             {items.map((item: NavItem) => getDrawerItemList(item, 0))}
         </View>
-   );
+    );
 };
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 DrawerNavGroup.defaultProps = {
-    items: []
+    items: [],
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, View} from "react-native";
-import {InfoListItem} from "../info-list-item";
-import {InfoListItemProps} from "../info-list-item/info-list-item";
-import {DrawerInheritableProps} from "./inheritable-types";
-import {DrawerNavGroupProps} from "./drawer-nav-group";
+import { StyleSheet, View } from 'react-native';
+import { InfoListItem } from '../info-list-item';
+import { InfoListItemProps } from '../info-list-item/info-list-item';
+import { DrawerInheritableProps } from './inheritable-types';
+import { DrawerNavGroupProps } from './drawer-nav-group';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
 
@@ -11,10 +11,10 @@ export type NavItem = {
     icon?: any;
     itemID: string;
     items?: NestedNavItem[];
-} & InfoListItemProps
-    & DrawerInheritableProps
+} & InfoListItemProps &
+    DrawerInheritableProps &
     // IconClass is replaced by the 'icon' property.
-    & Omit<InfoListItemProps, 'IconClass'>
+    Omit<InfoListItemProps, 'IconClass'>;
 
 export type DrawerNavItemProps = {
     depth: number;
@@ -44,7 +44,6 @@ const makeStyles = (props: DrawerNavItemProps): any =>
         },
     });
 
-
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const styles = makeStyles(props);
     const { navItem, depth, navGroupProps, expandHandler } = props;
@@ -62,18 +61,19 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         }
     };
     return (
-        <View style={{paddingLeft: 16 * (depth > 1 ? (depth - 1) : 0)}}>
-            {active && <View style={styles.active}/>}
+        <View style={{ paddingLeft: 16 * (depth > 1 ? depth - 1 : 0) }}>
+            {active && <View style={styles.active} />}
             <InfoListItem
                 dense
                 {...navItem}
                 divider={depth > 0 ? undefined : props.navItem.divider}
                 rightComponent={rightIcon}
-                backgroundColor= { 'transparent' }
-                iconColor={ active ? props.navItem.activeItemIconColor : props.navItem.iconColor }
-                fontColor={ active ? props.navItem.activeItemFontColor : props.navItem.fontColor }
+                backgroundColor={'transparent'}
+                iconColor={active ? props.navItem.activeItemIconColor : props.navItem.iconColor}
+                fontColor={active ? props.navItem.activeItemFontColor : props.navItem.fontColor}
                 onPress={(): void => onPressAction(navItem.itemID)}
-                IconClass={icon} />
+                IconClass={icon}
+            />
         </View>
     );
 };
