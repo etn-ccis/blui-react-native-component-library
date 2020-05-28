@@ -60,7 +60,13 @@ export const navGroupItems2: NavItem[] = [
         title: 'Notifications',
         subtitle: '4 new alerts',
         itemID: '1b',
-        statusColor: PXBColors.yellow[500]
+        statusColor: PXBColors.yellow[500],
+        items: [
+            {
+                title: 'Sub 1',
+                itemID: '1ba'
+            }
+        ]
     },
     {
         title: 'Calendar',
