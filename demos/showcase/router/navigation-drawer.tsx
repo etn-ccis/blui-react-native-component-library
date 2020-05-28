@@ -22,6 +22,7 @@ import {useCallback, useState} from "react";
 import {View} from "react-native";
 import {Divider} from "react-native-elements";
 import {IconButton} from "react-native-paper";
+import * as Colors from '@pxblue/colors';
 
 const Battery = wrapIcon({ IconClass: _Battery });
 const Humidity = wrapIcon({ IconClass: _Humidity });
@@ -70,10 +71,11 @@ export const navGroupItems2: NavItem[] = [
         itemID: '3b',
     },
     {
-        subtitle: 'Test',
+        subtitle: 'You cant see me, fix InfoListItem',
         title: 'Notifications',
         itemID: '4b',
-        activeItemBackgroundColor: 'red'
+        activeItemFontColor: Colors.white[50],
+        activeItemBackgroundColor: Colors.blue[900]
     },
 ];
 

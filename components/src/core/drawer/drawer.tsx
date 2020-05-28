@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import { View, StyleSheet } from 'react-native';
-import {DrawerInheritableProps, inheritProps} from "./inheritable-types";
+import {DrawerInheritableProps, inheritDrawerProps} from "./inheritable-types";
 import * as Colors from '@pxblue/colors';
 
 const styles = StyleSheet.create({
@@ -20,6 +20,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
 
 
 
+
     const findChildByType = useCallback((type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
             if (child && child.type) {
@@ -34,7 +35,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
         findChildByType(displayName)
             .slice(0, 1)
             .map((child) => React.cloneElement(child, inherit ?
-                inheritProps({
+                inheritDrawerProps({
                     ...props,
                     activeItemBackgroundColor
                 }, child.props) : {} ))

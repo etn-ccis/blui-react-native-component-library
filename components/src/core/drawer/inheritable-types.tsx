@@ -68,8 +68,8 @@ export type NavGroupInheritableProps = {
     titleColor?: string;
 } & DrawerInheritableProps;
 
-// Returns inhertiable props with child values taking precedence.
-export const inheritProps = (parent: DrawerInheritableProps, child: DrawerInheritableProps): DrawerInheritableProps => ({
+// Returns inheritable props with child values taking precedence.
+export const inheritDrawerProps = (parent: DrawerInheritableProps, child: DrawerInheritableProps): DrawerInheritableProps => ({
     activeItem: child.activeItem || parent.activeItem,
     activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor,
     activeItemFontColor: child.activeItemFontColor || parent.activeItemFontColor,

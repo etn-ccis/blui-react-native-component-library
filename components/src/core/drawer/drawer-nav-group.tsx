@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {Subtitle} from '../typography';
 import {StyleSheet, View} from "react-native";
 import {DrawerNavItem, NavItem} from './drawer-nav-item';
-import {inheritProps, NavGroupInheritableProps} from "./inheritable-types";
+import {inheritDrawerProps, NavGroupInheritableProps} from "./inheritable-types";
 import {Divider} from "react-native-elements";
 
 export type DrawerNavGroupProps = {
@@ -45,7 +45,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 <DrawerNavItem
                     depth={0}
                     expanded={false}
-                    navItem={inheritProps(props, item) as NavItem}
+                    navItem={inheritDrawerProps(props, item) as NavItem}
                     key={`nav${index}`}
                     navGroupProps={props} />)
             )}
