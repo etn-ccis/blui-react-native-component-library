@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import { View, StyleSheet } from 'react-native';
 import {DrawerInheritableProps, inheritDrawerProps} from "./inheritable-types";
 import * as Colors from '@pxblue/colors';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,11 +17,6 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
 
     // Set theme-related default props here.
     const activeItemBackgroundColor = Colors.blue[50];
-
-
-
-
-
     const findChildByType = useCallback((type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
             if (child && child.type) {
@@ -59,4 +55,6 @@ Drawer.defaultProps = {
     divider: true,
     hidePadding: true,
     ripple: false, // TODO: Fix me or delete me.
+    expandIcon: <MatIcon name={'arrow-drop-down'} />,
+    collapseIcon: <MatIcon name={'arrow-drop-up'} />
 };

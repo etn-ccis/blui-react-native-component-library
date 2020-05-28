@@ -46,6 +46,17 @@ export const navGroupItems1: NavItem[] = [
         itemID: '3a',
         icon: Clock,
         chevron: true,
+        onItemSelect: (): void => { /* Expand and don't update selected */ },
+        items: [
+            {
+                title: 'Sub NavItem 1',
+                itemID: '3a1',
+            },
+            {
+                title: 'Sub NavItem 2',
+                itemID: '3a2',
+            }
+        ]
     },
     {
         subtitle: 'Test',
@@ -61,10 +72,15 @@ export const navGroupItems2: NavItem[] = [
         subtitle: '4 new alerts',
         itemID: '1b',
         statusColor: PXBColors.yellow[500],
+        onItemSelect: (): void => { /* Expand and don't update selected */ },
         items: [
             {
-                title: 'Sub 1',
+                title: 'Sub NavItem 1',
                 itemID: '1ba'
+            },
+            {
+                title: 'Sub NavItem 2',
+                itemID: '1bb'
             }
         ]
     },
@@ -106,7 +122,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
                 <H6 style={{backgroundColor: 'cyan'}}>Subheader goes here</H6>
             </DrawerSubheader>
             <DrawerBody>
-                <DrawerNavGroup items={navGroupItems1} title={'Group 1'} />
+                <DrawerNavGroup items={navGroupItems1} title={'Group 1'} hidePadding={false} />
                 <DrawerNavGroup items={navGroupItems2} titleContent={
                     <View>
                         <Subtitle style={{padding: 16}}>Custom Navgroup Content</Subtitle>
