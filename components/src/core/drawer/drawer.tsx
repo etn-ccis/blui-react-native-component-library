@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
 
 export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
 
+    // Set theme-related default props here.
+    const activeItemBackgroundColor = Colors.blue[50];
+
+
+
+
     const findChildByType = useCallback((type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
             if (child && child.type) {
@@ -24,18 +30,32 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
             }
         }) || [], [props]);
 
-
     const getSectionByDisplayName = useCallback( (displayName: string, inherit = false): JSX.Element[] =>
         findChildByType(displayName)
             .slice(0, 1)
-            .map((child) => React.cloneElement(child, inherit ? inheritProps(props, child.props) : {} ))
+            .map((child) => React.cloneElement(child, inherit ?
+                inheritProps({
+                    ...props,
+                    activeItemBackgroundColor
+                }, child.props) : {} ))
     , [props]);
 
-    return <View style={styles.container}>
-        {getSectionByDisplayName('DrawerHeader')}
-        {getSectionByDisplayName('DrawerSubheader')}
-        {getSectionByDisplayName('DrawerBody', true)}
-        <View style={{flex: 1, backgroundColor: 'green', height: 'auto', width: 'auto'}}/>
-        {getSectionByDisplayName('DrawerFooter')}
-    </View>
+    return (
+        <View style={styles.container}>
+            {getSectionByDisplayName('DrawerHeader')}
+            {getSectionByDisplayName('DrawerSubheader')}
+            {getSectionByDisplayName('DrawerBody', true)}
+            { /* TODO: Fix me, Spacer doesn't work in the RN Drawer Container */ }
+            <View style={{flex: 1, backgroundColor: 'green', height: 'auto', width: 'auto'}}/>
+            {getSectionByDisplayName('DrawerFooter')}
+        </View>
+    );
+};
+
+Drawer.defaultProps = {
+    activeItemBackgroundShape: 'round',
+    chevron: false,
+    divider: true,
+    hidePadding: true,
+    ripple: false, // TODO: Fix me or delete me.
 };

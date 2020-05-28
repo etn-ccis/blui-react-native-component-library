@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View} from "react-native";
 import {InfoListItem} from "../info-list-item";
 import {InfoListItemProps} from "../info-list-item/info-list-item";
@@ -47,7 +47,6 @@ const makeStyles = (props: DrawerNavItemProps): any =>
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { navItem, depth, navGroupProps, expandHandler } = props;
-    const { chevron } = navItem;
     const icon = !depth ? (navItem as NavItem).icon : undefined;
     const active = navGroupProps.activeItem === navItem.itemID;
     const styles = makeStyles(props);
@@ -67,12 +66,10 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
             <InfoListItem
                 dense
                 {...navItem}
-                hidePadding
                 backgroundColor= { 'transparent' }
                 iconColor={ active ? props.navItem.activeItemIconColor : props.navItem.iconColor }
                 fontColor={ active ? props.navItem.activeItemFontColor : props.navItem.fontColor }
                 onPress={(): void => onPressAction(navItem.itemID)}
-                chevron={chevron}
                 IconClass={icon} />
         </View>
     );

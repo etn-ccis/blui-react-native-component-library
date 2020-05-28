@@ -1,8 +1,7 @@
 import React, {ReactNode, useCallback} from 'react';
-import { View, StyleSheet } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {H6, Subtitle} from '../typography';
 import {Divider, useTheme} from "react-native-paper";
-import {Icon} from "react-native-elements";
 import * as Colors from '@pxblue/colors';
 
 const styles = StyleSheet.create({
@@ -11,6 +10,7 @@ const styles = StyleSheet.create({
         width: 56,
         height: 56,
         justifyContent: 'center',
+        color: 'red'
     },
     content: {
         color: 'blue',
@@ -35,14 +35,14 @@ export type DrawerHeaderProps = {
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const { title, subtitle, titleContent, backgroundImage } = props;
+    const { title, subtitle, titleContent, backgroundImage, icon } = props;
     const theme = useTheme();
    // const color = props.fontColor || Colors.white[50];
     const bgColor = props.backgroundColor || theme.colors.primary;
 
     const getIcon = useCallback((): ReactNode => (
         <View style={styles.icon}>
-            <Icon name='menu' />
+            {icon}
         </View>
     ), []);
 

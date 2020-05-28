@@ -1,23 +1,21 @@
-import {NavigationContainer} from "@react-navigation/native";
 import * as React from "react";
-import {createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList} from "@react-navigation/drawer";
+import {NavigationContainer} from "@react-navigation/native";
+import {createDrawerNavigator, DrawerContentScrollView} from "@react-navigation/drawer";
 import {NavigationDrawer} from "./navigation-drawer";
 import {App} from "../App";
 
 const Drawer = createDrawerNavigator();
-
-const CustomDrawerContent = (props) => (
-        <DrawerContentScrollView {...props}>
-            <NavigationDrawer />
-            <DrawerItemList {...props} />
-            <DrawerItem label="Help" onPress={() => alert('Link to help')} />
+const CustomDrawerContent = (props: any): any => (
+        <DrawerContentScrollView
+            style={{marginTop: -5, minHeight: '100%', backgroundColor: 'red'}} >
+            <NavigationDrawer {...props} />
         </DrawerContentScrollView>
     );
 
-export const MainRouter = () => (
+export const MainRouter = (): any => (
     <NavigationContainer>
         <Drawer.Navigator initialRouteName="App"
-                          drawerContent={(props) => <CustomDrawerContent {...props} />}>
+            drawerContent={(props): any => <CustomDrawerContent {...props}/>}>
             <Drawer.Screen name="App" component={App} />
         </Drawer.Navigator>
     </NavigationContainer>

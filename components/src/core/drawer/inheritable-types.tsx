@@ -49,7 +49,7 @@ export type DrawerInheritableProps = {
 
     // internal API
     // will apply to all menu items when onClick
-    onItemSelect?: (itemID?: string) => void;
+    onItemSelect?: (itemID: string) => void;
 
     // Whether to apply material ripple effect to items
     ripple?: boolean;
@@ -71,19 +71,23 @@ export type NavGroupInheritableProps = {
 // Returns inhertiable props with child values taking precedence.
 export const inheritProps = (parent: DrawerInheritableProps, child: DrawerInheritableProps): DrawerInheritableProps => ({
     activeItem: child.activeItem || parent.activeItem,
-    activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor || Colors.blue[50],
+    activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor,
     activeItemFontColor: child.activeItemFontColor || parent.activeItemFontColor,
     activeItemIconColor: child.activeItemIconColor || parent.activeItemIconColor,
-    activeItemBackgroundShape: child.activeItemBackgroundShape || parent.activeItemBackgroundShape || 'square',
-    backgroundColor: child.backgroundColor || parent.backgroundColor || Colors.white[50],
-    chevron: child.chevron === undefined ? parent.chevron : undefined,
+    activeItemBackgroundShape: child.activeItemBackgroundShape || parent.activeItemBackgroundShape,
+    backgroundColor: child.backgroundColor || parent.backgroundColor,
     collapseIcon: child.collapseIcon || parent.collapseIcon,
-    divider: child.divider === undefined ? parent.divider || true : child.divider,
     expandIcon: child.expandIcon || parent.expandIcon,
-    hidePadding: child.hidePadding === undefined ? parent.hidePadding : undefined,
     itemFontColor: child.itemFontColor || parent.itemFontColor,
     itemIconColor: child.itemIconColor || parent.itemIconColor,
-    ripple: child.ripple === undefined ? parent.ripple : child.ripple,
     onItemSelect: child.onItemSelect || parent.onItemSelect,
+
+    // Only inherit boolean values if the child prop is undefined.
+    chevron: child.chevron === undefined ? parent.chevron : undefined,
+    divider: child.divider === undefined ? parent.divider : child.divider,
+    hidePadding: child.hidePadding === undefined ? parent.hidePadding : undefined,
+    ripple: child.ripple === undefined ? parent.ripple : child.ripple,
+
+    // Used for NavGroup/NavItem props which aren't a part of DrawerInheritableProps.
     ...child
 });
