@@ -10,7 +10,6 @@ import {
     Subtitle,
     wrapIcon
 } from "@pxblue/react-native-components";
-import * as PXBColors from "@pxblue/colors";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MatIcon from "react-native-vector-icons/MaterialIcons";
 // @ts-ignore
@@ -23,6 +22,8 @@ import {View} from "react-native";
 import {Divider} from "react-native-elements";
 import {IconButton} from "react-native-paper";
 import * as Colors from '@pxblue/colors';
+
+const backgroundImage = require('../assets/images/topology_40.png');
 
 const Battery = wrapIcon({ IconClass: _Battery });
 const Humidity = wrapIcon({ IconClass: _Humidity });
@@ -82,7 +83,7 @@ export const navGroupItems2: NavItem[] = [
         title: 'Notifications',
         subtitle: '4 new alerts',
         itemID: 'g2i1',
-        statusColor: PXBColors.yellow[500],
+        statusColor: Colors.yellow[500],
         onItemSelect: (): void => { /* Expand and don't update selected */ },
         items: [
             {
@@ -130,15 +131,13 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
     return (
         <Drawer activeItem={selected} onItemSelect={(id: any): void => selectItem(id)}>
             <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}
+                backgroundImage={backgroundImage}
                 icon={
                     <IconButton icon="menu" size={24} onPress={(): void => {
                         navigation.closeDrawer();
                     }}/>
                 }
             />
-            <DrawerSubheader>
-                <H6 style={{backgroundColor: 'cyan'}}>Subheader goes here</H6>
-            </DrawerSubheader>
             <DrawerBody>
                 <DrawerNavGroup items={navGroupItems1} title={'Group 1'} hidePadding={false} />
                 <DrawerNavGroup items={navGroupItems2} titleContent={
@@ -149,7 +148,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
                 } />
             </DrawerBody>
             <DrawerFooter>
-                <H6>Footer goes here</H6>
+                <H6 style={{height: 60}}>Footer goes here</H6>
             </DrawerFooter>
         </Drawer>
     );

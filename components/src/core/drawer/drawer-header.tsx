@@ -1,5 +1,5 @@
 import React, {ReactNode, useCallback} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Animated, StyleSheet, View, Image} from 'react-native';
 import {H6, Subtitle} from '../typography';
 import {Divider, useTheme} from "react-native-paper";
 import * as Colors from '@pxblue/colors';
@@ -21,6 +21,14 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%'
     },
+    backgroundImage: {
+        position: 'absolute',
+        width: '100%',
+        resizeMode: 'cover',
+        height: '100%',
+        opacity: 0.9,
+        //opacity: backgroundOpacity,
+    }
 });
 
 export type DrawerHeaderProps = {
@@ -35,7 +43,7 @@ export type DrawerHeaderProps = {
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const { title, subtitle, titleContent, backgroundImage, icon } = props;
+    const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity } = props;
     const theme = useTheme();
    // const color = props.fontColor || Colors.white[50];
     const bgColor = props.backgroundColor || theme.colors.primary;
@@ -54,8 +62,12 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         </View>, [title, subtitle, titleContent]);
 
     const getBackgroundImage = useCallback((): ReactNode => (
-        <View>{backgroundImage}</View>
-    ), [backgroundImage]);
+        <Image
+            // @ts-ignore
+            source={backgroundImage}
+            style={styles.backgroundImage}
+        />
+    ), [backgroundImage, backgroundOpacity]);
 
     return (
         <View style={{backgroundColor: bgColor }}>
@@ -71,3 +83,6 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 
 
 DrawerHeader.displayName = 'DrawerHeader';
+DrawerHeader.defaultProps = {
+    backgroundOpacity: 0.9
+};
