@@ -89,9 +89,11 @@ export const navGroupItems2: NavItem[] = [
             {
                 title: 'Sub NavItem 1',
                 itemID: 'g2i1i1',
+                statusColor: Colors.blue[500],
                 onItemSelect: (): void => { /* Expand and don't update selected */ },
                 items: [
                     {
+                        statusColor: Colors.red[500],
                         title: 'Deep Nested Nav',
                         itemID: 'g2i1i1i1'
                     }
