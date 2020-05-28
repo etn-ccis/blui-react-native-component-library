@@ -33,20 +33,13 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
         (displayName: string, inherit = false): JSX.Element[] =>
             findChildByType(displayName)
                 .slice(0, 1)
-                .map((child) =>
-                    React.cloneElement(
-                        child,
-                        inherit
-                            ? inheritDrawerProps(
-                                  {
-                                      ...props,
-                                      activeItemBackgroundColor,
-                                  },
-                                  child.props
-                              )
-                            : {}
-                    )
-                ),
+                .map((child) => {
+                    let inheritableProps = {};
+                    if (inherit) {
+                        inheritableProps = inheritDrawerProps({ ...props, activeItemBackgroundColor }, child.props);
+                    }
+                    return React.cloneElement(child, inheritableProps);
+                }),
         [props]
     );
 
