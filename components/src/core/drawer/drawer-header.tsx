@@ -1,9 +1,7 @@
 import React, { ReactNode, useCallback } from 'react';
-import { Animated, StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { H6, Subtitle } from '../typography';
 import {Divider, Theme, useTheme} from 'react-native-paper';
-import * as Colors from '@pxblue/colors';
-import {DrawerNavItemProps} from "./drawer-nav-item";
 
 
 const makeStyles = (props: DrawerHeaderProps, theme: Theme): any => StyleSheet.create({

@@ -1,7 +1,6 @@
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
 // these types are inherited from the Drawer level to the NestedNavItem
 // parent props will be overriden by the child props if defined
-import * as Colors from '@pxblue/colors';
 
 export type DrawerInheritableProps = {
     // itemID for the 'active' item
