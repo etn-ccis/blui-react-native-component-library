@@ -1,15 +1,15 @@
 import * as React from "react";
 import {NavigationContainer} from "@react-navigation/native";
-import {createDrawerNavigator, DrawerContentScrollView} from "@react-navigation/drawer";
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import {View} from "react-native";
 import {NavigationDrawer} from "./navigation-drawer";
 import {App} from "../App";
 
 const Drawer = createDrawerNavigator();
 const CustomDrawerContent = (props: any): any => (
-        <DrawerContentScrollView
-            style={{marginTop: -5, minHeight: '100%'}} >
+        <View style={{minHeight: '100%'}} >
             <NavigationDrawer {...props} />
-        </DrawerContentScrollView>
+        </View>
     );
 
 export const MainRouter = (): any => (

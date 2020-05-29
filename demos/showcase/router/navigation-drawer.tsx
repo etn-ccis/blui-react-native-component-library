@@ -145,6 +145,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
                 } />
             </DrawerBody>
             <DrawerFooter>
+                <Divider />
                 <View style={{padding: 16, backgroundColor: 'white'}}>
                     <Image source={eatonLogo}
                            style={{height: 60, width: '80%'}}/>

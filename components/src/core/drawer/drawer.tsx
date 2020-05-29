@@ -48,8 +48,6 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
             {getSectionByDisplayName('DrawerHeader')}
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
-            {/* TODO: Fix me, Spacer doesn't work in the RN Drawer Container */}
-            <View style={{ flex: 1, backgroundColor: 'green', height: 'auto', width: 'auto' }} />
             {getSectionByDisplayName('DrawerFooter')}
         </View>
     );
