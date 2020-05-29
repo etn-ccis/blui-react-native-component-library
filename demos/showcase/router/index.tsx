@@ -7,7 +7,7 @@ import {App} from "../App";
 const Drawer = createDrawerNavigator();
 const CustomDrawerContent = (props: any): any => (
         <DrawerContentScrollView
-            style={{marginTop: -5, minHeight: '100%', backgroundColor: 'red'}} >
+            style={{marginTop: -5, minHeight: '100%'}} >
             <NavigationDrawer {...props} />
         </DrawerContentScrollView>
     );

@@ -1,19 +1,24 @@
 import React, { ReactNode, useCallback } from 'react';
 import { Animated, StyleSheet, View, Image } from 'react-native';
 import { H6, Subtitle } from '../typography';
-import { Divider, useTheme } from 'react-native-paper';
+import {Divider, Theme, useTheme} from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
+import {DrawerNavItemProps} from "./drawer-nav-item";
 
-const styles = StyleSheet.create({
+
+const makeStyles = (props: DrawerHeaderProps, theme: Theme): any => StyleSheet.create({
+    root: {
+        backgroundColor: props.backgroundColor || theme.colors.primary
+    },
     icon: {
         display: 'flex',
-        width: 56,
         height: 56,
+        width: 52,
+        paddingLeft: 4,
         justifyContent: 'center',
-        color: 'red',
     },
     content: {
-        color: 'blue',
+        color: 'red',
         display: 'flex',
         flexDirection: 'column',
         padding: 4,
@@ -21,13 +26,21 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
     },
+    title: {
+        color: props.fontColor || theme.colors.surface,
+        lineHeight: 30
+    },
+    subtitle: {
+        color: props.fontColor || theme.colors.surface,
+        lineHeight: 15,
+        marginTop: -2
+    },
     backgroundImage: {
         position: 'absolute',
         width: '100%',
         resizeMode: 'cover',
         height: '100%',
-        opacity: 0.9,
-        //opacity: backgroundOpacity,
+        opacity: props.backgroundOpacity,
     },
 });
 
@@ -43,18 +56,17 @@ export type DrawerHeaderProps = {
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity } = props;
     const theme = useTheme();
-    // const color = props.fontColor || Colors.white[50];
-    const bgColor = props.backgroundColor || theme.colors.primary;
+    const styles = makeStyles(props, theme);
+    const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity } = props;
     const getIcon = useCallback((): ReactNode => <View style={styles.icon}>{icon}</View>, []);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
                 <View style={styles.content}>
-                    <H6 style={{ color: Colors.white[50] }}>{title}</H6>
-                    <Subtitle>{subtitle}</Subtitle>
+                    <H6 style={styles.title}>{title}</H6>
+                    <Subtitle style={styles.subtitle}>{subtitle}</Subtitle>
                 </View>
             ),
         [title, subtitle, titleContent]
@@ -72,10 +84,10 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     );
 
     return (
-        <View style={{ backgroundColor: bgColor }}>
+        <View style={styles.root}>
             {getBackgroundImage()}
             <View style={{ display: 'flex', flexDirection: 'row' }}>
-                {getIcon()}
+                {icon && getIcon()}
                 {getHeaderContent()}
             </View>
             <Divider />

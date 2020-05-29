@@ -58,20 +58,15 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         // if there are more sub pages, add the bucket header and recurse on this function
         if (item.items) {
             return (
-                <View>
+                <View key={`${item.itemID}`}>
                     <DrawerNavItem
-                        key={`${item.itemID}`}
                         navItem={inheritDrawerProps(props, item) as NavItem}
                         navGroupProps={props}
                         depth={depth}
                         expanded={expanded}
                         expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                     />
-                    <Collapsible
-                        collapsed={!expanded}
-                        key={`${item.title}_group_${depth}`}
-                        style={{ backgroundColor: Colors.white[200] }}
-                    >
+                    <Collapsible collapsed={!expanded} style={{ backgroundColor: Colors.white[200] }} >
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                         <Divider />
                     </Collapsible>

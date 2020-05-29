@@ -1,14 +1,12 @@
 import {
     Drawer,
     DrawerBody,
-    DrawerFooter,
     DrawerHeader,
     DrawerNavGroup,
-    DrawerSubheader,
-    H6,
     NavItem,
     Subtitle,
-    wrapIcon
+    wrapIcon,
+    DrawerFooter
 } from "@pxblue/react-native-components";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MatIcon from "react-native-vector-icons/MaterialIcons";
@@ -18,18 +16,17 @@ import _Humidity from '@pxblue/icons-svg/moisture.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import * as React from "react";
 import {useCallback, useState} from "react";
-import {View} from "react-native";
+import {Image, View} from "react-native";
 import {Divider} from "react-native-elements";
 import {IconButton} from "react-native-paper";
 import * as Colors from '@pxblue/colors';
 
-const backgroundImage = require('../assets/images/topology_40.png');
-
+const headerBgImage = require('../assets/images/topology_40.png');
+const eatonLogo = require('../assets/images/eatonLogo.png');
 const Battery = wrapIcon({ IconClass: _Battery });
 const Humidity = wrapIcon({ IconClass: _Humidity });
 const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline' });
 const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
-
 
 export const navGroupItems1: NavItem[] = [
     {
@@ -46,7 +43,7 @@ export const navGroupItems1: NavItem[] = [
         title: 'Accessibility',
         itemID: 'g1i3',
         icon: Clock,
-        chevron: true,
+        subtitle: 'Sample subtitle',
         onItemSelect: (): void => { /* Expand and don't update selected */ },
         items: [
             {
@@ -71,7 +68,6 @@ export const navGroupItems1: NavItem[] = [
         ]
     },
     {
-        subtitle: 'Test',
         title: 'Notifications',
         itemID: 'g1i4',
         icon: MailIcon,
@@ -80,7 +76,7 @@ export const navGroupItems1: NavItem[] = [
 
 export const navGroupItems2: NavItem[] = [
     {
-        title: 'Notifications',
+        title: 'Devices',
         subtitle: '4 new alerts',
         itemID: 'g2i1',
         statusColor: Colors.yellow[500],
@@ -89,7 +85,6 @@ export const navGroupItems2: NavItem[] = [
             {
                 title: 'Sub NavItem 1',
                 itemID: 'g2i1i1',
-                statusColor: Colors.blue[500],
                 onItemSelect: (): void => { /* Expand and don't update selected */ },
                 items: [
                     {
@@ -106,16 +101,16 @@ export const navGroupItems2: NavItem[] = [
         ]
     },
     {
-        title: 'Calendar',
+        title: 'Events',
         itemID: 'g2i2',
     },
     {
-        title: 'Accessibility',
+        title: 'Settings',
         itemID: 'g2i3',
     },
     {
         subtitle: 'You cant see me, fix InfoListItem',
-        title: 'Notifications',
+        title: 'Alerts',
         itemID: 'g2i4',
         activeItemFontColor: Colors.white[50],
         activeItemBackgroundColor: Colors.blue[900]
@@ -133,9 +128,9 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
     return (
         <Drawer activeItem={selected} onItemSelect={(id: any): void => selectItem(id)}>
             <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}
-                backgroundImage={backgroundImage}
+                backgroundImage={headerBgImage}
                 icon={
-                    <IconButton icon="menu" size={24} onPress={(): void => {
+                    <IconButton icon="menu" size={24} color={Colors.white[50]} onPress={(): void => {
                         navigation.closeDrawer();
                     }}/>
                 }
@@ -150,7 +145,10 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
                 } />
             </DrawerBody>
             <DrawerFooter>
-                <H6 style={{height: 60}}>Footer goes here</H6>
+                <View style={{padding: 16, backgroundColor: 'white'}}>
+                    <Image source={eatonLogo}
+                           style={{height: 60, width: '80%'}}/>
+                </View>
             </DrawerFooter>
         </Drawer>
     );
