@@ -6,6 +6,7 @@ import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-type
 import { Divider } from 'react-native-elements';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
+import MatIcon from "react-native-vector-icons/MaterialIcons";
 
 export type DrawerNavGroupProps = {
     // internal API
@@ -57,6 +58,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
         // if there are more sub pages, add the bucket header and recurse on this function
         if (item.items) {
+
+            // Default expand icon changes if item is nested.
+            if (depth > 0 && !item.expandIcon) {
+                item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />
+                item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />
+            }
+
             return (
                 <View key={`${item.itemID}`}>
                     <DrawerNavItem
