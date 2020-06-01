@@ -103,7 +103,6 @@ The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navig
 #### API
 The `<DrawerBody>` supports all inheritable properties found within the `<Drawer>` API section.
 
-
 ### DrawerNavGroup
 The `<DrawerNavGroup>` consist of a `title` or custom `titleContent` and houses the navigation items found in the `<Drawer>`.
 
