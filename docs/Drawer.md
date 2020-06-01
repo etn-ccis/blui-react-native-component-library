@@ -1,7 +1,8 @@
 # Drawer
 
-The `<Drawer>` component is a navigation menu that slides in from left.  Its anatomy can be broken down into four subsections: `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody`>, and a `<DrawerFooter>`.
-The `<Drawer>` needs to be paired with a navigation provider to add navigation and a slide-in effect.  We recommend using 
+The `<Drawer>` component is side-menu that houses navigation items.  Its anatomy can be broken down into four subsections: `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody`>, and a `<DrawerFooter>`.
+To add in-app navigation, the `<Drawer>` component needs to be paired with a navigation provider; we recommend using [React Navigation](https://reactnavigation.org/docs/getting-started).
+
 To learn more about the Navigation design pattern, check out our [documentation](https://pxblue.github.io/patterns/navigation).
 
 ## Usage
@@ -51,7 +52,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
 
 #### API 
 
-The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerNavGroup>`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
+The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerBody>`, `<DrawerNavGroup>`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
 <div style="overflow: auto;">
 
@@ -101,6 +102,27 @@ The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navig
 
 #### API
 The `<DrawerBody>` supports all inheritable properties found within the `<Drawer>` API section.
+
+
+### DrawerNavGroup
+The `<DrawerNavGroup>` consist of a `title` or custom `titleContent` and houses the navigation items found in the `<Drawer>`.
+
+#### API 
+The `<DrawerNavGroup>` supports all inheritable properties found within the `<Drawer>` API section.   It also supports these additional props:
+<div style="overflow: auto">
+
+| Prop Name         | Description                                    | Type              | Required | Default                      |
+| ----------------- | ---------------------------------------------- | ----------------- | -------- | ---------------------------- |
+| backgroundColor   | The color used for the background              | `string`          | no       | `theme.colors.primary`       |
+| backgroundImage   | An image to display in the header              | `string`          | no       |                              |
+| backgroundOpacity | The opacity of the background image            | `number`          | no       | `0.3`                        |
+| fontColor         | The color of the text elements                 | `string`          | no       | `theme.colors.surface`       |
+| icon              | A component to render for the icon             | `ReactNode`       | no       |                              |
+| subtitle          | The text to show on the second line            | `string`          | no       |                              |
+| title             | The text to show on the first line             | `string`          | no       |                              |
+| titleContent      | Custom content for header title area           | `ReactNode`       | no       |                              |
+
+</div>
 
 ### DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.  

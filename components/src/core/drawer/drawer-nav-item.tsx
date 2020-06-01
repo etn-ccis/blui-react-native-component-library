@@ -66,7 +66,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
             <InfoListItem
                 dense
                 {...navItem}
-                divider={depth > 0 ? undefined : props.navItem.divider}
                 rightComponent={rightIcon}
                 backgroundColor={'transparent'}
                 iconColor={active ? props.navItem.activeItemIconColor : props.navItem.iconColor}

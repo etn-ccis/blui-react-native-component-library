@@ -58,9 +58,6 @@ export type NavGroupInheritableProps = {
 
     // Whether to show a line between nested menu items
     nestedDivider?: boolean;
-
-    // Font color for group header
-    titleColor?: string;
 } & DrawerInheritableProps;
 
 // Returns inheritable props with child values taking precedence.

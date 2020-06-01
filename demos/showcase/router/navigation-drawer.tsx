@@ -136,7 +136,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
             />
             <DrawerBody>
                 <DrawerNavGroup items={navGroupItems1} title={'Group 1'} hidePadding={false} />
-                <DrawerNavGroup items={navGroupItems2} titleContent={
+                <DrawerNavGroup items={navGroupItems2} nestedDivider={true} titleContent={
                     <View>
                         <Subtitle style={{padding: 16}}>Custom Navgroup Content</Subtitle>
                         <Divider />

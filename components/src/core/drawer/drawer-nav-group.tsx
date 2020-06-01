@@ -9,8 +9,6 @@ import * as Colors from '@pxblue/colors';
 import MatIcon from "react-native-vector-icons/MaterialIcons";
 
 export type DrawerNavGroupProps = {
-    // internal API
-    backgroundColor?: string;
 
     // List of navigation items to render
     items: NavItem[];
@@ -56,6 +54,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const getDrawerItemList = (item: NavItem | NestedNavItem, depth: number): ReactNode => {
         const [expanded, setExpanded] = useState(findID(item, props.activeItem));
 
+        // Nested items inherit from the nestedDivider prop if item's divider is unset.
+        if (depth > 0 && item.divider === undefined) {
+            item.divider = props.nestedDivider as any;
+        }
+
         // if there are more sub pages, add the bucket header and recurse on this function
         if (item.items) {
 
@@ -78,14 +81,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         expanded={expanded}
                         expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                     />
-                    <Collapsible collapsed={!expanded} style={{ backgroundColor: Colors.white[200] }} >
+                    <Collapsible collapsed={!expanded} style={{ backgroundColor: props.nestedBackgroundColor }} >
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                         <Divider />
                     </Collapsible>
                 </View>
             );
         }
-
         // Otherwise, we reached a leaf node. Return.
         return (
             <DrawerNavItem
@@ -116,4 +118,6 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 DrawerNavGroup.defaultProps = {
     items: [],
+    nestedBackgroundColor: Colors.white[200],
+    nestedDivider: false,
 };
