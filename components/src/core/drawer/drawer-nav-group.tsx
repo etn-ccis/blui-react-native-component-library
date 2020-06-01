@@ -60,9 +60,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         if (item.items) {
 
             // Default expand icon changes if item is nested.
-            if (depth > 0 && !item.expandIcon) {
-                item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />
-                item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />
+            if (depth > 0) {
+                if (!item.expandIcon) {
+                    item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />
+                }
+                if (!item.collapseIcon) {
+                    item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />
+                }
             }
 
             return (
