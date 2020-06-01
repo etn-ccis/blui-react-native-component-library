@@ -73,9 +73,9 @@ export const inheritDrawerProps = (
 ): DrawerInheritableProps => ({
     activeItem: child.activeItem || parent.activeItem,
     activeItemBackgroundColor: child.activeItemBackgroundColor || parent.activeItemBackgroundColor,
+    activeItemBackgroundShape: child.activeItemBackgroundShape || parent.activeItemBackgroundShape,
     activeItemFontColor: child.activeItemFontColor || parent.activeItemFontColor,
     activeItemIconColor: child.activeItemIconColor || parent.activeItemIconColor,
-    activeItemBackgroundShape: child.activeItemBackgroundShape || parent.activeItemBackgroundShape,
     backgroundColor: child.backgroundColor || parent.backgroundColor,
     collapseIcon: child.collapseIcon || parent.collapseIcon,
     expandIcon: child.expandIcon || parent.expandIcon,
@@ -87,7 +87,7 @@ export const inheritDrawerProps = (
     chevron: child.chevron === undefined ? parent.chevron : undefined,
     divider: child.divider === undefined ? parent.divider : child.divider,
     hidePadding: child.hidePadding === undefined ? parent.hidePadding : undefined,
-    ripple: child.ripple === undefined ? parent.ripple : child.ripple,
+    // ripple: child.ripple === undefined ? parent.ripple : child.ripple,
 
     // Used for NavGroup/NavItem props which aren't a part of DrawerInheritableProps.
     ...child,

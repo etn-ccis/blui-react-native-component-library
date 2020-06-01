@@ -44,8 +44,8 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme): any => StyleSheet.c
 
 export type DrawerHeaderProps = {
     backgroundColor?: string;
-    backgroundOpacity?: number;
     backgroundImage?: string;
+    backgroundOpacity?: number;
     fontColor?: string;
     icon?: ReactNode;
     title?: string;
@@ -95,5 +95,5 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 
 DrawerHeader.displayName = 'DrawerHeader';
 DrawerHeader.defaultProps = {
-    backgroundOpacity: 0.9,
+    backgroundOpacity: 0.3,
 };

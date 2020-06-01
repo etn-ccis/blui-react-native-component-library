@@ -60,7 +60,7 @@ Drawer.defaultProps = {
     chevron: false,
     divider: true,
     hidePadding: true,
-    ripple: false, // TODO: Fix me or delete me.
+    // Nested expand/collapse icon defaults are different and are set in the DrawerNavGroup.
     expandIcon: <MatIcon name={'expand-more'} size={24} />,
     collapseIcon: <MatIcon name={'expand-less'} size={24} />,
 };

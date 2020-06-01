@@ -125,7 +125,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
     }, [navigation]);
 
     return (
-        <Drawer activeItem={selected} onItemSelect={(id: any): void => selectItem(id)}>
+        <Drawer activeItem={selected} onItemSelect={(id: string): void => selectItem(id)}>
             <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}
                 backgroundImage={headerBgImage}
                 icon={
