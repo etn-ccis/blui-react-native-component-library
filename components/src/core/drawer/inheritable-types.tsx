@@ -49,9 +49,6 @@ export type DrawerInheritableProps = {
     // internal API
     // will apply to all menu items when onClick
     onItemSelect?: (itemID: string) => void;
-
-    // Whether to apply material ripple effect to items
-    ripple?: boolean;
 };
 
 // These properties can be applied to NavItems
@@ -87,7 +84,6 @@ export const inheritDrawerProps = (
     chevron: child.chevron === undefined ? parent.chevron : undefined,
     divider: child.divider === undefined ? parent.divider : child.divider,
     hidePadding: child.hidePadding === undefined ? parent.hidePadding : undefined,
-    // ripple: child.ripple === undefined ? parent.ripple : child.ripple,
 
     // Used for NavGroup/NavItem props which aren't a part of DrawerInheritableProps.
     ...child,
