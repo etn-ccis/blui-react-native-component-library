@@ -130,8 +130,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         backgroundColor: backgroundColor || 'transparent',
     };
     const titleStyle = {
-        color: fontColor || theme.colors.text,
-        lineHeight: SIZES.medium,
+        color: fontColor || theme.colors.text
     };
     const fixedHeight = {
         height: dense ? 52 : 72,
