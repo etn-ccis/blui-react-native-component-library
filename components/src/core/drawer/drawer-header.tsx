@@ -9,7 +9,6 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme): any => StyleSheet.c
         backgroundColor: props.backgroundColor || theme.colors.primary
     },
     icon: {
-        display: 'flex',
         height: 56,
         width: 52,
         paddingLeft: 4,
@@ -17,7 +16,6 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme): any => StyleSheet.c
     },
     content: {
         color: 'red',
-        display: 'flex',
         flexDirection: 'column',
         padding: 4,
         paddingLeft: 16,
@@ -84,7 +82,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     return (
         <View style={styles.root}>
             {getBackgroundImage()}
-            <View style={{ display: 'flex', flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
                 {icon && getIcon()}
                 {getHeaderContent()}
             </View>
