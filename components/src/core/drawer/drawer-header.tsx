@@ -1,13 +1,13 @@
-import * as Colors from "@pxblue/colors";
 import React, { ReactNode, useCallback } from 'react';
 import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
 import { H6, Subtitle } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const makeStyles = (props: DrawerHeaderProps, theme: Theme): any =>
+const makeStyles = (props: DrawerHeaderProps, theme: Theme, topPadding: number): any =>
     StyleSheet.create({
         root: {
-            paddingTop: 45,
+            paddingTop: topPadding,
             backgroundColor: props.backgroundColor || theme.colors.primary,
         },
         icon: {
@@ -44,7 +44,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme): any =>
         backgroundImage: {
             width: '100%',
             height: '100%',
-            resizeMode: 'cover'
+            resizeMode: 'cover',
         },
     });
 
@@ -61,7 +61,8 @@ export type DrawerHeaderProps = {
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme();
-    const styles = makeStyles(props, theme);
+    const insets = useSafeAreaInsets();
+    const styles = makeStyles(props, theme, insets.top);
     const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity } = props;
     const getIcon = useCallback((): ReactNode => <View style={styles.icon}>{icon}</View>, []);
 
@@ -76,18 +77,15 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         [title, subtitle, titleContent]
     );
 
-    const getBackgroundImage = useCallback(
-        (): ReactNode | undefined => {
-            if (backgroundImage) {
-                return (
-                    <View style={styles.backgroundImageWrapper}>
-                        <Image source={backgroundImage} resizeMethod={'resize'} style={styles.backgroundImage} />
-                    </View>
-                )
-            }
-        },
-        [backgroundImage, backgroundOpacity]
-    );
+    const getBackgroundImage = useCallback((): ReactNode | undefined => {
+        if (backgroundImage) {
+            return (
+                <View style={styles.backgroundImageWrapper}>
+                    <Image source={backgroundImage} resizeMethod={'resize'} style={styles.backgroundImage} />
+                </View>
+            );
+        }
+    }, [backgroundImage, backgroundOpacity]);
 
     return (
         <View style={[styles.root, {}]}>

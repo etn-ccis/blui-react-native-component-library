@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
-import {Button, Card, ListItem} from 'react-native-elements';
+import { SafeAreaView, ScrollView, View } from 'react-native';
+import { Button, Card, ListItem } from 'react-native-elements';
 import {
     Body,
     ChannelValue,
@@ -11,7 +11,7 @@ import {
     HeroBanner,
     InfoListItem,
     ScoreCard,
-    wrapIcon
+    wrapIcon,
 } from '@pxblue/react-native-components';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -95,12 +95,7 @@ export const App: React.FC = ({ navigation }: any) => (
                     <Hero label={'Loaded'} IconClass={Pie} iconColor={PXBColors.blue[500]}>
                         <ChannelValue fontSize={'large'} value={65} units={'%'} IconClass={ChartLineVariant} />
                     </Hero>
-                    <Hero
-                        label={'Not Shown'}
-                        value={'5th Item'}
-                        IconClass={Battery}
-                        iconColor={PXBColors.blue[500]}
-                    />
+                    <Hero label={'Not Shown'} value={'5th Item'} IconClass={Battery} iconColor={PXBColors.blue[500]} />
                 </HeroBanner>
                 <ListItem
                     topDivider
