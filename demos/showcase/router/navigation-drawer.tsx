@@ -167,7 +167,7 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
             </DrawerBody>
             <DrawerFooter>
                 <Divider />
-                <View style={{ padding: 16, backgroundColor: 'white' }}>
+                <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                     <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                 </View>
             </DrawerFooter>

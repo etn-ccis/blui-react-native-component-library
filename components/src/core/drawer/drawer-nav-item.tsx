@@ -68,8 +68,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 {...navItem}
                 rightComponent={rightIcon}
                 backgroundColor={'transparent'}
-                iconColor={active ? props.navItem.activeItemIconColor : props.navItem.iconColor}
-                fontColor={active ? props.navItem.activeItemFontColor : props.navItem.fontColor}
+                iconColor={active ? props.navItem.activeItemIconColor : (props.navItem.iconColor || props.navItem.itemIconColor)}
+                fontColor={active ? props.navItem.activeItemFontColor : (props.navItem.fontColor || props.navItem.itemFontColor)}
                 onPress={(): void => onPressAction(navItem.itemID)}
                 IconClass={icon}
             />

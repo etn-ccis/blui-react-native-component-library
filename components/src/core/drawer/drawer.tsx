@@ -2,15 +2,14 @@ import React, { useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
-import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { useTheme } from 'react-native-paper';
+import {Theme, useTheme} from 'react-native-paper';
 // Styles
 import color from 'color';
 
-const styles = StyleSheet.create({
+const makeStyles = (props: DrawerInheritableProps, theme: Theme) => StyleSheet.create({
     container: {
-        backgroundColor: Colors.white[50],
+        backgroundColor: props.backgroundColor || theme.colors.surface,
         zIndex: 2,
         flex: 1,
         height: '100%',
@@ -19,6 +18,7 @@ const styles = StyleSheet.create({
 
 export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
     const theme = useTheme();
+    const styles = makeStyles(props, theme);
     const insets = useSafeAreaInsets();
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
@@ -47,6 +47,8 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
                                 activeItemBackgroundColor: props.activeItemBackgroundColor || color(theme.colors.primary).alpha(0.16).rgb().string(),
                                 activeItemFontColor: props.activeItemFontColor || theme.colors.primary,
                                 activeItemIconColor: props.activeItemIconColor || theme.colors.primary,
+                                itemFontColor: props.itemFontColor || theme.colors.text,
+                                itemIconColor: props.itemIconColor || theme.colors.text,
                             },
                             child.props
                         );
