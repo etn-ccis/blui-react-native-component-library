@@ -5,7 +5,6 @@ import { Theme, useTheme } from 'react-native-paper';
 import { Body } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
-import { SIZES } from '../sizes';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 
 const MAX_SUBTITLE_ELEMENTS = 3;
@@ -130,7 +129,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         backgroundColor: backgroundColor || 'transparent',
     };
     const titleStyle = {
-        color: fontColor || theme.colors.text
+        color: fontColor || theme.colors.text,
     };
     const fixedHeight = {
         height: dense ? 52 : 72,

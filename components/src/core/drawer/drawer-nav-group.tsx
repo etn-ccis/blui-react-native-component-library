@@ -6,10 +6,9 @@ import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-type
 import { Divider } from 'react-native-elements';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
-import MatIcon from "react-native-vector-icons/MaterialIcons";
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 export type DrawerNavGroupProps = {
-
     // List of navigation items to render
     items: NavItem[];
 
@@ -61,14 +60,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
         // if there are more sub pages, add the bucket header and recurse on this function
         if (item.items) {
-
             // Default expand icon changes if item is nested.
             if (depth > 0) {
                 if (!item.expandIcon) {
-                    item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />
+                    item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />;
                 }
                 if (!item.collapseIcon) {
-                    item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />
+                    item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />;
                 }
             }
 
@@ -81,7 +79,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         expanded={expanded}
                         expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                     />
-                    <Collapsible collapsed={!expanded} style={{ backgroundColor: props.nestedBackgroundColor }} >
+                    <Collapsible collapsed={!expanded} style={{ backgroundColor: props.nestedBackgroundColor }}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                         <Divider />
                     </Collapsible>

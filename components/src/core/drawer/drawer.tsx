@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import {useTheme} from "react-native-paper";
+import { useTheme } from 'react-native-paper';
 
 const styles = StyleSheet.create({
     container: {
@@ -43,7 +43,9 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
                                 activeItemBackgroundColor: props.activeItemBackgroundColor || Colors.blue[50],
                                 activeItemFontColor: props.activeItemFontColor || theme.colors.primary,
                                 activeItemIconColor: props.activeItemIconColor || theme.colors.primary,
-                            }, child.props);
+                            },
+                            child.props
+                        );
                     }
                     return React.cloneElement(child, inheritableProps);
                 }),
