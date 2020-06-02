@@ -1,3 +1,4 @@
+import * as Colors from "@pxblue/colors";
 import React, { ReactNode, useCallback } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { H6, Subtitle } from '../typography';
@@ -6,6 +7,7 @@ import { Divider, Theme, useTheme } from 'react-native-paper';
 const makeStyles = (props: DrawerHeaderProps, theme: Theme): any =>
     StyleSheet.create({
         root: {
+            paddingTop: 45,
             backgroundColor: props.backgroundColor || theme.colors.primary,
         },
         icon: {
@@ -33,6 +35,8 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme): any =>
         },
         backgroundImage: {
             position: 'absolute',
+            bottom: 0,
+           top: 0,
             width: '100%',
             resizeMode: 'cover',
             height: '100%',
@@ -70,11 +74,10 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 
     const getBackgroundImage = useCallback(
         (): ReactNode => (
-            <Image
-                // @ts-ignore
-                source={backgroundImage}
-                style={styles.backgroundImage}
-            />
+            <View style={styles.backgroundImage}>
+               <Image // @ts-ignore
+                  source={backgroundImage} />
+            </View>
         ),
         [backgroundImage, backgroundOpacity]
     );

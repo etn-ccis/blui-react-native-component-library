@@ -58,6 +58,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
             {getSectionByDisplayName('DrawerFooter')}
+           <View style={{backgroundColor: Colors.white[50], height: 45}} />
         </View>
     );
 };
