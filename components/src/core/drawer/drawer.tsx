@@ -4,6 +4,8 @@ import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types'
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from 'react-native-paper';
+// Styles
+import color from 'color';
 
 const styles = StyleSheet.create({
     container: {
@@ -40,7 +42,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
                             {
                                 ...props,
                                 // Set theme-related default props here.
-                                activeItemBackgroundColor: props.activeItemBackgroundColor || Colors.blue[50],
+                                activeItemBackgroundColor: props.activeItemBackgroundColor || color(theme.colors.primary).alpha(0.16).rgb().string(),
                                 activeItemFontColor: props.activeItemFontColor || theme.colors.primary,
                                 activeItemIconColor: props.activeItemIconColor || theme.colors.primary,
                             },
