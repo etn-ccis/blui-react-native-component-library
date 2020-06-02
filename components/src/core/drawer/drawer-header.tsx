@@ -1,6 +1,6 @@
 import * as Colors from "@pxblue/colors";
 import React, { ReactNode, useCallback } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
 import { H6, Subtitle } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
 
@@ -33,20 +33,24 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme): any =>
             lineHeight: 15,
             marginTop: -2,
         },
-        backgroundImage: {
+        backgroundImageWrapper: {
             position: 'absolute',
+            top: 0,
+            left: 0,
             bottom: 0,
-           top: 0,
-            width: '100%',
-            resizeMode: 'cover',
-            height: '100%',
+            right: 0,
             opacity: props.backgroundOpacity,
+        },
+        backgroundImage: {
+            width: '100%',
+            height: '100%',
+            resizeMode: 'cover'
         },
     });
 
 export type DrawerHeaderProps = {
     backgroundColor?: string;
-    backgroundImage?: string;
+    backgroundImage?: ImageSourcePropType;
     backgroundOpacity?: number;
     fontColor?: string;
     icon?: ReactNode;
@@ -73,17 +77,20 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     );
 
     const getBackgroundImage = useCallback(
-        (): ReactNode => (
-            <View style={styles.backgroundImage}>
-               <Image // @ts-ignore
-                  source={backgroundImage} />
-            </View>
-        ),
+        (): ReactNode | undefined => {
+            if (backgroundImage) {
+                return (
+                    <View style={styles.backgroundImageWrapper}>
+                        <Image source={backgroundImage} resizeMethod={'resize'} style={styles.backgroundImage} />
+                    </View>
+                )
+            }
+        },
         [backgroundImage, backgroundOpacity]
     );
 
     return (
-        <View style={styles.root}>
+        <View style={[styles.root, {}]}>
             {getBackgroundImage()}
             <View style={{ flexDirection: 'row' }}>
                 {icon && getIcon()}
