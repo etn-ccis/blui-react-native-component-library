@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import {useTheme} from "react-native-paper";
 
 const styles = StyleSheet.create({
     container: {
@@ -14,8 +15,7 @@ const styles = StyleSheet.create({
 });
 
 export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
-    // Set theme-related default props here.
-    const activeItemBackgroundColor = Colors.blue[50];
+    const theme = useTheme();
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
             React.Children.map(props.children, (child: any) => {
@@ -36,7 +36,14 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
                 .map((child) => {
                     let inheritableProps = {};
                     if (inherit) {
-                        inheritableProps = inheritDrawerProps({ ...props, activeItemBackgroundColor }, child.props);
+                        inheritableProps = inheritDrawerProps(
+                            {
+                                ...props,
+                                // Set theme-related default props here.
+                                activeItemBackgroundColor: props.activeItemBackgroundColor || Colors.blue[50],
+                                activeItemFontColor: props.activeItemFontColor || theme.colors.primary,
+                                activeItemIconColor: props.activeItemIconColor || theme.colors.primary,
+                            }, child.props);
                     }
                     return React.cloneElement(child, inheritableProps);
                 }),
@@ -55,8 +62,6 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
 
 Drawer.defaultProps = {
     activeItemBackgroundShape: 'round',
-    activeItemFontColor: Colors.blue[500],
-    activeItemIconColor: Colors.blue[500],
     chevron: false,
     divider: true,
     hidePadding: true,
