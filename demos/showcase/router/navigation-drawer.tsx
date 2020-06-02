@@ -11,9 +11,7 @@ import {
 import React, { useState, useCallback } from 'react';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-// @ts-ignore
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
-// @ts-ignore
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import { Image, View } from 'react-native';
 import { Divider } from 'react-native-elements';
@@ -124,7 +122,6 @@ export const navGroupItems2: NavItem[] = [
     },
 ];
 
-// @ts-ignore
 export const NavigationDrawer: React.FC = ({ navigation }) => {
     const [selected, setSelected] = useState('');
     const selectItem = useCallback(

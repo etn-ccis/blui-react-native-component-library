@@ -30,7 +30,7 @@
     "react-native-safe-area-context": "^3.0.2"
   },
   "devDependencies": {
-    "@pxblue/eslint-config": "^1.1.4",
+    "@pxblue/eslint-config": "^2.0.0",
     "@pxblue/icons-svg": "^1.0.15",
     "@pxblue/prettier-config": "^1.0.2",
     "@react-native-community/eslint-config": "^0.0.5",

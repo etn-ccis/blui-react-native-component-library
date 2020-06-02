@@ -248,6 +248,7 @@ type ActionPanelProps = {
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const { actionItems, color = 'white' } = props;
 
+    /* eslint-disable @typescript-eslint/naming-convention */
     const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
         | JSX.Element
         | undefined => {
