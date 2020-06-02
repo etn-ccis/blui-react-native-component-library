@@ -19,6 +19,7 @@
         "@pxblue/react-native-components": "^3.0.0-beta.0",
         "@pxblue/react-native-themes": "^5.0.0-beta.0",
         "@react-native-community/masked-view": "^0.1.10",
+        "react-native-collapsible": "^1.5.2",
         "@react-navigation/drawer": "^5.8.1",
         "@react-navigation/native": "^5.5.0",
         "react": "16.11.0",
