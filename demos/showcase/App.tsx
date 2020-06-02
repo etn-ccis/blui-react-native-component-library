@@ -18,13 +18,9 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as PXBColors from '@pxblue/colors';
 
-// @ts-ignore
 import _A from '@pxblue/icons-svg/grade_a.svg';
-// @ts-ignore
 import _Temp from '@pxblue/icons-svg/temp.svg';
-// @ts-ignore
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
-// @ts-ignore
 import _Battery from '@pxblue/icons-svg/battery.svg';
 
 const backgroundImage = require('./assets/images/farm.jpg');
