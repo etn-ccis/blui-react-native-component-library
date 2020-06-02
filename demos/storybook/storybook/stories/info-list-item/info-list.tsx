@@ -58,6 +58,6 @@ storiesOf('InfoListItem', module).add('in FlatList', () => (
         data={data}
         style={{ height: '100%', flex: 1000 }}
         renderItem={({ item }): JSX.Element => <InfoListItem {...item} />}
-        keyExtractor={(__, index): string => `${index}`}
+        keyExtractor={(_item, index): string => `${index}`}
     />
 ));
