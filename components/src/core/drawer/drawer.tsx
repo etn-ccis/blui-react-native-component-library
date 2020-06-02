@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
 
 export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
     const theme = useTheme();
+    const insets = useSafeAreaInsets();
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
             React.Children.map(props.children, (child: any) => {
@@ -60,6 +62,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
             {getSectionByDisplayName('DrawerFooter')}
+            <View style={{ height: insets.bottom }} />
         </View>
     );
 };
