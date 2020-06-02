@@ -42,7 +42,7 @@ class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
         };
     }
 
-    private setActive(item: string): void {
+    private _setActive(item: string): void {
         this.setState({
             activeItem: item,
         });
@@ -66,21 +66,21 @@ class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'first'}
-                                onPress={(): void => this.setActive('first')}
+                                onPress={(): void => this._setActive('first')}
                                 label={'Environment'}
                                 IconClass={LeafIcon}
                             />
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'second'}
-                                onPress={(): void => this.setActive('second')}
+                                onPress={(): void => this._setActive('second')}
                                 label={'Water Pumps'}
                                 IconClass={WaterIcon}
                             />
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'third'}
-                                onPress={(): void => this.setActive('third')}
+                                onPress={(): void => this._setActive('third')}
                                 label={'Devices'}
                                 IconClass={DeviceIcon}
                             />
@@ -89,14 +89,14 @@ class DrawerStory extends React.Component<DrawerStoryProps, DrawerStoryState> {
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'fourth'}
-                                onPress={(): void => this.setActive('fourth')}
+                                onPress={(): void => this._setActive('fourth')}
                                 label={'PX White'}
                                 IconClass={PxwhiteIcon}
                             />
                             <Drawer.Item
                                 fontColor={backgroundColor}
                                 active={activeItem === 'fifth'}
-                                onPress={(): void => this.setActive('fifth')}
+                                onPress={(): void => this._setActive('fifth')}
                                 label={'Shooty Hoops'}
                                 IconClass={BasketballIcon}
                             />

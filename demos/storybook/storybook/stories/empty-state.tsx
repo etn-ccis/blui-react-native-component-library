@@ -6,8 +6,6 @@ const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { ImageBackground } from 'react-native';
 import { Button, Icon as RNEIcon } from 'react-native-elements';
-
-//@ts-ignore
 import * as Colors from '@pxblue/colors';
 
 storiesOf('EmptyState', module)
