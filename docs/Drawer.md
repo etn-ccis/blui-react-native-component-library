@@ -53,16 +53,16 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`.  Its
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                                    | Type              | Required | Default                      |
-| ----------------- | ---------------------------------------------- | ----------------- | -------- | ---------------------------- |
-| backgroundColor   | The color used for the background              | `string`          | no       | `theme.colors.primary`       |
-| backgroundImage   | An image to display in the header              | `string`          | no       |                              |
-| backgroundOpacity | The opacity of the background image            | `number`          | no       | `0.3`                        |
-| fontColor         | The color of the text elements                 | `string`          | no       | `theme.colors.surface`       |
-| icon              | A component to render for the icon             | `ReactNode`       | no       |                              |
-| subtitle          | The text to show on the second line            | `string`          | no       |                              |
-| title             | The text to show on the first line             | `string`          | no       |                              |
-| titleContent      | Custom content for header title area           | `ReactNode`       | no       |                              |
+| Prop Name         | Description                                    | Type                   | Required | Default                      |
+| ----------------- | ---------------------------------------------- | ---------------------- | -------- | ---------------------------- |
+| backgroundColor   | The color used for the background              | `string`               | no       | `theme.colors.primary`       |
+| backgroundImage   | An image to display in the header              | `ImageSourcePropType`  | no       |                              |
+| backgroundOpacity | The opacity of the background image            | `number`               | no       | `0.3`                        |
+| fontColor         | The color of the text elements                 | `string`               | no       | `theme.colors.surface`       |
+| icon              | A component to render for the icon             | `ReactNode`            | no       |                              |
+| subtitle          | The text to show on the second line            | `string`               | no       |                              |
+| title             | The text to show on the first line             | `string`               | no       |                              |
+| titleContent      | Custom content for header title area           | `ReactNode`            | no       |                              |
 
 </div>
 
