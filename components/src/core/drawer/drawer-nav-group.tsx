@@ -3,7 +3,7 @@ import { Subtitle } from '../typography';
 import { StyleSheet, View } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem } from './drawer-nav-item';
 import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
