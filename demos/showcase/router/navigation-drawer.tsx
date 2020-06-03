@@ -41,9 +41,6 @@ export const navGroupItems1: NavItem[] = [
         itemID: 'g1i3',
         icon: Clock,
         subtitle: 'Sample subtitle',
-        onItemSelect: (): void => {
-            /* Expand and don't update selected */
-        },
         items: [
             {
                 title: 'Sub NavItem 1',
@@ -56,9 +53,6 @@ export const navGroupItems1: NavItem[] = [
             {
                 title: 'Sub NavItem 3',
                 itemID: 'g1i3i3',
-                onItemSelect: (): void => {
-                    /* Expand and don't update selected */
-                },
                 items: [
                     {
                         title: 'Deep Nested Nav',
@@ -81,16 +75,10 @@ export const navGroupItems2: NavItem[] = [
         subtitle: '4 new alerts',
         itemID: 'g2i1',
         statusColor: Colors.yellow[500],
-        onItemSelect: (): void => {
-            /* Expand and don't update selected */
-        },
         items: [
             {
                 title: 'Sub NavItem 1',
                 itemID: 'g2i1i1',
-                onItemSelect: (): void => {
-                    /* Expand and don't update selected */
-                },
                 items: [
                     {
                         statusColor: Colors.red[500],
@@ -126,6 +114,11 @@ export const NavigationDrawer: React.FC = ({ navigation }) => {
     const [selected, setSelected] = useState('');
     const selectItem = useCallback(
         (id: string) => {
+            // Expandable items do not require navigation or selection.
+            if (id === 'g2i1i1' || id === 'g2i1' || id === 'g1i3i3' || id === 'g1i3') {
+                return;
+            }
+
             navigation.navigate('App');
             setSelected(id);
         },
