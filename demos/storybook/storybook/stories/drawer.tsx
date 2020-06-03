@@ -182,8 +182,8 @@ storiesOf('Drawer', module)
             <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
             <DrawerBody>
                 <DrawerNavGroup
-                    divider={true}
-                    backgroundColor={'red'}
+                    nestedDivider={boolean('nestedDivider', false)}
+                    nestedBackgroundColor={color('nestedBackgroundColor', Colors.white[200])}
                     title={'Multi-Level Navigation Group'}
                     items={nestedNavGroup}
                 />
@@ -233,8 +233,8 @@ storiesOf('Drawer', module)
                 />
                 <DrawerBody>
                     <DrawerNavGroup
-                        items={nestedNavItems}
-                        // nestedDivider={boolean('nestedDivider', true, navGroup)}
+                        items={nestedNavGroup}
+                        nestedDivider={boolean('nestedDivider', true, navGroup)}
                         nestedBackgroundColor={color('nestedBackgroundColor', Colors.red[50], navGroup)}
                         title={text('NavGroup1 title', 'Nav Group 1', navGroup)}
                     />
