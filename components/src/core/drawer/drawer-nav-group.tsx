@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useCallback, useState } from 'react';
 import { Subtitle } from '../typography';
 import { StyleSheet, View } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem } from './drawer-nav-item';
@@ -50,53 +50,56 @@ function findID(item: NavItem | NestedNavItem, activeItem = ''): boolean {
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const { title, titleContent, items } = props;
 
-    const getDrawerItemList = (item: NavItem | NestedNavItem, depth: number): ReactNode => {
-        const [expanded, setExpanded] = useState(findID(item, props.activeItem));
+    const getDrawerItemList = useCallback(
+        (item: NavItem | NestedNavItem, depth: number): ReactNode => {
+            const [expanded, setExpanded] = useState(findID(item, props.activeItem));
 
-        // Nested items inherit from the nestedDivider prop if item's divider is unset.
-        if (depth > 0 && item.divider === undefined) {
-            item.divider = props.nestedDivider as any;
-        }
-
-        // if there are more sub pages, add the bucket header and recurse on this function
-        if (item.items) {
-            // Default expand icon changes if item is nested.
-            if (depth > 0) {
-                if (!item.expandIcon) {
-                    item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />;
-                }
-                if (!item.collapseIcon) {
-                    item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />;
-                }
+            // Nested items inherit from the nestedDivider prop if item's divider is unset.
+            if (depth > 0 && item.divider === undefined) {
+                item.divider = props.nestedDivider as any;
             }
 
+            // if there are more sub pages, add the bucket header and recurse on this function
+            if (item.items) {
+                // Default expand icon changes if item is nested.
+                if (depth > 0) {
+                    if (!item.expandIcon) {
+                        item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />;
+                    }
+                    if (!item.collapseIcon) {
+                        item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />;
+                    }
+                }
+
+                return (
+                    <View key={`${item.itemID}`}>
+                        <DrawerNavItem
+                            navItem={inheritDrawerProps(props, item) as NavItem}
+                            navGroupProps={props}
+                            depth={depth}
+                            expanded={expanded}
+                            expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                        />
+                        <Collapsible collapsed={!expanded} style={{ backgroundColor: props.nestedBackgroundColor }}>
+                            {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
+                            <Divider />
+                        </Collapsible>
+                    </View>
+                );
+            }
+            // Otherwise, we reached a leaf node. Return.
             return (
-                <View key={`${item.itemID}`}>
-                    <DrawerNavItem
-                        navItem={inheritDrawerProps(props, item) as NavItem}
-                        navGroupProps={props}
-                        depth={depth}
-                        expanded={expanded}
-                        expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
-                    />
-                    <Collapsible collapsed={!expanded} style={{ backgroundColor: props.nestedBackgroundColor }}>
-                        {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
-                        <Divider />
-                    </Collapsible>
-                </View>
+                <DrawerNavItem
+                    depth={depth}
+                    expanded={false}
+                    navItem={inheritDrawerProps(props, item) as NavItem}
+                    key={item.itemID}
+                    navGroupProps={props}
+                />
             );
-        }
-        // Otherwise, we reached a leaf node. Return.
-        return (
-            <DrawerNavItem
-                depth={depth}
-                expanded={false}
-                navItem={inheritDrawerProps(props, item) as NavItem}
-                key={item.itemID}
-                navGroupProps={props}
-            />
-        );
-    };
+        },
+        [props]
+    );
 
     return (
         <View>
