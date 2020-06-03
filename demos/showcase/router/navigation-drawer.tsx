@@ -17,6 +17,8 @@ import { Image, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { IconButton } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from './index';
 
 const headerBgImage = require('../assets/images/topology_40.png');
 const eatonLogo = require('../assets/images/eatonLogo.png');
@@ -110,7 +112,10 @@ export const navGroupItems2: NavItem[] = [
     },
 ];
 
-export const NavigationDrawer: React.FC = ({ navigation }) => {
+export type NavDrawerProps = {
+    navigation: StackNavigationProp<RootStackParamList, 'NavigationDrawer'>;
+};
+export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     const [selected, setSelected] = useState('');
     const selectItem = useCallback(
         (id: string) => {

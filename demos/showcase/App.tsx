@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { SafeAreaView, ScrollView, View } from 'react-native';
 import { Button, Card, ListItem } from 'react-native-elements';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 import {
     Body,
     ChannelValue,
@@ -22,6 +24,7 @@ import _A from '@pxblue/icons-svg/grade_a.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
+import { RootStackParamList } from './router';
 
 const backgroundImage = require('./assets/images/farm.jpg');
 
@@ -38,7 +41,11 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 const PADDING = 10;
 
-export const App: React.FC = ({ navigation }: any) => (
+type AppProps = {
+    navigation: StackNavigationProp<RootStackParamList, 'App'>;
+};
+
+export const App: React.FC<AppProps> = ({ navigation }) => (
     <View style={{ flex: 1, backgroundColor: PXBColors.gray[50] }}>
         <Header
             expandable={true}
