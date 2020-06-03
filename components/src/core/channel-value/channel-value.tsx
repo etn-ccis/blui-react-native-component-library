@@ -54,7 +54,7 @@ export type ChannelValueProps = ViewProps & {
  * An arbitrary icon may be added
  */
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { value, fontSize, IconClass, color, units, prefix = false, styles = {}, IconProps = {} } = props;
+    const { value, fontSize, IconClass, color, units, prefix = false, styles = {}, IconProps = {}, ...viewProps } = props;
     const theme = useTheme(props.theme);
 
     const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);
@@ -98,7 +98,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [prefix, getUnits]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, props.style]}>
+        <View style={[defaultStyles.root, styles.root, props.style]} {...viewProps}>
             {getIcon()}
             <Label
                 numberOfLines={1}
@@ -108,7 +108,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 style={[{ color: getColor() }]}
             >
                 {prefixUnits()}
-                <Label font={'medium'} fontSize={fontSize} styles={{ root: [{ color: getColor() }, styles.value] }}>
+                <Label font={'medium'} fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
                     {value}
                 </Label>
                 {suffixUnits()}
