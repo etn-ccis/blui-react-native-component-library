@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react-native';
+import { storiesOf } from '@storybook/react-native';
 import {
     Drawer,
     DrawerBody,
@@ -14,15 +14,15 @@ import {
     Subtitle,
     wrapIcon,
 } from '@pxblue/react-native-components';
-import {boolean, color, text, withKnobs} from '@storybook/addon-knobs';
+import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
-import {Divider, IconButton} from 'react-native-paper';
+import { Divider, IconButton } from 'react-native-paper';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Image, View} from 'react-native';
+import { Image, View } from 'react-native';
 import * as Colors from '@pxblue/colors';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const farmBgImage = require('../assets/farm.jpg');
 const eatonLogo = require('../assets/eatonLogo.png');
@@ -178,14 +178,18 @@ storiesOf('Drawer', module)
         }
     )
     .add('with nested nav items', () => (
-            <Drawer>
-                <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
-                <DrawerBody>
-                    <DrawerNavGroup divider={true} backgroundColor={'red'} title={'Multi-Level Navigation Group'} items={nestedNavGroup} />
-                </DrawerBody>
-            </Drawer>
-        )
-    )
+        <Drawer>
+            <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
+            <DrawerBody>
+                <DrawerNavGroup
+                    divider={true}
+                    backgroundColor={'red'}
+                    title={'Multi-Level Navigation Group'}
+                    items={nestedNavGroup}
+                />
+            </DrawerBody>
+        </Drawer>
+    ))
     .add('with footer', () => (
         <Drawer>
             <DrawerHeader title={'Drawer'} subtitle={'with a footer'} icon={menuIcon} />
@@ -214,7 +218,9 @@ storiesOf('Drawer', module)
                 itemIconColor={color('itemIconColor', Colors.blue[800], drawer)}
                 divider={boolean('divider', true, drawer)}
                 chevron={boolean('chevron', false, drawer)}
-                activeItemBackgroundShape={boolean(`square activeItemBackgroundShape`, false, drawer) ? 'square' : 'round'}
+                activeItemBackgroundShape={
+                    boolean(`square activeItemBackgroundShape`, false, drawer) ? 'square' : 'round'
+                }
                 activeItem={'g1i2'}
             >
                 <DrawerHeader
@@ -226,11 +232,13 @@ storiesOf('Drawer', module)
                     icon={menuIcon}
                 />
                 <DrawerBody>
-                    <DrawerNavGroup items={nestedNavItems}
-                                    // nestedDivider={boolean('nestedDivider', true, navGroup)}
-                                    nestedBackgroundColor={color('nestedBackgroundColor', Colors.red[50], navGroup)}
-                                    title={text('NavGroup1 title', 'Nav Group 1', navGroup)}/>
-                    <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'Nav Group 2', navGroup)}/>
+                    <DrawerNavGroup
+                        items={nestedNavItems}
+                        // nestedDivider={boolean('nestedDivider', true, navGroup)}
+                        nestedBackgroundColor={color('nestedBackgroundColor', Colors.red[50], navGroup)}
+                        title={text('NavGroup1 title', 'Nav Group 1', navGroup)}
+                    />
+                    <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'Nav Group 2', navGroup)} />
                 </DrawerBody>
                 <DrawerFooter>
                     <Divider />
