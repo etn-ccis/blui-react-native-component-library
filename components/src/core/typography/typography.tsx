@@ -19,6 +19,11 @@ type TypographyProps = {
      */
     color?: keyof Theme['colors'];
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<TextStyle>;
+    };
+
     /**
      * Overrides for theme
      */
@@ -37,6 +42,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
     fontSize,
     color,
     style,
+    styles = {},
     ...props
 }): JSX.Element => {
     const theme = useTheme(props.theme);
@@ -54,7 +60,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
     return (
         <Text
             {...props}
-            style={[{ color: color ? theme.colors[color] : theme.colors.text }, getStyle(theme), customStyle, style]}
+            style={[{ color: color ? theme.colors[color] : theme.colors.text }, getStyle(theme), customStyle, styles.root, style]}
         />
     );
 };

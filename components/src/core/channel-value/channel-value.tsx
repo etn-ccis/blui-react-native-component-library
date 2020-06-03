@@ -1,24 +1,26 @@
 import React, { ComponentType, useCallback } from 'react';
-import { View, StyleSheet, TextProps } from 'react-native';
+import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import { Label } from '../typography';
 import { SIZES, Sizes } from '../sizes';
-import { WithTheme } from '../__types__';
 
-const styles = StyleSheet.create({
-    row: {
+const defaultStyles = StyleSheet.create({
+    root: {
         maxWidth: '100%',
         flexDirection: 'row',
         alignItems: 'center',
     },
 });
 
-export type ChannelValueProps = {
+export type ChannelValueProps = ViewProps & {
     /** Value to show (bold text) */
     value: string | number;
 
     /** Icon component to render */
     IconClass?: ComponentType<{ size: number; color: string }>;
+
+    /** Props to pass to the Icon component */
+    IconProps?: { size?: number; color?: string };
 
     /** Text to show for units (light text) */
     units?: string;
@@ -31,6 +33,13 @@ export type ChannelValueProps = {
 
     /** Font color for all text */
     color?: string;
+
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        value?: StyleProp<TextStyle>;
+        units?: StyleProp<TextStyle>;
+    };
 
     /**
      * Overrides for theme
@@ -45,7 +54,7 @@ export type ChannelValueProps = {
  * An arbitrary icon may be added
  */
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { value, fontSize, IconClass, color, units, prefix = false } = props;
+    const { value, fontSize, IconClass, color, units, prefix = false, styles = {}, IconProps = {} } = props;
     const theme = useTheme(props.theme);
 
     const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);
@@ -59,31 +68,22 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getIcon = useCallback(() => {
         if (IconClass) {
             return (
-                <View style={{ marginRight: Math.round(getFontSize() / 6) }}>
-                    <IconClass size={getFontSize()} color={getColor()} />
+                <View style={[{ marginRight: Math.round(getFontSize() / 6) }]}>
+                    <IconClass size={getFontSize()} color={getColor()} {...IconProps}/>
                 </View>
             );
         }
-    }, [IconClass, getFontSize, getColor]);
-
-    const textOverrides = useCallback((): WithTheme<TextProps> => {
-        const output: WithTheme<TextProps> = { theme };
-        if (color) {
-            output.style = { color: getColor() };
-        }
-        return output;
-    }, [color, theme, getColor]);
+    }, [IconClass, getFontSize, getColor, styles]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
-        const labelOverrides = textOverrides();
         if (units) {
             return (
-                <Label font={'light'} {...labelOverrides} fontSize={fontSize}>
+                <Label font={'light'} fontSize={fontSize} style={[{ color: getColor() }, styles.units]}>
                     {units}
                 </Label>
             );
         }
-    }, [textOverrides, units, fontSize]);
+    }, [units, fontSize, getColor, styles]);
 
     const prefixUnits = useCallback((): JSX.Element | undefined => {
         if (prefix) {
@@ -97,20 +97,19 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         }
     }, [prefix, getUnits]);
 
-    const labelOverrides = textOverrides();
 
     return (
-        <View style={styles.row}>
+        <View style={[defaultStyles.root, styles.root, props.style]}>
             {getIcon()}
             <Label
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
                 fontSize={fontSize}
-                {...labelOverrides}
+                style={[{ color: getColor() }]}
             >
                 {prefixUnits()}
-                <Label font={'medium'} fontSize={fontSize} {...labelOverrides}>
+                <Label font={'medium'} fontSize={fontSize} styles={{ root: [{ color: getColor() }, styles.value] }}>
                     {value}
                 </Label>
                 {suffixUnits()}
