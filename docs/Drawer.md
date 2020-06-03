@@ -35,11 +35,11 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | activeItemBackgroundShape | shape of the active item background                       | `'round'`\|`'square'` | no       | round                                                        |
 | activeItemFontColor       | Font color for the 'active' item                          | `string`              | no       | varies for light/dark theme                                  |
 | activeItemIconColor       | Icon color for the 'active' item                          | `string`              | no       | varies for light/dark theme                                  |
-| chevron                   | Whether to have chevrons for all menu items               | `boolean`             | no       |                                                              |
+| chevron                   | Whether to have chevrons for all menu items               | `boolean`             | no       | false                                                        |
 | collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`         | no       | `expandIcon` rotated 180 degrees                             |
 | divider                   | Whether to show a line between all items                  | `boolean`             | no       | true                                                         |
 | expandIcon                | Icon used to expand drawer                                | `JSX.Element`         | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`             | no       |                                                              |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`             | no       | true                                                         |
 | itemFontColor             | The color used for the item text                          | `string`              | no       |                                                              |
 | itemIconColor             | The color used for the icon                               | `string`              | no       |                                                              |
 
