@@ -75,10 +75,10 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [color, theme, getColor]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
-        const tesxOverrides = textOverrides();
+        const textOverride = textOverrides();
         if (units) {
             return (
-                <Body1 font={'light'} {...textOverrides} fontSize={fontSize}>
+                <Body1 font={'light'} {...textOverride} fontSize={fontSize}>
                     {units}
                 </Body1>
             );
@@ -97,7 +97,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         }
     }, [prefix, getUnits]);
 
-    const ltextOverrides = textOverrides();
+    const textOverride = textOverrides();
 
     return (
         <View style={styles.row}>
@@ -107,10 +107,10 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
                 fontSize={fontSize}
-                {...textOverrides}
+                {...textOverride}
             >
                 {prefixUnits()}
-                <Body1 font={'medium'} fontSize={fontSize} {...textOverrides}>
+                <Body1 font={'medium'} fontSize={fontSize} {...textOverride}>
                     {value}
                 </Body1>
                 {suffixUnits()}
