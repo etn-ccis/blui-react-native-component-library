@@ -78,9 +78,9 @@ export const inheritDrawerProps = (
     onItemSelect: child.onItemSelect || parent.onItemSelect,
 
     // Only inherit boolean values if the child prop is undefined.
-    chevron: child.chevron === undefined ? parent.chevron : undefined,
+    chevron: child.chevron === undefined ? parent.chevron : child.chevron,
     divider: child.divider === undefined ? parent.divider : child.divider,
-    hidePadding: child.hidePadding === undefined ? parent.hidePadding : undefined,
+    hidePadding: child.hidePadding === undefined ? parent.hidePadding : child.hidePadding,
 
     // Used for NavGroup/NavItem props which aren't a part of DrawerInheritableProps.
     ...child,
