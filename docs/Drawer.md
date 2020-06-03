@@ -8,44 +8,17 @@ To learn more about the Navigation design pattern, check out our [documentation]
 ## Usage
 
 ```tsx
-import React, { useState, useCallback } from 'react';
 import { Drawer, DrawerHeader, DrawerBody, NavItem } from '@pxblue/react-native-components';
-
-export const NavigationDrawer: React.FC = ({ navigation }) => {
-
-    const [selected, setSelected] = useState('');
-    const selectItem = useCallback((id: string) => {
-        navigation.navigate(id);
-        setSelected(id);
-    }, [navigation]);
-
-    const navGroupItems: NavItem[] = [
-        {
+...
+<Drawer activeItem={selectedItem} onItemSelect={(id) => {/* updateSelectedItem */}}>
+    <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'} icon={<Menu/>} />
+    <DrawerBody>
+        <DrawerNavGroup title={'Navigation Group'} items={[{
             title: 'Identity Management',
             itemID: 'g1i1',
-        },
-        {
-            title: 'Calendar',
-            itemID: 'g1i2',
-        },
-        {
-            title: 'Accessibility',
-            itemID: 'g1i3',
-        }
-    ];
-  
-    return <Drawer activeItem={selected} onItemSelect={(id: string): void => selectItem(id)}>
-                <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'}
-                    icon={
-                        <IconButton icon="menu" size={24} color={Colors.white[50]} onPress={(): void => {
-                            navigation.closeDrawer();
-                        }}/>
-                    }
-                />
-                <DrawerBody>
-                    <DrawerNavGroup items={navGroupItems} title={'Navigation Group'} />
-                </DrawerBody>
-        </Drawer>
+        }]} />
+    </DrawerBody>
+</Drawer>
 }
 ```
 
@@ -137,4 +110,3 @@ A `NestedNavItem` has all the same properties as a `NavItem` but do not support 
 
 ### DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.  
-
