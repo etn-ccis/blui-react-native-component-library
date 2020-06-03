@@ -60,7 +60,13 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
     return (
         <Text
             {...props}
-            style={[{ color: color ? theme.colors[color] : theme.colors.text }, getStyle(theme), customStyle, styles.root, style]}
+            style={[
+                { color: color ? theme.colors[color] : theme.colors.text },
+                getStyle(theme),
+                customStyle,
+                styles.root,
+                style,
+            ]}
         />
     );
 };

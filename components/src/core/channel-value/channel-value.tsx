@@ -69,7 +69,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         if (IconClass) {
             return (
                 <View style={[{ marginRight: Math.round(getFontSize() / 6) }]}>
-                    <IconClass size={getFontSize()} color={getColor()} {...IconProps}/>
+                    <IconClass size={getFontSize()} color={getColor()} {...IconProps} />
                 </View>
             );
         }
@@ -96,7 +96,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
             return getUnits();
         }
     }, [prefix, getUnits]);
-
 
     return (
         <View style={[defaultStyles.root, styles.root, props.style]}>
