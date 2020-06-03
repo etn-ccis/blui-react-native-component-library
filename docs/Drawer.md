@@ -22,7 +22,7 @@ import { Drawer, DrawerHeader, DrawerBody, NavItem } from '@pxblue/react-native-
 }
 ```
 
-#### API 
+## API 
 
 The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerBody>`, `<DrawerNavGroup>`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
@@ -46,10 +46,10 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 </div>
 
 
-### DrawerHeader
+# DrawerHeader
 The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its content can be provided by the `title`, `subtitle`, and `icon` props, or can be entirely custom content.
 
-#### API
+## API
 
 <div style="overflow: auto">
 
@@ -66,19 +66,19 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 </div>
 
-### DrawerSubheader
-The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody`>.
+# DrawerSubheader
+The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody>`.
 
-### DrawerBody
+# DrawerBody
 The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navigation items found within the `<Drawer>`. 
 
-#### API
+## API
 The `<DrawerBody>` supports all inheritable properties found within the `<Drawer>` API section.
 
-### DrawerNavGroup
+# DrawerNavGroup
 A `<DrawerNavGroup>` consists of a `title` or custom `titleContent` and houses the navigation items found in the `<Drawer>`.
 
-#### API 
+## API 
 The `<DrawerNavGroup>` supports all inheritable properties found within the `<Drawer>` API section. It also supports these additional props:
 
 <div style="overflow: auto">
@@ -91,7 +91,7 @@ The `<DrawerNavGroup>` supports all inheritable properties found within the `<Dr
 
 </div>
 
-### NavItem
+## NavItem
 A `<NavItem>` is a clickable link that appears within a `<DrawerNavGroup>`.  They can be used for navigation between pages, or can be a `NestedNavItem` that can expand or collapse other sub-`NavItem`s. 
 A `<NavItem>` supports all inheritable properties found within the `<Drawer>` API section.  It also supports these additional props:
 
@@ -100,13 +100,13 @@ A `<NavItem>` supports all inheritable properties found within the `<Drawer>` AP
 | Prop Name         | Description                                      | Type              | Required | Default                      |
 | ----------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
 | icon              | Icon to display, not applicable to `NestNavItem` | `ReactNode`       | no       |                              |
-| itemID            | ID used to distinguish a unique nav items        | `string`          | yes      |                              |
+| itemID            | ID used to distinguish item as unique            | `string`          | yes      |                              |
 | items             | Sub items to show/hide when clicked              | `NestedNavItem[]` | no       |                              |
 
 </div>
 
-A `<NavItem>` is built using our `<InfoListItem>` component and can extend all of its properties via `InfoListItemProps`. 
-A `<NestedNavItem>` has all the same properties as a `<NavItem>` but do not support icons. 
+A `<NavItem>` is built using our `<InfoListItem>` component and inherits all of its properties. 
+A `<NestedNavItem>` has all the same properties as a `<NavItem>` but does not support icons. 
 
-### DrawerFooter
+# DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.
