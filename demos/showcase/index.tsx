@@ -9,8 +9,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import * as React from 'react';
 import { blue } from '@pxblue/react-native-themes';
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const wrapper = () => (
+const wrapper = (): JSX.Element => (
     <PaperProvider theme={blue}>
         <MainRouter />
     </PaperProvider>
