@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react-native';
 import { text, color, withKnobs, number, boolean } from '@storybook/addon-knobs';
 import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1 } from '@pxblue/react-native-components';
 import { padded } from '../decorators';
+import { List } from 'react-native-paper';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -68,11 +69,12 @@ storiesOf('ScoreCard', module)
                 })
             )}
             actionRow={
-                <ScoreCard.ListItem
-                    label={'View Location'}
+                <List.Item
+                    title={'View Location'}
                     onPress={(): void => {
                         /* do nothing */
                     }}
+                    accessibilityStates
                 />
             }
         >
@@ -166,11 +168,12 @@ storiesOf('ScoreCard', module)
                 </HeroBanner>
             }
             actionRow={
-                <ScoreCard.ListItem
-                    label={'View Location'}
+                <List.Item
+                    title={'View Location'}
                     onPress={(): void => {
                         /* do nothing */
                     }}
+                    accessibilityStates
                 />
             }
         >
