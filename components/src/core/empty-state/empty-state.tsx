@@ -63,8 +63,8 @@ export type EmptyStateProps = ViewProps & {
  * Used as a placeholder when no content is available for a particular area/screen in your application.
  */
 export const EmptyState: React.FC<EmptyStateProps> = (props) => {
-    const { title, description, actions, IconClass, iconColor, iconSize, IconProps = {}, styles = {}, style, ...viewProps } = props;
-    const theme = useTheme(props.theme);
+    const { title, description, actions, IconClass, iconColor, iconSize, IconProps = {}, styles = {}, style, theme: themeOverride, ...viewProps } = props;
+    const theme = useTheme(themeOverride);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;

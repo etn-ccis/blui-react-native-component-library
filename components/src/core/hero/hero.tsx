@@ -1,19 +1,19 @@
 import React, { ComponentType, useCallback } from 'react';
-import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle, TouchableOpacityProps } from 'react-native';
 import { ChannelValue } from '../channel-value';
 import { Theme, useTheme } from 'react-native-paper';
 import { Label } from '../typography';
 import { Sizes } from '../sizes';
 
-const styles = StyleSheet.create({
-    wrapper: {
+const defaultStyles = StyleSheet.create({
+    root: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 8,
         paddingVertical: 16,
     },
-    icon: {
+    iconWrapper: {
         padding: 0,
         marginBottom: 4,
         alignItems: 'center',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export type HeroProps = {
+export type HeroProps = ViewProps & {
     /** Label to show */
     label: string;
 
@@ -45,23 +45,23 @@ export type HeroProps = {
     /** Primary icon */
     IconClass: ComponentType<{ size: number; color: string }>;
 
-    /** Primary icon color */
+    /** Primary icon size */
     iconSize?: number;
 
     /** Primary icon color */
     iconColor?: string;
 
-    /** Primary icon color */
+    /** Primary icon background */
     iconBackgroundColor?: string;
 
-    /** Primary icon color */
+    /** Font size used for the values row*/
     fontSize?: keyof Sizes;
 
     /** Value for ChannelValue child */
     value?: number | string;
 
     /** Icon component for ChannelValue child */
-    ValueIconClass?: ComponentType<{ size: number; color: string }>; //ReturnType<typeof wrapIcon>;
+    ValueIconClass?: ComponentType<{ size: number; color: string }>;
 
     /** Value string color */
     valueColor?: string;
@@ -72,8 +72,13 @@ export type HeroProps = {
     /** Callback for onPress event  */
     onPress?: () => void;
 
-    /** Style configuration for the wrapper View */
-    style?: StyleProp<ViewStyle>;
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        iconWrapper?: StyleProp<ViewStyle>;
+        values?: StyleProp<ViewStyle>;
+        label?: StyleProp<TextStyle>;
+    };
 
     /**
      * TestID
@@ -107,10 +112,13 @@ export const Hero: React.FC<HeroProps> = (props) => {
         iconSize,
         iconBackgroundColor,
         children,
+        styles = {},
         style,
+        theme: themeOverride,
+        ...viewProps
     } = props;
 
-    const theme = useTheme(props.theme);
+    const theme = useTheme(themeOverride);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 36;
@@ -133,16 +141,17 @@ export const Hero: React.FC<HeroProps> = (props) => {
     }, [IconClass, normalizeIconSize, getColor, iconColor]);
 
     return (
-        <TouchableOpacity onPress={onPress} disabled={!onPress} style={[styles.wrapper, style]}>
+        <TouchableOpacity onPress={onPress} disabled={!onPress} style={[defaultStyles.root, styles.root, style]}>
             <View
                 style={[
-                    styles.icon,
+                    defaultStyles.iconWrapper,
                     { backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24 },
+                    styles.iconWrapper
                 ]}
             >
                 {getIcon()}
             </View>
-            <View style={styles.values}>
+            <View style={[defaultStyles.values, styles.values]}>
                 {!children && !!value && (
                     <ChannelValue
                         value={value}
@@ -154,7 +163,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 )}
                 {children}
             </View>
-            <Label style={styles.label} numberOfLines={1} ellipsizeMode={'tail'}>
+            <Label style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
                 {label}
             </Label>
         </TouchableOpacity>
