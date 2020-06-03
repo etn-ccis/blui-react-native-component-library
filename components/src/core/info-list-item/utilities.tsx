@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Subtitle } from '../typography';
+import { Subtitle2 } from '../typography';
 import { interleave } from '../helpers/utils';
 
 export const renderableSubtitleComponent = (element: React.ReactNode): React.ReactNode => {
@@ -7,9 +7,9 @@ export const renderableSubtitleComponent = (element: React.ReactNode): React.Rea
         case 'string':
         case 'number':
             return (
-                <Subtitle numberOfLines={1} font={'regular'}>
+                <Subtitle2 numberOfLines={1} font={'regular'}>
                     {`${element}`}
-                </Subtitle>
+                </Subtitle2>
             );
         default:
             return element;
@@ -17,9 +17,9 @@ export const renderableSubtitleComponent = (element: React.ReactNode): React.Rea
 };
 
 export const interpunct = (separator?: string): JSX.Element => (
-    <Subtitle style={{ marginHorizontal: 4 }} font={'regular'}>
+    <Subtitle2 style={{ marginHorizontal: 4 }} font={'regular'}>
         {separator || '\u00B7'}
-    </Subtitle>
+    </Subtitle2>
 );
 export const withKeys = (array: React.ReactNode[]): JSX.Element[] =>
     array.map((element, index) => <Fragment key={index}>{element}</Fragment>);

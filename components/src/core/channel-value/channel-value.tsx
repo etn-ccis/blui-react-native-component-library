@@ -1,7 +1,7 @@
 import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, TextProps } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
-import { Label } from '../typography';
+import { Body1 } from '../typography';
 import { SIZES, Sizes } from '../sizes';
 import { WithTheme } from '../__types__';
 
@@ -75,12 +75,12 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [color, theme, getColor]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
-        const labelOverrides = textOverrides();
+        const tesxOverrides = textOverrides();
         if (units) {
             return (
-                <Label font={'light'} {...labelOverrides} fontSize={fontSize}>
+                <Body1 font={'light'} {...textOverrides} fontSize={fontSize}>
                     {units}
-                </Label>
+                </Body1>
             );
         }
     }, [textOverrides, units, fontSize]);
@@ -97,24 +97,24 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         }
     }, [prefix, getUnits]);
 
-    const labelOverrides = textOverrides();
+    const ltextOverrides = textOverrides();
 
     return (
         <View style={styles.row}>
             {getIcon()}
-            <Label
+            <Body1
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
                 fontSize={fontSize}
-                {...labelOverrides}
+                {...textOverrides}
             >
                 {prefixUnits()}
-                <Label font={'medium'} fontSize={fontSize} {...labelOverrides}>
+                <Body1 font={'medium'} fontSize={fontSize} {...textOverrides}>
                     {value}
-                </Label>
+                </Body1>
                 {suffixUnits()}
-            </Label>
+            </Body1>
         </View>
     );
 };

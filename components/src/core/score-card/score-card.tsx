@@ -183,7 +183,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const textColor = color || 'white';
     return (
         <View style={{ flex: 1 }}>
-            <Typography.H7
+            <Typography.H6
                 testID={'header_title'}
                 style={{ color: textColor }}
                 font={'medium'}
@@ -191,9 +191,9 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                 ellipsizeMode={'tail'}
             >
                 {title}
-            </Typography.H7>
+            </Typography.H6>
             {subtitle ? (
-                <Typography.Subtitle
+                <Typography.Subtitle2
                     testID={'header_subtitle'}
                     style={{ color: textColor }}
                     font={'regular'}
@@ -201,10 +201,10 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                     ellipsizeMode={'tail'}
                 >
                     {subtitle}
-                </Typography.Subtitle>
+                </Typography.Subtitle2>
             ) : null}
             {info ? (
-                <Typography.Subtitle
+                <Typography.Subtitle2
                     testID={'header_info'}
                     style={{ color: textColor }}
                     font={'light'}
@@ -212,7 +212,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                     ellipsizeMode={'tail'}
                 >
                     {info}
-                </Typography.Subtitle>
+                </Typography.Subtitle2>
             ) : null}
         </View>
     );

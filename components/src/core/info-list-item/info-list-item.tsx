@@ -2,7 +2,7 @@ import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Theme, useTheme } from 'react-native-paper';
-import { Body } from '../typography';
+import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { SIZES } from '../sizes';
@@ -196,9 +196,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 <View style={[fullHeight, tab, { backgroundColor: statusColor }]} />
                 {IconClass || !hidePadding ? <View style={iconContainer}>{getIcon()}</View> : null}
                 <View style={contentContainer}>
-                    <Body style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'medium'}>
+                    <Body1 style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'medium'}>
                         {title}
-                    </Body>
+                    </Body1>
                     <View style={row}>{getSubtitle()}</View>
                 </View>
                 {getRightComponent()}

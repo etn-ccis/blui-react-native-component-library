@@ -6,7 +6,7 @@ import {
     Hero,
     Header,
     H6,
-    Body,
+    Body1,
     ChannelValue,
     ScoreCard,
     InfoListItem,
@@ -211,17 +211,17 @@ export const App: React.FC = () => (
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                             leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
-                            title={<Body color={'error'}>1 Alarm</Body>}
+                            title={<Body1 color={'error'}>1 Alarm</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                             leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
-                            title={<Body color={'primary'}>1 Event</Body>}
+                            title={<Body1 color={'primary'}>1 Event</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0 }}
                             leftIcon={<MatIcon name={'cloud'} size={24} />}
-                            title={<Body>Online</Body>}
+                            title={<Body1>Online</Body1>}
                         />
                     </View>
                 </ScoreCard>
@@ -282,17 +282,17 @@ export const App: React.FC = () => (
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                             leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
-                            title={<Body color={'error'}>1 Alarm</Body>}
+                            title={<Body1 color={'error'}>1 Alarm</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                             leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
-                            title={<Body color={'primary'}>1 Event</Body>}
+                            title={<Body1 color={'primary'}>1 Event</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0 }}
                             leftIcon={<MatIcon name={'cloud'} size={24} />}
-                            title={<Body>Online</Body>}
+                            title={<Body1>Online</Body1>}
                         />
                     </View>
                 </ScoreCard>
