@@ -6,7 +6,7 @@
         "android": "react-native run-android",
         "ios": "react-native run-ios",
         "start": "react-native start",
-        "build": "react-native bundle --entry-file=index.js --bundle-output=build.bundle",
+        "build": "react-native bundle --entry-file=index.tsx --bundle-output=build.bundle",
         "test": "jest",
         "lint": "eslint \"**/**.{ts,tsx}\"",
         "lint:fix": "eslint \"**/**.{ts,tsx}\" --fix",
