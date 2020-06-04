@@ -6,6 +6,7 @@ import * as Colors from '@pxblue/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg');
 import { updateTitle } from '../src/utils';
+const packageJSON = require('@pxblue/react-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
@@ -99,6 +100,7 @@ stories.add('PX Blue React Native Components', () => {
                     Power Xpert <strong>Blue</strong>
                 </Typography>
                 <Typography variant={'h4'}>React Native Component Library</Typography>
+                {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
                     Learn about our PX Blue components in the API section.
                 </Typography>
