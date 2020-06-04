@@ -1,11 +1,10 @@
 import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Theme, useTheme } from 'react-native-paper';
+import {Divider, Theme, useTheme} from 'react-native-paper';
 import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
-import { SIZES } from '../sizes';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 
 const MAX_SUBTITLE_ELEMENTS = 3;
@@ -20,9 +19,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     divider: {
-        height: 1,
-        borderBottomWidth: 1,
-        borderColor: Colors.black['100'],
+        color: Colors.black['100'],
     },
     row: {
         flexDirection: 'row',
@@ -131,7 +128,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
     const titleStyle = {
         color: fontColor || theme.colors.text,
-        lineHeight: SIZES.medium,
     };
     const fixedHeight = {
         height: dense ? 52 : 72,
@@ -202,7 +198,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     <View style={row}>{getSubtitle()}</View>
                 </View>
                 {getRightComponent()}
-                <Divider divider={divider} />
+                <DividerWrapper divider={divider} />
             </TouchableOpacity>
         </View>
     );
@@ -211,7 +207,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 type DividerProps = {
     divider?: 'full' | 'partial';
 };
-const Divider: React.FC<DividerProps> = (props) => {
+const DividerWrapper: React.FC<DividerProps> = (props) => {
     const { divider } = props;
     if (divider) {
         return (
@@ -224,7 +220,7 @@ const Divider: React.FC<DividerProps> = (props) => {
                     alignItems: 'stretch',
                 }}
             >
-                <View style={[styles.divider]} />
+                <Divider />
             </View>
         );
     }

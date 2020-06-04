@@ -8,4 +8,6 @@ import { ScoreCard } from './score-card';
 import { wrapIcon } from './icon-wrapper/icon-wrapper';
 export * from './typography';
 
+export * from './drawer';
+
 export { ChannelValue, EmptyState, Header, Hero, HeroBanner, InfoListItem, ScoreCard, wrapIcon };
