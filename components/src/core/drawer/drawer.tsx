@@ -1,26 +1,45 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { Theme, useTheme } from 'react-native-paper';
-// Styles
 import color from 'color';
 
-const makeStyles = (props: DrawerInheritableProps, theme: Theme): any =>
+type EdgeInsets = {
+    top: number;
+    left: number;
+    bottom: number;
+    right: number;
+}
+
+const makeStyles = (props: DrawerInheritableProps, theme: Theme, insets: EdgeInsets): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+}> =>
     StyleSheet.create({
-        container: {
+        root: {
             backgroundColor: props.backgroundColor || theme.colors.surface,
             zIndex: 2,
             flex: 1,
             height: '100%',
+            paddingBottom: insets.bottom,
         },
     });
+type DrawerProps = DrawerInheritableProps & {
+    style?: StyleProp<ViewStyle>;
 
-export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
-    const theme = useTheme();
-    const styles = makeStyles(props, theme);
+    /**
+     * Overrides for theme
+     */
+    theme?: Theme;
+}
+export const Drawer: React.FC<DrawerProps> = (props) => {
+    const { theme: themeOverride, style } = props;
+    const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
+    const defaultStyles = makeStyles(props, theme, insets);
+    
+
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
             React.Children.map(props.children, (child: any) => {
@@ -47,7 +66,7 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
                                 // Set theme-related default props here.
                                 activeItemBackgroundColor:
                                     props.activeItemBackgroundColor ||
-                                    color(theme.colors.primary).alpha(0.16).rgb().string(),
+                                    color(theme.colors.primary).lightness(95).rgb().string(),
                                 activeItemFontColor: props.activeItemFontColor || theme.colors.primary,
                                 activeItemIconColor: props.activeItemIconColor || theme.colors.primary,
                                 itemFontColor: props.itemFontColor || theme.colors.text,
@@ -62,12 +81,11 @@ export const Drawer: React.FC<DrawerInheritableProps> = (props) => {
     );
 
     return (
-        <View style={styles.container}>
+        <View style={[defaultStyles.root, style]}>
             {getSectionByDisplayName('DrawerHeader')}
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
             {getSectionByDisplayName('DrawerFooter')}
-            <View style={{ height: insets.bottom }} />
         </View>
     );
 };
