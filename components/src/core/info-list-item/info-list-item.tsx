@@ -5,7 +5,6 @@ import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Body } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
-import { SIZES } from '../sizes';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 
 const infoListItemStyles = (
@@ -30,7 +29,6 @@ const infoListItemStyles = (
         },
         title: {
             color: props.fontColor || theme.colors.text,
-            lineHeight: SIZES.medium,
         },
         subtitle: {
             flexDirection: 'row',

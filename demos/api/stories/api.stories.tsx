@@ -38,6 +38,7 @@ const docFn = (): JSX.Element => <>{autoNavToDocs()}</>;
 
 stories.add('Channel Value', docFn, { notes: { markdown: getReadMe('ChannelValue.md') } });
 stories.add('Empty State', docFn, { notes: { markdown: getReadMe('EmptyState.md') } });
+stories.add('Drawer', docFn, { notes: { markdown: getReadMe('Drawer.md') } });
 stories.add('Header', docFn, { notes: { markdown: getReadMe('Header.md') } });
 stories.add('Hero', docFn, { notes: { markdown: getReadMe('Hero.md') } });
 stories.add('Icon Wrapper', docFn, { notes: { markdown: getReadMe('IconWrapper.md') } });
