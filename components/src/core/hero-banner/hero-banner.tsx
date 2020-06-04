@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, TextStyle } from 'react-native';
-import * as Colors from '@pxblue/colors';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps } from 'react-native';
 import { Divider } from 'react-native-paper';
 
 const defaultStyles = StyleSheet.create({
@@ -37,7 +36,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
                 {childrenArray}
             </View>
-            {divider && <Divider style={styles.divider}/>}
+            {divider && <Divider style={styles.divider} />}
         </React.Fragment>
     );
 };

@@ -1,6 +1,15 @@
 import React, { ComponentType, useCallback } from 'react';
-import { View, StyleSheet, ImageSourcePropType, Image, TouchableOpacity, StyleProp, ViewStyle, ImageProperties, ImageStyle, TextStyle } from 'react-native';
-import { black } from '@pxblue/colors';
+import {
+    View,
+    StyleSheet,
+    ImageSourcePropType,
+    Image,
+    TouchableOpacity,
+    StyleProp,
+    ViewStyle,
+    ImageStyle,
+    TextStyle,
+} from 'react-native';
 import * as Typography from '../typography';
 import { Theme, useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
@@ -8,35 +17,48 @@ import { HeaderIcon } from '../__types__';
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
 
-const scoreCardStyles = (theme: Theme, props: ScoreCardProps) => StyleSheet.create({
-    root: {
-        flex: 1,
-    },
-    header: {
-        height: 100,
-        overflow: 'hidden',
-        backgroundColor: props.headerColor || theme.colors.primary,
-        borderTopLeftRadius: theme.roundness,
-        borderTopRightRadius: theme.roundness,
-    },
-    headerContent: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        padding: PADDING_AMOUNT,
-    },
+const scoreCardStyles = (
+    theme: Theme,
+    props: ScoreCardProps
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    header: ViewStyle;
+    headerContent: ViewStyle;
+    padded: ViewStyle;
+    body: ViewStyle;
+    leftContent: ViewStyle;
+}> =>
+    StyleSheet.create({
+        root: {
+            flex: 1,
+        },
+        header: {
+            height: 100,
+            overflow: 'hidden',
+            backgroundColor: props.headerColor || theme.colors.primary,
+            borderTopLeftRadius: theme.roundness,
+            borderTopRightRadius: theme.roundness,
+        },
+        headerContent: {
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: PADDING_AMOUNT,
+        },
 
-    padded: {
-        padding: PADDING_AMOUNT,
-    },
-    body: {
-        flexDirection: 'row',
-        alignItems: 'stretch',
-        padding: PADDING_AMOUNT,
-    },
-    leftContent: {
-        flex: 1, justifyContent: 'center', marginRight: props.badge ? 16 : 0
-    }
-});
+        padded: {
+            padding: PADDING_AMOUNT,
+        },
+        body: {
+            flexDirection: 'row',
+            alignItems: 'stretch',
+            padding: PADDING_AMOUNT,
+        },
+        leftContent: {
+            flex: 1,
+            justifyContent: 'center',
+            marginRight: props.badge ? 16 : 0,
+        },
+    });
 
 // TODO Extend the Card Props once RNP fixes their type definitions in 4.0.0
 // export type ScoreCardProps = React.ComponentProps<typeof Card> & {
@@ -68,7 +90,6 @@ export type ScoreCardProps = {
     /** Background image to render when header is expanded */
     headerBackgroundImage?: ImageSourcePropType;
 
-
     // TODO remove this when we extend from the Card Props
     /** Styles for the root component */
     style?: StyleProp<ViewStyle>;
@@ -92,6 +113,11 @@ export type ScoreCardProps = {
     };
 
     /**
+     * Overrides for theme
+     */
+    theme?: Theme;
+
+    /**
      * Array of actions to render in the header.
      * A maximum of two will be rendered.
      * */
@@ -113,7 +139,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         badgeOffset,
         children,
         headerBackgroundImage,
-        headerColor,// = theme.colors.primary,
+        headerColor, // eslint-disable-line @typescript-eslint/no-unused-vars
         headerTitle,
         headerSubtitle,
         headerInfo,
@@ -126,7 +152,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
 
     return (
         <Card elevation={1} style={[defaultStyles.root, styles.root, style]} {...cardProps}>
-            <View style={[defaultStyles.header, styles.header]} >
+            <View style={[defaultStyles.header, styles.header]}>
                 <BackgroundImage headerBackgroundImage={headerBackgroundImage} style={styles.backgroundImage} />
                 <View style={[defaultStyles.padded, defaultStyles.headerContent, styles.headerContent]}>
                     <HeaderText
@@ -141,7 +167,11 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
                             info: styles.info,
                         }}
                     />
-                    <ActionPanel actionItems={actionItems} color={headerFontColor} styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }} />
+                    <ActionPanel
+                        actionItems={actionItems}
+                        color={headerFontColor}
+                        styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }}
+                    />
                 </View>
             </View>
             <View style={[defaultStyles.body, styles.body]}>
@@ -153,8 +183,6 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
     );
 };
 
-
-
 const backgroundImageStyles = StyleSheet.create({
     root: {
         position: 'absolute',
@@ -162,14 +190,14 @@ const backgroundImageStyles = StyleSheet.create({
         resizeMode: 'cover',
         height: '100%',
         opacity: 0.1,
-    }
+    },
 });
 type BackgroundImageProps = {
     /** Background image to render when header is expanded */
     headerBackgroundImage?: ImageSourcePropType;
 
     /** Style overrides for the Image component */
-    style?: StyleProp<ImageStyle>
+    style?: StyleProp<ImageStyle>;
 };
 const BackgroundImage: React.FC<BackgroundImageProps> = (props) => {
     const { headerBackgroundImage, style } = props;
@@ -187,8 +215,6 @@ const BackgroundImage: React.FC<BackgroundImageProps> = (props) => {
     return null;
 };
 
-
-
 type HeaderTextProps = {
     title: string;
     subtitle?: string;
@@ -199,7 +225,7 @@ type HeaderTextProps = {
         title?: StyleProp<TextStyle>;
         subtitle?: StyleProp<TextStyle>;
         info?: StyleProp<TextStyle>;
-    }
+    };
 };
 const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const { title, subtitle, info, color, styles = {} } = props;
@@ -241,8 +267,6 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     );
 };
 
-
-
 type FooterProps = {
     actionRow?: JSX.Element;
     style?: StyleProp<ViewStyle>;
@@ -273,8 +297,6 @@ const HeroPanel: React.FC<HeroPanelProps> = (props) => {
     return null;
 };
 
-
-
 const actionPanelStyles = StyleSheet.create({
     root: {
         flexDirection: 'row',
@@ -292,7 +314,7 @@ type ActionPanelProps = {
     styles?: {
         root?: StyleProp<ViewStyle>;
         actionItem?: StyleProp<ViewStyle>;
-    }
+    };
 };
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const { actionItems, color = 'white', styles = {} } = props;

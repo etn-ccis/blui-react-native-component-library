@@ -54,7 +54,18 @@ export type ChannelValueProps = ViewProps & {
  * An arbitrary icon may be added
  */
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { value, fontSize, IconClass, color, units, prefix = false, styles = {}, IconProps = {}, theme: themeOverride, ...viewProps } = props;
+    const {
+        value,
+        fontSize,
+        IconClass,
+        color,
+        units,
+        prefix = false,
+        styles = {},
+        IconProps = {},
+        theme: themeOverride,
+        ...viewProps
+    } = props;
     const theme = useTheme(themeOverride);
 
     const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);

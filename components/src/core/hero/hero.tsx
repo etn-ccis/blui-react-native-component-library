@@ -1,5 +1,5 @@
 import React, { ComponentType, useCallback } from 'react';
-import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle, TouchableOpacityProps } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle } from 'react-native';
 import { ChannelValue } from '../channel-value';
 import { Theme, useTheme } from 'react-native-paper';
 import { Label } from '../typography';
@@ -141,12 +141,17 @@ export const Hero: React.FC<HeroProps> = (props) => {
     }, [IconClass, normalizeIconSize, getColor, iconColor]);
 
     return (
-        <TouchableOpacity onPress={onPress} disabled={!onPress} style={[defaultStyles.root, styles.root, style]}>
+        <TouchableOpacity
+            onPress={onPress}
+            disabled={!onPress}
+            style={[defaultStyles.root, styles.root, style]}
+            {...viewProps}
+        >
             <View
                 style={[
                     defaultStyles.iconWrapper,
                     { backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24 },
-                    styles.iconWrapper
+                    styles.iconWrapper,
                 ]}
             >
                 {getIcon()}
