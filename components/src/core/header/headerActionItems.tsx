@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { wrapIcon } from '../icon-wrapper/icon-wrapper';
 import { HeaderIcon } from './headerIcon';
@@ -9,8 +9,8 @@ import { HeaderIcon as HeaderIconType } from '../__types__';
 const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
 const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
 
-const styles = StyleSheet.create({
-    actionPanel: {
+const defaultStyles = StyleSheet.create({
+    root: {
         flexDirection: 'row',
         alignItems: 'center',
         position: 'absolute',
@@ -27,10 +27,16 @@ const styles = StyleSheet.create({
 type ActionItemProps = {
     /** List of up to three action items on the right of the header */
     actionItems?: HeaderIconType[];
+
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        actionItem?: StyleProp<ViewStyle>;
+    };
 };
 
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
-    const { actionItems } = props;
+    const { actionItems, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();
 
     let items: HeaderIconType[] = actionItems || [];
@@ -60,17 +66,16 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
 
     if (items) {
         return (
-            <View style={styles.actionPanel}>
+            <View style={[defaultStyles.root, styles.root]}>
                 {items.slice(0, 3).map((actionItem, index) => (
-                    <View key={`action_${index}`}>
-                        <TouchableOpacity
-                            testID={`header-action-item${index}`}
-                            onPress={actionItem.onPress}
-                            style={styles.actionItem}
-                        >
-                            <HeaderIcon IconClass={actionItem.icon} />
-                        </TouchableOpacity>
-                    </View>
+                    <TouchableOpacity
+                        key={`action_${index}`}
+                        testID={`header-action-item${index}`}
+                        onPress={actionItem.onPress}
+                        style={[defaultStyles.actionItem, styles.actionItem]}
+                    >
+                        <HeaderIcon IconClass={actionItem.icon} />
+                    </TouchableOpacity>
                 ))}
             </View>
         );
