@@ -64,19 +64,6 @@ describe('InfoListItem', () => {
                 expect(otherElement).toHaveLength(1);
             });
         });
-
-        it('truncates subtitle elements to a max of 3', () => {
-            const instance = TestRenderer.create(<InfoListItem title={'some title'} subtitle={['a', 'b', 'c', 'd']} />)
-                .root;
-
-            const textElements = instance.findAllByType(Text);
-
-            const titleCount = 1;
-            const subtitleElementCount = 3;
-            const interpunctCount = 2;
-
-            expect(textElements).toHaveLength(titleCount + subtitleElementCount + interpunctCount);
-        });
     });
 
     describe('chevron', () => {

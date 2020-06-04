@@ -179,7 +179,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         startExpanded ? new Animated.Value(EXTENDED_HEIGHT) : new Animated.Value(REGULAR_HEIGHT)
     );
 
-    const defaultStyles = headerStyles(props, theme, searching);
+    const defaultStyles = headerStyles(props, theme);
 
     const expand = Animated.timing(headerHeight, {
         toValue: EXTENDED_HEIGHT,
