@@ -1,53 +1,45 @@
 import React, { ComponentType, useCallback } from 'react';
-import { View, StyleSheet, ImageSourcePropType, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
+import { View, StyleSheet, ImageSourcePropType, Image, TouchableOpacity, StyleProp, ViewStyle, ImageProperties, ImageStyle, TextStyle } from 'react-native';
 import { black } from '@pxblue/colors';
 import * as Typography from '../typography';
-import { Theme, useTheme } from 'react-native-paper';
+import { Theme, useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
 
-const styles = StyleSheet.create({
-    card: {
-        shadowColor: black[900],
-        shadowOpacity: 0.4,
-        shadowRadius: 3,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        elevation: 1,
+const scoreCardStyles = (theme: Theme, props: ScoreCardProps) => StyleSheet.create({
+    root: {
         flex: 1,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
     },
     header: {
         height: 100,
         overflow: 'hidden',
+        backgroundColor: props.headerColor || theme.colors.primary,
+        borderTopLeftRadius: theme.roundness,
+        borderTopRightRadius: theme.roundness,
     },
     headerContent: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         padding: PADDING_AMOUNT,
     },
-    footer: {
-        borderTopColor: black[50],
-        borderTopWidth: 1,
-    },
+
     padded: {
         padding: PADDING_AMOUNT,
     },
-    row: {
+    body: {
         flexDirection: 'row',
         alignItems: 'stretch',
         padding: PADDING_AMOUNT,
     },
+    leftContent: {
+        flex: 1, justifyContent: 'center', marginRight: props.badge ? 16 : 0
+    }
 });
 
+// TODO Extend the Card Props once RNP fixes their type definitions in 4.0.0
+// export type ScoreCardProps = React.ComponentProps<typeof Card> & {
 export type ScoreCardProps = {
     /** Background color of header */
     headerColor?: string;
@@ -76,19 +68,34 @@ export type ScoreCardProps = {
     /** Background image to render when header is expanded */
     headerBackgroundImage?: ImageSourcePropType;
 
-    /** Style configuration for the wrapper View */
+
+    // TODO remove this when we extend from the Card Props
+    /** Styles for the root component */
     style?: StyleProp<ViewStyle>;
+
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        header?: StyleProp<ViewStyle>;
+        backgroundImage?: StyleProp<ImageStyle>;
+        headerContent?: StyleProp<ViewStyle>;
+        headerText?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+        headerActions?: StyleProp<ViewStyle>;
+        headerActionItem?: StyleProp<ViewStyle>;
+        body?: StyleProp<ViewStyle>;
+        leftContent?: StyleProp<ViewStyle>;
+        actionRow?: StyleProp<ViewStyle>;
+        badge?: StyleProp<ViewStyle>;
+    };
 
     /**
      * Array of actions to render in the header.
      * A maximum of two will be rendered.
      * */
     actionItems?: HeaderIcon[];
-
-    /**
-     * Overrides for theme
-     */
-    theme?: Theme;
 };
 
 /**
@@ -97,7 +104,8 @@ export type ScoreCardProps = {
  * title and subtitles, and actionRow at the bottom.
  */
 export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
-    const theme = useTheme(props.theme);
+    const { theme: themeOverride, ...otherProps } = props;
+    const theme = useTheme(themeOverride);
     const {
         actionRow,
         actionItems,
@@ -105,87 +113,102 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         badgeOffset,
         children,
         headerBackgroundImage,
-        headerColor = theme.colors.primary,
+        headerColor,// = theme.colors.primary,
         headerTitle,
         headerSubtitle,
         headerInfo,
         headerFontColor,
+        styles = {},
         style,
-    } = props;
-
-    const newStyle = {
-        backgroundColor: theme.colors.surface,
-        borderRadius: theme.roundness,
-    };
+        ...cardProps
+    } = otherProps;
+    const defaultStyles = scoreCardStyles(theme, props);
 
     return (
-        <View style={[styles.card, newStyle, style]}>
-            <View
-                style={[
-                    styles.header,
-                    {
-                        backgroundColor: headerColor,
-                        borderTopLeftRadius: theme.roundness,
-                        borderTopRightRadius: theme.roundness,
-                    },
-                ]}
-            >
-                <BackgroundImage headerBackgroundImage={headerBackgroundImage} />
-                <View style={[styles.padded, styles.headerContent]}>
+        <Card elevation={1} style={[defaultStyles.root, styles.root, style]} {...cardProps}>
+            <View style={[defaultStyles.header, styles.header]} >
+                <BackgroundImage headerBackgroundImage={headerBackgroundImage} style={styles.backgroundImage} />
+                <View style={[defaultStyles.padded, defaultStyles.headerContent, styles.headerContent]}>
                     <HeaderText
                         title={headerTitle}
                         subtitle={headerSubtitle}
                         info={headerInfo}
                         color={headerFontColor}
+                        styles={{
+                            root: styles.headerText,
+                            title: styles.title,
+                            subtitle: styles.subtitle,
+                            info: styles.info,
+                        }}
                     />
-                    <ActionPanel actionItems={actionItems} color={headerFontColor} />
+                    <ActionPanel actionItems={actionItems} color={headerFontColor} styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }} />
                 </View>
             </View>
-            <View style={[styles.row]}>
-                <View style={{ flex: 1, justifyContent: 'center', marginRight: badge ? 16 : 0 }}>{children}</View>
-                <HeroPanel badge={badge} badgeOffset={badgeOffset} />
+            <View style={[defaultStyles.body, styles.body]}>
+                <View style={[defaultStyles.leftContent, styles.leftContent]}>{children}</View>
+                <HeroPanel badge={badge} badgeOffset={badgeOffset} style={styles.badge} />
             </View>
-            <Footer actionRow={actionRow} />
-        </View>
+            <Footer actionRow={actionRow} style={styles.actionRow} />
+        </Card>
     );
 };
+
+
+
+const backgroundImageStyles = StyleSheet.create({
+    root: {
+        position: 'absolute',
+        width: '100%',
+        resizeMode: 'cover',
+        height: '100%',
+        opacity: 0.1,
+    }
+});
 type BackgroundImageProps = {
     /** Background image to render when header is expanded */
     headerBackgroundImage?: ImageSourcePropType;
+
+    /** Style overrides for the Image component */
+    style?: StyleProp<ImageStyle>
 };
 const BackgroundImage: React.FC<BackgroundImageProps> = (props) => {
-    const { headerBackgroundImage } = props;
+    const { headerBackgroundImage, style } = props;
+    const defaultStyles = backgroundImageStyles;
+
     if (headerBackgroundImage) {
         return (
             <Image
                 testID={'header-background-image'}
                 source={headerBackgroundImage}
-                style={{
-                    position: 'absolute',
-                    width: '100%',
-                    resizeMode: 'cover',
-                    height: '100%',
-                    opacity: 0.1,
-                }}
+                style={[defaultStyles.root, style]}
             />
         );
     }
     return null;
 };
+
+
+
 type HeaderTextProps = {
     title: string;
     subtitle?: string;
     info?: string;
     color?: string;
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+    }
 };
 const HeaderText: React.FC<HeaderTextProps> = (props) => {
-    const { title, subtitle, info, color } = props;
+    const { title, subtitle, info, color, styles = {} } = props;
     const textColor = color || 'white';
     return (
-        <View style={{ flex: 1 }}>
+        <View style={[{ flex: 1 }, styles.root]}>
             <Typography.H7
                 testID={'header_title'}
-                style={{ color: textColor }}
+                style={[{ color: textColor }, styles.title]}
                 font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
@@ -195,7 +218,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
             {subtitle ? (
                 <Typography.Subtitle
                     testID={'header_subtitle'}
-                    style={{ color: textColor }}
+                    style={[{ color: textColor }, styles.subtitle]}
                     font={'regular'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
@@ -206,7 +229,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
             {info ? (
                 <Typography.Subtitle
                     testID={'header_info'}
-                    style={{ color: textColor }}
+                    style={[{ color: textColor }, styles.info]}
                     font={'light'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
@@ -218,13 +241,21 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     );
 };
 
+
+
 type FooterProps = {
     actionRow?: JSX.Element;
+    style?: StyleProp<ViewStyle>;
 };
 const Footer: React.FC<FooterProps> = (props) => {
-    const { actionRow } = props;
+    const { actionRow, style } = props;
     if (actionRow) {
-        return <View style={[styles.footer]}>{actionRow}</View>;
+        return (
+            <>
+                <Divider />
+                <View style={[style]}>{actionRow}</View>
+            </>
+        );
     }
     return null;
 };
@@ -232,22 +263,40 @@ const Footer: React.FC<FooterProps> = (props) => {
 type HeroPanelProps = {
     badge?: JSX.Element;
     badgeOffset?: number;
+    style?: StyleProp<ViewStyle>;
 };
 const HeroPanel: React.FC<HeroPanelProps> = (props) => {
-    const { badge, badgeOffset = 0 } = props;
+    const { badge, badgeOffset = 0, style } = props;
     if (badge) {
-        return <View style={{ flex: 0, marginTop: badgeOffset }}>{badge}</View>;
+        return <View style={[{ flex: 0, marginTop: badgeOffset }, style]}>{badge}</View>;
     }
     return null;
 };
 
+
+
+const actionPanelStyles = StyleSheet.create({
+    root: {
+        flexDirection: 'row',
+        margin: -8,
+    },
+    actionItem: {
+        height: 40,
+        width: 40,
+        padding: 8,
+    },
+});
 type ActionPanelProps = {
     actionItems?: HeaderIcon[];
     color?: string;
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        actionItem?: StyleProp<ViewStyle>;
+    }
 };
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
-    const { actionItems, color = 'white' } = props;
-
+    const { actionItems, color = 'white', styles = {} } = props;
+    const defaultStyles = actionPanelStyles;
     const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
         | JSX.Element
         | undefined => {
@@ -258,13 +307,13 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
 
     if (actionItems) {
         return (
-            <View style={{ flexDirection: 'row', margin: -8 }}>
+            <View style={[defaultStyles.root, styles.root]}>
                 {actionItems.slice(0, 2).map((actionItem, index) => (
                     <TouchableOpacity
                         key={`${index}`}
                         testID={`action-item${index}`}
                         onPress={actionItem.onPress}
-                        style={styles.actionItem}
+                        style={[defaultStyles.actionItem, styles.actionItem]}
                     >
                         {getIcon(actionItem.icon)}
                     </TouchableOpacity>
