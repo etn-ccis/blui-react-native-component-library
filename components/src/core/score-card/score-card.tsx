@@ -4,6 +4,7 @@ import { black } from '@pxblue/colors';
 import * as Typography from '../typography';
 import { Theme, useTheme } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
+import { SIZES } from '../sizes';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
@@ -185,7 +186,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
         <View style={{ flex: 1 }}>
             <Typography.H6
                 testID={'header_title'}
-                style={{ color: textColor }}
+                style={{ color: textColor, fontSize: SIZES.mediumLarge }}
                 font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
