@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback, useState } from 'react';
-import { Subtitle } from '../typography';
+import { Subtitle1 } from '../typography';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
 import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
@@ -132,7 +132,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             {!titleContent && title && (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
                     <Divider style={[defaultStyles.divider, styles.divider]} />
-                    <Subtitle style={[defaultStyles.title, styles.title]}>{title}</Subtitle>
+                    <Subtitle1 style={[defaultStyles.title, styles.title]}>{title}</Subtitle1>
                     <Divider style={[defaultStyles.divider, styles.divider]} />
                 </View>
             )}

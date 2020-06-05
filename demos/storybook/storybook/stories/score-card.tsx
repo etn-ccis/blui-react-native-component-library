@@ -3,8 +3,9 @@ import { Text, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { storiesOf } from '@storybook/react-native';
 import { text, color, withKnobs, number, boolean } from '@storybook/addon-knobs';
-import { ScoreCard, Hero, wrapIcon, HeroBanner, Body } from '@pxblue/react-native-components';
+import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1 } from '@pxblue/react-native-components';
 import { padded } from '../decorators';
+import { List } from 'react-native-paper';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -68,11 +69,12 @@ storiesOf('ScoreCard', module)
                 })
             )}
             actionRow={
-                <ScoreCard.ListItem
-                    label={'View Location'}
+                <List.Item
+                    title={'View Location'}
                     onPress={(): void => {
                         /* do nothing */
                     }}
+                    accessibilityStates
                 />
             }
         >
@@ -80,17 +82,17 @@ storiesOf('ScoreCard', module)
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                     leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
-                    title={<Body color={'error'}>1 Alarm</Body>}
+                    title={<Body1 color={'error'}>1 Alarm</Body1>}
                 />
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                     leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
-                    title={<Body color={'primary'}>1 Event</Body>}
+                    title={<Body1 color={'primary'}>1 Event</Body1>}
                 />
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0 }}
                     leftIcon={<MatIcon name={'cloud'} size={24} />}
-                    title={<Body>Online</Body>}
+                    title={<Body1>Online</Body1>}
                 />
             </View>
         </ScoreCard>
@@ -166,11 +168,12 @@ storiesOf('ScoreCard', module)
                 </HeroBanner>
             }
             actionRow={
-                <ScoreCard.ListItem
-                    label={'View Location'}
+                <List.Item
+                    title={'View Location'}
                     onPress={(): void => {
                         /* do nothing */
                     }}
+                    accessibilityStates
                 />
             }
         >
@@ -178,17 +181,17 @@ storiesOf('ScoreCard', module)
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                     leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
-                    title={<Body color={'error'}>1 Alarm</Body>}
+                    title={<Body1 color={'error'}>1 Alarm</Body1>}
                 />
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                     leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
-                    title={<Body color={'primary'}>1 Event</Body>}
+                    title={<Body1 color={'primary'}>1 Event</Body1>}
                 />
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0 }}
                     leftIcon={<MatIcon name={'cloud'} size={24} />}
-                    title={<Body>Online</Body>}
+                    title={<Body1>Online</Body1>}
                 />
             </View>
         </ScoreCard>

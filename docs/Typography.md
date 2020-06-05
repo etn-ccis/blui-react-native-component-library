@@ -4,7 +4,7 @@ Typography components are used to render text on the screen. This library provid
 
 <img width="20%" alt="Typography Elements" src="./images/typography.png">
 
-We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Label>`, `<Body>`, `<Subtitle>`, `<Caption>`
+We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Body1>`, `<Body2>`, `<Subtitle1>`, `<Subtitle2>`, `<Button>`, `<Caption>`, `<Overline>`
 
 ## Usage
 
@@ -18,10 +18,13 @@ import * as Typography from '@pxblue/react-native-components';
     <Typography.H4>Heading 4</Typography.H4>
     <Typography.H5>Heading 5</Typography.H5>
     <Typography.H6>Heading 6</Typography.H6>
-    <Typography.Label>Label</Typography.Label>
-    <Typography.Body>Body</Typography.Body>
-    <Typography.Subtitle>Subtitle</Typography.Subtitle>
+    <Typography.Body1>Body 1</Typography.Body1>
+    <Typography.Body2>Body 2</Typography.Body2>
+    <Typography.Subtitle1>Subtitle 1</Typography.Subtitle1>
+    <Typography.Subtitle2>Subtitle 2</Typography.Subtitle2>
+    <Typography.Button>Button</Typography.Button>
     <Typography.Caption>Caption</Typography.Caption>
+    <Typography.Overline>Overline</Typography.Overline>
 </View>
 ```
 

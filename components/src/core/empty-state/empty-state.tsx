@@ -1,7 +1,7 @@
 import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
-import { H6, Subtitle } from '../typography';
+import { H6, Subtitle2 } from '../typography';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -103,9 +103,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
             {getIcon()}
             <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
-                <Subtitle color={'primary'} style={[defaultStyles.subtitle, styles.description]}>
+                <Subtitle2 color={'primary'} style={[defaultStyles.subtitle, styles.description]}>
                     {description}
-                </Subtitle>
+                </Subtitle2>
             ) : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>

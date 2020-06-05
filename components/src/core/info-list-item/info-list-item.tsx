@@ -2,7 +2,7 @@ import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, View, TouchableOpacity, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
-import { Body } from '../typography';
+import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
@@ -214,14 +214,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
             ) : null}
             <View style={[defaultStyles.mainContent, styles.mainContent]}>
-                <Body
+                <Body1
                     style={[defaultStyles.title, styles.title]}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                     font={'medium'}
                 >
                     {title}
-                </Body>
+                </Body1>
                 <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
             </View>
             {getRightComponent()}

@@ -11,7 +11,7 @@ import {
     InfoListItem,
     NavItem,
     NestedNavItem,
-    Subtitle,
+    Subtitle1,
     wrapIcon,
 } from '@pxblue/react-native-components';
 import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
@@ -129,7 +129,7 @@ storiesOf('Drawer', module)
                 icon={menuIcon}
                 titleContent={
                     <View style={{ zIndex: 1, paddingLeft: 20, paddingTop: 10 }}>
-                        <Subtitle style={{ color: iconColor }}>Customizable</Subtitle>
+                        <Subtitle1 style={{ color: iconColor }}>Customizable</Subtitle1>
                         <H6 style={{ marginTop: -5, color: iconColor }}>Header Content</H6>
                     </View>
                 }

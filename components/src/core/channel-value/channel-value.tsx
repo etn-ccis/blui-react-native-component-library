@@ -1,7 +1,7 @@
 import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
-import { Label } from '../typography';
+import { Body1 } from '../typography';
 import { SIZES, Sizes } from '../sizes';
 
 const defaultStyles = StyleSheet.create({
@@ -89,9 +89,9 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getUnits = useCallback((): JSX.Element | undefined => {
         if (units) {
             return (
-                <Label font={'light'} fontSize={fontSize} style={[{ color: getColor() }, styles.units]}>
+                <Body1 font={'light'} fontSize={fontSize} style={[{ color: getColor() }, styles.units]}>
                     {units}
-                </Label>
+                </Body1>
             );
         }
     }, [units, fontSize, getColor, styles]);
@@ -111,7 +111,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     return (
         <View style={[defaultStyles.root, styles.root, props.style]} {...viewProps}>
             {getIcon()}
-            <Label
+            <Body1
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
@@ -119,11 +119,11 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 style={[{ color: getColor() }]}
             >
                 {prefixUnits()}
-                <Label font={'medium'} fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
+                <Body1 font={'medium'} fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
                     {value}
-                </Label>
+                </Body1>
                 {suffixUnits()}
-            </Label>
+            </Body1>
         </View>
     );
 };

@@ -2,7 +2,7 @@ import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle } from 'react-native';
 import { ChannelValue } from '../channel-value';
 import { Theme, useTheme } from 'react-native-paper';
-import { Label } from '../typography';
+import { Body1 } from '../typography';
 import { Sizes } from '../sizes';
 
 const defaultStyles = StyleSheet.create({
@@ -168,9 +168,9 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 )}
                 {children}
             </View>
-            <Label style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
+            <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
                 {label}
-            </Label>
+            </Body1>
         </TouchableOpacity>
     );
 };
