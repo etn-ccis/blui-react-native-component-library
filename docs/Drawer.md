@@ -12,12 +12,14 @@ import { Drawer, DrawerHeader, DrawerBody, NavItem } from '@pxblue/react-native-
 ...
 <Drawer activeItem={selectedItem} onItemSelect={(id) => {/* updateSelectedItem */}}>
     <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'} icon={<Menu/>} />
+    <DrawerSubheader>{/* contents */ }</DrawerSubheader>
     <DrawerBody>
         <DrawerNavGroup title={'Navigation Group'} items={[{
             title: 'Identity Management',
             itemID: 'g1i1',
         }]} />
     </DrawerBody>
+    <DrawerFooter>{/* contents */ }</DrawerFooter>
 </Drawer>
 }
 ```
