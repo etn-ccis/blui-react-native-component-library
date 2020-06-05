@@ -1,14 +1,14 @@
 import React, { ReactNode, useCallback, useState } from 'react';
 import { Subtitle } from '../typography';
-import { StyleSheet, View } from 'react-native';
-import { DrawerNavItem, NavItem, NestedNavItem } from './drawer-nav-item';
+import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, ImageStyle, TextStyle } from 'react-native';
+import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
 import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
-import { Divider } from 'react-native-paper';
+import { Divider, Theme, useTheme, DefaultTheme } from 'react-native-paper';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
-export type DrawerNavGroupProps = {
+export type DrawerNavGroupProps = ViewProps & {
     // List of navigation items to render
     items: NavItem[];
 
@@ -17,16 +17,31 @@ export type DrawerNavGroupProps = {
 
     // Custom element, substitute for title
     titleContent?: ReactNode;
+
+    /** Style overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        content?: StyleProp<ViewStyle>;
+        textContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        divider?: StyleProp<ViewStyle>;
+        navItem?: DrawerNavItemProps['styles'];
+    };
+    /** Overrides for theme */
+    theme?: Theme;
 } & NavGroupInheritableProps;
 
-const styles = StyleSheet.create({
-    subtitle: {
+const makeStyles = (theme: Theme) => StyleSheet.create({
+    root: {},
+    textContent: {},
+    title: {
         paddingTop: 8,
         paddingBottom: 8,
         paddingLeft: 16,
         height: 52,
         lineHeight: 36,
     },
+    divider: {},
 });
 
 // TODO: Can't this be replaced with a Set of itemIDs?
@@ -48,7 +63,12 @@ function findID(item: NavItem | NestedNavItem, activeItem = ''): boolean {
 }
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
-    const { title, titleContent, items } = props;
+    const {theme: themeOverride} = props;
+    const theme = useTheme(themeOverride);
+    const { title, titleContent, items = [], nestedDivider = false, styles = {}, style  } = props;
+    const nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200];
+
+    const defaultStyles = makeStyles(theme);
 
     const getDrawerItemList = useCallback(
         (item: NavItem | NestedNavItem, depth: number): ReactNode => {
@@ -56,7 +76,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
             // Nested items inherit from the nestedDivider prop if item's divider is unset.
             if (depth > 0 && item.divider === undefined) {
-                item.divider = props.nestedDivider as any;
+                item.divider = nestedDivider as any; // typescript doesn't like trying to assign boolean to type undefined
             }
 
             // if there are more sub pages, add the bucket header and recurse on this function
@@ -64,10 +84,10 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 // Default expand icon changes if item is nested.
                 if (depth > 0) {
                     if (!item.expandIcon) {
-                        item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} />;
+                        item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} />;
                     }
                     if (!item.collapseIcon) {
-                        item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} />;
+                        item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} />;
                     }
                 }
 
@@ -79,10 +99,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                             depth={depth}
                             expanded={expanded}
                             expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                            styles={styles.navItem}
                         />
-                        <Collapsible collapsed={!expanded} style={{ backgroundColor: props.nestedBackgroundColor }}>
+                        <Collapsible collapsed={!expanded} style={[{ backgroundColor: nestedBackgroundColor }, styles.content]}>
                             {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
-                            <Divider />
+                            <Divider style={[defaultStyles.divider, styles.divider]}/>
                         </Collapsible>
                     </View>
                 );
@@ -95,6 +116,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     navItem={inheritDrawerProps(props, item) as NavItem}
                     key={item.itemID}
                     navGroupProps={props}
+                    styles={styles.navItem}
                 />
             );
         },
@@ -102,13 +124,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     );
 
     return (
-        <View>
+        <View style={[defaultStyles.root, styles.root, style]}>
             {titleContent}
             {!titleContent && title && (
-                <View>
-                    <Divider />
-                    <Subtitle style={styles.subtitle}>{title}</Subtitle>
-                    <Divider />
+                <View style={[defaultStyles.textContent, styles.textContent]}>
+                    <Divider style={[defaultStyles.divider, styles.divider]}/>
+                    <Subtitle style={[defaultStyles.title, styles.title]}>{title}</Subtitle>
+                    <Divider style={[defaultStyles.divider, styles.divider]} />
                 </View>
             )}
             {items.map((item: NavItem) => getDrawerItemList(item, 0))}
@@ -117,8 +139,3 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 };
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
-DrawerNavGroup.defaultProps = {
-    items: [],
-    nestedBackgroundColor: Colors.white[200],
-    nestedDivider: false,
-};

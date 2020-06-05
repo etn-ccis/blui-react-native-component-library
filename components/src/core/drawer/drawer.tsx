@@ -30,9 +30,14 @@ type DrawerProps = DrawerInheritableProps & {
 export const Drawer: React.FC<DrawerProps> = (props) => {
     const { theme: themeOverride, style } = props;
     const theme = useTheme(themeOverride);
+    // Nested expand/collapse icon defaults are different and are set in the DrawerNavGroup.
+    const {
+        expandIcon = <MatIcon name={'expand-more'} size={24} color={theme.colors.text} />,
+        collapseIcon = <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />
+    } = props;
     const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
-    
+
 
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
@@ -57,6 +62,8 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
                         inheritableProps = inheritDrawerProps(
                             {
                                 ...props,
+                                expandIcon,
+                                collapseIcon,
                                 // Set theme-related default props here.
                                 activeItemBackgroundColor:
                                     props.activeItemBackgroundColor ||
@@ -89,7 +96,4 @@ Drawer.defaultProps = {
     chevron: false,
     divider: true,
     hidePadding: true,
-    // Nested expand/collapse icon defaults are different and are set in the DrawerNavGroup.
-    expandIcon: <MatIcon name={'expand-more'} size={24} />,
-    collapseIcon: <MatIcon name={'expand-less'} size={24} />,
 };
