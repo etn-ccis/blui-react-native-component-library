@@ -4,7 +4,7 @@ import {
     DrawerHeader,
     DrawerNavGroup,
     NavItem,
-    Subtitle,
+    Subtitle1,
     wrapIcon,
     DrawerFooter,
 } from '@pxblue/react-native-components';
@@ -154,7 +154,7 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
                     nestedDivider={true}
                     titleContent={
                         <View>
-                            <Subtitle style={{ padding: 16 }}>Custom Navgroup Content</Subtitle>
+                            <Subtitle1 style={{ padding: 16 }}>Custom Navgroup Content</Subtitle1>
                             <Divider />
                         </View>
                     }

@@ -4,6 +4,7 @@ import { black } from '@pxblue/colors';
 import * as Typography from '../typography';
 import { Theme, useTheme } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
+import { SIZES } from '../sizes';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
@@ -183,17 +184,17 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const textColor = color || 'white';
     return (
         <View style={{ flex: 1 }}>
-            <Typography.H7
+            <Typography.H6
                 testID={'header_title'}
-                style={{ color: textColor }}
+                style={{ color: textColor, fontSize: SIZES.mediumLarge }}
                 font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
             >
                 {title}
-            </Typography.H7>
+            </Typography.H6>
             {subtitle ? (
-                <Typography.Subtitle
+                <Typography.Subtitle2
                     testID={'header_subtitle'}
                     style={{ color: textColor }}
                     font={'regular'}
@@ -201,10 +202,10 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                     ellipsizeMode={'tail'}
                 >
                     {subtitle}
-                </Typography.Subtitle>
+                </Typography.Subtitle2>
             ) : null}
             {info ? (
-                <Typography.Subtitle
+                <Typography.Subtitle2
                     testID={'header_info'}
                     style={{ color: textColor }}
                     font={'light'}
@@ -212,7 +213,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                     ellipsizeMode={'tail'}
                 >
                     {info}
-                </Typography.Subtitle>
+                </Typography.Subtitle2>
             ) : null}
         </View>
     );

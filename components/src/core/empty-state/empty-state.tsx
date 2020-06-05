@@ -1,7 +1,7 @@
 import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
-import { H6, Subtitle } from '../typography';
+import { H6, Subtitle2 } from '../typography';
 
 const styles = StyleSheet.create({
     container: {
@@ -71,9 +71,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
             {getIcon()}
             <H6 style={{ textAlign: 'center' }}>{title}</H6>
             {description ? (
-                <Subtitle color={'primary'} style={{ textAlign: 'center' }}>
+                <Subtitle2 color={'primary'} style={{ textAlign: 'center' }}>
                     {description}
-                </Subtitle>
+                </Subtitle2>
             ) : null}
             {actions ? <View style={{ marginTop: 10 }}>{actions}</View> : null}
         </View>

@@ -210,6 +210,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
           "fontFamily": "System",
           "fontSize": 14,
           "fontWeight": "500",
+          "letterSpacing": 0,
         },
         Object {},
         Object {
@@ -356,6 +357,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
           "fontFamily": "System",
           "fontSize": 14,
           "fontWeight": "500",
+          "letterSpacing": 0,
         },
         Object {},
         Object {

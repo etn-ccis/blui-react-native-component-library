@@ -17,10 +17,13 @@ storiesOf('Typography', module)
             <Typography.H4>Heading 4</Typography.H4>
             <Typography.H5>Heading 5</Typography.H5>
             <Typography.H6>Heading 6</Typography.H6>
-            <Typography.Label>Label</Typography.Label>
-            <Typography.Body>Body</Typography.Body>
-            <Typography.Subtitle>Subtitle</Typography.Subtitle>
+            <Typography.Body1>Body 1</Typography.Body1>
+            <Typography.Body2>Body 2</Typography.Body2>
+            <Typography.Subtitle1>Subtitle 1</Typography.Subtitle1>
+            <Typography.Subtitle2>Subtitle 2</Typography.Subtitle2>
+            <Typography.Button>Button</Typography.Button>
             <Typography.Caption>Caption</Typography.Caption>
+            <Typography.Overline>Overline</Typography.Overline>
         </View>
     ))
     .add('with color props', () => (
@@ -33,12 +36,12 @@ storiesOf('Typography', module)
     ))
     .add('with custom styles', () => (
         <View>
-            <Typography.Label style={{ color: purple[500] }}>Typography styles can be overridden</Typography.Label>
-            <Typography.Label theme={{ colors: { text: green[900] } }}>
+            <Typography.Body1 style={{ color: purple[500] }}>Typography styles can be overridden</Typography.Body1>
+            <Typography.Body1 theme={{ colors: { text: green[900] } }}>
                 Their themes can be overridden as well
-            </Typography.Label>
-            <Typography.Label fontSize={'small'} font={'light'}>
+            </Typography.Body1>
+            <Typography.Body1 fontSize={'small'} font={'light'}>
                 You can even override which parts of themes they use
-            </Typography.Label>
+            </Typography.Body1>
         </View>
     ));

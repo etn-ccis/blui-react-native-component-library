@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback } from 'react';
 import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
-import { H6, Subtitle } from '../typography';
+import { H6, Subtitle1 } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -71,7 +71,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
             titleContent || (
                 <View style={styles.content}>
                     <H6 style={styles.title}>{title}</H6>
-                    <Subtitle style={styles.subtitle}>{subtitle}</Subtitle>
+                    <Subtitle1 style={styles.subtitle}>{subtitle}</Subtitle1>
                 </View>
             ),
         [title, subtitle, titleContent]
