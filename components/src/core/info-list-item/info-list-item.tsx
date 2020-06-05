@@ -13,7 +13,8 @@ const infoListItemStyles = (
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     title: TextStyle;
-    subtitle: ViewStyle;
+    subtitle: TextStyle;
+    subtitleWrapper: ViewStyle;
     statusStripe: ViewStyle;
     iconWrapper: ViewStyle;
     avatar: ViewStyle;
@@ -30,9 +31,12 @@ const infoListItemStyles = (
         title: {
             color: props.fontColor || theme.colors.text,
         },
-        subtitle: {
+        subtitleWrapper: {
             flexDirection: 'row',
             alignItems: 'center',
+        },
+        subtitle: {
+            color: props.fontColor || theme.colors.text,
         },
         statusStripe: {
             position: 'absolute',
@@ -116,7 +120,8 @@ export type InfoListItemProps = ViewProps & {
         avatar?: StyleProp<ViewStyle>;
         mainContent?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
-        subtitle?: StyleProp<ViewStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        subtitleWrapper?: StyleProp<ViewStyle>;
         divider?: StyleProp<ViewStyle>;
     };
 
@@ -181,12 +186,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return null;
         }
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
-        const renderableSubtitleParts = subtitleParts
-            // .splice(0, MAX_SUBTITLE_ELEMENTS)
-            .map((element) => renderableSubtitleComponent(element));
+        const renderableSubtitleParts = subtitleParts.map((element) =>
+            renderableSubtitleComponent(element, Object.assign(defaultStyles.subtitle, styles.subtitle))
+        );
 
         return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
-    }, [subtitle, subtitleSeparator]);
+    }, [subtitle, subtitleSeparator, styles]);
 
     const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
@@ -217,7 +222,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 >
                     {title}
                 </Body>
-                <View style={[defaultStyles.subtitle, styles.subtitle]}>{getSubtitle()}</View>
+                <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
             </View>
             {getRightComponent()}
             <Divider divider={divider} style={styles.divider} />
