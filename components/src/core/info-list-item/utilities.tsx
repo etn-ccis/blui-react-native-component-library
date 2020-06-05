@@ -3,7 +3,10 @@ import { Subtitle } from '../typography';
 import { interleave } from '../helpers/utils';
 import { StyleProp, TextStyle } from 'react-native';
 
-export const renderableSubtitleComponent = (element: React.ReactNode, style?: StyleProp<TextStyle>): React.ReactNode => {
+export const renderableSubtitleComponent = (
+    element: React.ReactNode,
+    style?: StyleProp<TextStyle>
+): React.ReactNode => {
     switch (typeof element) {
         case 'string':
         case 'number':

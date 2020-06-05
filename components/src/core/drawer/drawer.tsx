@@ -7,7 +7,11 @@ import { Theme, useTheme } from 'react-native-paper';
 import color from 'color';
 import { EdgeInsets } from '../__types__';
 
-const makeStyles = (props: DrawerInheritableProps, theme: Theme, insets: EdgeInsets): StyleSheet.NamedStyles<{
+const makeStyles = (
+    props: DrawerInheritableProps,
+    theme: Theme,
+    insets: EdgeInsets
+): StyleSheet.NamedStyles<{
     root: ViewStyle;
 }> =>
     StyleSheet.create({
@@ -26,18 +30,17 @@ type DrawerProps = DrawerInheritableProps & {
      * Overrides for theme
      */
     theme?: Theme;
-}
+};
 export const Drawer: React.FC<DrawerProps> = (props) => {
     const { theme: themeOverride, style } = props;
     const theme = useTheme(themeOverride);
     // Nested expand/collapse icon defaults are different and are set in the DrawerNavGroup.
     const {
         expandIcon = <MatIcon name={'expand-more'} size={24} color={theme.colors.text} />,
-        collapseIcon = <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />
+        collapseIcon = <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />,
     } = props;
     const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
-
 
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>

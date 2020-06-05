@@ -4,7 +4,7 @@ import { DrawerNavGroup } from './drawer-nav-group';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 
 const defaultStyles = StyleSheet.create({
-    root:{}
+    root: {},
 });
 type DrawerBodyProps = ScrollViewProps & DrawerInheritableProps;
 export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {

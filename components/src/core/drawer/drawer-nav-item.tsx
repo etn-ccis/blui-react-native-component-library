@@ -4,7 +4,6 @@ import { InfoListItem } from '../info-list-item';
 import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
 import { DrawerNavGroupProps } from './drawer-nav-group';
-import { Theme } from 'react-native-paper';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
 
@@ -26,15 +25,15 @@ export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'
     styles?: {
         root?: StyleProp<ViewStyle>;
         activeBackground?: StyleProp<ViewStyle>;
-        infoListItem?: InfoListItemProps['styles']
+        infoListItem?: InfoListItemProps['styles'];
     };
     /** Overrides for theme */
-    theme?: Theme;
+    // theme?: Theme; // Uncomment if we need to style anything based on the theme
 };
 
 const makeStyles = (props: DrawerNavItemProps): any =>
     StyleSheet.create({
-        root:{ },
+        root: {},
         activeBackground: {
             backgroundColor: props.navItem.activeItemBackgroundColor,
             zIndex: 0,
@@ -51,26 +50,28 @@ const makeStyles = (props: DrawerNavItemProps): any =>
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const defaultStyles = makeStyles(props);
-    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {}, theme, ...infoListItemProps } = props;
-    
+    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {}, ...infoListItemProps } = props;
+
     const icon = !depth ? (navItem as NavItem).icon : undefined;
     const active = navGroupProps.activeItem === navItem.itemID;
-    const rightIcon = navItem.items ? (props.expanded ? navItem.collapseIcon : navItem.expandIcon) : undefined;
-    
+    const rightIcon = navItem.items ? (expanded ? navItem.collapseIcon : navItem.expandIcon) : undefined;
+
     const infoListItemStyles = styles.infoListItem || {};
-    const {root: iliRoot, title: iliTitle, ...otherILI} = infoListItemStyles;
+    const { root: iliRoot, title: iliTitle, ...otherILI } = infoListItemStyles;
 
-
-    const onPressAction = useCallback((id: string): void => {
-        if (navItem.onItemSelect) {
-            navItem.onItemSelect(id);
-        }
-        if (navItem.onPress) {
-            navItem.onPress();
-        } else if (expandHandler) {
-            expandHandler();
-        }
-    },[navItem, expandHandler]);
+    const onPressAction = useCallback(
+        (id: string): void => {
+            if (navItem.onItemSelect) {
+                navItem.onItemSelect(id);
+            }
+            if (navItem.onPress) {
+                navItem.onPress();
+            } else if (expandHandler) {
+                expandHandler();
+            }
+        },
+        [navItem, expandHandler]
+    );
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
@@ -80,22 +81,26 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 {...navItem}
                 rightComponent={rightIcon}
                 backgroundColor={'transparent'}
-                iconColor={
-                    active ? props.navItem.activeItemIconColor : props.navItem.iconColor || props.navItem.itemIconColor
-                }
-                fontColor={
-                    active ? props.navItem.activeItemFontColor : props.navItem.fontColor || props.navItem.itemFontColor
-                }
+                iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
+                fontColor={active ? navItem.activeItemFontColor : navItem.fontColor || navItem.itemFontColor}
                 onPress={(): void => onPressAction(navItem.itemID)}
                 IconClass={icon}
                 styles={{
-                    root: Object.assign({
-                        paddingLeft: 16 * (depth > 1 ? depth - 1 : 0)
-                    }, iliRoot),
-                    title: Object.assign(depth > 0 ? {
-                        fontWeight: '400',
-                    } : {}, iliTitle),
-                    ...otherILI
+                    root: Object.assign(
+                        {
+                            paddingLeft: 16 * (depth > 1 ? depth - 1 : 0),
+                        },
+                        iliRoot
+                    ),
+                    title: Object.assign(
+                        depth > 0
+                            ? {
+                                  fontWeight: '400',
+                              }
+                            : {},
+                        iliTitle
+                    ),
+                    ...otherILI,
                 }}
                 {...infoListItemProps}
             />

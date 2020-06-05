@@ -18,4 +18,4 @@ export type EdgeInsets = {
     left: number;
     bottom: number;
     right: number;
-}
+};

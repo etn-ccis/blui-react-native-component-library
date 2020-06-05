@@ -1,9 +1,9 @@
 import React, { ReactNode, useCallback, useState } from 'react';
 import { Subtitle } from '../typography';
-import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, ImageStyle, TextStyle } from 'react-native';
+import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
 import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
-import { Divider, Theme, useTheme, DefaultTheme } from 'react-native-paper';
+import { Divider, Theme, useTheme } from 'react-native-paper';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -31,7 +31,7 @@ export type DrawerNavGroupProps = ViewProps & {
     theme?: Theme;
 } & NavGroupInheritableProps;
 
-const makeStyles = (theme: Theme) => StyleSheet.create({
+const drawerNavGroupStyles = StyleSheet.create({
     root: {},
     textContent: {},
     title: {
@@ -63,12 +63,12 @@ function findID(item: NavItem | NestedNavItem, activeItem = ''): boolean {
 }
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
-    const {theme: themeOverride} = props;
+    const { theme: themeOverride } = props;
     const theme = useTheme(themeOverride);
-    const { title, titleContent, items = [], nestedDivider = false, styles = {}, style  } = props;
+    const { title, titleContent, items = [], nestedDivider = false, styles = {}, style } = props;
     const nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200];
 
-    const defaultStyles = makeStyles(theme);
+    const defaultStyles = drawerNavGroupStyles;
 
     const getDrawerItemList = useCallback(
         (item: NavItem | NestedNavItem, depth: number): ReactNode => {
@@ -101,9 +101,12 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                             expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                             styles={styles.navItem}
                         />
-                        <Collapsible collapsed={!expanded} style={[{ backgroundColor: nestedBackgroundColor }, styles.content]}>
+                        <Collapsible
+                            collapsed={!expanded}
+                            style={[{ backgroundColor: nestedBackgroundColor }, styles.content]}
+                        >
                             {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
-                            <Divider style={[defaultStyles.divider, styles.divider]}/>
+                            <Divider style={[defaultStyles.divider, styles.divider]} />
                         </Collapsible>
                     </View>
                 );
@@ -128,7 +131,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             {titleContent}
             {!titleContent && title && (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <Divider style={[defaultStyles.divider, styles.divider]}/>
+                    <Divider style={[defaultStyles.divider, styles.divider]} />
                     <Subtitle style={[defaultStyles.title, styles.title]}>{title}</Subtitle>
                     <Divider style={[defaultStyles.divider, styles.divider]} />
                 </View>

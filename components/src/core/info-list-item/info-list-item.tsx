@@ -35,7 +35,7 @@ const infoListItemStyles = (
             flexDirection: 'row',
             alignItems: 'center',
         },
-        subtitle:{
+        subtitle: {
             color: props.fontColor || theme.colors.text,
         },
         statusStripe: {
@@ -186,8 +186,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return null;
         }
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
-        const renderableSubtitleParts = subtitleParts
-            .map((element) => renderableSubtitleComponent(element, Object.assign(defaultStyles.subtitle,styles.subtitle)));
+        const renderableSubtitleParts = subtitleParts.map((element) =>
+            renderableSubtitleComponent(element, Object.assign(defaultStyles.subtitle, styles.subtitle))
+        );
 
         return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
     }, [subtitle, subtitleSeparator, styles]);

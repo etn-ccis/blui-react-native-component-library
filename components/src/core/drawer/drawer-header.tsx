@@ -1,5 +1,14 @@
 import React, { ReactNode, useCallback } from 'react';
-import { StyleSheet, View, Image, ImageSourcePropType, StyleProp, ViewStyle, ImageStyle, TextStyle } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Image,
+    ImageSourcePropType,
+    StyleProp,
+    ViewStyle,
+    ImageStyle,
+    TextStyle,
+} from 'react-native';
 import { H6, Subtitle } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -87,21 +96,32 @@ export type DrawerHeaderProps = {
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity, theme: themeOverride, styles = {}, style } = props;
+    const {
+        title,
+        subtitle,
+        titleContent,
+        backgroundImage,
+        icon,
+        backgroundOpacity,
+        theme: themeOverride,
+        styles = {},
+        style,
+    } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
 
-    const getIcon = useCallback((): ReactNode => (
-        <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>
-    ), [defaultStyles, styles]);
+    const getIcon = useCallback((): ReactNode => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
+        defaultStyles,
+        styles,
+    ]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <H6 style={[defaultStyles.title,styles.title]}>{title}</H6>
-                    <Subtitle style={[defaultStyles.subtitle,styles.subtitle]}>{subtitle}</Subtitle>
+                    <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
+                    <Subtitle style={[defaultStyles.subtitle, styles.subtitle]}>{subtitle}</Subtitle>
                 </View>
             ),
         [title, subtitle, titleContent, defaultStyles, styles]
@@ -111,7 +131,11 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         if (backgroundImage) {
             return (
                 <View style={[defaultStyles.backgroundImageWrapper, styles.backgroundImageWrapper]}>
-                    <Image source={backgroundImage} resizeMethod={'resize'} style={[defaultStyles.backgroundImage, styles.backgroundImage]} />
+                    <Image
+                        source={backgroundImage}
+                        resizeMethod={'resize'}
+                        style={[defaultStyles.backgroundImage, styles.backgroundImage]}
+                    />
                 </View>
             );
         }
