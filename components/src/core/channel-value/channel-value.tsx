@@ -62,6 +62,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         units,
         prefix = false,
         styles = {},
+        style,
         IconProps = {},
         theme: themeOverride,
         ...viewProps
@@ -109,7 +110,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [prefix, getUnits]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, props.style]} {...viewProps}>
+        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
             <Body1
                 numberOfLines={1}
