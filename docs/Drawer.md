@@ -66,6 +66,22 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 </div>
 
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name                     | Description                                    |
+| ------------------------ | ---------------------------------------------- |
+| root                     | Styles applied to the root element             |
+| backgroundImageWrapper   | Styles applied to the background image wrapper |
+| backgroundImage          | Styles applied to the background image         |
+| content                  | Styles applied to the content wrapper          |
+| textContent              | Styles applied to the text wrapper             |
+| title                    | Styles applied to the title element            |
+| subtitle                 | Styles applied to the subtitle element         |
+| icon                     | Styles applied to the left icon element        |
+
+
 # DrawerSubheader
 The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody>`.
 

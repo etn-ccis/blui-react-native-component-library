@@ -1,13 +1,14 @@
 import React, { ReactNode, useCallback } from 'react';
-import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
+import { StyleSheet, View, Image, ImageSourcePropType, StyleProp, ViewStyle, ImageStyle, TextStyle } from 'react-native';
 import { H6, Subtitle } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { EdgeInsets } from '../__types__';
 
-const makeStyles = (props: DrawerHeaderProps, theme: Theme, topPadding: number): any =>
+const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets): any =>
     StyleSheet.create({
         root: {
-            paddingTop: topPadding,
+            paddingTop: insets.top,
             backgroundColor: props.backgroundColor || theme.colors.primary,
         },
         icon: {
@@ -17,6 +18,9 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, topPadding: number):
             justifyContent: 'center',
         },
         content: {
+            flexDirection: 'row',
+        },
+        textContent: {
             color: 'red',
             flexDirection: 'column',
             padding: 4,
@@ -49,48 +53,74 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, topPadding: number):
     });
 
 export type DrawerHeaderProps = {
+    /** Colored background of the header */
     backgroundColor?: string;
+    /** Image to blend with the colored background in the header */
     backgroundImage?: ImageSourcePropType;
+    /** Opacity to use for blending the background image into the background color */
     backgroundOpacity?: number;
+    /** Color to use for header text elements */
     fontColor?: string;
+    /** Icon to use to the left of the header text */
     icon?: ReactNode;
+    /** First line of text in the header */
     title?: string;
+    /** Second line of text in the header */
     subtitle?: string;
+    /** Custom content to use in place of the header text */
     titleContent?: ReactNode;
+    /** Custom styles (same as styles.root) */
+    style?: StyleProp<ViewStyle>;
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        backgroundImageWrapper?: StyleProp<ViewStyle>;
+        backgroundImage?: StyleProp<ImageStyle>;
+        content?: StyleProp<ViewStyle>;
+        textContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        icon?: StyleProp<ViewStyle>;
+    };
+    /** Overrides for theme */
+    theme?: Theme;
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const theme = useTheme();
+    const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity, theme: themeOverride, styles = {}, style } = props;
+    const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const styles = makeStyles(props, theme, insets.top);
-    const { title, subtitle, titleContent, backgroundImage, icon, backgroundOpacity } = props;
-    const getIcon = useCallback((): ReactNode => <View style={styles.icon}>{icon}</View>, []);
+    const defaultStyles = makeStyles(props, theme, insets);
+
+    const getIcon = useCallback((): ReactNode => (
+        <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>
+    ), [defaultStyles, styles]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
-                <View style={styles.content}>
-                    <H6 style={styles.title}>{title}</H6>
-                    <Subtitle style={styles.subtitle}>{subtitle}</Subtitle>
+                <View style={[defaultStyles.textContent, styles.textContent]}>
+                    <H6 style={[defaultStyles.title,styles.title]}>{title}</H6>
+                    <Subtitle style={[defaultStyles.subtitle,styles.subtitle]}>{subtitle}</Subtitle>
                 </View>
             ),
-        [title, subtitle, titleContent]
+        [title, subtitle, titleContent, defaultStyles, styles]
     );
 
     const getBackgroundImage = useCallback((): ReactNode | undefined => {
         if (backgroundImage) {
             return (
-                <View style={styles.backgroundImageWrapper}>
-                    <Image source={backgroundImage} resizeMethod={'resize'} style={styles.backgroundImage} />
+                <View style={[defaultStyles.backgroundImageWrapper, styles.backgroundImageWrapper]}>
+                    <Image source={backgroundImage} resizeMethod={'resize'} style={[defaultStyles.backgroundImage, styles.backgroundImage]} />
                 </View>
             );
         }
-    }, [backgroundImage, backgroundOpacity]);
+    }, [backgroundImage, backgroundOpacity, defaultStyles, styles]);
 
     return (
-        <View style={[styles.root, {}]}>
+        <View style={[defaultStyles.root, styles.root, style]}>
             {getBackgroundImage()}
-            <View style={{ flexDirection: 'row' }}>
+            <View style={[defaultStyles.content, styles.content]}>
                 {icon && getIcon()}
                 {getHeaderContent()}
             </View>

@@ -5,13 +5,7 @@ import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types'
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { Theme, useTheme } from 'react-native-paper';
 import color from 'color';
-
-type EdgeInsets = {
-    top: number;
-    left: number;
-    bottom: number;
-    right: number;
-}
+import { EdgeInsets } from '../__types__';
 
 const makeStyles = (props: DrawerInheritableProps, theme: Theme, insets: EdgeInsets): StyleSheet.NamedStyles<{
     root: ViewStyle;
