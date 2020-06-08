@@ -39,6 +39,6 @@ All typography components in this library share a common API.
 | font      | The font style (from the theme)     | keyof [`theme.fonts`](./Theme.md)  | no       |         |
 | fontSize  | The font size (from the theme)      | keyof [`theme.sizes`](./Theme.md)  | no       |         |
 | color     | The font color (from theme palette) | keyof [`theme.colors`](./Theme.md) | no       | 'text'  |
-| theme     | Theme partial for default styling   | `Theme`               | no       |         |
+| theme     | Theme partial for default styling   | `Theme`                            | no       |         |
 
 </div>

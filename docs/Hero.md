@@ -39,12 +39,12 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | iconColor           | The color of the primary icon           | `string`                                           | no       | `text`                 |
 | iconBackgroundColor | The color behind the primary icon       | `string`                                           | no       | `theme.colors.surface` |
 | fontSize            | The text size for the value line        | keyof [`theme.sizes`](./Theme.md)                  | no       | 'large'                |
-| value               | The value for the channel               | `string`\|`number`                                 | no       |                        |
+| value               | The value for the channel               | `string` \| `number`                               | no       |                        |
 | ValueIconClass      | The icon to show inline with the value  | `React.Component<{ size: number, color: string }>` | no       |                        |
 | valueColor          | Text color for the value line           | `string`                                           | no       | `text`                 |
 | units               | Text to show after the value            | `string`                                           | no       |                        |
 | onPress             | A function to execute when clicked      | `function`                                         | no       |                        |
-| theme               | Theme partial for default styling       | `Theme`                               | no       |                        |
+| theme               | Theme partial for default styling       | `Theme`                                            | no       |                        |
 
 </div>
 
