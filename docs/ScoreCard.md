@@ -57,7 +57,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 | badge                 | The component to render in the callout area | `React.Component`     | no       |                          |
 | badgeOffset           | Vertical offset for the badge component     | `number`              | no       |                          |
 | actionRow             | Component to render for the footer          | `React.Component`     | no       |                          |
-| theme                 | Theme partial for default styling           | `Theme`  | no       |                          |
+| theme                 | Theme partial for default styling           | `Theme`               | no       |                          |
 
 </div>
 

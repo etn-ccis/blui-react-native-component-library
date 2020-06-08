@@ -35,7 +35,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 | Prop Name         | Description                            | Type                                               | Required | Default        |
 | ----------------- | -------------------------------------- | -------------------------------------------------- | -------- | -------------- |
 | title             | The text to show on the first line     | `string`                                           | yes      |                |
-| subtitle          | The text to show on the second line    | `string`\|`Array<React.ReactNode>`                 | no       |                |
+| subtitle          | The text to show on the second line    | `string` \| `Array<React.ReactNode>`               | no       |                |
 | subtitleSeparator | Separator character for subtitle       | `string`                                           | no       | '·' ('\u00B7') |
 | IconClass         | A component to render for the icon     | `React.Component<{ size: number, color: string }>` | no       |                |
 | iconColor         | The color of the primary icon          | `string`                                           | no       |                |
@@ -43,12 +43,12 @@ You can also supply an array of items that will be displayed as a character-sepa
 | avatar            | Show colored background for icon       | `boolean`                                          | no       | false          |
 | chevron           | Add a chevron icon on the right        | `boolean`                                          | no       | false          |
 | dense             | Smaller height row with less padding   | `boolean`                                          | no       | false          |
-| divider           | Show a row separator below the row     | `'full'`\|`'partial'`                              | no       |                |
+| divider           | Show a row separator below the row     | `'full'` \| `'partial'`                            | no       |                |
 | rightComponent    | Component to render on the right side  | `JSX.Element`                                      | no       |                |
 | statusColor       | Status stripe and icon color           | `string`                                           | no       |                |
 | fontColor         | Title text color                       | `string`                                           | no       |                |
 | backgroundColor   | The color used for the background      | `string`                                           | no       |                |
 | onPress           | A function to execute when clicked     | `function`                                         | no       |                |
-| theme             | Theme partial for default styling      | `Theme`                               | no       |                |
+| theme             | Theme partial for default styling      | `Theme`                                            | no       |                |
 
 </div>
