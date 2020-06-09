@@ -40,7 +40,7 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 | fontColor        | The color used for the text             | `string`              | no       | `theme.colors.onPrimary` |
 | backgroundImage  | An image to display in the header       | `ImageSourcePropType` | no       |                          |
 | searchableConfig | Configuration for search behavior       | `SearchableConfig`    | no       |                          |
-| theme            | Theme partial for default styling       | `Theme`  | no       |                          |
+| theme            | Theme partial for default styling       | `Theme`               | no       |                          |
 
 </div>
 
