@@ -42,3 +42,11 @@ All typography components in this library share a common API.
 | theme     | Theme partial for default styling   | `Theme`                            | no       |         |
 
 </div>
+
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name  | Description                         |
+| ----- | ----------------------------------- |
+| root  | Styles applied to the root element  |

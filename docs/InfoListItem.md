@@ -52,3 +52,20 @@ You can also supply an array of items that will be displayed as a character-sepa
 | theme             | Theme partial for default styling      | `Theme`                                            | no       |                |
 
 </div>
+
+
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name              | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| root              | Styles applied to the root element              |
+| statusStripe      | Styles applied to the status stripe element     |
+| iconWrapper       | Styles applied to the icon wrapper              |
+| avatar            | Styles applied to the avatar background         |
+| mainContent       | Styles applied to the main text content wrapper |
+| title             | Styles applied to the title element             |
+| subtitleWrapper   | Styles applied to the subtitle wrapper          |
+| subtitle          | Styles applied to the subtitle text elements    |
+| divider           | Styles applied to the divider element           |

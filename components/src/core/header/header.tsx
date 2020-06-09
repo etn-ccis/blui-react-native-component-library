@@ -7,6 +7,11 @@ import {
     StatusBar,
     TextInput,
     TouchableWithoutFeedback,
+    ViewProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    ImageStyle,
 } from 'react-native';
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
@@ -23,25 +28,47 @@ import { HeaderIcon } from '../__types__';
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
-const styles = StyleSheet.create({
-    bar: {
-        width: '100%',
-        shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOffset: {
-            width: 0,
-            height: 1,
+const headerStyles = (
+    props: HeaderProps,
+    theme: Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    // header: ViewStyle;
+    content: ViewStyle;
+}> =>
+    StyleSheet.create({
+        // root: {},
+        root: {
+            width: '100%',
+            backgroundColor: props.backgroundColor || theme.colors.primary,
+            shadowColor: 'rgba(0, 0, 0, 0.3)',
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowRadius: 2,
+            shadowOpacity: 1,
+            elevation: 0,
         },
-        shadowRadius: 2,
-        shadowOpacity: 1,
-        elevation: 0,
-    },
-    content: {
-        flex: 1,
-        paddingTop: 16,
-        paddingHorizontal: 16,
-        flexDirection: 'row',
-    },
-});
+
+        bar: {
+            width: '100%',
+            shadowColor: 'rgba(0, 0, 0, 0.3)',
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowRadius: 2,
+            shadowOpacity: 1,
+            elevation: 0,
+        },
+        content: {
+            flex: 1,
+            paddingTop: 16,
+            paddingHorizontal: 16,
+            flexDirection: 'row',
+        },
+    });
 
 export type SearchableConfig = {
     /** Icon to override default search icon */
@@ -63,7 +90,7 @@ export type SearchableConfig = {
     autoCorrect?: boolean;
 };
 
-export type HeaderProps = {
+export type HeaderProps = ViewProps & {
     /** Header title */
     title: string;
 
@@ -97,6 +124,21 @@ export type HeaderProps = {
     /** Configuration object that determines whether the Header can have a search bar */
     searchableConfig?: SearchableConfig;
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        backgroundImage?: StyleProp<ImageStyle>;
+        content?: StyleProp<ViewStyle>;
+        navigationIcon?: StyleProp<ViewStyle>;
+        textContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+        search?: StyleProp<TextStyle>;
+        actionPanel?: StyleProp<ViewStyle>;
+        actionItem?: StyleProp<ViewStyle>;
+    };
+
     /**
      * Overrides for theme
      */
@@ -121,17 +163,23 @@ export const Header: React.FC<HeaderProps> = (props) => {
         searchableConfig,
         startExpanded,
         subtitle,
+        style,
+        styles = {},
+        theme: themeOveride,
         title,
+        ...viewProps
     } = props;
 
     const searchRef = useRef<TextInput>(null);
-    const theme = useTheme(props.theme);
+    const theme = useTheme(themeOveride);
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
     const [query, setQuery] = useState('');
     const [headerHeight] = useState(
         startExpanded ? new Animated.Value(EXTENDED_HEIGHT) : new Animated.Value(REGULAR_HEIGHT)
     );
+
+    const defaultStyles = headerStyles(props, theme);
 
     const expand = Animated.timing(headerHeight, {
         toValue: EXTENDED_HEIGHT,
@@ -164,20 +212,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
             color(getBackgroundColor()).isDark() ? 'light-content' : 'dark-content',
         [getBackgroundColor]
     );
-    const barStyle = useCallback(
-        (): Array<Record<string, any>> => [
-            styles.bar,
-            {
-                height: headerHeight,
-                backgroundColor: getBackgroundColor(),
-            },
-        ],
-        [headerHeight, getBackgroundColor]
-    );
+
     const contentStyle = useCallback((): Array<Record<string, any>> => {
         const contractedPadding = subtitle && !searching ? 12 : 16;
         return [
-            styles.content,
+            defaultStyles.content,
             {
                 paddingBottom: headerHeight.interpolate({
                     inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
@@ -231,8 +270,20 @@ export const Header: React.FC<HeaderProps> = (props) => {
     return (
         <>
             <StatusBar barStyle={statusBarStyle()} />
-            <TouchableWithoutFeedback onPress={(): void => onPress()} disabled={!expandable || searching}>
-                <AnimatedSafeAreaView style={barStyle()}>
+            <TouchableWithoutFeedback
+                onPress={(): void => onPress()}
+                disabled={!expandable || searching}
+                {...viewProps}
+            >
+                <AnimatedSafeAreaView
+                    style={[
+                        defaultStyles.root,
+                        styles.root,
+                        style,
+                        { height: headerHeight },
+                        searching ? { backgroundColor: theme.colors.surface } : {},
+                    ]}
+                >
                     <SearchContext.Provider
                         value={{
                             searchRef: searchRef,
@@ -247,17 +298,30 @@ export const Header: React.FC<HeaderProps> = (props) => {
                     >
                         <ColorContext.Provider value={{ color: getFontColor() }}>
                             <HeaderHeightContext.Provider value={{ headerHeight: headerHeight }}>
-                                <HeaderBackgroundImage backgroundImage={backgroundImage} />
-                                <Animated.View style={contentStyle()}>
-                                    <HeaderNavigationIcon navigation={navigation} />
+                                <HeaderBackgroundImage
+                                    backgroundImage={backgroundImage}
+                                    style={styles.backgroundImage}
+                                />
+                                <Animated.View style={[contentStyle(), styles.content]}>
+                                    <HeaderNavigationIcon navigation={navigation} style={styles.navigationIcon} />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}
                                         subtitle={subtitle}
                                         info={info}
                                         actionCount={actionItems ? actionItems.length : 0}
+                                        styles={{
+                                            root: styles.textContent,
+                                            title: styles.title,
+                                            subtitle: styles.subtitle,
+                                            info: styles.info,
+                                            search: styles.search,
+                                        }}
                                     />
-                                    <HeaderActionItems actionItems={actionItems} />
+                                    <HeaderActionItems
+                                        actionItems={actionItems}
+                                        styles={{ root: styles.actionPanel, actionItem: styles.actionItem }}
+                                    />
                                 </Animated.View>
                             </HeaderHeightContext.Provider>
                         </ColorContext.Provider>

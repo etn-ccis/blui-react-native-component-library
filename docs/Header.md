@@ -44,7 +44,25 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 </div>
 
-#### HeaderIcon
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name              | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| root              | Styles applied to the root element             |
+| backgroundImage   | Styles applied to the background image         |
+| content           | Styles applied to the content wrapper          |
+| navigationIcon    | Styles applied to the navigation icon          |
+| textContent       | Styles applied to the text wrapper             |
+| title             | Styles applied to the title element            |
+| subtitle          | Styles applied to the subtitle element         |
+| info              | Styles applied to the info element             |
+| search            | Styles applied to the search input element     |
+| actionPanel       | Styles applied to the actions container        |
+| actionItem        | Styles applied to the action icon(s)           |
+
+# HeaderIcon
 
 Header icons specified as a JSON object with the following properties:
 
@@ -57,7 +75,7 @@ Header icons specified as a JSON object with the following properties:
 
 </div>
 
-#### SearchableConfig
+# SearchableConfig
 
 SearchableConfig is an optional object used to configure the search functionality of the header component. It is a JSON object with the following properties:
 

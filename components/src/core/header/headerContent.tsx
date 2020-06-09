@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Animated, StyleSheet, TextInput, View } from 'react-native';
+import { Animated, StyleSheet, TextInput, View, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import color from 'color';
 import { Theme } from 'react-native-paper';
 import { SIZES } from '../sizes';
@@ -8,7 +8,7 @@ import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 
-const styles = StyleSheet.create({
+const headerContentStyles = StyleSheet.create({
     titleContainer: {
         flex: 1,
         flexDirection: 'column',
@@ -28,23 +28,32 @@ export type HeaderContentProps = {
 
     actionCount?: number;
 
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+        search?: StyleProp<TextStyle>;
+    };
+
     theme: Theme;
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
-    const { title, subtitle, info, actionCount = 0, theme } = props;
+    const { title, subtitle, info, actionCount = 0, theme, styles = {} } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
+    const defaultStyles = headerContentStyles;
 
     let content: JSX.Element[] = [];
 
     if (searchConfig && searching) {
-        content = [<SearchContent key={'search-content'} theme={theme} />];
+        content = [<SearchContent key={'search-content'} theme={theme} style={styles.search} />];
     } else {
         content = [
-            <HeaderTitle title={title} key="title_key" theme={theme} />,
-            <HeaderInfo info={info} key="info_key" theme={theme} />,
-            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} />,
+            <HeaderTitle title={title} key="title_key" theme={theme} style={styles.title} />,
+            <HeaderInfo info={info} key="info_key" theme={theme} style={styles.info} />,
+            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={styles.subtitle} />,
         ];
     }
 
@@ -59,13 +68,14 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     return (
         <Animated.View
             style={[
-                styles.titleContainer,
+                defaultStyles.titleContainer,
                 {
                     marginRight: headerHeight.interpolate({
                         inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                         outputRange: [getActionPanelWidth(), 0],
                     }),
                 },
+                styles.root,
             ]}
         >
             <View style={{ flex: 0, justifyContent: 'center' }}>{content}</View>
@@ -76,9 +86,10 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
 type HeaderTitleProps = {
     title: string;
     theme: Theme;
+    style?: StyleProp<TextStyle>;
 };
 const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
-    const { title, theme } = props;
+    const { title, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
 
@@ -99,7 +110,12 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     );
 
     return (
-        <Animated.Text testID={'header-title'} style={getTitleStyle()} numberOfLines={1} ellipsizeMode={'tail'}>
+        <Animated.Text
+            testID={'header-title'}
+            style={[getTitleStyle(), style]}
+            numberOfLines={1}
+            ellipsizeMode={'tail'}
+        >
             {title}
         </Animated.Text>
     );
@@ -108,9 +124,10 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
 type HeaderSubtitleProps = {
     subtitle?: string;
     theme: Theme;
+    style?: StyleProp<TextStyle>;
 };
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
-    const { subtitle, theme } = props;
+    const { subtitle, theme, style } = props;
     const { color: textColor } = useColor();
 
     const getSubtitleStyle = useCallback(
@@ -127,7 +144,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
         return (
             <Animated.Text
                 testID={'header-subtitle'}
-                style={getSubtitleStyle()}
+                style={[getSubtitleStyle(), style]}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
             >
@@ -141,9 +158,10 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
 type HeaderInfoProps = {
     info?: string;
     theme: Theme;
+    style?: StyleProp<TextStyle>;
 };
 const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
-    const { info, theme } = props;
+    const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
 
@@ -169,7 +187,12 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
 
     if (info) {
         return (
-            <Animated.Text testID={'header-info'} style={getInfoStyle()} numberOfLines={1} ellipsizeMode={'tail'}>
+            <Animated.Text
+                testID={'header-info'}
+                style={[getInfoStyle(), style]}
+                numberOfLines={1}
+                ellipsizeMode={'tail'}
+            >
                 {info}
             </Animated.Text>
         );
@@ -179,9 +202,10 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
 
 type SearchContentProps = {
     theme: Theme;
+    style?: StyleProp<TextStyle>;
 };
 const SearchContent: React.FC<SearchContentProps> = (props) => {
-    const { theme } = props;
+    const { theme, style } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
     const { color: textColor } = useColor();
     const placeholderTextColor = color(textColor).fade(0.4).string();
@@ -190,12 +214,15 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
         <TextInput
             key={'search-input'}
             ref={searchRef}
-            style={{
-                padding: 0,
-                color: textColor,
-                fontSize: SIZES.large,
-                ...theme.fonts.light,
-            }}
+            style={[
+                {
+                    padding: 0,
+                    color: textColor,
+                    fontSize: SIZES.large,
+                    ...theme.fonts.light,
+                },
+                style,
+            ]}
             autoCapitalize={searchConfig.autoCapitalize || 'none'}
             autoCorrect={searchConfig.autoCorrect || false}
             autoFocus={searchConfig.autoFocus}

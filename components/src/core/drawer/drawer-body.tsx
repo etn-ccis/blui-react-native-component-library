@@ -1,13 +1,18 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, ScrollViewProps } from 'react-native';
 import { DrawerNavGroup } from './drawer-nav-group';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 
-export const DrawerBody: React.FC<DrawerInheritableProps> = (props) => {
-    const children = React.Children.toArray(props.children);
+const defaultStyles = StyleSheet.create({
+    root: {},
+});
+type DrawerBodyProps = ScrollViewProps & DrawerInheritableProps;
+export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
+    const { children, style, ...scrollProps } = props;
+    const childrenArray = React.Children.toArray(children);
     return (
-        <ScrollView>
-            {children.map((child: any, index: number) => {
+        <ScrollView style={[defaultStyles.root, style]} {...scrollProps}>
+            {childrenArray.map((child: any, index: number) => {
                 if (!child) return null;
                 if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
                 return (

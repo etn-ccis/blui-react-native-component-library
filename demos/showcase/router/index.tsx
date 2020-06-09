@@ -25,7 +25,7 @@ export const MainRouter = (): any => (
     <NavigationContainer>
         <Drawer.Navigator
             initialRouteName="App"
-            drawerStyle={{ backgroundColor: 'transparent' }}
+            drawerStyle={{ backgroundColor: 'transparent', width: '80%' }}
             drawerContent={(props: NavDrawerProps): ReactNode => <CustomDrawerContent {...props} />}
         >
             <RootStack.Screen name="App" component={App} />

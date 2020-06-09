@@ -19,6 +19,11 @@ type TypographyProps = {
      */
     color?: keyof Theme['colors'];
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<TextStyle>;
+    };
+
     /**
      * Overrides for theme
      */
@@ -37,6 +42,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
     fontSize,
     color,
     style,
+    styles = {},
     ...props
 }): JSX.Element => {
     const theme = useTheme(props.theme);
@@ -54,7 +60,13 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
     return (
         <Text
             {...props}
-            style={[{ color: color ? theme.colors[color] : theme.colors.text }, getStyle(theme), customStyle, style]}
+            style={[
+                { color: color ? theme.colors[color] : theme.colors.text },
+                getStyle(theme),
+                customStyle,
+                styles.root,
+                style,
+            ]}
         />
     );
 };
@@ -65,42 +77,42 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
 export const H1 = createTypography((theme) => ({
     ...theme.fonts.light,
     fontSize: 96,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const H2 = createTypography((theme) => ({
     ...theme.fonts.light,
     fontSize: 60,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const H3 = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: 48,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const H4 = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.giant,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const H5 = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.extraLarge,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const H6 = createTypography((theme) => ({
     ...theme.fonts.medium,
     fontSize: SIZES.large,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Body1 = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.medium,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Body2 = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.small,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Label = createTypography((theme) => ({
     ...theme.fonts.regular,
@@ -110,25 +122,25 @@ export const Label = createTypography((theme) => ({
 export const Subtitle1 = createTypography((theme) => ({
     ...theme.fonts.medium,
     fontSize: SIZES.medium,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Subtitle2 = createTypography((theme) => ({
     ...theme.fonts.medium,
     fontSize: SIZES.small,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Button = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.small,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Caption = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.tiny,
-    letterSpacing: 0
+    letterSpacing: 0,
 }));
 export const Overline = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: SIZES.extraSmall,
-    letterSpacing: 2
+    letterSpacing: 2,
 }));

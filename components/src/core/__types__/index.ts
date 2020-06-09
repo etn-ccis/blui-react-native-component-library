@@ -12,3 +12,10 @@ export type HeaderIcon = {
     /** Callback when icon is pressed */
     onPress: () => void;
 };
+
+export type EdgeInsets = {
+    top: number;
+    left: number;
+    bottom: number;
+    right: number;
+};

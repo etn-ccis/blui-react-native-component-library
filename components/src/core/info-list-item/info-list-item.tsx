@@ -1,52 +1,72 @@
 import React, { ComponentType, useCallback } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Divider, Theme, useTheme} from 'react-native-paper';
+import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 
-const MAX_SUBTITLE_ELEMENTS = 3;
+const infoListItemStyles = (
+    props: InfoListItemProps,
+    theme: Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    title: TextStyle;
+    subtitle: TextStyle;
+    subtitleWrapper: ViewStyle;
+    statusStripe: ViewStyle;
+    iconWrapper: ViewStyle;
+    avatar: ViewStyle;
+    mainContent: ViewStyle;
+}> =>
+    StyleSheet.create({
+        root: {
+            backgroundColor: props.backgroundColor || 'transparent',
+            height: props.dense ? 52 : 72,
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingRight: 16,
+        },
+        title: {
+            color: props.fontColor || theme.colors.text,
+        },
+        subtitleWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        subtitle: {
+            color: props.fontColor || theme.colors.text,
+        },
+        statusStripe: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: 6,
+            backgroundColor: props.statusColor,
+        },
+        iconWrapper: {
+            marginLeft: 16,
+            width: 40,
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+        },
+        avatar: {
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: props.statusColor || theme.colors.text,
+        },
+        mainContent: {
+            flex: 1,
+            paddingHorizontal: 16,
+        },
+    });
 
-const styles = StyleSheet.create({
-    avatar: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'transparent',
-    },
-    divider: {
-        color: Colors.black['100'],
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    withRightPadding: {
-        paddingRight: 16,
-    },
-    iconContainer: {
-        marginLeft: 10,
-        width: 40,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-    },
-    contentContainer: {
-        flex: 1,
-        paddingHorizontal: 16,
-    },
-    tab: {
-        width: 6,
-    },
-    fullHeight: {
-        height: '100%',
-    },
-});
-
-export type InfoListItemProps = {
+export type InfoListItemProps = ViewProps & {
     /** Title to show */
     title: string;
 
@@ -92,6 +112,19 @@ export type InfoListItemProps = {
     /** Callback to be called on press. */
     onPress?: () => void;
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        statusStripe?: StyleProp<ViewStyle>;
+        iconWrapper?: StyleProp<ViewStyle>;
+        avatar?: StyleProp<ViewStyle>;
+        mainContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        subtitleWrapper?: StyleProp<ViewStyle>;
+        divider?: StyleProp<ViewStyle>;
+    };
+
     /**
      * Overrides for theme
      */
@@ -111,27 +144,20 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         subtitle,
         subtitleSeparator,
         statusColor,
-        dense,
-        fontColor,
+        dense, //eslint-disable-line @typescript-eslint/no-unused-vars
+        fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         iconColor,
-        backgroundColor,
+        backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         onPress,
         IconClass,
         hidePadding,
+        styles = {},
+        theme: themeOverride,
+        style,
+        ...viewProps
     } = props;
-    const { row, fullHeight, tab, iconContainer, contentContainer, withRightPadding } = styles;
-
-    const theme = useTheme(props.theme);
-
-    const style = {
-        backgroundColor: backgroundColor || 'transparent',
-    };
-    const titleStyle = {
-        color: fontColor || theme.colors.text,
-    };
-    const fixedHeight = {
-        height: dense ? 52 : 72,
-    };
+    const theme = useTheme(themeOverride);
+    const defaultStyles = infoListItemStyles(props, theme);
 
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
@@ -145,33 +171,27 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return statusColor ? statusColor : theme.colors.text;
     }, [iconColor, avatar, statusColor]);
 
-    const getAvatarStyle = useCallback((): Record<string, any> => {
-        const avatarStyle = { ...styles.avatar };
-        avatarStyle.backgroundColor = statusColor || Colors.black[500];
-        return avatarStyle;
-    }, [statusColor]);
-
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (IconClass) {
             return (
-                <View style={avatar ? getAvatarStyle() : null}>
+                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : null}>
                     <IconClass size={24} color={getIconColor()} />
                 </View>
             );
         }
-    }, [IconClass, avatar, getAvatarStyle, getIconColor]);
+    }, [IconClass, avatar, getIconColor]);
 
     const getSubtitle = useCallback((): JSX.Element[] | null => {
         if (!subtitle) {
             return null;
         }
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
-        const renderableSubtitleParts = subtitleParts
-            .splice(0, MAX_SUBTITLE_ELEMENTS)
-            .map((element) => renderableSubtitleComponent(element));
+        const renderableSubtitleParts = subtitleParts.map((element) =>
+            renderableSubtitleComponent(element, Object.assign(defaultStyles.subtitle, styles.subtitle))
+        );
 
         return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
-    }, [subtitle, subtitleSeparator]);
+    }, [subtitle, subtitleSeparator, styles]);
 
     const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
@@ -182,33 +202,40 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     }, [rightComponent, chevron, theme]);
 
     return (
-        <View style={[fixedHeight, style]}>
-            <TouchableOpacity
-                onPress={onPress}
-                style={[fullHeight, row, withRightPadding]}
-                disabled={!onPress}
-                activeOpacity={0.7}
-            >
-                <View style={[fullHeight, tab, { backgroundColor: statusColor }]} />
-                {IconClass || !hidePadding ? <View style={iconContainer}>{getIcon()}</View> : null}
-                <View style={contentContainer}>
-                    <Body1 style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'medium'}>
-                        {title}
-                    </Body1>
-                    <View style={row}>{getSubtitle()}</View>
-                </View>
-                {getRightComponent()}
-                <DividerWrapper divider={divider} />
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+            onPress={onPress}
+            style={[defaultStyles.root, styles.root, style]}
+            disabled={!onPress}
+            activeOpacity={0.7}
+            {...viewProps}
+        >
+            <View style={[defaultStyles.statusStripe, styles.statusStripe]} />
+            {IconClass || !hidePadding ? (
+                <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
+            ) : null}
+            <View style={[defaultStyles.mainContent, styles.mainContent]}>
+                <Body1
+                    style={[defaultStyles.title, styles.title]}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                    font={'medium'}
+                >
+                    {title}
+                </Body1>
+                <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
+            </View>
+            {getRightComponent()}
+            <Divider divider={divider} style={styles.divider} />
+        </TouchableOpacity>
     );
 };
 
 type DividerProps = {
     divider?: 'full' | 'partial';
+    style?: StyleProp<ViewStyle>;
 };
-const DividerWrapper: React.FC<DividerProps> = (props) => {
-    const { divider } = props;
+const Divider: React.FC<DividerProps> = (props) => {
+    const { divider, style } = props;
     if (divider) {
         return (
             <View
@@ -216,11 +243,11 @@ const DividerWrapper: React.FC<DividerProps> = (props) => {
                     position: 'absolute',
                     bottom: 0,
                     right: 0,
-                    left: divider === 'partial' ? 72 : 0,
+                    left: 0,
                     alignItems: 'stretch',
                 }}
             >
-                <Divider />
+                <PaperDivider inset={divider === 'partial'} style={style} />
             </View>
         );
     }

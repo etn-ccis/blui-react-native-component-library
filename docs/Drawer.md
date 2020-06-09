@@ -12,12 +12,14 @@ import { Drawer, DrawerHeader, DrawerBody, NavItem } from '@pxblue/react-native-
 ...
 <Drawer activeItem={selectedItem} onItemSelect={(id) => {/* updateSelectedItem */}}>
     <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'} icon={<Menu/>} />
+    <DrawerSubheader>{/* contents */ }</DrawerSubheader>
     <DrawerBody>
         <DrawerNavGroup title={'Navigation Group'} items={[{
             title: 'Identity Management',
             itemID: 'g1i1',
         }]} />
     </DrawerBody>
+    <DrawerFooter>{/* contents */ }</DrawerFooter>
 </Drawer>
 }
 ```
@@ -66,6 +68,22 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 </div>
 
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name                     | Description                                    |
+| ------------------------ | ---------------------------------------------- |
+| root                     | Styles applied to the root element             |
+| backgroundImageWrapper   | Styles applied to the background image wrapper |
+| backgroundImage          | Styles applied to the background image         |
+| content                  | Styles applied to the content wrapper          |
+| textContent              | Styles applied to the text wrapper             |
+| title                    | Styles applied to the title element            |
+| subtitle                 | Styles applied to the subtitle element         |
+| icon                     | Styles applied to the left icon element        |
+
+
 # DrawerSubheader
 The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody>`.
 
@@ -73,7 +91,7 @@ The `<DrawerSubheader>` is an optional subsection that will appear below the `<D
 The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navigation items found within the `<Drawer>`. 
 
 ## API
-The `<DrawerBody>` supports all inheritable properties found within the `<Drawer>` API section.
+The `<DrawerBody>` supports all inheritable properties found within the `<Drawer>` API section and all properties from the React Native ScrollView.
 
 # DrawerNavGroup
 A `<DrawerNavGroup>` consists of a `title` or custom `titleContent` and houses the navigation items found in the `<Drawer>`.
@@ -91,6 +109,19 @@ The `<DrawerNavGroup>` supports all inheritable properties found within the `<Dr
 
 </div>
 
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name                     | Description                                         |
+| ------------------------ | --------------------------------------------------- |
+| root                     | Styles applied to the root element                  |
+| content                  | Styles applied to the content wrapper               |
+| textContent              | Styles applied to the text wrapper                  |
+| title                    | Styles applied to the title element                 |
+| divider                  | Styles applied to the divider elements              |
+| navItem                  | Styles passed to the underlying NavItem (see below) |
+
 ## NavItem
 A `<NavItem>` is a clickable link that appears within a `<DrawerNavGroup>`.  They can be used for navigation between pages, or can be a `NestedNavItem` that can expand or collapse other sub-`NavItem`s. 
 A `<NavItem>` supports all inheritable properties found within the `<Drawer>` API section.  It also supports these additional props:
@@ -107,6 +138,16 @@ A `<NavItem>` supports all inheritable properties found within the `<Drawer>` AP
 
 A `<NavItem>` is built using our `<InfoListItem>` component and inherits all of its properties. 
 A `<NestedNavItem>` has all the same properties as a `<NavItem>` but does not support icons. 
+
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name                     | Description                                         |
+| ------------------------ | --------------------------------------------------- |
+| root                     | Styles applied to the root element                  |
+| activeBackground         | Styles applied to the background of an active item  |
+| infoListItem             | Styles passed to the underlying InfoListItem        |
 
 # DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.

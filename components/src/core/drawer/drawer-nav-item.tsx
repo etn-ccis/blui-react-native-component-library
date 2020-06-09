@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useCallback } from 'react';
+import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 import { InfoListItem } from '../info-list-item';
 import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
@@ -15,17 +15,26 @@ export type NavItem = {
     // IconClass is replaced by the 'icon' property.
     Omit<InfoListItemProps, 'IconClass'>;
 
-export type DrawerNavItemProps = {
+export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'> & {
     depth: number;
     expanded: boolean;
     expandHandler?: Function;
     navGroupProps: DrawerNavGroupProps;
     navItem: NavItem | NestedNavItem;
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        activeBackground?: StyleProp<ViewStyle>;
+        infoListItem?: InfoListItemProps['styles'];
+    };
+    /** Overrides for theme */
+    // theme?: Theme; // Uncomment if we need to style anything based on the theme
 };
 
 const makeStyles = (props: DrawerNavItemProps): any =>
     StyleSheet.create({
-        active: {
+        root: {},
+        activeBackground: {
             backgroundColor: props.navItem.activeItemBackgroundColor,
             zIndex: 0,
             position: 'absolute',
@@ -37,44 +46,63 @@ const makeStyles = (props: DrawerNavItemProps): any =>
             borderBottomRightRadius: props.navItem.activeItemBackgroundShape === 'square' ? 0 : 24,
             opacity: 0.9,
         },
-        square: {
-            width: '100%',
-            borderRadius: 0,
-        },
     });
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
-    const styles = makeStyles(props);
-    const { navItem, depth, navGroupProps, expandHandler } = props;
+    const defaultStyles = makeStyles(props);
+    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {}, ...infoListItemProps } = props;
+
     const icon = !depth ? (navItem as NavItem).icon : undefined;
     const active = navGroupProps.activeItem === navItem.itemID;
-    const rightIcon = navItem.items ? (props.expanded ? navItem.collapseIcon : navItem.expandIcon) : undefined;
-    const onPressAction = (id: string): void => {
-        if (navItem.onItemSelect) {
-            navItem.onItemSelect(id);
-        }
-        if (navItem.onPress) {
-            navItem.onPress();
-        } else if (expandHandler) {
-            expandHandler();
-        }
-    };
+    const rightIcon = navItem.items ? (expanded ? navItem.collapseIcon : navItem.expandIcon) : undefined;
+
+    const infoListItemStyles = styles.infoListItem || {};
+    const { root: iliRoot, title: iliTitle, ...otherILI } = infoListItemStyles;
+
+    const onPressAction = useCallback(
+        (id: string): void => {
+            if (navItem.onItemSelect) {
+                navItem.onItemSelect(id);
+            }
+            if (navItem.onPress) {
+                navItem.onPress();
+            } else if (expandHandler) {
+                expandHandler();
+            }
+        },
+        [navItem, expandHandler]
+    );
+
     return (
-        <View style={{ paddingLeft: 16 * (depth > 1 ? depth - 1 : 0) }}>
-            {active && <View style={styles.active} />}
+        <View style={[defaultStyles.root, styles.root]}>
+            {active && <View style={[defaultStyles.activeBackground, styles.activeBackground]} />}
             <InfoListItem
                 dense
                 {...navItem}
                 rightComponent={rightIcon}
                 backgroundColor={'transparent'}
-                iconColor={
-                    active ? props.navItem.activeItemIconColor : (props.navItem.iconColor || props.navItem.itemIconColor)
-                }
-                fontColor={
-                    active ? props.navItem.activeItemFontColor : (props.navItem.fontColor || props.navItem.itemFontColor)
-                }
+                iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
+                fontColor={active ? navItem.activeItemFontColor : navItem.fontColor || navItem.itemFontColor}
                 onPress={(): void => onPressAction(navItem.itemID)}
                 IconClass={icon}
+                styles={{
+                    root: Object.assign(
+                        {
+                            paddingLeft: 16 * (depth > 1 ? depth - 1 : 0),
+                        },
+                        iliRoot
+                    ),
+                    title: Object.assign(
+                        depth > 0
+                            ? {
+                                  fontWeight: '400',
+                              }
+                            : {},
+                        iliTitle
+                    ),
+                    ...otherILI,
+                }}
+                {...infoListItemProps}
             />
         </View>
     );

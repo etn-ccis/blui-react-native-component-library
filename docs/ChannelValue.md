@@ -28,6 +28,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | --------- | ------------------------------------- | ---------------------------------------------------- | -------- | ------------------- |
 | value     | The value shown below the icon        | `string` \| `number`                                 | yes      |                     |
 | IconClass | A component to render for the icon    | `React.Component<{ size: number, color: string }>`   | no       |                     |
+| IconProps | Props to pass through to the icon     | `{ size?: number, color?: string }`                  | no       |                     |
 | units     | The units for the supplied value      | `string`                                             | no       |                     |
 | prefix    | If true, shows units before the value | `boolean`                                            | no       | false               |
 | fontSize  | The size of the font for the value    | keyof [`theme.sizes`](./Theme.md)                    | no       | 'medium'            |
@@ -35,3 +36,13 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | theme     | Theme partial for default styling     | `Theme`                                              | no       |                     |
 
 </div>
+
+### Styles
+
+You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+
+| Name  | Description                         |
+| ----- | ----------------------------------- |
+| root  | Styles applied to the root element  |
+| units | Styles applied to the units element |
+| value | Styles applied to the value element |
