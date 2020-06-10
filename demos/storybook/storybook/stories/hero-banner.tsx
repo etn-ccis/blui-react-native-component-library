@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { boolean, withKnobs, number } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { Hero, HeroBanner, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
@@ -36,8 +36,4 @@ const heroes = [
 storiesOf('HeroBanner', module)
     .addDecorator(withKnobs)
     .addDecorator(safeArea)
-    .add('with a variety of Heroes', () => (
-        <HeroBanner divider={boolean('divider', true)}>
-            {heroes}
-        </HeroBanner>
-    ));
+    .add('with a variety of Heroes', () => <HeroBanner divider={boolean('divider', true)}>{heroes}</HeroBanner>);
