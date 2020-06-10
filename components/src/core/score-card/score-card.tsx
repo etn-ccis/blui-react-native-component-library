@@ -13,6 +13,7 @@ import {
 import * as Typography from '../typography';
 import { Theme, useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
@@ -115,7 +116,7 @@ export type ScoreCardProps = {
     /**
      * Overrides for theme
      */
-    theme?: DeepPartial<Theme>;
+    theme?: $DeepPartial<Theme>;
 
     /**
      * Array of actions to render in the header.

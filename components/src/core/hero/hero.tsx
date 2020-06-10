@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, Te
 import { ChannelValue } from '../channel-value';
 import { Theme, useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -87,7 +88,7 @@ export type HeroProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: DeepPartial<Theme>;
+    theme?: $DeepPartial<Theme>;
 };
 
 /**

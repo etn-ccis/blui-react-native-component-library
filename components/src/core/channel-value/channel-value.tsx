@@ -2,6 +2,7 @@ import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -43,7 +44,7 @@ export type ChannelValueProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: DeepPartial<Theme>;
+    theme?: $DeepPartial<Theme>;
 };
 
 /**

@@ -7,6 +7,7 @@ import { Divider, Theme, useTheme } from 'react-native-paper';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type DrawerNavGroupProps = ViewProps & {
     // List of navigation items to render
@@ -28,7 +29,7 @@ export type DrawerNavGroupProps = ViewProps & {
         navItem?: DrawerNavItemProps['styles'];
     };
     /** Overrides for theme */
-    theme?: DeepPartial<Theme>;
+    theme?: $DeepPartial<Theme>;
 } & NavGroupInheritableProps;
 
 const drawerNavGroupStyles = StyleSheet.create({

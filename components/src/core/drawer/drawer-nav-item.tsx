@@ -4,6 +4,7 @@ import { InfoListItem } from '../info-list-item';
 import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
 import { DrawerNavGroupProps } from './drawer-nav-group';
+// import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
 
@@ -28,7 +29,7 @@ export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'
         infoListItem?: InfoListItemProps['styles'];
     };
     /** Overrides for theme */
-    // theme?: DeepPartial<Theme>; // Uncomment if we need to style anything based on the theme
+    // theme?: $DeepPartial<Theme>; // Uncomment if we need to style anything based on the theme
 };
 
 const makeStyles = (props: DrawerNavItemProps): any =>

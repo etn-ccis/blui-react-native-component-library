@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Text, TextProps, TextStyle, StyleProp } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 type TypographyProps = {
     /**
@@ -26,7 +27,7 @@ type TypographyProps = {
     /**
      * Overrides for theme
      */
-    theme?: DeepPartial<Theme>;
+    theme?: $DeepPartial<Theme>;
 } & TextProps;
 
 type Typography = ComponentType<TypographyProps>;
