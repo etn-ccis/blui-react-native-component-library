@@ -48,13 +48,13 @@ storiesOf('ChannelValue', module)
         notes
     )
     .add(
-        'with extraLarge font size',
+        'with fontSize',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
                     value={text('value', text('value', '123'))}
                     units={text('units', 'hz')}
-                    fontSize={24}
+                    fontSize={number('fontSize', 48)}
                     IconClass={WrappedLeaf}
                 />
             </View>

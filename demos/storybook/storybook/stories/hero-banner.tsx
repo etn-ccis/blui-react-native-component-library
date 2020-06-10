@@ -30,7 +30,6 @@ const heroes = [
     <Hero key={'hero_4'} label={'Loaded'} IconClass={Pie} iconColor={blue[500]}>
         <ChannelValue fontSize={20} value={65} units={'%'} IconClass={ChartLineVariant} />
     </Hero>,
-    <Hero key={'hero_5'} label={'Not Shown'} value={'5th Item'} IconClass={Battery} iconColor={blue[500]} />,
 ];
 
 storiesOf('HeroBanner', module)
