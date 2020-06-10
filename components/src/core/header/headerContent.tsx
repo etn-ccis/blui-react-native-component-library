@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { Animated, StyleSheet, TextInput, View, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import color from 'color';
 import { Theme } from 'react-native-paper';
-import { SIZES } from '../sizes';
 import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
@@ -98,12 +97,12 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             color: textColor,
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [SIZES.large, 30],
+                outputRange: [20, 30],
             }),
             fontFamily: theme.fonts.medium.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [SIZES.large, 30],
+                outputRange: [20, 30],
             }),
         }),
         [textColor, headerHeight, theme]
@@ -170,7 +169,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             color: textColor,
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [0.1, SIZES.large * 1.05], // Avoid clipping top of CAP letters
+                outputRange: [0.1, 20 * 1.05], // Avoid clipping top of CAP letters
             }),
             opacity: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
@@ -179,7 +178,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             fontFamily: theme.fonts.regular.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [0.1, SIZES.large],
+                outputRange: [0.1, 20],
             }),
         }),
         [textColor, theme, headerHeight]
@@ -218,7 +217,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
                 {
                     padding: 0,
                     color: textColor,
-                    fontSize: SIZES.large,
+                    fontSize: 20,
                     ...theme.fonts.light,
                 },
                 style,

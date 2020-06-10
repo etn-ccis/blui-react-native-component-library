@@ -91,16 +91,16 @@ export const App: React.FC<AppProps> = ({ navigation }) => (
                         value={96}
                         units={'/100'}
                         IconClass={A}
-                        fontSize={'large'}
+                        fontSize={20}
                         iconColor={PXBColors.green[500]}
                     />
                     <Hero label={'Battery'} value={'Full'} IconClass={Battery} iconColor={PXBColors.blue[500]} />
                     <Hero label={'Estimated'} IconClass={Clock} iconColor={PXBColors.gray[500]}>
-                        <ChannelValue fontSize={'large'} value={1} units={'h'} />
-                        <ChannelValue fontSize={'large'} value={37} units={'m'} />
+                        <ChannelValue fontSize={20} value={1} units={'h'} />
+                        <ChannelValue fontSize={20} value={37} units={'m'} />
                     </Hero>
                     <Hero label={'Loaded'} IconClass={Pie} iconColor={PXBColors.blue[500]}>
-                        <ChannelValue fontSize={'large'} value={65} units={'%'} IconClass={ChartLineVariant} />
+                        <ChannelValue fontSize={20} value={65} units={'%'} IconClass={ChartLineVariant} />
                     </Hero>
                     <Hero label={'Not Shown'} value={'5th Item'} IconClass={Battery} iconColor={PXBColors.blue[500]} />
                 </HeroBanner>

@@ -1,13 +1,12 @@
 import React, { ComponentType } from 'react';
 import { Text, TextProps, TextStyle, StyleProp } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
-import { Sizes, SIZES } from '../sizes';
 
 type TypographyProps = {
     /**
      * Key to use for font size.
      */
-    fontSize?: keyof Sizes;
+    fontSize?: number;
 
     /**
      * Font to use
@@ -27,7 +26,7 @@ type TypographyProps = {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 } & TextProps;
 
 type Typography = ComponentType<TypographyProps>;
@@ -49,7 +48,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
 
     let customStyle: StyleProp<TextStyle> = {};
     if (fontSize) {
-        customStyle.fontSize = SIZES[fontSize];
+        customStyle.fontSize = fontSize;
     }
     if (font) {
         customStyle = {
@@ -91,56 +90,56 @@ export const H3 = createTypography((theme) => ({
 }));
 export const H4 = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.giant,
+    fontSize: 34,
     letterSpacing: 0,
 }));
 export const H5 = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.extraLarge,
+    fontSize: 24,
     letterSpacing: 0,
 }));
 export const H6 = createTypography((theme) => ({
     ...theme.fonts.medium,
-    fontSize: SIZES.large,
+    fontSize: 20,
     letterSpacing: 0,
 }));
 export const Body1 = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.medium,
+    fontSize: 16,
     letterSpacing: 0,
 }));
 export const Body2 = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.small,
+    fontSize: 14,
     letterSpacing: 0,
 }));
 export const Label = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.medium,
+    fontSize: 16,
     letterSpacing: 0,
 }));
 export const Subtitle1 = createTypography((theme) => ({
     ...theme.fonts.medium,
-    fontSize: SIZES.medium,
+    fontSize: 16,
     letterSpacing: 0,
 }));
 export const Subtitle2 = createTypography((theme) => ({
     ...theme.fonts.medium,
-    fontSize: SIZES.small,
+    fontSize: 14,
     letterSpacing: 0,
 }));
 export const Button = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.small,
+    fontSize: 14,
     letterSpacing: 0,
 }));
 export const Caption = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.tiny,
+    fontSize: 10,
     letterSpacing: 0,
 }));
 export const Overline = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: SIZES.extraSmall,
+    fontSize: 12,
     letterSpacing: 2,
 }));

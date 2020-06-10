@@ -54,7 +54,7 @@ export type EmptyStateProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 };
 
 /**

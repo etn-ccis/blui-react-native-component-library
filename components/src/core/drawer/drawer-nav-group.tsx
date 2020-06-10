@@ -28,7 +28,7 @@ export type DrawerNavGroupProps = ViewProps & {
         navItem?: DrawerNavItemProps['styles'];
     };
     /** Overrides for theme */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 } & NavGroupInheritableProps;
 
 const drawerNavGroupStyles = StyleSheet.create({

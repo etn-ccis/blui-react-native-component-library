@@ -25,8 +25,8 @@ storiesOf('Hero', module)
     ))
     .add('with ChannelValue children', () => (
         <Hero style={{ width: '100%' }} label={text('label', 'Duration')} IconClass={Clock}>
-            <ChannelValue fontSize={'large'} value={text('hours', '1')} units={'h'} />
-            <ChannelValue fontSize={'large'} value={text('minutes', '27')} units={'m'} />
+            <ChannelValue fontSize={20} value={text('hours', '1')} units={'h'} />
+            <ChannelValue fontSize={20} value={text('minutes', '27')} units={'m'} />
         </Hero>
     ))
     .add('with press event', () => (
@@ -49,7 +49,7 @@ storiesOf('Hero', module)
             IconClass={Leaf}
             iconSize={48}
             iconColor={'primary'}
-            fontSize={'extraLarge'}
+            fontSize={24}
             value={text('value', '94')}
             ValueIconClass={Line}
             valueColor={'green'}

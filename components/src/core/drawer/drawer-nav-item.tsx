@@ -28,7 +28,7 @@ export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'
         infoListItem?: InfoListItemProps['styles'];
     };
     /** Overrides for theme */
-    // theme?: Theme; // Uncomment if we need to style anything based on the theme
+    // theme?: DeepPartial<Theme>; // Uncomment if we need to style anything based on the theme
 };
 
 const makeStyles = (props: DrawerNavItemProps): any =>

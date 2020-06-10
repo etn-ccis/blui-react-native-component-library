@@ -142,7 +142,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 };
 
 /**

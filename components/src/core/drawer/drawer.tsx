@@ -29,7 +29,7 @@ type DrawerProps = DrawerInheritableProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 };
 export const Drawer: React.FC<DrawerProps> = (props) => {
     const { theme: themeOverride, style } = props;

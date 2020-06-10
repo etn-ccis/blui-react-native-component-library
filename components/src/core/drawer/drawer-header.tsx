@@ -92,7 +92,7 @@ export type DrawerHeaderProps = {
         icon?: StyleProp<ViewStyle>;
     };
     /** Overrides for theme */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {

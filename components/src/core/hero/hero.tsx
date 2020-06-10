@@ -3,7 +3,6 @@ import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, Te
 import { ChannelValue } from '../channel-value';
 import { Theme, useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
-import { Sizes } from '../sizes';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -55,7 +54,7 @@ export type HeroProps = ViewProps & {
     iconBackgroundColor?: string;
 
     /** Font size used for the values row*/
-    fontSize?: keyof Sizes;
+    fontSize?: number;
 
     /** Value for ChannelValue child */
     value?: number | string;
@@ -88,7 +87,7 @@ export type HeroProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 };
 
 /**
@@ -104,7 +103,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         value,
         ValueIconClass,
         valueColor,
-        fontSize,
+        fontSize = 20,
         units,
         onPress,
         IconClass,
@@ -163,7 +162,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                         units={units}
                         IconClass={ValueIconClass}
                         color={valueColor}
-                        fontSize={fontSize || 'large'}
+                        fontSize={fontSize}
                     />
                 )}
                 {children}

@@ -128,7 +128,7 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: DeepPartial<Theme>;
 };
 
 /**
