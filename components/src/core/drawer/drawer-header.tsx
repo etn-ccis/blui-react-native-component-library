@@ -43,7 +43,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets):
         },
         subtitle: {
             color: props.fontColor || theme.colors.surface,
-            lineHeight: 15,
+            lineHeight: 16,
             marginTop: -2,
         },
         backgroundImageWrapper: {
