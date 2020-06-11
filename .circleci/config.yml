@@ -66,6 +66,11 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Lint
+          command: |
+            cd demos/storybook
+            yarn lint
+      - run:
           name: Build Storybook
           command: |
             cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-native-components
@@ -77,11 +82,7 @@ jobs:
             fi
 
             yarn build
-      - run:
-          name: Lint
-          command: |
-            cd demos/storybook
-            yarn lint
+      
 
   # Builds the hosted Storybook app
   build_storybook_api:

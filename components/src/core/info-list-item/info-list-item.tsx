@@ -6,6 +6,7 @@ import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const infoListItemStyles = (
     props: InfoListItemProps,
@@ -128,7 +129,7 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: $DeepPartial<Theme>;
 };
 
 /**

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
 import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
-import { text, withKnobs, boolean, color, select } from '@storybook/addon-knobs';
+import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -48,13 +48,13 @@ storiesOf('ChannelValue', module)
         notes
     )
     .add(
-        'with extraLarge font size',
+        'with fontSize',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
                     value={text('value', text('value', '123'))}
                     units={text('units', 'hz')}
-                    fontSize={'extraLarge'}
+                    fontSize={number('fontSize', 48)}
                     IconClass={WrappedLeaf}
                 />
             </View>
@@ -70,16 +70,7 @@ storiesOf('ChannelValue', module)
                     IconClass={WrappedIcon}
                     units={text('units', 'hz')}
                     prefix={boolean('prefix', false)}
-                    fontSize={select(
-                        'fontSize',
-                        {
-                            small: 'small',
-                            medium: 'medium',
-                            large: 'large',
-                            extraLarge: 'extraLarge',
-                        },
-                        'medium'
-                    )}
+                    fontSize={number('fontSize', 16)}
                     color={color('color', 'blue')}
                 />
             </View>
@@ -95,7 +86,7 @@ storiesOf('ChannelValue', module)
                     units={text('units', 'hz')}
                     color="error"
                     theme={{
-                        sizes: { medium: 77 },
+                        colors: { error: 'pink' },
                     }}
                 />
             </View>

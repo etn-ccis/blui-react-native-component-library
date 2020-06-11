@@ -25,6 +25,7 @@ import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
 import { HeaderIcon } from '../__types__';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
@@ -142,7 +143,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: $DeepPartial<Theme>;
 };
 
 /**

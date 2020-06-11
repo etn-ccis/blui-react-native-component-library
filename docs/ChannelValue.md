@@ -31,7 +31,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | IconProps | Props to pass through to the icon     | `{ size?: number, color?: string }`                  | no       |                     |
 | units     | The units for the supplied value      | `string`                                             | no       |                     |
 | prefix    | If true, shows units before the value | `boolean`                                            | no       | false               |
-| fontSize  | The size of the font for the value    | keyof [`theme.sizes`](./Theme.md)                    | no       | 'medium'            |
+| fontSize  | The size of the font for the value    | `number`                                             | no       | 'medium'            |
 | color     | The color used for the text elements  | `string`                                             | no       | `theme.colors.text` |
 | theme     | Theme partial for default styling     | `Theme`                                              | no       |                     |
 

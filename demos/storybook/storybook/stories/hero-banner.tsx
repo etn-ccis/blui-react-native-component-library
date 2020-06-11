@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { boolean, withKnobs, number } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { Hero, HeroBanner, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
@@ -24,20 +24,15 @@ const heroes = [
     <Hero key={'hero_1'} label={'Healthy'} value={96} units={'/100'} IconClass={A} iconColor={green[500]} />,
     <Hero key={'hero_2'} label={'Battery'} value={'Full'} IconClass={Battery} iconColor={blue[500]} />,
     <Hero key={'hero_3'} label={'Estimated'} IconClass={Clock} iconColor={gray[500]}>
-        <ChannelValue fontSize={'large'} value={1} units={'h'} />
-        <ChannelValue fontSize={'large'} value={37} units={'m'} />
+        <ChannelValue fontSize={20} value={1} units={'h'} />
+        <ChannelValue fontSize={20} value={37} units={'m'} />
     </Hero>,
     <Hero key={'hero_4'} label={'Loaded'} IconClass={Pie} iconColor={blue[500]}>
-        <ChannelValue fontSize={'large'} value={65} units={'%'} IconClass={ChartLineVariant} />
+        <ChannelValue fontSize={20} value={65} units={'%'} IconClass={ChartLineVariant} />
     </Hero>,
-    <Hero key={'hero_5'} label={'Not Shown'} value={'5th Item'} IconClass={Battery} iconColor={blue[500]} />,
 ];
 
 storiesOf('HeroBanner', module)
     .addDecorator(withKnobs)
     .addDecorator(safeArea)
-    .add('with a variety of Heroes', () => (
-        <HeroBanner divider={boolean('divider', true)} limit={number('limit', 4)}>
-            {heroes.slice(0, number('count', 4, { range: true, min: 0, max: 5, step: 1 }))}
-        </HeroBanner>
-    ));
+    .add('with a variety of Heroes', () => <HeroBanner divider={boolean('divider', true)}>{heroes}</HeroBanner>);

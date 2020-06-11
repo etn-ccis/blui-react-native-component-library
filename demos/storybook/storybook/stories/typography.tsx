@@ -40,7 +40,7 @@ storiesOf('Typography', module)
             <Typography.Body1 theme={{ colors: { text: green[900] } }}>
                 Their themes can be overridden as well
             </Typography.Body1>
-            <Typography.Body1 fontSize={'small'} font={'light'}>
+            <Typography.Body1 fontSize={14} font={'light'}>
                 You can even override which parts of themes they use
             </Typography.Body1>
         </View>

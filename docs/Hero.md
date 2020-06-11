@@ -38,7 +38,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | iconSize            | The size of the primary icon (10-48)    | `number`                                           | no       | 36                     |
 | iconColor           | The color of the primary icon           | `string`                                           | no       | `text`                 |
 | iconBackgroundColor | The color behind the primary icon       | `string`                                           | no       | `theme.colors.surface` |
-| fontSize            | The text size for the value line        | keyof [`theme.sizes`](./Theme.md)                  | no       | 'large'                |
+| fontSize            | The text size for the value line        | `number`                                           | no       | 'large'                |
 | value               | The value for the channel               | `string` \| `number`                               | no       |                        |
 | ValueIconClass      | The icon to show inline with the value  | `React.Component<{ size: number, color: string }>` | no       |                        |
 | valueColor          | Text color for the value line           | `string`                                           | no       | `text`                 |

@@ -2,7 +2,7 @@ import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
-import { SIZES, Sizes } from '../sizes';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -29,7 +29,7 @@ export type ChannelValueProps = ViewProps & {
     prefix?: boolean;
 
     /** Font size for all text */
-    fontSize?: keyof Sizes;
+    fontSize?: number;
 
     /** Font color for all text */
     color?: string;
@@ -44,7 +44,7 @@ export type ChannelValueProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: $DeepPartial<Theme>;
 };
 
 /**
@@ -56,7 +56,7 @@ export type ChannelValueProps = ViewProps & {
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const {
         value,
-        fontSize,
+        fontSize = 16,
         IconClass,
         color,
         units,
@@ -69,8 +69,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
 
-    const getFontSize = useCallback((): number => SIZES[fontSize || 'medium'], [fontSize]);
-
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
         if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
@@ -80,12 +78,12 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getIcon = useCallback(() => {
         if (IconClass) {
             return (
-                <View style={[{ marginRight: Math.round(getFontSize() / 6) }]}>
-                    <IconClass size={getFontSize()} color={getColor()} {...IconProps} />
+                <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
+                    <IconClass size={fontSize} color={getColor()} {...IconProps} />
                 </View>
             );
         }
-    }, [IconClass, getFontSize, getColor, styles]);
+    }, [IconClass, fontSize, getColor, styles]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
         if (units) {

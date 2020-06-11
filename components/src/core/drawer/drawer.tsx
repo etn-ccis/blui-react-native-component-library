@@ -6,6 +6,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { Theme, useTheme } from 'react-native-paper';
 import color from 'color';
 import { EdgeInsets } from '../__types__';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const makeStyles = (
     props: DrawerInheritableProps,
@@ -29,7 +30,7 @@ type DrawerProps = DrawerInheritableProps & {
     /**
      * Overrides for theme
      */
-    theme?: Theme;
+    theme?: $DeepPartial<Theme>;
 };
 export const Drawer: React.FC<DrawerProps> = (props) => {
     const { theme: themeOverride, style } = props;
