@@ -26,7 +26,7 @@
     "react": "^16.8.6",
     "react-native": "^0.60.4",
     "react-native-paper": "^3.10.1",
-    "react-native-safe-area-context": "^3.0.2",
+    "react-native-safe-area-context": "~0.7.0",
     "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
     "react-native": "^0.59.8",
     "react-native-elements": "^1.2.6",
     "react-native-paper": "^3.10.1",
-    "react-native-safe-area-context": "^3.0.2",
+    "react-native-safe-area-context": "~0.7.0",
     "react-native-svg": "^9.6.1",
     "react-native-vector-icons": "^6.6.0",
     "react-test-renderer": "^16.8.6",

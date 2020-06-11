@@ -1,6 +1,6 @@
 {
   "name": "@pxblue/react-native-components",
-  "version": "3.0.0-beta.2",
+  "version": "3.0.0",
   "author": "pxblue <pxblue@eaton.com>",
   "description": "Reusable React Native components for PX Blue applications",
   "repository": {
@@ -52,7 +52,7 @@
     "react": "^16.8.6",
     "react-native": "^0.60.4",
     "react-native-paper": "^3.10.1",
-    "react-native-safe-area-context": "^3.0.2",
+    "react-native-safe-area-context": "~0.7.0",
     "react-native-vector-icons": "^6.6.0"
   },
   "files": [
