@@ -17,6 +17,16 @@ yarn add @pxblue/react-native-components
 
 > **NOTE**: This install command will install the package from NPM. If you are a PX Blue developer working with components locally, you will want to follow the manual linking instructions - see below.
 
+### Peer Dependencies
+This library has a few dependencies that you will need to install in your project in order to work correctly. To install them, you can run the following command in your project root:
+
+```shell
+npm install --save react-native-paper@^3.10.1 react-native-safe-area-context@~0.7.0 react-native-vector-icons@^6.6.0
+// or 
+yarn add react-native-paper@^3.10.1 react-native-safe-area-context@~0.7.0 react-native-vector-icons@^6.6.0
+```
+> NOTE: We require an older version of react-native-safe-area-context (0.7.x instead of 3.x.x) to maintain compatibility with Expo projects.
+
 ## Building the Library
 
 To work with this library, first clone down the repository and install dependencies:

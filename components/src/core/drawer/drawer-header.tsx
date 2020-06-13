@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeArea } from 'react-native-safe-area-context';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -44,7 +44,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets):
         },
         subtitle: {
             color: props.fontColor || theme.colors.surface,
-            lineHeight: 15,
+            lineHeight: 16,
             marginTop: -2,
         },
         backgroundImageWrapper: {
@@ -109,7 +109,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         style,
     } = props;
     const theme = useTheme(themeOverride);
-    const insets = useSafeAreaInsets();
+    const insets = useSafeArea();
     const defaultStyles = makeStyles(props, theme, insets);
 
     const getIcon = useCallback((): ReactNode => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
