@@ -46,6 +46,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets):
             color: props.fontColor || theme.colors.surface,
             lineHeight: 16,
             marginTop: -2,
+            fontWeight: '300',
         },
         backgroundImageWrapper: {
             position: 'absolute',
