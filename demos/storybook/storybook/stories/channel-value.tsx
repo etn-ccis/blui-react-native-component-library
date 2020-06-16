@@ -5,6 +5,7 @@ import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { red } from '@pxblue/colors';
 
 const notes = {
     notes:
@@ -86,7 +87,7 @@ storiesOf('ChannelValue', module)
                     units={text('units', 'hz')}
                     color="error"
                     theme={{
-                        colors: { error: 'pink' },
+                        colors: { error: red[500] },
                     }}
                 />
             </View>

@@ -34,7 +34,7 @@ storiesOf('InfoListItem', module)
                 title={text('title', 'Test')}
                 avatar={boolean('avatar', false)}
                 IconClass={LeafIcon}
-                iconColor={color('iconColor', '#ff3333')}
+                iconColor={color('iconColor', PXBColors.red[500])}
                 subtitle={text('subtitle', 'A simpler view')}
             />
         ),
@@ -48,9 +48,9 @@ storiesOf('InfoListItem', module)
                 IconClass={LeafIcon}
                 avatar={boolean('avatar', false)}
                 subtitle={text('subtitle', 'A simpler view')}
-                statusColor={color('statusColor', '#ff3333')}
-                fontColor={color('fontColor', '#ff3333')}
-                backgroundColor={color('backgroundColor', PXBColors.blue[50])}
+                statusColor={color('statusColor', PXBColors.blue[700])}
+                fontColor={color('fontColor', PXBColors.blue[700])}
+                backgroundColor={color('backgroundColor', PXBColors.gray[50])}
             />
         ),
         notes

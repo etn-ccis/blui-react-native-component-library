@@ -13,6 +13,7 @@ const defaultStyles = StyleSheet.create({
     },
     title: {
         textAlign: 'center',
+        marginTop: 16,
     },
     subtitle: {
         textAlign: 'center',

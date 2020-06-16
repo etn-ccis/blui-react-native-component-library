@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { storiesOf } from '@storybook/react-native';
 import { text, color, withKnobs, number, boolean } from '@storybook/addon-knobs';
-import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1 } from '@pxblue/react-native-components';
+import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1, InfoListItem } from '@pxblue/react-native-components';
 import { padded } from '../decorators';
 import { List } from 'react-native-paper';
 
@@ -27,9 +27,9 @@ storiesOf('ScoreCard', module)
     .addDecorator(padded)
     .add('with minimal configuration', () => (
         <ScoreCard headerTitle={text('title', 'Portland Datacenter')}>
-            <Text style={{ color: 'red' }}>2 Alarms</Text>
-            <Text style={{ color: 'blue' }}>2 Events</Text>
-            <Text style={{ color: 'orange' }}>2 Predictions</Text>
+            <Text style={{ color: PXBColors.red[500] }}>2 Alarms</Text>
+            <Text style={{ color: PXBColors.blue[500] }}>2 Events</Text>
+            <Text style={{ color: PXBColors.green[900] }}>2 Predictions</Text>
         </ScoreCard>
     ))
     .add('with background and actions', () => (
@@ -69,12 +69,14 @@ storiesOf('ScoreCard', module)
                 })
             )}
             actionRow={
-                <List.Item
+                <InfoListItem
                     title={'View Location'}
+                    chevron
                     onPress={(): void => {
                         /* do nothing */
                     }}
-                    accessibilityStates
+                    hidePadding
+                    dense
                 />
             }
         >
@@ -168,12 +170,14 @@ storiesOf('ScoreCard', module)
                 </HeroBanner>
             }
             actionRow={
-                <List.Item
+                <InfoListItem
                     title={'View Location'}
+                    chevron
                     onPress={(): void => {
                         /* do nothing */
                     }}
-                    accessibilityStates
+                    hidePadding
+                    dense
                 />
             }
         >
