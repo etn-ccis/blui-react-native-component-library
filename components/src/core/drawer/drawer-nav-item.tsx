@@ -89,7 +89,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 styles={{
                     root: Object.assign(
                         {
-                            paddingLeft: 16 * (depth > 1 ? depth - 1 : 0),
+                            paddingLeft: 32 * (depth > 1 ? depth - 1 : 0),
                         },
                         iliRoot
                     ),

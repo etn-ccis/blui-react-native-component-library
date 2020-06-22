@@ -7,7 +7,6 @@ import {
     Body1,
     ChannelValue,
     EmptyState,
-    H6,
     Header,
     Hero,
     HeroBanner,
@@ -81,7 +80,9 @@ export const App: React.FC<AppProps> = ({ navigation }) => (
                     title={'Nothing Found'}
                     description={'Not a single thing'}
                     IconClass={ChartLineVariant}
-                    actions={<Button title={'Add a Device'} type={'outline'} />}
+                    actions={
+                        <Button title={'Add a Device'} type={'outline'} titleStyle={{ color: PXBColors.blue[500] }} />
+                    }
                 />
             </Card>
             <Card containerStyle={{ padding: 0, margin: PADDING, marginBottom: PADDING }}>
@@ -107,19 +108,19 @@ export const App: React.FC<AppProps> = ({ navigation }) => (
                 <ListItem
                     topDivider
                     leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
-                    title={<H6>Temperature</H6>}
+                    title={<Body1>Temperature</Body1>}
                     rightElement={<ChannelValue value={68} units={'°F'} />}
                 />
                 <ListItem
                     topDivider
                     leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
-                    title={<H6>Temperature</H6>}
+                    title={<Body1>Temperature</Body1>}
                     rightElement={<ChannelValue value={68} units={'°F'} />}
                 />
                 <ListItem
                     topDivider
                     leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
-                    title={<H6>Temperature</H6>}
+                    title={<Body1>Temperature</Body1>}
                     rightElement={
                         <React.Fragment>
                             <ChannelValue value={1} units={'h'} IconClass={Clock} />

@@ -31,6 +31,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         undefined,
         Array [
           Object {
+            "marginTop": 16,
             "textAlign": "center",
           },
           undefined,
@@ -210,6 +211,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         undefined,
         Array [
           Object {
+            "marginTop": 16,
             "textAlign": "center",
           },
           undefined,
@@ -299,6 +301,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         undefined,
         Array [
           Object {
+            "marginTop": 16,
             "textAlign": "center",
           },
           undefined,
@@ -342,6 +345,7 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         undefined,
         Array [
           Object {
+            "marginTop": 16,
             "textAlign": "center",
           },
           undefined,
@@ -385,6 +389,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         undefined,
         Array [
           Object {
+            "marginTop": 16,
             "textAlign": "center",
           },
           undefined,

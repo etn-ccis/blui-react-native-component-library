@@ -1,68 +1,68 @@
 {
-  "name": "@pxblue/react-native-components",
-  "version": "3.0.0-beta.3",
-  "author": "pxblue <pxblue@eaton.com>",
-  "description": "Reusable React Native components for PX Blue applications",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pxblue/react-native-component-library"
-  },
-  "keywords": [
-    "react native",
-    "components",
-    "pxblue"
-  ],
-  "bugs": {
-    "url": "https://github.com/pxblue/react-native-component-library/issues"
-  },
-  "homepage": "https://github.com/pxblue/react-native-component-library#readme",
-  "license": "BSD-3-Clause",
-  "main": "core/index.js",
-  "types": "core/index.d.ts",
-  "scripts": {
-    "build": "bash ./scripts/buildComponents.sh",
-    "install:showcase-ios": "cd demos/showcase && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
-    "install:showcase-android": "cd demos/showcase && yarn && cd ../.. && yarn link:components",
-    "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
-    "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
-    "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
-    "link:components": "bash ./scripts/linkComponents.sh",
-    "start": "yarn start:showcase",
-    "start:showcase": "yarn start:showcase-ios",
-    "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
-    "start:showcase-android": "yarn install:showcase-android && cd demos/showcase && yarn android",
-    "start:storybook": "yarn start:storybook-ios",
-    "start:storybook-ios": "yarn install:storybook-ios && cd demos/storybook && yarn ios",
-    "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
-    "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
-    "test": "cd components && yarn test",
-    "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
-    "prettier": "cd components && yarn prettier && cd ../demos/api && yarn prettier && cd ../showcase && yarn prettier && cd ../storybook && yarn prettier",
-    "lint": "cd components && yarn lint && cd ../demos/api && yarn lint && cd ../storybook && yarn lint && cd ../showcase && yarn lint",
-    "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix"
-  },
-  "dependencies": {
-    "@pxblue/colors": "^3.0.0",
-    "color": "^3.1.2",
-    "react-native-collapsible": "^1.5.2",
-    "react-native-keyboard-aware-scroll-view": "^0.8.0",
-    "react-native-status-bar-height": "^2.3.1"
-  },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-native": "^0.60.4",
-    "react-native-paper": "^3.10.1",
-    "react-native-safe-area-context": "~0.7.0",
-    "react-native-vector-icons": "^6.6.0"
-  },
-  "files": [
-    "package.json",
-    "LICENSE",
-    "README.md",
-    "CHANGELOG.md",
-    "core/"
-  ],
-  "directories": {
-    "doc": "docs"
-  }
+    "name": "@pxblue/react-native-components",
+    "version": "3.0.0-beta.3",
+    "author": "pxblue <pxblue@eaton.com>",
+    "description": "Reusable React Native components for PX Blue applications",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pxblue/react-native-component-library"
+    },
+    "keywords": [
+        "react native",
+        "components",
+        "pxblue"
+    ],
+    "bugs": {
+        "url": "https://github.com/pxblue/react-native-component-library/issues"
+    },
+    "homepage": "https://github.com/pxblue/react-native-component-library#readme",
+    "license": "BSD-3-Clause",
+    "main": "core/index.js",
+    "types": "core/index.d.ts",
+    "scripts": {
+        "build": "bash ./scripts/buildComponents.sh",
+        "install:showcase-ios": "cd demos/showcase && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
+        "install:showcase-android": "cd demos/showcase && yarn && cd ../.. && yarn link:components",
+        "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
+        "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
+        "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
+        "link:components": "bash ./scripts/linkComponents.sh",
+        "start": "yarn start:showcase",
+        "start:showcase": "yarn start:showcase-ios",
+        "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
+        "start:showcase-android": "yarn install:showcase-android && cd demos/showcase && yarn android",
+        "start:storybook": "yarn start:storybook-ios",
+        "start:storybook-ios": "yarn install:storybook-ios && cd demos/storybook && yarn ios",
+        "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
+        "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
+        "test": "cd components && yarn test",
+        "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
+        "prettier": "cd components && yarn prettier && cd ../demos/api && yarn prettier && cd ../showcase && yarn prettier && cd ../storybook && yarn prettier",
+        "lint": "cd components && yarn lint && cd ../demos/api && yarn lint && cd ../storybook && yarn lint && cd ../showcase && yarn lint",
+        "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix"
+    },
+    "dependencies": {
+        "@pxblue/colors": "^3.0.0",
+        "color": "^3.1.2",
+        "react-native-collapsible": "^1.5.2",
+        "react-native-keyboard-aware-scroll-view": "^0.8.0",
+        "react-native-status-bar-height": "^2.3.1"
+    },
+    "peerDependencies": {
+        "react": "^16.8.6",
+        "react-native": "^0.60.4",
+        "react-native-paper": "^3.10.1",
+        "react-native-safe-area-context": "~0.7.0",
+        "react-native-vector-icons": "^6.6.0"
+    },
+    "files": [
+        "package.json",
+        "LICENSE",
+        "README.md",
+        "CHANGELOG.md",
+        "core/"
+    ],
+    "directories": {
+        "doc": "docs"
+    }
 }
