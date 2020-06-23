@@ -1,6 +1,6 @@
 # Info List Item
 
-The `<InfoListItem>` is intended to be used in List views. It positions a title as well as optional subtitle(s), icon, and status stripe. The [IconClass](./iconWrapper.md) property will accept any valid icon from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) or [`@pxblue/icons-svg`](https://www.npmjs.com/package/@pxblue/icons-svg).
+The `<InfoListItem>` is intended to be used in List views. It positions a title as well as optional subtitle(s), icon, and status stripe. The [IconClass](./IconWrapper.md) property will accept any valid icon from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) or [`@pxblue/icons-svg`](https://www.npmjs.com/package/@pxblue/icons-svg).
 
 <img width="400" alt="Info List Item component" src="./images/infoListItem.png">
 
