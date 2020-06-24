@@ -23,7 +23,7 @@ const getReadMe = (name: string): any => {
     md.default = md.default.replace(/\(.\/.*md\)/g, (substring: string) => {
         // Example: http://localhost:6006/?path=/info/components-hero--get-read-me-story
         const root = window.top.location.href.split('/?')[0];
-        const path = `?path=/info/api-documentation--`;
+        const path = `?path=/info/components-documentation-`;
 
         // Get component from link. (./HeroBanner.md) => HeroBanner
         const component = substring.split('/')[1].split('.')[0];
