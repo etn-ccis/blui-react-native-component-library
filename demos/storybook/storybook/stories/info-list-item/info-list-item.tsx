@@ -82,7 +82,7 @@ storiesOf('InfoListItem', module)
             <InfoListItem
                 title={text('title', 'Test')}
                 IconClass={LeafIcon}
-                subtitle={['4', <Leaf key={'leaf'} width={12} height={12} />, 'leaves']}
+                subtitle={['4', <Leaf key={'leaf'} width={12} height={12} fill={'green'} />, 'leaves']}
                 subtitleSeparator={text('separator', '-')}
             />
         ),
