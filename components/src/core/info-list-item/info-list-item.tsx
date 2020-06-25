@@ -16,6 +16,8 @@ const infoListItemStyles = (
     title: TextStyle;
     subtitle: TextStyle;
     subtitleWrapper: ViewStyle;
+    info: TextStyle;
+    infoWrapper: ViewStyle;
     statusStripe: ViewStyle;
     iconWrapper: ViewStyle;
     avatar: ViewStyle;
@@ -37,6 +39,13 @@ const infoListItemStyles = (
             alignItems: 'center',
         },
         subtitle: {
+            color: props.fontColor || theme.colors.text,
+        },
+        infoWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        info: {
             color: props.fontColor || theme.colors.text,
         },
         statusStripe: {
@@ -76,6 +85,9 @@ export type InfoListItemProps = ViewProps & {
 
     /** Subtitle Separator. Displays between array of subtitle items */
     subtitleSeparator?: string;
+
+    /** Info. If an array, will be separated by dots. */
+    info?: string | React.ReactNode[];
 
     /** Specifies whether to show color background around the icon */
     avatar?: boolean;
@@ -123,6 +135,8 @@ export type InfoListItemProps = ViewProps & {
         title?: StyleProp<TextStyle>;
         subtitle?: StyleProp<TextStyle>;
         subtitleWrapper?: StyleProp<ViewStyle>;
+        info?: StyleProp<TextStyle>;
+        infoWrapper?: StyleProp<ViewStyle>;
         divider?: StyleProp<ViewStyle>;
     };
 
@@ -144,6 +158,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         divider,
         subtitle,
         subtitleSeparator,
+        info,
         statusColor,
         dense, //eslint-disable-line @typescript-eslint/no-unused-vars
         fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
@@ -194,6 +209,18 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
     }, [subtitle, subtitleSeparator, styles]);
 
+    const getInfo = useCallback((): JSX.Element[] | null => {
+        if (!info) {
+            return null;
+        }
+        const infoParts = Array.isArray(info) ? [...info] : [info];
+        const renderableInfoParts = infoParts.map((element) =>
+            renderableSubtitleComponent(element, Object.assign(defaultStyles.info, styles.info))
+        );
+
+        return withKeys(separate(renderableInfoParts, subtitleSeparator));
+    }, [info, subtitleSeparator, styles]);
+
     const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
             return rightComponent;
@@ -224,6 +251,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     {title}
                 </Body1>
                 <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
+                <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
             </View>
             {getRightComponent()}
             <Divider divider={divider} style={styles.divider} />

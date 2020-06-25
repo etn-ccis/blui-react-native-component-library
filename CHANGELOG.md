@@ -1,4 +1,8 @@
 # Change Log
+
+## v3.0.1
+- Adds `info` prop to `<InfoListItem>` to support a third line of text.
+
 ## v3.0.0
 - Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+)
 - Added new component for `<Drawer>`
