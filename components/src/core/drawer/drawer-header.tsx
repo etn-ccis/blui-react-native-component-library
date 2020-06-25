@@ -8,6 +8,7 @@ import {
     ViewStyle,
     ImageStyle,
     TextStyle,
+    ViewProps,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
@@ -63,7 +64,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets):
         },
     });
 
-export type DrawerHeaderProps = {
+export type DrawerHeaderProps = ViewProps & {
     /** Colored background of the header */
     backgroundColor?: string;
     /** Image to blend with the colored background in the header */
@@ -108,6 +109,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         theme: themeOverride,
         styles = {},
         style,
+        ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeArea();
@@ -144,7 +146,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     }, [backgroundImage, backgroundOpacity, defaultStyles, styles]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, style]}>
+        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getBackgroundImage()}
             <View style={[defaultStyles.content, styles.content]}>
                 {icon && getIcon()}
