@@ -77,6 +77,31 @@ storiesOf('InfoListItem', module)
         notes
     )
     .add(
+        'with third line of text',
+        () => (
+            <InfoListItem
+                title={text('title', 'This is a title')}
+                IconClass={LeafIcon}
+                subtitle={text(
+                    'subtitle',
+                    'this is a subtitle'
+                )}
+                info={text(
+                    'info',
+                    'this is a third line of text'
+                )}
+                onPress={
+                    boolean('action', true)
+                        ? (): void => {
+                              /* do nothing */
+                          }
+                        : undefined
+                }
+            />
+        ),
+        notes
+    )
+    .add(
         'array for subtitles',
         () => (
             <InfoListItem
