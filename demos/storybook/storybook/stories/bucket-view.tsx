@@ -59,7 +59,7 @@ storiesOf('BucketView')
                     title={device.name}
                     subtitle={`aquired: ${device.dateAcquired.toUTCString()}`}
                     backgroundColor={white[100]}
-                    color={device.status === 'stopped' ? red[800] : blue[800]}
+                    statusColor={device.status === 'stopped' ? red[800] : blue[800]}
                 />
             )}
             ItemSeparatorComponent={Separator}
@@ -76,7 +76,7 @@ storiesOf('BucketView')
                     <InfoListItem
                         title={device.name}
                         subtitle={`aquired: ${device.dateAcquired.toUTCString()}`}
-                        color={device.status === 'stopped' ? red[800] : blue[800]}
+                        statusColor={device.status === 'stopped' ? red[800] : blue[800]}
                     />
                 </View>
             )}
