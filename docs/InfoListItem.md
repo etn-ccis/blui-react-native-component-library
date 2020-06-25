@@ -64,7 +64,7 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | root              | Styles applied to the root element              |
 | statusStripe      | Styles applied to the status stripe element     |
 | iconWrapper       | Styles applied to the icon wrapper              |
-| info Wrapper      | Styles applied to the info wrapper              |
+| infoWrapper      | Styles applied to the info wrapper              |
 | info              | Styles applied to the info text elements        |
 | avatar            | Styles applied to the avatar background         |
 | mainContent       | Styles applied to the main text content wrapper |
