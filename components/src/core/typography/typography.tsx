@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 import { Text, TextProps, TextStyle, StyleProp } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -29,8 +29,6 @@ type TypographyProps = {
      */
     theme?: $DeepPartial<Theme>;
 } & TextProps;
-
-type Typography = ComponentType<TypographyProps>;
 
 /*
  * createTypography is a component-generator function. It takes one argument.

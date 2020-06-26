@@ -64,9 +64,17 @@ function findID(item: NavItem | NestedNavItem, activeItem = ''): boolean {
 }
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
-    const { theme: themeOverride } = props;
+    const {
+        theme: themeOverride,
+        title,
+        titleContent,
+        items = [],
+        nestedDivider = false,
+        styles = {},
+        style,
+        ...viewProps
+    } = props;
     const theme = useTheme(themeOverride);
-    const { title, titleContent, items = [], nestedDivider = false, styles = {}, style } = props;
     const nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200];
 
     const defaultStyles = drawerNavGroupStyles;
@@ -128,7 +136,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     );
 
     return (
-        <View style={[defaultStyles.root, styles.root, style]}>
+        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {titleContent}
             {!titleContent && title && (
                 <View style={[defaultStyles.textContent, styles.textContent]}>

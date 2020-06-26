@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native';
+import { View, StyleSheet, ViewStyle, StyleProp, ViewProps } from 'react-native';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -24,16 +24,17 @@ const makeStyles = (
             paddingBottom: insets.bottom,
         },
     });
-type DrawerProps = DrawerInheritableProps & {
-    style?: StyleProp<ViewStyle>;
+type DrawerProps = ViewProps &
+    DrawerInheritableProps & {
+        style?: StyleProp<ViewStyle>;
 
-    /**
-     * Overrides for theme
-     */
-    theme?: $DeepPartial<Theme>;
-};
+        /**
+         * Overrides for theme
+         */
+        theme?: $DeepPartial<Theme>;
+    };
 export const Drawer: React.FC<DrawerProps> = (props) => {
-    const { theme: themeOverride, style } = props;
+    const { theme: themeOverride, style, ...viewProps } = props;
     const theme = useTheme(themeOverride);
     // Nested expand/collapse icon defaults are different and are set in the DrawerNavGroup.
     const {
@@ -86,7 +87,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     );
 
     return (
-        <View style={[defaultStyles.root, style]}>
+        <View style={[defaultStyles.root, style]} {...viewProps}>
             {getSectionByDisplayName('DrawerHeader')}
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
