@@ -37,6 +37,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 | title             | The text to show on the first line     | `string`                                           | yes      |                |
 | subtitle          | The text to show on the second line    | `string` \| `Array<React.ReactNode>`               | no       |                |
 | subtitleSeparator | Separator character for subtitle       | `string`                                           | no       | '·' ('\u00B7') |
+| info              | The text to show on the third line     | `string` \| `Array<React.ReactNode>`               | no       |                |
 | IconClass         | A component to render for the icon     | `React.Component<{ size: number, color: string }>` | no       |                |
 | iconColor         | The color of the primary icon          | `string`                                           | no       |                |
 | hidePadding       | Remove left padding if no icon is used | `boolean`                                          | no       | false          |
@@ -63,6 +64,8 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | root              | Styles applied to the root element              |
 | statusStripe      | Styles applied to the status stripe element     |
 | iconWrapper       | Styles applied to the icon wrapper              |
+| infoWrapper      | Styles applied to the info wrapper              |
+| info              | Styles applied to the info text elements        |
 | avatar            | Styles applied to the avatar background         |
 | mainContent       | Styles applied to the main text content wrapper |
 | title             | Styles applied to the title element             |
