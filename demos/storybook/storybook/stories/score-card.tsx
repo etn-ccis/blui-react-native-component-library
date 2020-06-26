@@ -7,17 +7,12 @@ import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1, InfoListItem } from '@pxb
 import { padded } from '../decorators';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 
 import * as PXBColors from '@pxblue/colors';
 import backgroundImage from '../assets/farm.jpg';
 
 const A = wrapIcon({ IconClass: _A });
-const Clock = wrapIcon({
-    IconClass: MaterialCommunityIcon,
-    name: 'clock-outline',
-});
 const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
 const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 const NotificationsIcon = wrapIcon({ IconClass: MatIcon, name: 'notifications' });
