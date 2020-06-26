@@ -20,28 +20,47 @@ const Clock = wrapIcon({
 });
 const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
 const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
+const NotificationsIcon = wrapIcon({ IconClass: MatIcon, name: 'notifications' });
+const ListAltIcon = wrapIcon({ IconClass: MatIcon, name: 'list-alt' });
+const CloudIcon = wrapIcon({ IconClass: MatIcon, name: 'cloud' });
+const SearchIcon = wrapIcon({ IconClass: MatIcon, name: 'search' });
 
 storiesOf('ScoreCard', module)
     .addDecorator(withKnobs)
     .addDecorator(padded)
-    .add('with minimal configuration', () => (
-        <ScoreCard headerTitle={text('title', 'Portland Datacenter')}>
-            <Text style={{ color: PXBColors.red[500] }}>2 Alarms</Text>
-            <Text style={{ color: PXBColors.blue[500] }}>2 Events</Text>
-            <Text style={{ color: PXBColors.green[900] }}>2 Predictions</Text>
+    .add('with basic usage', () => (
+        <ScoreCard headerTitle={text('headerTitle', 'Card Title')}>
+            <Text>Body Content</Text>
         </ScoreCard>
     ))
-    .add('with background and actions', () => (
+    .add('with custom header', () => (
         <ScoreCard
-            headerTitle={text('title', 'Portland Datacenter')}
-            headerSubtitle={text('subtitle', '6 UPS Devices')}
-            headerInfo={text('infotext', 'Attention Required')}
+            headerTitle={text('headerTitle', 'Card Title')}
+            headerSubtitle={text('headerSubtitle', 'Card Subtitle')}
+            headerInfo={text('headerInfo', '4 Devices')}
             headerColor={color('backgroundColor', PXBColors.red[500])}
             headerFontColor={color('fontColor', PXBColors.white[50])}
+            headerBackgroundImage={backgroundImage}>
+            <Text>Body Content</Text>
+        </ScoreCard>
+    ))
+    .add('with actions', () => (
+        <ScoreCard
+            headerTitle="Substation 3"
+            headerSubtitle="High Humidity Alarm"
+            headerInfo="4 Devices"
+            headerColor={PXBColors.red[500]}
+            headerFontColor={PXBColors.white[50]}
             headerBackgroundImage={backgroundImage}
             actionItems={[
                 {
-                    icon: Clock,
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: SearchIcon,
                     onPress: (): void => {
                         /* do nothing */
                     },
@@ -53,17 +72,29 @@ storiesOf('ScoreCard', module)
                     },
                 },
                 {
-                    icon: MoreIcon,
+                    icon: NotificationsIcon,
                     onPress: (): void => {
                         /* do nothing */
                     },
                 },
+                {
+                    icon: ListAltIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: CloudIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                }
             ].slice(
                 0,
-                number('actionItems.length', 2, {
+                number('actionLimit', 3, {
                     range: true,
                     min: 0,
-                    max: 3,
+                    max: 6,
                     step: 1,
                 })
             )}
@@ -77,9 +108,109 @@ storiesOf('ScoreCard', module)
                     hidePadding
                     dense
                 />
+            }>
+            <Text>Body Content</Text>
+        </ScoreCard>
+    ))
+    .add('with heroes', () => (
+        <ScoreCard
+            headerTitle="Substation 3"
+            headerSubtitle="High Humidity Alarm"
+            headerInfo="4 Devices"
+            headerColor={PXBColors.red[500]}
+            headerFontColor={PXBColors.white[50]}
+            headerBackgroundImage={backgroundImage}
+            actionItems={[
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ]}
+            actionRow={
+                <InfoListItem
+                    title={'View Location'}
+                    chevron
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                    hidePadding
+                    dense
+                />
             }
-        >
-            <View style={{ justifyContent: 'center' }}>
+            badgeOffset={0}
+            badge={
+                <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
+                    {[
+                        <Hero
+                            key={'hero_1'}
+                            label={'Score'}
+                            iconSize={48}
+                            iconColor={PXBColors.green[500]}
+                            value={98}
+                            units={'/100'}
+                            IconClass={A}
+                        />,
+                        <Hero
+                            key={'hero_2'}
+                            label={'Score'}
+                            iconSize={48}
+                            iconColor={PXBColors.green[500]}
+                            value={98}
+                            units={'/100'}
+                            IconClass={A}
+                        />,
+                    ].slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}
+                </HeroBanner>
+            }>
+            <Text>Body Content</Text>
+        </ScoreCard>
+    ))
+    .add('with score badge', () => (
+        <ScoreCard
+            headerTitle="Substation 3"
+            headerSubtitle="High Humidity Alarm"
+            headerInfo="4 Devices"
+            headerColor={PXBColors.blue[500]}
+            headerFontColor={PXBColors.white[50]}
+            headerBackgroundImage={backgroundImage}
+            actionItems={[
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ]}
+            actionRow={
+                <InfoListItem
+                    title={'View Location'}
+                    chevron
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                    hidePadding
+                    dense
+                />
+            }
+            badgeOffset={boolean('badgeOffset', true) ? -55 : 0}
+            badge={
+                <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
+                    {[
+                        <Hero
+                            key={'hero_1'}
+                            label={'Score'}
+                            iconSize={48}
+                            iconColor={PXBColors.green[500]}
+                            value={98}
+                            units={'/100'}
+                            IconClass={A}
+                        />
+                    ]}
+                </HeroBanner>
+            }>
+             <View style={{ justifyContent: 'center' }}>
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                     leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
@@ -98,17 +229,23 @@ storiesOf('ScoreCard', module)
             </View>
         </ScoreCard>
     ))
-    .add('with hero badges', () => (
+    .add('with full config', () => (
         <ScoreCard
-            headerTitle={text('title', 'Portland Datacenter')}
-            headerSubtitle={text('subtitle', '6 UPS Devices')}
-            headerInfo={text('infotext', 'Attention Required')}
-            headerColor={color('backgroundColor', PXBColors.red[500])}
-            headerFontColor={color('fontColor', PXBColors.white[50])}
+            headerTitle={text('headerTitle', 'Substation 3')}
+            headerSubtitle={text('headerSubtitle', 'High Humidity Alarm')}
+            headerInfo={text('headerInfo', '4 Devices')}
+            headerColor={color('headerColor', PXBColors.red[500])}
+            headerFontColor={color('headerFontColor', PXBColors.white[50])}
             headerBackgroundImage={backgroundImage}
             actionItems={[
                 {
-                    icon: Clock,
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: SearchIcon,
                     onPress: (): void => {
                         /* do nothing */
                     },
@@ -119,22 +256,16 @@ storiesOf('ScoreCard', module)
                         /* do nothing */
                     },
                 },
-                {
-                    icon: MoreIcon,
-                    onPress: (): void => {
-                        /* do nothing */
-                    },
-                },
             ].slice(
                 0,
-                number('actionItems.length', 2, {
+                number('actionLimit', 3, {
                     range: true,
                     min: 0,
                     max: 3,
                     step: 1,
                 })
             )}
-            badgeOffset={boolean('badgeOffset', false) ? -55 : 0}
+            badgeOffset={boolean('badgeOffset', true) ? -55 : 0}
             badge={
                 <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
                     {[
@@ -165,7 +296,7 @@ storiesOf('ScoreCard', module)
                             units={'/100'}
                             IconClass={A}
                         />,
-                    ].slice(0, number('badges.length', 2, { range: true, min: 0, max: 3, step: 1 }))}
+                    ].slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 3, step: 1 }))}
                 </HeroBanner>
             }
             actionRow={
@@ -198,4 +329,5 @@ storiesOf('ScoreCard', module)
                 />
             </View>
         </ScoreCard>
-    ));
+    ))
+    ;

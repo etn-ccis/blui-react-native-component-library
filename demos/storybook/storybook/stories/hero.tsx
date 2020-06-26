@@ -42,7 +42,7 @@ storiesOf('Hero', module)
             }}
         />
     ))
-    .add('with full customization', () => (
+    .add('with full config', () => (
         <Hero
             style={{ width: '100%' }}
             label={text('label', 'Efficiency')}

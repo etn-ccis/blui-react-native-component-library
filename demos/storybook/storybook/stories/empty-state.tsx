@@ -51,4 +51,23 @@ storiesOf('EmptyState', module)
                 actions={<Button title={text('button title', 'Learn More')} type={'outline'} />}
             />
         </ImageBackground>
+    ))
+    .add('with full config', () => (
+        <EmptyState
+            IconClass={Clock}
+            title={text('title', 'No Alarms Found')}
+            description={text('description', 'A fully redesigned alarms page is coming in our next release!')}
+            actions={
+                <Button
+                    icon={
+                        <RNEIcon
+                            name="add-circle-outline"
+                            color={Colors.white[500]}
+                            containerStyle={{ marginRight: 5 }}
+                        />
+                    }
+                    title={text('button title', 'Add Alarm')}
+                />
+            }
+        />
     ));

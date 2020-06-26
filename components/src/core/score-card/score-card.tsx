@@ -332,7 +332,7 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     if (actionItems) {
         return (
             <View style={[defaultStyles.root, styles.root]}>
-                {actionItems.slice(0, 2).map((actionItem, index) => (
+                {actionItems.slice(0, 6).map((actionItem, index) => (
                     <TouchableOpacity
                         key={`${index}`}
                         testID={`action-item${index}`}
