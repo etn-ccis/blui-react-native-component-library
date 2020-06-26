@@ -40,9 +40,6 @@ export type HeroProps = ViewProps & {
     label: string;
 
     /** Primary icon */
-    // icon: React.ReactNode;
-
-    /** Primary icon */
     IconClass: ComponentType<{ size: number; color: string }>;
 
     /** Primary icon size */

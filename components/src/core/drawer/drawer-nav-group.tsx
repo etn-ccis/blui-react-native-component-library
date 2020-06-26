@@ -72,7 +72,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const defaultStyles = drawerNavGroupStyles;
 
     const getDrawerItemList = useCallback(
-        (item: NavItem | NestedNavItem, depth: number): ReactNode => {
+        (item: NavItem | NestedNavItem, depth: number): JSX.Element => {
             const [expanded, setExpanded] = useState(findID(item, props.activeItem));
 
             // Nested items inherit from the nestedDivider prop if item's divider is unset.
