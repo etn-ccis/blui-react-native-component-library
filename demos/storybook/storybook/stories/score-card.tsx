@@ -40,7 +40,8 @@ storiesOf('ScoreCard', module)
             headerInfo={text('headerInfo', '4 Devices')}
             headerColor={color('backgroundColor', PXBColors.red[500])}
             headerFontColor={color('fontColor', PXBColors.white[50])}
-            headerBackgroundImage={backgroundImage}>
+            headerBackgroundImage={backgroundImage}
+        >
             <Text>Body Content</Text>
         </ScoreCard>
     ))
@@ -88,7 +89,7 @@ storiesOf('ScoreCard', module)
                     onPress: (): void => {
                         /* do nothing */
                     },
-                }
+                },
             ].slice(
                 0,
                 number('actionLimit', 3, {
@@ -108,7 +109,8 @@ storiesOf('ScoreCard', module)
                     hidePadding
                     dense
                 />
-            }>
+            }
+        >
             <Text>Body Content</Text>
         </ScoreCard>
     ))
@@ -163,7 +165,8 @@ storiesOf('ScoreCard', module)
                         />,
                     ].slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}
                 </HeroBanner>
-            }>
+            }
+        >
             <Text>Body Content</Text>
         </ScoreCard>
     ))
@@ -206,11 +209,12 @@ storiesOf('ScoreCard', module)
                             value={98}
                             units={'/100'}
                             IconClass={A}
-                        />
+                        />,
                     ]}
                 </HeroBanner>
-            }>
-             <View style={{ justifyContent: 'center' }}>
+            }
+        >
+            <View style={{ justifyContent: 'center' }}>
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
                     leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
@@ -329,5 +333,4 @@ storiesOf('ScoreCard', module)
                 />
             </View>
         </ScoreCard>
-    ))
-    ;
+    ));

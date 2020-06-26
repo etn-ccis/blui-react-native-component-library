@@ -113,14 +113,8 @@ storiesOf('InfoListItem', module)
             <InfoListItem
                 title={text('title', 'This is a title')}
                 IconClass={LeafIcon}
-                subtitle={text(
-                    'subtitle',
-                    'this is a subtitle'
-                )}
-                info={text(
-                    'info',
-                    'this is a third line of text'
-                )}
+                subtitle={text('subtitle', 'this is a subtitle')}
+                info={text('info', 'this is a third line of text')}
                 onPress={
                     boolean('action', true)
                         ? (): void => {

@@ -154,4 +154,3 @@ storiesOf('Header', module)
             backgroundColor={color('backgroundColor', white[50])}
         />
     ));
-    ;
