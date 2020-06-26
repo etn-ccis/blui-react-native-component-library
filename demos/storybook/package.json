@@ -11,6 +11,7 @@
         "lint": "eslint \"**/**.{ts,tsx}\"",
         "lint:fix": "eslint \"**/**.{ts,tsx}\" --fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
+        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check",
         "rnlink": "react-native link"
     },
     "dependencies": {
