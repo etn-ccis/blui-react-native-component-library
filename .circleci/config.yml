@@ -18,7 +18,7 @@ jobs:
           paths:
             - components/node_modules
           key: v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
-       - run:
+      - run:
           name: Prettier Check
           command: |
             cd components
