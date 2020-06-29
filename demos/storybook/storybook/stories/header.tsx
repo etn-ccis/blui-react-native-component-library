@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react-native';
 import { color, number, text, withKnobs } from '@storybook/addon-knobs';
 import { Header, wrapIcon } from '@pxblue/react-native-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { white, green } from '@pxblue/colors';
+import { white, green, blue } from '@pxblue/colors';
 
 const MailIcon = wrapIcon({ IconClass: Icon, name: 'mail' });
 const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
@@ -117,6 +117,40 @@ storiesOf('Header', module)
                 },
             ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
             fontColor={color('fontColor', green[900])}
+            backgroundColor={color('backgroundColor', white[50])}
+        />
+    ))
+    .add('with full config', () => (
+        <Header
+            title={text('title', 'Title Text')}
+            subtitle={text('subtitle', 'Subtitle Text')}
+            navigation={{
+                icon: MenuIcon,
+                onPress: (): void => {
+                    /* do nothing */
+                },
+            }}
+            actionItems={[
+                {
+                    icon: MailIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: CloudIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
+            fontColor={color('fontColor', blue[500])}
             backgroundColor={color('backgroundColor', white[50])}
         />
     ));

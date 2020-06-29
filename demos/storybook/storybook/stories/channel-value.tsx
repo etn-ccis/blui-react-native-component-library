@@ -63,7 +63,7 @@ storiesOf('ChannelValue', module)
         notes
     )
     .add(
-        'with all props',
+        'with full config',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue

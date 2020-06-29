@@ -113,7 +113,7 @@ describe('ScoreCard', () => {
             });
         });
 
-        describe('when more than 2 actionItems are passed in', () => {
+        describe('when more than 6 actionItems are passed in', () => {
             let instance: ReactTestInstance;
             beforeEach(() => {
                 instance = TestRenderer.create(
@@ -123,15 +123,23 @@ describe('ScoreCard', () => {
                             { icon: Line, onPress: jest.fn() },
                             { icon: Line, onPress: jest.fn() },
                             { icon: Line, onPress: jest.fn() },
+                            { icon: Line, onPress: jest.fn() },
+                            { icon: Line, onPress: jest.fn() },
+                            { icon: Line, onPress: jest.fn() },
+                            { icon: Line, onPress: jest.fn() },
                         ]}
                     />
                 ).root;
             });
 
-            it('renders only the first two items', () => {
+            it('renders only the first six items', () => {
                 expect(instance.find((x) => x.props.testID === 'action-item0')).toBeTruthy();
                 expect(instance.find((x) => x.props.testID === 'action-item1')).toBeTruthy();
-                expect(instance.findAll((x) => x.props.testID === 'action-item2')).toHaveLength(0);
+                expect(instance.find((x) => x.props.testID === 'action-item2')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'action-item3')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'action-item4')).toBeTruthy();
+                expect(instance.find((x) => x.props.testID === 'action-item5')).toBeTruthy();
+                expect(instance.findAll((x) => x.props.testID === 'action-item6')).toHaveLength(0);
             });
         });
     });

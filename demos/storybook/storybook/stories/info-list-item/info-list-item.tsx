@@ -77,10 +77,10 @@ storiesOf('InfoListItem', module)
         notes
     )
     .add(
-        'with third line of text',
+        'array for subtitles',
         () => (
             <InfoListItem
-                title={text('title', 'This is a title')}
+                title={text('title', 'Test')}
                 IconClass={LeafIcon}
                 subtitle={text('subtitle', 'this is a subtitle')}
                 info={text('info', 'this is a third line of text')}
@@ -96,18 +96,6 @@ storiesOf('InfoListItem', module)
         notes
     )
     .add(
-        'array for subtitles',
-        () => (
-            <InfoListItem
-                title={text('title', 'Test')}
-                IconClass={LeafIcon}
-                subtitle={['4', <Leaf key={'leaf'} width={12} height={12} fill={'green'} />, 'leaves']}
-                subtitleSeparator={text('separator', '-')}
-            />
-        ),
-        notes
-    )
-    .add(
         'with custom control',
         () => (
             <InfoListItem
@@ -115,6 +103,31 @@ storiesOf('InfoListItem', module)
                 IconClass={LeafIcon}
                 subtitle={text('subtitle', 'A simpler view')}
                 rightComponent={<ChannelValue value={15} units={'A'} />}
+            />
+        ),
+        notes
+    )
+    .add(
+        'with full config',
+        () => (
+            <InfoListItem
+                title={text('title', 'This is a title')}
+                IconClass={LeafIcon}
+                subtitle={text('subtitle', 'this is a subtitle')}
+                info={text('info', 'this is a third line of text')}
+                onPress={
+                    boolean('action', true)
+                        ? (): void => {
+                              /* do nothing */
+                          }
+                        : undefined
+                }
+                rightComponent={<ChannelValue value={15} units={'A'} />}
+                avatar={boolean('avatar', false)}
+                iconColor={color('iconColor', PXBColors.green[500])}
+                statusColor={color('statusColor', PXBColors.blue[700])}
+                fontColor={color('fontColor', PXBColors.blue[700])}
+                backgroundColor={color('backgroundColor', PXBColors.white[50])}
             />
         ),
         notes
