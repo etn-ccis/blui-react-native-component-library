@@ -39,7 +39,7 @@ storiesOf('InfoListItem', module)
         notes
     )
     .add(
-        'array with subtitles',
+        'with array of subtitles',
         () => (
             <InfoListItem
                 title={'Info List Item'}
