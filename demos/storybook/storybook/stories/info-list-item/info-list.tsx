@@ -53,7 +53,7 @@ const createInfoListItemProps = (): InfoListItemProps => {
 };
 
 const data: InfoListItemProps[] = _.range(100).map(createInfoListItemProps);
-storiesOf('InfoListItem', module).add('in FlatList', () => (
+storiesOf('InfoListItem', module).add('within a full list', () => (
     <FlatList<InfoListItemProps>
         data={data}
         style={{ height: '100%', flex: 1000 }}
