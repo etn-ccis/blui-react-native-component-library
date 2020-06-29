@@ -20,7 +20,7 @@ storiesOf('InfoListItem', module)
         'with subtitle',
         () => (
             <InfoListItem
-                title={text('title', 'Info List Item')}
+                title={'Info List Item'}
                 subtitle={text('subtitle', 'this is a subtitle within an InfoListItem')}
             />
         ),
@@ -39,7 +39,7 @@ storiesOf('InfoListItem', module)
         notes
     )
     .add(
-        'array for subtitles',
+        'array with subtitles',
         () => (
             <InfoListItem
                 title={'Info List Item'}
