@@ -5,7 +5,6 @@ import { text, boolean, withKnobs, color } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import { framedRow } from '../../decorators';
 import * as Colors from '@pxblue/colors';
-import { FlatList } from 'react-native';
 
 const notes = {
     notes:

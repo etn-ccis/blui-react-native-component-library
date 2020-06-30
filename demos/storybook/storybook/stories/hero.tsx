@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { text, withKnobs, color, boolean, number } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import { centered } from '../decorators';
 import { Hero, ChannelValue, wrapIcon, HeroBanner } from '@pxblue/react-native-components';
 import _Leaf from '@pxblue/icons-svg/leaf.svg';
@@ -10,7 +9,6 @@ import _A from '@pxblue/icons-svg/grade_a.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Colors from '@pxblue/colors';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Leaf = wrapIcon({ IconClass: _Leaf });
 const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
@@ -18,9 +16,9 @@ const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
 const Temp = wrapIcon({ IconClass: _Temp });
 const Battery = wrapIcon({ IconClass: _Battery });
 const A = wrapIcon({ IconClass: _A });
-const Pie = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-pie' });
+const Pie = wrapIcon({ IconClass: Icon, name: 'chart-pie' });
 const ChartLineVariant = wrapIcon({
-    IconClass: MaterialCommunityIcon,
+    IconClass: Icon,
     name: 'chart-line-variant',
 });
 
@@ -83,4 +81,4 @@ storiesOf('Hero', module)
             units={text('units', '°C')}
         />
     ))
-    .add('within a hero banner', () => <HeroBanner divider={boolean('divider', true)}>{heroes}</HeroBanner>);;
+    .add('within a hero banner', () => <HeroBanner divider={boolean('divider', true)}>{heroes}</HeroBanner>);
