@@ -9,7 +9,7 @@ import { purple, green } from '@pxblue/colors';
 storiesOf('Typography', module)
     .addDecorator(withKnobs)
     .addDecorator(safeArea)
-    .add('default appearance', () => (
+    .add('with basic usage', () => (
         <View>
             <Typography.H1>Head. 1</Typography.H1>
             <Typography.H2>Heading 2</Typography.H2>
@@ -26,7 +26,7 @@ storiesOf('Typography', module)
             <Typography.Overline>Overline</Typography.Overline>
         </View>
     ))
-    .add('with color props', () => (
+    .add('with custom colors', () => (
         <View>
             <Typography.H4 color={'primary'}>Primary</Typography.H4>
             <Typography.H4 color={'accent'}>Accent</Typography.H4>

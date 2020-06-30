@@ -9,7 +9,7 @@ import { padded } from '../decorators';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import _A from '@pxblue/icons-svg/grade_a.svg';
 
-import * as PXBColors from '@pxblue/colors';
+import * as Colors from '@pxblue/colors';
 import backgroundImage from '../assets/farm.jpg';
 
 const A = wrapIcon({ IconClass: _A });
@@ -24,7 +24,7 @@ storiesOf('ScoreCard', module)
     .addDecorator(withKnobs)
     .addDecorator(padded)
     .add('with basic usage', () => (
-        <ScoreCard headerTitle={text('headerTitle', 'Card Title')}>
+        <ScoreCard headerTitle={text('headerTitle', 'Card Title')} style={{ maxHeight: 164 }}>
             <Text>Body Content</Text>
         </ScoreCard>
     ))
@@ -33,9 +33,10 @@ storiesOf('ScoreCard', module)
             headerTitle={text('headerTitle', 'Card Title')}
             headerSubtitle={text('headerSubtitle', 'Card Subtitle')}
             headerInfo={text('headerInfo', '4 Devices')}
-            headerColor={color('backgroundColor', PXBColors.red[500])}
-            headerFontColor={color('fontColor', PXBColors.white[50])}
+            headerColor={color('backgroundColor', Colors.red[500])}
+            headerFontColor={color('fontColor', Colors.white[50])}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 164 }}
         >
             <Text>Body Content</Text>
         </ScoreCard>
@@ -45,9 +46,10 @@ storiesOf('ScoreCard', module)
             headerTitle="Substation 3"
             headerSubtitle="High Humidity Alarm"
             headerInfo="4 Devices"
-            headerColor={PXBColors.red[500]}
-            headerFontColor={PXBColors.white[50]}
+            headerColor={Colors.red[500]}
+            headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 220 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -114,9 +116,10 @@ storiesOf('ScoreCard', module)
             headerTitle="Substation 3"
             headerSubtitle="High Humidity Alarm"
             headerInfo="4 Devices"
-            headerColor={PXBColors.red[500]}
-            headerFontColor={PXBColors.white[50]}
+            headerColor={Colors.red[500]}
+            headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 310 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -144,7 +147,7 @@ storiesOf('ScoreCard', module)
                             key={'hero_1'}
                             label={'Score'}
                             iconSize={48}
-                            iconColor={PXBColors.green[500]}
+                            iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
                             IconClass={A}
@@ -153,7 +156,7 @@ storiesOf('ScoreCard', module)
                             key={'hero_2'}
                             label={'Score'}
                             iconSize={48}
-                            iconColor={PXBColors.green[500]}
+                            iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
                             IconClass={A}
@@ -170,9 +173,10 @@ storiesOf('ScoreCard', module)
             headerTitle="Substation 3"
             headerSubtitle="High Humidity Alarm"
             headerInfo="4 Devices"
-            headerColor={PXBColors.blue[500]}
-            headerFontColor={PXBColors.white[50]}
+            headerColor={Colors.blue[500]}
+            headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 280 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -200,7 +204,7 @@ storiesOf('ScoreCard', module)
                             key={'hero_1'}
                             label={'Score'}
                             iconSize={48}
-                            iconColor={PXBColors.green[500]}
+                            iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
                             IconClass={A}
@@ -212,12 +216,12 @@ storiesOf('ScoreCard', module)
             <View style={{ justifyContent: 'center' }}>
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
+                    leftIcon={<MatIcon name={'notifications'} size={24} color={Colors.red[500]} />}
                     title={<Body1 color={'error'}>1 Alarm</Body1>}
                 />
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
+                    leftIcon={<MatIcon name={'info'} size={24} color={Colors.blue[500]} />}
                     title={<Body1 color={'primary'}>1 Event</Body1>}
                 />
                 <ListItem
@@ -233,9 +237,10 @@ storiesOf('ScoreCard', module)
             headerTitle={text('headerTitle', 'Substation 3')}
             headerSubtitle={text('headerSubtitle', 'High Humidity Alarm')}
             headerInfo={text('headerInfo', '4 Devices')}
-            headerColor={color('headerColor', PXBColors.red[500])}
-            headerFontColor={color('headerFontColor', PXBColors.white[50])}
+            headerColor={color('headerColor', Colors.red[500])}
+            headerFontColor={color('headerFontColor', Colors.white[50])}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 280 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -272,7 +277,7 @@ storiesOf('ScoreCard', module)
                             key={'hero_1'}
                             label={'Score'}
                             iconSize={48}
-                            iconColor={PXBColors.green[500]}
+                            iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
                             IconClass={A}
@@ -281,7 +286,7 @@ storiesOf('ScoreCard', module)
                             key={'hero_2'}
                             label={'Score'}
                             iconSize={48}
-                            iconColor={PXBColors.green[500]}
+                            iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
                             IconClass={A}
@@ -290,7 +295,7 @@ storiesOf('ScoreCard', module)
                             key={'hero_3'}
                             label={'Score'}
                             iconSize={48}
-                            iconColor={PXBColors.green[500]}
+                            iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
                             IconClass={A}
@@ -313,12 +318,12 @@ storiesOf('ScoreCard', module)
             <View style={{ justifyContent: 'center' }}>
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
+                    leftIcon={<MatIcon name={'notifications'} size={24} color={Colors.red[500]} />}
                     title={<Body1 color={'error'}>1 Alarm</Body1>}
                 />
                 <ListItem
                     containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
+                    leftIcon={<MatIcon name={'info'} size={24} color={Colors.blue[500]} />}
                     title={<Body1 color={'primary'}>1 Event</Body1>}
                 />
                 <ListItem
