@@ -24,7 +24,7 @@ storiesOf('ScoreCard', module)
     .addDecorator(withKnobs)
     .addDecorator(padded)
     .add('with basic usage', () => (
-        <ScoreCard headerTitle={text('headerTitle', 'Card Title')}>
+        <ScoreCard headerTitle={text('headerTitle', 'Card Title')} style={{ maxHeight: 164 }}>
             <Text>Body Content</Text>
         </ScoreCard>
     ))
@@ -36,6 +36,7 @@ storiesOf('ScoreCard', module)
             headerColor={color('backgroundColor', Colors.red[500])}
             headerFontColor={color('fontColor', Colors.white[50])}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 164 }}
         >
             <Text>Body Content</Text>
         </ScoreCard>
@@ -48,6 +49,7 @@ storiesOf('ScoreCard', module)
             headerColor={Colors.red[500]}
             headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 220 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -117,6 +119,7 @@ storiesOf('ScoreCard', module)
             headerColor={Colors.red[500]}
             headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 310 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -173,6 +176,7 @@ storiesOf('ScoreCard', module)
             headerColor={Colors.blue[500]}
             headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 280 }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -236,6 +240,7 @@ storiesOf('ScoreCard', module)
             headerColor={color('headerColor', Colors.red[500])}
             headerFontColor={color('headerFontColor', Colors.white[50])}
             headerBackgroundImage={backgroundImage}
+            style={{ maxHeight: 280 }}
             actionItems={[
                 {
                     icon: MoreIcon,

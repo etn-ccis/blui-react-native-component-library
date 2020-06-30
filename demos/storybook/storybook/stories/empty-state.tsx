@@ -37,7 +37,7 @@ storiesOf('EmptyState', module)
             }
         />
     ))
-    .add('with placeholder', () => (
+    .add('with background image', () => (
         <ImageBackground
             source={{
                 uri:

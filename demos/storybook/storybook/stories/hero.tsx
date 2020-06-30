@@ -3,16 +3,38 @@ import { storiesOf } from '@storybook/react-native';
 import { text, withKnobs, color, boolean, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { centered } from '../decorators';
-import { Hero, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
+import { Hero, ChannelValue, wrapIcon, HeroBanner } from '@pxblue/react-native-components';
 import _Leaf from '@pxblue/icons-svg/leaf.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
+import _A from '@pxblue/icons-svg/grade_a.svg';
+import _Battery from '@pxblue/icons-svg/battery.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Colors from '@pxblue/colors';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Leaf = wrapIcon({ IconClass: _Leaf });
 const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
 const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
 const Temp = wrapIcon({ IconClass: _Temp });
+const Battery = wrapIcon({ IconClass: _Battery });
+const A = wrapIcon({ IconClass: _A });
+const Pie = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-pie' });
+const ChartLineVariant = wrapIcon({
+    IconClass: MaterialCommunityIcon,
+    name: 'chart-line-variant',
+});
+
+const heroes = [
+    <Hero key={'hero_1'} label={'Healthy'} value={96} units={'/100'} IconClass={A} iconColor={Colors.green[500]} />,
+    <Hero key={'hero_2'} label={'Battery'} value={'Full'} IconClass={Battery} iconColor={Colors.blue[500]} />,
+    <Hero key={'hero_3'} label={'Estimated'} IconClass={Clock} iconColor={Colors.gray[500]}>
+        <ChannelValue fontSize={20} value={1} units={'h'} />
+        <ChannelValue fontSize={20} value={37} units={'m'} />
+    </Hero>,
+    <Hero key={'hero_4'} label={'Loaded'} IconClass={Pie} iconColor={Colors.blue[500]}>
+        <ChannelValue fontSize={20} value={65} units={'%'} IconClass={ChartLineVariant} />
+    </Hero>,
+];
 
 storiesOf('Hero', module)
     .addDecorator(withKnobs)
@@ -46,19 +68,6 @@ storiesOf('Hero', module)
             iconBackgroundColor={color('iconBackgroundColor', Colors.red[500])}
         />
     ))
-    .add('with press event', () => (
-        <Hero
-            style={{ width: '100%' }}
-            label={text('label', 'Efficiency')}
-            IconClass={Leaf}
-            value={text('value', '94')}
-            units={text('units', '%')}
-            action
-            onPress={(): void => {
-                action('clicked alarms');
-            }}
-        />
-    ))
     .add('with full config', () => (
         <Hero
             style={{ width: '100%' }}
@@ -73,4 +82,5 @@ storiesOf('Hero', module)
             valueColor={color('color', Colors.red[500])}
             units={text('units', '°C')}
         />
-    ));
+    ))
+    .add('within a hero banner', () => <HeroBanner divider={boolean('divider', true)}>{heroes}</HeroBanner>);;

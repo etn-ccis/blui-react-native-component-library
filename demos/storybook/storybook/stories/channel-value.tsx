@@ -74,20 +74,4 @@ storiesOf('ChannelValue', module)
             </View>
         ),
         notes
-    )
-    .add(
-        'with overridden theme',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ChannelValue
-                    value={text('value', text('value', '123'))}
-                    units={text('units', 'hz')}
-                    color="error"
-                    theme={{
-                        colors: { error: Colors.purple[500] },
-                    }}
-                />
-            </View>
-        ),
-        notes
     );

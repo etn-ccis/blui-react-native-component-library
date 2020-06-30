@@ -13,7 +13,7 @@ import backgroundImage from '../assets/farm.jpg';
 
 storiesOf('Header', module)
     .addDecorator(withKnobs)
-    .add('standard styling', () => (
+    .add('with basic usage', () => (
         <Header
             title={text('title', 'Title')}
             navigation={{
@@ -44,7 +44,7 @@ storiesOf('Header', module)
             ].slice(0, number('action items', 3, { range: true, min: 0, max: 3, step: 1 }))}
         />
     ))
-    .add('expandable with background image', () => (
+    .add('with background image', () => (
         <Header
             expandable={true}
             title={text('title', 'Long Title Text')}
