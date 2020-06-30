@@ -1400,15 +1400,21 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-native-components@^3.0.0-beta.0":
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-3.0.0-beta.0.tgz#c1debb290fa16d72ea58719d3c47958470970cda"
-  integrity sha512-MDWNrhsx9YUNAFVfu6GViLNNZtgEBAkfajSkVQEcsSkI2nswUl1D3PfPdjOTde+qHdYtyC5zSzAYef24sLOAfg==
+"@pxblue/react-native-components@^3.0.0":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-3.0.1.tgz#eff47b163d6cb1f55107e10171176eca0ddf956c"
+  integrity sha512-Fmfwl4m35c9xkAbE3IZQbJlOmrfCelMxUyLsoBKXq9HXghPLPrgUm7COAVP5nnC2131CgvrYZkTfKsChJ8N/qA==
+  dependencies:
+    "@pxblue/colors" "^3.0.0"
+    color "^3.1.2"
+    react-native-collapsible "^1.5.2"
+    react-native-keyboard-aware-scroll-view "^0.8.0"
+    react-native-status-bar-height "^2.3.1"
 
-"@pxblue/react-native-themes@^5.0.0-beta.0":
-  version "5.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-themes/-/react-native-themes-5.0.0-beta.0.tgz#3580bc2afcfe54be3bf4518143facff6f437559d"
-  integrity sha512-DiXs82Ex7ycxyAv7zAwb6UFQ+oqiTZi0k359lOu6q3Y4S32J6dTtZCpaZhy+PdaPhNKkAOa4osYtspPgCVzl6g==
+"@pxblue/react-native-themes@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-themes/-/react-native-themes-5.0.0.tgz#3e1fd93132536d691cf3f2657ef8edb80c6e7716"
+  integrity sha512-xw2MIZDKeyaQefFhFvMfzdNdjPTQz7LUTlkhYHbCixtSGXBonNpDY60vFiY2hMWdBJRS+YElVTmEjgx8DfOqMA==
   dependencies:
     "@pxblue/colors" "^3.0.0"
 
@@ -7106,10 +7112,18 @@ react-native-gesture-handler@^1.6.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-iphone-x-helper@^1.2.1:
+react-native-iphone-x-helper@^1.0.3, react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
   integrity sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ==
+
+react-native-keyboard-aware-scroll-view@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.8.0.tgz#00bcaa38c91323913bb7a733059ad2bc4875f88c"
+  integrity sha512-gPfhgHQI/z7Cc5aeNOEmK0b250QkAeU6V+4oH8EC7mmFneEKn6MAIDjpoiwqt6bV+lFJPABXfx9MtrRmtCeJ/Q==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-iphone-x-helper "^1.0.3"
 
 react-native-paper@^3.10.1:
   version "3.10.1"
@@ -7152,7 +7166,7 @@ react-native-screens@^2.8.0:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.8.0.tgz#9f989096fc5ccf248e0dfa93a74f1a64057e15f1"
   integrity sha512-fUCIQLZX+5XB0ypWX038P3zso54IFFjTsQUZJWEsjC3pp5rPItAt5SzqtJn+uVjcJaczZ+dpIuvj6IFLqkWLZQ==
 
-react-native-status-bar-height@^2.2.0:
+react-native-status-bar-height@^2.2.0, react-native-status-bar-height@^2.3.1:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.5.0.tgz#bc0fb85230603850aab9667ee8111a62954de90c"
   integrity sha512-sYBCPYA/NapBSHkdm/IVL4ID3LLlIuLqINi2FBDyMkc2BU9pfSGOtkz9yfxoK39mYJuTrlTOQ7mManARUsYDSA==
