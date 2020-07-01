@@ -25,7 +25,7 @@
         "install:showcase-android": "cd demos/showcase && yarn && cd ../.. && yarn link:components",
         "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
         "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
-        "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components && copy-package-json",
+        "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components && yarn copy-package-json",
         "copy-package-json": "cp package.json demos/api/src/",
         "link:components": "bash ./scripts/linkComponents.sh",
         "start": "yarn start:showcase",
