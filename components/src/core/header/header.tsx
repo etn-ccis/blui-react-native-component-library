@@ -1,4 +1,4 @@
-import React, { createRef, Component, ComponentType } from 'react';
+import React, { ComponentType, useCallback, useState, useRef } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -6,30 +6,70 @@ import {
     StyleSheet,
     StatusBar,
     TextInput,
-    TouchableOpacity,
     TouchableWithoutFeedback,
-    View,
+    ViewProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    ImageStyle,
 } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
-import { withTheme, Theme, WithTheme } from '../theme';
-import { wrapIcon } from '../icon-wrapper/icon-wrapper';
+import { Theme, useTheme } from 'react-native-paper';
+import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ANIMATION_LENGTH } from './constants';
+import { HeaderBackgroundImage } from './headerBackgroundImage';
+import { HeaderNavigationIcon } from './headerNavigationIcon';
+import { HeaderContent } from './headerContent';
+import { HeaderActionItems } from './headerActionItems';
+import { SearchContext } from './contexts/SearchContextProvider';
+import { ColorContext } from './contexts/ColorContextProvider';
+import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
+import { HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-
-const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
-const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
-export type HeaderIcon = {
-    /** Name of the icon */
-    icon: ComponentType<{ size: number; color: string }>;
+const headerStyles = (
+    props: HeaderProps,
+    theme: Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    // header: ViewStyle;
+    content: ViewStyle;
+}> =>
+    StyleSheet.create({
+        // root: {},
+        root: {
+            width: '100%',
+            backgroundColor: props.backgroundColor || theme.colors.primary,
+            shadowColor: 'rgba(0, 0, 0, 0.3)',
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowRadius: 2,
+            shadowOpacity: 1,
+            elevation: 0,
+        },
 
-    /** Callback when icon is pressed */
-    onPress: () => void;
-};
+        bar: {
+            width: '100%',
+            shadowColor: 'rgba(0, 0, 0, 0.3)',
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowRadius: 2,
+            shadowOpacity: 1,
+            elevation: 0,
+        },
+        content: {
+            flex: 1,
+            paddingTop: 16,
+            paddingHorizontal: 16,
+            flexDirection: 'row',
+        },
+    });
 
 export type SearchableConfig = {
     /** Icon to override default search icon */
@@ -51,7 +91,7 @@ export type SearchableConfig = {
     autoCorrect?: boolean;
 };
 
-export type HeaderProps = {
+export type HeaderProps = ViewProps & {
     /** Header title */
     title: string;
 
@@ -85,448 +125,26 @@ export type HeaderProps = {
     /** Configuration object that determines whether the Header can have a search bar */
     searchableConfig?: SearchableConfig;
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        backgroundImage?: StyleProp<ImageStyle>;
+        content?: StyleProp<ViewStyle>;
+        navigationIcon?: StyleProp<ViewStyle>;
+        textContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+        search?: StyleProp<TextStyle>;
+        actionPanel?: StyleProp<ViewStyle>;
+        actionItem?: StyleProp<ViewStyle>;
+    };
+
     /**
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
 };
-
-type HeaderState = {
-    expanded: boolean;
-    searching: boolean;
-    query: string;
-    headerHeight: Animated.Value;
-};
-
-class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
-    static readonly REGULAR_HEIGHT = 56 + getStatusBarHeight(true);
-    static readonly EXTENDED_HEIGHT = 200 + getStatusBarHeight(true);
-    static readonly ICON_SIZE = 24;
-    static readonly ICON_SPACING = 16;
-    static readonly ANIMATION_LENGTH = 300;
-
-    private readonly expand: Animated.CompositeAnimation;
-    private readonly contract: Animated.CompositeAnimation;
-
-    private readonly searchRef = createRef<TextInput>();
-
-    constructor(props: WithTheme<HeaderProps>) {
-        super(props);
-
-        this.state = {
-            expanded: props.startExpanded || false,
-            searching: false,
-            query: '',
-            headerHeight: props.startExpanded
-                ? new Animated.Value(HeaderClass.EXTENDED_HEIGHT)
-                : new Animated.Value(HeaderClass.REGULAR_HEIGHT),
-        };
-
-        this.expand = Animated.timing(this.state.headerHeight, {
-            toValue: HeaderClass.EXTENDED_HEIGHT,
-            duration: HeaderClass.ANIMATION_LENGTH,
-        });
-
-        this.contract = Animated.timing(this.state.headerHeight, {
-            toValue: HeaderClass.REGULAR_HEIGHT,
-            duration: HeaderClass.ANIMATION_LENGTH,
-        });
-    }
-
-    render() {
-        const { expandable = false } = this.props;
-        const { searching } = this.state;
-        const barStyle = this.barStyle();
-        const contentStyle = this.contentStyle();
-
-        return (
-            <>
-                <StatusBar barStyle={this.statusBarStyle()} />
-                <TouchableWithoutFeedback onPress={() => this.onPress()} disabled={!expandable || searching}>
-                    <AnimatedSafeAreaView style={barStyle}>
-                        {this.backgroundImage()}
-                        <Animated.View style={contentStyle}>
-                            {this.navigation()}
-                            {this.content()}
-                            {this.actionItems()}
-                        </Animated.View>
-                    </AnimatedSafeAreaView>
-                </TouchableWithoutFeedback>
-            </>
-        );
-    }
-
-    private onPress() {
-        const { expanded } = this.state;
-        if (expanded) {
-            this.contract.start();
-            this.setState({
-                expanded: false,
-            });
-        } else {
-            this.expand.start();
-            this.setState({
-                expanded: true,
-            });
-        }
-    }
-
-    private backgroundImage() {
-        const { backgroundImage } = this.props;
-        const { searching } = this.state;
-        if (backgroundImage && !searching) {
-            return (
-                <Animated.Image
-                    testID={'header-background-image'}
-                    source={backgroundImage}
-                    resizeMethod={'resize'}
-                    style={{
-                        position: 'absolute',
-                        width: '100%',
-                        resizeMode: 'cover',
-                        height: this.state.headerHeight,
-                        // opacity: 0.3
-                        opacity: this.state.headerHeight.interpolate({
-                            inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                            outputRange: [0.2, 0.3],
-                        }),
-                    }}
-                />
-            );
-        }
-    }
-
-    private navigation() {
-        const { navigation } = this.props;
-        const { searching } = this.state;
-
-        if (searching) {
-            return (
-                <View>
-                    <TouchableOpacity
-                        testID={'header-search-close'}
-                        onPress={() => this.onPressSearchClose()}
-                        style={styles.navigation}
-                    >
-                        <Icon name={'arrow-back'} size={HeaderClass.ICON_SIZE} color={this.fontColor()} />
-                    </TouchableOpacity>
-                </View>
-            );
-        }
-        if (navigation) {
-            return (
-                <View>
-                    <TouchableOpacity
-                        testID={'header-navigation'}
-                        onPress={navigation.onPress}
-                        style={styles.navigation}
-                    >
-                        {this.icon(navigation.icon)}
-                    </TouchableOpacity>
-                </View>
-            );
-        }
-    }
-
-    private icon(IconClass: ComponentType<{ size: number; color: string }>) {
-        if (IconClass) {
-            return <IconClass size={HeaderClass.ICON_SIZE} color={this.fontColor()} />;
-        }
-    }
-
-    private content() {
-        const { searchableConfig } = this.props;
-        const { searching } = this.state;
-        let content = [];
-
-        if (searchableConfig && searching) {
-            content = [this.search(searchableConfig)];
-        } else {
-            content = [this.title(), this.info(), this.subtitle()];
-        }
-        return (
-            <Animated.View
-                style={[
-                    styles.titleContainer,
-                    {
-                        marginRight: this.state.headerHeight.interpolate({
-                            inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                            outputRange: [this.actionPanelWidth(), 0],
-                        }),
-                    },
-                ]}
-            >
-                <View style={{ flex: 0, justifyContent: 'center' }}>{content}</View>
-            </Animated.View>
-        );
-    }
-
-    private title() {
-        const { title } = this.props;
-        return (
-            <Animated.Text
-                key="title_key"
-                testID={'header-title'}
-                style={this.titleStyle()}
-                numberOfLines={1}
-                ellipsizeMode={'tail'}
-            >
-                {title}
-            </Animated.Text>
-        );
-    }
-
-    private subtitle() {
-        const { subtitle } = this.props;
-        if (subtitle) {
-            return (
-                <Animated.Text
-                    key="subtitle_key"
-                    testID={'header-subtitle'}
-                    style={this.subtitleStyle()}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                >
-                    {subtitle}
-                </Animated.Text>
-            );
-        }
-    }
-
-    private info() {
-        const { info } = this.props;
-        if (info) {
-            return (
-                <Animated.Text
-                    key="info_key"
-                    testID={'header-info'}
-                    style={this.infoStyle()}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                >
-                    {info}
-                </Animated.Text>
-            );
-        }
-    }
-
-    private search(config: SearchableConfig) {
-        const placeholderTextColor = color(this.fontColor())
-            .fade(0.4)
-            .string();
-        const onChangeText = (text: string) => {
-            this.setState({ query: text });
-            config.onChangeText && config.onChangeText(text);
-        };
-
-        return (
-            <TextInput
-                key={'search-input'}
-                ref={this.searchRef}
-                style={this.searchStyle()}
-                autoCapitalize={config.autoCapitalize || 'none'}
-                autoCorrect={config.autoCorrect || false}
-                autoFocus={config.autoFocus}
-                numberOfLines={1}
-                onChangeText={onChangeText}
-                placeholder={config.placeholder || 'Search'}
-                placeholderTextColor={placeholderTextColor}
-                returnKeyType={'search'}
-                selectionColor={placeholderTextColor}
-                underlineColorAndroid={'transparent'}
-            />
-        );
-    }
-
-    private actionItems() {
-        const { actionItems, searchableConfig } = this.props;
-        const { searching, query } = this.state;
-        let items: HeaderIcon[] = actionItems || [];
-
-        if (searching) {
-            if (query) {
-                items = [
-                    {
-                        icon: ClearIcon,
-                        onPress: () => this.onPressSearchClear(),
-                    },
-                ];
-            } else {
-                items = [];
-            }
-        } else if (searchableConfig) {
-            items = [
-                {
-                    icon: SearchIcon,
-                    onPress: () => this.onPressSearch(),
-                },
-            ];
-            if (actionItems) {
-                items = items.concat(actionItems);
-            }
-        }
-
-        if (items) {
-            return (
-                <View style={styles.actionPanel}>
-                    {items.slice(0, 3).map((actionItem, index) => (
-                        <View key={`action_${index}`}>
-                            <TouchableOpacity
-                                testID={`header-action-item${index}`}
-                                onPress={actionItem.onPress}
-                                style={styles.actionItem}
-                            >
-                                {this.icon(actionItem.icon)}
-                            </TouchableOpacity>
-                        </View>
-                    ))}
-                </View>
-            );
-        }
-    }
-
-    private barStyle() {
-        return [
-            styles.bar,
-            {
-                height: this.state.headerHeight,
-                backgroundColor: this.backgroundColor(),
-            },
-        ];
-    }
-
-    private contentStyle() {
-        const contractedPadding = this.props.subtitle && !this.state.searching ? 12 : 16;
-        return [
-            styles.content,
-            {
-                paddingBottom: this.state.headerHeight.interpolate({
-                    inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                    outputRange: [contractedPadding, 28],
-                }),
-            },
-        ];
-    }
-
-    private titleStyle() {
-        const { theme } = this.props;
-        return {
-            color: this.fontColor(),
-            lineHeight: this.state.headerHeight.interpolate({
-                inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [theme.sizes.large, 30],
-            }),
-            fontFamily: theme.fonts.semiBold.fontFamily,
-            fontSize: this.state.headerHeight.interpolate({
-                inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [theme.sizes.large, 30],
-            }),
-        };
-    }
-
-    private subtitleStyle() {
-        const { theme } = this.props;
-        return {
-            color: this.fontColor(),
-            lineHeight: 18,
-            fontFamily: theme.fonts.light.fontFamily,
-            fontSize: 18,
-        };
-    }
-
-    private infoStyle() {
-        const { theme } = this.props;
-        return {
-            color: this.fontColor(),
-            lineHeight: this.state.headerHeight.interpolate({
-                inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [0.1, theme.sizes.large * 1.05], // Avoid clipping top of CAP letters
-            }),
-            opacity: this.state.headerHeight.interpolate({
-                inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [0, 1],
-            }),
-            fontFamily: theme.fonts.regular.fontFamily,
-            fontSize: this.state.headerHeight.interpolate({
-                inputRange: [HeaderClass.REGULAR_HEIGHT, HeaderClass.EXTENDED_HEIGHT],
-                outputRange: [0.1, theme.sizes.large],
-            }),
-        };
-    }
-
-    private searchStyle() {
-        const { theme } = this.props;
-        return {
-            padding: 0, // TextInput on Android has some default padding, so this needs to be explicitly set to 0
-            color: this.fontColor(),
-            fontFamily: theme.fonts.light.fontFamily,
-            fontSize: theme.sizes.large,
-            ...theme.fonts.light,
-        };
-    }
-
-    private statusBarStyle() {
-        return color(this.backgroundColor()).isDark() ? 'light-content' : 'dark-content';
-    }
-
-    private fontColor() {
-        const { fontColor, theme } = this.props;
-        const { searching } = this.state;
-
-        if (searching) {
-            return theme.colors.text;
-        }
-        return fontColor || theme.colors.onPrimary;
-    }
-
-    private backgroundColor() {
-        const { backgroundColor, theme } = this.props;
-        const { searching } = this.state;
-
-        if (searching) {
-            return theme.colors.surface;
-        }
-        return backgroundColor || theme.colors.primary;
-    }
-
-    private onPressSearch() {
-        this.contract.start(() => this.setState({ searching: true }));
-        this.setState({
-            expanded: false,
-        });
-    }
-
-    private onPressSearchClose() {
-        const searchInput = this.searchRef.current;
-        if (searchInput) {
-            searchInput.props.onChangeText && searchInput.props.onChangeText('');
-        }
-        this.setState({
-            searching: false,
-            query: '',
-        });
-    }
-
-    private onPressSearchClear() {
-        const searchInput = this.searchRef.current;
-        if (searchInput) {
-            searchInput.clear();
-            searchInput.props.onChangeText && searchInput.props.onChangeText('');
-        }
-        this.setState({
-            query: '',
-        });
-    }
-
-    private actionPanelWidth() {
-        const { actionItems, searchableConfig } = this.props;
-        let length = actionItems ? actionItems.length : 0;
-        if (searchableConfig) length++;
-        if (length < 1) return 0;
-        length = Math.min(3, length);
-        return length * (HeaderClass.ICON_SIZE + HeaderClass.ICON_SPACING);
-    }
-}
 
 /**
  * Header component
@@ -534,48 +152,183 @@ class HeaderClass extends Component<WithTheme<HeaderProps>, HeaderState> {
  * This component is used to display a title and navigation and action items on the top of a screen.
  * It can be tapped to expand or contract.
  */
-export const Header = withTheme(HeaderClass);
+export const Header: React.FC<HeaderProps> = (props) => {
+    const {
+        actionItems,
+        backgroundColor,
+        backgroundImage,
+        expandable = false,
+        fontColor,
+        info,
+        navigation,
+        searchableConfig,
+        startExpanded,
+        subtitle,
+        style,
+        styles = {},
+        theme: themeOveride,
+        title,
+        ...viewProps
+    } = props;
 
-const styles = StyleSheet.create({
-    bar: {
-        width: '100%',
-        shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOffset: {
-            width: 0,
-            height: 1,
+    const searchRef = useRef<TextInput>(null);
+    const theme = useTheme(themeOveride);
+    const [searching, setSearching] = useState(false);
+    const [expanded, setExpanded] = useState(startExpanded || false);
+    const [query, setQuery] = useState('');
+    const [headerHeight] = useState(
+        startExpanded ? new Animated.Value(EXTENDED_HEIGHT) : new Animated.Value(REGULAR_HEIGHT)
+    );
+
+    const defaultStyles = headerStyles(props, theme);
+
+    const expand = Animated.timing(headerHeight, {
+        toValue: EXTENDED_HEIGHT,
+        duration: ANIMATION_LENGTH,
+        useNativeDriver: false,
+    });
+
+    const contract = Animated.timing(headerHeight, {
+        toValue: REGULAR_HEIGHT,
+        duration: ANIMATION_LENGTH,
+        useNativeDriver: false,
+    });
+
+    const getBackgroundColor = useCallback((): string => {
+        if (searching) {
+            return theme.colors.surface;
+        }
+        return backgroundColor || theme.colors.primary;
+    }, [searching, theme, backgroundColor]);
+
+    const getFontColor = useCallback((): string => {
+        if (searching) {
+            return theme.colors.text;
+        }
+        return fontColor || 'white';
+    }, [theme, fontColor, searching]);
+
+    const statusBarStyle = useCallback(
+        (): 'light-content' | 'dark-content' =>
+            color(getBackgroundColor()).isDark() ? 'light-content' : 'dark-content',
+        [getBackgroundColor]
+    );
+
+    const contentStyle = useCallback((): Array<Record<string, any>> => {
+        const contractedPadding = subtitle && !searching ? 12 : 16;
+        return [
+            defaultStyles.content,
+            {
+                paddingBottom: headerHeight.interpolate({
+                    inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                    outputRange: [contractedPadding, 28],
+                }),
+            },
+        ];
+    }, [subtitle, searching, headerHeight]);
+
+    const onPress = useCallback((): void => {
+        if (expanded) {
+            contract.start();
+            setExpanded(false);
+        } else {
+            expand.start();
+            setExpanded(true);
+        }
+    }, [expanded, setExpanded, expand, contract]);
+
+    const onChangeSearchText = useCallback(
+        (text: string): void => {
+            setQuery(text);
+            if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText(text);
         },
-        shadowRadius: 2,
-        shadowOpacity: 1,
-        elevation: 0,
-    },
-    content: {
-        flex: 1,
-        paddingTop: 16,
-        paddingHorizontal: 16,
-        flexDirection: 'row',
-    },
-    navigation: {
-        marginRight: 24,
-        height: 40,
-        width: 40,
-        margin: -8,
-        padding: 8,
-    },
-    titleContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-    },
-    actionPanel: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        position: 'absolute',
-        right: 8,
-        height: 56,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
-    },
-});
+        [setQuery, searchableConfig]
+    );
+
+    const onPressSearch = useCallback((): void => {
+        contract.start(() => setSearching(true));
+        setExpanded(false);
+    }, [contract, setSearching, setExpanded]);
+
+    const onPressSearchClear = useCallback((): void => {
+        const searchInput = searchRef.current;
+        if (searchInput) {
+            searchInput.clear();
+            if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
+        }
+        setQuery('');
+    }, [searchableConfig, searchRef, setQuery]);
+
+    const onPressSearchClose = useCallback((): void => {
+        const searchInput = searchRef.current;
+        if (searchInput) {
+            if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
+        }
+        setSearching(false);
+        setQuery('');
+    }, [searchableConfig, searchRef, setSearching, setQuery]);
+
+    return (
+        <>
+            <StatusBar barStyle={statusBarStyle()} />
+            <TouchableWithoutFeedback
+                onPress={(): void => onPress()}
+                disabled={!expandable || searching}
+                {...viewProps}
+            >
+                <AnimatedSafeAreaView
+                    style={[
+                        defaultStyles.root,
+                        styles.root,
+                        style,
+                        { height: headerHeight },
+                        searching ? { backgroundColor: theme.colors.surface } : {},
+                    ]}
+                >
+                    <SearchContext.Provider
+                        value={{
+                            searchRef: searchRef,
+                            query: query,
+                            searching: searching,
+                            onQueryChange: onChangeSearchText,
+                            searchConfig: searchableConfig,
+                            onSearch: onPressSearch,
+                            onClear: onPressSearchClear,
+                            onClose: onPressSearchClose,
+                        }}
+                    >
+                        <ColorContext.Provider value={{ color: getFontColor() }}>
+                            <HeaderHeightContext.Provider value={{ headerHeight: headerHeight }}>
+                                <HeaderBackgroundImage
+                                    backgroundImage={backgroundImage}
+                                    style={styles.backgroundImage}
+                                />
+                                <Animated.View style={[contentStyle(), styles.content]}>
+                                    <HeaderNavigationIcon navigation={navigation} style={styles.navigationIcon} />
+                                    <HeaderContent
+                                        theme={theme}
+                                        title={title}
+                                        subtitle={subtitle}
+                                        info={info}
+                                        actionCount={actionItems ? actionItems.length : 0}
+                                        styles={{
+                                            root: styles.textContent,
+                                            title: styles.title,
+                                            subtitle: styles.subtitle,
+                                            info: styles.info,
+                                            search: styles.search,
+                                        }}
+                                    />
+                                    <HeaderActionItems
+                                        actionItems={actionItems}
+                                        styles={{ root: styles.actionPanel, actionItem: styles.actionItem }}
+                                    />
+                                </Animated.View>
+                            </HeaderHeightContext.Provider>
+                        </ColorContext.Provider>
+                    </SearchContext.Provider>
+                </AnimatedSafeAreaView>
+            </TouchableWithoutFeedback>
+        </>
+    );
+};

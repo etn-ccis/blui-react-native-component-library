@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
-import { ChannelValue } from '@pxblue/react-native-components';
-import { text, withKnobs, boolean, color, select } from '@storybook/addon-knobs';
+import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
+import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { wrapIcon } from '@pxblue/react-native-components';
+import * as Colors from '@pxblue/colors';
 
 const notes = {
     notes:
@@ -18,7 +18,7 @@ const WrappedIcon = wrapIcon({ IconClass: Icon, name: 'chart-pie' });
 storiesOf('ChannelValue', module)
     .addDecorator(withKnobs)
     .add(
-        'with value',
+        'with basic usage',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue value={text('value', text('value', '123'))} />
@@ -30,7 +30,7 @@ storiesOf('ChannelValue', module)
         'with units',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ChannelValue value={text('value', text('value', '123'))} units={text('units', 'hz')} />
+                <ChannelValue value={'123'} units={text('units', 'hz')} />
             </View>
         ),
         notes
@@ -40,64 +40,36 @@ storiesOf('ChannelValue', module)
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
-                    value={text('value', text('value', '123'))}
-                    units={text('units', 'hz')}
+                    value={'123'}
+                    units={'hz'}
                     IconClass={WrappedLeaf}
+                    IconProps={{ color: color('icon color', Colors.blue[500]) }}
                 />
             </View>
         ),
         notes
     )
     .add(
-        'with extraLarge font size',
+        'with fontSize',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ChannelValue
-                    value={text('value', text('value', '123'))}
-                    units={text('units', 'hz')}
-                    fontSize={'extraLarge'}
-                    IconClass={WrappedLeaf}
-                />
+                <ChannelValue value={'123'} units={'hz'} fontSize={number('fontSize', 48)} IconClass={WrappedLeaf} />
             </View>
         ),
         notes
     )
     .add(
-        'with all props',
+        'with full config',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
                     value={text('value', text('value', '123'))}
-                    IconClass={WrappedIcon}
+                    IconClass={boolean('Show Icon', true) ? WrappedIcon : undefined}
+                    IconProps={{ color: color('icon color', Colors.blue[500]) }}
                     units={text('units', 'hz')}
                     prefix={boolean('prefix', false)}
-                    fontSize={select(
-                        'fontSize',
-                        {
-                            small: 'small',
-                            medium: 'medium',
-                            large: 'large',
-                            extraLarge: 'extraLarge',
-                        },
-                        'medium'
-                    )}
-                    color={color('color', 'blue')}
-                />
-            </View>
-        ),
-        notes
-    )
-    .add(
-        'with overridden theme',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ChannelValue
-                    value={text('value', text('value', '123'))}
-                    units={text('units', 'hz')}
-                    color="error"
-                    theme={{
-                        sizes: { medium: 77 },
-                    }}
+                    fontSize={number('fontSize', 16)}
+                    color={color('color', Colors.blue[500])}
                 />
             </View>
         ),

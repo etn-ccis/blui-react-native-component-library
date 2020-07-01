@@ -6,23 +6,23 @@ const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { ImageBackground } from 'react-native';
 import { Button, Icon as RNEIcon } from 'react-native-elements';
-
-//@ts-ignore
 import * as Colors from '@pxblue/colors';
 
 storiesOf('EmptyState', module)
     .addDecorator(withKnobs)
-    .add('basic usage', () => (
+    .add('with basic usage', () => <EmptyState IconClass={Clock} title={text('title', 'No Alarms Found')} />)
+    .add('with description', () => (
         <EmptyState
-            // icon={<Icon name="notifications" size={100} color={Colors.gray[500]} />}
             IconClass={Clock}
             title={text('title', 'No Alarms Found')}
+            description={text('description', 'A fully redesigned alarms page is coming in our next release!')}
         />
     ))
     .add('with actions', () => (
         <EmptyState
             IconClass={Clock}
-            title={text('title', 'No Alarms Found')}
+            title={'No Alarms Found'}
+            description={'A fully redesigned alarms page is coming in our next release!'}
             actions={
                 <Button
                     icon={
@@ -37,7 +37,7 @@ storiesOf('EmptyState', module)
             }
         />
     ))
-    .add('placeholder', () => (
+    .add('with background image', () => (
         <ImageBackground
             source={{
                 uri:
@@ -53,4 +53,23 @@ storiesOf('EmptyState', module)
                 actions={<Button title={text('button title', 'Learn More')} type={'outline'} />}
             />
         </ImageBackground>
+    ))
+    .add('with full config', () => (
+        <EmptyState
+            IconClass={Clock}
+            title={text('title', 'No Alarms Found')}
+            description={text('description', 'A fully redesigned alarms page is coming in our next release!')}
+            actions={
+                <Button
+                    icon={
+                        <RNEIcon
+                            name="add-circle-outline"
+                            color={Colors.white[500]}
+                            containerStyle={{ marginRight: 5 }}
+                        />
+                    }
+                    title={text('button title', 'Add Alarm')}
+                />
+            }
+        />
     ));

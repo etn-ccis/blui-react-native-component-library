@@ -1,16 +1,26 @@
-import React, { Component, ComponentType } from 'react';
-import { View, StyleSheet, TextProps } from 'react-native';
-import { withTheme, Theme } from '../theme';
-import { Label } from '..';
-import { WithTheme } from '../theme/theme';
+import React, { ComponentType, useCallback } from 'react';
+import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle } from 'react-native';
+import { Theme, useTheme } from 'react-native-paper';
+import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-export type ChannelValueProps = {
+const defaultStyles = StyleSheet.create({
+    root: {
+        maxWidth: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+});
+
+export type ChannelValueProps = ViewProps & {
     /** Value to show (bold text) */
     value: string | number;
 
     /** Icon component to render */
     IconClass?: ComponentType<{ size: number; color: string }>;
+
+    /** Props to pass to the Icon component */
+    IconProps?: { size?: number; color?: string };
 
     /** Text to show for units (light text) */
     units?: string;
@@ -19,10 +29,17 @@ export type ChannelValueProps = {
     prefix?: boolean;
 
     /** Font size for all text */
-    fontSize?: keyof Theme['sizes'];
+    fontSize?: number;
 
     /** Font color for all text */
     color?: string;
+
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        value?: StyleProp<TextStyle>;
+        units?: StyleProp<TextStyle>;
+    };
 
     /**
      * Overrides for theme
@@ -30,106 +47,82 @@ export type ChannelValueProps = {
     theme?: $DeepPartial<Theme>;
 };
 
-class ChannelValueClass extends Component<WithTheme<ChannelValueProps>> {
-    public render() {
-        const { value, fontSize } = this.props;
-        const labelOverrides = this.textOverrides();
-
-        return (
-            <View style={styles.row}>
-                {this.icon()}
-                <Label
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                    testID={'text-wrapper'}
-                    fontSize={fontSize}
-                    {...labelOverrides}
-                >
-                    {this.prefixUnits()}
-                    <Label font={'bold'} fontSize={fontSize} {...labelOverrides}>
-                        {value}
-                    </Label>
-                    {this.suffixUnits()}
-                </Label>
-            </View>
-        );
-    }
-
-    private icon() {
-        const { IconClass } = this.props;
-
-        if (IconClass) {
-            return (
-                <View style={{ marginRight: Math.round(this.getFontSize() / 6) }}>
-                    <IconClass size={this.getFontSize()} color={this.getColor()} />
-                </View>
-            );
-        }
-    }
-
-    private prefixUnits() {
-        const { prefix = false } = this.props;
-        if (prefix) {
-            return this.units();
-        }
-    }
-
-    private suffixUnits() {
-        const { prefix = false } = this.props;
-        if (!prefix) {
-            return this.units();
-        }
-    }
-
-    private textOverrides() {
-        const { color, theme } = this.props;
-
-        const output: WithTheme<TextProps> = { theme };
-        if (color) {
-            output.style = { color: this.getColor() };
-        }
-        return output;
-    }
-
-    private units() {
-        const { units, fontSize } = this.props;
-        const labelOverrides = this.textOverrides();
-
-        if (units) {
-            return (
-                <Label font={'light'} {...labelOverrides} fontSize={fontSize}>
-                    {units}
-                </Label>
-            );
-        }
-    }
-
-    private getFontSize() {
-        const { theme, fontSize } = this.props;
-
-        return theme.sizes[fontSize || 'medium'];
-    }
-
-    private getColor() {
-        const { color, theme } = this.props;
-        if (!color) return theme.colors.text;
-        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
-        return color;
-    }
-}
-
 /**
  * ChannelValue component
  *
  * Used to show a channel value and its units.
  * An arbitrary icon may be added
  */
-export const ChannelValue = withTheme(ChannelValueClass);
+export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
+    const {
+        value,
+        fontSize = 16,
+        IconClass,
+        color,
+        units,
+        prefix = false,
+        styles = {},
+        style,
+        IconProps = {},
+        theme: themeOverride,
+        ...viewProps
+    } = props;
+    const theme = useTheme(themeOverride);
 
-const styles = StyleSheet.create({
-    row: {
-        maxWidth: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-});
+    const getColor = useCallback((): string => {
+        if (!color) return theme.colors.text;
+        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+        return color;
+    }, [color, theme]);
+
+    const getIcon = useCallback(() => {
+        if (IconClass) {
+            return (
+                <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
+                    <IconClass size={fontSize} color={getColor()} {...IconProps} />
+                </View>
+            );
+        }
+    }, [IconClass, fontSize, getColor, styles]);
+
+    const getUnits = useCallback((): JSX.Element | undefined => {
+        if (units) {
+            return (
+                <Body1 font={'light'} fontSize={fontSize} style={[{ color: getColor() }, styles.units]}>
+                    {units}
+                </Body1>
+            );
+        }
+    }, [units, fontSize, getColor, styles]);
+
+    const prefixUnits = useCallback((): JSX.Element | undefined => {
+        if (prefix) {
+            return getUnits();
+        }
+    }, [prefix, getUnits]);
+
+    const suffixUnits = useCallback((): JSX.Element | undefined => {
+        if (!prefix) {
+            return getUnits();
+        }
+    }, [prefix, getUnits]);
+
+    return (
+        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
+            {getIcon()}
+            <Body1
+                numberOfLines={1}
+                ellipsizeMode={'tail'}
+                testID={'text-wrapper'}
+                fontSize={fontSize}
+                style={[{ color: getColor() }]}
+            >
+                {prefixUnits()}
+                <Body1 font={'medium'} fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
+                    {value}
+                </Body1>
+                {suffixUnits()}
+            </Body1>
+        </View>
+    );
+};

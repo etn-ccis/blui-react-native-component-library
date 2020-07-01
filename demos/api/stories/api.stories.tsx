@@ -20,10 +20,10 @@ const getReadMe = (name: string): any => {
     const md = require(`./../../../docs/${name}`);
 
     // Locate all relative links that use href syntax and replace them with absolute URLs.
-    md.default = (md.default).replace(/\(.\/.*md\)/g, (substring: string) => {
+    md.default = md.default.replace(/\(.\/.*md\)/g, (substring: string) => {
         // Example: http://localhost:6006/?path=/info/components-hero--get-read-me-story
         const root = window.top.location.href.split('/?')[0];
-        const path = `?path=/info/api-documentation--`;
+        const path = `?path=/info/components-documentation-`;
 
         // Get component from link. (./HeroBanner.md) => HeroBanner
         const component = substring.split('/')[1].split('.')[0];
@@ -36,12 +36,12 @@ const getReadMe = (name: string): any => {
 
 const docFn = (): JSX.Element => <>{autoNavToDocs()}</>;
 
-stories.add('Channel Value', docFn, { notes: { markdown: getReadMe('channelValue.md') } });
-stories.add('Empty State', docFn, { notes: { markdown: getReadMe('emptyState.md') } });
-stories.add('Header', docFn, { notes: { markdown: getReadMe('header.md') } });
-stories.add('Hero', docFn, { notes: { markdown: getReadMe('hero.md') } });
-stories.add('Icon Wrapper', docFn, { notes: { markdown: getReadMe('iconWrapper.md') } });
-stories.add('Info List Item', docFn, { notes: { markdown: getReadMe('infoListItem.md') } });
-stories.add('Score Card', docFn, { notes: { markdown: getReadMe('scoreCard.md') } });
-stories.add('Theme', docFn, { notes: { markdown: getReadMe('theme.md') } });
-stories.add('Typography', docFn, { notes: { markdown: getReadMe('typography.md') } });
+stories.add('Channel Value', docFn, { notes: { markdown: getReadMe('ChannelValue.md') } });
+stories.add('Empty State', docFn, { notes: { markdown: getReadMe('EmptyState.md') } });
+stories.add('Drawer', docFn, { notes: { markdown: getReadMe('Drawer.md') } });
+stories.add('Header', docFn, { notes: { markdown: getReadMe('Header.md') } });
+stories.add('Hero', docFn, { notes: { markdown: getReadMe('Hero.md') } });
+stories.add('Icon Wrapper', docFn, { notes: { markdown: getReadMe('IconWrapper.md') } });
+stories.add('Info List Item', docFn, { notes: { markdown: getReadMe('InfoListItem.md') } });
+stories.add('Score Card', docFn, { notes: { markdown: getReadMe('ScoreCard.md') } });
+stories.add('Typography', docFn, { notes: { markdown: getReadMe('Typography.md') } });

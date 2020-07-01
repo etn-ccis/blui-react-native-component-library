@@ -6,6 +6,7 @@ import * as Colors from '@pxblue/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg');
 import { updateTitle } from '../src/utils';
+const packageJSON = require('@pxblue/react-native-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
@@ -48,9 +49,9 @@ const useStyles = makeStyles(() =>
         },
         description: {
             maxWidth: 900,
-            padding: 36,
+            padding: 20,
             paddingBottom: 0,
-            fontWeight: 100,
+            fontWeight: 400,
         },
         link: {
             minWidth: 100,
@@ -68,7 +69,7 @@ const useStyles = makeStyles(() =>
             fill: Colors.white[50],
         },
         github: {
-            fontWeight: 100,
+            fontWeight: 400,
             color: Colors.white[50],
         },
         buttons: {
@@ -99,6 +100,7 @@ stories.add('PX Blue React Native Components', () => {
                     Power Xpert <strong>Blue</strong>
                 </Typography>
                 <Typography variant={'h4'}>React Native Component Library</Typography>
+                {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
                     Learn about our PX Blue components in the API section.
                 </Typography>

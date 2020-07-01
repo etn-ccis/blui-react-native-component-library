@@ -6,6 +6,7 @@ import faker from 'faker';
 import { Appbar, TextInput } from 'react-native-paper';
 import { blue } from '@pxblue/colors';
 import { color, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 const notes = {
     notes:
@@ -34,10 +35,30 @@ const content = (
 const footer = (
     <SafeAreaView style={{ backgroundColor: blue[500], zIndex: 100 }}>
         <Appbar style={{ backgroundColor: blue[500], shadowOpacity: 0 }}>
-            <Appbar.Action icon="archive" onPress={() => console.log('Pressed archive')} />
-            <Appbar.Action icon="mail" onPress={() => console.log('Pressed mail')} />
-            <Appbar.Action icon="label" onPress={() => console.log('Pressed label')} />
-            <Appbar.Action icon="delete" onPress={() => console.log('Pressed delete')} />
+            <Appbar.Action
+                icon="archive"
+                onPress={(): void => {
+                    action('Pressed archive');
+                }}
+            />
+            <Appbar.Action
+                icon="mail"
+                onPress={(): void => {
+                    action('Pressed mail');
+                }}
+            />
+            <Appbar.Action
+                icon="label"
+                onPress={(): void => {
+                    action('Pressed label');
+                }}
+            />
+            <Appbar.Action
+                icon="delete"
+                onPress={(): void => {
+                    action('Pressed delete');
+                }}
+            />
         </Appbar>
     </SafeAreaView>
 );

@@ -3,12 +3,16 @@
 exports[`EmptyState Tests  Actions Renders 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+      undefined,
+    ]
   }
 >
   <Text
@@ -20,13 +24,18 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "marginTop": 16,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -34,9 +43,12 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
   </Text>
   <View
     style={
-      Object {
-        "marginTop": 10,
-      }
+      Array [
+        Object {
+          "marginTop": 10,
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -48,9 +60,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
         isTVSelectable={true}
-        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -173,12 +183,16 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
 exports[`EmptyState Tests  Description Renders 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+      undefined,
+    ]
   }
 >
   <Text
@@ -190,13 +204,18 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "marginTop": 16,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -206,17 +225,22 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200EE",
+          "color": "#6200ee",
         },
         Object {
           "fontFamily": "System",
           "fontSize": 14,
-          "fontWeight": "600",
+          "fontWeight": "500",
+          "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -228,12 +252,16 @@ exports[`EmptyState Tests  Description Renders 1`] = `
 exports[`EmptyState Tests  Icon Renders 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+      undefined,
+    ]
   }
 >
   <Text
@@ -266,13 +294,18 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "marginTop": 16,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -284,12 +317,16 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
 exports[`EmptyState Tests  Only Title Renders 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+      undefined,
+    ]
   }
 >
   <Text
@@ -301,13 +338,18 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "marginTop": 16,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -319,12 +361,16 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
 exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+      undefined,
+    ]
   }
 >
   <Text
@@ -336,13 +382,18 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         Object {
           "fontFamily": "System",
           "fontSize": 20,
-          "fontWeight": "600",
+          "fontWeight": "500",
           "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "marginTop": 16,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -352,17 +403,22 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200EE",
+          "color": "#6200ee",
         },
         Object {
           "fontFamily": "System",
           "fontSize": 14,
-          "fontWeight": "600",
+          "fontWeight": "500",
+          "letterSpacing": 0,
         },
         Object {},
-        Object {
-          "textAlign": "center",
-        },
+        undefined,
+        Array [
+          Object {
+            "textAlign": "center",
+          },
+          undefined,
+        ],
       ]
     }
   >
@@ -370,9 +426,12 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
   </Text>
   <View
     style={
-      Object {
-        "marginTop": 10,
-      }
+      Array [
+        Object {
+          "marginTop": 10,
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -384,9 +443,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
         isTVSelectable={true}
-        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}

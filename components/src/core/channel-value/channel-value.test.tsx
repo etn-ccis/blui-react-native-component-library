@@ -4,7 +4,7 @@ import { ChannelValue } from '.';
 import { Text, TouchableOpacity } from 'react-native';
 
 describe('ChannelValue', () => {
-    const getChildTextComponents = (channelValue: TestRenderer.ReactTestInstance) =>
+    const getChildTextComponents = (channelValue: TestRenderer.ReactTestInstance): TestRenderer.ReactTestInstance[] =>
         channelValue.findAllByType(Text).filter((x) => x.props.testID !== 'text-wrapper');
 
     describe('units Text element', () => {
@@ -45,8 +45,10 @@ describe('ChannelValue', () => {
         });
     });
 
-    it('renders an icon if passed in', () => {
-        const instance = TestRenderer.create(<ChannelValue value={123} IconClass={() => <TouchableOpacity />} />).root;
+    it('renders an icon if passed in', (): void => {
+        const instance = TestRenderer.create(
+            <ChannelValue value={123} IconClass={(): JSX.Element => <TouchableOpacity />} />
+        ).root;
 
         const icon = instance.findByType(TouchableOpacity);
 

@@ -1,13 +1,13 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 import { Text, TextProps, TextStyle, StyleProp } from 'react-native';
-import { WithTheme, withTheme, Theme } from '../theme/theme';
+import { Theme, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-type TypographyInnerProps = {
+type TypographyProps = {
     /**
      * Key to use for font size.
      */
-    fontSize?: keyof Theme['sizes'];
+    fontSize?: number;
 
     /**
      * Font to use
@@ -19,97 +19,126 @@ type TypographyInnerProps = {
      */
     color?: keyof Theme['colors'];
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<TextStyle>;
+    };
+
     /**
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
 } & TextProps;
 
-export type TypographyProps = {
-    theme?: $DeepPartial<Theme>;
-} & TypographyInnerProps;
-
-type Typography = ComponentType<TypographyProps>;
-
 /*
  * createTypography is a component-generator function. It takes one argument.
  *     getStyle: a function that takes in a theme and returns a text style object
  * createTypography returns a theme-wrapped text component that utilizes that styles and theme that are provided
  */
-const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Typography =>
-    withTheme(({ theme, style, fontSize, font, color, ...props }: WithTheme<TypographyInnerProps>) => {
-        let customStyle: StyleProp<TextStyle> = {};
+const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> => ({
+    font,
+    fontSize,
+    color,
+    style,
+    styles = {},
+    ...props
+}): JSX.Element => {
+    const theme = useTheme(props.theme);
 
-        if (fontSize) {
-            customStyle.fontSize = theme.sizes[fontSize];
-        }
-
-        if (font) {
-            customStyle = {
-                ...customStyle,
-                ...theme.fonts[font],
-            };
-        }
-
-        return (
-            <Text
-                {...props}
-                style={[
-                    { color: color ? theme.colors[color] : theme.colors.text },
-                    getStyle(theme),
-                    customStyle,
-                    style,
-                ]}
-            />
-        );
-    });
+    let customStyle: StyleProp<TextStyle> = {};
+    if (fontSize) {
+        customStyle.fontSize = fontSize;
+    }
+    if (font) {
+        customStyle = {
+            ...customStyle,
+            ...theme.fonts[font],
+        };
+    }
+    return (
+        <Text
+            {...props}
+            style={[
+                { color: color ? theme.colors[color] : theme.colors.text },
+                getStyle(theme),
+                customStyle,
+                styles.root,
+                style,
+            ]}
+        />
+    );
+};
 
 /**
  * Typography Components
  */
-export const H1 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.light,
+export const H1 = createTypography((theme) => ({
+    ...theme.fonts.light,
     fontSize: 96,
+    letterSpacing: 0,
 }));
-export const H2 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.light,
+export const H2 = createTypography((theme) => ({
+    ...theme.fonts.light,
     fontSize: 60,
+    letterSpacing: 0,
 }));
-export const H3 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.regular,
+export const H3 = createTypography((theme) => ({
+    ...theme.fonts.regular,
     fontSize: 48,
-}));
-export const H4 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.regular,
-    fontSize: sizes.giant,
-}));
-export const H5 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.regular,
-    fontSize: sizes.extraLarge,
-}));
-export const H6 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.semiBold,
-    fontSize: sizes.large,
     letterSpacing: 0,
 }));
-export const H7 = createTypography(({ fonts, sizes }) => ({
-    ...fonts.semiBold,
-    fontSize: 18,
-}));
-export const Body = createTypography(({ fonts, sizes }) => ({
-    ...fonts.regular,
-    fontSize: sizes.medium,
-}));
-export const Label = createTypography(({ fonts, sizes }) => ({
-    ...fonts.regular,
-    fontSize: sizes.medium,
+export const H4 = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 34,
     letterSpacing: 0,
 }));
-export const Subtitle = createTypography(({ fonts, sizes }) => ({
-    ...fonts.semiBold,
-    fontSize: sizes.small,
+export const H5 = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 24,
+    letterSpacing: 0,
 }));
-export const Caption = createTypography(({ fonts, sizes }) => ({
-    ...fonts.regular,
-    fontSize: sizes.tiny,
+export const H6 = createTypography((theme) => ({
+    ...theme.fonts.medium,
+    fontSize: 20,
+    letterSpacing: 0,
+}));
+export const Body1 = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 16,
+    letterSpacing: 0,
+}));
+export const Body2 = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 14,
+    letterSpacing: 0,
+}));
+export const Label = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 16,
+    letterSpacing: 0,
+}));
+export const Subtitle1 = createTypography((theme) => ({
+    ...theme.fonts.medium,
+    fontSize: 16,
+    letterSpacing: 0,
+}));
+export const Subtitle2 = createTypography((theme) => ({
+    ...theme.fonts.medium,
+    fontSize: 14,
+    letterSpacing: 0,
+}));
+export const Button = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 14,
+    letterSpacing: 0,
+}));
+export const Caption = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 10,
+    letterSpacing: 0,
+}));
+export const Overline = createTypography((theme) => ({
+    ...theme.fonts.regular,
+    fontSize: 12,
+    letterSpacing: 2,
 }));

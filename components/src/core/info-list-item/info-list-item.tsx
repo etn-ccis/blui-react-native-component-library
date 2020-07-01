@@ -1,15 +1,82 @@
-import React, { Component, Fragment, ComponentType } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import React, { ComponentType, useCallback } from 'react';
+import { StyleSheet, View, TouchableOpacity, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { interleave } from '../helpers/utils';
-import { Theme, withTheme, WithTheme } from '../theme';
-import { Body, Subtitle } from '../typography';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
+import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import color from 'color';
+import { renderableSubtitleComponent, withKeys, separate } from './utilities';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
-export type InfoListItemProps = {
+const infoListItemStyles = (
+    props: InfoListItemProps,
+    theme: Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    title: TextStyle;
+    subtitle: TextStyle;
+    subtitleWrapper: ViewStyle;
+    info: TextStyle;
+    infoWrapper: ViewStyle;
+    statusStripe: ViewStyle;
+    iconWrapper: ViewStyle;
+    avatar: ViewStyle;
+    mainContent: ViewStyle;
+}> =>
+    StyleSheet.create({
+        root: {
+            backgroundColor: props.backgroundColor || 'transparent',
+            height: props.dense ? 52 : 72,
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingRight: 16,
+        },
+        title: {
+            color: props.fontColor || theme.colors.text,
+        },
+        subtitleWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        subtitle: {
+            color: props.fontColor || theme.colors.text,
+        },
+        infoWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        info: {
+            color: props.fontColor || theme.colors.text,
+        },
+        statusStripe: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: 6,
+            backgroundColor: props.statusColor,
+        },
+        iconWrapper: {
+            marginLeft: 16,
+            width: 40,
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+        },
+        avatar: {
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: props.statusColor || theme.colors.text,
+        },
+        mainContent: {
+            flex: 1,
+            paddingHorizontal: 16,
+        },
+    });
+
+export type InfoListItemProps = ViewProps & {
     /** Title to show */
     title: string;
 
@@ -18,6 +85,9 @@ export type InfoListItemProps = {
 
     /** Subtitle Separator. Displays between array of subtitle items */
     subtitleSeparator?: string;
+
+    /** Info. If an array, will be separated by dots. */
+    info?: string | React.ReactNode[];
 
     /** Specifies whether to show color background around the icon */
     avatar?: boolean;
@@ -55,67 +125,57 @@ export type InfoListItemProps = {
     /** Callback to be called on press. */
     onPress?: () => void;
 
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        statusStripe?: StyleProp<ViewStyle>;
+        iconWrapper?: StyleProp<ViewStyle>;
+        avatar?: StyleProp<ViewStyle>;
+        mainContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        subtitleWrapper?: StyleProp<ViewStyle>;
+        info?: StyleProp<TextStyle>;
+        infoWrapper?: StyleProp<ViewStyle>;
+        divider?: StyleProp<ViewStyle>;
+    };
+
     /**
      * Overrides for theme
      */
     theme?: $DeepPartial<Theme>;
 };
 
-class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
-    private static readonly MAX_SUBTITLE_ELEMENTS = 3;
+/**
+ * A flexible component to be rendered within FlatLists
+ */
+export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+    const {
+        avatar,
+        title,
+        rightComponent,
+        chevron,
+        divider,
+        subtitle,
+        subtitleSeparator,
+        info,
+        statusColor,
+        dense, //eslint-disable-line @typescript-eslint/no-unused-vars
+        fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
+        iconColor,
+        backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
+        onPress,
+        IconClass,
+        hidePadding,
+        styles = {},
+        theme: themeOverride,
+        style,
+        ...viewProps
+    } = props;
+    const theme = useTheme(themeOverride);
+    const defaultStyles = infoListItemStyles(props, theme);
 
-    public render() {
-        const { title, statusColor, dense, fontColor, backgroundColor, onPress, theme } = this.props;
-        const { row, fullHeight, tab, iconContainer, contentContainer, withRightPadding } = styles;
-        const style = {
-            backgroundColor: backgroundColor || 'transparent',
-        };
-        const titleStyle = {
-            color: fontColor || theme.colors.text,
-            lineHeight: theme.sizes.medium,
-        };
-        const fixedHeight = {
-            height: dense ? 52 : 72,
-        };
-
-        return (
-            <View style={[fixedHeight, style]}>
-                <TouchableOpacity
-                    onPress={onPress}
-                    style={[fullHeight, row, withRightPadding]}
-                    disabled={!onPress}
-                    activeOpacity={0.7}
-                >
-                    <View style={[fullHeight, tab, { backgroundColor: statusColor }]} />
-                    {this.props.IconClass || !this.props.hidePadding ? (
-                        <View style={iconContainer}>{this.icon()}</View>
-                    ) : null}
-                    <View style={contentContainer}>
-                        <Body style={titleStyle} numberOfLines={1} ellipsizeMode={'tail'} font={'semiBold'}>
-                            {title}
-                        </Body>
-                        <View style={row}>{this.subtitle()}</View>
-                    </View>
-                    {this.rightComponent()}
-                    {this.divider()}
-                </TouchableOpacity>
-            </View>
-        );
-    }
-
-    private icon() {
-        const { IconClass, avatar } = this.props;
-        if (IconClass) {
-            return (
-                <View style={avatar ? this.avatarStyle() : null}>
-                    <IconClass size={24} color={this.iconColor()} />
-                </View>
-            );
-        }
-    }
-
-    private iconColor() {
-        const { avatar, statusColor, iconColor, theme } = this.props;
+    const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
         if (avatar) {
             return statusColor
@@ -125,133 +185,100 @@ class InfoListItemClass extends Component<WithTheme<InfoListItemProps>> {
                 : Colors.white[50]; // default avatar is dark gray -> white text
         }
         return statusColor ? statusColor : theme.colors.text;
-    }
-    private avatarStyle() {
-        const { statusColor } = this.props;
-        const avatarStyle = { ...styles.avatar };
-        avatarStyle.backgroundColor = statusColor || Colors.black[500];
-        return avatarStyle;
-    }
+    }, [iconColor, avatar, statusColor]);
 
-    private rightComponent() {
-        const { chevron, theme, rightComponent } = this.props;
+    const getIcon = useCallback((): JSX.Element | undefined => {
+        if (IconClass) {
+            return (
+                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : null}>
+                    <IconClass size={24} color={getIconColor()} />
+                </View>
+            );
+        }
+    }, [IconClass, avatar, getIconColor]);
+
+    const getSubtitle = useCallback((): JSX.Element[] | null => {
+        if (!subtitle) {
+            return null;
+        }
+        const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
+        const renderableSubtitleParts = subtitleParts.map((element) =>
+            renderableSubtitleComponent(element, Object.assign(defaultStyles.subtitle, styles.subtitle))
+        );
+
+        return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
+    }, [subtitle, subtitleSeparator, styles]);
+
+    const getInfo = useCallback((): JSX.Element[] | null => {
+        if (!info) {
+            return null;
+        }
+        const infoParts = Array.isArray(info) ? [...info] : [info];
+        const renderableInfoParts = infoParts.map((element) =>
+            renderableSubtitleComponent(element, Object.assign(defaultStyles.info, styles.info))
+        );
+
+        return withKeys(separate(renderableInfoParts, subtitleSeparator));
+    }, [info, subtitleSeparator, styles]);
+
+    const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
             return rightComponent;
         } else if (chevron) {
             return <Icon name="chevron-right" size={24} color={theme.colors.text} />;
         }
-    }
+    }, [rightComponent, chevron, theme]);
 
-    private divider() {
-        const { divider } = this.props;
-        if (divider) {
-            return (
-                <View
-                    style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        right: 0,
-                        left: divider === 'partial' ? 72 : 0,
-                        alignItems: 'stretch',
-                    }}
+    return (
+        <TouchableOpacity
+            onPress={onPress}
+            style={[defaultStyles.root, styles.root, style]}
+            disabled={!onPress}
+            activeOpacity={0.7}
+            {...viewProps}
+        >
+            <View style={[defaultStyles.statusStripe, styles.statusStripe]} />
+            {IconClass || !hidePadding ? (
+                <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
+            ) : null}
+            <View style={[defaultStyles.mainContent, styles.mainContent]}>
+                <Body1
+                    style={[defaultStyles.title, styles.title]}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                    font={'medium'}
                 >
-                    <View style={[styles.divider]} />
-                </View>
-            );
-        }
-    }
+                    {title}
+                </Body1>
+                <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
+                <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
+            </View>
+            {getRightComponent()}
+            <Divider divider={divider} style={styles.divider} />
+        </TouchableOpacity>
+    );
+};
 
-    private subtitle() {
-        const { subtitle } = this.props;
-
-        if (!subtitle) {
-            return null;
-        }
-
-        const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
-        const renderableSubtitleParts = subtitleParts
-            .splice(0, InfoListItemClass.MAX_SUBTITLE_ELEMENTS)
-            .map((element) => this.renderableSubtitleComponent(element));
-
-        return this.withKeys(this.separate(renderableSubtitleParts));
-    }
-
-    private separate(array: React.ReactNode[]) {
-        return interleave(array, () => this.interpunct());
-    }
-
-    private withKeys(array: React.ReactNode[]) {
-        return array.map((element, index) => <Fragment key={index}>{element}</Fragment>);
-    }
-
-    private renderableSubtitleComponent(element: React.ReactNode) {
-        switch (typeof element) {
-            case 'string':
-            case 'number':
-                return (
-                    <Subtitle numberOfLines={1} font={'regular'}>
-                        {`${element}`}
-                    </Subtitle>
-                );
-            default:
-                return element;
-        }
-    }
-
-    private interpunct() {
-        const { subtitleSeparator } = this.props;
-        const { withSmallMargins } = styles;
+type DividerProps = {
+    divider?: 'full' | 'partial';
+    style?: StyleProp<ViewStyle>;
+};
+const Divider: React.FC<DividerProps> = (props) => {
+    const { divider, style } = props;
+    if (divider) {
         return (
-            <Subtitle style={withSmallMargins} font={'regular'}>
-                {subtitleSeparator || '\u00B7'}
-            </Subtitle>
+            <View
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    alignItems: 'stretch',
+                }}
+            >
+                <PaperDivider inset={divider === 'partial'} style={style} />
+            </View>
         );
     }
-}
-
-/**
- * A flexible component to be rendered within FlatLists
- */
-export const InfoListItem = withTheme(InfoListItemClass);
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    withRightPadding: {
-        paddingRight: 16,
-    },
-    iconContainer: {
-        marginLeft: 10,
-        width: 40,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-    },
-    avatar: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'transparent',
-    },
-    contentContainer: {
-        flex: 1,
-        paddingHorizontal: 16,
-    },
-    divider: {
-        height: 1,
-        borderBottomWidth: 1,
-        borderColor: Colors.black['100'],
-    },
-    tab: {
-        width: 6,
-    },
-    withSmallMargins: {
-        marginHorizontal: 4,
-    },
-    fullHeight: {
-        height: '100%',
-    },
-});
+    return null;
+};

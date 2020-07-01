@@ -1,11 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { InfoListItem, ChannelValue } from '@pxblue/react-native-components';
+import { InfoListItem, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import { text, boolean, withKnobs, color } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 import { framedRow } from '../../decorators';
-import { wrapIcon } from '@pxblue/react-native-components';
-import * as PXBColors from '@pxblue/colors';
+import * as Colors from '@pxblue/colors';
 
 const notes = {
     notes:
@@ -16,14 +15,13 @@ const LeafIcon = wrapIcon({ IconClass: Leaf });
 storiesOf('InfoListItem', module)
     .addDecorator(withKnobs)
     .addDecorator(framedRow)
+    .add('with basic usage', () => <InfoListItem title={text('title', 'Info List Item')} />, notes)
     .add(
-        'basic list item',
+        'with subtitle',
         () => (
             <InfoListItem
-                title={text('title', 'Test')}
-                subtitle={text('subtitle', 'A simpler view')}
-                hidePadding={boolean('hidePadding', true)}
-                divider={boolean('divider', true) ? 'full' : undefined}
+                title={'Info List Item'}
+                subtitle={text('subtitle', 'this is a subtitle within an InfoListItem')}
             />
         ),
         notes
@@ -32,65 +30,98 @@ storiesOf('InfoListItem', module)
         'with icon',
         () => (
             <InfoListItem
-                title={text('title', 'Test')}
-                avatar={boolean('avatar', false)}
+                title={'Info List Item'}
                 IconClass={LeafIcon}
-                iconColor={color('iconColor', '#ff3333')}
-                subtitle={text('subtitle', 'A simpler view')}
+                iconColor={color('iconColor', Colors.green[500])}
+                subtitle={'with an icon'}
             />
         ),
         notes
     )
     .add(
-        'with status and background color',
+        'with array of subtitles',
         () => (
             <InfoListItem
-                title={text('title', 'Test')}
+                title={'Info List Item'}
                 IconClass={LeafIcon}
-                avatar={boolean('avatar', false)}
-                subtitle={text('subtitle', 'A simpler view')}
-                statusColor={color('statusColor', '#ff3333')}
-                fontColor={color('fontColor', '#ff3333')}
-                backgroundColor={color('backgroundColor', PXBColors.blue[50])}
+                subtitle={['this is a subtitle', 'and so is this']}
+                subtitleSeparator={text('subtitleSeparator', '__')}
+                onPress={
+                    boolean('action', true)
+                        ? (): void => {
+                              /* do nothing */
+                          }
+                        : undefined
+                }
             />
         ),
         notes
     )
     .add(
-        'with long text',
+        'with avatar and status color',
         () => (
             <InfoListItem
-                title={text('title', 'This is a really really really really really really really really long title')}
+                title={'Info List Item'}
                 IconClass={LeafIcon}
-                subtitle={text(
-                    'subtitle',
-                    'this is a really really really really really really really really really really long subtitle'
-                )}
-                onPress={boolean('action', true) ? () => {} : undefined}
+                avatar={boolean('avatar', true)}
+                subtitle={'with an avatar and configurable status color'}
+                statusColor={color('statusColor', Colors.blue[700])}
             />
         ),
         notes
     )
     .add(
-        'array for subtitles',
+        'with background color',
         () => (
             <InfoListItem
-                title={text('title', 'Test')}
+                title={'Info List Item'}
                 IconClass={LeafIcon}
-                subtitle={['4', <Leaf width={12} height={12} />, 'leaves']}
-                subtitleSeparator={text('separator', '-')}
+                iconColor={Colors.white[700]}
+                subtitle={'With a configurable background color'}
+                fontColor={Colors.white[700]}
+                backgroundColor={color('backgroundColor', Colors.blue[500])}
             />
         ),
         notes
     )
     .add(
-        'with custom control',
+        'with right component',
         () => (
             <InfoListItem
-                title={text('title', 'Test')}
+                title={'Info List Item'}
                 IconClass={LeafIcon}
-                subtitle={text('subtitle', 'A simpler view')}
+                subtitle={'with a ChannelValue component as rightComponent'}
+                rightComponent={
+                    <ChannelValue
+                        value={text('rightComponent.ChannelValue.value', '15')}
+                        units={text('rightComponent.ChannelValue.units', 'A')}
+                    />
+                }
+            />
+        ),
+        notes
+    )
+    .add(
+        'with full config',
+        () => (
+            <InfoListItem
+                title={text('title', 'This is a title')}
+                IconClass={LeafIcon}
+                subtitle={text('subtitle', 'this is a subtitle')}
+                info={text('info', 'this is a third line of text')}
+                onPress={
+                    boolean('action', true)
+                        ? (): void => {
+                              /* do nothing */
+                          }
+                        : undefined
+                }
                 rightComponent={<ChannelValue value={15} units={'A'} />}
+                avatar={boolean('avatar', false)}
+                iconColor={color('iconColor', Colors.green[500])}
+                statusColor={color('statusColor', Colors.blue[700])}
+                fontColor={color('fontColor', Colors.blue[700])}
+                backgroundColor={color('backgroundColor', Colors.white[50])}
             />
         ),
         notes
