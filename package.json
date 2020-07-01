@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-native-components",
-    "version": "3.0.1",
+    "version": "3.0.5-beta",
     "author": "pxblue <pxblue@eaton.com>",
     "description": "Reusable React Native components for PX Blue applications",
     "repository": {
@@ -25,8 +25,7 @@
         "install:showcase-android": "cd demos/showcase && yarn && cd ../.. && yarn link:components",
         "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
         "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
-        "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components && yarn copy-package-json",
-        "copy-package-json": "cp package.json demos/api/src/",
+        "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
         "link:components": "bash ./scripts/linkComponents.sh",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",

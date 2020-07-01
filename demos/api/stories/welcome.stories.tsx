@@ -6,7 +6,7 @@ import * as Colors from '@pxblue/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg');
 import { updateTitle } from '../src/utils';
-const packageJSON = require('../src/package.json');
+const packageJSON = require('@pxblue/react-native-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
