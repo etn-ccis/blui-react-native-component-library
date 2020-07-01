@@ -1499,7 +1499,7 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-native-components@^3.0.1":
+"@pxblue/react-native-components@latest":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-3.0.1.tgz#eff47b163d6cb1f55107e10171176eca0ddf956c"
   integrity sha512-Fmfwl4m35c9xkAbE3IZQbJlOmrfCelMxUyLsoBKXq9HXghPLPrgUm7COAVP5nnC2131CgvrYZkTfKsChJ8N/qA==
