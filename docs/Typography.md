@@ -2,7 +2,7 @@
 
 Typography components are used to render text on the screen. This library provides several helper components that automatically apply various styles from the theme to avoid repeated custom styling throughout an application.
 
-<img width="20%" alt="Typography Elements" src="./images/typography.png">
+<img width="100%" style="max-width:400px" alt="Typography Elements" src="./images/typography.png">
 
 We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Body1>`, `<Body2>`, `<Subtitle1>`, `<Subtitle2>`, `<Button>`, `<Caption>`, `<Overline>`
 
