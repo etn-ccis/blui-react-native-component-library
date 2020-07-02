@@ -6,6 +6,7 @@
 - Internal style properties are now overridable via the `styles` prop in each component.
 - `fontSize` prop for `<Hero>`, `<ChannelValue>`, and Typography components now takes a `number` instead of a string.
 - Adds `info` prop to `<InfoListItem>` to support a third line of text.
+- Renamed some of the `<Typography>` variants.
 
 ## v2.0.0
 - PX Blue theme is no longer bundled with the component library
