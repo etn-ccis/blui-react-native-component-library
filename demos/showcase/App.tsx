@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import { SafeAreaView, ScrollView, View, I18nManager } from 'react-native';
 import { Button, Card, ListItem } from 'react-native-elements';
 import { StackNavigationProp } from '@react-navigation/stack';
-
+import RNRestart from 'react-native-restart';
 import {
     Body1,
     ChannelValue,
@@ -35,10 +35,22 @@ const Humidity = wrapIcon({ IconClass: _Humidity });
 const Pie = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-pie' });
 const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline' });
 const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
+const SwapIcon = wrapIcon({ IconClass: MatIcon, name: 'swap-horiz' });
 const MenuIcon = wrapIcon({ IconClass: MatIcon, name: 'menu' });
 const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 const PADDING = 10;
+
+export const toggleRTL = async () => {
+    //changing language based on what was chosen
+    if (I18nManager.isRTL) {
+        await I18nManager.forceRTL(false);
+    }
+    else {
+        await I18nManager.forceRTL(true);
+    }
+    RNRestart.Restart();
+};
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'App'>;
@@ -59,9 +71,9 @@ export const App: React.FC<AppProps> = ({ navigation }) => (
             }}
             actionItems={[
                 {
-                    icon: MailIcon,
+                    icon: SwapIcon,
                     onPress: (): void => {
-                        /* do nothing */
+                        toggleRTL();
                     },
                 },
                 {
