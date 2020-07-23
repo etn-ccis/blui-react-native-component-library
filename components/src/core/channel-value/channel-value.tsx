@@ -1,5 +1,5 @@
 import React, { ComponentType, useCallback } from 'react';
-import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle } from 'react-native';
+import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -96,13 +96,13 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [units, fontSize, getColor, styles]);
 
     const prefixUnits = useCallback((): JSX.Element | undefined => {
-        if (prefix) {
+        if (!I18nManager.isRTL && prefix || I18nManager.isRTL && !prefix) {
             return getUnits();
         }
     }, [prefix, getUnits]);
 
     const suffixUnits = useCallback((): JSX.Element | undefined => {
-        if (!prefix) {
+        if (I18nManager.isRTL && prefix || !I18nManager.isRTL && !prefix) {
             return getUnits();
         }
     }, [prefix, getUnits]);
