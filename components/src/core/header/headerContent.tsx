@@ -1,5 +1,15 @@
 import React, { useCallback } from 'react';
-import { Animated, StyleSheet, TextInput, View, StyleProp, ViewStyle, TextStyle, I18nManager, Platform } from 'react-native';
+import {
+    Animated,
+    StyleSheet,
+    TextInput,
+    View,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    I18nManager,
+    Platform,
+} from 'react-native';
 import color from 'color';
 import { Theme } from 'react-native-paper';
 import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
@@ -69,10 +79,13 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
             style={[
                 defaultStyles.titleContainer,
                 {
-                    marginRight: (searchConfig && searching) ? 56 : headerHeight.interpolate({
-                        inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                        outputRange: [getActionPanelWidth(), 0],
-                    }),
+                    marginRight:
+                        searchConfig && searching
+                            ? 56
+                            : headerHeight.interpolate({
+                                  inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                                  outputRange: [getActionPanelWidth(), 0],
+                              }),
                 },
                 styles.root,
             ]}

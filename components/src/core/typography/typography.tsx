@@ -60,7 +60,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
             {...props}
             style={[
                 { color: color ? theme.colors[color] : theme.colors.text },
-                { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr'},
+                { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
                 Platform.OS === 'android' ? { textAlign: 'left' } : {},
                 getStyle(theme),
                 customStyle,

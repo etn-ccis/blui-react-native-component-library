@@ -96,13 +96,13 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [units, fontSize, getColor, styles]);
 
     const prefixUnits = useCallback((): JSX.Element | undefined => {
-        if (!I18nManager.isRTL && prefix || I18nManager.isRTL && !prefix) {
+        if ((!I18nManager.isRTL && prefix) || (I18nManager.isRTL && !prefix)) {
             return getUnits();
         }
     }, [prefix, getUnits]);
 
     const suffixUnits = useCallback((): JSX.Element | undefined => {
-        if (I18nManager.isRTL && prefix || !I18nManager.isRTL && !prefix) {
+        if ((I18nManager.isRTL && prefix) || (!I18nManager.isRTL && !prefix)) {
             return getUnits();
         }
     }, [prefix, getUnits]);
