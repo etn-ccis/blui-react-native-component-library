@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextProps, TextStyle, StyleProp, I18nManager } from 'react-native';
+import { Text, TextProps, TextStyle, StyleProp, I18nManager, Platform } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -61,7 +61,7 @@ const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): Rea
             style={[
                 { color: color ? theme.colors[color] : theme.colors.text },
                 { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr'},
-                { textAlign: 'left' },
+                Platform.OS === 'android' ? { textAlign: 'left' } : {},
                 getStyle(theme),
                 customStyle,
                 styles.root,
