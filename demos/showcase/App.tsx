@@ -44,6 +44,7 @@ const PADDING = 10;
 export const toggleRTL = async () => {
     //changing language based on what was chosen
     if (I18nManager.isRTL) {
+        await I18nManager.allowRTL(false);
         await I18nManager.forceRTL(false);
     }
     else {

@@ -4,6 +4,7 @@ import { InfoListItem } from '../info-list-item';
 import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
 import { DrawerNavGroupProps } from './drawer-nav-group';
+import { useTheme } from 'react-native-paper';
 // import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
@@ -52,6 +53,7 @@ const makeStyles = (props: DrawerNavItemProps): any =>
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const defaultStyles = makeStyles(props);
     const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {}, ...infoListItemProps } = props;
+    const theme = useTheme();
 
     const icon = !depth ? (navItem as NavItem).icon : undefined;
     const active = navGroupProps.activeItem === navItem.itemID;
@@ -96,7 +98,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     title: Object.assign(
                         depth > 0
                             ? {
-                                  fontWeight: '400',
+                                  fontFamily: theme.fonts.regular.fontFamily,
+                                  fontWeight: theme.fonts.regular.fontWeight,
                               }
                             : {},
                         iliTitle
