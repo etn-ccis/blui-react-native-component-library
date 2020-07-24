@@ -6,8 +6,9 @@ import { HeroBanner } from './hero-banner';
 import { InfoListItem } from './info-list-item';
 import { ScoreCard } from './score-card';
 import { wrapIcon } from './icon-wrapper/icon-wrapper';
+import { Spacer } from './utility';
 export * from './typography';
 
 export * from './drawer';
 
-export { ChannelValue, EmptyState, Header, Hero, HeroBanner, InfoListItem, ScoreCard, wrapIcon };
+export { ChannelValue, EmptyState, Header, Hero, HeroBanner, InfoListItem, ScoreCard, wrapIcon, Spacer };
