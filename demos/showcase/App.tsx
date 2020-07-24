@@ -27,7 +27,11 @@ import { RootStackParamList } from './router';
 
 const backgroundImage = require('./assets/images/farm.jpg');
 
-const ChartLineVariant = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-line-variant' });
+const ChartLineVariant = wrapIcon({
+    IconClass: MaterialCommunityIcon,
+    name: 'chart-line-variant',
+    flip: I18nManager.isRTL,
+});
 const Battery = wrapIcon({ IconClass: _Battery, flip: I18nManager.isRTL });
 const A = wrapIcon({ IconClass: _A, flip: false });
 const Temp = wrapIcon({ IconClass: _Temp, flip: I18nManager.isRTL });
@@ -46,7 +50,6 @@ export const toggleRTL = (): void => {
         I18nManager.allowRTL(false);
         I18nManager.forceRTL(false);
     } else {
-        I18nManager.allowRTL(true);
         I18nManager.forceRTL(true);
     }
     RNRestart.Restart();
