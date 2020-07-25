@@ -16,6 +16,7 @@ describe('spacer', () => {
                 height: 'auto',
             },
             undefined,
+            undefined,
         ]);
     });
 
@@ -37,6 +38,7 @@ describe('spacer', () => {
                 height: 'auto',
             },
             undefined,
+            undefined,
         ]);
 
         instance = TestRenderer.create(<Spacer flex={3} />).root;
@@ -50,6 +52,7 @@ describe('spacer', () => {
                 height: 'auto',
             },
             undefined,
+            undefined,
         ]);
 
         instance = TestRenderer.create(<Spacer flex={0} />).root;
@@ -62,6 +65,7 @@ describe('spacer', () => {
                 width: 'auto',
                 height: 'auto',
             },
+            undefined,
             undefined,
         ]);
     });
@@ -78,6 +82,7 @@ describe('spacer', () => {
                 height: 123,
             },
             undefined,
+            undefined,
         ]);
     });
 
@@ -90,11 +95,12 @@ describe('spacer', () => {
                 width: '1rem',
             },
         });
-        const instance = TestRenderer.create(<Spacer styles={spacerStyles} />).root;
+        const instance = TestRenderer.create(<Spacer styles={spacerStyles} style={{ borderRadius: 3 }} />).root;
         const spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
             { flexBasis: 0, flexGrow: 1, flexShrink: 1, height: 'auto', width: 'auto' },
             { color: 'red', flexGrow: 12, height: '30%', width: '1rem' },
+            { borderRadius: 3 },
         ]);
     });
 });

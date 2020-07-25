@@ -29,11 +29,11 @@ export type SpacerProps = ViewProps & {
 };
 
 export const Spacer: React.FC<SpacerProps> = (props) => {
-    const { children, flex, height, styles = {}, width, ...otherViewProps } = props;
+    const { children, flex, height, style, styles = {}, width, ...otherViewProps } = props;
     const defaultStyles = spacerStyles(props);
 
     return (
-        <View testID={'spacer-root'} style={[defaultStyles.root, styles.root]} {...otherViewProps}>
+        <View testID={'spacer-root'} style={[defaultStyles.root, styles.root, style]} {...otherViewProps}>
             {children}
         </View>
     );
