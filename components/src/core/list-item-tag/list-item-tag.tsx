@@ -41,9 +41,10 @@ const listItemTagStyles = (
         root: {
             backgroundColor: props.backgroundColor || theme.colors.primary,
             color:
-                props.fontColor || Color(props.backgroundColor || theme.colors.primary).isLight()
+                props.fontColor ||
+                (Color(props.backgroundColor || theme.colors.primary).isLight()
                     ? theme.colors.onBackground
-                    : white[50],
+                    : white[50]),
             padding: 0,
             paddingLeft: 4,
             paddingRight: 4,
