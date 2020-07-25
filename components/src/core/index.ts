@@ -1,13 +1,11 @@
-import { ChannelValue } from './channel-value';
-import { EmptyState } from './empty-state';
-import { Header } from './header';
-import { Hero } from './hero';
-import { HeroBanner } from './hero-banner';
-import { InfoListItem } from './info-list-item';
-import { ScoreCard } from './score-card';
-import { wrapIcon } from './icon-wrapper/icon-wrapper';
+export { ChannelValue } from './channel-value';
+export { EmptyState } from './empty-state';
+export { Header } from './header';
+export { Hero } from './hero';
+export { HeroBanner } from './hero-banner';
+export { InfoListItem } from './info-list-item';
+export { ListItemTag, ListItemTagProps } from './list-item-tag';
+export { ScoreCard } from './score-card';
+export { wrapIcon } from './icon-wrapper/icon-wrapper';
 export * from './typography';
-
 export * from './drawer';
-
-export { ChannelValue, EmptyState, Header, Hero, HeroBanner, InfoListItem, ScoreCard, wrapIcon };
