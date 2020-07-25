@@ -8,12 +8,13 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type ListItemTagProps = TextProps & {
     /**
-     * Color of the label background. Default is theme.palette.primary.main.
+     * Color of the label background. Default is theme.colors.primary
      **/
     backgroundColor?: string;
 
     /**
-     * Color of the label. Default is theme.palette.primary.contrastText.
+     * Color of the label. Default is theme.colors.onBackground for light background,
+     * or white[50] on dark background
      */
     fontColor?: string;
 
