@@ -4,8 +4,8 @@ import { StyleProp, StyleSheet, View, ViewStyle, ViewProps } from 'react-native'
 const spacerStyles = (props: SpacerProps): StyleSheet.NamedStyles<{ root: ViewStyle }> =>
     StyleSheet.create({
         root: {
-            flexGrow: props.flex === undefined ? 1 : props.flex,
-            flexShrink: props.flex === undefined ? 1 : props.flex,
+            flexGrow: props.flex,
+            flexShrink: props.flex,
             flexBasis: props.flex === 0 ? 'auto' : 0,
             height: props.height || 'auto',
             width: props.width || 'auto',
@@ -48,4 +48,9 @@ export const Spacer: React.FC<SpacerProps> = (props) => {
             {children}
         </View>
     );
+};
+
+Spacer.displayName = 'Spacer';
+Spacer.defaultProps = {
+    flex: 1,
 };
