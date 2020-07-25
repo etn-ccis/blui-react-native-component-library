@@ -1,6 +1,6 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
-import { Spacer, SpacerProps } from '.';
+import { Spacer } from '.';
 import { StyleSheet, ViewStyle } from 'react-native';
 
 describe('spacer', () => {

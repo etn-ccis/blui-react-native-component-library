@@ -29,7 +29,18 @@ export type SpacerProps = ViewProps & {
 };
 
 export const Spacer: React.FC<SpacerProps> = (props) => {
-    const { children, flex, height, style, styles = {}, width, ...otherViewProps } = props;
+    const {
+        children,
+        style,
+        styles = {},
+        // ignore unused vars so that we can do prop transferring to the root element
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        flex,
+        height,
+        width,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        ...otherViewProps
+    } = props;
     const defaultStyles = spacerStyles(props);
 
     return (
