@@ -13,7 +13,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
 import _Battery from '@pxblue/icons-svg/battery.svg';
-import { Image, View } from 'react-native';
+import { Image, View, I18nManager } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { IconButton } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
@@ -22,10 +22,10 @@ import { RootStackParamList } from './index';
 
 const headerBgImage = require('../assets/images/topology_40.png');
 const eatonLogo = require('../assets/images/eatonLogo.png');
-const Battery = wrapIcon({ IconClass: _Battery });
-const Humidity = wrapIcon({ IconClass: _Humidity });
-const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline' });
-const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
+const Battery = wrapIcon({ IconClass: _Battery, flip: I18nManager.isRTL });
+const Humidity = wrapIcon({ IconClass: _Humidity, flip: I18nManager.isRTL });
+const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline', flip: I18nManager.isRTL });
+const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail', flip: I18nManager.isRTL });
 
 export const navGroupItems1: NavItem[] = [
     {

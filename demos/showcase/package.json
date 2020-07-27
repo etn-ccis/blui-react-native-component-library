@@ -31,9 +31,10 @@
         "react-native-paper": "^3.10.1",
         "react-native-reanimated": "^1.9.0",
         "react-native-safe-area-context": "^3.0.0",
+        "react-native-restart": "^0.0.17",
         "react-native-screens": "^2.8.0",
         "react-native-svg": "^12.1.0",
-        "react-native-vector-icons": "^6.6.0"
+        "react-native-vector-icons": "^7.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.6.2",
@@ -46,8 +47,8 @@
         "@types/react-native-elements": "^0.18.0",
         "@types/react-native-vector-icons": "^6.4.5",
         "@types/react-test-renderer": "16.9.2",
-        "@typescript-eslint/eslint-plugin": "^2.34.0",
-        "@typescript-eslint/parser": "^2.34.0",
+        "@typescript-eslint/eslint-plugin": "^3.0.0",
+        "@typescript-eslint/parser": "^3.0.0",
         "babel-jest": "^24.9.0",
         "eslint": "^7.0.0",
         "eslint-config-prettier": "^6.11.0",

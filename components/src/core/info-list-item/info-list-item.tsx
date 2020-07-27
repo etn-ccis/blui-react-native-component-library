@@ -1,5 +1,14 @@
 import React, { ComponentType, useCallback } from 'react';
-import { StyleSheet, View, TouchableOpacity, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    ViewProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    I18nManager,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Body1 } from '../typography';
@@ -22,6 +31,7 @@ const infoListItemStyles = (
     iconWrapper: ViewStyle;
     avatar: ViewStyle;
     mainContent: ViewStyle;
+    flipIcon: ViewStyle;
 }> =>
     StyleSheet.create({
         root: {
@@ -73,6 +83,9 @@ const infoListItemStyles = (
         mainContent: {
             flex: 1,
             paddingHorizontal: 16,
+        },
+        flipIcon: {
+            transform: [{ scaleX: -1 }],
         },
     });
 
@@ -225,7 +238,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (rightComponent) {
             return rightComponent;
         } else if (chevron) {
-            return <Icon name="chevron-right" size={24} color={theme.colors.text} />;
+            return (
+                <Icon
+                    name="chevron-right"
+                    size={24}
+                    color={theme.colors.text}
+                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                />
+            );
         }
     }, [rightComponent, chevron, theme]);
 
