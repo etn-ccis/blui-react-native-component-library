@@ -295,7 +295,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     }
     testID="icon"
   >
-    
+    󰞱
   </Text>
   <Text
     style={
