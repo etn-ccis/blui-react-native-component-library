@@ -47,7 +47,6 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets):
             color: props.fontColor || theme.colors.surface,
             lineHeight: 16,
             marginTop: -2,
-            fontWeight: '300',
         },
         backgroundImageWrapper: {
             position: 'absolute',
@@ -125,7 +124,9 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
                     <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
-                    <Subtitle1 style={[defaultStyles.subtitle, styles.subtitle]}>{subtitle}</Subtitle1>
+                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]}>
+                        {subtitle}
+                    </Subtitle1>
                 </View>
             ),
         [title, subtitle, titleContent, defaultStyles, styles]
