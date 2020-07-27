@@ -1,5 +1,9 @@
 # Change Log
 
+## v3.0.2
+- Upgraded dependencies to latest version of react-native-safe-area-context
+    - To use with an Expo project you'll need to be using v38+ of the Expo SDK
+
 ## v3.0.0
 - Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+)
 - Added new component for `<Drawer>`
