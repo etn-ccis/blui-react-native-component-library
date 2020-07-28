@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewStyle, StyleProp, ViewProps } from 'react-native';
-import { useSafeArea } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { Theme, useTheme } from 'react-native-paper';
@@ -41,7 +41,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         expandIcon = <MatIcon name={'expand-more'} size={24} color={theme.colors.text} />,
         collapseIcon = <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />,
     } = props;
-    const insets = useSafeArea();
+    const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
 
     const findChildByType = useCallback(

@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Button, createStyles, makeStyles, Typography } from '@material-ui/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
 import * as Colors from '@pxblue/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
-const backgroundImage = require('../assets/circles-bg.svg');
+const backgroundImage = require('../assets/circles-bg.svg') as string;
 import { updateTitle } from '../src/utils';
-const packageJSON = require('@pxblue/react-native-components/package.json');
+const packageJSON = require('@pxblue/react-native-components/package.json') as { version: string };
 
 export const stories = storiesOf('Intro/Overview', module);
 
@@ -17,8 +18,9 @@ const autoNavToStory = (): void => {
     // If we are currently on the 'Notes' tab.
     if (window.top.location.href.includes('/info/')) {
         window.top.history.replaceState(null, '', window.top.location.href.replace('/info/', '/story/'));
+        // Click the canvas button
         //@ts-ignore
-        banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
+        banner.children[0].children[0].children[0].children[0].click(); // eslint-disable-line @typescript-eslint/no-unsafe-call
     }
     updateTitle();
 };
@@ -89,7 +91,7 @@ stories.addParameters({
 stories.add('PX Blue React Native Components', () => {
     autoNavToStory();
     const classes = useStyles();
-    const icon = require('../assets/pxb-icon.svg');
+    const icon = require('../assets/pxb-icon.svg') as string;
     return (
         <div className={classes.root}>
             <div className={classes.container}>

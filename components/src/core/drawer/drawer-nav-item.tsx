@@ -20,7 +20,7 @@ export type NavItem = {
 export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'> & {
     depth: number;
     expanded: boolean;
-    expandHandler?: Function;
+    expandHandler?: () => void;
     navGroupProps: DrawerNavGroupProps;
     navItem: NavItem | NestedNavItem;
     /** Style Overrides */
