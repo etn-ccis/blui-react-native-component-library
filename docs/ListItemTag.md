@@ -28,7 +28,7 @@ import { ListItemTag } from '@pxblue/react-native-components';
 
 </div>
 
-Any other props will be provided to the root element `<Text>`.
+Any other props will be provided to the root element [`<Overline>`](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography).
 
 ### Styles
 
