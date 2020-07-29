@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager } from 'react-native';
 import { ICON_SIZE } from './constants';
 import { HeaderIcon as HeaderIconType } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,6 +14,9 @@ const defaultStyles = StyleSheet.create({
         width: 40,
         margin: -8,
         padding: 8,
+    },
+    flipIcon: {
+        transform: [{ scaleX: -1 }],
     },
 });
 
@@ -35,7 +38,12 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                 onPress={onClose ? (): void => onClose() : undefined}
                 style={[defaultStyles.navigation, style]}
             >
-                <Icon name={'arrow-back'} size={ICON_SIZE} color={color} />
+                <Icon
+                    name={'arrow-back'}
+                    size={ICON_SIZE}
+                    color={color}
+                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                />
             </TouchableOpacity>
         );
     }

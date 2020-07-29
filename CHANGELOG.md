@@ -1,5 +1,12 @@
 # Change Log
 
+## v3.1.0
+- Added RTL support
+    - Components/Text/Icons will change directions correctly based on the current language selection on device
+    - IconWrapper allows you to easily flip icons that you supply to PX Blue components
+- Upgraded dependencies to latest version of react-native-safe-area-context
+    - To use with an Expo project you'll need to be using v38+ of the Expo SDK
+
 ## v3.0.0
 - Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+)
 - Added new component for `<Drawer>`

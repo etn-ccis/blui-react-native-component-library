@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { updateTitle } from '../src/utils';
@@ -10,14 +11,16 @@ const autoNavToDocs = (): void => {
     // If we are currently on the 'Canvas' tab.
     if (window.top.location.href.includes('/story/')) {
         window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
-        //@ts-ignore
-        banner.children[0].children[0].children[0].children[1].click(); // click the Notes tab.
+
+        // click the notes tab
+        // @ts-ignore
+        banner.children[0].children[0].children[0].children[1].click(); // eslint-disable-line @typescript-eslint/no-unsafe-call
     }
     updateTitle();
 };
 
-const getReadMe = (name: string): any => {
-    const md = require(`./../../../docs/${name}`);
+const getReadMe = (name: string): { default: string } => {
+    const md: { default: string } = require(`./../../../docs/${name}`) as { default: string };
 
     // Locate all relative links that use href syntax and replace them with absolute URLs.
     md.default = md.default.replace(/\(.\/.*md\)/g, (substring: string) => {
