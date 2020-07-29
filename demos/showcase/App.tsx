@@ -195,6 +195,7 @@ export const App: React.FC<AppProps> = ({ navigation }) => {
                     subtitle={['DG 100', 'EDR 5000', 'Online']}
                     subtitleSeparator={'/'}
                     hidePadding
+                    rightComponent={<ListItemTag label={'ACTIVE'} />}
                     onPress={(): void => {
                         /* do nothing */
                     }}

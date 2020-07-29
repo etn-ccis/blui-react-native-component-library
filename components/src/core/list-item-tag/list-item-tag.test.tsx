@@ -10,7 +10,7 @@ describe('ListItemTag', () => {
         expect(textComponent.props.children).toEqual('label text');
     });
 
-    it('renders the input background color and font color', () => {
+    it('renders the background color and font color correctly', () => {
         const instance = TestRenderer.create(
             <ListItemTag label={'label text'} backgroundColor={'yellow'} fontColor={'brown'} />
         ).root;

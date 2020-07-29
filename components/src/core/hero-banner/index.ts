@@ -1,2 +1,1 @@
-import { HeroBanner } from './hero-banner';
-export { HeroBanner };
+export * from './hero-banner';

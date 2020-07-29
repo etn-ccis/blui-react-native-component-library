@@ -3,7 +3,7 @@ import { Text, TextProps, TextStyle, StyleProp, I18nManager, Platform } from 're
 import { Theme, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-type TypographyProps = {
+export type TypographyProps = {
     /**
      * Key to use for font size.
      */

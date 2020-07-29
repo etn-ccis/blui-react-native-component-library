@@ -1,12 +1,11 @@
 import React from 'react';
-import { TextProps, TextStyle, StyleProp, StyleSheet } from 'react-native';
+import { TextStyle, StyleSheet } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white } from '@pxblue/colors';
-import { Overline } from '..';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Overline, TypographyProps } from '..';
 
-export type ListItemTagProps = TextProps & {
+export type ListItemTagProps = TypographyProps & {
     /**
      * Color of the label background. Default is theme.colors.primary
      **/
@@ -20,16 +19,6 @@ export type ListItemTagProps = TextProps & {
 
     /** The string label of the tag. */
     label: string;
-
-    /** Style Overrides */
-    styles?: {
-        root?: StyleProp<TextStyle>;
-    };
-
-    /**
-     * Overrides for theme
-     */
-    theme?: $DeepPartial<Theme>;
 };
 
 const listItemTagStyles = (
@@ -50,7 +39,8 @@ const listItemTagStyles = (
             paddingLeft: 4,
             paddingRight: 4,
             borderRadius: 2,
-            fontWeight: 'bold',
+            fontFamily: theme.fonts.medium.fontFamily,
+            fontWeight: theme.fonts.medium.fontWeight,
             overflow: 'hidden',
         },
     });
