@@ -24,7 +24,7 @@ const makeStyles = (
             paddingBottom: insets.bottom,
         },
     });
-type DrawerProps = ViewProps &
+export type DrawerProps = ViewProps &
     DrawerInheritableProps & {
         style?: StyleProp<ViewStyle>;
 
