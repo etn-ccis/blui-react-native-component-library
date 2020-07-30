@@ -8,4 +8,5 @@ export * from './icon-wrapper';
 export * from './info-list-item';
 export * from './list-item-tag';
 export * from './score-card';
+export * from './utility';
 export * from './typography';

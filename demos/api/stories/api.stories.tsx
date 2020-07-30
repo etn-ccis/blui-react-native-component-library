@@ -48,4 +48,5 @@ stories.add('Icon Wrapper', docFn, { notes: { markdown: getReadMe('IconWrapper.m
 stories.add('Info List Item', docFn, { notes: { markdown: getReadMe('InfoListItem.md') } });
 stories.add('List Item Tag', docFn, { notes: { markdown: getReadMe('ListItemTag.md') } });
 stories.add('Score Card', docFn, { notes: { markdown: getReadMe('ScoreCard.md') } });
+stories.add('Spacer', docFn, { notes: { markdown: getReadMe('Spacer.md') } });
 stories.add('Typography', docFn, { notes: { markdown: getReadMe('Typography.md') } });
