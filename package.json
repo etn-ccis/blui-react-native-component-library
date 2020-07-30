@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-native-components",
-    "version": "3.0.1",
+    "version": "3.1.0",
     "author": "pxblue <pxblue@eaton.com>",
     "description": "Reusable React Native components for PX Blue applications",
     "repository": {
@@ -36,6 +36,7 @@
         "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
         "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
         "test": "cd components && yarn test",
+        "test:watch": "cd components && yarn test:watch",
         "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
         "prettier": "cd components && yarn prettier && cd ../demos/api && yarn prettier && cd ../showcase && yarn prettier && cd ../storybook && yarn prettier",
         "prettier:check": "cd components && yarn prettier:check && cd ../demos/api && yarn prettier:check && cd ../showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
@@ -53,8 +54,8 @@
         "react": "^16.8.6",
         "react-native": "^0.60.4",
         "react-native-paper": "^3.10.1",
-        "react-native-safe-area-context": "~0.7.0",
-        "react-native-vector-icons": "^6.6.0"
+        "react-native-safe-area-context": "^3.0.0",
+        "react-native-vector-icons": "^7.0.0"
     },
     "files": [
         "package.json",

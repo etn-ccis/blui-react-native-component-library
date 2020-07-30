@@ -36,9 +36,8 @@ const drawerNavGroupStyles = StyleSheet.create({
     root: {},
     textContent: {},
     title: {
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 16,
+        paddingVertical: 8,
+        paddingHorizontal: 16,
         height: 52,
         lineHeight: 36,
     },
