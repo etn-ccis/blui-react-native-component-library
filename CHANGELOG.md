@@ -5,7 +5,7 @@
 -   Added RTL support
     -   Components/Text/Icons will change directions correctly based on the current language selection on device
     -   IconWrapper allows you to easily flip icons that you supply to PX Blue components
--   Added new component for `<ListItemTag>`
+-   Added new component for `<ListItemTag>` and `<Spacer>`
 -   Upgraded dependencies to latest version of react-native-safe-area-context
     -   To use with an Expo project you'll need to be using v38+ of the Expo SDK
 

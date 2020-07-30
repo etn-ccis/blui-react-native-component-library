@@ -9,9 +9,7 @@ describe('spacer', () => {
         const spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
             {
-                flexGrow: 1,
-                flexShrink: 1,
-                flexBasis: 0,
+                flex: 1,
                 width: 'auto',
                 height: 'auto',
             },
@@ -31,9 +29,7 @@ describe('spacer', () => {
         let spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
             {
-                flexGrow: 2,
-                flexShrink: 2,
-                flexBasis: 0,
+                flex: 2,
                 width: 'auto',
                 height: 'auto',
             },
@@ -45,9 +41,7 @@ describe('spacer', () => {
         spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
             {
-                flexGrow: 3,
-                flexShrink: 3,
-                flexBasis: 0,
+                flex: 3,
                 width: 'auto',
                 height: 'auto',
             },
@@ -59,9 +53,7 @@ describe('spacer', () => {
         spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
             {
-                flexGrow: 0,
-                flexShrink: 0,
-                flexBasis: 'auto',
+                flex: 0,
                 width: 'auto',
                 height: 'auto',
             },
@@ -75,9 +67,7 @@ describe('spacer', () => {
         const spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
             {
-                flexGrow: 0,
-                flexShrink: 0,
-                flexBasis: 'auto',
+                flex: 0,
                 width: 42,
                 height: 123,
             },
@@ -98,7 +88,7 @@ describe('spacer', () => {
         const instance = TestRenderer.create(<Spacer styles={spacerStyles} style={{ borderRadius: 3 }} />).root;
         const spacer = instance.find((x) => x.props.testID === 'spacer-root');
         expect(spacer.props.style).toMatchObject([
-            { flexBasis: 0, flexGrow: 1, flexShrink: 1, height: 'auto', width: 'auto' },
+            { flex: 1, height: 'auto', width: 'auto' },
             { color: 'red', flexGrow: 12, height: '30%', width: '1rem' },
             { borderRadius: 3 },
         ]);

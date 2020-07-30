@@ -4,9 +4,7 @@ import { StyleProp, StyleSheet, View, ViewStyle, ViewProps } from 'react-native'
 const spacerStyles = (props: SpacerProps): StyleSheet.NamedStyles<{ root: ViewStyle }> =>
     StyleSheet.create({
         root: {
-            flexGrow: props.flex,
-            flexShrink: props.flex,
-            flexBasis: props.flex === 0 ? 'auto' : 0,
+            flex: props.flex,
             height: props.height || 'auto',
             width: props.width || 'auto',
         },
