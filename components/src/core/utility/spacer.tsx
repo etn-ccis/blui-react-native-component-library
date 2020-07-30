@@ -16,10 +16,10 @@ export type SpacerProps = ViewProps & {
     /* Flex grow/shrink value for flex layouts */
     flex?: number;
 
-    /** Height (in px) for static layouts */
+    /** Height (in dp) for static layouts */
     height?: number;
 
-    /** Width (in px) for static layouts */
+    /** Width (in dp) for static layouts */
     width?: number;
 
     /** Style Overrides */

@@ -51,9 +51,9 @@ storiesOf('Spacer', module)
         );
     })
     .add('with static layout', () => {
-        const size1 = number('Item 1 Size (px)', 60, { range: true, min: 20, max: 100, step: 20 });
-        const size2 = number('Item 2 Size (px)', 60, { range: true, min: 20, max: 100, step: 20 });
-        const size3 = number('Item 3 Size (px)', 60, { range: true, min: 20, max: 100, step: 20 });
+        const size1 = number('Item 1 Size (dp)', 60, { range: true, min: 20, max: 100, step: 20 });
+        const size2 = number('Item 2 Size (dp)', 60, { range: true, min: 20, max: 100, step: 20 });
+        const size3 = number('Item 3 Size (dp)', 60, { range: true, min: 20, max: 100, step: 20 });
 
         /* 
             Note: 
