@@ -2,6 +2,10 @@
 
 An invisible utility component that acts as a spacer element in various layouts. It works with flexbox sizing or fixed sizing.
 
+<div style="width: 100%; text-align:center">
+    <img width="300px" style="max-width: 100%" alt="Spacer used in Drawer Body" src="./images/spacer.png"><br/>
+</div>
+
 ## Usage
 
 ```tsx
