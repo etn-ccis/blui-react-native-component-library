@@ -34,26 +34,12 @@ const headerStyles = (
     theme: Theme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
-    // header: ViewStyle;
     content: ViewStyle;
 }> =>
     StyleSheet.create({
-        // root: {},
         root: {
             width: '100%',
             backgroundColor: props.backgroundColor || theme.colors.primary,
-            shadowColor: 'rgba(0, 0, 0, 0.3)',
-            shadowOffset: {
-                width: 0,
-                height: 1,
-            },
-            shadowRadius: 2,
-            shadowOpacity: 1,
-            elevation: 0,
-        },
-
-        bar: {
-            width: '100%',
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,

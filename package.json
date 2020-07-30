@@ -36,6 +36,7 @@
         "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
         "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
         "test": "cd components && yarn test",
+        "test:watch": "cd components && yarn test:watch",
         "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
         "prettier": "cd components && yarn prettier && cd ../demos/api && yarn prettier && cd ../showcase && yarn prettier && cd ../storybook && yarn prettier",
         "prettier:check": "cd components && yarn prettier:check && cd ../demos/api && yarn prettier:check && cd ../showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",

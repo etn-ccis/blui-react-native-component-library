@@ -13,11 +13,11 @@ type PxBlueIconArg = {
     flip?: boolean;
 };
 
-type IconArg = IconSetArg | PxBlueIconArg;
+export type IconArg = IconSetArg | PxBlueIconArg;
 
 const isIconSetArg = (x: IconSetArg | PxBlueIconArg): x is IconSetArg => (x as any).name !== undefined;
 
-type WrapIconProps = {
+export type WrapIconProps = {
     size: number;
     color: string;
 };
