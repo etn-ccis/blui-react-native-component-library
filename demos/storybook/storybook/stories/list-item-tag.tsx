@@ -21,7 +21,7 @@ storiesOf('ListItemTag', module)
         'with full config',
         () => (
             <ListItemTag
-                label={'ACTIVE'}
+                label={text('label', 'ACTIVE')}
                 backgroundColor={color('backgroundColor', Colors.yellow[500])}
                 fontColor={color('fontColor', Colors.black[500])}
             />
