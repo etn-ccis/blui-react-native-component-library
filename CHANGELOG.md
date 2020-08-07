@@ -1,5 +1,9 @@
 # Change Log
 
+## v3.1.1
+
+-   Adds `iconAlign` prop to `<InfoListItem>` to align icons left (default), center or right.
+
 ## v3.1.0
 
 -   Added RTL support

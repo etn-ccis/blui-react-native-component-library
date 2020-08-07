@@ -17,6 +17,20 @@ import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
+type IconAlign = 'left' | 'center' | 'right';
+
+const getIconAlignment = (iconAlign?: IconAlign): 'flex-start' | 'center' | 'flex-end' => {
+    switch (iconAlign) {
+        case 'right':
+            return 'flex-end';
+        case 'center':
+            return 'center';
+        case 'left':
+        default:
+            return 'flex-start';
+    }
+};
+
 const infoListItemStyles = (
     props: InfoListItemProps,
     theme: Theme
@@ -25,6 +39,7 @@ const infoListItemStyles = (
     title: TextStyle;
     subtitle: TextStyle;
     subtitleWrapper: ViewStyle;
+    icon: ViewStyle;
     info: TextStyle;
     infoWrapper: ViewStyle;
     statusStripe: ViewStyle;
@@ -80,6 +95,12 @@ const infoListItemStyles = (
             justifyContent: 'center',
             backgroundColor: props.statusColor || theme.colors.text,
         },
+        icon: {
+            width: 40,
+            justifyContent: 'center',
+            backgroundColor: 'transparent',
+            alignItems: getIconAlignment(props.iconAlign),
+        },
         mainContent: {
             flex: 1,
             paddingHorizontal: 16,
@@ -104,6 +125,9 @@ export type InfoListItemProps = ViewProps & {
 
     /** Specifies whether to show color background around the icon */
     avatar?: boolean;
+
+    /** Icon alignment when avatar prop is set to false */
+    iconAlign?: IconAlign;
 
     /** Component to render to the left of the title */
     IconClass?: ComponentType<{ size: number; color: string }>;
@@ -144,6 +168,7 @@ export type InfoListItemProps = ViewProps & {
         statusStripe?: StyleProp<ViewStyle>;
         iconWrapper?: StyleProp<ViewStyle>;
         avatar?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
         mainContent?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
         subtitle?: StyleProp<TextStyle>;
@@ -175,6 +200,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         statusColor,
         dense, //eslint-disable-line @typescript-eslint/no-unused-vars
         fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
+        iconAlign, //eslint-disable-line @typescript-eslint/no-unused-vars
         iconColor,
         backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         onPress,
@@ -203,7 +229,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (IconClass) {
             return (
-                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : null}>
+                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : [defaultStyles.icon, styles.icon]}>
                     <IconClass size={24} color={getIconColor()} />
                 </View>
             );

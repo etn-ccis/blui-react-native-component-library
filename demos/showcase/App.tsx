@@ -182,6 +182,7 @@ export const App: React.FC<AppProps> = ({ navigation }) => {
                     statusColor={PXBColors.orange[500]}
                     divider={'full'}
                     IconClass={Pie}
+                    iconAlign={'center'}
                     hidePadding={false}
                     fontColor={PXBColors.red[500]}
                     rightComponent={<ChannelValue value={15} units={'A'} />}
