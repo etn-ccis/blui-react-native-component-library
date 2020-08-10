@@ -31,6 +31,8 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
+                // TODO: make this work
+                // iconAlign={select('iconAlign', ['left', 'center', 'right'], 'left')}
                 IconClass={LeafIcon}
                 iconColor={color('iconColor', Colors.green[500])}
                 subtitle={'with an icon'}
@@ -118,6 +120,8 @@ storiesOf('InfoListItem', module)
                 }
                 rightComponent={<ChannelValue value={15} units={'A'} />}
                 avatar={boolean('avatar', false)}
+                // TODO: make this work
+                // iconAlign={select('iconAlign', ['left', 'center', 'right'], 'right')}
                 iconColor={color('iconColor', Colors.green[500])}
                 statusColor={color('statusColor', Colors.blue[700])}
                 fontColor={color('fontColor', Colors.blue[700])}

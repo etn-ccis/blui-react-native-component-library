@@ -8,6 +8,7 @@
 -   Added new component for `<ListItemTag>` and `<Spacer>`
 -   Upgraded dependencies to latest version of react-native-safe-area-context
     -   To use with an Expo project you'll need to be using v38+ of the Expo SDK
+-   Added `iconAlign` prop to `<InfoListItem>` to align icons left (default), center or right.
 
 ## v3.0.0
 
