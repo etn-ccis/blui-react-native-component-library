@@ -22,6 +22,10 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
           "color": "#000000",
         },
         Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
+        Object {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
@@ -202,6 +206,10 @@ exports[`EmptyState Tests  Description Renders 1`] = `
           "color": "#000000",
         },
         Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
+        Object {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
@@ -227,6 +235,10 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         Object {
           "color": "#6200ee",
         },
+        Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
         Object {
           "fontFamily": "System",
           "fontSize": 14,
@@ -272,7 +284,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
           "color": "#000000",
           "fontSize": 100,
         },
-        undefined,
+        Object {},
         Object {
           "fontFamily": "Material Design Icons",
           "fontStyle": "normal",
@@ -283,7 +295,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     }
     testID="icon"
   >
-    
+    󰞱
   </Text>
   <Text
     style={
@@ -291,6 +303,10 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         Object {
           "color": "#000000",
         },
+        Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
         Object {
           "fontFamily": "System",
           "fontSize": 20,
@@ -336,6 +352,10 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
           "color": "#000000",
         },
         Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
+        Object {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
@@ -380,6 +400,10 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
           "color": "#000000",
         },
         Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
+        Object {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
@@ -405,6 +429,10 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         Object {
           "color": "#6200ee",
         },
+        Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
         Object {
           "fontFamily": "System",
           "fontSize": 14,

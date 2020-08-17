@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, Theme, useTheme } from 'react-native-paper';
-import { useSafeArea } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -47,7 +47,6 @@ const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets):
             color: props.fontColor || theme.colors.surface,
             lineHeight: 16,
             marginTop: -2,
-            fontWeight: '300',
         },
         backgroundImageWrapper: {
             position: 'absolute',
@@ -112,7 +111,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const insets = useSafeArea();
+    const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
 
     const getIcon = useCallback((): JSX.Element => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
@@ -125,7 +124,9 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
                     <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
-                    <Subtitle1 style={[defaultStyles.subtitle, styles.subtitle]}>{subtitle}</Subtitle1>
+                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]}>
+                        {subtitle}
+                    </Subtitle1>
                 </View>
             ),
         [title, subtitle, titleContent, defaultStyles, styles]

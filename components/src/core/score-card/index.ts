@@ -1,2 +1,1 @@
-import { ScoreCard } from './score-card';
-export { ScoreCard };
+export * from './score-card';

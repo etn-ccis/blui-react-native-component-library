@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-native-components",
-    "version": "3.0.1",
+    "version": "3.1.0",
     "author": "pxblue <pxblue@eaton.com>",
     "description": "Reusable React Native components for PX Blue applications",
     "repository": {
@@ -26,6 +26,8 @@
         "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
         "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
         "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
+        "install:all": "cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
+        "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",
@@ -36,11 +38,13 @@
         "start:storybook-android": "yarn install:storybook-android && cd demos/storybook && yarn android",
         "start:storybook-api": "yarn install:storybook-api && cd demos/api && yarn start",
         "test": "cd components && yarn test",
+        "test:watch": "cd components && yarn test:watch",
         "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
         "prettier": "cd components && yarn prettier && cd ../demos/api && yarn prettier && cd ../showcase && yarn prettier && cd ../storybook && yarn prettier",
         "prettier:check": "cd components && yarn prettier:check && cd ../demos/api && yarn prettier:check && cd ../showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
         "lint": "cd components && yarn lint && cd ../demos/api && yarn lint && cd ../storybook && yarn lint && cd ../showcase && yarn lint",
-        "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix"
+        "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix",
+        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts"
     },
     "dependencies": {
         "@pxblue/colors": "^3.0.0",
@@ -53,8 +57,8 @@
         "react": "^16.8.6",
         "react-native": "^0.60.4",
         "react-native-paper": "^3.10.1",
-        "react-native-safe-area-context": "~0.7.0",
-        "react-native-vector-icons": "^6.6.0"
+        "react-native-safe-area-context": "^3.0.0",
+        "react-native-vector-icons": "^7.0.0"
     },
     "files": [
         "package.json",

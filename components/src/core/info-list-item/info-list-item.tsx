@@ -1,5 +1,14 @@
 import React, { ComponentType, useCallback } from 'react';
-import { StyleSheet, View, TouchableOpacity, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    ViewProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    I18nManager,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Body1 } from '../typography';
@@ -7,6 +16,20 @@ import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+
+type IconAlign = 'left' | 'center' | 'right';
+
+const getIconAlignment = (iconAlign?: IconAlign): 'flex-start' | 'center' | 'flex-end' => {
+    switch (iconAlign) {
+        case 'right':
+            return 'flex-end';
+        case 'center':
+            return 'center';
+        case 'left':
+        default:
+            return 'flex-start';
+    }
+};
 
 const infoListItemStyles = (
     props: InfoListItemProps,
@@ -16,12 +39,14 @@ const infoListItemStyles = (
     title: TextStyle;
     subtitle: TextStyle;
     subtitleWrapper: ViewStyle;
+    icon: ViewStyle;
     info: TextStyle;
     infoWrapper: ViewStyle;
     statusStripe: ViewStyle;
     iconWrapper: ViewStyle;
     avatar: ViewStyle;
     mainContent: ViewStyle;
+    flipIcon: ViewStyle;
 }> =>
     StyleSheet.create({
         root: {
@@ -70,9 +95,18 @@ const infoListItemStyles = (
             justifyContent: 'center',
             backgroundColor: props.statusColor || theme.colors.text,
         },
+        icon: {
+            width: 40,
+            justifyContent: 'center',
+            backgroundColor: 'transparent',
+            alignItems: getIconAlignment(props.iconAlign),
+        },
         mainContent: {
             flex: 1,
             paddingHorizontal: 16,
+        },
+        flipIcon: {
+            transform: [{ scaleX: -1 }],
         },
     });
 
@@ -91,6 +125,9 @@ export type InfoListItemProps = ViewProps & {
 
     /** Specifies whether to show color background around the icon */
     avatar?: boolean;
+
+    /** Icon alignment when avatar prop is set to false */
+    iconAlign?: IconAlign;
 
     /** Component to render to the left of the title */
     IconClass?: ComponentType<{ size: number; color: string }>;
@@ -131,6 +168,7 @@ export type InfoListItemProps = ViewProps & {
         statusStripe?: StyleProp<ViewStyle>;
         iconWrapper?: StyleProp<ViewStyle>;
         avatar?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
         mainContent?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
         subtitle?: StyleProp<TextStyle>;
@@ -162,6 +200,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         statusColor,
         dense, //eslint-disable-line @typescript-eslint/no-unused-vars
         fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
+        iconAlign, //eslint-disable-line @typescript-eslint/no-unused-vars
         iconColor,
         backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         onPress,
@@ -190,7 +229,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (IconClass) {
             return (
-                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : null}>
+                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : [defaultStyles.icon, styles.icon]}>
                     <IconClass size={24} color={getIconColor()} />
                 </View>
             );
@@ -225,7 +264,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (rightComponent) {
             return rightComponent;
         } else if (chevron) {
-            return <Icon name="chevron-right" size={24} color={theme.colors.text} />;
+            return (
+                <Icon
+                    name="chevron-right"
+                    size={24}
+                    color={theme.colors.text}
+                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                />
+            );
         }
     }, [rightComponent, chevron, theme]);
 

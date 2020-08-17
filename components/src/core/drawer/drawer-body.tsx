@@ -6,7 +6,7 @@ import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types'
 const defaultStyles = StyleSheet.create({
     root: {},
 });
-type DrawerBodyProps = ScrollViewProps & DrawerInheritableProps;
+export type DrawerBodyProps = ScrollViewProps & DrawerInheritableProps;
 export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
     const { children, style, ...scrollProps } = props;
     const childrenArray = React.Children.toArray(children);
