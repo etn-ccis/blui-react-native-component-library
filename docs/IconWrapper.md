@@ -25,13 +25,16 @@ const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outl
 ```
 
 ### RTL (Right-to-Left) Support
+
 If you need to flip icons for use with RTL languages, you can include a boolean `flip` property when using the wrapIcon function:
+
 ```tsx
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', flip: true });
 ```
 
 If you want to conditionally flip icons based on the active language, you can use the `I18nManager` from react native:
+
 ```tsx
 import { I18nManager } from 'react-native';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
