@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, I18nManager } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { wrapIcon } from '../icon-wrapper/icon-wrapper';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { HeaderIcon as HeaderIconType } from '../__types__';
 
-const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear', flip: I18nManager.isRTL });
-const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search', flip: I18nManager.isRTL });
+const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
+const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
 
 const defaultStyles = StyleSheet.create({
     root: {
