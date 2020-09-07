@@ -1,5 +1,11 @@
 # Change Log
 
+## vX.X.X (to be published)
+
+_*Breaking Changes:*_
+
+-   Remove right to left logic on icon inversion.
+
 ## v3.1.0
 
 -   Added RTL support
