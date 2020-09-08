@@ -31,18 +31,18 @@ const backgroundImage = require('./assets/images/farm.jpg');
 const ChartLineVariant = wrapIcon({
     IconClass: MaterialCommunityIcon,
     name: 'chart-line-variant',
-    flip: I18nManager.isRTL,
+    flip: false,
 });
 const Battery = wrapIcon({ IconClass: _Battery, flip: I18nManager.isRTL });
 const A = wrapIcon({ IconClass: _A, flip: false });
-const Temp = wrapIcon({ IconClass: _Temp, flip: I18nManager.isRTL });
-const Humidity = wrapIcon({ IconClass: _Humidity, flip: I18nManager.isRTL });
-const Pie = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-pie', flip: I18nManager.isRTL });
-const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline', flip: I18nManager.isRTL });
-const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail', flip: I18nManager.isRTL });
-const SwapIcon = wrapIcon({ IconClass: MatIcon, name: 'swap-horiz', flip: I18nManager.isRTL });
+const Temp = wrapIcon({ IconClass: _Temp, flip: false });
+const Humidity = wrapIcon({ IconClass: _Humidity, flip: false });
+const Pie = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'chart-pie', flip: false });
+const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline', flip: false });
+const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail', flip: false });
+const SwapIcon = wrapIcon({ IconClass: MatIcon, name: 'swap-horiz', flip: false });
 const MenuIcon = wrapIcon({ IconClass: MatIcon, name: 'menu', flip: I18nManager.isRTL });
-const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert', flip: I18nManager.isRTL });
+const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert', flip: false });
 
 const PADDING = 10;
 
@@ -61,10 +61,6 @@ type AppProps = {
 };
 
 export const App: React.FC<AppProps> = ({ navigation }) => {
-    const iconStyle = {
-        transform: I18nManager.isRTL ? [{ scaleX: -1 }] : [],
-    };
-
     return (
         <View style={{ flex: 1, backgroundColor: PXBColors.gray[50] }}>
             <Header
@@ -137,19 +133,19 @@ export const App: React.FC<AppProps> = ({ navigation }) => {
                     </HeroBanner>
                     <ListItem
                         topDivider
-                        leftIcon={<MatIcon name={'wb-sunny'} size={24} style={[{ marginRight: 10 }, iconStyle]} />}
+                        leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
                         title={<Body1>Temperature</Body1>}
                         rightElement={<ChannelValue value={68} units={'°F'} />}
                     />
                     <ListItem
                         topDivider
-                        leftIcon={<MatIcon name={'wb-sunny'} size={24} style={[{ marginRight: 10 }, iconStyle]} />}
+                        leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
                         title={<Body1>Temperature</Body1>}
                         rightElement={<ChannelValue value={68} units={'°F'} />}
                     />
                     <ListItem
                         topDivider
-                        leftIcon={<MatIcon name={'wb-sunny'} size={24} style={[{ marginRight: 10 }, iconStyle]} />}
+                        leftIcon={<MatIcon name={'wb-sunny'} size={24} style={{ marginRight: 10 }} />}
                         title={<Body1>Temperature</Body1>}
                         rightElement={
                             <React.Fragment>
@@ -169,7 +165,7 @@ export const App: React.FC<AppProps> = ({ navigation }) => {
                     IconClass={Battery}
                     avatar
                     // dense
-                    rightComponent={<MatIcon name={'mail'} size={24} color={PXBColors.black[500]} style={iconStyle} />}
+                    rightComponent={<MatIcon name={'mail'} size={24} color={PXBColors.black[500]} />}
                     divider={'partial'}
                     onPress={(): void => {
                         /* do nothing */
@@ -243,24 +239,17 @@ export const App: React.FC<AppProps> = ({ navigation }) => {
                     <View style={{ justifyContent: 'center' }}>
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                            leftIcon={
-                                <MatIcon
-                                    name={'notifications'}
-                                    size={24}
-                                    color={PXBColors.red[500]}
-                                    style={iconStyle}
-                                />
-                            }
+                            leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
                             title={<Body1 color={'error'}>1 Alarm</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                            leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} style={iconStyle} />}
+                            leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
                             title={<Body1 color={'primary'}>1 Event</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0 }}
-                            leftIcon={<MatIcon name={'cloud'} size={24} style={iconStyle} />}
+                            leftIcon={<MatIcon name={'cloud'} size={24} />}
                             title={<Body1>Online</Body1>}
                         />
                     </View>
@@ -321,24 +310,17 @@ export const App: React.FC<AppProps> = ({ navigation }) => {
                     <View style={{ justifyContent: 'center' }}>
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                            leftIcon={
-                                <MatIcon
-                                    name={'notifications'}
-                                    size={24}
-                                    color={PXBColors.red[500]}
-                                    style={iconStyle}
-                                />
-                            }
+                            leftIcon={<MatIcon name={'notifications'} size={24} color={PXBColors.red[500]} />}
                             title={<Body1 color={'error'}>1 Alarm</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                            leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} style={iconStyle} />}
+                            leftIcon={<MatIcon name={'info'} size={24} color={PXBColors.blue[500]} />}
                             title={<Body1 color={'primary'}>1 Event</Body1>}
                         />
                         <ListItem
                             containerStyle={{ margin: 0, padding: 0 }}
-                            leftIcon={<MatIcon name={'cloud'} size={24} style={iconStyle} />}
+                            leftIcon={<MatIcon name={'cloud'} size={24} />}
                             title={<Body1>Online</Body1>}
                         />
                     </View>
