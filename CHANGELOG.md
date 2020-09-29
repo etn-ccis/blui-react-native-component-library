@@ -1,5 +1,9 @@
 # Change Log
 
+## v3.1.1
+
+-   Fixes some icon flipping behavior in `<Header>` for RTL.
+
 ## v3.1.0
 
 -   Added RTL support
