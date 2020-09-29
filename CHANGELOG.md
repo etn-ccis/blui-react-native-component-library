@@ -1,8 +1,8 @@
 # Change Log
 
-## vX.X.X (to be published)
+## v3.1.1
 
--   Remove right to left logic on icon inversion in `<Header>`.
+-   Fixes some icon flipping behavior in `<Header>` for RTL.
 
 ## v3.1.0
 
