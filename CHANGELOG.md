@@ -1,5 +1,10 @@
 # Change Log
 
+## Version TBD
+
+### Changed
+    -   Text styles of the <ListItemTag> updated slightly
+
 ## v3.1.1
 
 -   Fixes some icon flipping behavior in `<Header>` for RTL.
