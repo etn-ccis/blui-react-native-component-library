@@ -3,7 +3,10 @@
 ## Version TBD
 
 ### Changed
-    -   Text styles of the <ListItemTag> updated slightly
+-   Text styles of the <ListItemTag> updated slightly
+
+### Added
+-   Adds `hidden` prop to the Drawer `NavItem`.
 
 ## v3.1.1
 
