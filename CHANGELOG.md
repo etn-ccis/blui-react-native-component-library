@@ -7,6 +7,7 @@
 
 ### Added
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
+-   Adds `rightComponent` prop to Drawer `NavItem` to render content on the right side of the Drawer NavItem.
 
 ## v3.1.1
 

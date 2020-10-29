@@ -14,6 +14,7 @@ export type NavItem = {
     icon?: any;
     itemID: string;
     items?: NestedNavItem[];
+    rightComponent?: JSX.Element;
 } & DrawerInheritableProps &
     // IconClass is replaced by the 'icon' property.
     Omit<InfoListItemProps, 'IconClass'>;
@@ -85,7 +86,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     <InfoListItem
                         dense
                         {...navItem}
-                        rightComponent={rightIcon}
+                        rightComponent={navItem.rightComponent || rightIcon}
                         backgroundColor={'transparent'}
                         iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
                         fontColor={active ? navItem.activeItemFontColor : navItem.fontColor || navItem.itemFontColor}

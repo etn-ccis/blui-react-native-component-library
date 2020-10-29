@@ -134,6 +134,7 @@ A `<NavItem>` supports all inheritable properties found within the `<Drawer>` AP
 | icon              | Icon to display, not applicable to `NestNavItem` | `ReactNode`       | no       |                              |
 | itemID            | ID used to distinguish item as unique            | `string`          | yes      |                              |
 | items             | Sub items to show/hide when clicked              | `NestedNavItem[]` | no       |                              |
+| rightComponent    | An icon/component to display to the right        | `JSX.Element`     | no       |                              |
 
 </div>
 
