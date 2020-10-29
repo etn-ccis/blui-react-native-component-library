@@ -130,6 +130,7 @@ A `<NavItem>` supports all inheritable properties found within the `<Drawer>` AP
 
 | Prop Name         | Description                                      | Type              | Required | Default                      |
 | ----------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
+| hidden            | Sets whether to hide the nav item                | `boolean`         | no       |                              |
 | icon              | Icon to display, not applicable to `NestNavItem` | `ReactNode`       | no       |                              |
 | itemID            | ID used to distinguish item as unique            | `string`          | yes      |                              |
 | items             | Sub items to show/hide when clicked              | `NestedNavItem[]` | no       |                              |

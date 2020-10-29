@@ -10,6 +10,7 @@ import { useTheme } from 'react-native-paper';
 export type NestedNavItem = Omit<NavItem, 'icon'>;
 
 export type NavItem = {
+    hidden?: boolean;
     icon?: any;
     itemID: string;
     items?: NestedNavItem[];
@@ -77,38 +78,42 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     );
 
     return (
-        <View style={[defaultStyles.root, styles.root]}>
-            {active && <View style={[defaultStyles.activeBackground, styles.activeBackground]} />}
-            <InfoListItem
-                dense
-                {...navItem}
-                rightComponent={rightIcon}
-                backgroundColor={'transparent'}
-                iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
-                fontColor={active ? navItem.activeItemFontColor : navItem.fontColor || navItem.itemFontColor}
-                onPress={(): void => onPressAction(navItem.itemID)}
-                IconClass={icon}
-                styles={{
-                    root: Object.assign(
-                        {
-                            paddingLeft: 32 * (depth > 1 ? depth - 1 : 0),
-                        },
-                        iliRoot
-                    ),
-                    title: Object.assign(
-                        depth > 0
-                            ? {
-                                  fontFamily: theme.fonts.regular.fontFamily,
-                                  fontWeight: theme.fonts.regular.fontWeight,
-                              }
-                            : {},
-                        iliTitle
-                    ),
-                    ...otherILI,
-                }}
-                {...infoListItemProps}
-            />
-        </View>
+        <>
+            {!navItem.hidden && (
+                <View style={[defaultStyles.root, styles.root]}>
+                    {active && <View style={[defaultStyles.activeBackground, styles.activeBackground]} />}
+                    <InfoListItem
+                        dense
+                        {...navItem}
+                        rightComponent={rightIcon}
+                        backgroundColor={'transparent'}
+                        iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
+                        fontColor={active ? navItem.activeItemFontColor : navItem.fontColor || navItem.itemFontColor}
+                        onPress={(): void => onPressAction(navItem.itemID)}
+                        IconClass={icon}
+                        styles={{
+                            root: Object.assign(
+                                {
+                                    paddingLeft: 32 * (depth > 1 ? depth - 1 : 0),
+                                },
+                                iliRoot
+                            ),
+                            title: Object.assign(
+                                depth > 0
+                                    ? {
+                                          fontFamily: theme.fonts.regular.fontFamily,
+                                          fontWeight: theme.fonts.regular.fontWeight,
+                                      }
+                                    : {},
+                                iliTitle
+                            ),
+                            ...otherILI,
+                        }}
+                        {...infoListItemProps}
+                    />
+                </View>
+            )}
+        </>
     );
 };
 
