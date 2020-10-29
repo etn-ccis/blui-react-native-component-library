@@ -6,7 +6,7 @@
 -   Text styles of the <ListItemTag> updated slightly
 
 ### Added
--   Adds `hidden` prop to the Drawer `NavItem`.
+-   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
 
 ## v3.1.1
 
