@@ -14,12 +14,11 @@ export type NavItem = {
     icon?: any;
     itemID: string;
     items?: NestedNavItem[];
-    rightComponent?: JSX.Element;
 } & DrawerInheritableProps &
     // IconClass is replaced by the 'icon' property.
     Omit<InfoListItemProps, 'IconClass'>;
 
-export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'> & {
+export type DrawerNavItemProps = {
     depth: number;
     expanded: boolean;
     expandHandler?: () => void;
@@ -29,6 +28,7 @@ export type DrawerNavItemProps = Omit<Omit<InfoListItemProps, 'styles'>, 'title'
     styles?: {
         root?: StyleProp<ViewStyle>;
         activeBackground?: StyleProp<ViewStyle>;
+        expandIcon?: StyleProp<ViewStyle>;
         infoListItem?: InfoListItemProps['styles'];
     };
     /** Overrides for theme */
@@ -50,11 +50,19 @@ const makeStyles = (props: DrawerNavItemProps): any =>
             borderBottomRightRadius: props.navItem.activeItemBackgroundShape === 'square' ? 0 : 24,
             opacity: 0.9,
         },
+        expandIcon: {
+            display: 'flex',
+            height: 48,
+            width: 48,
+            marginRight: -12,
+            alignItems: 'center',
+            justifyContent: 'space-around',
+        },
     });
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const defaultStyles = makeStyles(props);
-    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {}, ...infoListItemProps } = props;
+    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {} } = props;
     const theme = useTheme();
 
     const icon = !depth ? (navItem as NavItem).icon : undefined;
@@ -86,7 +94,14 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     <InfoListItem
                         dense
                         {...navItem}
-                        rightComponent={navItem.rightComponent || rightIcon}
+                        rightComponent={
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                {navItem.rightComponent}
+                                {rightIcon && (
+                                    <View style={[defaultStyles.expandIcon, styles.expandIcon]}>{rightIcon}</View>
+                                )}
+                            </View>
+                        }
                         backgroundColor={'transparent'}
                         iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
                         fontColor={active ? navItem.activeItemFontColor : navItem.fontColor || navItem.itemFontColor}
@@ -110,7 +125,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             ),
                             ...otherILI,
                         }}
-                        {...infoListItemProps}
                     />
                 </View>
             )}
