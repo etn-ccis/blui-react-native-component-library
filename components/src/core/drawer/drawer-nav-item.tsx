@@ -52,11 +52,8 @@ const makeStyles = (props: DrawerNavItemProps): any =>
         },
         expandIcon: {
             display: 'flex',
-            height: 48,
-            width: 48,
-            marginRight: -12,
             alignItems: 'center',
-            justifyContent: 'space-around',
+            marginLeft: 16,
         },
     });
 
@@ -95,12 +92,14 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                         dense
                         {...navItem}
                         rightComponent={
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                {navItem.rightComponent}
-                                {rightIcon && (
-                                    <View style={[defaultStyles.expandIcon, styles.expandIcon]}>{rightIcon}</View>
-                                )}
-                            </View>
+                            (navItem.rightComponent || rightIcon) && (
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    {navItem.rightComponent}
+                                    {rightIcon && (
+                                        <View style={[defaultStyles.expandIcon, styles.expandIcon]}>{rightIcon}</View>
+                                    )}
+                                </View>
+                            )
                         }
                         backgroundColor={'transparent'}
                         iconColor={active ? navItem.activeItemIconColor : navItem.iconColor || navItem.itemIconColor}
