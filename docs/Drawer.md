@@ -148,6 +148,7 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | ------------------------ | --------------------------------------------------- |
 | root                     | Styles applied to the root element                  |
 | activeBackground         | Styles applied to the background of an active item  |
+| expandIcon               | Styles applied to right content expand icon         |
 | infoListItem             | Styles passed to the underlying InfoListItem        |
 
 # DrawerFooter

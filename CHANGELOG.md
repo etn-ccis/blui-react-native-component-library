@@ -8,6 +8,9 @@
 ### Added
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
 
+### Fixed
+-   Fixes `rightComponent` prop for Drawer `NavItem` to render content on the right side of the Drawer NavItem.
+
 ## v3.1.1
 
 -   Fixes some icon flipping behavior in `<Header>` for RTL.
