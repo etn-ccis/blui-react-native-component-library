@@ -161,13 +161,15 @@ jobs:
             - MASTER_BRANCH: master
         steps:
             - checkout
+            - initialize:
+                  name: 'Initialize Submodule'
+                  command: yarn initialize
             - restore_cache:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/showcase/yarn.lock" }}
             - run:
                   name: Install Dependencies
                   command: |
-                      yarn initialize
                       cd demos/showcase
                       yarn install --frozen-lockfile
             - save_cache:
