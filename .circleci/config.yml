@@ -161,7 +161,7 @@ jobs:
             - MASTER_BRANCH: master
         steps:
             - checkout
-            - initialize:
+            - run:
                   name: 'Initialize Submodule'
                   command: yarn initialize
             - restore_cache:
