@@ -161,6 +161,9 @@ jobs:
             - MASTER_BRANCH: master
         steps:
             - checkout
+            - run:
+                  name: 'Initialize Submodule'
+                  command: yarn initialize
             - restore_cache:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/showcase/yarn.lock" }}
