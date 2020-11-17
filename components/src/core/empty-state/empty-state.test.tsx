@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Button, Icon as RNIcon } from 'react-native-elements';
+import { Button } from 'react-native-paper';
 import { wrapIcon, EmptyState } from '..';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
@@ -26,7 +26,7 @@ describe('EmptyState Tests ', () => {
             .create(
                 <EmptyState
                     title={'Test'}
-                    actions={<Button icon={<RNIcon name="add-circle-outline" />} title=" Add Device" />}
+                    actions={<Button icon={"add-circle-outline"}>Add Device</Button>}
                 />
             )
             .toJSON();
@@ -39,7 +39,7 @@ describe('EmptyState Tests ', () => {
                 <EmptyState
                     title={'EmptyState'}
                     description={'Description'}
-                    actions={<Button icon={<RNIcon name="add-circle-outline" />} title=" Add Device" />}
+                    actions={<Button icon={"add-circle-outline"}>Add Device</Button>}
                 />
             )
             .toJSON();

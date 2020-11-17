@@ -3,7 +3,7 @@ import { Subtitle1 } from '../typography';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
 import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
-import { Divider, Theme, useTheme } from 'react-native-paper';
+import { Divider, useTheme } from 'react-native-paper';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -29,7 +29,7 @@ export type DrawerNavGroupProps = ViewProps & {
         navItem?: DrawerNavItemProps['styles'];
     };
     /** Overrides for theme */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 } & NavGroupInheritableProps;
 
 const drawerNavGroupStyles = StyleSheet.create({

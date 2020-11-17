@@ -1,7 +1,7 @@
 import React, { ComponentType, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle } from 'react-native';
 import { ChannelValue } from '../channel-value';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -85,7 +85,7 @@ export type HeroProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**
@@ -125,7 +125,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
     const getColor = useCallback(
         (color: string | undefined): string => {
             if (!color) return theme.colors.text;
-            if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+            if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
             return color;
         },
         [theme]

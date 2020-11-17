@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextProps, TextStyle, StyleProp, I18nManager, Platform } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type TypographyProps = {
@@ -12,12 +12,12 @@ export type TypographyProps = {
     /**
      * Font to use
      */
-    font?: keyof Theme['fonts'];
+    font?: keyof ReactNativePaper.Theme['fonts'];
 
     /**
      * Font to use
      */
-    color?: keyof Theme['colors'];
+    color?: keyof ReactNativePaper.Theme['colors'];
 
     /** Style Overrides */
     styles?: {
@@ -27,7 +27,7 @@ export type TypographyProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 } & TextProps;
 
 /*
@@ -35,7 +35,7 @@ export type TypographyProps = {
  *     getStyle: a function that takes in a theme and returns a text style object
  * createTypography returns a theme-wrapped text component that utilizes that styles and theme that are provided
  */
-const createTypography = (getStyle: (theme: Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> => ({
+const createTypography = (getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> => ({
     font,
     fontSize,
     color,

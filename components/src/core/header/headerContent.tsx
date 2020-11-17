@@ -11,7 +11,6 @@ import {
     Platform,
 } from 'react-native';
 import color from 'color';
-import { Theme } from 'react-native-paper';
 import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
@@ -45,7 +44,7 @@ export type HeaderContentProps = {
         search?: StyleProp<TextStyle>;
     };
 
-    theme: Theme;
+    theme: ReactNativePaper.Theme;
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
@@ -97,7 +96,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
 
 type HeaderTitleProps = {
     title: string;
-    theme: Theme;
+    theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
 const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
@@ -137,7 +136,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
 
 type HeaderSubtitleProps = {
     subtitle?: string;
-    theme: Theme;
+    theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
@@ -173,7 +172,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
 
 type HeaderInfoProps = {
     info?: string;
-    theme: Theme;
+    theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
 const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
@@ -219,7 +218,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
 };
 
 type SearchContentProps = {
-    theme: Theme;
+    theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
 const SearchContent: React.FC<SearchContentProps> = (props) => {

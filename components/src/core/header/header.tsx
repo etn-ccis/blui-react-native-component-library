@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ANIMATION_LENGTH } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
@@ -31,7 +31,7 @@ const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
-    theme: Theme
+    theme: ReactNativePaper.Theme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
@@ -129,7 +129,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**

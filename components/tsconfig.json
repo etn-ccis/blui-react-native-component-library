@@ -4,12 +4,13 @@
     "declaration": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es6"],
-    "module": "commonjs",
+    "lib": ["esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": false,
     "strict": true,
-    "target": "es5"
+    "skipLibCheck": true,
+    "target": "esnext"
   },
   "include": ["src"]
 }

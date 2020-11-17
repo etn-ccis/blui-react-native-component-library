@@ -10,7 +10,7 @@ import {
     I18nManager,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Theme, useTheme, Divider as PaperDivider } from 'react-native-paper';
+import { useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Body1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
@@ -33,7 +33,7 @@ const getIconAlignment = (iconAlign?: IconAlign): 'flex-start' | 'center' | 'fle
 
 const infoListItemStyles = (
     props: InfoListItemProps,
-    theme: Theme
+    theme: ReactNativePaper.Theme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     title: TextStyle;
@@ -181,7 +181,7 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**

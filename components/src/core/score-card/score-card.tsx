@@ -11,7 +11,7 @@ import {
     TextStyle,
 } from 'react-native';
 import * as Typography from '../typography';
-import { Theme, useTheme, Card, Divider } from 'react-native-paper';
+import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -19,7 +19,7 @@ const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
 
 const scoreCardStyles = (
-    theme: Theme,
+    theme: ReactNativePaper.Theme,
     props: ScoreCardProps
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -116,7 +116,7 @@ export type ScoreCardProps = {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 
     /**
      * Array of actions to render in the header.
