@@ -35,14 +35,9 @@ export type TypographyProps = {
  *     getStyle: a function that takes in a theme and returns a text style object
  * createTypography returns a theme-wrapped text component that utilizes that styles and theme that are provided
  */
-const createTypography = (getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> => ({
-    font,
-    fontSize,
-    color,
-    style,
-    styles = {},
-    ...props
-}): JSX.Element => {
+const createTypography = (
+    getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>
+): React.FC<TypographyProps> => ({ font, fontSize, color, style, styles = {}, ...props }): JSX.Element => {
     const theme = useTheme(props.theme);
 
     let customStyle: StyleProp<TextStyle> = {};

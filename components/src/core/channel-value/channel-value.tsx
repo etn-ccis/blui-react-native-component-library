@@ -71,7 +71,8 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
 
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
-        if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
+        if (Object.keys(theme.colors).indexOf(color) >= 0)
+            return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
         return color;
     }, [color, theme]);
 

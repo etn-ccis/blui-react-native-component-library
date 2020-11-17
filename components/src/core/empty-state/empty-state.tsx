@@ -88,7 +88,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const getColor = useCallback(
         (color: string | undefined): string => {
             if (!color) return theme.colors.text;
-            if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
+            if (Object.keys(theme.colors).indexOf(color) >= 0)
+                return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
             return color;
         },
         [theme]

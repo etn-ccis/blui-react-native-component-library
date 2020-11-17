@@ -18,6 +18,170 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
 
+const backgroundImageStyles = StyleSheet.create({
+    root: {
+        position: 'absolute',
+        width: '100%',
+        resizeMode: 'cover',
+        height: '100%',
+        opacity: 0.1,
+    },
+});
+type BackgroundImageProps = {
+    /** Background image to render when header is expanded */
+    headerBackgroundImage?: ImageSourcePropType;
+
+    /** Style overrides for the Image component */
+    style?: StyleProp<ImageStyle>;
+};
+const BackgroundImage: React.FC<BackgroundImageProps> = (props) => {
+    const { headerBackgroundImage, style } = props;
+    const defaultStyles = backgroundImageStyles;
+
+    if (headerBackgroundImage) {
+        return (
+            <Image
+                testID={'header-background-image'}
+                source={headerBackgroundImage}
+                style={[defaultStyles.root, style]}
+            />
+        );
+    }
+    return null;
+};
+
+type HeaderTextProps = {
+    title: string;
+    subtitle?: string;
+    info?: string;
+    color?: string;
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+    };
+};
+const HeaderText: React.FC<HeaderTextProps> = (props) => {
+    const { title, subtitle, info, color, styles = {} } = props;
+    const textColor = color || 'white';
+    return (
+        <View style={[{ flex: 1 }, styles.root]}>
+            <Typography.H6
+                testID={'header_title'}
+                style={[{ color: textColor, fontSize: 18 }, styles.title]}
+                font={'medium'}
+                numberOfLines={1}
+                ellipsizeMode={'tail'}
+            >
+                {title}
+            </Typography.H6>
+            {subtitle ? (
+                <Typography.Subtitle2
+                    testID={'header_subtitle'}
+                    style={[{ color: textColor }, styles.subtitle]}
+                    font={'regular'}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                >
+                    {subtitle}
+                </Typography.Subtitle2>
+            ) : null}
+            {info ? (
+                <Typography.Subtitle2
+                    testID={'header_info'}
+                    style={[{ color: textColor }, styles.info]}
+                    font={'light'}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                >
+                    {info}
+                </Typography.Subtitle2>
+            ) : null}
+        </View>
+    );
+};
+
+type FooterProps = {
+    actionRow?: JSX.Element;
+    style?: StyleProp<ViewStyle>;
+};
+const Footer: React.FC<FooterProps> = (props) => {
+    const { actionRow, style } = props;
+    if (actionRow) {
+        return (
+            <>
+                <Divider />
+                <View style={[style]}>{actionRow}</View>
+            </>
+        );
+    }
+    return null;
+};
+
+type HeroPanelProps = {
+    badge?: JSX.Element;
+    badgeOffset?: number;
+    style?: StyleProp<ViewStyle>;
+};
+const HeroPanel: React.FC<HeroPanelProps> = (props) => {
+    const { badge, badgeOffset = 0, style } = props;
+    if (badge) {
+        return <View style={[{ flex: 0, marginTop: badgeOffset }, style]}>{badge}</View>;
+    }
+    return null;
+};
+
+const actionPanelStyles = StyleSheet.create({
+    root: {
+        flexDirection: 'row',
+        margin: -8,
+    },
+    actionItem: {
+        height: 40,
+        width: 40,
+        padding: 8,
+    },
+});
+type ActionPanelProps = {
+    actionItems?: HeaderIcon[];
+    color?: string;
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        actionItem?: StyleProp<ViewStyle>;
+    };
+};
+const ActionPanel: React.FC<ActionPanelProps> = (props) => {
+    const { actionItems, color = 'white', styles = {} } = props;
+    const defaultStyles = actionPanelStyles;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
+        | JSX.Element
+        | undefined => {
+        if (IconClass) {
+            return <IconClass size={ICON_SIZE} color={color} />;
+        }
+    }, []);
+
+    if (actionItems) {
+        return (
+            <View style={[defaultStyles.root, styles.root]}>
+                {actionItems.slice(0, 6).map((actionItem, index) => (
+                    <TouchableOpacity
+                        key={`${index}`}
+                        testID={`action-item${index}`}
+                        onPress={actionItem.onPress}
+                        style={[defaultStyles.actionItem, styles.actionItem]}
+                    >
+                        {getIcon(actionItem.icon)}
+                    </TouchableOpacity>
+                ))}
+            </View>
+        );
+    }
+    return null;
+};
+
 const scoreCardStyles = (
     theme: ReactNativePaper.Theme,
     props: ScoreCardProps
@@ -182,168 +346,4 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
             <Footer actionRow={actionRow} style={styles.actionRow} />
         </Card>
     );
-};
-
-const backgroundImageStyles = StyleSheet.create({
-    root: {
-        position: 'absolute',
-        width: '100%',
-        resizeMode: 'cover',
-        height: '100%',
-        opacity: 0.1,
-    },
-});
-type BackgroundImageProps = {
-    /** Background image to render when header is expanded */
-    headerBackgroundImage?: ImageSourcePropType;
-
-    /** Style overrides for the Image component */
-    style?: StyleProp<ImageStyle>;
-};
-const BackgroundImage: React.FC<BackgroundImageProps> = (props) => {
-    const { headerBackgroundImage, style } = props;
-    const defaultStyles = backgroundImageStyles;
-
-    if (headerBackgroundImage) {
-        return (
-            <Image
-                testID={'header-background-image'}
-                source={headerBackgroundImage}
-                style={[defaultStyles.root, style]}
-            />
-        );
-    }
-    return null;
-};
-
-type HeaderTextProps = {
-    title: string;
-    subtitle?: string;
-    info?: string;
-    color?: string;
-    styles?: {
-        root?: StyleProp<ViewStyle>;
-        title?: StyleProp<TextStyle>;
-        subtitle?: StyleProp<TextStyle>;
-        info?: StyleProp<TextStyle>;
-    };
-};
-const HeaderText: React.FC<HeaderTextProps> = (props) => {
-    const { title, subtitle, info, color, styles = {} } = props;
-    const textColor = color || 'white';
-    return (
-        <View style={[{ flex: 1 }, styles.root]}>
-            <Typography.H6
-                testID={'header_title'}
-                style={[{ color: textColor, fontSize: 18 }, styles.title]}
-                font={'medium'}
-                numberOfLines={1}
-                ellipsizeMode={'tail'}
-            >
-                {title}
-            </Typography.H6>
-            {subtitle ? (
-                <Typography.Subtitle2
-                    testID={'header_subtitle'}
-                    style={[{ color: textColor }, styles.subtitle]}
-                    font={'regular'}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                >
-                    {subtitle}
-                </Typography.Subtitle2>
-            ) : null}
-            {info ? (
-                <Typography.Subtitle2
-                    testID={'header_info'}
-                    style={[{ color: textColor }, styles.info]}
-                    font={'light'}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                >
-                    {info}
-                </Typography.Subtitle2>
-            ) : null}
-        </View>
-    );
-};
-
-type FooterProps = {
-    actionRow?: JSX.Element;
-    style?: StyleProp<ViewStyle>;
-};
-const Footer: React.FC<FooterProps> = (props) => {
-    const { actionRow, style } = props;
-    if (actionRow) {
-        return (
-            <>
-                <Divider />
-                <View style={[style]}>{actionRow}</View>
-            </>
-        );
-    }
-    return null;
-};
-
-type HeroPanelProps = {
-    badge?: JSX.Element;
-    badgeOffset?: number;
-    style?: StyleProp<ViewStyle>;
-};
-const HeroPanel: React.FC<HeroPanelProps> = (props) => {
-    const { badge, badgeOffset = 0, style } = props;
-    if (badge) {
-        return <View style={[{ flex: 0, marginTop: badgeOffset }, style]}>{badge}</View>;
-    }
-    return null;
-};
-
-const actionPanelStyles = StyleSheet.create({
-    root: {
-        flexDirection: 'row',
-        margin: -8,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
-    },
-});
-type ActionPanelProps = {
-    actionItems?: HeaderIcon[];
-    color?: string;
-    styles?: {
-        root?: StyleProp<ViewStyle>;
-        actionItem?: StyleProp<ViewStyle>;
-    };
-};
-const ActionPanel: React.FC<ActionPanelProps> = (props) => {
-    const { actionItems, color = 'white', styles = {} } = props;
-    const defaultStyles = actionPanelStyles;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
-        | JSX.Element
-        | undefined => {
-        if (IconClass) {
-            return <IconClass size={ICON_SIZE} color={color} />;
-        }
-    }, []);
-
-    if (actionItems) {
-        return (
-            <View style={[defaultStyles.root, styles.root]}>
-                {actionItems.slice(0, 6).map((actionItem, index) => (
-                    <TouchableOpacity
-                        key={`${index}`}
-                        testID={`action-item${index}`}
-                        onPress={actionItem.onPress}
-                        style={[defaultStyles.actionItem, styles.actionItem]}
-                    >
-                        {getIcon(actionItem.icon)}
-                    </TouchableOpacity>
-                ))}
-            </View>
-        );
-    }
-    return null;
 };

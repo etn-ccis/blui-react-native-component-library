@@ -31,6 +31,30 @@ const getIconAlignment = (iconAlign?: IconAlign): 'flex-start' | 'center' | 'fle
     }
 };
 
+type DividerProps = {
+    divider?: 'full' | 'partial';
+    style?: StyleProp<ViewStyle>;
+};
+const Divider: React.FC<DividerProps> = (props) => {
+    const { divider, style } = props;
+    if (divider) {
+        return (
+            <View
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    alignItems: 'stretch',
+                }}
+            >
+                <PaperDivider inset={divider === 'partial'} style={style} />
+            </View>
+        );
+    }
+    return null;
+};
+
 const infoListItemStyles = (
     props: InfoListItemProps,
     theme: ReactNativePaper.Theme
@@ -303,28 +327,4 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             <Divider divider={divider} style={styles.divider} />
         </TouchableOpacity>
     );
-};
-
-type DividerProps = {
-    divider?: 'full' | 'partial';
-    style?: StyleProp<ViewStyle>;
-};
-const Divider: React.FC<DividerProps> = (props) => {
-    const { divider, style } = props;
-    if (divider) {
-        return (
-            <View
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                    alignItems: 'stretch',
-                }}
-            >
-                <PaperDivider inset={divider === 'partial'} style={style} />
-            </View>
-        );
-    }
-    return null;
 };
