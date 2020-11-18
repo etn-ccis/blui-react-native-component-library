@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { ListItem } from 'react-native-elements';
 import { storiesOf } from '@storybook/react-native';
 import { text, color, withKnobs, number, boolean } from '@storybook/addon-knobs';
 import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1, InfoListItem } from '@pxblue/react-native-components';
+import { List } from 'react-native-paper';
 import { padded } from '../decorators';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -49,7 +49,10 @@ storiesOf('ScoreCard', module)
             headerColor={Colors.red[500]}
             headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
-            style={{ maxHeight: 220 }}
+            styles={{
+                root: { maxHeight: 220 },
+                body: { flex: 1 },
+            }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -119,7 +122,10 @@ storiesOf('ScoreCard', module)
             headerColor={Colors.red[500]}
             headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
-            style={{ maxHeight: 310 }}
+            styles={{
+                root: { maxHeight: 310 },
+                body: { flex: 1 },
+            }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -176,7 +182,10 @@ storiesOf('ScoreCard', module)
             headerColor={Colors.blue[500]}
             headerFontColor={Colors.white[50]}
             headerBackgroundImage={backgroundImage}
-            style={{ maxHeight: 280 }}
+            styles={{
+                root: { maxHeight: 280 },
+                body: { flex: 1 },
+            }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -214,19 +223,31 @@ storiesOf('ScoreCard', module)
             }
         >
             <View style={{ justifyContent: 'center' }}>
-                <ListItem
-                    containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'notifications'} size={24} color={Colors.red[500]} />}
+                <List.Item
+                    style={{ margin: 0, padding: 0, marginBottom: 8 }}
+                    left={(): JSX.Element => (
+                        <View style={{ justifyContent: 'center' }}>
+                            <MatIcon name={'notifications'} size={24} color={Colors.red[500]} />
+                        </View>
+                    )}
                     title={<Body1 color={'error'}>1 Alarm</Body1>}
                 />
-                <ListItem
-                    containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'info'} size={24} color={Colors.blue[500]} />}
+                <List.Item
+                    style={{ margin: 0, padding: 0, marginBottom: 8 }}
+                    left={(): JSX.Element => (
+                        <View style={{ justifyContent: 'center' }}>
+                            <MatIcon name={'info'} size={24} color={Colors.blue[500]} />
+                        </View>
+                    )}
                     title={<Body1 color={'primary'}>1 Event</Body1>}
                 />
-                <ListItem
-                    containerStyle={{ margin: 0, padding: 0 }}
-                    leftIcon={<MatIcon name={'cloud'} size={24} />}
+                <List.Item
+                    style={{ margin: 0, padding: 0, alignItems: 'center', justifyContent: 'center' }}
+                    left={(): JSX.Element => (
+                        <View style={{ justifyContent: 'center' }}>
+                            <MatIcon name={'cloud'} size={24} />
+                        </View>
+                    )}
                     title={<Body1>Online</Body1>}
                 />
             </View>
@@ -240,7 +261,10 @@ storiesOf('ScoreCard', module)
             headerColor={color('headerColor', Colors.red[500])}
             headerFontColor={color('headerFontColor', Colors.white[50])}
             headerBackgroundImage={backgroundImage}
-            style={{ maxHeight: 280 }}
+            styles={{
+                root: { maxHeight: 280 },
+                body: { flex: 1 },
+            }}
             actionItems={[
                 {
                     icon: MoreIcon,
@@ -316,19 +340,31 @@ storiesOf('ScoreCard', module)
             }
         >
             <View style={{ justifyContent: 'center' }}>
-                <ListItem
-                    containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'notifications'} size={24} color={Colors.red[500]} />}
+                <List.Item
+                    style={{ margin: 0, padding: 0, marginBottom: 8 }}
+                    left={(): JSX.Element => (
+                        <View style={{ justifyContent: 'center' }}>
+                            <MatIcon name={'notifications'} size={24} color={Colors.red[500]} />
+                        </View>
+                    )}
                     title={<Body1 color={'error'}>1 Alarm</Body1>}
                 />
-                <ListItem
-                    containerStyle={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    leftIcon={<MatIcon name={'info'} size={24} color={Colors.blue[500]} />}
+                <List.Item
+                    style={{ margin: 0, padding: 0, marginBottom: 8 }}
+                    left={(): JSX.Element => (
+                        <View style={{ justifyContent: 'center' }}>
+                            <MatIcon name={'info'} size={24} color={Colors.blue[500]} />
+                        </View>
+                    )}
                     title={<Body1 color={'primary'}>1 Event</Body1>}
                 />
-                <ListItem
-                    containerStyle={{ margin: 0, padding: 0 }}
-                    leftIcon={<MatIcon name={'cloud'} size={24} />}
+                <List.Item
+                    style={{ margin: 0, padding: 0 }}
+                    left={(): JSX.Element => (
+                        <View style={{ justifyContent: 'center' }}>
+                            <MatIcon name={'cloud'} size={24} />
+                        </View>
+                    )}
                     title={<Body1>Online</Body1>}
                 />
             </View>

@@ -5,7 +5,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { ImageBackground } from 'react-native';
-import { Button, Icon as RNEIcon } from 'react-native-elements';
+import { Button } from 'react-native-paper';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import * as Colors from '@pxblue/colors';
 
 storiesOf('EmptyState', module)
@@ -25,15 +26,11 @@ storiesOf('EmptyState', module)
             description={'A fully redesigned alarms page is coming in our next release!'}
             actions={
                 <Button
-                    icon={
-                        <RNEIcon
-                            name="add-circle-outline"
-                            color={Colors.white[500]}
-                            containerStyle={{ marginRight: 5 }}
-                        />
-                    }
-                    title={text('button title', 'Add Alarm')}
-                />
+                    mode={'contained'}
+                    icon={(): JSX.Element => <MatIcon name="add-circle-outline" color={Colors.white[500]} size={24} />}
+                >
+                    {text('button title', 'Add Alarm')}
+                </Button>
             }
         />
     ))
@@ -50,7 +47,7 @@ storiesOf('EmptyState', module)
                 IconClass={Clock}
                 title={text('title', 'Alarms Page Coming Soon')}
                 description={text('description', 'A fully redesigned alarms page is coming in our next release!')}
-                actions={<Button title={text('button title', 'Learn More')} type={'outline'} />}
+                actions={<Button mode={'outlined'}>{text('button title', 'Learn More')}</Button>}
             />
         </ImageBackground>
     ))
@@ -61,15 +58,11 @@ storiesOf('EmptyState', module)
             description={text('description', 'A fully redesigned alarms page is coming in our next release!')}
             actions={
                 <Button
-                    icon={
-                        <RNEIcon
-                            name="add-circle-outline"
-                            color={Colors.white[500]}
-                            containerStyle={{ marginRight: 5 }}
-                        />
-                    }
-                    title={text('button title', 'Add Alarm')}
-                />
+                    mode={'contained'}
+                    icon={(): JSX.Element => <MatIcon name="add-circle-outline" color={Colors.white[500]} size={24} />}
+                >
+                    {text('button title', 'Add Alarm')}
+                </Button>
             }
         />
     ));
