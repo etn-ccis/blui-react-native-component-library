@@ -1,9 +1,10 @@
 # Change Log
 
-## Version TBD
+## v4.0.0 (Not Published)
 
 ### Changed
 -   Text styles of the <ListItemTag> updated slightly
+-   Updated to use React Native Paper version 4+
 
 ### Added
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
@@ -29,7 +30,7 @@
 
 -   Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+)
 -   Added new component for `<Drawer>`
--   Internal style properties are now overridable via the `styles` prop in each component.
+-   Internal style properties are now override-able via the `styles` prop in each component.
 -   `fontSize` prop for `<Hero>`, `<ChannelValue>`, and Typography components now takes a `number` instead of a string.
 -   Adds `info` prop to `<InfoListItem>` to support a third line of text.
 -   Renamed some of the typography variants (`<Label>` -> `<Body1>`, `<Subtitle>` -> `<Subtitle2>`) and added some new ones.
