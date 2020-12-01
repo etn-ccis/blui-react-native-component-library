@@ -9,7 +9,8 @@
     "moduleResolution": "node",
     "noEmit": false,
     "strict": true,
-    "target": "es5"
+    "skipLibCheck": true,
+    "target": "esnext"
   },
   "include": ["src"]
 }

@@ -11,178 +11,12 @@ import {
     TextStyle,
 } from 'react-native';
 import * as Typography from '../typography';
-import { Theme, useTheme, Card, Divider } from 'react-native-paper';
+import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const PADDING_AMOUNT = 16;
 const ICON_SIZE = 24;
-
-const scoreCardStyles = (
-    theme: Theme,
-    props: ScoreCardProps
-): StyleSheet.NamedStyles<{
-    root: ViewStyle;
-    header: ViewStyle;
-    headerContent: ViewStyle;
-    padded: ViewStyle;
-    body: ViewStyle;
-    leftContent: ViewStyle;
-}> =>
-    StyleSheet.create({
-        root: {
-            flex: 1,
-        },
-        header: {
-            height: 100,
-            overflow: 'hidden',
-            backgroundColor: props.headerColor || theme.colors.primary,
-            borderTopLeftRadius: theme.roundness,
-            borderTopRightRadius: theme.roundness,
-        },
-        headerContent: {
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            padding: PADDING_AMOUNT,
-        },
-
-        padded: {
-            padding: PADDING_AMOUNT,
-        },
-        body: {
-            flexDirection: 'row',
-            alignItems: 'stretch',
-            padding: PADDING_AMOUNT,
-        },
-        leftContent: {
-            flex: 1,
-            justifyContent: 'center',
-            marginRight: props.badge ? 16 : 0,
-        },
-    });
-
-// TODO Extend the Card Props once RNP fixes their type definitions in 4.0.0
-// export type ScoreCardProps = React.ComponentProps<typeof Card> & {
-export type ScoreCardProps = {
-    /** Background color of header */
-    headerColor?: string;
-
-    /** Primary text to show in header */
-    headerTitle: string;
-
-    /** Second line of text to show in header */
-    headerSubtitle?: string;
-
-    /** Third line of text to show in header */
-    headerInfo?: string;
-
-    /** Color to use for header text and icons */
-    headerFontColor?: string;
-
-    /** Hero component to render on the right side of the card */
-    badge?: JSX.Element;
-
-    /** Offset to shift the badges up or down */
-    badgeOffset?: number;
-
-    /** Action item to show at bottom of card */
-    actionRow?: JSX.Element;
-
-    /** Background image to render when header is expanded */
-    headerBackgroundImage?: ImageSourcePropType;
-
-    // TODO remove this when we extend from the Card Props
-    /** Styles for the root component */
-    style?: StyleProp<ViewStyle>;
-
-    /** Style Overrides */
-    styles?: {
-        root?: StyleProp<ViewStyle>;
-        header?: StyleProp<ViewStyle>;
-        backgroundImage?: StyleProp<ImageStyle>;
-        headerContent?: StyleProp<ViewStyle>;
-        headerText?: StyleProp<ViewStyle>;
-        title?: StyleProp<TextStyle>;
-        subtitle?: StyleProp<TextStyle>;
-        info?: StyleProp<TextStyle>;
-        headerActions?: StyleProp<ViewStyle>;
-        headerActionItem?: StyleProp<ViewStyle>;
-        body?: StyleProp<ViewStyle>;
-        leftContent?: StyleProp<ViewStyle>;
-        actionRow?: StyleProp<ViewStyle>;
-        badge?: StyleProp<ViewStyle>;
-    };
-
-    /**
-     * Overrides for theme
-     */
-    theme?: $DeepPartial<Theme>;
-
-    /**
-     * Array of actions to render in the header.
-     * A maximum of two will be rendered.
-     * */
-    actionItems?: HeaderIcon[];
-};
-
-/**
- * ScoreCard component.
- * This component renders a "score card" with optional Hero badge,
- * title and subtitles, and actionRow at the bottom.
- */
-export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
-    const { theme: themeOverride, ...otherProps } = props;
-    const theme = useTheme(themeOverride);
-    const {
-        actionRow,
-        actionItems,
-        badge,
-        badgeOffset,
-        children,
-        headerBackgroundImage,
-        headerColor, // eslint-disable-line @typescript-eslint/no-unused-vars
-        headerTitle,
-        headerSubtitle,
-        headerInfo,
-        headerFontColor,
-        styles = {},
-        style,
-        ...cardProps
-    } = otherProps;
-    const defaultStyles = scoreCardStyles(theme, props);
-
-    return (
-        <Card elevation={1} style={[defaultStyles.root, styles.root, style]} {...cardProps}>
-            <View style={[defaultStyles.header, styles.header]}>
-                <BackgroundImage headerBackgroundImage={headerBackgroundImage} style={styles.backgroundImage} />
-                <View style={[defaultStyles.padded, defaultStyles.headerContent, styles.headerContent]}>
-                    <HeaderText
-                        title={headerTitle}
-                        subtitle={headerSubtitle}
-                        info={headerInfo}
-                        color={headerFontColor}
-                        styles={{
-                            root: styles.headerText,
-                            title: styles.title,
-                            subtitle: styles.subtitle,
-                            info: styles.info,
-                        }}
-                    />
-                    <ActionPanel
-                        actionItems={actionItems}
-                        color={headerFontColor}
-                        styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }}
-                    />
-                </View>
-            </View>
-            <View style={[defaultStyles.body, styles.body]}>
-                <View style={[defaultStyles.leftContent, styles.leftContent]}>{children}</View>
-                <HeroPanel badge={badge} badgeOffset={badgeOffset} style={styles.badge} />
-            </View>
-            <Footer actionRow={actionRow} style={styles.actionRow} />
-        </Card>
-    );
-};
 
 const backgroundImageStyles = StyleSheet.create({
     root: {
@@ -346,4 +180,170 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
         );
     }
     return null;
+};
+
+const scoreCardStyles = (
+    theme: ReactNativePaper.Theme,
+    props: ScoreCardProps
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    header: ViewStyle;
+    headerContent: ViewStyle;
+    padded: ViewStyle;
+    body: ViewStyle;
+    leftContent: ViewStyle;
+}> =>
+    StyleSheet.create({
+        root: {
+            flex: 1,
+        },
+        header: {
+            height: 100,
+            overflow: 'hidden',
+            backgroundColor: props.headerColor || theme.colors.primary,
+            borderTopLeftRadius: theme.roundness,
+            borderTopRightRadius: theme.roundness,
+        },
+        headerContent: {
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: PADDING_AMOUNT,
+        },
+
+        padded: {
+            padding: PADDING_AMOUNT,
+        },
+        body: {
+            flexDirection: 'row',
+            alignItems: 'stretch',
+            padding: PADDING_AMOUNT,
+        },
+        leftContent: {
+            flex: 1,
+            justifyContent: 'center',
+            marginRight: props.badge ? 16 : 0,
+        },
+    });
+
+// TODO Extend the Card Props once RNP fixes their type definitions in 4.0.0
+// export type ScoreCardProps = React.ComponentProps<typeof Card> & {
+export type ScoreCardProps = {
+    /** Background color of header */
+    headerColor?: string;
+
+    /** Primary text to show in header */
+    headerTitle: string;
+
+    /** Second line of text to show in header */
+    headerSubtitle?: string;
+
+    /** Third line of text to show in header */
+    headerInfo?: string;
+
+    /** Color to use for header text and icons */
+    headerFontColor?: string;
+
+    /** Hero component to render on the right side of the card */
+    badge?: JSX.Element;
+
+    /** Offset to shift the badges up or down */
+    badgeOffset?: number;
+
+    /** Action item to show at bottom of card */
+    actionRow?: JSX.Element;
+
+    /** Background image to render when header is expanded */
+    headerBackgroundImage?: ImageSourcePropType;
+
+    // TODO remove this when we extend from the Card Props
+    /** Styles for the root component */
+    style?: StyleProp<ViewStyle>;
+
+    /** Style Overrides */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        header?: StyleProp<ViewStyle>;
+        backgroundImage?: StyleProp<ImageStyle>;
+        headerContent?: StyleProp<ViewStyle>;
+        headerText?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+        headerActions?: StyleProp<ViewStyle>;
+        headerActionItem?: StyleProp<ViewStyle>;
+        body?: StyleProp<ViewStyle>;
+        leftContent?: StyleProp<ViewStyle>;
+        actionRow?: StyleProp<ViewStyle>;
+        badge?: StyleProp<ViewStyle>;
+    };
+
+    /**
+     * Overrides for theme
+     */
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
+
+    /**
+     * Array of actions to render in the header.
+     * A maximum of two will be rendered.
+     * */
+    actionItems?: HeaderIcon[];
+};
+
+/**
+ * ScoreCard component.
+ * This component renders a "score card" with optional Hero badge,
+ * title and subtitles, and actionRow at the bottom.
+ */
+export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
+    const { theme: themeOverride, ...otherProps } = props;
+    const theme = useTheme(themeOverride);
+    const {
+        actionRow,
+        actionItems,
+        badge,
+        badgeOffset,
+        children,
+        headerBackgroundImage,
+        headerColor, // eslint-disable-line @typescript-eslint/no-unused-vars
+        headerTitle,
+        headerSubtitle,
+        headerInfo,
+        headerFontColor,
+        styles = {},
+        style,
+        ...cardProps
+    } = otherProps;
+    const defaultStyles = scoreCardStyles(theme, props);
+
+    return (
+        <Card elevation={1} style={[defaultStyles.root, styles.root, style]} {...cardProps}>
+            <View style={[defaultStyles.header, styles.header]}>
+                <BackgroundImage headerBackgroundImage={headerBackgroundImage} style={styles.backgroundImage} />
+                <View style={[defaultStyles.padded, defaultStyles.headerContent, styles.headerContent]}>
+                    <HeaderText
+                        title={headerTitle}
+                        subtitle={headerSubtitle}
+                        info={headerInfo}
+                        color={headerFontColor}
+                        styles={{
+                            root: styles.headerText,
+                            title: styles.title,
+                            subtitle: styles.subtitle,
+                            info: styles.info,
+                        }}
+                    />
+                    <ActionPanel
+                        actionItems={actionItems}
+                        color={headerFontColor}
+                        styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }}
+                    />
+                </View>
+            </View>
+            <View style={[defaultStyles.body, styles.body]}>
+                <View style={[defaultStyles.leftContent, styles.leftContent]}>{children}</View>
+                <HeroPanel badge={badge} badgeOffset={badgeOffset} style={styles.badge} />
+            </View>
+            <Footer actionRow={actionRow} style={styles.actionRow} />
+        </Card>
+    );
 };

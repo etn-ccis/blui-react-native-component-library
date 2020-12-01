@@ -1,8 +1,7 @@
 import { ComponentType } from 'react';
-import { Theme } from 'react-native-paper';
 
 export type WithTheme<T> = T & {
-    theme: Theme;
+    theme: ReactNativePaper.Theme;
 };
 
 export type HeaderIcon = {

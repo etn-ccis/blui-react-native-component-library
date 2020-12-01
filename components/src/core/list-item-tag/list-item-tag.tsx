@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextStyle, StyleSheet } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white } from '@pxblue/colors';
 import { Overline, TypographyProps } from '../typography';
@@ -23,7 +23,7 @@ export type ListItemTagProps = TypographyProps & {
 
 const listItemTagStyles = (
     props: ListItemTagProps,
-    theme: Theme
+    theme: ReactNativePaper.Theme
 ): StyleSheet.NamedStyles<{
     root: TextStyle;
 }> =>
