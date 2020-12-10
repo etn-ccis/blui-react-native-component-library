@@ -1,9 +1,9 @@
 # Change Log
 
-## v4.0.0 (Not Published)
+## v4.0.0
 
 ### Changed
--   Text styles of the <ListItemTag> updated slightly
+-   Text styles of the `<ListItemTag>` updated slightly
 -   Updated to use React Native Paper version 4+
 
 ### Added
