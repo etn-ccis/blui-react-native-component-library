@@ -915,10 +915,10 @@
   dependencies:
     "@pxblue/types" "^2.0.0"
 
-"@pxblue/eslint-config@^2.0.4-beta.0":
-  version "2.0.4-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-2.0.4-beta.0.tgz#6fcaaba6725128fa173b06e0e670b223f90a4615"
-  integrity sha512-ssa7gFizREJ+Dmb3oWeHIVSFwnR+tZtPP3RfmAAJLiy83kf+EqklpD4PEb0YGUIrNi84eeZZHITz02r0/Flnxg==
+"@pxblue/eslint-config@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-2.0.4.tgz#b22d637e2e8bbf1d8606de99bfd7e95f3af2ce34"
+  integrity sha512-PDBj5dhi/6c14/QYhoFLTkMnrYRTKw8hW7AuFq/9wc7pJ4MdSOF3i5MJH1NZ1p9chBl9na4ZASPeHWsDCvvk8A==
   dependencies:
     "@typescript-eslint/parser" "^4.8.0"
     eslint-config-prettier ">= 6.3.0"

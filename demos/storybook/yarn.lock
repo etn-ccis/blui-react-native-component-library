@@ -1698,10 +1698,10 @@
   dependencies:
     "@pxblue/types" "^2.0.0"
 
-"@pxblue/eslint-config@^2.0.4-beta.0":
-  version "2.0.4-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-2.0.4-beta.0.tgz#6fcaaba6725128fa173b06e0e670b223f90a4615"
-  integrity sha512-ssa7gFizREJ+Dmb3oWeHIVSFwnR+tZtPP3RfmAAJLiy83kf+EqklpD4PEb0YGUIrNi84eeZZHITz02r0/Flnxg==
+"@pxblue/eslint-config@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-2.0.4.tgz#b22d637e2e8bbf1d8606de99bfd7e95f3af2ce34"
+  integrity sha512-PDBj5dhi/6c14/QYhoFLTkMnrYRTKw8hW7AuFq/9wc7pJ4MdSOF3i5MJH1NZ1p9chBl9na4ZASPeHWsDCvvk8A==
   dependencies:
     "@typescript-eslint/parser" "^4.8.0"
     eslint-config-prettier ">= 6.3.0"
@@ -1718,10 +1718,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-native-components@^4.0.0-beta.1":
-  version "4.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-4.0.0-beta.1.tgz#30aafcbade3dcd71ceb564f937e18ac141622c71"
-  integrity sha512-MO0F2sK3Ln8RpuHMoNWwQPCeMbkkPYIQPCZwz/LvDQyfMNXlpixcIb8Oavcoz/s+nRDCyrTTKTLlLEMj9/eEpg==
+"@pxblue/react-native-components@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-4.0.0.tgz#19faa07a7c7d019ad77b71cae0fbf9de27759851"
+  integrity sha512-4axGqU3QOI1gSHLpT1yEJGjBvWz4WkvlusBUJR3E4y9Ffubs1JdKKpjQ0R6+DlIrarW1MRZw52iFEr4unymTsg==
   dependencies:
     "@pxblue/colors" "^3.0.0"
     color "^3.1.2"
