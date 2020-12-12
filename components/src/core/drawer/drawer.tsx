@@ -3,14 +3,14 @@ import { View, StyleSheet, ViewStyle, StyleProp, ViewProps } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import color from 'color';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const makeStyles = (
     props: DrawerInheritableProps,
-    theme: Theme,
+    theme: ReactNativePaper.Theme,
     insets: EdgeInsets
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -31,7 +31,7 @@ export type DrawerProps = ViewProps &
         /**
          * Overrides for theme
          */
-        theme?: $DeepPartial<Theme>;
+        theme?: $DeepPartial<ReactNativePaper.Theme>;
     };
 export const Drawer: React.FC<DrawerProps> = (props) => {
     const { theme: themeOverride, style, ...viewProps } = props;

@@ -11,12 +11,12 @@ import {
     ViewProps,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
-import { Divider, Theme, useTheme } from 'react-native-paper';
+import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-const makeStyles = (props: DrawerHeaderProps, theme: Theme, insets: EdgeInsets): any =>
+const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, insets: EdgeInsets): any =>
     StyleSheet.create({
         root: {
             paddingTop: insets.top,
@@ -94,7 +94,7 @@ export type DrawerHeaderProps = ViewProps & {
         icon?: StyleProp<ViewStyle>;
     };
     /** Overrides for theme */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {

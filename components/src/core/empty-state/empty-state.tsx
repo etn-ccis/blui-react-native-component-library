@@ -1,6 +1,6 @@
 import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -56,7 +56,7 @@ export type EmptyStateProps = ViewProps & {
     /**
      * Overrides for theme
      */
-    theme?: $DeepPartial<Theme>;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**
@@ -88,7 +88,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const getColor = useCallback(
         (color: string | undefined): string => {
             if (!color) return theme.colors.text;
-            if (Object.keys(theme.colors).indexOf(color) >= 0) return theme.colors[color as keyof Theme['colors']];
+            if (Object.keys(theme.colors).indexOf(color) >= 0)
+                return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
             return color;
         },
         [theme]
