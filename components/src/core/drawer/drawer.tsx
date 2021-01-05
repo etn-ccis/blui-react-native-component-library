@@ -7,6 +7,7 @@ import { useTheme } from 'react-native-paper';
 import color from 'color';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import * as Colors from '@pxblue/colors';
 
 const makeStyles = (
     props: DrawerInheritableProps,
@@ -14,6 +15,7 @@ const makeStyles = (
     insets: EdgeInsets
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
+    drawerShadow: ViewStyle;
 }> =>
     StyleSheet.create({
         root: {
@@ -23,6 +25,14 @@ const makeStyles = (
             height: '100%',
             paddingBottom: insets.bottom,
         },
+        drawerShadow: {
+            shadowColor: `${Colors.black[500]}`,
+            shadowOffset: {
+                width: 1,
+                height: 0,
+            },
+            shadowOpacity: 1,
+        }
     });
 export type DrawerProps = ViewProps &
     DrawerInheritableProps & {
@@ -87,7 +97,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     );
 
     return (
-        <View style={[defaultStyles.root, style]} {...viewProps}>
+        <View style={[defaultStyles.root, defaultStyles.drawerShadow, style]} {...viewProps}>
             {getSectionByDisplayName('DrawerHeader')}
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
@@ -97,8 +107,8 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
 };
 
 Drawer.defaultProps = {
-    activeItemBackgroundShape: 'round',
+    activeItemBackgroundShape: 'square',
     chevron: false,
-    divider: true,
+    divider: false,
     hidePadding: true,
 };
