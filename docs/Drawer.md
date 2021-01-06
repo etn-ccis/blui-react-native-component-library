@@ -154,3 +154,7 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 
 # DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.
+
+| Prop Name         | Description                                      | Type              | Required | Default                      |
+| ----------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
+| divider           | Whether to show a line above footer content      | `boolean`         | no       | true                         |
