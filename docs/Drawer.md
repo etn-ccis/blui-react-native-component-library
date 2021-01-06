@@ -44,6 +44,7 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`               | no       | true                                                         |
 | itemFontColor             | The color used for the item text                          | `string`                | no       |                                                              |
 | itemIconColor             | The color used for the icon                               | `string`                | no       |                                                              |
+| open                      | Whether the drawer is visible                             | `boolean`               | no       | false                                                        |
 
 </div>
 

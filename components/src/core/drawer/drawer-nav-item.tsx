@@ -5,6 +5,7 @@ import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
 import { DrawerNavGroupProps } from './drawer-nav-group';
 import { useTheme } from 'react-native-paper';
+import { red } from '@pxblue/colors';
 // import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
@@ -48,7 +49,6 @@ const makeStyles = (props: DrawerNavItemProps): any =>
             top: 0,
             borderTopRightRadius: props.navItem.activeItemBackgroundShape === 'square' ? 0 : 24,
             borderBottomRightRadius: props.navItem.activeItemBackgroundShape === 'square' ? 0 : 24,
-            opacity: 0.9,
         },
         expandIcon: {
             display: 'flex',
@@ -120,6 +120,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                           fontWeight: theme.fonts.regular.fontWeight,
                                       }
                                     : {},
+                                { fontWeight: active ? theme.fonts.medium.fontWeight : theme.fonts.regular.fontWeight },
                                 iliTitle
                             ),
                             ...otherILI,
