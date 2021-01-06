@@ -5,7 +5,6 @@ import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
 import { DrawerNavGroupProps } from './drawer-nav-group';
 import { useTheme } from 'react-native-paper';
-import { red } from '@pxblue/colors';
 // import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;

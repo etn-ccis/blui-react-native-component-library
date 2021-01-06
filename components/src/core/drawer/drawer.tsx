@@ -11,10 +11,10 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 const makeStyles = (
     props: DrawerProps,
     theme: ReactNativePaper.Theme,
-    insets: EdgeInsets
+    insets: EdgeInsets,
+    open: boolean
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
-    // drawerShadow: ViewStyle;
 }> =>
     StyleSheet.create({
         root: {
@@ -23,7 +23,7 @@ const makeStyles = (
             flex: 1,
             height: '100%',
             paddingBottom: insets.bottom,
-            elevation: props.open ? 4 : 0,
+            elevation: open ? 4 : 0,
         },
     });
 export type DrawerProps = ViewProps &
@@ -46,7 +46,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         collapseIcon = <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />,
     } = props;
     const insets = useSafeAreaInsets();
-    const defaultStyles = makeStyles(props, theme, insets);
+    const defaultStyles = makeStyles(props, theme, insets, open);
 
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
