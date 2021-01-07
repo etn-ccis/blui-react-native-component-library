@@ -88,6 +88,11 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 # DrawerSubheader
 The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody>`.
 
+| Prop Name             | Description                                      | Type              | Required | Default                      |
+| --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
+| hideContentOnCollapse | Hide subheader content on collapse               | `boolean`         | no       | true                         |
+| open                  | Whether the drawer is open                       | `boolean`         | no       | false                        |
+
 # DrawerBody
 The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navigation items found within the `<Drawer>`. 
 
@@ -155,6 +160,8 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 # DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.
 
-| Prop Name         | Description                                      | Type              | Required | Default                      |
-| ----------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
-| divider           | Whether to show a line above footer content      | `boolean`         | no       | true                         |
+| Prop Name             | Description                                      | Type              | Required | Default                      |
+| --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
+| divider               | Whether to show a line above footer content      | `boolean`         | no       | true                         |
+| hideContentOnCollapse | Hide footer content on collapse                  | `boolean`         | no       | true                         |
+| open                  | Whether the drawer is open                       | `boolean`         | no       | false                        |

@@ -2,13 +2,15 @@ import React from 'react';
 import { Divider } from 'react-native-paper';
 
 export const DrawerFooter: React.FC<any> = (props) => {
-    const { divider = true, children } = props;
+    const { children, divider = true, hideContentOnCollapse = true, open = false } = props;
 
     return (
-        <>
-            {divider && <Divider />}
-            {children}
-        </>
+        ((!hideContentOnCollapse && !open) || open) && (
+            <>
+                {divider && <Divider />}
+                {children}
+            </>
+        )
     );
 };
 
