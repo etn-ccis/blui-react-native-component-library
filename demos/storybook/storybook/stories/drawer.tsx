@@ -111,7 +111,7 @@ storiesOf('Drawer', module)
     .addDecorator(withKnobs)
     .addDecorator(drawerDecorator)
     .add('with basic usage', () => (
-        <Drawer>
+        <Drawer open={true}>
             <DrawerHeader
                 title={text('title', 'Drawer Title')}
                 subtitle={text('subtitle', 'Drawer Subtitle')}
@@ -123,7 +123,7 @@ storiesOf('Drawer', module)
         </Drawer>
     ))
     .add('with custom header', () => (
-        <Drawer>
+        <Drawer open={true}>
             <DrawerHeader
                 backgroundImage={farmBgImage}
                 icon={menuIcon}
@@ -140,9 +140,9 @@ storiesOf('Drawer', module)
         </Drawer>
     ))
     .add('with subheader', () => (
-        <Drawer>
+        <Drawer open={true}>
             <DrawerHeader title={'Drawer'} subtitle={'with a custom subheader'} icon={menuIcon} />
-            <DrawerSubheader>
+            <DrawerSubheader open={true}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
                     <InfoListItem
                         title={'Alerts'}
@@ -164,13 +164,13 @@ storiesOf('Drawer', module)
         () => {
             const spacer = boolean('Add Spacer', false);
             return (
-                <Drawer>
+                <Drawer open={true}>
                     <DrawerHeader title={'Drawer'} subtitle={'with multiple NavGroups'} icon={menuIcon} />
                     <DrawerBody>
                         <DrawerNavGroup title={text('NavGroup 1 title', 'NavGroup 1')} items={navItems1} />
                         {!spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
                     </DrawerBody>
-                    <DrawerFooter>
+                    <DrawerFooter open={true}>
                         {spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
                     </DrawerFooter>
                 </Drawer>
@@ -178,7 +178,7 @@ storiesOf('Drawer', module)
         }
     )
     .add('with nested nav items', () => (
-        <Drawer>
+        <Drawer open={true}>
             <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
             <DrawerBody>
                 <DrawerNavGroup
@@ -191,13 +191,12 @@ storiesOf('Drawer', module)
         </Drawer>
     ))
     .add('with footer', () => (
-        <Drawer>
+        <Drawer open={true}>
             <DrawerHeader title={'Drawer'} subtitle={'with a footer'} icon={menuIcon} />
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
             </DrawerBody>
-            <DrawerFooter>
-                <Divider />
+            <DrawerFooter open={true} divider={boolean('divider', true)}>
                 <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                     <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                 </View>
@@ -208,6 +207,7 @@ storiesOf('Drawer', module)
         const drawer = 'Drawer';
         const header = 'DrawerHeader';
         const navGroup = 'DrawerNavGroup';
+        const footer = 'DrawerFooter';
         return (
             <Drawer
                 activeItemFontColor={color('activeItemFontColor', Colors.red[800], drawer)}
@@ -216,12 +216,13 @@ storiesOf('Drawer', module)
                 backgroundColor={color('backgroundColor', Colors.white[50], drawer)}
                 itemFontColor={color('itemFontColor', Colors.blue[800], drawer)}
                 itemIconColor={color('itemIconColor', Colors.blue[800], drawer)}
-                divider={boolean('divider', true, drawer)}
+                divider={boolean('divider', false, drawer)}
                 chevron={boolean('chevron', false, drawer)}
                 activeItemBackgroundShape={
-                    boolean(`square activeItemBackgroundShape`, false, drawer) ? 'square' : 'round'
+                    boolean(`square activeItemBackgroundShape`, true, drawer) ? 'square' : 'round'
                 }
                 activeItem={'g1i2'}
+                open={true}
             >
                 <DrawerHeader
                     title={text('title', 'Header Title', header)}
@@ -240,8 +241,7 @@ storiesOf('Drawer', module)
                     />
                     <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'Nav Group 2', navGroup)} />
                 </DrawerBody>
-                <DrawerFooter>
-                    <Divider />
+                <DrawerFooter open={true} divider={boolean('divider', true, footer)}>
                     <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                         <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                     </View>
