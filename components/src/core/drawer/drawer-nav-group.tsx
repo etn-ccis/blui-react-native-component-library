@@ -62,6 +62,14 @@ function findID(item: NavItem | NestedNavItem, activeItem = ''): boolean {
     return false;
 }
 
+function isChildActive(item: NavItem | NestedNavItem, activeItem = ''): boolean {
+    if (!item.items || item.items.length < 1) return item.itemID === activeItem;
+    for (let i = 0; i < item.items.length; i++) {
+        if (isChildActive(item.items[i], activeItem)) return true;
+    }
+    return false;
+}
+
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const {
         theme: themeOverride,
@@ -108,6 +116,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                             expanded={expanded}
                             expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                             styles={styles.navItem}
+                            isChildActive={isChildActive(item, props.activeItem)}
                         />
                         <Collapsible
                             collapsed={!expanded}

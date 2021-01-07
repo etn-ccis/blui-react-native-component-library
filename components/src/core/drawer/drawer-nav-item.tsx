@@ -24,6 +24,7 @@ export type DrawerNavItemProps = {
     expandHandler?: () => void;
     navGroupProps: DrawerNavGroupProps;
     navItem: NavItem | NestedNavItem;
+    isChildActive?: boolean;
     /** Style Overrides */
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -58,7 +59,7 @@ const makeStyles = (props: DrawerNavItemProps): any =>
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const defaultStyles = makeStyles(props);
-    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {} } = props;
+    const { depth, expanded, expandHandler, navGroupProps, navItem, isChildActive, styles = {} } = props;
     const theme = useTheme();
 
     const icon = !depth ? (navItem as NavItem).icon : undefined;
@@ -119,7 +120,12 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                           fontWeight: theme.fonts.regular.fontWeight,
                                       }
                                     : {},
-                                { fontWeight: active ? theme.fonts.medium.fontWeight : theme.fonts.regular.fontWeight },
+                                {
+                                    fontWeight:
+                                        active || isChildActive
+                                            ? theme.fonts.medium.fontWeight
+                                            : theme.fonts.regular.fontWeight,
+                                },
                                 iliTitle
                             ),
                             ...otherILI,
