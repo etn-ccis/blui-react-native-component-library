@@ -151,7 +151,6 @@ storiesOf('Drawer', module)
                         fontColor={Colors.white[50]}
                         IconClass={Temp}
                     />
-                    <Divider />
                 </View>
             </DrawerSubheader>
             <DrawerBody>
