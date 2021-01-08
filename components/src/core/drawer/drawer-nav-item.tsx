@@ -120,8 +120,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                           fontFamily: theme.fonts.medium.fontFamily,
                                       }
                                     : {
-                                          fontWeight: theme.fonts.thin.fontWeight,
-                                          fontFamily: theme.fonts.thin.fontFamily,
+                                          fontWeight: theme.fonts.regular.fontWeight,
+                                          fontFamily: theme.fonts.regular.fontFamily,
                                       },
                                 iliTitle
                             ),
