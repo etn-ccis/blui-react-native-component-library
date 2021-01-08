@@ -5,10 +5,10 @@ export const DrawerFooter: React.FC<any> = (props) => {
     const { children, divider = true } = props;
 
     return (
-            <>
-                {divider && <Divider />}
-                {children}
-            </>
+        <>
+            {divider && <Divider />}
+            {children}
+        </>
     );
 };
 
