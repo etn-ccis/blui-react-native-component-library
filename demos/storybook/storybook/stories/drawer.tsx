@@ -111,7 +111,7 @@ storiesOf('Drawer', module)
     .addDecorator(withKnobs)
     .addDecorator(drawerDecorator)
     .add('with basic usage', () => (
-        <Drawer open={true}>
+        <Drawer>
             <DrawerHeader
                 title={text('title', 'Drawer Title')}
                 subtitle={text('subtitle', 'Drawer Subtitle')}
@@ -123,7 +123,7 @@ storiesOf('Drawer', module)
         </Drawer>
     ))
     .add('with custom header', () => (
-        <Drawer open={true}>
+        <Drawer>
             <DrawerHeader
                 backgroundImage={farmBgImage}
                 icon={menuIcon}
@@ -140,7 +140,7 @@ storiesOf('Drawer', module)
         </Drawer>
     ))
     .add('with subheader', () => (
-        <Drawer open={true}>
+        <Drawer>
             <DrawerHeader title={'Drawer'} subtitle={'with a custom subheader'} icon={menuIcon} />
             <DrawerSubheader divider={boolean('divider', true)}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
@@ -164,7 +164,7 @@ storiesOf('Drawer', module)
         () => {
             const spacer = boolean('Add Spacer', false);
             return (
-                <Drawer open={true}>
+                <Drawer>
                     <DrawerHeader title={'Drawer'} subtitle={'with multiple NavGroups'} icon={menuIcon} />
                     <DrawerBody>
                         <DrawerNavGroup title={text('NavGroup 1 title', 'NavGroup 1')} items={navItems1} />
@@ -178,7 +178,7 @@ storiesOf('Drawer', module)
         }
     )
     .add('with nested nav items', () => (
-        <Drawer open={true}>
+        <Drawer>
             <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
             <DrawerBody>
                 <DrawerNavGroup
@@ -191,7 +191,7 @@ storiesOf('Drawer', module)
         </Drawer>
     ))
     .add('with footer', () => (
-        <Drawer open={true}>
+        <Drawer>
             <DrawerHeader title={'Drawer'} subtitle={'with a footer'} icon={menuIcon} />
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
@@ -222,7 +222,6 @@ storiesOf('Drawer', module)
                     boolean(`square activeItemBackgroundShape`, true, drawer) ? 'square' : 'round'
                 }
                 activeItem={'g1i2'}
-                open={true}
             >
                 <DrawerHeader
                     title={text('title', 'Header Title', header)}

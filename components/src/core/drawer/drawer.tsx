@@ -11,8 +11,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 const makeStyles = (
     props: DrawerProps,
     theme: ReactNativePaper.Theme,
-    insets: EdgeInsets,
-    open: boolean
+    insets: EdgeInsets
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
 }> =>
@@ -23,7 +22,6 @@ const makeStyles = (
             flex: 1,
             height: '100%',
             paddingBottom: insets.bottom,
-            elevation: open ? 4 : 0,
         },
     });
 export type DrawerProps = ViewProps &
@@ -34,11 +32,9 @@ export type DrawerProps = ViewProps &
          * Overrides for theme
          */
         theme?: $DeepPartial<ReactNativePaper.Theme>;
-        // Whether the drawer is open
-        open?: boolean;
     };
 export const Drawer: React.FC<DrawerProps> = (props) => {
-    const { theme: themeOverride, style, open = false, ...viewProps } = props;
+    const { theme: themeOverride, style, ...viewProps } = props;
     const theme = useTheme(themeOverride);
     // Nested expand/collapse icon defaults are different and are set in the DrawerNavGroup.
     const {
@@ -46,7 +42,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         collapseIcon = <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />,
     } = props;
     const insets = useSafeAreaInsets();
-    const defaultStyles = makeStyles(props, theme, insets, open);
+    const defaultStyles = makeStyles(props, theme, insets);
 
     const findChildByType = useCallback(
         (type: string): JSX.Element[] =>
