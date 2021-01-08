@@ -114,18 +114,15 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                 iliRoot
                             ),
                             title: Object.assign(
-                                depth > 0
+                                active || isChildActive
                                     ? {
-                                          fontFamily: theme.fonts.regular.fontFamily,
-                                          fontWeight: theme.fonts.regular.fontWeight,
+                                          fontWeight: theme.fonts.medium.fontWeight,
+                                          fontFamily: theme.fonts.medium.fontFamily,
                                       }
-                                    : {},
-                                {
-                                    fontWeight:
-                                        active || isChildActive
-                                            ? theme.fonts.medium.fontWeight
-                                            : theme.fonts.regular.fontWeight,
-                                },
+                                    : {
+                                          fontWeight: theme.fonts.thin.fontWeight,
+                                          fontFamily: theme.fonts.thin.fontFamily,
+                                      },
                                 iliTitle
                             ),
                             ...otherILI,
