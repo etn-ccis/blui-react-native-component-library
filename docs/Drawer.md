@@ -163,5 +163,3 @@ The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom
 | Prop Name             | Description                                      | Type              | Required | Default                      |
 | --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
 | divider               | Whether to show a line above footer content      | `boolean`         | no       | true                         |
-| hideContentOnCollapse | Hide footer content on collapse                  | `boolean`         | no       | true                         |
-| open                  | Whether the drawer is open                       | `boolean`         | no       | false                        |

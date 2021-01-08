@@ -170,7 +170,7 @@ storiesOf('Drawer', module)
                         <DrawerNavGroup title={text('NavGroup 1 title', 'NavGroup 1')} items={navItems1} />
                         {!spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
                     </DrawerBody>
-                    <DrawerFooter open={true}>
+                    <DrawerFooter>
                         {spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
                     </DrawerFooter>
                 </Drawer>
@@ -196,7 +196,7 @@ storiesOf('Drawer', module)
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
             </DrawerBody>
-            <DrawerFooter open={true} divider={boolean('divider', true)}>
+            <DrawerFooter divider={boolean('divider', true)}>
                 <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                     <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                 </View>
@@ -241,7 +241,7 @@ storiesOf('Drawer', module)
                     />
                     <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'Nav Group 2', navGroup)} />
                 </DrawerBody>
-                <DrawerFooter open={true} divider={boolean('divider', true, footer)}>
+                <DrawerFooter divider={boolean('divider', true, footer)}>
                     <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                         <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                     </View>
