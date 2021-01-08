@@ -148,7 +148,6 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             {titleContent}
             {!titleContent && title && (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <Divider style={[defaultStyles.divider, styles.divider]} />
                     <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
                     <Divider style={[defaultStyles.divider, styles.divider]} />
                 </View>

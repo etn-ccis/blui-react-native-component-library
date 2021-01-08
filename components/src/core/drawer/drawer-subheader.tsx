@@ -1,10 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Divider } from 'react-native-paper';
 
 export const DrawerSubheader: React.FC<any> = (props) => {
-    const { children, hideContentOnCollapse = true, open = false } = props;
+    const { children, divider = true } = props;
 
-    return <View style={{ opacity: (!hideContentOnCollapse && !open) || open ? 1 : 0 }}>{children}</View>;
+    return (
+        <>
+            {children}
+            {divider && <Divider />}
+        </>
+    );
 };
 
 DrawerSubheader.displayName = 'DrawerSubheader';

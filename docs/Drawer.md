@@ -90,8 +90,7 @@ The `<DrawerSubheader>` is an optional subsection that will appear below the `<D
 
 | Prop Name             | Description                                      | Type              | Required | Default                      |
 | --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
-| hideContentOnCollapse | Hide subheader content on collapse               | `boolean`         | no       | true                         |
-| open                  | Whether the drawer is open                       | `boolean`         | no       | false                        |
+| divider               | Whether to show a line below subheader content   | `boolean`         | no       | true                         |
 
 # DrawerBody
 The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navigation items found within the `<Drawer>`. 

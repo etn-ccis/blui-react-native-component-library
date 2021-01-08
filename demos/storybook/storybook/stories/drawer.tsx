@@ -142,7 +142,7 @@ storiesOf('Drawer', module)
     .add('with subheader', () => (
         <Drawer open={true}>
             <DrawerHeader title={'Drawer'} subtitle={'with a custom subheader'} icon={menuIcon} />
-            <DrawerSubheader open={true}>
+            <DrawerSubheader divider={boolean('divider', true)}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
                     <InfoListItem
                         title={'Alerts'}
