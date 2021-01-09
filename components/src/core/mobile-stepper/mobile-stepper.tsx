@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
@@ -30,6 +30,10 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
             borderRadius: 20,
             backgroundColor: theme.colors.primary,
         },
+        progressBar: {
+            // @TODO: Fix this fixed width style; Without setting a width the progress bar has a width of 0 and flex doesn't seem to work;
+            width: 100
+        }
     });
 
 export type MobileStepperProps = {
@@ -46,11 +50,11 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const theme = useTheme(props.theme);
     const styles = makeStyles(theme);
     const pageIndices = [...Array(steps).keys()];
-    const [progressFill, setProgressFill] = useState(0);
 
-    useEffect(() => {
-        setProgressFill(activeStep === 0 ? 0 : (activeStep / (steps - 1)) * 100);
-    }, [activeStep]);
+    // @TODO: should this use useCallback?
+    const getProgressFill = (): number => {
+        return activeStep === 0 ? 0 : (activeStep / (steps - 1));
+    }
 
     return (
         <View style={styles.container}>
@@ -75,10 +79,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                 )}
 
                 {variant === 'progress' && (
-                    <>
-                        <Text>Progress Fill: {progressFill}</Text>
-                        <ProgressBar progress={progressFill} color={theme.colors.primary} visible={true} />
-                    </>
+                    <ProgressBar style={styles.progressBar} progress={getProgressFill()} color={theme.colors.primary}/>
                 )}
             </View>
             {rightButton}
