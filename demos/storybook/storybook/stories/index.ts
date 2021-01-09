@@ -7,6 +7,7 @@ import './header';
 import './hero';
 import './info-list-item';
 import './list-item-tag';
+import './mobile-stepper';
 // import './layout-view';
 import './score-card';
 // import './search-screen';
