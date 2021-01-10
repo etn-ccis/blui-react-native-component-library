@@ -12,7 +12,7 @@ import { Button } from 'react-native-paper';
     () => (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <MobileStepper
-          activeStep={2}
+          activeStep={1}
           steps={number('Steps', 5, { range: true, min: 2, max: 6, step: 1 })}
           leftButton={
               <View style={{ flex: 1}}>
