@@ -62,12 +62,12 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     pageIndices.map((i) => {
                         if (i === activeStep) {
                             return (
-                                <View style={styles.circle} key={i}>
+                                <View testID={'pxb-dot'} style={styles.circle} key={i}>
                                     <View style={[styles.filled]} />
                                 </View>
                             );
                         }
-                        return <View style={styles.circle} key={i}></View>;
+                        return <View testID={'pxb-dot'} style={styles.circle} key={i}></View>;
                     })}
 
                 {variant === 'text' && (
