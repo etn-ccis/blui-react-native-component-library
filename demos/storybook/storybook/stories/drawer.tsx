@@ -18,7 +18,7 @@ import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
-import { Divider, IconButton } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Image, View } from 'react-native';
 import * as Colors from '@pxblue/colors';
