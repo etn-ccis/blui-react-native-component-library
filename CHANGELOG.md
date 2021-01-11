@@ -6,8 +6,8 @@
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
 
 ### Changed
--   Text styles of the `<ListItemTag>` updated slightly
--   Updated to use React Native Paper version 4+
+-   Text styles of the `<ListItemTag>` updated slightly.
+-   Updated to use React Native Paper version 4+.
 
 ### Fixed
 -   Fixes `rightComponent` prop for Drawer `NavItem` to render content on the right side of the Drawer NavItem.
@@ -23,26 +23,26 @@
 ### Added
 
 - RTL Support
-    -   Components/Text/Icons will change directions correctly based on the current language selection on device
-    -   IconWrapper allows you to easily flip icons that you supply to PX Blue components
--   New component for `<ListItemTag>` and `<Spacer>`
+    -   Components/Text/Icons will change directions correctly based on the current language selection on device.
+    -   IconWrapper allows you to easily flip icons that you supply to PX Blue components.
+-   New component for `<ListItemTag>` and `<Spacer>`.
 -   Adds `iconAlign` prop to `<InfoListItem>` to align icons left (default), center or right.
 
 ### Changed 
 
--   Upgraded dependencies to latest version of react-native-safe-area-context
-    -   To use with an Expo project you'll need to be using v38+ of the Expo SDK
+-   Upgraded dependencies to latest version of react-native-safe-area-context.
+    -   To use with an Expo project you'll need to be using v38+ of the Expo SDK.
     
 
 ## v3.0.0
 
 ### Added
--   New component for `<Drawer>`
+-   New component for `<Drawer>`.
 -   Adds `info` prop to `<InfoListItem>` to support a third line of text.
 
 ### Changed
 
--   Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+)
+-   Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+).
 -   Internal style properties are now override-able via the `styles` prop in each component.
 -   `fontSize` prop for `<Hero>`, `<ChannelValue>`, and Typography components now takes a `number` instead of a string.
 -   Renamed some of the typography variants (`<Label>` -> `<Body1>`, `<Subtitle>` -> `<Subtitle2>`) and added some new ones.
@@ -71,8 +71,8 @@
 ## v1.0.2
 
 ### Changed
--   Updated typography elements
+-   Updated typography elements.
 
 ## v0.0.1
 
-Initial alpha release
+Initial alpha release.
