@@ -2,12 +2,12 @@
 
 ## v4.0.0
 
+### Added
+-   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
+
 ### Changed
 -   Text styles of the `<ListItemTag>` updated slightly
 -   Updated to use React Native Paper version 4+
-
-### Added
--   Adds `hidden` prop to the Drawer `NavItem` to conditionally hide elements in the Drawer.
 
 ### Fixed
 -   Fixes `rightComponent` prop for Drawer `NavItem` to render content on the right side of the Drawer NavItem.
@@ -20,11 +20,6 @@
 
 ## v3.1.0
 
-### Changed 
-
--   Upgraded dependencies to latest version of react-native-safe-area-context
-    -   To use with an Expo project you'll need to be using v38+ of the Expo SDK
-    
 ### Added
 
 - RTL Support
@@ -33,7 +28,17 @@
 -   New component for `<ListItemTag>` and `<Spacer>`
 -   Adds `iconAlign` prop to `<InfoListItem>` to align icons left (default), center or right.
 
+### Changed 
+
+-   Upgraded dependencies to latest version of react-native-safe-area-context
+    -   To use with an Expo project you'll need to be using v38+ of the Expo SDK
+    
+
 ## v3.0.0
+
+### Added
+-   New component for `<Drawer>`
+-   Adds `info` prop to `<InfoListItem>` to support a third line of text.
 
 ### Changed
 
@@ -41,10 +46,6 @@
 -   Internal style properties are now override-able via the `styles` prop in each component.
 -   `fontSize` prop for `<Hero>`, `<ChannelValue>`, and Typography components now takes a `number` instead of a string.
 -   Renamed some of the typography variants (`<Label>` -> `<Body1>`, `<Subtitle>` -> `<Subtitle2>`) and added some new ones.
-
-### Added
--   New component for `<Drawer>`
--   Adds `info` prop to `<InfoListItem>` to support a third line of text.
 
 ## v2.0.0
 
@@ -55,9 +56,6 @@
 
 ## v1.1.0
 
-### Changed
-- Minor styling updates to existing typography elements and themes.
-
 ### Added 
 
 - Adds new components for:
@@ -65,6 +63,10 @@
     -   Header
     -   InfoListItem
     -   ScoreCard
+
+### Changed
+- Minor styling updates to existing typography elements and themes.
+
 
 ## v1.0.2
 
