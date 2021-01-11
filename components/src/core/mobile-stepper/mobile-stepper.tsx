@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
 
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
-        container: {
+        root: {
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
@@ -14,6 +14,9 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         },
         stepperContainer: {
             flexDirection: 'row',
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
         },
         circle: {
             height: 8,
@@ -30,10 +33,6 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
             borderRadius: 20,
             backgroundColor: theme.colors.primary,
         },
-        progressBar: {
-            // @TODO: Fix this fixed width style; Without setting a width the progress bar has a width of 0 and flex doesn't seem to work;
-            width: 100,
-        },
     });
 
 export type MobileStepperProps = {
@@ -43,31 +42,35 @@ export type MobileStepperProps = {
     steps: number;
     theme?: ReactNativePaper.Theme;
     variant?: 'dots' | 'text' | 'progress';
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        circle?: StyleProp<ViewStyle>;
+        filled?: StyleProp<ViewStyle>;
+        stepperContainer?: StyleProp<ViewStyle>;
+        progressBar?: StyleProp<ViewStyle>;
+    };
 };
 
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
-    const { activeStep, leftButton, rightButton, steps, variant = 'dots' } = props;
+    const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
-    const styles = makeStyles(theme);
+    const defaultStyles = makeStyles(theme);
     const pageIndices = [...Array(steps).keys()];
 
-    // @TODO: should this use useCallback?
-    const getProgressFill = (): number => (activeStep === 0 ? 0 : activeStep / (steps - 1));
-
     return (
-        <View style={styles.container}>
+        <View style={[defaultStyles.root, styles.root]}>
             {leftButton}
-            <View style={styles.stepperContainer}>
+            <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
                         if (i === activeStep) {
                             return (
-                                <View testID={'pxb-dot'} style={styles.circle} key={i}>
-                                    <View style={[styles.filled]} />
+                                <View testID={'pxb-dot'} style={[defaultStyles.circle, styles.circle]} key={i}>
+                                    <View style={[defaultStyles.filled, styles.filled]} />
                                 </View>
                             );
                         }
-                        return <View testID={'pxb-dot'} style={styles.circle} key={i}></View>;
+                        return <View testID={'pxb-dot'} style={[defaultStyles.circle, styles.circle]} key={i}></View>;
                     })}
 
                 {variant === 'text' && (
@@ -77,7 +80,13 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                 )}
 
                 {variant === 'progress' && (
-                    <ProgressBar style={styles.progressBar} progress={getProgressFill()} color={theme.colors.primary} />
+                    <View style={{ flex: 1 }}>
+                        <ProgressBar
+                            style={[defaultStyles.progressBar, styles.progressBar]}
+                            progress={activeStep === 0 ? 0 : activeStep / (steps - 1)}
+                            color={theme.colors.primary}
+                        />
+                    </View>
                 )}
             </View>
             {rightButton}
