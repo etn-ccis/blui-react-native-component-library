@@ -12,28 +12,9 @@ import { MobileStepper } from '@pxblue/react-native-components';
     <MobileStepper 
       activeStep={activeStep}
       steps={steps}
-      leftButton={
-        <View style={{ flex: 1 }}>
-          <Button
-            style={{ width: 100, alignSelf: 'flex-start' }}
-            disabled={activeStep === 0}
-            onPress={(): void => activeStep = activeStep - 1}
-            mode="outlined"
-          >Back</Button>
-        </View>
-      }
-      rightButton={
-        <View style={{ flex: 1 }}>
-          <Button
-            style={{ width: 100, alignSelf: 'flex-end' }}
-            disabled={activeStep === steps - 1}
-            onPress={(): void => activeStep = activeStep + 1}
-            mode="contained"
-          >Next</Button>
-        </View>
-      }
-      variant={'dots'}>
-    </MobileStepper>
+      leftButton={<BackButton /> }
+      rightButton={<NextButton /> }
+      variant={'dots'} />
 ```
 
 ## API
@@ -61,4 +42,4 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | filled           | Styles applied to active dot when using 'dot' variant            |
 | stepperContainer | Styles applied to stepper container                              |
 | progressBar      | Styles applied to the progress bar when using 'progress' variant |
-
+| text             | Styles applied to the text when using 'text' variant             |

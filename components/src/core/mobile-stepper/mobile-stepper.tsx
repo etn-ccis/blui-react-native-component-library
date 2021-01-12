@@ -2,8 +2,18 @@ import React from 'react';
 import { View, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
-const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
+const makeStyles = (
+    theme: ReactNativePaper.Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    stepperContainer: ViewStyle;
+    circle: ViewStyle;
+    filled: ViewStyle;
+    progressBar: ViewStyle;
+    text: ViewStyle;
+}> =>
     StyleSheet.create({
         root: {
             flex: 1,
@@ -21,18 +31,16 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         circle: {
             height: 8,
             width: 8,
-            borderRadius: 20,
-            marginRight: 8,
+            borderRadius: 8,
+            marginHorizontal: 4,
             overflow: 'hidden',
             backgroundColor: Colors.gray['200'],
         },
         filled: {
-            position: 'absolute',
-            height: 8,
-            width: 8,
-            borderRadius: 20,
             backgroundColor: theme.colors.primary,
         },
+        progressBar: {},
+        text: {},
     });
 
 export type MobileStepperProps = {
@@ -40,7 +48,7 @@ export type MobileStepperProps = {
     leftButton?: JSX.Element;
     rightButton?: JSX.Element;
     steps: number;
-    theme?: ReactNativePaper.Theme;
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
     variant?: 'dots' | 'text' | 'progress';
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -48,6 +56,7 @@ export type MobileStepperProps = {
         filled?: StyleProp<ViewStyle>;
         stepperContainer?: StyleProp<ViewStyle>;
         progressBar?: StyleProp<ViewStyle>;
+        text?: StyleProp<ViewStyle>;
     };
 };
 
@@ -63,18 +72,23 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
             <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
-                        if (i === activeStep) {
-                            return (
-                                <View testID={'pxb-dot'} style={[defaultStyles.circle, styles.circle]} key={i}>
-                                    <View style={[defaultStyles.filled, styles.filled]} />
-                                </View>
-                            );
-                        }
-                        return <View testID={'pxb-dot'} style={[defaultStyles.circle, styles.circle]} key={i}></View>;
+                        const active = i === activeStep;
+                        return (
+                            <View
+                                key={i}
+                                testID={'pxb-dot'}
+                                style={[
+                                    defaultStyles.circle,
+                                    styles.circle,
+                                    active ? defaultStyles.filled : {},
+                                    active ? styles.filled : {},
+                                ]}
+                            />
+                        );
                     })}
 
                 {variant === 'text' && (
-                    <Text>
+                    <Text style={[defaultStyles.text, styles.text]}>
                         {activeStep + 1} / {steps}
                     </Text>
                 )}
