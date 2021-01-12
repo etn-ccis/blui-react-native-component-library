@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Overline } from '../typography';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
@@ -79,6 +79,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
     const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
 
+    /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
+    useEffect(() => {
+        if (!findID({ items: props.items } as NavItem, props.activeItem)) {
+            setActiveHierarchyItems([]);
+        }
+    }, [props.activeItem]);
+
     const updateActiveHierarchy = (ids: string[]): void => {
         if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
             // Sets the list of active IDs when we get a callback from an active child
@@ -152,7 +159,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 />
             );
         },
-        [props]
+        [props, activeHierarchyItems]
     );
 
     return (
