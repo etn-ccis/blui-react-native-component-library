@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 import { InfoListItem } from '../info-list-item';
 import { InfoListItemProps } from '../info-list-item/info-list-item';
 import { DrawerInheritableProps } from './inheritable-types';
 import { DrawerNavGroupProps } from './drawer-nav-group';
 import { useTheme } from 'react-native-paper';
+import { usePrevious } from '../hooks/usePrevious';
 // import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
@@ -24,6 +25,8 @@ export type DrawerNavItemProps = {
     expandHandler?: () => void;
     navGroupProps: DrawerNavGroupProps;
     navItem: NavItem | NestedNavItem;
+    isInActiveTree?: boolean;
+    notifyActiveParent: () => void;
     /** Style Overrides */
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -48,7 +51,6 @@ const makeStyles = (props: DrawerNavItemProps): any =>
             top: 0,
             borderTopRightRadius: props.navItem.activeItemBackgroundShape === 'square' ? 0 : 24,
             borderBottomRightRadius: props.navItem.activeItemBackgroundShape === 'square' ? 0 : 24,
-            opacity: 0.9,
         },
         expandIcon: {
             display: 'flex',
@@ -59,7 +61,17 @@ const makeStyles = (props: DrawerNavItemProps): any =>
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const defaultStyles = makeStyles(props);
-    const { depth, expanded, expandHandler, navGroupProps, navItem, styles = {} } = props;
+    const {
+        depth,
+        expanded,
+        expandHandler,
+        navGroupProps,
+        navItem,
+        isInActiveTree,
+        notifyActiveParent,
+        styles = {},
+    } = props;
+    const { activeItem } = navGroupProps;
     const theme = useTheme();
 
     const icon = !depth ? (navItem as NavItem).icon : undefined;
@@ -82,6 +94,15 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         },
         [navItem, expandHandler]
     );
+
+    const previousActive = usePrevious(activeItem || '');
+
+    useEffect(() => {
+        if (activeItem === navItem.itemID && previousActive !== navItem.itemID) {
+            // notify the parent that it should now be in the active tree
+            notifyActiveParent();
+        }
+    }, [activeItem, navItem.itemID, notifyActiveParent]);
 
     return (
         <>
@@ -114,12 +135,15 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                 iliRoot
                             ),
                             title: Object.assign(
-                                depth > 0
+                                active || isInActiveTree
                                     ? {
-                                          fontFamily: theme.fonts.regular.fontFamily,
-                                          fontWeight: theme.fonts.regular.fontWeight,
+                                          fontWeight: theme.fonts.medium.fontWeight,
+                                          fontFamily: theme.fonts.medium.fontFamily,
                                       }
-                                    : {},
+                                    : {
+                                          fontWeight: theme.fonts.regular.fontWeight,
+                                          fontFamily: theme.fonts.regular.fontFamily,
+                                      },
                                 iliTitle
                             ),
                             ...otherILI,

@@ -34,12 +34,12 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | ------------------------- | --------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
 | activeItem                | ItemID of the currently selected item                     | `string`                | no       |                                                              |
 | activeItemBackgroundColor | Background color for the 'active' item                    | `string`                | no       | varies for light/dark theme                                  |
-| activeItemBackgroundShape | shape of the active item background                       | `'round'` \| `'square'` | no       | round                                                        |
+| activeItemBackgroundShape | shape of the active item background                       | `'round'` \| `'square'` | no       | square                                                       |
 | activeItemFontColor       | Font color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
 | activeItemIconColor       | Icon color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
 | chevron                   | Whether to have chevrons for all menu items               | `boolean`               | no       | false                                                        |
 | collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
-| divider                   | Whether to show a line between all items                  | `boolean`               | no       | true                                                         |
+| divider                   | Whether to show a line between all items                  | `boolean`               | no       | false                                                        |
 | expandIcon                | Icon used to expand drawer                                | `JSX.Element`           | no       | `expand-more` at top-level, `arrow-drop-down` otherwise      |
 | hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`               | no       | true                                                         |
 | itemFontColor             | The color used for the item text                          | `string`                | no       |                                                              |
@@ -86,6 +86,10 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 
 # DrawerSubheader
 The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody>`.
+
+| Prop Name             | Description                                      | Type              | Required | Default                      |
+| --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
+| divider               | Whether to show a line below subheader content   | `boolean`         | no       | true                         |
 
 # DrawerBody
 The `<DrawerBody>` consists of `<DrawerNavGroup>` children and renders the navigation items found within the `<Drawer>`. 
@@ -153,3 +157,7 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 
 # DrawerFooter
 The `<DrawerFooter>` is an optional subsection that will be pinned to the bottom of the `<Drawer`>.
+
+| Prop Name             | Description                                      | Type              | Required | Default                      |
+| --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
+| divider               | Whether to show a line above footer content      | `boolean`         | no       | true                         |
