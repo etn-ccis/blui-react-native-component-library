@@ -5,19 +5,25 @@ import { ProgressBar } from 'react-native-paper';
 import { View } from 'react-native';
 
 describe('MobileStepper', () => {
-    it('should render the correct number of steps', () => {
-        const instanceTwo: ReactTestInstance = TestRenderer.create(<MobileStepper steps={2} activeStep={0} />).root;
-        const dotsTwo = instanceTwo.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
-        const instanceThree: ReactTestInstance = TestRenderer.create(<MobileStepper steps={3} activeStep={0} />).root;
-        const dotsThree = instanceThree.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
-        const instanceFive: ReactTestInstance = TestRenderer.create(<MobileStepper steps={5} activeStep={0} />).root;
-        const dotsFive = instanceFive.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
-        expect(dotsTwo).toHaveLength(2);
-        expect(dotsThree).toHaveLength(3);
-        expect(dotsFive).toHaveLength(5);
+    it('should render typical number of steps', () => {
+        const stepper: ReactTestInstance = TestRenderer.create(<MobileStepper steps={5} activeStep={2} />).root;
+        const dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots).toHaveLength(5);
+    });
 
-        // @TODO: It seems as though there may be two immediate renders, one with the default state variable and a second with the updated state variable after useEffect
-        // is called. This test might be checking the first render before the useEffect, we need to find a way to watch for useEffect or render the component after useEffect is called.
+    it('should render at least 1 step', () => {
+        // Edge cases for number of steps
+        let stepper = TestRenderer.create(<MobileStepper steps={0} activeStep={3} />).root;
+        let dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots).toHaveLength(1);
+
+        stepper = TestRenderer.create(<MobileStepper steps={-1} activeStep={3} />).root;
+        dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots).toHaveLength(1);
+
+        stepper = TestRenderer.create(<MobileStepper steps={-10} activeStep={3} />).root;
+        dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots).toHaveLength(1);
     });
 
     it('should render progress indicator', () => {
@@ -27,13 +33,35 @@ describe('MobileStepper', () => {
         expect(instance.findAllByType(ProgressBar)).toHaveLength(1);
     });
 
-    it('should render at least 2 steps', () => {
-        const instanceMinusFive: ReactTestInstance = TestRenderer.create(<MobileStepper steps={-5} activeStep={0} />)
-            .root;
-        const instanceZero: ReactTestInstance = TestRenderer.create(<MobileStepper steps={0} activeStep={0} />).root;
-        const dotsMinusFive = instanceMinusFive.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
-        expect(dotsMinusFive).toHaveLength(2);
-        const dotsZero = instanceZero.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
-        expect(dotsZero).toHaveLength(2);
+    it('should render activeStep within available range', () => {
+        const theme = { colors: { primary: '#007bc1' } };
+
+        // typical use
+        let stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={2} theme={theme} />).root;
+        let dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots[2].props.style[2]).toMatchObject({
+            backgroundColor: '#007bc1',
+        });
+
+        // edge case beyond available steps
+        stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={10} theme={theme} />).root;
+        dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots[4].props.style[2]).toMatchObject({
+            backgroundColor: '#007bc1',
+        });
+
+        // edge case zero
+        stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={0} theme={theme} />).root;
+        dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots[0].props.style[2]).toMatchObject({
+            backgroundColor: '#007bc1',
+        });
+
+        // edge case negative
+        stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={-1} theme={theme} />).root;
+        dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        expect(dots[0].props.style[2]).toMatchObject({
+            backgroundColor: '#007bc1',
+        });
     });
 });

@@ -18,7 +18,7 @@ import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
 import _Battery from '@pxblue/icons-svg/battery.svg';
 import _Humidity from '@pxblue/icons-svg/moisture.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
-import { Divider, IconButton } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Image, View } from 'react-native';
 import * as Colors from '@pxblue/colors';
@@ -142,7 +142,7 @@ storiesOf('Drawer', module)
     .add('with subheader', () => (
         <Drawer>
             <DrawerHeader title={'Drawer'} subtitle={'with a custom subheader'} icon={menuIcon} />
-            <DrawerSubheader>
+            <DrawerSubheader divider={boolean('divider', true)}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
                     <InfoListItem
                         title={'Alerts'}
@@ -151,7 +151,6 @@ storiesOf('Drawer', module)
                         fontColor={Colors.white[50]}
                         IconClass={Temp}
                     />
-                    <Divider />
                 </View>
             </DrawerSubheader>
             <DrawerBody>
@@ -196,8 +195,7 @@ storiesOf('Drawer', module)
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
             </DrawerBody>
-            <DrawerFooter>
-                <Divider />
+            <DrawerFooter divider={boolean('divider', true)}>
                 <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                     <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                 </View>
@@ -208,6 +206,7 @@ storiesOf('Drawer', module)
         const drawer = 'Drawer';
         const header = 'DrawerHeader';
         const navGroup = 'DrawerNavGroup';
+        const footer = 'DrawerFooter';
         return (
             <Drawer
                 activeItemFontColor={color('activeItemFontColor', Colors.red[800], drawer)}
@@ -216,10 +215,10 @@ storiesOf('Drawer', module)
                 backgroundColor={color('backgroundColor', Colors.white[50], drawer)}
                 itemFontColor={color('itemFontColor', Colors.blue[800], drawer)}
                 itemIconColor={color('itemIconColor', Colors.blue[800], drawer)}
-                divider={boolean('divider', true, drawer)}
+                divider={boolean('divider', false, drawer)}
                 chevron={boolean('chevron', false, drawer)}
                 activeItemBackgroundShape={
-                    boolean(`square activeItemBackgroundShape`, false, drawer) ? 'square' : 'round'
+                    boolean(`square activeItemBackgroundShape`, true, drawer) ? 'square' : 'round'
                 }
                 activeItem={'g1i2'}
             >
@@ -240,8 +239,7 @@ storiesOf('Drawer', module)
                     />
                     <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'Nav Group 2', navGroup)} />
                 </DrawerBody>
-                <DrawerFooter>
-                    <Divider />
+                <DrawerFooter divider={boolean('divider', true, footer)}>
                     <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>
                         <Image source={eatonLogo} style={{ height: 60, width: '80%' }} />
                     </View>

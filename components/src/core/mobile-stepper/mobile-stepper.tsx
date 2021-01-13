@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
@@ -60,18 +60,26 @@ export type MobileStepperProps = {
     };
 };
 
+const keepInRange = (value: number, min?: number, max?: number): number => {
+    let ret = value;
+    if (min !== undefined) {
+        ret = Math.max(min, ret);
+    }
+    if (max !== undefined) {
+        ret = Math.min(max, ret);
+    }
+    return ret;
+};
+
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
     const defaultStyles = makeStyles(theme);
-    const [adjustedActiveStep, setAdjustedActiveStep] = useState(0);
-    const [adjustedSteps, setAdjustedSteps] = useState(2);
-    const pageIndices = [...Array(adjustedSteps).keys()];
 
-    useEffect(() => {
-        setAdjustedActiveStep(Math.max(activeStep, 0));
-        setAdjustedSteps(Math.max(steps, 2));
-    }, [steps, activeStep]);
+    const adjustedSteps = keepInRange(steps, 1);
+    const adjustedActiveStep = keepInRange(activeStep, 0, adjustedSteps - 1);
+
+    const pageIndices = [...Array(adjustedSteps).keys()];
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
@@ -104,7 +112,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     <View style={{ flex: 1 }}>
                         <ProgressBar
                             style={[defaultStyles.progressBar, styles.progressBar]}
-                            progress={adjustedActiveStep === 0 ? 0 : adjustedActiveStep / (adjustedSteps - 1)}
+                            progress={adjustedActiveStep / (adjustedSteps - 1)}
                             color={theme.colors.primary}
                         />
                     </View>
