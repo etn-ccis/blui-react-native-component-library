@@ -75,7 +75,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 };
 
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
-    const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
+    const { activeColor, activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
     const defaultStyles = makeStyles(props, theme);
 
@@ -116,7 +116,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                         <ProgressBar
                             style={[defaultStyles.progressBar, styles.progressBar]}
                             progress={adjustedActiveStep / (adjustedSteps - 1)}
-                            color={theme.colors.primary}
+                            color={activeColor || theme.colors.primary}
                         />
                     </View>
                 )}

@@ -23,7 +23,7 @@ import { MobileStepper } from '@pxblue/react-native-components';
 
 | Prop Name       | Description                                    | Type                     | Required | Default                | 
 | --------------- | ---------------------------------------------- | ------------------------ | -------- | ---------------------- |
-| activeColor     | Color of active dot when using 'dot' variant   | `string`                 | no       | `theme.colors.primary` |
+| activeColor     | Color of active page indicator                 | `string`                 | no       | `theme.colors.primary` |
 | activeStep      | The index of the active step                   | `number`                 | yes      |                        |
 | inactiveColor   | Color of inactive dot when using 'dot' variant | `string`                 | no       |                        |
 | leftButton      | Left button content                            | `JSX.Element`            | no       |                        |
