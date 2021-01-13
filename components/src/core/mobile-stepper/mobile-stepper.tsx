@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
@@ -64,7 +64,14 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
     const defaultStyles = makeStyles(theme);
-    const pageIndices = [...Array(steps).keys()];
+    const [adjustedActiveStep, setAdjustedActiveStep] = useState(0);
+    const [adjustedSteps, setAdjustedSteps] = useState(2);
+    const pageIndices = [...Array(adjustedSteps).keys()];
+
+    useEffect(() => {
+        setAdjustedActiveStep(Math.max(activeStep, 0));
+        setAdjustedSteps(Math.max(steps, 2));
+    }, [steps, activeStep]);
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
@@ -72,7 +79,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
             <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
-                        const active = i === activeStep;
+                        const active = i === adjustedActiveStep;
                         return (
                             <View
                                 key={i}
@@ -89,7 +96,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
 
                 {variant === 'text' && (
                     <Text style={[defaultStyles.text, styles.text]}>
-                        {activeStep + 1} / {steps}
+                        {adjustedActiveStep + 1} / {adjustedSteps}
                     </Text>
                 )}
 
@@ -97,7 +104,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     <View style={{ flex: 1 }}>
                         <ProgressBar
                             style={[defaultStyles.progressBar, styles.progressBar]}
-                            progress={activeStep === 0 ? 0 : activeStep / (steps - 1)}
+                            progress={adjustedActiveStep === 0 ? 0 : adjustedActiveStep / (adjustedSteps - 1)}
                             color={theme.colors.primary}
                         />
                     </View>

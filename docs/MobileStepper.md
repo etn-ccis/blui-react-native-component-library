@@ -31,6 +31,9 @@ import { MobileStepper } from '@pxblue/react-native-components';
       
 </div>
 
+`activeStep` must be >= 0.
+`steps` must be > 0.
+
 ### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following key:
