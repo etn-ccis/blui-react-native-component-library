@@ -21,13 +21,15 @@ import { MobileStepper } from '@pxblue/react-native-components';
 
 <div style="overflow: auto;">
 
-| Prop Name       | Description                    | Type                     | Required | Default | 
-| --------------- | ------------------------------ | ------------------------ | -------- | ------- |
-| activeStep      | The index of the active step   | `number`                 | yes      |         |
-| leftButton      | Left button content            | `JSX.Element`            | no       |         |
-| rightButton     | Right button content           | `JSX.Element`            | no       |         |
-| steps           | How many steps to display      | `number`                 | yes      |         |
-| variant         | Which type of indicator to use | `dots | text | progress` | no       | `dots`  |
+| Prop Name       | Description                                    | Type                     | Required | Default                | 
+| --------------- | ---------------------------------------------- | ------------------------ | -------- | ---------------------- |
+| activeColor     | Color of active dot when using 'dot' variant   | `string`                 | no       | `theme.colors.primary` |
+| activeStep      | The index of the active step                   | `number`                 | yes      |                        |
+| inactiveColor   | Color of inactive dot when using 'dot' variant | `string`                 | no       |                        |
+| leftButton      | Left button content                            | `JSX.Element`            | no       |                        |
+| rightButton     | Right button content                           | `JSX.Element`            | no       |                        |
+| steps           | How many steps to display                      | `number`                 | yes      |                        |
+| variant         | Which type of indicator to use                 | `dots | text | progress` | no       | `dots`                 |
       
 </div>
 

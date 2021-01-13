@@ -5,6 +5,7 @@ import * as Colors from '@pxblue/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const makeStyles = (
+    props: MobileStepperProps,
     theme: ReactNativePaper.Theme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -34,17 +35,19 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            backgroundColor: Colors.gray['200'],
+            backgroundColor: props.inactiveColor || Colors.gray['200'],
         },
         filled: {
-            backgroundColor: theme.colors.primary,
+            backgroundColor: props.activeColor || theme.colors.primary,
         },
         progressBar: {},
         text: {},
     });
 
 export type MobileStepperProps = {
+    activeColor?: string;
     activeStep: number;
+    inactiveColor?: string;
     leftButton?: JSX.Element;
     rightButton?: JSX.Element;
     steps: number;
@@ -74,7 +77,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
-    const defaultStyles = makeStyles(theme);
+    const defaultStyles = makeStyles(props, theme);
 
     const adjustedSteps = keepInRange(steps, 1);
     const adjustedActiveStep = keepInRange(activeStep, 0, adjustedSteps - 1);
