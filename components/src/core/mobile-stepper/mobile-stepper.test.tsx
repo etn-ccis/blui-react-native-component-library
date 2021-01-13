@@ -35,7 +35,7 @@ describe('MobileStepper', () => {
 
     it('should render activeStep within available range', () => {
         const theme = { colors: { primary: '#007bc1' } };
-        
+
         // typical use
         let stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={2} theme={theme} />).root;
         let dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');

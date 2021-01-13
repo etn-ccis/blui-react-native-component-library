@@ -62,14 +62,14 @@ export type MobileStepperProps = {
 
 const keepInRange = (value: number, min?: number, max?: number): number => {
     let ret = value;
-    if(min !== undefined){
+    if (min !== undefined) {
         ret = Math.max(min, ret);
     }
-    if(max !== undefined){
+    if (max !== undefined) {
         ret = Math.min(max, ret);
     }
     return ret;
-}
+};
 
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
