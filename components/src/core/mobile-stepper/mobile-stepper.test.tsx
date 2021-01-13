@@ -6,8 +6,8 @@ import { View } from 'react-native';
 
 describe('MobileStepper', () => {
     it('should render typical number of steps', () => {
-        let stepper: ReactTestInstance = TestRenderer.create(<MobileStepper steps={5} activeStep={2} />).root;
-        let dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+        const stepper: ReactTestInstance = TestRenderer.create(<MobileStepper steps={5} activeStep={2} />).root;
+        const dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
         expect(dots).toHaveLength(5);
     });
 
