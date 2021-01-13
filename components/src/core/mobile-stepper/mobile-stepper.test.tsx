@@ -37,7 +37,7 @@ describe('MobileStepper', () => {
         const theme = { colors: { primary: '#007bc1' } };
         
         // typical use
-        let stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={3} theme={theme} />).root;
+        let stepper = TestRenderer.create(<MobileStepper steps={5} activeStep={2} theme={theme} />).root;
         let dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
         expect(dots[2].props.style[2]).toMatchObject({
             backgroundColor: '#007bc1',

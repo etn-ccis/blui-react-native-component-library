@@ -44,8 +44,8 @@ storiesOf('MobileStepper', module)
     .add('with variant', () => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <MobileStepper
-                activeStep={0}
-                steps={6}
+                activeStep={2}
+                steps={5}
                 leftButton={
                     <View style={{ flex: 1 }}>
                         <Button

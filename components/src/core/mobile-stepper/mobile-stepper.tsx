@@ -62,10 +62,10 @@ export type MobileStepperProps = {
 
 const keepInRange = (value: number, min?: number, max?: number): number => {
     let ret = value;
-    if(min){
+    if(min !== undefined){
         ret = Math.max(min, ret);
     }
-    if(max){
+    if(max !== undefined){
         ret = Math.min(max, ret);
     }
     return ret;
@@ -77,7 +77,8 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const defaultStyles = makeStyles(theme);
 
     const adjustedSteps = keepInRange(steps, 1);
-    const adjustedActiveStep = keepInRange(activeStep, 1, adjustedSteps);
+    const adjustedActiveStep = keepInRange(activeStep, 0, adjustedSteps - 1);
+
     const pageIndices = [...Array(adjustedSteps).keys()];
 
     return (
@@ -86,7 +87,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
             <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
-                        const active = i === adjustedActiveStep - 1;
+                        const active = i === adjustedActiveStep;
                         return (
                             <View
                                 key={i}
@@ -111,7 +112,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     <View style={{ flex: 1 }}>
                         <ProgressBar
                             style={[defaultStyles.progressBar, styles.progressBar]}
-                            progress={adjustedActiveStep === 0 ? 0 : adjustedActiveStep / (adjustedSteps - 1)}
+                            progress={adjustedActiveStep / (adjustedSteps - 1)}
                             color={theme.colors.primary}
                         />
                     </View>
