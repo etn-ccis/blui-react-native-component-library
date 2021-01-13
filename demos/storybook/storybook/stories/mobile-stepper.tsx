@@ -10,7 +10,7 @@ storiesOf('MobileStepper', module)
     .add('with basic usage', () => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <MobileStepper
-                activeStep={number('Active step', 0, { range: true, min: 0, max: 5, step: 1 })}
+                activeStep={number('Active step', 1, { range: true, min: 1, max: 5, step: 1 })}
                 steps={number('Steps', 5, { range: true, min: 2, max: 6, step: 1 })}
                 leftButton={
                     <View style={{ flex: 1 }}>

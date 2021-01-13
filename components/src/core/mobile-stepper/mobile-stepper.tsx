@@ -60,18 +60,25 @@ export type MobileStepperProps = {
     };
 };
 
+const keepInRange = (value: number, min?: number, max?: number): number => {
+    let ret = value;
+    if(min){
+        ret = Math.max(min, ret);
+    }
+    if(max){
+        ret = Math.min(max, ret);
+    }
+    return ret;
+}
+
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const { activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
     const defaultStyles = makeStyles(theme);
-    const [adjustedActiveStep, setAdjustedActiveStep] = useState(0);
-    const [adjustedSteps, setAdjustedSteps] = useState(2);
-    const pageIndices = [...Array(adjustedSteps).keys()];
 
-    useEffect(() => {
-        setAdjustedActiveStep(Math.max(activeStep, 0));
-        setAdjustedSteps(Math.max(steps, 2));
-    }, [steps, activeStep]);
+    const adjustedSteps = keepInRange(steps, 1);
+    const adjustedActiveStep = keepInRange(activeStep, 1, adjustedSteps);
+    const pageIndices = [...Array(adjustedSteps).keys()];
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
@@ -79,7 +86,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
             <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
-                        const active = i === adjustedActiveStep;
+                        const active = i === adjustedActiveStep - 1;
                         return (
                             <View
                                 key={i}
