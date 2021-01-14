@@ -65,3 +65,20 @@ describe('MobileStepper', () => {
         });
     });
 });
+
+it('should render steps with the correct color', () => {
+    const stepper = TestRenderer.create(
+        <MobileStepper steps={5} activeStep={0} activeColor={'#FF0000'} inactiveColor={'#DEADBEEF'} />
+    ).root;
+    const dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');
+
+    // test active item color
+    expect(dots[0].props.style[2]).toMatchObject({
+        backgroundColor: '#FF0000',
+    });
+
+    // test inactive item color
+    expect(dots[1].props.style[0]).toMatchObject({
+        backgroundColor: '#DEADBEEF',
+    });
+});
