@@ -1,5 +1,13 @@
 # Change Log
 
+## v4.1.0 (Not Published Yet)
+
+### Added
+-   `<MobileStepper>` component for moving between pages.
+
+### Changed
+-   Updated styles for the `<Drawer>`.
+
 ## v4.0.0
 
 ### Added
