@@ -11,8 +11,8 @@ storiesOf('MobileStepper', module)
     .add('with basic usage', () => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <MobileStepper
-                activeStep={number('Active step', 1, { range: true, min: 1, max: 5, step: 1 })}
-                steps={number('Steps', 5, { range: true, min: 2, max: 6, step: 1 })}
+                activeStep={number('activeStep', 0, { range: true, min: 0, max: 5, step: 1 })}
+                steps={number('steps', 5, { range: true, min: 2, max: 6, step: 1 })}
                 leftButton={
                     <View style={{ flex: 1 }}>
                         <Button
@@ -73,19 +73,19 @@ storiesOf('MobileStepper', module)
                         </Button>
                     </View>
                 }
-                variant={select('Variant', ['dots', 'text', 'progress'], 'dots')}
+                variant={select('variant', ['dots', 'text', 'progress'], 'dots')}
             ></MobileStepper>
         </View>
     ))
     .add('with full config', () => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <MobileStepper
-                activeColor={color('Active color', Colors.blue[500])}
-                inactiveColor={color('Inactive Color', Colors.gray[200])}
-                activeStep={number('Active step', 0, { range: true, min: 0, max: 5, step: 1 })}
-                steps={number('Steps', 5, { range: true, min: 2, max: 6, step: 1 })}
+                activeColor={color('activeColor', Colors.blue[500])}
+                inactiveColor={color('inactiveColor', Colors.gray[200])}
+                activeStep={number('activeStep', 0, { range: true, min: 0, max: 5, step: 1 })}
+                steps={number('steps', 5, { range: true, min: 2, max: 6, step: 1 })}
                 leftButton={
-                    <View style={{ flex: 1, opacity: boolean('Show Back Button', true) ? 1 : 0 }}>
+                    <View style={{ flex: 1, opacity: boolean('showBackButton', true) ? 1 : 0 }}>
                         <Button
                             style={{ width: 100, alignSelf: 'flex-start' }}
                             onPress={(): void => {
@@ -98,7 +98,7 @@ storiesOf('MobileStepper', module)
                     </View>
                 }
                 rightButton={
-                    <View style={{ flex: 1, opacity: boolean('Show Next Button', true) ? 1 : 0 }}>
+                    <View style={{ flex: 1, opacity: boolean('showNextButton', true) ? 1 : 0 }}>
                         <Button
                             style={{ width: 100, alignSelf: 'flex-end' }}
                             onPress={(): void => {
@@ -110,7 +110,7 @@ storiesOf('MobileStepper', module)
                         </Button>
                     </View>
                 }
-                variant={select('Variant', ['dots', 'text', 'progress'], 'dots')}
+                variant={select('variant', ['dots', 'text', 'progress'], 'dots')}
             ></MobileStepper>
         </View>
     ));

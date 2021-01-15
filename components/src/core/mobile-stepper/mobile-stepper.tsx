@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Body1 } from '../typography';
 
 const makeStyles = (
     props: MobileStepperProps,
@@ -44,6 +45,8 @@ const makeStyles = (
         text: {},
     });
 
+export type DotStepperVariant = 'dots' | 'text' | 'progress';
+
 export type MobileStepperProps = {
     activeColor?: string;
     activeStep: number;
@@ -52,7 +55,7 @@ export type MobileStepperProps = {
     rightButton?: JSX.Element;
     steps: number;
     theme?: $DeepPartial<ReactNativePaper.Theme>;
-    variant?: 'dots' | 'text' | 'progress';
+    variant?: DotStepperVariant;
     styles?: {
         root?: StyleProp<ViewStyle>;
         circle?: StyleProp<ViewStyle>;
@@ -106,9 +109,9 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     })}
 
                 {variant === 'text' && (
-                    <Text style={[defaultStyles.text, styles.text]}>
+                    <Body1 style={[defaultStyles.text, styles.text]}>
                         {adjustedActiveStep + 1} / {adjustedSteps}
-                    </Text>
+                    </Body1>
                 )}
 
                 {variant === 'progress' && (
