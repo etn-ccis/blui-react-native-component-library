@@ -9,5 +9,6 @@ export * from './info-list-item';
 export * from './list-item-tag';
 export * from './mobile-stepper';
 export * from './score-card';
+export * from './user-menu';
 export * from './utility';
 export * from './typography';
