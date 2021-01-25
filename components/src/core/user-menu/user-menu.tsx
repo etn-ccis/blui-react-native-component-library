@@ -20,7 +20,7 @@ export type UserMenuProps = {
     menuTitle?: string;
     menuSubtitle?: string;
     styles?: {
-        container?: ViewStyle;
+        root?: ViewStyle;
     };
 };
 
@@ -28,10 +28,10 @@ const useStyles = (
     theme: ReactNativePaper.Theme,
     props: UserMenuProps
 ): StyleSheet.NamedStyles<{
-    container: ViewStyle;
+    root: ViewStyle;
 }> =>
     StyleSheet.create({
-        container: {
+        root: {
             backgroundColor: props.backgroundColor || theme.colors.surface,
         },
     });
@@ -115,7 +115,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     }, [menu, menuItems, menuTitle, menuSubtitle]);
 
     return (
-        <View style={[defaultStyles.container, styles.container]}>
+        <View style={[defaultStyles.root, styles.root]}>
             <TouchableWithoutFeedback onPress={(): void => openMenu()}>{avatar}</TouchableWithoutFeedback>
             <BottomSheet show={showBottomSheet} dismissBottomSheet={(): void => closeMenu()}>
                 {getMenu()}
