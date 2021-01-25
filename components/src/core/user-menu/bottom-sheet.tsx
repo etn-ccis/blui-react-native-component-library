@@ -7,10 +7,11 @@ type BottomSheetProps = {
     show?: boolean;
     children?: ReactNode;
     dismissBottomSheet?: () => void;
+    safeAreaColor?: string;
 };
 
 export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
-    const { show, children, dismissBottomSheet } = props;
+    const { show, children, dismissBottomSheet, safeAreaColor } = props;
     const theme = useTheme();
     const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(show ? true : false);
 
@@ -26,7 +27,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
             supportedOrientations={['portrait', 'landscape']}
             style={{ justifyContent: 'flex-end', margin: 0 }}
         >
-            <SafeAreaView style={{ backgroundColor: theme.colors.surface }}>{children}</SafeAreaView>
+            <SafeAreaView style={{ backgroundColor: safeAreaColor || theme.colors.surface }}>{children}</SafeAreaView>
         </Modal>
     );
 };

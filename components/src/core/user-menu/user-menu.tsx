@@ -21,18 +21,24 @@ export type UserMenuProps = {
     menuSubtitle?: string;
     styles?: {
         root?: ViewStyle;
+        avatar?: ViewStyle;
     };
 };
 
 const useStyles = (
-    theme: ReactNativePaper.Theme,
-    props: UserMenuProps
+    theme: ReactNativePaper.Theme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
+    avatar: ViewStyle;
 }> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.surface,
+            backgroundColor: theme.colors.surface,
+        },
+        avatar: {
+            width: 40,
+            height: 40,
+            borderRadius: 40,
         },
     });
 
@@ -51,7 +57,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         styles = {},
     } = props;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
-    const defaultStyles = useStyles(theme, props);
+    const defaultStyles = useStyles(theme);
 
     const openMenu = (): void => {
         setShowBottomSheet(true);
@@ -74,14 +80,18 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
 
         return (
             <>
-                <InfoListItem
-                    title={menuTitle || ''}
-                    subtitle={menuSubtitle}
-                    leftComponent={avatar}
-                    fontColor={fontColor}
-                    backgroundColor={backgroundColor}
-                />
-                <Divider />
+                {menuTitle && (
+                    <>
+                        <InfoListItem
+                            title={menuTitle || ''}
+                            subtitle={menuSubtitle}
+                            leftComponent={<View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>}
+                            fontColor={fontColor}
+                            backgroundColor={backgroundColor}
+                        />
+                        <Divider />
+                    </>
+                )}
                 {menuItems &&
                     menuItems.map((menuItem: InfoListItemProps, index: number) => (
                         <InfoListItem
@@ -96,7 +106,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             subtitleSeparator={menuItem.subtitleSeparator}
                             info={menuItem.info}
                             iconAlign={menuItem.iconAlign}
-                            iconColor={menuItem.iconColor || iconColor}
+                            iconColor={iconColor || menuItem.iconColor}
                             hidePadding={menuItem.hidePadding}
                             avatar={menuItem.avatar}
                             chevron={menuItem.chevron}
@@ -105,19 +115,25 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             leftComponent={menuItem.leftComponent}
                             rightComponent={menuItem.rightComponent}
                             statusColor={menuItem.statusColor}
-                            fontColor={menuItem.fontColor || fontColor}
-                            backgroundColor={menuItem.backgroundColor || backgroundColor}
+                            fontColor={fontColor || menuItem.fontColor}
+                            backgroundColor={backgroundColor || menuItem.backgroundColor}
                             theme={menuItem.theme}
                         />
                     ))}
             </>
         );
-    }, [menu, menuItems, menuTitle, menuSubtitle]);
+    }, [menu, menuItems, menuTitle, menuSubtitle, iconColor, fontColor, backgroundColor]);
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
-            <TouchableWithoutFeedback onPress={(): void => openMenu()}>{avatar}</TouchableWithoutFeedback>
-            <BottomSheet show={showBottomSheet} dismissBottomSheet={(): void => closeMenu()}>
+            <TouchableWithoutFeedback onPress={(): void => openMenu()}>
+                <View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>
+            </TouchableWithoutFeedback>
+            <BottomSheet
+                show={showBottomSheet}
+                safeAreaColor={backgroundColor}
+                dismissBottomSheet={(): void => closeMenu()}
+            >
                 {getMenu()}
             </BottomSheet>
         </View>
