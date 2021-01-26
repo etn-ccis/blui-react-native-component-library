@@ -3,8 +3,14 @@ import { storiesOf } from '@storybook/react-native';
 import { InfoListItem, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import { text, boolean, withKnobs, color } from '@storybook/addon-knobs';
 import Leaf from '@pxblue/icons-svg/leaf.svg';
+import Temp from '@pxblue/icons-svg/temp.svg';
+import A from '@pxblue/icons-svg/grade_a.svg';
+import Device from '@pxblue/icons-svg/device.svg';
 import { framedRow } from '../../decorators';
 import * as Colors from '@pxblue/colors';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
+
+
 
 const notes = {
     notes:
@@ -12,6 +18,10 @@ const notes = {
 };
 
 const LeafIcon = wrapIcon({ IconClass: Leaf });
+const AlarmIcon = wrapIcon({ IconClass: MatIcon, name: 'alarm' });
+const TempIcon = wrapIcon({ IconClass: Temp });
+const DeviceIcon = wrapIcon({ IconClass: Device});
+const AIcon = wrapIcon({ IconClass: A });
 storiesOf('InfoListItem', module)
     .addDecorator(withKnobs)
     .addDecorator(framedRow)
@@ -33,8 +43,8 @@ storiesOf('InfoListItem', module)
                 title={'Info List Item'}
                 // TODO: make this work
                 // iconAlign={select('iconAlign', ['left', 'center', 'right'], 'left')}
-                IconClass={LeafIcon}
-                iconColor={color('iconColor', Colors.green[500])}
+                IconClass={AlarmIcon}
+                iconColor={color('iconColor', Colors.black[500])}
                 subtitle={'with an icon'}
             />
         ),
@@ -45,9 +55,12 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={LeafIcon}
-                subtitle={['this is a subtitle', 'and so is this']}
-                subtitleSeparator={text('subtitleSeparator', '__')}
+                IconClass={TempIcon}
+                subtitle={[
+                    <ChannelValue key={'temp1'} value={'50'} units={'°C'} />,
+                    <ChannelValue key={'temp2'} value={'55'} units={'°C'} />
+                ]}
+                subtitleSeparator={text('subtitleSeparator', '·')}
                 onPress={
                     boolean('action', true)
                         ? (): void => {
@@ -64,10 +77,10 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={LeafIcon}
+                IconClass={AIcon}
                 avatar={boolean('avatar', true)}
                 subtitle={'with an avatar and configurable status color'}
-                statusColor={color('statusColor', Colors.blue[700])}
+                statusColor={color('statusColor', Colors.green[700])}
             />
         ),
         notes
@@ -78,10 +91,10 @@ storiesOf('InfoListItem', module)
             <InfoListItem
                 title={'Info List Item'}
                 IconClass={LeafIcon}
-                iconColor={Colors.white[700]}
+                iconColor={Colors.black[500]}
                 subtitle={'With a configurable background color'}
-                fontColor={Colors.white[700]}
-                backgroundColor={color('backgroundColor', Colors.blue[500])}
+                fontColor={Colors.black[500]}
+                backgroundColor={color('backgroundColor', Colors.white[50])}
             />
         ),
         notes
@@ -91,8 +104,8 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={LeafIcon}
-                subtitle={'with a ChannelValue component as rightComponent'}
+                IconClass={DeviceIcon}
+                subtitle={'with a right component'}
                 rightComponent={
                     <ChannelValue
                         value={text('rightComponent.ChannelValue.value', '15')}
@@ -108,7 +121,7 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={text('title', 'This is a title')}
-                IconClass={LeafIcon}
+                IconClass={DeviceIcon}
                 subtitle={text('subtitle', 'this is a subtitle')}
                 info={text('info', 'this is a third line of text')}
                 onPress={
@@ -118,13 +131,13 @@ storiesOf('InfoListItem', module)
                           }
                         : undefined
                 }
-                rightComponent={<ChannelValue value={15} units={'A'} />}
+                chevron={boolean('chevron', true)}
                 avatar={boolean('avatar', false)}
                 // TODO: make this work
                 // iconAlign={select('iconAlign', ['left', 'center', 'right'], 'right')}
-                iconColor={color('iconColor', Colors.green[500])}
-                statusColor={color('statusColor', Colors.blue[700])}
-                fontColor={color('fontColor', Colors.blue[700])}
+                iconColor={color('iconColor', Colors.black[500])}
+                statusColor={color('statusColor', Colors.blue[500])}
+                fontColor={color('fontColor', Colors.black[700])}
                 backgroundColor={color('backgroundColor', Colors.white[50])}
             />
         ),
