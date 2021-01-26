@@ -2,7 +2,12 @@
 
 The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in.
 
-<!-- <img width="300" alt="User Menu component" src="./images/userMenu.png"> -->
+<div style="align-items: center; display:flex; justify-content: space-around">
+
+<img width="40%" alt="UserMenu Avatar" src="./images/userMenuAvatar.png">
+<img width="40%" alt="UserMenu Opened" src="./images/userMenuOpened.png">
+
+</div>
 
 ## Usage
 
@@ -16,13 +21,13 @@ import * as Colors from '@pxblue/colors';
 const VpnKeyIcon = wrapIcon({ IconClass: MatIcon, name: 'vpn-key', flip: false });
 const SettingsIcon = wrapIcon({ IconClass: MatIcon, name: 'settings', flip: false });
 const ExitToAppIcon = wrapIcon({ IconClass: MatIcon, name: 'exit-to-app', flip: false });
-...
+
 const menuItems: InfoListItemProps[] = [
     { title: 'Change Password', IconClass: VpnKeyIcon, onPress: (): void => {} },
     { title: 'Preferences', IconClass: SettingsIcon, onPress: (): void => {} },
     { title: 'Log Out', IconClass: ExitToAppIcon, onPress: (): void => {} },
 ];
-...
+
 <UserMenu
     menuTitle={'John Smith'}
     menuSubtitle={'j.smith@example.com'}
@@ -40,14 +45,14 @@ import * as Colors from '@pxblue/colors';
 ...
 const NumericOneBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-one', flip: false });
 const NumericTwoBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-two', flip: false });
-...
+
 const [menuClose, setMenuClose] = useState(false);
 
 const closeMenu = (): void => {
     setMenuClose(true);
     setTimeout((): void => setMenuClose(false), 0);
 };
-...
+
 const customMenu = (): JSX.Element => (
         <View>
             <InfoListItem
