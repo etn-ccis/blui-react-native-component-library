@@ -127,7 +127,9 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     return (
         <View style={[defaultStyles.root, styles.root]}>
             <TouchableWithoutFeedback onPress={(): void => openMenu()}>
-                <View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>
+                <View style={[defaultStyles.avatar, styles.avatar]} testID={'avatar'}>
+                    {avatar}
+                </View>
             </TouchableWithoutFeedback>
             <BottomSheet
                 show={showBottomSheet}

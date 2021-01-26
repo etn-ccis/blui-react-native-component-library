@@ -34,142 +34,115 @@ const customMenu = (): JSX.Element => (
             subtitle={'Custom Menu Subtitle'}
         />
         <Divider />
-        <InfoListItem
-            title={'Custom Menu Info List Item 1'}
-            IconClass={NumericOneBoxIcon}
-        />
-        <InfoListItem
-            title={'Custom Menu Info List Item 2'}
-            IconClass={NumericTwoBoxIcon}
-        />
+        <InfoListItem title={'Custom Menu Info List Item 1'} IconClass={NumericOneBoxIcon} />
+        <InfoListItem title={'Custom Menu Info List Item 2'} IconClass={NumericTwoBoxIcon} />
     </View>
 );
 
 storiesOf('UserMenu', module)
     .addDecorator(withKnobs)
-    .add(
-        'with basic usage',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menuItems={menuItems}
-                    avatar={<Avatar.Text label={text('Avatar.Text label', 'PX')} size={40} color={Colors.white[50]} />}
-                />
-            </View>
-        )
-    )
-    .add(
-        'with custom colors',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menuItems={menuItems}
-                    backgroundColor={color('backgroundColor', Colors.blue[500])}
-                    fontColor={color('fontColor', Colors.white[50])}
-                    iconColor={color('iconColor', Colors.white[50])}
-                    avatar={
-                        <Avatar.Text
-                            label={text('Avatar.Text label', 'PX')}
-                            size={40}
-                            color={color('Avatar.Text text color', Colors.white[50])}
-                            style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
-                        />
-                    }
-                />
-            </View>
-        )
-    )
-    .add(
-        'with icon avatar',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menuItems={menuItems}
-                    avatar={
-                        <Avatar.Icon
-                            icon="account-circle"
-                            size={40}
-                            color={Colors.white[50]}
-                            style={{ backgroundColor: Colors.red[500] }}
-                        />
-                    }
-                />
-            </View>
-        )
-    )
-    .add(
-        'with image avatar',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menuItems={menuItems}
-                    avatar={
-                        <Image
-                            source={avatarTestImage}
-                            style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: 40,
-                                resizeMode: 'contain',
-                                backgroundColor: Colors.green[500],
-                            }}
-                        />
-                    }
-                />
-            </View>
-        )
-    )
-    .add(
-        'with a menu header',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menuTitle={text('menuTitle', 'John Smith')}
-                    menuSubtitle={text('menuSubtitle', 'j.smith@email.com')}
-                    menuItems={menuItems}
-                    avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
-                />
-            </View>
-        )
-    )
-    .add(
-        'with custom menu',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menu={customMenu()}
-                    avatar={
-                        <Avatar.Icon
-                            icon="account-circle"
-                            size={40}
-                            color={Colors.white[50]}
-                            style={{ backgroundColor: Colors.red[500] }}
-                        />
-                    }
-                />
-            </View>
-        )
-    )
-    .add(
-        'with full config',
-        () => (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <UserMenu
-                    menuTitle={text('menuTitle', 'John Smith')}
-                    menuSubtitle={text('menuSubtitle', 'j.smith@email.com')}
-                    menuItems={menuItems}
-                    backgroundColor={color('backgroundColor', Colors.blue[500])}
-                    fontColor={color('fontColor', Colors.white[50])}
-                    iconColor={color('iconColor', Colors.white[50])}
-                    avatar={
-                        <Avatar.Text
-                            label={text('Avatar.Text label', 'PX')}
-                            size={40}
-                            color={color('Avatar.Text text color', Colors.white[50])}
-                            style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
-                        />
-                    }
-                />
-            </View>
-        )
-    );
+    .add('with basic usage', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menuItems={menuItems}
+                avatar={<Avatar.Text label={text('Avatar.Text label', 'PX')} size={40} color={Colors.white[50]} />}
+            />
+        </View>
+    ))
+    .add('with custom colors', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menuItems={menuItems}
+                backgroundColor={color('backgroundColor', Colors.blue[500])}
+                fontColor={color('fontColor', Colors.white[50])}
+                iconColor={color('iconColor', Colors.white[50])}
+                avatar={
+                    <Avatar.Text
+                        label={text('Avatar.Text label', 'PX')}
+                        size={40}
+                        color={color('Avatar.Text text color', Colors.white[50])}
+                        style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
+                    />
+                }
+            />
+        </View>
+    ))
+    .add('with icon avatar', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menuItems={menuItems}
+                avatar={
+                    <Avatar.Icon
+                        icon="account-circle"
+                        size={40}
+                        color={Colors.white[50]}
+                        style={{ backgroundColor: Colors.red[500] }}
+                    />
+                }
+            />
+        </View>
+    ))
+    .add('with image avatar', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menuItems={menuItems}
+                avatar={
+                    <Image
+                        source={avatarTestImage}
+                        style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: 40,
+                            resizeMode: 'contain',
+                            backgroundColor: Colors.green[500],
+                        }}
+                    />
+                }
+            />
+        </View>
+    ))
+    .add('with a menu header', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menuTitle={text('menuTitle', 'John Smith')}
+                menuSubtitle={text('menuSubtitle', 'j.smith@email.com')}
+                menuItems={menuItems}
+                avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
+            />
+        </View>
+    ))
+    .add('with custom menu', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menu={customMenu()}
+                avatar={
+                    <Avatar.Icon
+                        icon="account-circle"
+                        size={40}
+                        color={Colors.white[50]}
+                        style={{ backgroundColor: Colors.red[500] }}
+                    />
+                }
+            />
+        </View>
+    ))
+    .add('with full config', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <UserMenu
+                menuTitle={text('menuTitle', 'John Smith')}
+                menuSubtitle={text('menuSubtitle', 'j.smith@email.com')}
+                menuItems={menuItems}
+                backgroundColor={color('backgroundColor', Colors.blue[500])}
+                fontColor={color('fontColor', Colors.white[50])}
+                iconColor={color('iconColor', Colors.white[50])}
+                avatar={
+                    <Avatar.Text
+                        label={text('Avatar.Text label', 'PX')}
+                        size={40}
+                        color={color('Avatar.Text text color', Colors.white[50])}
+                        style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
+                    />
+                }
+            />
+        </View>
+    ));
