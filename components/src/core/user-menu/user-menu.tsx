@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
@@ -16,9 +16,12 @@ export type UserMenuProps = {
     // Custom menu to render in the bottomsheet
     menu?: JSX.Element;
     menuItems?: InfoListItemProps[];
-    menuClose?: boolean;
+    // Boolean to control the bottomsheet from parent component
+    menuOpen?: boolean;
     menuTitle?: string;
     menuSubtitle?: string;
+    // Function to toggle menuOpen prop from parent component
+    toggleMenu?: () => void;
     styles?: {
         root?: ViewStyle;
         avatar?: ViewStyle;
@@ -53,7 +56,8 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         menuTitle,
         menuSubtitle,
         menuItems,
-        menuClose = false,
+        menuOpen = false,
+        toggleMenu = (): void => {},
         styles = {},
     } = props;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
@@ -66,12 +70,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const closeMenu = (): void => {
         setShowBottomSheet(false);
     };
-
-    useEffect((): void => {
-        if (menuClose) {
-            closeMenu();
-        }
-    }, [menuClose]);
 
     const getMenu = useCallback((): JSX.Element => {
         if (menu) {
@@ -126,13 +124,16 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
-            <TouchableWithoutFeedback onPress={(): void => openMenu()} testID={'avatar'}>
+            <TouchableWithoutFeedback
+                onPress={menu ? (): void => toggleMenu() : (): void => openMenu()}
+                testID={'avatar'}
+            >
                 <View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>
             </TouchableWithoutFeedback>
             <BottomSheet
-                show={showBottomSheet}
+                show={menu ? menuOpen : showBottomSheet}
                 safeAreaColor={backgroundColor}
-                dismissBottomSheet={(): void => closeMenu()}
+                dismissBottomSheet={menu ? (): void => toggleMenu() : (): void => closeMenu()}
             >
                 {getMenu()}
             </BottomSheet>

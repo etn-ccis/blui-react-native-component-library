@@ -46,11 +46,10 @@ import * as Colors from '@pxblue/colors';
 const NumericOneBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-one', flip: false });
 const NumericTwoBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-two', flip: false });
 
-const [menuClose, setMenuClose] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
 
-const closeMenu = (): void => {
-    setMenuClose(true);
-    setTimeout((): void => setMenuClose(false), 0);
+const toggleMenu = (): void => {
+    setMenuOpen(!menuOpen);
 };
 
 const customMenu = (): JSX.Element => (
@@ -82,7 +81,8 @@ const customMenu = (): JSX.Element => (
 ...
 <UserMenu
     menu={customMenu()}
-    menuClose={menuClose}
+    menuOpen={menuOpen}
+    toggleMenu={toggleMenu()}
     avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
 />
 ```
@@ -91,17 +91,19 @@ const customMenu = (): JSX.Element => (
 
 <div style="overflow: auto">
 
-| Prop Name       | Description                                                 | Type                  | Required | Default             |
-| --------------- | ----------------------------------------------------------- | --------------------- | -------- | ------------------- |
-| avatar          | Avatar to be displayed as UserMenu bottomsheet trigger      | `JSX.Element`         | yes      |                     |
-| backgroundColor | Background color of the bottomsheet                         | `string`              | no       |                     |
-| fontColor       | Color of font for the bottomsheet header and menu items     | `string`              | no       |                     | 
-| iconColor       | Color of icons for the bottomsheet menu items               | `string`              | no       |                     | 
-| menu            | Custom menu to display                                      | `JSX.Element`         | no       |                     |
-| menuItems       | Menu items to display in the bottomsheet                    | `InfoListItemProps[]` | no       |                     |
-| menuClose       | Boolean used to trigger menu close when using a custom menu | `boolean`             | no       |                     |
-| menuTitle       | Title shown when bottomsheet is open                        | `string`              | no       |                     |
-| menuSubtitle    | Subtitle shown when bottomsheet is open                     | `string`              | no       |                     |
+| Prop Name       | Description                                                                         | Type                  | Required | Default             |
+| --------------- | ----------------------------------------------------------------------------------- | --------------------- | -------- | ------------------- |
+| avatar          | Avatar to be displayed as UserMenu bottomsheet trigger                              | `JSX.Element`         | yes      |                     |
+| backgroundColor | Background color of the bottomsheet                                                 | `string`              | no       |                     |
+| fontColor       | Color of font for the bottomsheet header and menu items                             | `string`              | no       |                     | 
+| iconColor       | Color of icons for the bottomsheet menu items                                       | `string`              | no       |                     | 
+| menu            | Custom menu to display                                                              | `JSX.Element`         | no       |                     |
+| menuItems       | Menu items to display in the bottomsheet                                            | `InfoListItemProps[]` | no       |                     |
+| menuOpen        | Boolean to show/hide the bottomsheet from parent component                          | `boolean`             | no       |                     |
+| menuTitle       | Title shown when bottomsheet is open                                                | `string`              | no       |                     |
+| menuSubtitle    | Subtitle shown when bottomsheet is open                                             | `string`              | no       |                     |
+| toggleMenu      | Function triggered on avatar click and on dismissBottomSheet when using custom menu | `() => void`          | no       |                     |
+
 </div>
 
 ### Styles
