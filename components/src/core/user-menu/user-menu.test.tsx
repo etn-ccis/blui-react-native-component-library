@@ -6,7 +6,7 @@ import { Avatar } from 'react-native-paper';
 describe('UserMenu', () => {
     it('should render avatar with correct label', () => {
         const userMenu = TestRenderer.create(<UserMenu avatar={<Avatar.Text label={'PX'} />} />).root;
-        let avatar: ReactTestInstance[] = userMenu.findAllByType(Avatar.Text);
+        const avatar: ReactTestInstance[] = userMenu.findAllByType(Avatar.Text);
         expect(avatar[0].props.label).toContain('PX');
     });
 });
