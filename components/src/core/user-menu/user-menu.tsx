@@ -83,7 +83,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         <InfoListItem
                             title={menuTitle || ''}
                             subtitle={menuSubtitle}
-                            leftComponent={<View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>}
+                            customIcon={<View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>}
                             fontColor={fontColor}
                             backgroundColor={backgroundColor}
                         />
@@ -94,28 +94,15 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                     menuItems.map((menuItem: InfoListItemProps, index: number) => (
                         <InfoListItem
                             key={index}
-                            title={menuItem.title}
-                            subtitle={menuItem.subtitle}
                             IconClass={menuItem.IconClass}
                             onPress={(): void => {
                                 closeMenu();
                                 if (menuItem.onPress) menuItem.onPress();
                             }}
-                            subtitleSeparator={menuItem.subtitleSeparator}
-                            info={menuItem.info}
-                            iconAlign={menuItem.iconAlign}
                             iconColor={iconColor || menuItem.iconColor}
-                            hidePadding={menuItem.hidePadding}
-                            avatar={menuItem.avatar}
-                            chevron={menuItem.chevron}
-                            dense={menuItem.dense}
-                            divider={menuItem.divider}
-                            leftComponent={menuItem.leftComponent}
-                            rightComponent={menuItem.rightComponent}
-                            statusColor={menuItem.statusColor}
                             fontColor={fontColor || menuItem.fontColor}
                             backgroundColor={backgroundColor || menuItem.backgroundColor}
-                            theme={menuItem.theme}
+                            {...menuItem}
                         />
                     ))}
             </>
@@ -133,7 +120,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
             <BottomSheet
                 show={menu ? menuOpen : showBottomSheet}
                 safeAreaColor={backgroundColor}
-                dismissBottomSheet={menu ? (): void => toggleMenu() : (): void => closeMenu()}
+                onClose={menu ? (): void => toggleMenu() : (): void => closeMenu()}
             >
                 {getMenu()}
             </BottomSheet>
