@@ -150,6 +150,9 @@ export type InfoListItemProps = ViewProps & {
     /** Specifies whether to show color background around the icon */
     avatar?: boolean;
 
+    //** Custom icon to render to the left of the title */
+    customIcon?: JSX.Element;
+
     /** Icon alignment when avatar prop is set to false */
     iconAlign?: IconAlign;
 
@@ -218,6 +221,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const {
         avatar,
         title,
+        customIcon,
         leftComponent,
         rightComponent,
         chevron,
@@ -312,9 +316,10 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             {...viewProps}
         >
             <View style={[defaultStyles.statusStripe, styles.statusStripe]} />
-            {leftComponent || IconClass || !hidePadding ? (
-                <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{leftComponent || getIcon()}</View>
+            {customIcon || IconClass || !hidePadding ? (
+                <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{customIcon || getIcon()}</View>
             ) : null}
+            {leftComponent}
             <View style={[defaultStyles.mainContent, styles.mainContent]}>
                 <Body1
                     style={[defaultStyles.title, styles.title]}

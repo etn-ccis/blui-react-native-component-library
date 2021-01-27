@@ -39,6 +39,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 | subtitleSeparator | Separator character for subtitle             | `string`                                           | no       | '·' ('\u00B7') |
 | info              | The text to show on the third line           | `string` \| `Array<React.ReactNode>`               | no       |                |
 | iconAlign         | Icon alignment when `avatar` is set to false | `'left'` \| `'center'` \| `'right'`                | no       | 'left'         |
+| customIcon        | A custom component to render for the icon    | `JSX.Element`                                      | no       |                |
 | IconClass         | A component to render for the icon           | `React.Component<{ size: number, color: string }>` | no       |                |
 | iconColor         | The color of the primary icon                | `string`                                           | no       |                |
 | hidePadding       | Remove left padding if no icon is used       | `boolean`                                          | no       | false          |
