@@ -266,7 +266,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         }
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
         const renderableSubtitleParts = subtitleParts.map((element) =>
-            renderableSubtitleComponent(element, Object.assign(defaultStyles.subtitle, styles.subtitle))
+            renderableSubtitleComponent(element, Object.assign({}, defaultStyles.subtitle, styles.subtitle))
         );
 
         return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
@@ -278,7 +278,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         }
         const infoParts = Array.isArray(info) ? [...info] : [info];
         const renderableInfoParts = infoParts.map((element) =>
-            renderableSubtitleComponent(element, Object.assign(defaultStyles.info, styles.info))
+            renderableSubtitleComponent(element, Object.assign({}, defaultStyles.info, styles.info))
         );
 
         return withKeys(separate(renderableInfoParts, subtitleSeparator));

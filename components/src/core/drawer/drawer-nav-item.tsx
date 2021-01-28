@@ -112,6 +112,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     <InfoListItem
                         dense
                         {...navItem}
+                        divider={navItem.divider ? 'full' : undefined}
                         rightComponent={
                             (navItem.rightComponent || rightIcon) && (
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -130,7 +131,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                         styles={{
                             root: Object.assign(
                                 {
-                                    paddingLeft: 32 * (depth > 1 ? depth - 1 : 0),
+                                    paddingLeft: depth > 0 ? depth * 32 + 24 : 0,
                                 },
                                 iliRoot
                             ),

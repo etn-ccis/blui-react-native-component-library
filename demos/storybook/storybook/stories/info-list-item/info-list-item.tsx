@@ -10,8 +10,6 @@ import { framedRow } from '../../decorators';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
-
-
 const notes = {
     notes:
         'The borders are NOT part of the component; they are provided for framing only. Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
@@ -20,7 +18,7 @@ const notes = {
 const LeafIcon = wrapIcon({ IconClass: Leaf });
 const AlarmIcon = wrapIcon({ IconClass: MatIcon, name: 'alarm' });
 const TempIcon = wrapIcon({ IconClass: Temp });
-const DeviceIcon = wrapIcon({ IconClass: Device});
+const DeviceIcon = wrapIcon({ IconClass: Device });
 const AIcon = wrapIcon({ IconClass: A });
 storiesOf('InfoListItem', module)
     .addDecorator(withKnobs)
@@ -58,7 +56,7 @@ storiesOf('InfoListItem', module)
                 IconClass={TempIcon}
                 subtitle={[
                     <ChannelValue key={'temp1'} value={'50'} units={'°C'} />,
-                    <ChannelValue key={'temp2'} value={'55'} units={'°C'} />
+                    <ChannelValue key={'temp2'} value={'55'} units={'°C'} />,
                 ]}
                 subtitleSeparator={text('subtitleSeparator', '·')}
                 onPress={
@@ -120,10 +118,10 @@ storiesOf('InfoListItem', module)
         'with full config',
         () => (
             <InfoListItem
-                title={text('title', 'This is a title')}
+                title={text('title', 'Info List Item')}
                 IconClass={DeviceIcon}
-                subtitle={text('subtitle', 'this is a subtitle')}
-                info={text('info', 'this is a third line of text')}
+                subtitle={text('subtitle', 'with all customizable properties')}
+                info={text('info', 'more info...')}
                 onPress={
                     boolean('action', true)
                         ? (): void => {

@@ -9,16 +9,17 @@ import {
     DrawerSubheader,
     H6,
     InfoListItem,
+    ListItemTag,
     NavItem,
-    NestedNavItem,
     Subtitle1,
     wrapIcon,
 } from '@pxblue/react-native-components';
 import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
-import _Battery from '@pxblue/icons-svg/battery.svg';
-import _Humidity from '@pxblue/icons-svg/moisture.svg';
+
+import _Device from '@pxblue/icons-svg/device.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
 import { IconButton } from 'react-native-paper';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Image, View } from 'react-native';
 import * as Colors from '@pxblue/colors';
@@ -26,74 +27,176 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const farmBgImage = require('../assets/farm.jpg');
 const eatonLogo = require('../assets/eatonLogo.png');
-const Battery = wrapIcon({ IconClass: _Battery });
-const Humidity = wrapIcon({ IconClass: _Humidity });
+const Device = wrapIcon({ IconClass: _Device });
 const Temp = wrapIcon({ IconClass: _Temp });
-const Clock = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'clock-outline' });
+const Today = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'calendar-today' });
+const Person = wrapIcon({ IconClass: MaterialIcon, name: 'person' });
+const Settings = wrapIcon({ IconClass: MaterialIcon, name: 'settings' });
+const Group = wrapIcon({ IconClass: MaterialIcon, name: 'group' });
+const Dashboard = wrapIcon({ IconClass: MaterialIcon, name: 'dashboard' });
+const TOC = wrapIcon({ IconClass: MaterialIcon, name: 'toc' });
+const PinDrop = wrapIcon({ IconClass: MaterialIcon, name: 'pin-drop' });
+const AddPhoto = wrapIcon({ IconClass: MaterialIcon, name: 'add-a-photo' });
+const VanPassenger = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'van-passenger' });
+const MenuBook = wrapIcon({ IconClass: MaterialIcon, name: 'menu-book' });
+const Gavel = wrapIcon({ IconClass: MaterialIcon, name: 'gavel' });
+const Accessibility = wrapIcon({ IconClass: MaterialIcon, name: 'accessibility' });
+const NotificationsActive = wrapIcon({ IconClass: MaterialIcon, name: 'notifications-active' });
 
 export const navItems1: NavItem[] = [
     {
         title: 'Identity Management',
         itemID: 'g1i1',
-        icon: Battery,
+        icon: Person,
     },
     {
         title: 'Calendar',
         itemID: 'g1i2',
-        icon: Humidity,
+        icon: Today,
     },
     {
         title: 'Accessibility',
         itemID: 'g1i3',
-        icon: Clock,
+        icon: Accessibility,
+    },
+    {
+        title: 'Notifications',
+        itemID: 'g1i4',
+        icon: NotificationsActive,
     },
 ];
 
 export const navItems2: NavItem[] = [
     {
-        title: 'Devices',
+        title: 'Settings',
         itemID: 'g2i1',
-        icon: Battery,
+        icon: Settings,
     },
     {
-        title: 'Alarms',
+        title: 'Legal',
         itemID: 'g2i2',
-        icon: Temp,
+        icon: Gavel,
     },
 ];
 
-const nestedNavItems: NestedNavItem[] = [
+const nestedNavGroup = [
     {
-        itemID: 'nested-1',
-        title: 'Account',
-    },
-    {
-        itemID: 'nested-2',
-        title: 'Settings',
-    },
-    {
-        itemID: 'nested-3',
-        title: 'Incidents',
+        title: 'User Guide',
+        itemID: 'item-1',
+        icon: MenuBook,
         items: [
             {
-                itemID: 'deep-1',
-                title: 'Make a Claim',
+                itemID: 'nested-1',
+                title: 'Getting Started',
+                subtitle: 'Introduction to Eaton',
             },
             {
-                itemID: 'deep-2',
-                title: 'History',
+                itemID: 'nested-2',
+                title: 'Tutorials',
+                items: [
+                    {
+                        itemID: 'deep-0',
+                        title: 'For Developers',
+                    },
+                    {
+                        itemID: 'deep-1',
+                        title: 'For Designers',
+                        items: [
+                            {
+                                itemID: 'deep-deep-0',
+                                title: 'Component Library',
+                            },
+                            {
+                                itemID: 'deep-deep-1',
+                                title: 'Typography Rules',
+                            },
+                            {
+                                itemID: 'deep-deep-2',
+                                title: 'Theme Rules',
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                itemID: 'nested-3',
+                title: 'Environment Setup',
             },
         ],
     },
-];
-const nestedNavGroup = [
     {
-        title: 'ID Management',
-        itemID: 'item-1',
-        items: nestedNavItems,
+        title: 'Community',
+        itemID: 'item-2',
+        icon: Group,
+        items: [
+            {
+                itemID: 'nested-4',
+                title: 'License',
+            },
+            {
+                itemID: 'nested-5',
+                title: 'Contribute',
+                items: [
+                    {
+                        itemID: 'deep-2',
+                        title: 'Hall of Fame',
+                    },
+                    {
+                        itemID: 'deep-3',
+                        title: 'Contributing Guide',
+                    },
+                ],
+            },
+        ],
     },
-    navItems1[1],
     navItems1[2],
+    navItems1[3],
+];
+
+const fullConfigGroup = [
+    {
+        title: 'Overview',
+        itemID: 'item-1',
+        icon: Dashboard,
+        statusColor: Colors.green[500],
+        items: [
+            {
+                itemID: 'nested-1',
+                title: 'Monthly Report',
+            },
+            {
+                itemID: 'nested-2',
+                title: 'Annual Report',
+            },
+        ],
+    },
+    {
+        title: 'Timeline',
+        itemID: 'item-2',
+        icon: TOC,
+    },
+    {
+        title: 'Locations',
+        itemID: 'item-3',
+        icon: PinDrop,
+    },
+    {
+        title: 'Devices',
+        subtitle: '5 new warnings',
+        itemID: 'item-4',
+        icon: Device,
+        statusColor: Colors.yellow[500],
+    },
+    {
+        title: 'Photos',
+        itemID: 'item-5',
+        icon: AddPhoto,
+    },
+    {
+        title: 'Schedule',
+        itemID: 'item-6',
+        icon: VanPassenger,
+    },
 ];
 
 const drawerDecorator = (storyFn: any): any => (
@@ -128,9 +231,12 @@ storiesOf('Drawer', module)
                 backgroundImage={farmBgImage}
                 icon={menuIcon}
                 titleContent={
-                    <View style={{ zIndex: 1, paddingLeft: 20, paddingTop: 10 }}>
-                        <Subtitle1 style={{ color: iconColor }}>Customizable</Subtitle1>
-                        <H6 style={{ marginTop: -5, color: iconColor }}>Header Content</H6>
+                    <View style={{ zIndex: 1, paddingLeft: 20, paddingTop: 8, flex: 1, flexDirection: 'row' }}>
+                        <View style={{ flex: 1 }}>
+                            <Subtitle1 style={{ color: iconColor }}>Customizable</Subtitle1>
+                            <H6 style={{ marginTop: -5, color: iconColor }}>Header Content</H6>
+                        </View>
+                        <ListItemTag label={'V1.0.3'} style={{ marginRight: 8 }} />
                     </View>
                 }
             />
@@ -145,6 +251,7 @@ storiesOf('Drawer', module)
             <DrawerSubheader divider={boolean('divider', true)}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
                     <InfoListItem
+                        dense
                         title={'Alerts'}
                         subtitle={'4 overheating devices'}
                         iconColor={Colors.white[50]}
@@ -161,16 +268,21 @@ storiesOf('Drawer', module)
     .add(
         'with multiple DrawerNavGroups', // TODO: Can this done using a Spacer component, like in React comp library?
         () => {
-            const spacer = boolean('Add Spacer', false);
+            const spacer = boolean('Add Spacer', true);
             return (
                 <Drawer>
                     <DrawerHeader title={'Drawer'} subtitle={'with multiple NavGroups'} icon={menuIcon} />
                     <DrawerBody>
-                        <DrawerNavGroup title={text('NavGroup 1 title', 'NavGroup 1')} items={navItems1} />
+                        <DrawerNavGroup title={text('NavGroup 1 title', 'First DrawerNavGroup')} items={navItems1} />
                         {!spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
                     </DrawerBody>
                     <DrawerFooter>
-                        {spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
+                        {spacer && (
+                            <DrawerNavGroup
+                                title={text('NavGroup 2 title', 'Second DrawerNavGroup')}
+                                items={navItems2}
+                            />
+                        )}
                     </DrawerFooter>
                 </Drawer>
             );
@@ -181,6 +293,7 @@ storiesOf('Drawer', module)
             <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
             <DrawerBody>
                 <DrawerNavGroup
+                    divider={boolean('divider', false)}
                     nestedDivider={boolean('nestedDivider', false)}
                     nestedBackgroundColor={color('nestedBackgroundColor', Colors.white[200])}
                     title={'Multi-Level Navigation Group'}
@@ -209,35 +322,35 @@ storiesOf('Drawer', module)
         const footer = 'DrawerFooter';
         return (
             <Drawer
-                activeItemFontColor={color('activeItemFontColor', Colors.red[800], drawer)}
-                activeItemIconColor={color('activeItemIconColor', Colors.red[800], drawer)}
+                activeItemFontColor={color('activeItemFontColor', Colors.blue[500], drawer)}
+                activeItemIconColor={color('activeItemIconColor', Colors.blue[500], drawer)}
                 activeItemBackgroundColor={color('activeItemBackgroundColor', Colors.blue[50], drawer)}
                 backgroundColor={color('backgroundColor', Colors.white[50], drawer)}
-                itemFontColor={color('itemFontColor', Colors.blue[800], drawer)}
-                itemIconColor={color('itemIconColor', Colors.blue[800], drawer)}
+                itemFontColor={color('itemFontColor', Colors.black[500], drawer)}
+                itemIconColor={color('itemIconColor', Colors.black[500], drawer)}
                 divider={boolean('divider', false, drawer)}
                 chevron={boolean('chevron', false, drawer)}
                 activeItemBackgroundShape={
                     boolean(`square activeItemBackgroundShape`, true, drawer) ? 'square' : 'round'
                 }
-                activeItem={'g1i2'}
+                activeItem={'item-3'}
             >
                 <DrawerHeader
                     title={text('title', 'Header Title', header)}
                     subtitle={text('subtitle', 'Header subtitle', header)}
-                    backgroundImage={boolean('Show Background Image', true, header) ? farmBgImage : undefined}
+                    backgroundImage={boolean('Show Background Image', false, header) ? farmBgImage : undefined}
                     backgroundColor={color('backgroundColor', Colors.blue[500], header)}
                     fontColor={color('fontColor', Colors.white[50], header)}
                     icon={menuIcon}
                 />
                 <DrawerBody>
                     <DrawerNavGroup
-                        items={nestedNavGroup}
-                        nestedDivider={boolean('nestedDivider', true, navGroup)}
+                        items={fullConfigGroup}
+                        nestedDivider={boolean('nestedDivider', false, navGroup)}
                         nestedBackgroundColor={color('nestedBackgroundColor', Colors.red[50], navGroup)}
-                        title={text('NavGroup1 title', 'Nav Group 1', navGroup)}
+                        title={text('NavGroup1 title', 'NavGroup 1', navGroup)}
                     />
-                    <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'Nav Group 2', navGroup)} />
+                    <DrawerNavGroup items={navItems2} title={text('NavGroup2 title', 'NavGroup 2', navGroup)} />
                 </DrawerBody>
                 <DrawerFooter divider={boolean('divider', true, footer)}>
                     <View style={{ padding: 16, backgroundColor: 'white', alignItems: 'center' }}>

@@ -51,9 +51,13 @@ storiesOf('ChannelValue', module)
         'with fontSize',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ChannelValue value={'123'} units={'hz'} fontSize={number('fontSize', 48)}
-                              IconClass={WrappedTrending}
-                              IconProps={{ color: Colors.red[500] }}/>
+                <ChannelValue
+                    value={'123'}
+                    units={'hz'}
+                    fontSize={number('fontSize', 48)}
+                    IconClass={WrappedTrending}
+                    IconProps={{ color: Colors.red[500] }}
+                />
             </View>
         ),
         notes
