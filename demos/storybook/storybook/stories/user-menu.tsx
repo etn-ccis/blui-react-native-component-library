@@ -29,12 +29,13 @@ const CustomMenuComponent: React.FC = () => {
     const customMenu = (): JSX.Element => (
         <View>
             <InfoListItem
-                customIcon={
+                hidePadding
+                leftComponent={
                     <Avatar.Icon
                         icon="account-circle"
                         size={40}
                         color={Colors.white[50]}
-                        style={{ backgroundColor: Colors.red[500] }}
+                        style={{ backgroundColor: Colors.red[500], marginLeft: 16 }}
                     />
                 }
                 title={'Custom Menu Title'}

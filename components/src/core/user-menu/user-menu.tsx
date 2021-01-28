@@ -64,7 +64,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const defaultStyles = useStyles(theme);
 
     const openMenu = (): void => {
-        setShowBottomSheet(true);
+        if (menuItems) setShowBottomSheet(true);
     };
 
     const closeMenu = (): void => {
@@ -81,9 +81,12 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 {menuTitle && (
                     <>
                         <InfoListItem
+                            hidePadding
                             title={menuTitle || ''}
                             subtitle={menuSubtitle}
-                            customIcon={<View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>}
+                            leftComponent={
+                                <View style={[defaultStyles.avatar, styles.avatar, { marginLeft: 16 }]}>{avatar}</View>
+                            }
                             fontColor={fontColor}
                             backgroundColor={backgroundColor}
                         />
@@ -93,6 +96,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 {menuItems &&
                     menuItems.map((menuItem: InfoListItemProps, index: number) => (
                         <InfoListItem
+                            {...menuItem}
                             key={index}
                             IconClass={menuItem.IconClass}
                             onPress={(): void => {
@@ -102,7 +106,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             iconColor={iconColor || menuItem.iconColor}
                             fontColor={fontColor || menuItem.fontColor}
                             backgroundColor={backgroundColor || menuItem.backgroundColor}
-                            {...menuItem}
                         />
                     ))}
             </>
