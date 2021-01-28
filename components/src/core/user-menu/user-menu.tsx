@@ -76,7 +76,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         <InfoListItem
                             {...menuItem}
                             key={index}
-                            IconClass={menuItem.IconClass}
                             onPress={(): void => {
                                 closeMenu();
                                 if (menuItem.onPress) menuItem.onPress();

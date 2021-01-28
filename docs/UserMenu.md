@@ -11,8 +11,6 @@ The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically us
 
 ## Usage
 
-### Standard Usage
-
 ```tsx
 import { UserMenu, InfoListItemProps, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -32,57 +30,6 @@ const menuItems: InfoListItemProps[] = [
     menuTitle={'John Smith'}
     menuSubtitle={'j.smith@example.com'}
     menuItems={menuItems}
-    avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
-/>
-```
-
-### Usage with Custom Menu
-
-```tsx
-import { UserMenu, InfoListItemProps, wrapIcon } from '@pxblue/react-native-components';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import * as Colors from '@pxblue/colors';
-...
-const NumericOneBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-one', flip: false });
-const NumericTwoBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-two', flip: false });
-
-const [menuOpen, setMenuOpen] = useState(false);
-
-const toggleMenu = (): void => {
-    setMenuOpen(!menuOpen);
-};
-
-const customMenu = (): JSX.Element => (
-        <View>
-            <InfoListItem
-                leftComponent={
-                    <Avatar.Text
-                        label={'PX'}
-                        size={40}
-                        color={Colors.white[50]}
-                    />
-                }
-                title={'Custom Menu Title'}
-                subtitle={'Custom Menu Subtitle'}
-            />
-            <Divider />
-            <InfoListItem
-                title={'Custom Menu Info List Item 1'}
-                IconClass={NumericOneBoxIcon}
-                onPress={(): void => closeMenu()}
-            />
-            <InfoListItem
-                title={'Custom Menu Info List Item 2'}
-                IconClass={NumericTwoBoxIcon}
-                onPress={(): void => closeMenu()}
-            />
-        </View>
-    );
-...
-<UserMenu
-    menu={customMenu()}
-    menuOpen={menuOpen}
-    toggleMenu={toggleMenu()}
     avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
 />
 ```
