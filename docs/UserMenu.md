@@ -99,10 +99,8 @@ const customMenu = (): JSX.Element => (
 | iconColor       | Color of icons for the bottomsheet menu items                                        | `string`              | no       |                     | 
 | menu            | Custom menu to display                                                               | `JSX.Element`         | no       |                     |
 | menuItems       | Menu items to display in the bottomsheet                                             | `InfoListItemProps[]` | no       |                     |
-| menuOpen        | Boolean to show/hide the bottomsheet from parent component                           | `boolean`             | no       |                     |
 | menuTitle       | Title shown when bottomsheet is open                                                 | `string`              | no       |                     |
 | menuSubtitle    | Subtitle shown when bottomsheet is open                                              | `string`              | no       |                     |
-| toggleMenu      | Function triggered on avatar click and on closing BottomSheet when using custom menu | `() => void`          | no       |                     |
 
 </div>
 

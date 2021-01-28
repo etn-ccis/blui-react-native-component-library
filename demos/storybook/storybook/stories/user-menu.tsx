@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Image, View } from 'react-native';
-import { InfoListItem, InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
-import { text, withKnobs, color } from '@storybook/addon-knobs';
+import { InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
+import { text, withKnobs, color, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { Avatar, Divider } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 const VpnKeyIcon = wrapIcon({ IconClass: MatIcon, name: 'vpn-key', flip: false });
 const SettingsIcon = wrapIcon({ IconClass: MatIcon, name: 'settings', flip: false });
 const ExitToAppIcon = wrapIcon({ IconClass: MatIcon, name: 'exit-to-app', flip: false });
-const NumericOneBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-one', flip: false });
-const NumericTwoBoxIcon = wrapIcon({ IconClass: MatIcon, name: 'looks-two', flip: false });
 const avatarTestImage = require('../assets/test-avatar.png');
 
 const menuItems: InfoListItemProps[] = [
@@ -18,61 +16,6 @@ const menuItems: InfoListItemProps[] = [
     { title: 'Preferences', IconClass: SettingsIcon },
     { title: 'Log Out', IconClass: ExitToAppIcon },
 ];
-
-const CustomMenuComponent: React.FC = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const closeMenu = (): void => {
-        setMenuOpen(false);
-    };
-
-    const customMenu = (): JSX.Element => (
-        <View>
-            <InfoListItem
-                hidePadding
-                leftComponent={
-                    <Avatar.Icon
-                        icon="account-circle"
-                        size={40}
-                        color={Colors.white[50]}
-                        style={{ backgroundColor: Colors.red[500], marginLeft: 16 }}
-                    />
-                }
-                title={'Custom Menu Title'}
-                subtitle={'Custom Menu Subtitle'}
-            />
-            <Divider />
-            <InfoListItem
-                title={'Custom Menu Info List Item 1'}
-                IconClass={NumericOneBoxIcon}
-                onPress={(): void => closeMenu()}
-            />
-            <InfoListItem
-                title={'Custom Menu Info List Item 2'}
-                IconClass={NumericTwoBoxIcon}
-                onPress={(): void => closeMenu()}
-            />
-        </View>
-    );
-
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <UserMenu
-                menu={customMenu()}
-                menuOpen={menuOpen}
-                toggleMenu={(): void => setMenuOpen(!menuOpen)}
-                avatar={
-                    <Avatar.Icon
-                        icon="account-circle"
-                        size={40}
-                        color={Colors.white[50]}
-                        style={{ backgroundColor: Colors.red[500] }}
-                    />
-                }
-            />
-        </View>
-    );
-};
 
 storiesOf('UserMenu', module)
     .addDecorator(withKnobs)
@@ -108,7 +51,7 @@ storiesOf('UserMenu', module)
                 menuItems={menuItems}
                 avatar={
                     <Avatar.Icon
-                        icon="account-circle"
+                        icon={select('Avatar.Icon icon', ['account-circle', 'face', 'account-group'], 'account-circle')}
                         size={40}
                         color={Colors.white[50]}
                         style={{ backgroundColor: Colors.red[500] }}
@@ -146,7 +89,6 @@ storiesOf('UserMenu', module)
             />
         </View>
     ))
-    .add('with custom menu', () => <CustomMenuComponent />)
     .add('with full config', () => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <UserMenu

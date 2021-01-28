@@ -13,15 +13,9 @@ export type UserMenuProps = {
     fontColor?: string;
     // Color of icons in the bottomsheet
     iconColor?: string;
-    // Custom menu to render in the bottomsheet
-    menu?: JSX.Element;
     menuItems?: InfoListItemProps[];
-    // Boolean to control the bottomsheet from parent component
-    menuOpen?: boolean;
     menuTitle?: string;
     menuSubtitle?: string;
-    // Function to toggle menuOpen prop from parent component
-    toggleMenu?: () => void;
     styles?: {
         root?: ViewStyle;
         avatar?: ViewStyle;
@@ -47,19 +41,7 @@ const useStyles = (
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const theme = useTheme();
-    const {
-        avatar,
-        backgroundColor,
-        fontColor,
-        iconColor,
-        menu,
-        menuTitle,
-        menuSubtitle,
-        menuItems,
-        menuOpen = false,
-        toggleMenu = (): void => {},
-        styles = {},
-    } = props;
+    const { avatar, backgroundColor, fontColor, iconColor, menuTitle, menuSubtitle, menuItems, styles = {} } = props;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const defaultStyles = useStyles(theme);
 
@@ -71,12 +53,8 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         setShowBottomSheet(false);
     };
 
-    const getMenu = useCallback((): JSX.Element => {
-        if (menu) {
-            return menu;
-        }
-
-        return (
+    const getMenu = useCallback(
+        (): JSX.Element => (
             <>
                 {menuTitle && (
                     <>
@@ -109,22 +87,16 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         />
                     ))}
             </>
-        );
-    }, [menu, menuItems, menuTitle, menuSubtitle, iconColor, fontColor, backgroundColor]);
+        ),
+        [menuItems, menuTitle, menuSubtitle, iconColor, fontColor, backgroundColor]
+    );
 
     return (
         <View style={[defaultStyles.root, styles.root]}>
-            <TouchableWithoutFeedback
-                onPress={menu ? (): void => toggleMenu() : (): void => openMenu()}
-                testID={'avatar'}
-            >
+            <TouchableWithoutFeedback onPress={(): void => openMenu()} testID={'avatar'}>
                 <View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>
             </TouchableWithoutFeedback>
-            <BottomSheet
-                show={menu ? menuOpen : showBottomSheet}
-                safeAreaColor={backgroundColor}
-                onClose={menu ? (): void => toggleMenu() : (): void => closeMenu()}
-            >
+            <BottomSheet show={showBottomSheet} backgroundColor={backgroundColor} onClose={(): void => closeMenu()}>
                 {getMenu()}
             </BottomSheet>
         </View>
