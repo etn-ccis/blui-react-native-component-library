@@ -4,7 +4,7 @@
 
 ### Added
 -   `<MobileStepper>` component for moving between pages.
--   `<UserMenu>` to display an avatar that opens up a bottomsheet menu.
+-   `<UserMenu>` component to display an avatar that opens up a bottomsheet menu.
 
 ### Changed
 -   Updated styles for the `<Drawer>`.
