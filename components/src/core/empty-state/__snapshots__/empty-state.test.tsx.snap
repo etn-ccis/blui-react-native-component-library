@@ -138,6 +138,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
           </View>
           <Text
             numberOfLines={1}
+            selectable={false}
             style={
               Array [
                 Object {
@@ -541,6 +542,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
           </View>
           <Text
             numberOfLines={1}
+            selectable={false}
             style={
               Array [
                 Object {
