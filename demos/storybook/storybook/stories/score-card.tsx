@@ -46,86 +46,81 @@ storiesOf('ScoreCard', module)
             <Body1>Body Content</Body1>
         </ScoreCard>
     ))
-    .add('with actions', () => {
-        const actionLimit = number('actionLimit', 3, {
-            range: true,
-            min: 0,
-            max: 6,
-            step: 1,
-        });
-        return (
-            <ScoreCard
-                headerTitle="Substation 3"
-                headerSubtitle="High Humidity Alarm"
-                headerInfo="4 Devices"
-                headerColor={Colors.blue[500]}
-                headerFontColor={Colors.white[50]}
-                headerBackgroundImage={backgroundImage}
-                styles={{
-                    root: { maxHeight: 220 },
-                    body: { flex: 1 },
-                }}
-                actionItems={[
-                    {
-                        icon: SearchIcon,
-                        onPress: (): void => {
-                            /* do nothing */
-                        },
+    .add('with actions', () => (
+        <ScoreCard
+            headerTitle="Substation 3"
+            headerSubtitle="High Humidity Alarm"
+            headerInfo="4 Devices"
+            headerColor={Colors.blue[500]}
+            headerFontColor={Colors.white[50]}
+            headerBackgroundImage={backgroundImage}
+            styles={{
+                root: { maxHeight: 220 },
+                body: { flex: 1 },
+            }}
+            actionItems={[
+                {
+                    icon: MoreIcon,
+                    onPress: (): void => {
+                        /* do nothing */
                     },
-                    {
-                        icon: MailIcon,
-                        onPress: (): void => {
-                            /* do nothing */
-                        },
+                },
+                {
+                    icon: SearchIcon,
+                    onPress: (): void => {
+                        /* do nothing */
                     },
-                    {
-                        icon: NotificationsIcon,
-                        onPress: (): void => {
-                            /* do nothing */
-                        },
+                },
+                {
+                    icon: MailIcon,
+                    onPress: (): void => {
+                        /* do nothing */
                     },
-                    {
-                        icon: ListAltIcon,
-                        onPress: (): void => {
-                            /* do nothing */
-                        },
+                },
+                {
+                    icon: NotificationsIcon,
+                    onPress: (): void => {
+                        /* do nothing */
                     },
-                    {
-                        icon: CloudIcon,
-                        onPress: (): void => {
-                            /* do nothing */
-                        },
+                },
+                {
+                    icon: ListAltIcon,
+                    onPress: (): void => {
+                        /* do nothing */
                     },
-                ]
-                    .slice(0, Math.max(actionLimit - 1, 0))
-                    .concat(
-                        actionLimit > 0
-                            ? [
-                                  {
-                                      icon: MoreIcon,
-                                      onPress: (): void => {
-                                          /* do nothing */
-                                      },
-                                  },
-                              ]
-                            : []
-                    )}
-                actionRow={
-                    <InfoListItem
-                        title={'View Location'}
-                        chevron
-                        onPress={(): void => {
-                            /* do nothing */
-                        }}
-                        hidePadding
-                        dense
-                    />
-                }
-            >
-                <Body1>Body Content</Body1>
-            </ScoreCard>
-        );
-    })
+                },
+                {
+                    icon: CloudIcon,
+                    onPress: (): void => {
+                        /* do nothing */
+                    },
+                },
+            ]
+                .slice(
+                    0,
+                    number('actionLimit', 3, {
+                        range: true,
+                        min: 0,
+                        max: 6,
+                        step: 1,
+                    })
+                )
+                .reverse()}
+            actionRow={
+                <InfoListItem
+                    title={'View Location'}
+                    chevron
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                    hidePadding
+                    dense
+                />
+            }
+        >
+            <Body1>Body Content</Body1>
+        </ScoreCard>
+    ))
     .add('with heroes', () => {
         const heroCount = number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 });
         return (
@@ -269,12 +264,6 @@ storiesOf('ScoreCard', module)
         </ScoreCard>
     ))
     .add('with full config', () => {
-        const actionLimit = number('actionLimit', 3, {
-            range: true,
-            min: 0,
-            max: 2,
-            step: 1,
-        });
         const heroCount = number('Number of Heroes', 1, { range: true, min: 0, max: 3, step: 1 });
         return (
             <ScoreCard
@@ -290,6 +279,12 @@ storiesOf('ScoreCard', module)
                 }}
                 actionItems={[
                     {
+                        icon: MoreIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
+                    },
+                    {
                         icon: SearchIcon,
                         onPress: (): void => {
                             /* do nothing */
@@ -302,19 +297,16 @@ storiesOf('ScoreCard', module)
                         },
                     },
                 ]
-                    .slice(0, Math.max(actionLimit - 1, 0))
-                    .concat(
-                        actionLimit > 0
-                            ? [
-                                  {
-                                      icon: MoreIcon,
-                                      onPress: (): void => {
-                                          /* do nothing */
-                                      },
-                                  },
-                              ]
-                            : []
-                    )}
+                    .slice(
+                        0,
+                        number('actionLimit', 3, {
+                            range: true,
+                            min: 0,
+                            max: 2,
+                            step: 1,
+                        })
+                    )
+                    .reverse()}
                 badgeOffset={boolean('badgeOffset', true) ? -55 : 0}
                 badge={
                     <HeroBanner style={{ flex: 0, minWidth: heroCount * 90, justifyContent: 'flex-end' }}>
