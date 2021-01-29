@@ -13,12 +13,13 @@ export type UserMenuProps = {
     fontColor?: string;
     // Color of icons in the bottomsheet
     iconColor?: string;
-    menuItems?: InfoListItemProps[];
+    menuItems: InfoListItemProps[];
     menuTitle?: string;
     menuSubtitle?: string;
     styles?: {
         root?: ViewStyle;
         avatar?: ViewStyle;
+        bottomsheet?: ViewStyle;
     };
 };
 
@@ -27,6 +28,7 @@ const useStyles = (
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     avatar: ViewStyle;
+    bottomsheet: ViewStyle;
 }> =>
     StyleSheet.create({
         root: {
@@ -37,6 +39,7 @@ const useStyles = (
             height: 40,
             borderRadius: 40,
         },
+        bottomsheet: {},
     });
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
@@ -91,13 +94,22 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     );
 
     return (
-        <View style={[defaultStyles.root, styles.root]}>
-            <TouchableWithoutFeedback onPress={(): void => openMenu()} testID={'avatar'}>
-                <View style={[defaultStyles.avatar, styles.avatar]}>{avatar}</View>
+        <>
+            <TouchableWithoutFeedback
+                onPress={(): void => openMenu()}
+                testID={'avatar'}
+                style={[defaultStyles.root, styles.root]}
+            >
+                {avatar}
             </TouchableWithoutFeedback>
-            <BottomSheet show={showBottomSheet} backgroundColor={backgroundColor} onClose={(): void => closeMenu()}>
+            <BottomSheet
+                show={showBottomSheet}
+                backgroundColor={backgroundColor}
+                onClose={(): void => closeMenu()}
+                styles={{ root: styles.bottomsheet }}
+            >
                 {getMenu()}
             </BottomSheet>
-        </View>
+        </>
     );
 };

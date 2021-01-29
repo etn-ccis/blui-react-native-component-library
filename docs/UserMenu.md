@@ -12,25 +12,17 @@ The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically us
 ## Usage
 
 ```tsx
-import { UserMenu, InfoListItemProps, wrapIcon } from '@pxblue/react-native-components';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import * as Colors from '@pxblue/colors';
+import { UserMenu } from '@pxblue/react-native-components';
 ...
-const VpnKeyIcon = wrapIcon({ IconClass: MatIcon, name: 'vpn-key', flip: false });
-const SettingsIcon = wrapIcon({ IconClass: MatIcon, name: 'settings', flip: false });
-const ExitToAppIcon = wrapIcon({ IconClass: MatIcon, name: 'exit-to-app', flip: false });
-
-const menuItems: InfoListItemProps[] = [
-    { title: 'Change Password', IconClass: VpnKeyIcon, onPress: (): void => {} },
-    { title: 'Preferences', IconClass: SettingsIcon, onPress: (): void => {} },
-    { title: 'Log Out', IconClass: ExitToAppIcon, onPress: (): void => {} },
-];
-
 <UserMenu
     menuTitle={'John Smith'}
     menuSubtitle={'j.smith@example.com'}
-    menuItems={menuItems}
-    avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
+    menuItems={[
+        { title: 'Change Password', IconClass: VpnKeyIcon },
+        { title: 'Preferences', IconClass: SettingsIcon },
+        { title: 'Log Out', IconClass: ExitToAppIcon },
+    ]}
+    avatar={<Avatar.Text label={'PX'} size={40} />}
 />
 ```
 
@@ -44,8 +36,7 @@ const menuItems: InfoListItemProps[] = [
 | backgroundColor | Background color of the bottomsheet                                                  | `string`              | no       |                     |
 | fontColor       | Color of font for the bottomsheet header and menu items                              | `string`              | no       |                     | 
 | iconColor       | Color of icons for the bottomsheet menu items                                        | `string`              | no       |                     | 
-| menu            | Custom menu to display                                                               | `JSX.Element`         | no       |                     |
-| menuItems       | Menu items to display in the bottomsheet                                             | `InfoListItemProps[]` | no       |                     |
+| menuItems       | Menu items to display in the bottomsheet                                             | `InfoListItemProps[]` | yes      |                     |
 | menuTitle       | Title shown when bottomsheet is open                                                 | `string`              | no       |                     |
 | menuSubtitle    | Subtitle shown when bottomsheet is open                                              | `string`              | no       |                     |
 
@@ -55,7 +46,8 @@ const menuItems: InfoListItemProps[] = [
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
 
-| Name   | Description                         |
-| ------ | ----------------------------------- |
-| root   | Styles applied to the root element  |
-| avatar | Styles applied to avatar wrapper    |
+| Name        | Description                               |
+| ----------- | ----------------------------------------- |
+| root        | Styles applied to the root element        |
+| avatar      | Styles applied to avatar wrapper          |
+| bottomsheet | Styles applied to the bottomsheet wrapper |
