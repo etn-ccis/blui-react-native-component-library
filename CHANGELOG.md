@@ -4,6 +4,8 @@
 
 ### Added
 -   `<MobileStepper>` component for moving between pages.
+-   `<UserMenu>` component to display an avatar that opens up a bottomsheet menu.
+-   `leftComponent` prop to `<InfoListItem>`.
 
 ### Changed
 -   Updated styles for the `<Drawer>`.

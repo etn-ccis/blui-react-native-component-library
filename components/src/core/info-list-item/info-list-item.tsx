@@ -183,6 +183,9 @@ export type InfoListItemProps = ViewProps & {
     /* Component to render on the right */
     rightComponent?: JSX.Element;
 
+    /* Component to render on the left */
+    leftComponent?: JSX.Element;
+
     /** Callback to be called on press. */
     onPress?: () => void;
 
@@ -215,6 +218,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const {
         avatar,
         title,
+        leftComponent,
         rightComponent,
         chevron,
         divider,
@@ -311,6 +315,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             {IconClass || !hidePadding ? (
                 <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
             ) : null}
+            {leftComponent}
             <View style={[defaultStyles.mainContent, styles.mainContent]}>
                 <Body1
                     style={[defaultStyles.title, styles.title]}
