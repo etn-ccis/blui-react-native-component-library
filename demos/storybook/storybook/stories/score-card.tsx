@@ -46,139 +46,149 @@ storiesOf('ScoreCard', module)
             <Body1>Body Content</Body1>
         </ScoreCard>
     ))
-    .add('with actions', () => (
-        <ScoreCard
-            headerTitle="Substation 3"
-            headerSubtitle="High Humidity Alarm"
-            headerInfo="4 Devices"
-            headerColor={Colors.blue[500]}
-            headerFontColor={Colors.white[50]}
-            headerBackgroundImage={backgroundImage}
-            styles={{
-                root: { maxHeight: 220 },
-                body: { flex: 1 },
-            }}
-            actionItems={[
-                {
-                    icon: MoreIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+    .add('with actions', () => {
+        const actionLimit = number('actionLimit', 3, {
+            range: true,
+            min: 0,
+            max: 6,
+            step: 1,
+        });
+        return (
+            <ScoreCard
+                headerTitle="Substation 3"
+                headerSubtitle="High Humidity Alarm"
+                headerInfo="4 Devices"
+                headerColor={Colors.blue[500]}
+                headerFontColor={Colors.white[50]}
+                headerBackgroundImage={backgroundImage}
+                styles={{
+                    root: { maxHeight: 220 },
+                    body: { flex: 1 },
+                }}
+                actionItems={[
+                    {
+                        icon: SearchIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: SearchIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+                    {
+                        icon: MailIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: MailIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+                    {
+                        icon: NotificationsIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: NotificationsIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+                    {
+                        icon: ListAltIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: ListAltIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+                    {
+                        icon: CloudIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: CloudIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+                ]
+                    .slice(0, Math.max(actionLimit - 1, 0))
+                    .concat(
+                        actionLimit > 0
+                            ? [
+                                  {
+                                      icon: MoreIcon,
+                                      onPress: (): void => {
+                                          /* do nothing */
+                                      },
+                                  },
+                              ]
+                            : []
+                    )}
+                actionRow={
+                    <InfoListItem
+                        title={'View Location'}
+                        chevron
+                        onPress={(): void => {
+                            /* do nothing */
+                        }}
+                        hidePadding
+                        dense
+                    />
+                }
+            >
+                <Body1>Body Content</Body1>
+            </ScoreCard>
+        );
+    })
+    .add('with heroes', () => {
+        const heroCount = number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 });
+        return (
+            <ScoreCard
+                headerTitle="Substation 3"
+                headerSubtitle="High Humidity Alarm"
+                headerInfo="4 Devices"
+                headerColor={Colors.blue[500]}
+                headerFontColor={Colors.white[50]}
+                headerBackgroundImage={backgroundImage}
+                styles={{
+                    root: { maxHeight: 310 },
+                    body: { flex: 1 },
+                }}
+                actionItems={[
+                    {
+                        icon: MoreIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-            ].slice(
-                0,
-                number('actionLimit', 3, {
-                    range: true,
-                    min: 0,
-                    max: 6,
-                    step: 1,
-                })
-            )}
-            actionRow={
-                <InfoListItem
-                    title={'View Location'}
-                    chevron
-                    onPress={(): void => {
-                        /* do nothing */
-                    }}
-                    hidePadding
-                    dense
-                />
-            }
-        >
-            <Body1>Body Content</Body1>
-        </ScoreCard>
-    ))
-    .add('with heroes', () => (
-        <ScoreCard
-            headerTitle="Substation 3"
-            headerSubtitle="High Humidity Alarm"
-            headerInfo="4 Devices"
-            headerColor={Colors.blue[500]}
-            headerFontColor={Colors.white[50]}
-            headerBackgroundImage={backgroundImage}
-            styles={{
-                root: { maxHeight: 310 },
-                body: { flex: 1 },
-            }}
-            actionItems={[
-                {
-                    icon: MoreIcon,
-                    onPress: (): void => {
-                        /* do nothing */
-                    },
-                },
-            ]}
-            actionRow={
-                <InfoListItem
-                    title={'View Location'}
-                    chevron
-                    onPress={(): void => {
-                        /* do nothing */
-                    }}
-                    hidePadding
-                    dense
-                />
-            }
-            badgeOffset={0}
-            badge={
-                <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
-                    {[
-                        <Hero
-                            key={'hero_1'}
-                            label={'Temperature'}
-                            iconSize={48}
-                            iconColor={Colors.black[500]}
-                            value={98}
-                            units={'°F'}
-                            IconClass={Temp}
-                        />,
-                        <Hero
-                            key={'hero_2'}
-                            label={'Humidity'}
-                            iconSize={54}
-                            iconColor={Colors.lightBlue[300]}
-                            value={54}
-                            units={'%'}
-                            IconClass={Humidity}
-                        />,
-                    ].slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}
-                </HeroBanner>
-            }
-        >
-            <Body1>Body Content</Body1>
-        </ScoreCard>
-    ))
+                ]}
+                actionRow={
+                    <InfoListItem
+                        title={'View Location'}
+                        chevron
+                        onPress={(): void => {
+                            /* do nothing */
+                        }}
+                        hidePadding
+                        dense
+                    />
+                }
+                badgeOffset={0}
+                badge={
+                    <HeroBanner style={{ flex: 0, minWidth: heroCount * 90, justifyContent: 'flex-end' }}>
+                        {[
+                            <Hero
+                                key={'hero_1'}
+                                label={'Temperature'}
+                                iconSize={48}
+                                iconColor={Colors.black[500]}
+                                value={98}
+                                units={'°F'}
+                                IconClass={Temp}
+                            />,
+                            <Hero
+                                key={'hero_2'}
+                                label={'Humidity'}
+                                iconSize={54}
+                                iconColor={Colors.lightBlue[300]}
+                                value={54}
+                                units={'%'}
+                                IconClass={Humidity}
+                            />,
+                        ].slice(0, heroCount)}
+                    </HeroBanner>
+                }
+            >
+                <Body1>Body Content</Body1>
+            </ScoreCard>
+        );
+    })
     .add('with score badge', () => (
         <ScoreCard
             headerTitle="Substation 3"
@@ -258,111 +268,119 @@ storiesOf('ScoreCard', module)
             </View>
         </ScoreCard>
     ))
-    .add('with full config', () => (
-        <ScoreCard
-            headerTitle={text('headerTitle', 'Substation 3')}
-            headerSubtitle={text('headerSubtitle', 'High Humidity Alarm')}
-            headerInfo={text('headerInfo', '4 Devices')}
-            headerColor={color('headerColor', Colors.blue[500])}
-            headerFontColor={color('headerFontColor', Colors.white[50])}
-            headerBackgroundImage={backgroundImage}
-            styles={{
-                root: { maxHeight: 280 },
-                body: { flex: 1 },
-            }}
-            actionItems={[
-                {
-                    icon: MoreIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+    .add('with full config', () => {
+        const actionLimit = number('actionLimit', 3, {
+            range: true,
+            min: 0,
+            max: 2,
+            step: 1,
+        });
+        const heroCount = number('Number of Heroes', 1, { range: true, min: 0, max: 3, step: 1 });
+        return (
+            <ScoreCard
+                headerTitle={text('headerTitle', 'Substation 3')}
+                headerSubtitle={text('headerSubtitle', 'High Humidity Alarm')}
+                headerInfo={text('headerInfo', '4 Devices')}
+                headerColor={color('headerColor', Colors.blue[500])}
+                headerFontColor={color('headerFontColor', Colors.white[50])}
+                headerBackgroundImage={backgroundImage}
+                styles={{
+                    root: { maxHeight: 280 },
+                    body: { flex: 1 },
+                }}
+                actionItems={[
+                    {
+                        icon: SearchIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: SearchIcon,
-                    onPress: (): void => {
-                        /* do nothing */
+                    {
+                        icon: MailIcon,
+                        onPress: (): void => {
+                            /* do nothing */
+                        },
                     },
-                },
-                {
-                    icon: MailIcon,
-                    onPress: (): void => {
-                        /* do nothing */
-                    },
-                },
-            ].slice(
-                0,
-                number('actionLimit', 3, {
-                    range: true,
-                    min: 0,
-                    max: 3,
-                    step: 1,
-                })
-            )}
-            badgeOffset={boolean('badgeOffset', true) ? -55 : 0}
-            badge={
-                <HeroBanner style={{ flex: 0, minWidth: 180, justifyContent: 'flex-end' }}>
-                    {[
-                        <Hero
-                            key={'hero_1'}
-                            label={'Temperature'}
-                            iconSize={48}
-                            iconColor={Colors.black[500]}
-                            value={98}
-                            units={'°F'}
-                            IconClass={Temp}
-                        />,
-                        <Hero
-                            key={'hero_2'}
-                            label={'Humidity'}
-                            iconSize={54}
-                            iconColor={Colors.lightBlue[300]}
-                            value={54}
-                            units={'%'}
-                            IconClass={Humidity}
-                        />,
-                    ].slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 3, step: 1 }))}
-                </HeroBanner>
-            }
-            actionRow={
-                <InfoListItem
-                    title={'View Location'}
-                    chevron
-                    onPress={(): void => {
-                        /* do nothing */
-                    }}
-                    hidePadding
-                    dense
-                />
-            }
-        >
-            <View style={{ justifyContent: 'center' }}>
-                <List.Item
-                    style={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    left={(): JSX.Element => (
-                        <View style={{ justifyContent: 'center' }}>
-                            <MatIcon name={'notifications'} size={24} color={Colors.red[500]} />
-                        </View>
+                ]
+                    .slice(0, Math.max(actionLimit - 1, 0))
+                    .concat(
+                        actionLimit > 0
+                            ? [
+                                  {
+                                      icon: MoreIcon,
+                                      onPress: (): void => {
+                                          /* do nothing */
+                                      },
+                                  },
+                              ]
+                            : []
                     )}
-                    title={<Body1 color={'error'}>1 Alarm</Body1>}
-                />
-                <List.Item
-                    style={{ margin: 0, padding: 0, marginBottom: 8 }}
-                    left={(): JSX.Element => (
-                        <View style={{ justifyContent: 'center' }}>
-                            <MatIcon name={'info'} size={24} color={Colors.blue[500]} />
-                        </View>
-                    )}
-                    title={<Body1 color={'primary'}>1 Event</Body1>}
-                />
-                <List.Item
-                    style={{ margin: 0, padding: 0 }}
-                    left={(): JSX.Element => (
-                        <View style={{ justifyContent: 'center' }}>
-                            <MatIcon name={'cloud'} size={24} />
-                        </View>
-                    )}
-                    title={<Body1>Online</Body1>}
-                />
-            </View>
-        </ScoreCard>
-    ));
+                badgeOffset={boolean('badgeOffset', true) ? -55 : 0}
+                badge={
+                    <HeroBanner style={{ flex: 0, minWidth: heroCount * 90, justifyContent: 'flex-end' }}>
+                        {[
+                            <Hero
+                                key={'hero_1'}
+                                label={'Temperature'}
+                                iconSize={48}
+                                iconColor={Colors.black[500]}
+                                value={98}
+                                units={'°F'}
+                                IconClass={Temp}
+                            />,
+                            <Hero
+                                key={'hero_2'}
+                                label={'Humidity'}
+                                iconSize={54}
+                                iconColor={Colors.lightBlue[300]}
+                                value={54}
+                                units={'%'}
+                                IconClass={Humidity}
+                            />,
+                        ].slice(0, heroCount)}
+                    </HeroBanner>
+                }
+                actionRow={
+                    <InfoListItem
+                        title={'View Location'}
+                        chevron
+                        onPress={(): void => {
+                            /* do nothing */
+                        }}
+                        hidePadding
+                        dense
+                    />
+                }
+            >
+                <View style={{ justifyContent: 'center' }}>
+                    <List.Item
+                        style={{ margin: 0, padding: 0, marginBottom: 8 }}
+                        left={(): JSX.Element => (
+                            <View style={{ justifyContent: 'center' }}>
+                                <MatIcon name={'notifications'} size={24} color={Colors.red[500]} />
+                            </View>
+                        )}
+                        title={<Body1 color={'error'}>1 Alarm</Body1>}
+                    />
+                    <List.Item
+                        style={{ margin: 0, padding: 0, marginBottom: 8 }}
+                        left={(): JSX.Element => (
+                            <View style={{ justifyContent: 'center' }}>
+                                <MatIcon name={'info'} size={24} color={Colors.blue[500]} />
+                            </View>
+                        )}
+                        title={<Body1 color={'primary'}>1 Event</Body1>}
+                    />
+                    <List.Item
+                        style={{ margin: 0, padding: 0 }}
+                        left={(): JSX.Element => (
+                            <View style={{ justifyContent: 'center' }}>
+                                <MatIcon name={'cloud'} size={24} />
+                            </View>
+                        )}
+                        title={<Body1>Online</Body1>}
+                    />
+                </View>
+            </ScoreCard>
+        );
+    });
