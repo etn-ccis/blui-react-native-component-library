@@ -37,7 +37,7 @@ const Dashboard = wrapIcon({ IconClass: MaterialIcon, name: 'dashboard' });
 const TOC = wrapIcon({ IconClass: MaterialIcon, name: 'toc' });
 const PinDrop = wrapIcon({ IconClass: MaterialIcon, name: 'pin-drop' });
 const AddPhoto = wrapIcon({ IconClass: MaterialIcon, name: 'add-a-photo' });
-const VanPassenger = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'van-passenger' });
+const Event = wrapIcon({ IconClass: MaterialIcon, name: 'event' });
 const MenuBook = wrapIcon({ IconClass: MaterialIcon, name: 'menu-book' });
 const Gavel = wrapIcon({ IconClass: MaterialIcon, name: 'gavel' });
 const Accessibility = wrapIcon({ IconClass: MaterialIcon, name: 'accessibility' });
@@ -195,7 +195,7 @@ const fullConfigGroup = [
     {
         title: 'Schedule',
         itemID: 'item-6',
-        icon: VanPassenger,
+        icon: Event,
     },
 ];
 
