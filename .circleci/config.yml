@@ -43,6 +43,10 @@ jobs:
                   name: Test Artifacts
                   command: |
                       yarn test:artifacts
+            - run:
+                  name: NPM Package
+                  command: |
+                      cd dist && npm pack
             # Save the dist folder for use in future jobs.
             - persist_to_workspace:
                   root: .
@@ -58,6 +62,8 @@ jobs:
             - DEV_BRANCH: dev
         steps:
             - checkout
+            - attach_workspace:
+                  at: .
             - restore_cache:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/storybook/yarn.lock" }}
@@ -66,13 +72,15 @@ jobs:
                   command: |
                       cd demos/storybook
                       yarn install --frozen-lockfile
+
+                      # Install the packed version of @pxblue/react-native-components
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      yarn add ../../dist/pxblue-react-native-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
                       - demos/storybook/node_modules
                   key: v2-dependencies-react-native-{{ checksum "demos/storybook/yarn.lock" }}
-            - attach_workspace:
-                  at: .
             - run:
                   name: Prettier Check
                   command: |
@@ -86,14 +94,7 @@ jobs:
             - run:
                   name: Build Storybook
                   command: |
-                      cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-native-components
                       cd demos/storybook
-
-                      # If we are building the master branch, use the published component library.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-native-components
-                      fi
-
                       yarn build
 
     # Builds the hosted Storybook app
@@ -105,6 +106,8 @@ jobs:
             - DEV_BRANCH: dev
         steps:
             - checkout
+            - attach_workspace:
+                  at: .
             - restore_cache:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/api/yarn.lock" }}
@@ -113,13 +116,15 @@ jobs:
                   command: |
                       cd demos/api
                       yarn install --frozen-lockfile
+
+                      # Install the packed version of @pxblue/react-native-components
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      yarn add ../../dist/pxblue-react-native-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
                       - demos/api/node_modules
                   key: v2-dependencies-react-native-{{ checksum "demos/api/yarn.lock" }}
-            - attach_workspace:
-                  at: .
             - run:
                   name: Prettier Check
                   command: |
@@ -134,12 +139,6 @@ jobs:
                   name: Build Storybook
                   command: |
                       cd demos/api
-
-                      # If we are building the master branch, use the published component library.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-native-components
-                      fi
-
                       # master and dev branches should configure Google Analytics IDs before the build.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
                         STORYBOOK_GA_ID=$MASTER_GA
@@ -164,6 +163,8 @@ jobs:
             - MASTER_BRANCH: master
         steps:
             - checkout
+            - attach_workspace:
+                  at: .
             - run:
                   name: 'Initialize Submodule'
                   command: yarn initialize
@@ -175,13 +176,15 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn install --frozen-lockfile
+
+                      # Install the packed version of @pxblue/react-native-components
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      yarn add ../../dist/pxblue-react-native-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
                       - demos/showcase/node_modules
                   key: v2-dependencies-react-native-{{ checksum "demos/showcase/yarn.lock" }}
-            - attach_workspace:
-                  at: .
             - run:
                   name: Prettier Check
                   command: |
@@ -190,14 +193,7 @@ jobs:
             - run:
                   name: Build Showcase
                   command: |
-                      cp -r ./dist/. ./demos/showcase/node_modules/@pxblue/react-native-components
                       cd demos/showcase
-
-                      # If we are building the master branch, use the published component library.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-native-components
-                      fi
-
                       yarn build
 
     deploy_storybook:
@@ -242,6 +238,28 @@ jobs:
                       git add -A
                       git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
                       git push
+    publish:
+        docker:
+          - image: circleci/node:12.9.1-browsers
+        steps:
+          - checkout
+          - attach_workspace:
+              at: .
+          - run:
+              name: Authenticate with registry
+              command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+          - run:
+              name: Publish @pxblue/react-native-components
+              command:  |
+                cd dist
+                MASTER_VERSION=`node -p "require('./package.json').version"`
+                NPM_LATEST_VERSION=`npm show @pxblue/react-native-components version`
+                if ! [ $MASTER_VERSION == $NPM_LATEST_VERSION ];
+                then
+                    npm publish
+                else
+                    echo "Latest version is already published."
+                fi
 
 workflows:
     version: 2
@@ -265,3 +283,12 @@ workflows:
                           only:
                               - master
                               - dev
+            - publish:
+                requires:
+                  - build_storybook
+                  - build_showcase
+                  - build_storybook_api
+                filters:
+                  branches:
+                    only:
+                      - master
