@@ -140,7 +140,6 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                                     notifyActiveParent(ids.concat(item.itemID))
                                 )
                             )}
-                            <Divider style={[defaultStyles.divider, styles.divider]} />
                         </Collapsible>
                     </View>
                 );
