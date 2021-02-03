@@ -9,6 +9,7 @@
 
 ### Changed
 -   Updated styles for the `<Drawer>`.
+-   Updated actionItem prop type for `<Header>`.
 
 ## v4.0.0
 
