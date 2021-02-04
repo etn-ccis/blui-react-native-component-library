@@ -6,10 +6,10 @@
 -   `<MobileStepper>` component for moving between pages.
 -   `<UserMenu>` component to display an avatar that opens up a bottomsheet menu.
 -   `leftComponent` prop to `<InfoListItem>`.
+-   Ability to use Avatar in `<Header>` actionItems.
 
 ### Changed
 -   Updated styles for the `<Drawer>`.
--   Updated actionItem prop type for `<Header>`.
 
 ## v4.0.0
 

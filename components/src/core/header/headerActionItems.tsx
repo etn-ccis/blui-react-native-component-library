@@ -73,8 +73,8 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     if (items) {
         return (
             <View style={[defaultStyles.root, styles.root]}>
-                {items.slice(0, MAX_ITEMS).map((actionItem: any, index: number) => {
-                    if (actionItem.component) {
+                {items.slice(0, MAX_ITEMS).map((actionItem: HeaderIconType | HeaderAvatar, index) => {
+                    if ('component' in actionItem) {
                         return (
                             <View
                                 key={`action_${index}`}
