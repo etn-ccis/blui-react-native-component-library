@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Image, View } from 'react-native';
-import { InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
+import { Header, InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
 import { text, withKnobs, color, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -106,6 +106,32 @@ storiesOf('UserMenu', module)
                         style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
                     />
                 }
+            />
+        </View>
+    ))
+    .add('within a Header', () => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Header
+                title={'Title'}
+                actionItems={[
+                    {
+                        component: (
+                            <UserMenu
+                                menuTitle={'John Smith'}
+                                menuSubtitle={'j.smith@email.com'}
+                                menuItems={menuItems}
+                                avatar={
+                                    <Avatar.Text
+                                        label={'PX'}
+                                        size={40}
+                                        color={Colors.blue[500]}
+                                        style={{ backgroundColor: Colors.white[50] }}
+                                    />
+                                }
+                            />
+                        ),
+                    },
+                ]}
             />
         </View>
     ));

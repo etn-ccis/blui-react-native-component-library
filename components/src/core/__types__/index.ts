@@ -12,6 +12,10 @@ export type HeaderIcon = {
     onPress: () => void;
 };
 
+export type HeaderAvatar = {
+    component: JSX.Element;
+};
+
 export type EdgeInsets = {
     top: number;
     left: number;

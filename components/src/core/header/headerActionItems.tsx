@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { wrapIcon } from '../icon-wrapper/icon-wrapper';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
-import { HeaderIcon as HeaderIconType } from '../__types__';
+import { HeaderAvatar, HeaderIcon as HeaderIconType } from '../__types__';
 
 const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
 const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
@@ -22,24 +22,30 @@ const defaultStyles = StyleSheet.create({
         width: 40,
         padding: 8,
     },
+    avatar: {
+        height: 40,
+        width: 40,
+    },
 });
 
 type ActionItemProps = {
     /** List of up to three action items on the right of the header */
-    actionItems?: HeaderIconType[];
+    actionItems?: Array<HeaderIconType | HeaderAvatar>;
 
     /** Style Overrides */
     styles?: {
         root?: StyleProp<ViewStyle>;
         actionItem?: StyleProp<ViewStyle>;
+        avatar?: StyleProp<ViewStyle>;
     };
 };
 
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     const { actionItems, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();
+    const MAX_ITEMS = 3;
 
-    let items: HeaderIconType[] = actionItems || [];
+    let items: Array<HeaderIconType | HeaderAvatar> = actionItems || [];
 
     if (searching) {
         if (query) {
@@ -67,16 +73,29 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     if (items) {
         return (
             <View style={[defaultStyles.root, styles.root]}>
-                {items.slice(0, 3).map((actionItem, index) => (
-                    <TouchableOpacity
-                        key={`action_${index}`}
-                        testID={`header-action-item${index}`}
-                        onPress={actionItem.onPress}
-                        style={[defaultStyles.actionItem, styles.actionItem]}
-                    >
-                        <HeaderIcon IconClass={actionItem.icon} />
-                    </TouchableOpacity>
-                ))}
+                {items.slice(0, MAX_ITEMS).map((actionItem: HeaderIconType | HeaderAvatar, index) => {
+                    if ('component' in actionItem) {
+                        return (
+                            <View
+                                key={`action_${index}`}
+                                testID={`header-action-item${index}`}
+                                style={[defaultStyles.avatar, styles.avatar]}
+                            >
+                                {actionItem.component}
+                            </View>
+                        );
+                    }
+                    return (
+                        <TouchableOpacity
+                            key={`action_${index}`}
+                            testID={`header-action-item${index}`}
+                            onPress={actionItem.onPress}
+                            style={[defaultStyles.actionItem, styles.actionItem]}
+                        >
+                            <HeaderIcon IconClass={actionItem.icon} />
+                        </TouchableOpacity>
+                    );
+                })}
             </View>
         );
     }

@@ -24,7 +24,7 @@ import { HeaderActionItems } from './headerActionItems';
 import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
-import { HeaderIcon } from '../__types__';
+import { HeaderAvatar, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
@@ -91,7 +91,7 @@ export type HeaderProps = ViewProps & {
     navigation?: HeaderIcon;
 
     /** List of up to three action items on the right of the header */
-    actionItems?: HeaderIcon[];
+    actionItems?: Array<HeaderIcon | HeaderAvatar>;
 
     /** Determines whether the header can be expanded by being pressed */
     expandable?: boolean;
@@ -124,6 +124,7 @@ export type HeaderProps = ViewProps & {
         search?: StyleProp<TextStyle>;
         actionPanel?: StyleProp<ViewStyle>;
         actionItem?: StyleProp<ViewStyle>;
+        avatar?: StyleProp<ViewStyle>;
     };
 
     /**
@@ -307,7 +308,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}
-                                        styles={{ root: styles.actionPanel, actionItem: styles.actionItem }}
+                                        styles={{
+                                            root: styles.actionPanel,
+                                            actionItem: styles.actionItem,
+                                            avatar: styles.avatar,
+                                        }}
                                     />
                                 </Animated.View>
                             </HeaderHeightContext.Provider>
