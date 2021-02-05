@@ -2,7 +2,7 @@ import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Overline } from '../typography';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
-import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
+import { NavGroupInheritableProps } from './inheritable-types';
 import { Divider, useTheme } from 'react-native-paper';
 import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
@@ -95,7 +95,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
     const getDrawerItemList = useCallback(
         (item: NavItem | NestedNavItem, depth: number, notifyActiveParent: (ids: string[]) => void): JSX.Element => {
-            const [expanded, setExpanded] = useState(findID(item, props.activeItem));
+            const [expanded] = useState(findID(item, props.activeItem));
 
             // Is this item ID in the list of items in the active selection hierarchy?
             const activeInTree = activeHierarchyItems.includes(item.itemID);
@@ -120,11 +120,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 return (
                     <View key={`${item.itemID}`}>
                         <DrawerNavItem
-                            navItem={inheritDrawerProps(props, item) as NavItem}
-                            navGroupProps={props}
+                            // navItem={inheritDrawerProps(props, item) as NavItem}
+                            // navGroupProps={props}
                             depth={depth}
-                            expanded={expanded}
-                            expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                            itemID={item.itemID}
+                            title={item.title}
+                            // expanded={expanded}
+                            // expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                             styles={styles.navItem}
                             isInActiveTree={activeInTree}
                             notifyActiveParent={(ids: string[] = []): void =>
@@ -148,10 +150,12 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             return (
                 <DrawerNavItem
                     depth={depth}
-                    expanded={false}
-                    navItem={inheritDrawerProps(props, item) as NavItem}
+                    // expanded={false}
+                    // navItem={inheritDrawerProps(props, item) as NavItem}
                     key={item.itemID}
-                    navGroupProps={props}
+                    itemID={item.itemID}
+                    title={item.title}
+                    // navGroupProps={props}
                     styles={styles.navItem}
                     isInActiveTree={activeInTree}
                     notifyActiveParent={(ids: string[] = []): void => notifyActiveParent(ids.concat(item.itemID))}

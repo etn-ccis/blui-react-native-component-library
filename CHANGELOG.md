@@ -1,4 +1,19 @@
 # Change Log
+## v5.0.0 (Not Published Yet)
+
+### Changed
+
+-   Updated default styles for `<Drawer>`.
+-   `activeItem` must now specified on the `<Drawer>` component instead of `<DrawerNavGroup>`.
+-   Moved `titleColor` prop from shared props to the local props for `<DrawerNavGroup>`.
+-   Some of the style names for overrides have changed
+
+### Added
+-   Additional configuration properties for `<Drawer>`:
+    -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements.
+-   Additional configuration options for `<DrawerSubheader>` and `<DrawerFooter>`:
+    -   `divider` configures whether to show a dividing line separating the component from other content.
+-   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
 ## v4.1.0 (Not Published Yet)
 

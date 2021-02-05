@@ -5,3 +5,5 @@ export * from './drawer-footer';
 export * from './drawer-body';
 export * from './drawer-nav-group';
 export * from './drawer-nav-item';
+export * from './types';
+export * from './context';
