@@ -1,181 +1,181 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Overline } from '../typography';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
-import { NavGroupInheritableProps } from './inheritable-types';
+import { DrawerNavItem, NavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './drawer-nav-item';
 import { Divider, useTheme } from 'react-native-paper';
-import Collapsible from 'react-native-collapsible';
-import * as Colors from '@pxblue/colors';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+import { AllSharedProps } from './types';
+import { findChildByType, inheritSharedProps } from './utilities';
+import { useDrawerContext } from './context/drawer-context';
+import { NavGroupContext } from './context';
 
-export type DrawerNavGroupProps = ViewProps & {
-    // List of navigation items to render
-    items: NavItem[];
+export type DrawerNavGroupProps = AllSharedProps &
+    ViewProps & {
+        // List of navigation items to render
+        items?: NavItem[];
 
-    // Text to display in the group header
-    title?: string;
+        // Text to display in the group header
+        title?: string;
 
-    // Custom element, substitute for title
-    titleContent?: ReactNode;
+        // Color to use for the group header title text
+        titleColor?: string;
 
-    /** Style overrides */
-    styles?: {
-        root?: StyleProp<ViewStyle>;
-        content?: StyleProp<ViewStyle>;
-        textContent?: StyleProp<ViewStyle>;
-        title?: StyleProp<TextStyle>;
-        divider?: StyleProp<ViewStyle>;
-        navItem?: DrawerNavItemProps['styles'];
+        // Custom element, substitute for title
+        titleContent?: ReactNode;
+
+        /** Style overrides */
+        styles?: {
+            root?: StyleProp<ViewStyle>;
+            content?: StyleProp<ViewStyle>;
+            textContent?: StyleProp<ViewStyle>;
+            title?: StyleProp<TextStyle>;
+            divider?: StyleProp<ViewStyle>;
+            navItem?: DrawerNavItemProps['styles'];
+        };
     };
-    /** Overrides for theme */
-    theme?: $DeepPartial<ReactNativePaper.Theme>;
-} & NavGroupInheritableProps;
-
-const drawerNavGroupStyles = StyleSheet.create({
-    root: {},
-    textContent: {},
-    title: {
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        height: 52,
-        lineHeight: 36,
-    },
-    divider: {},
-});
+const makeStyles = (props: DrawerNavGroupProps, theme: ReactNativePaper.Theme): any =>
+    StyleSheet.create({
+        root: {},
+        textContent: {},
+        title: {
+            paddingVertical: 8,
+            paddingHorizontal: 16,
+            height: 52,
+            lineHeight: 36,
+            color: props.titleColor || theme.colors.text,
+        },
+        divider: {},
+    });
 
 // TODO: Can't this be replaced with a Set of itemIDs?
-function findID(item: NavItem | NestedNavItem, activeItem = ''): boolean {
+const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string | undefined): boolean => {
+    if (!activeItem) return false;
+
     // if leaf node, return
-    if (!item.items) {
+    if (!item.items && !item.children) {
         return item.itemID === activeItem;
     }
 
-    // else, loop through the branches
-    for (let i = 0; i < item.items.length; i++) {
-        if (findID(item.items[i], activeItem)) {
-            return true;
+    // else, loop through the branches by items
+    if (item.items) {
+        for (let i = 0; i < item.items.length; i++) {
+            if (findID(item.items[i], activeItem)) {
+                return true;
+            }
+        }
+    }
+    // and by children
+    if (item.children) {
+        const childItems = findChildByType(item.children, ['DrawerNavItem']);
+        for (let i = 0; i < childItems.length; i++) {
+            if (findID(childItems[i].props, activeItem)) {
+                return true;
+            }
         }
     }
 
     // no active items found, return false
     return false;
-}
+};
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const {
+        // Inheritable Props
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        activeItemBackgroundColor,
+        activeItemBackgroundShape,
+        activeItemFontColor,
+        activeItemIconColor,
+        backgroundColor,
+        chevron,
+        collapseIcon,
+        disableActiveItemParentStyles,
+        divider,
+        expandIcon,
+        hidePadding,
+        itemFontColor,
+        itemIconColor,
+        nestedBackgroundColor,
+        nestedDivider,
+        ripple,
         theme: themeOverride,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        // DrawerNavGroup-specific props
         title,
         titleContent,
+        titleColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         items = [],
-        nestedDivider = false,
         styles = {},
+        // Other View Props
         style,
+        children,
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200];
-    const defaultStyles = drawerNavGroupStyles;
+    const defaultStyles = makeStyles(props, theme);
+    const { activeItem } = useDrawerContext();
+
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
     const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
 
     /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
     useEffect(() => {
-        if (!findID({ items: props.items } as NavItem, props.activeItem)) {
+        if (!findID({ items: props.items, children: props.children } as DrawerNavItemProps, activeItem))
             setActiveHierarchyItems([]);
-        }
-    }, [props.activeItem]);
+    }, [activeItem]);
 
-    const updateActiveHierarchy = (ids: string[]): void => {
-        if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
-            // Sets the list of active IDs when we get a callback from an active child
-            setActiveHierarchyItems(ids);
-        }
-    };
-
-    const getDrawerItemList = useCallback(
-        (item: NavItem | NestedNavItem, depth: number, notifyActiveParent: (ids: string[]) => void): JSX.Element => {
-            const [expanded] = useState(findID(item, props.activeItem));
-
-            // Is this item ID in the list of items in the active selection hierarchy?
-            const activeInTree = activeHierarchyItems.includes(item.itemID);
-
-            // Nested items inherit from the nestedDivider prop if item's divider is unset.
-            if (depth > 0 && item.divider === undefined) {
-                item.divider = nestedDivider as any; // typescript doesn't like trying to assign boolean to type undefined
-            }
-
-            // if there are more sub pages, add the bucket header and recurse on this function
-            if (item.items) {
-                // Default expand icon changes if item is nested.
-                if (depth > 0) {
-                    if (!item.expandIcon) {
-                        item.expandIcon = <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} />;
-                    }
-                    if (!item.collapseIcon) {
-                        item.collapseIcon = <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} />;
-                    }
-                }
-
-                return (
-                    <View key={`${item.itemID}`}>
-                        <DrawerNavItem
-                            // navItem={inheritDrawerProps(props, item) as NavItem}
-                            // navGroupProps={props}
-                            depth={depth}
-                            itemID={item.itemID}
-                            title={item.title}
-                            // expanded={expanded}
-                            // expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
-                            styles={styles.navItem}
-                            isInActiveTree={activeInTree}
-                            notifyActiveParent={(ids: string[] = []): void =>
-                                notifyActiveParent(ids.concat(item.itemID))
+    const getChildren = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(children, ['DrawerNavItem'])
+                // .slice(0, 1)
+                .map((child) =>
+                    React.cloneElement(child, {
+                        // Inherited Props
+                        ...inheritSharedProps(props, child.props),
+                        depth: 0,
+                        isInActiveTree: activeHierarchyItems.includes(child.props.itemID),
+                        notifyActiveParent: (ids: string[]): void => {
+                            if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
+                                // Sets the list of active IDs when we get a callback from an active child
+                                setActiveHierarchyItems(ids.concat(child.props.itemID));
                             }
-                        />
-                        <Collapsible
-                            collapsed={!expanded}
-                            style={[{ backgroundColor: nestedBackgroundColor }, styles.content]}
-                        >
-                            {item.items.map((subItem: NavItem) =>
-                                getDrawerItemList(subItem, depth + 1, (ids: string[] = []): void =>
-                                    notifyActiveParent(ids.concat(item.itemID))
-                                )
-                            )}
-                        </Collapsible>
-                    </View>
-                );
-            }
-            // Otherwise, we reached a leaf node. Return.
-            return (
-                <DrawerNavItem
-                    depth={depth}
-                    // expanded={false}
-                    // navItem={inheritDrawerProps(props, item) as NavItem}
-                    key={item.itemID}
-                    itemID={item.itemID}
-                    title={item.title}
-                    // navGroupProps={props}
-                    styles={styles.navItem}
-                    isInActiveTree={activeInTree}
-                    notifyActiveParent={(ids: string[] = []): void => notifyActiveParent(ids.concat(item.itemID))}
-                />
-            );
-        },
-        [props, activeHierarchyItems]
+                        },
+                    })
+                ),
+        [props, setActiveHierarchyItems, children]
     );
 
     return (
-        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-            {titleContent}
-            {!titleContent && title && (
-                <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
-                    <Divider style={[defaultStyles.divider, styles.divider]} />
-                </View>
-            )}
-            {items.map((item: NavItem) => getDrawerItemList(item, 0, updateActiveHierarchy))}
-        </View>
+        <NavGroupContext.Provider
+            value={{
+                activeHierarchy: activeHierarchyItems,
+            }}
+        >
+            <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
+                {titleContent}
+                {!titleContent && title && (
+                    <View style={[defaultStyles.textContent, styles.textContent]}>
+                        <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
+                        <Divider style={[defaultStyles.divider, styles.divider]} />
+                    </View>
+                )}
+                {items.map((item: NavItem, index: number) => (
+                    <DrawerNavItem
+                        key={`itemList_${index}`}
+                        {...item}
+                        {...inheritSharedProps(props, item)}
+                        depth={0}
+                        isInActiveTree={activeHierarchyItems.includes(item.itemID)}
+                        notifyActiveParent={(ids: string[]): void => {
+                            if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
+                                // Sets the list of active IDs when we get a callback from an active child
+                                setActiveHierarchyItems(ids.concat(item.itemID));
+                            }
+                        }}
+                    />
+                ))}
+                {getChildren()}
+            </View>
+        </NavGroupContext.Provider>
     );
 };
 

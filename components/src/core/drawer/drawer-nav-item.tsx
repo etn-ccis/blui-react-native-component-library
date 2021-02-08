@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
-import { InfoListItem, /*InfoListItemProps as PXBInfoListItemProps*/ } from '../info-list-item';
-import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
-import { DrawerNavGroupProps } from './drawer-nav-group';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps } from 'react-native';
+import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
 import { usePrevious } from '../hooks/usePrevious';
 import { AllSharedProps } from './types';
@@ -12,6 +10,7 @@ import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
 import Collapsible from 'react-native-collapsible';
+import * as Colors from '@pxblue/colors';
 
 // import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -19,75 +18,61 @@ export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
     activeBackground?: StyleProp<ViewStyle>;
     expandIcon?: StyleProp<ViewStyle>;
-    infoListItem?: InfoListItemProps['styles'];
+    infoListItem?: PXBInfoListItemProps['styles'];
 };
-export type DrawerNavItemProps = AllSharedProps & {
-    depth?: number;
-    hidden?: boolean;
-    icon?: any;
-    isInActiveTree?: boolean;
-    itemID: string;
-    items?: NestedDrawerNavItemProps[];
-    notifyActiveParent?: (ids?: string[]) => void;
-    onPress?: () => void;
-    rightComponent?: JSX.Element;
-    statusColor?: string;
-    styles?: DrawerNavItemStyles;
-    subtitle?: string;
-    title: string;
-    // InfoListItemProps?: Partial<PXBInfoListItemProps>;
-};
+export type DrawerNavItemProps = AllSharedProps &
+    ViewProps & {
+        children?: ReactNode;
+        depth?: number;
+        hidden?: boolean;
+        icon?: any;
+        isInActiveTree?: boolean;
+        itemID: string;
+        items?: NestedDrawerNavItemProps[];
+        notifyActiveParent?: (ids: string[]) => void;
+        onPress?: () => void;
+        rightComponent?: JSX.Element;
+        statusColor?: string;
+        styles?: DrawerNavItemStyles;
+        subtitle?: string;
+        title: string;
+        // InfoListItemProps?: Partial<PXBInfoListItemProps>;
+    };
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
 export type NavItem = DrawerNavItemProps;
 export type NestedNavItem = NestedDrawerNavItemProps;
 
-export type OldNestedNavItem = Omit<NavItem, 'icon'>;
-
-export type OldNavItem = {
-    hidden?: boolean;
-    icon?: any;
-    itemID: string;
-    items?: NestedNavItem[];
-} & DrawerInheritableProps &
-    // IconClass is replaced by the 'icon' property.
-    Omit<InfoListItemProps, 'IconClass'>;
-
-export type OldDrawerNavItemProps = {
-    depth: number;
-    expanded: boolean;
-    expandHandler?: () => void;
-    navGroupProps: DrawerNavGroupProps;
-    navItem: NavItem | NestedNavItem;
-    isInActiveTree?: boolean;
-    notifyActiveParent: () => void;
-    /** Style Overrides */
-    styles?: {
-        root?: StyleProp<ViewStyle>;
-        activeBackground?: StyleProp<ViewStyle>;
-        expandIcon?: StyleProp<ViewStyle>;
-        infoListItem?: InfoListItemProps['styles'];
-    };
-    /** Overrides for theme */
-    // theme?: $DeepPartial<Theme>; // Uncomment if we need to style anything based on the theme
-};
-
 // First nested item has no additional indentation.  All items start with 16px indentation.
-const calcNestedPadding = (depth: number): number => (depth > 0 ? depth * 32 + 24 : 0);
+const calcNestedPadding = (depth: number): number => (depth > 0 ? (depth - 1) * 32 : 0);
 
-const makeStyles = (props: DrawerNavItemProps): any =>
-    StyleSheet.create({
-        root: {},
+const makeStyles = (props: DrawerNavItemProps, theme: ReactNativePaper.Theme): any => {
+    // Primary color manipulation
+    const fivePercentOpacityPrimary = color(theme.colors.primary).fade(0.95).string();
+    const twentyPercentOpacityPrimary = color(theme.colors.primary).fade(0.8).string();
+
+    const {
+        // Shared style props
+        activeItemBackgroundColor = !theme.dark ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary,
+        activeItemBackgroundShape = 'square',
+        backgroundColor,
+        depth,
+        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200],
+    } = props;
+    return StyleSheet.create({
+        root: {
+            backgroundColor: depth ? nestedBackgroundColor : backgroundColor || 'transparent',
+        },
         activeBackground: {
-            backgroundColor: props.activeItemBackgroundColor,
+            backgroundColor: activeItemBackgroundColor,
             zIndex: 0,
             position: 'absolute',
             height: '100%',
-            width: props.activeItemBackgroundShape === 'square' ? '100%' : '97%',
+            width: activeItemBackgroundShape === 'square' ? '100%' : '97%',
             left: 0,
             top: 0,
-            borderTopRightRadius: props.activeItemBackgroundShape === 'square' ? 0 : 24,
-            borderBottomRightRadius: props.activeItemBackgroundShape === 'square' ? 0 : 24,
+            borderTopRightRadius: activeItemBackgroundShape === 'square' ? 0 : 24,
+            borderBottomRightRadius: activeItemBackgroundShape === 'square' ? 0 : 24,
         },
         expandIcon: {
             display: 'flex',
@@ -95,36 +80,34 @@ const makeStyles = (props: DrawerNavItemProps): any =>
             marginLeft: 16,
         },
     });
+};
 
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // Destructure the props
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(props);
+    const defaultStyles = makeStyles(props, theme);
     const { activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem || '');
 
-    // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.colors.primary).fade(0.95).string();
-    const twentyPercentOpacityPrimary = color(theme.colors.primary).fade(0.8).string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(theme.colors.primary).lighten(0.83).desaturate(0.39).string();
 
     const {
         // Shared style props
-        activeItemBackgroundColor = !theme.dark ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary,
-        activeItemBackgroundShape = 'square',
+        activeItemBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        activeItemBackgroundShape /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemFontColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
         activeItemIconColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
-        backgroundColor,
-        chevron,
+        backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         collapseIcon = props.depth ? (
             <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} />
         ) : (
             <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />
         ),
-        disableActiveItemParentStyles = false,
+        disableActiveItemParentStyles = false /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         divider,
         expandIcon = props.depth ? (
             <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} />
@@ -134,9 +117,9 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         hidePadding,
         itemFontColor = theme.colors.text,
         itemIconColor = theme.colors.text,
-        nestedBackgroundColor,
+        nestedBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         nestedDivider,
-        ripple = true,
+        ripple = true /* eslint-disable-line @typescript-eslint/no-unused-vars */,
 
         // Drawer Nav Item specific props
         children,
@@ -159,7 +142,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         // other View props
     } = otherProps;
 
-    const [expanded, setExpanded] = useState(isInActiveTree || false);
+    const [expanded, setExpanded] = useState(isInActiveTree); // isInActiveTree: there is a bug in the react-native-collapsible that incorrectly calculates the initial panel height when using nested collapse panels
     const active = activeItem === itemID;
     const hasAction = Boolean(onItemSelect || onPress || (items && items.length > 0) || Boolean(children));
     // only allow icons for the top level items
@@ -181,28 +164,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
             notifyActiveParent([itemID]);
         }
     }, [activeItem, notifyActiveParent]);
-
-    // TODO: Customize the ripple color? Is that needed?
-
-    // const {
-    //     depth,
-    //     expanded,
-    //     expandHandler,
-    //     navGroupProps,
-    //     navItem,
-    //     isInActiveTree,
-    //     notifyActiveParent,
-    //     styles = {},
-    // } = props;
-    // const { activeItem } = navGroupProps;
-    // const theme = useTheme();
-
-    // const icon = !depth ? (navItem as NavItem).icon : undefined;
-    // const active = navGroupProps.activeItem === navItem.itemID;
-    // const rightIcon = navItem.items ? (expanded ? navItem.collapseIcon : navItem.expandIcon) : undefined;
-
-    // const infoListItemStyles = styles.infoListItem || {};
-    // const { root: iliRoot, title: iliTitle, ...otherILI } = infoListItemStyles;
 
     // Handle click callbacks
     const onPressAction = useCallback((): void => {
@@ -228,36 +189,13 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     }, [items, children, styles, defaultStyles, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
 
-    // const onPressAction = useCallback(
-    //     (id: string): void => {
-    //         if (navItem.onItemSelect) {
-    //             navItem.onItemSelect(id);
-    //         }
-    //         if (navItem.onPress) {
-    //             navItem.onPress();
-    //         } else if (expandHandler) {
-    //             expandHandler();
-    //         }
-    //     },
-    //     [navItem, expandHandler]
-    // );
-
-    // const previousActive = usePrevious(activeItem || '');
-
-    // useEffect(() => {
-    //     if (activeItem === navItem.itemID && previousActive !== navItem.itemID) {
-    //         // notify the parent that it should now be in the active tree
-    //         notifyActiveParent();
-    //     }
-    // }, [activeItem, navItem.itemID, notifyActiveParent]);
-
     const getChildren = useCallback(
         (): JSX.Element[] =>
             findChildByType(children, ['DrawerNavItem'])
                 // .slice(0, 1)
                 .map((child) =>
                     React.cloneElement(child, {
-                        ...inheritDrawerProps(props, child.props),
+                        ...inheritSharedProps(props, child.props),
                         depth: depth + 1,
                         isInActiveTree: activeHierarchy.includes(child.props.itemID),
                         notifyActiveParent: (ids: string[] = []): void => {
@@ -265,28 +203,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                         },
                     } as DrawerNavItemProps)
                 ),
-        [
-            activeItemBackgroundColor,
-            activeItemBackgroundShape,
-            activeItemFontColor,
-            activeItemIconColor,
-            activeHierarchy,
-            backgroundColor,
-            chevron,
-            collapseIcon,
-            disableActiveItemParentStyles,
-            divider,
-            expandIcon,
-            hidePadding,
-            itemFontColor,
-            itemIconColor,
-            nestedBackgroundColor,
-            nestedDivider,
-            notifyActiveParent,
-            ripple,
-            theme,
-            children,
-        ]
+        [props, activeHierarchy]
     );
 
     const infoListItemStyles = styles.infoListItem || {};

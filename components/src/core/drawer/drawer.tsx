@@ -5,6 +5,7 @@ import { Surface, useTheme } from 'react-native-paper';
 import { EdgeInsets } from '../__types__';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
+import { DrawerContext } from './context';
 
 type DrawerStyles = {
     root?: ViewStyle;
@@ -60,10 +61,10 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         theme: themeOverride,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         // Drawer-specific props
-        activeItem, // eslint-disable-line
-        onItemSelect, // eslint-disable-line
-        styles = {}, 
-        width, // eslint-disable-line
+        activeItem,
+        onItemSelect,
+        styles = {},
+        width,
         // Other View Props
         style,
         ...viewProps
@@ -118,12 +119,20 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     );
 
     return (
-        <Surface style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-            {getSectionByDisplayName('DrawerHeader')}
-            {getSectionByDisplayName('DrawerSubheader')}
-            {getSectionByDisplayName('DrawerBody', true)}
-            {getSectionByDisplayName('DrawerFooter')}
-        </Surface>
+        <DrawerContext.Provider
+            value={{
+                activeItem,
+                onItemSelect,
+                width,
+            }}
+        >
+            <Surface style={[defaultStyles.root, styles.root, style]} {...viewProps}>
+                {getSectionByDisplayName('DrawerHeader')}
+                {getSectionByDisplayName('DrawerSubheader')}
+                {getSectionByDisplayName('DrawerBody', true)}
+                {getSectionByDisplayName('DrawerFooter')}
+            </Surface>
+        </DrawerContext.Provider>
     );
 };
 
