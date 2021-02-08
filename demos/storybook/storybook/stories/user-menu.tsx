@@ -23,7 +23,14 @@ storiesOf('UserMenu', module)
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <UserMenu
                 menuItems={menuItems}
-                avatar={<Avatar.Text label={text('Avatar.Text label', 'PX')} size={40} color={Colors.white[50]} />}
+                avatar={
+                    <Avatar.Text
+                        label={text('Avatar.Text label', 'PX')}
+                        size={40}
+                        color={Colors.blue[500]}
+                        style={{ backgroundColor: Colors.blue[50] }}
+                    />
+                }
             />
         </View>
     ))
@@ -38,8 +45,8 @@ storiesOf('UserMenu', module)
                     <Avatar.Text
                         label={text('Avatar.Text label', 'PX')}
                         size={40}
-                        color={color('Avatar.Text text color', Colors.white[50])}
-                        style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
+                        color={color('Avatar.Text text color', Colors.blue[500])}
+                        style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[50]) }}
                     />
                 }
             />
@@ -85,7 +92,14 @@ storiesOf('UserMenu', module)
                 menuTitle={text('menuTitle', 'John Smith')}
                 menuSubtitle={text('menuSubtitle', 'j.smith@email.com')}
                 menuItems={menuItems}
-                avatar={<Avatar.Text label={'PX'} size={40} color={Colors.white[50]} />}
+                avatar={
+                    <Avatar.Text
+                        label={'PX'}
+                        size={40}
+                        color={Colors.blue[500]}
+                        style={{ backgroundColor: Colors.blue[50] }}
+                    />
+                }
             />
         </View>
     ))
@@ -102,8 +116,8 @@ storiesOf('UserMenu', module)
                     <Avatar.Text
                         label={text('Avatar.Text label', 'PX')}
                         size={40}
-                        color={color('Avatar.Text text color', Colors.white[50])}
-                        style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[500]) }}
+                        color={color('Avatar.Text text color', Colors.blue[500])}
+                        style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[50]) }}
                     />
                 }
             />
@@ -125,7 +139,7 @@ storiesOf('UserMenu', module)
                                         label={'PX'}
                                         size={40}
                                         color={Colors.blue[500]}
-                                        style={{ backgroundColor: Colors.white[50] }}
+                                        style={{ backgroundColor: Colors.blue[50] }}
                                     />
                                 }
                             />
