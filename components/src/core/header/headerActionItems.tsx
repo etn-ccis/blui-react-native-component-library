@@ -16,18 +16,15 @@ const defaultStyles = StyleSheet.create({
         position: 'absolute',
         right: 8,
         height: 56,
-        marginTop: -8,
     },
     actionItem: {
         height: 40,
         width: 40,
         padding: 8,
-        marginHorizontal: 4,
     },
     avatar: {
         height: 40,
         width: 40,
-        marginHorizontal: 12,
     },
 });
 

@@ -13,7 +13,6 @@ const defaultStyles = StyleSheet.create({
         height: 40,
         width: 40,
         margin: -8,
-        marginTop: -16,
         padding: 8,
     },
     flipIcon: {
