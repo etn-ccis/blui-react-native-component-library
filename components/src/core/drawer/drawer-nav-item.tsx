@@ -103,7 +103,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         ) : (
             <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />
         ),
-        disableActiveItemParentStyles = false /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        disableActiveItemParentStyles = false,
         divider,
         expandIcon = props.depth ? (
             <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} />
@@ -233,7 +233,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             styles={{
                                 root: Object.assign({ paddingLeft: calcNestedPadding(depth) }, iliRoot),
                                 title: Object.assign(
-                                    active || isInActiveTree
+                                    active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
                                               fontWeight: theme.fonts.medium.fontWeight,
                                               fontFamily: theme.fonts.medium.fontFamily,
