@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
+import { color, withKnobs } from '@storybook/addon-knobs';
 import { safeArea } from '../decorators';
 import * as Typography from '@pxblue/react-native-components';
 import { View } from 'react-native';
-import { purple, green } from '@pxblue/colors';
+import * as Colors from '@pxblue/colors';
 
 storiesOf('Typography', module)
     .addDecorator(withKnobs)
@@ -36,8 +36,10 @@ storiesOf('Typography', module)
     ))
     .add('with custom styles', () => (
         <View>
-            <Typography.Body1 style={{ color: purple[500] }}>Typography styles can be overridden</Typography.Body1>
-            <Typography.Body1 theme={{ colors: { text: green[900] } }}>
+            <Typography.Body1 style={{ color: color('style text color', Colors.blue[500]) }}>
+                Typography styles can be overridden
+            </Typography.Body1>
+            <Typography.Body1 theme={{ colors: { text: color('theme text color', Colors.black[500]) } }}>
                 Their themes can be overridden as well
             </Typography.Body1>
             <Typography.Body1 fontSize={14} font={'light'}>

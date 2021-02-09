@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-native-components",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "author": "pxblue <pxblue@eaton.com>",
     "description": "Reusable React Native components for PX Blue applications",
     "repository": {

@@ -20,12 +20,12 @@
         "@pxblue/react-native-components": "^4.0.0",
         "@pxblue/react-native-themes": "^5.0.0",
         "react": "^16.11.0",
-        "react-native": "^0.62.2",
-        "react-native-paper": "^4.0.0",
+        "react-native": "0.63.3",
+        "react-native-paper": "^4.7.1",
         "react-native-safe-area-context": "^3.0.0",
         "react-native-svg": "^12.1.0",
         "react-native-svg-transformer": "^0.14.3",
-        "react-native-vector-icons": "^7.0.0"
+        "react-native-vector-icons": "^8.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.6.2",

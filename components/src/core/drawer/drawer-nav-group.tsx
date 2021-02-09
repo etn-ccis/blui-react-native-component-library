@@ -1,5 +1,5 @@
-import React, { ReactNode, useCallback, useState } from 'react';
-import { Subtitle1 } from '../typography';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import { Overline } from '../typography';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, NestedNavItem, DrawerNavItemProps } from './drawer-nav-item';
 import { inheritDrawerProps, NavGroupInheritableProps } from './inheritable-types';
@@ -75,12 +75,30 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200];
-
     const defaultStyles = drawerNavGroupStyles;
+    /* Keeps track of which group of IDs are in the 'active hierarchy' */
+    const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
+
+    /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
+    useEffect(() => {
+        if (!findID({ items: props.items } as NavItem, props.activeItem)) {
+            setActiveHierarchyItems([]);
+        }
+    }, [props.activeItem]);
+
+    const updateActiveHierarchy = (ids: string[]): void => {
+        if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
+            // Sets the list of active IDs when we get a callback from an active child
+            setActiveHierarchyItems(ids);
+        }
+    };
 
     const getDrawerItemList = useCallback(
-        (item: NavItem | NestedNavItem, depth: number): JSX.Element => {
+        (item: NavItem | NestedNavItem, depth: number, notifyActiveParent: (ids: string[]) => void): JSX.Element => {
             const [expanded, setExpanded] = useState(findID(item, props.activeItem));
+
+            // Is this item ID in the list of items in the active selection hierarchy?
+            const activeInTree = activeHierarchyItems.includes(item.itemID);
 
             // Nested items inherit from the nestedDivider prop if item's divider is unset.
             if (depth > 0 && item.divider === undefined) {
@@ -108,13 +126,20 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                             expanded={expanded}
                             expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                             styles={styles.navItem}
+                            isInActiveTree={activeInTree}
+                            notifyActiveParent={(ids: string[] = []): void =>
+                                notifyActiveParent(ids.concat(item.itemID))
+                            }
                         />
                         <Collapsible
                             collapsed={!expanded}
                             style={[{ backgroundColor: nestedBackgroundColor }, styles.content]}
                         >
-                            {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
-                            <Divider style={[defaultStyles.divider, styles.divider]} />
+                            {item.items.map((subItem: NavItem) =>
+                                getDrawerItemList(subItem, depth + 1, (ids: string[] = []): void =>
+                                    notifyActiveParent(ids.concat(item.itemID))
+                                )
+                            )}
                         </Collapsible>
                     </View>
                 );
@@ -128,10 +153,12 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     key={item.itemID}
                     navGroupProps={props}
                     styles={styles.navItem}
+                    isInActiveTree={activeInTree}
+                    notifyActiveParent={(ids: string[] = []): void => notifyActiveParent(ids.concat(item.itemID))}
                 />
             );
         },
-        [props]
+        [props, activeHierarchyItems]
     );
 
     return (
@@ -139,12 +166,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             {titleContent}
             {!titleContent && title && (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <Divider style={[defaultStyles.divider, styles.divider]} />
-                    <Subtitle1 style={[defaultStyles.title, styles.title]}>{title}</Subtitle1>
+                    <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
                     <Divider style={[defaultStyles.divider, styles.divider]} />
                 </View>
             )}
-            {items.map((item: NavItem) => getDrawerItemList(item, 0))}
+            {items.map((item: NavItem) => getDrawerItemList(item, 0, updateActiveHierarchy))}
         </View>
     );
 };

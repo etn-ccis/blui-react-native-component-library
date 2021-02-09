@@ -5,13 +5,13 @@ import { ListItemTag, InfoListItem, wrapIcon } from '@pxblue/react-native-compon
 import { withKnobs, color, text } from '@storybook/addon-knobs';
 import { padded } from '../decorators';
 import * as Colors from '@pxblue/colors';
-import _Flower from '@pxblue/icons-svg/flower.svg';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 const notes = {
     notes: 'A text item with a colored background and rounded corners that is used to tag lists.',
 };
 
-const FlowerIcon = wrapIcon({ IconClass: _Flower });
+const Build = wrapIcon({ IconClass: MatIcon, name: 'build' });
 
 storiesOf('ListItemTag', module)
     .addDecorator(withKnobs)
@@ -22,8 +22,8 @@ storiesOf('ListItemTag', module)
         () => (
             <ListItemTag
                 label={text('label', 'ACTIVE')}
-                backgroundColor={color('backgroundColor', Colors.yellow[500])}
-                fontColor={color('fontColor', Colors.black[500])}
+                backgroundColor={color('backgroundColor', Colors.red[500])}
+                fontColor={color('fontColor', Colors.white[50])}
             />
         ),
         notes
@@ -36,7 +36,7 @@ storiesOf('ListItemTag', module)
                     <InfoListItem
                         title={'@pxblue/react-themes'}
                         subtitle={'Light and dark themes supported'}
-                        IconClass={FlowerIcon}
+                        IconClass={Build}
                         rightComponent={
                             <ListItemTag
                                 label={'BUILD PASSING'}

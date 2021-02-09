@@ -138,4 +138,5 @@ export const Overline = createTypography((theme) => ({
     ...theme.fonts.regular,
     fontSize: 12,
     letterSpacing: 2,
+    textTransform: 'uppercase',
 }));

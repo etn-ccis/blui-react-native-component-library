@@ -46,6 +46,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 | chevron           | Add a chevron icon on the right              | `boolean`                                          | no       | false          |
 | dense             | Smaller height row with less padding         | `boolean`                                          | no       | false          |
 | divider           | Show a row separator below the row           | `'full'` \| `'partial'`                            | no       |                |
+| left Component    | Component to render on the left side         | `JSX.Element`                                      | no       |                |
 | rightComponent    | Component to render on the right side        | `JSX.Element`                                      | no       |                |
 | statusColor       | Status stripe and icon color                 | `string`                                           | no       |                |
 | fontColor         | Title text color                             | `string`                                           | no       |                |

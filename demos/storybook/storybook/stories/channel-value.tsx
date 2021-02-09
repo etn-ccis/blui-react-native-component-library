@@ -3,8 +3,7 @@ import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
 import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
 import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
-import Leaf from '@pxblue/icons-svg/leaf.svg';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import * as Colors from '@pxblue/colors';
 
 const notes = {
@@ -12,8 +11,7 @@ const notes = {
         'Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
 };
 
-const WrappedLeaf = wrapIcon({ IconClass: Leaf });
-const WrappedIcon = wrapIcon({ IconClass: Icon, name: 'chart-pie' });
+const WrappedTrending = wrapIcon({ IconClass: MatIcon, name: 'trending-up' });
 
 storiesOf('ChannelValue', module)
     .addDecorator(withKnobs)
@@ -42,8 +40,8 @@ storiesOf('ChannelValue', module)
                 <ChannelValue
                     value={'123'}
                     units={'hz'}
-                    IconClass={WrappedLeaf}
-                    IconProps={{ color: color('icon color', Colors.blue[500]) }}
+                    IconClass={WrappedTrending}
+                    IconProps={{ color: color('color', Colors.red[500]) }}
                 />
             </View>
         ),
@@ -53,7 +51,13 @@ storiesOf('ChannelValue', module)
         'with fontSize',
         () => (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ChannelValue value={'123'} units={'hz'} fontSize={number('fontSize', 48)} IconClass={WrappedLeaf} />
+                <ChannelValue
+                    value={'123'}
+                    units={'hz'}
+                    fontSize={number('fontSize', 48)}
+                    IconClass={WrappedTrending}
+                    IconProps={{ color: Colors.red[500] }}
+                />
             </View>
         ),
         notes
@@ -64,12 +68,12 @@ storiesOf('ChannelValue', module)
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
                     value={text('value', text('value', '123'))}
-                    IconClass={boolean('Show Icon', true) ? WrappedIcon : undefined}
-                    IconProps={{ color: color('icon color', Colors.blue[500]) }}
+                    IconClass={boolean('Show Icon', true) ? WrappedTrending : undefined}
+                    IconProps={{ color: color('icon color', Colors.red[500]) }}
                     units={text('units', 'hz')}
                     prefix={boolean('prefix', false)}
                     fontSize={number('fontSize', 16)}
-                    color={color('color', Colors.blue[500])}
+                    color={color('color', Colors.black[500])}
                 />
             </View>
         ),

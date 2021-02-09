@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet, ViewStyle, StyleProp, ViewProps } from 'react-native';
+import { StyleSheet, ViewStyle, StyleProp, ViewProps } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { useTheme } from 'react-native-paper';
+import { Surface, useTheme } from 'react-native-paper';
 import color from 'color';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const makeStyles = (
-    props: DrawerInheritableProps,
+    props: DrawerProps,
     theme: ReactNativePaper.Theme,
     insets: EdgeInsets
 ): StyleSheet.NamedStyles<{
@@ -72,7 +72,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
                                 // Set theme-related default props here.
                                 activeItemBackgroundColor:
                                     props.activeItemBackgroundColor ||
-                                    color(theme.colors.primary).lightness(95).rgb().string(),
+                                    color(theme.colors.primary).fade(0.95).rgb().string(),
                                 activeItemFontColor: props.activeItemFontColor || theme.colors.primary,
                                 activeItemIconColor: props.activeItemIconColor || theme.colors.primary,
                                 itemFontColor: props.itemFontColor || theme.colors.text,
@@ -87,18 +87,18 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     );
 
     return (
-        <View style={[defaultStyles.root, style]} {...viewProps}>
+        <Surface style={[defaultStyles.root, style]} {...viewProps}>
             {getSectionByDisplayName('DrawerHeader')}
             {getSectionByDisplayName('DrawerSubheader')}
             {getSectionByDisplayName('DrawerBody', true)}
             {getSectionByDisplayName('DrawerFooter')}
-        </View>
+        </Surface>
     );
 };
 
 Drawer.defaultProps = {
-    activeItemBackgroundShape: 'round',
+    activeItemBackgroundShape: 'square',
     chevron: false,
-    divider: true,
+    divider: false,
     hidePadding: true,
 };
