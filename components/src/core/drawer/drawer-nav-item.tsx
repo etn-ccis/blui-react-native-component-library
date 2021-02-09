@@ -152,6 +152,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // When the activeItem changes, update our expanded state
     useEffect(() => {
         if (isInActiveTree && !expanded) {
+            console.log('expanding: ', + itemID);
             setExpanded(true);
         }
     }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
