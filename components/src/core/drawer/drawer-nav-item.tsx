@@ -9,7 +9,6 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
-import Collapsible from 'react-native-collapsible';
 import * as Colors from '@pxblue/colors';
 
 // import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -258,7 +257,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     </View>
                     {/* If the NavItem has child items defined, render them in a collapse panel */}
                     {((items && items.length > 0) || Boolean(children)) && (
-                        <Collapsible collapsed={!expanded}>
+                        < View style={!expanded ? {height: 0, overflow: 'hidden'} : {}}>
                             {items &&
                                 items.map((subItem: DrawerNavItemProps, index: number) => (
                                     <DrawerNavItem
@@ -273,7 +272,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                     />
                                 ))}
                             {getChildren()}
-                        </Collapsible>
+                        </View>
                     )}
                 </>
             )}

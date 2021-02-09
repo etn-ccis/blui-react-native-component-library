@@ -136,12 +136,12 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         notifyActiveParent: (ids: string[]): void => {
                             if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
                                 // Sets the list of active IDs when we get a callback from an active child
-                                setActiveHierarchyItems(ids.concat(child.props.itemID));
+                                setActiveHierarchyItems(ids);
                             }
                         },
                     })
                 ),
-        [props, setActiveHierarchyItems, children]
+        [props, activeHierarchyItems, setActiveHierarchyItems, children]
     );
 
     return (
@@ -168,7 +168,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         notifyActiveParent={(ids: string[]): void => {
                             if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
                                 // Sets the list of active IDs when we get a callback from an active child
-                                setActiveHierarchyItems(ids.concat(item.itemID));
+                                setActiveHierarchyItems(ids);
                             }
                         }}
                     />
