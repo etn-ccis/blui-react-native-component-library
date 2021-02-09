@@ -15,7 +15,7 @@
     -   `divider` configures whether to show a dividing line separating the component from other content.
 -   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
-## v4.1.0 (Not Published Yet)
+## v4.1.0
 
 ### Added
 -   `<MobileStepper>` component for moving between pages.
