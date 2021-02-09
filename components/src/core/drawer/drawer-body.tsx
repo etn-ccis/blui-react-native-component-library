@@ -36,7 +36,6 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
-        ripple,
         theme: themeOverride,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         // DrawerBody-specific props

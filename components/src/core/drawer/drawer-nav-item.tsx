@@ -11,8 +11,6 @@ import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
 import * as Colors from '@pxblue/colors';
 
-// import { $DeepPartial } from '@callstack/react-theme-provider';
-
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
     activeBackground?: StyleProp<ViewStyle>;
@@ -35,7 +33,6 @@ export type DrawerNavItemProps = AllSharedProps &
         styles?: DrawerNavItemStyles;
         subtitle?: string;
         title: string;
-        // InfoListItemProps?: Partial<PXBInfoListItemProps>;
     };
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
@@ -118,8 +115,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         itemIconColor = theme.colors.text,
         nestedBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         nestedDivider,
-        ripple = true /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-
         // Drawer Nav Item specific props
         children,
         styles = {},
@@ -152,7 +147,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // When the activeItem changes, update our expanded state
     useEffect(() => {
         if (isInActiveTree && !expanded) {
-            console.log('expanding: ', + itemID);
             setExpanded(true);
         }
     }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
@@ -236,8 +230,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             backgroundColor={'transparent'}
                             onPress={hasAction ? onPressAction : undefined}
                             hidePadding={hidePadding}
-                            // ripple={ripple}
-                            // TODO: Ripple Props?
                             styles={{
                                 root: Object.assign({ paddingLeft: calcNestedPadding(depth) }, iliRoot),
                                 title: Object.assign(
@@ -258,7 +250,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     </View>
                     {/* If the NavItem has child items defined, render them in a collapse panel */}
                     {((items && items.length > 0) || Boolean(children)) && (
-                        < View style={!expanded ? {height: 0, overflow: 'hidden'} : {}}>
+                        <View style={!expanded ? { height: 0, overflow: 'hidden' } : {}}>
                             {items &&
                                 items.map((subItem: DrawerNavItemProps, index: number) => (
                                     <DrawerNavItem

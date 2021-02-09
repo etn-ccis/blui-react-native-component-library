@@ -24,7 +24,6 @@ export const inheritSharedProps = (parent: AllSharedProps, child: AllSharedProps
     itemIconColor: mergeStyleProp(parent.itemIconColor, child.itemIconColor),
     nestedBackgroundColor: mergeStyleProp(parent.nestedBackgroundColor, child.nestedBackgroundColor),
     nestedDivider: mergeStyleProp(parent.nestedDivider, child.nestedDivider),
-    ripple: mergeStyleProp(parent.ripple, child.ripple),
     theme: Object.assign({}, parent.theme, child.theme),
 });
 

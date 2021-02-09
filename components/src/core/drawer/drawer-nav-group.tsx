@@ -8,6 +8,12 @@ import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
 
+export type DrawerNavGroupStyles = {
+    root?: StyleProp<ViewStyle>;
+    textContent?: StyleProp<ViewStyle>;
+    title?: StyleProp<TextStyle>;
+    divider?: StyleProp<ViewStyle>;
+};
 export type DrawerNavGroupProps = AllSharedProps &
     ViewProps & {
         // List of navigation items to render
@@ -23,14 +29,7 @@ export type DrawerNavGroupProps = AllSharedProps &
         titleContent?: ReactNode;
 
         /** Style overrides */
-        styles?: {
-            root?: StyleProp<ViewStyle>;
-            content?: StyleProp<ViewStyle>;
-            textContent?: StyleProp<ViewStyle>;
-            title?: StyleProp<TextStyle>;
-            divider?: StyleProp<ViewStyle>;
-            navItem?: DrawerNavItemProps['styles'];
-        };
+        styles?: DrawerNavGroupStyles;
     };
 const makeStyles = (props: DrawerNavGroupProps, theme: ReactNativePaper.Theme): any =>
     StyleSheet.create({
@@ -46,7 +45,6 @@ const makeStyles = (props: DrawerNavGroupProps, theme: ReactNativePaper.Theme): 
         divider: {},
     });
 
-// TODO: Can't this be replaced with a Set of itemIDs?
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string | undefined): boolean => {
     if (!activeItem) return false;
 
@@ -96,7 +94,6 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
-        ripple,
         theme: themeOverride,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         // DrawerNavGroup-specific props

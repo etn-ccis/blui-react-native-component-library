@@ -29,9 +29,6 @@ export type SharedStyleProps = {
     // The color used for the icon
     itemIconColor?: string;
 
-    // Whether to apply material ripple effect to items
-    ripple?: boolean;
-
     // Theme overrides
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
@@ -73,7 +70,6 @@ export const SharedStylePropTypes = {
     divider: PropTypes.bool,
     itemFontColor: PropTypes.string,
     itemIconColor: PropTypes.string,
-    ripple: PropTypes.bool,
 };
 
 export const NavItemSharedStylePropTypes = {
