@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
     Animated,
     StyleSheet,
@@ -215,8 +215,14 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
     const defaultStyles = headerContentStyles;
+    const [collapsed, setCollapsed] = useState(true);
 
     let content: JSX.Element[] = [];
+
+    useEffect(() => {
+        const listener = headerHeight.addListener(({ value }) => setCollapsed(value === REGULAR_HEIGHT));
+        headerHeight.removeListener(listener);
+    }, []);
 
     if (searchConfig && searching) {
         content = [<SearchContent key={'search-content'} theme={theme} style={styles.search} />];
@@ -248,6 +254,8 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                                   inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                                   outputRange: [getActionPanelWidth(), 0],
                               }),
+                    justifyContent: collapsed ? 'center' : 'flex-end',
+                    marginTop: collapsed ? 4 : 0,
                 },
                 styles.root,
             ]}
