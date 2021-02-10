@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle, ViewProps } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager } from 'react-native';
 import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
 import { usePrevious } from '../hooks/usePrevious';
@@ -75,6 +75,9 @@ const makeStyles = (props: DrawerNavItemProps, theme: ReactNativePaper.Theme): a
             alignItems: 'center',
             marginLeft: 16,
         },
+        flipIcon: {
+            transform: [{ scaleX: -1 }],
+        },
     });
 };
 
@@ -127,8 +130,13 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         items,
         notifyActiveParent = (): void => {},
         onPress,
-        rightComponent = props.chevron && !props.items ? (
-            <MatIcon name={'chevron'} size={24} color={theme.colors.text} />
+        rightComponent = props.chevron && !props.items && !props.children ? (
+            <MatIcon
+                name={'chevron-right'}
+                size={24}
+                color={theme.colors.text}
+                style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+            />
         ) : undefined,
         statusColor,
         subtitle: itemSubtitle,
