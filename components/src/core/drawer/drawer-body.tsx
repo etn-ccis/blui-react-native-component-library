@@ -1,25 +1,63 @@
 import React from 'react';
-import { ScrollView, StyleSheet, ScrollViewProps } from 'react-native';
+import { ScrollView, StyleSheet, ScrollViewProps, ViewStyle } from 'react-native';
 import { DrawerNavGroup } from './drawer-nav-group';
-import { DrawerInheritableProps, inheritDrawerProps } from './inheritable-types';
+import { AllSharedProps } from './types';
+import { inheritSharedProps } from './utilities';
 
-const defaultStyles = StyleSheet.create({
-    root: {},
-});
-export type DrawerBodyProps = ScrollViewProps & DrawerInheritableProps;
+type DrawerBodyStyles = {
+    root?: ViewStyle;
+};
+const makeStyles = (): StyleSheet.NamedStyles<DrawerBodyStyles> =>
+    StyleSheet.create({
+        root: {},
+    });
+
+export type DrawerBodyProps = ScrollViewProps &
+    AllSharedProps & {
+        // Custom style overrides
+        styles?: DrawerBodyStyles;
+    };
 export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
-    const { children, style, ...scrollProps } = props;
-    const childrenArray = React.Children.toArray(children);
+    const {
+        // Inheritable Props
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        activeItemBackgroundColor,
+        activeItemBackgroundShape,
+        activeItemFontColor,
+        activeItemIconColor,
+        backgroundColor,
+        chevron,
+        collapseIcon,
+        disableActiveItemParentStyles,
+        divider,
+        expandIcon,
+        hidePadding,
+        itemFontColor,
+        itemIconColor,
+        nestedBackgroundColor,
+        nestedDivider,
+        theme: themeOverride,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        // DrawerBody-specific props
+        styles = {},
+        // Other ScrollView Props
+        style,
+        children: bodyChildren,
+        ...scrollProps
+    } = props;
+    const children = React.Children.toArray(bodyChildren);
+    const defaultStyles = makeStyles();
+
     return (
-        <ScrollView style={[defaultStyles.root, style]} {...scrollProps}>
-            {childrenArray.map((child: any, index: number) => {
+        <ScrollView style={[defaultStyles.root, styles.root, style]} {...scrollProps}>
+            {children.map((child: any, index: number) => {
                 if (!child) return null;
                 if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
                 return (
                     <DrawerNavGroup
-                        {...inheritDrawerProps(props, child.props)}
-                        {...child.props}
                         key={`NavGroup_${index}`}
+                        {...child.props}
+                        {...inheritSharedProps(props, child.props)}
                     />
                 );
             })}
