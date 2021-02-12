@@ -47,16 +47,19 @@ import { Drawer, DrawerHeader, DrawerBody, DrawerNavGroup, DrawerNavItem } from 
 
 </div>
 
-Any other props will be provided to the root element [**Surface**](https://callstack.github.io/react-native-paper/surface.html).
+Any other props will be provided to the root element ([**Surface**](https://callstack.github.io/react-native-paper/surface.html)).
 
 #### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. The Drawer supports the following keys:
 
+<div style="overflow: auto;">
+
 | Name       | Description                                                    |
 | ---------- | -------------------------------------------------------------- |
 | root       | Style override for the root Surface element                    |
 
+</div>
 
 ## DrawerHeader
 The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its content can be provided by the `title`, `subtitle`, and `icon` props, or you can pass in your own custom content via `titleContent`.
@@ -78,13 +81,14 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 </div>
 
-Any other props will be provided to the root element [**View**](https://reactnative.dev/docs/view).
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
 ### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerHeader supports the following keys:
 
 <div style="overflow: auto">
+
 | Name                     | Description                                    |
 | ------------------------ | ---------------------------------------------- |
 | root                     | Styles applied to the root element             |
@@ -102,12 +106,15 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 ## DrawerSubheader
 The `<DrawerSubheader>` is an optional subsection that will appear below the `<DrawerHeader>` and above the `<DrawerBody>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
 
-
 ### DrawerSubheader API
+
+<div style="overflow: auto;">
+
 | Prop Name             | Description                                      | Type              | Required | Default                      |
 | --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
 | divider               | Whether to show a line below subheader content   | `boolean`         | no       | true                         |
-
+ 
+</div>
 
 ## DrawerBody
 The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
@@ -124,15 +131,19 @@ The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical 
 
 </div>
 
-Any other props will be provided to the root element [**ScrollView**](https://reactnative.dev/docs/scrollview).
+Any other props will be provided to the root element ([**ScrollView**](https://reactnative.dev/docs/scrollview)).
 
 #### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. The Drawer supports the following keys:
 
+<div style="overflow: auto;">
+
 | Name       | Description                                                    |
 | ---------- | -------------------------------------------------------------- |
 | root       | Style override for the root ScrollView element                 |
+
+</div>
 
 ## DrawerNavGroup
 
@@ -155,11 +166,13 @@ The `items` property supports nested items to generate collapsible sections in t
 
 </div>
 
-Any other props will be provided to the root element [**View**](https://reactnative.dev/docs/view).
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
 #### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerNavGroup supports the following keys:
+
+<div style="overflow: auto;">
 
 | Name                     | Description                                         |
 | ------------------------ | --------------------------------------------------- |
@@ -168,15 +181,21 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | title                    | Styles applied to the title element                 |
 | divider                  | Styles applied to the divider elements              |
 
+</div>
 
 ## DrawerFooter
+
 The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
 
 ### DrawerFooter API
+
+<div style="overflow: auto;">
+
 | Prop Name             | Description                                      | Type              | Required | Default                      |
 | --------------------- | ------------------------------------------------ | ----------------- | -------- | ---------------------------- |
 | divider               | Whether to show a line above footer content      | `boolean`         | no       | true                         |
 
+</div>
 
 ## DrawerNavItem
 
@@ -205,7 +224,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 </div>
 
-> *These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
+> Props marked with a star (*) are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
 A `<NestedNavItem>` has all the same properties as a `<NavItem>` but does not support icons. 
 
@@ -213,6 +232,7 @@ A `<NestedNavItem>` has all the same properties as a `<NavItem>` but does not su
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerNavItem supports the following keys:
 
+<div style="overflow: auto;">
 | Name                     | Description                                         |
 | ------------------------ | --------------------------------------------------- |
 | root                     | Styles applied to the root element                  |
@@ -220,6 +240,7 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | expandIcon               | Styles applied to right content expand icon         |
 | infoListItem             | Styles passed to the underlying InfoListItem        |
 
+</div>
 
 ## Shared Props
 
@@ -228,7 +249,7 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 <div style="overflow: auto;">
 
 | Name                            | Description                                                                     | Type                                   | Required | Default                                                                                                    |
-| ------------------------- ------| --------------------------------------------------------------------------------| -------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| --------------------------------| --------------------------------------------------------------------------------| -------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
 | activeItemBackgroundColor       | Background color for the 'active' item                                          | `string`                               | no       | varies for light/dark theme                                                                                |
 | activeItemBackgroundShape       | shape of the active item background highlight                                   | `'round'` \| `'square'`                | no       | square                                                                                                     |
 | activeItemFontColor             | Font color for the 'active' item                                                | `string`                               | no       | varies for light/dark theme                                                                                |
