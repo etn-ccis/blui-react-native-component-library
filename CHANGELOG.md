@@ -1,5 +1,9 @@
 # Change Log
 
+## v4.1.1
+
+### Fixed
+-   Fixes vertical alignment of `<Header>` text.
 ## v4.1.0
 
 ### Added

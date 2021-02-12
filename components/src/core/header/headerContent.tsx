@@ -222,9 +222,9 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         content = [<SearchContent key={'search-content'} theme={theme} style={styles.search} />];
     } else {
         content = [
-            <HeaderTitle title={title} key="title_key" theme={theme} style={styles.title} />,
-            <HeaderInfo info={info} key="info_key" theme={theme} style={styles.info} />,
-            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={styles.subtitle} />,
+            <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
+            <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
+            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} />,
         ];
     }
 
@@ -248,6 +248,10 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                                   inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                                   outputRange: [getActionPanelWidth(), 0],
                               }),
+                    marginTop: headerHeight.interpolate({
+                        inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                        outputRange: [10, 0],
+                    }),
                 },
                 styles.root,
             ]}
