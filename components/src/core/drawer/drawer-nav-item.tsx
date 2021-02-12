@@ -10,6 +10,7 @@ import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
 import * as Colors from '@pxblue/colors';
+import Collapsible from 'react-native-collapsible';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -153,11 +154,12 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         depth > 0 ? (nestedDivider !== undefined ? nestedDivider : false) : divider !== undefined ? divider : false;
 
     // When the activeItem changes, update our expanded state
-    useEffect(() => {
-        if (isInActiveTree && !expanded) {
-            setExpanded(true);
-        }
-    }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
+    // Temporarily disabling this auto-expand behavior due to a bug in the react-native-collapsible with calculating the correct starting height
+    // useEffect(() => {
+    //     if (isInActiveTree && !expanded) {
+    //         setExpanded(true);
+    //     }
+    // }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
 
     // If the active item changes
     useEffect(() => {
@@ -258,7 +260,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     </View>
                     {/* If the NavItem has child items defined, render them in a collapse panel */}
                     {((items && items.length > 0) || Boolean(children)) && (
-                        <View style={!expanded ? { height: 0, overflow: 'hidden' } : {}}>
+                        <Collapsible collapsed={!expanded}>
                             {items &&
                                 items.map((subItem: DrawerNavItemProps, index: number) => (
                                     <DrawerNavItem
@@ -273,7 +275,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                     />
                                 ))}
                             {getChildren()}
-                        </View>
+                        </Collapsible>
                     )}
                 </>
             )}
