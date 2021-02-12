@@ -233,6 +233,7 @@ A `<NestedNavItem>` has all the same properties as a `<NavItem>` but does not su
 You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerNavItem supports the following keys:
 
 <div style="overflow: auto;">
+    
 | Name                     | Description                                         |
 | ------------------------ | --------------------------------------------------- |
 | root                     | Styles applied to the root element                  |
