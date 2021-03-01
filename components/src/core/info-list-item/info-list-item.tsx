@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
-import { Body1 } from '../typography';
+import { Subtitle1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
@@ -317,14 +317,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             ) : null}
             {leftComponent}
             <View style={[defaultStyles.mainContent, styles.mainContent]}>
-                <Body1
-                    style={[defaultStyles.title, styles.title]}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                    font={'medium'}
-                >
+                <Subtitle1 style={[defaultStyles.title, styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>
                     {title}
-                </Body1>
+                </Subtitle1>
                 <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
                 <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
             </View>
