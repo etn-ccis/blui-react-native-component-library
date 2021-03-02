@@ -96,7 +96,13 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             iconColor={iconColor || menuItem.iconColor}
                             fontColor={fontColor || menuItem.fontColor}
                             backgroundColor={backgroundColor || menuItem.backgroundColor}
-                            styles={{ title: { fontSize: 16, fontWeight: '400' } }}
+                            styles={{
+                                title: {
+                                    fontSize: 16,
+                                    fontFamily: theme.fonts.regular.fontFamily,
+                                    fontWeight: theme.fonts.regular.fontWeight,
+                                },
+                            }}
                         />
                     ))}
             </>
