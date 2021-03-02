@@ -3,6 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-nat
 import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
+import * as Colors from '@pxblue/colors';
 
 export type UserMenuProps = {
     // Custom avatar to render as bottomsheet trigger
@@ -44,7 +45,16 @@ const useStyles = (
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const theme = useTheme();
-    const { avatar, backgroundColor, fontColor, iconColor, menuTitle, menuSubtitle, menuItems, styles = {} } = props;
+    const {
+        avatar,
+        backgroundColor,
+        fontColor,
+        iconColor = Colors.gray[500],
+        menuTitle,
+        menuSubtitle,
+        menuItems,
+        styles = {},
+    } = props;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const defaultStyles = useStyles(theme);
 
@@ -86,7 +96,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             iconColor={iconColor || menuItem.iconColor}
                             fontColor={fontColor || menuItem.fontColor}
                             backgroundColor={backgroundColor || menuItem.backgroundColor}
-                            styles={{ title: { fontSize: 16 } }}
+                            styles={{ title: { fontSize: 16, fontWeight: '400' } }}
                         />
                     ))}
             </>
