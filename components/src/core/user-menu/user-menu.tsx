@@ -85,26 +85,32 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                     </>
                 )}
                 {menuItems &&
-                    menuItems.map((menuItem: InfoListItemProps, index: number) => (
-                        <InfoListItem
-                            {...menuItem}
-                            key={index}
-                            onPress={(): void => {
-                                closeMenu();
-                                if (menuItem.onPress) menuItem.onPress();
-                            }}
-                            iconColor={iconColor || menuItem.iconColor}
-                            fontColor={fontColor || menuItem.fontColor}
-                            backgroundColor={backgroundColor || menuItem.backgroundColor}
-                            styles={{
-                                title: {
-                                    fontSize: 16,
-                                    fontFamily: theme.fonts.regular.fontFamily,
-                                    fontWeight: theme.fonts.regular.fontWeight,
-                                },
-                            }}
-                        />
-                    ))}
+                    menuItems.map((menuItem: InfoListItemProps, index: number) => {
+                        const menuItemStyles = menuItem.styles || {};
+                        return (
+                            <InfoListItem
+                                {...menuItem}
+                                key={index}
+                                onPress={(): void => {
+                                    closeMenu();
+                                    if (menuItem.onPress) menuItem.onPress();
+                                }}
+                                iconColor={iconColor || menuItem.iconColor}
+                                fontColor={fontColor || menuItem.fontColor}
+                                backgroundColor={backgroundColor || menuItem.backgroundColor}
+                                styles={Object.assign(menuItemStyles, {
+                                    title: Object.assign(
+                                        {
+                                            fontSize: 16,
+                                            fontFamily: theme.fonts.regular.fontFamily,
+                                            fontWeight: theme.fonts.regular.fontWeight,
+                                        },
+                                        menuItemStyles.title
+                                    ),
+                                })}
+                            />
+                        );
+                    })}
             </>
         ),
         [menuItems, menuTitle, menuSubtitle, iconColor, fontColor, backgroundColor]
