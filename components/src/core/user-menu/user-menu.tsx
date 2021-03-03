@@ -3,6 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-nat
 import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
+import * as Colors from '@pxblue/colors';
 
 export type UserMenuProps = {
     // Custom avatar to render as bottomsheet trigger
@@ -44,7 +45,16 @@ const useStyles = (
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const theme = useTheme();
-    const { avatar, backgroundColor, fontColor, iconColor, menuTitle, menuSubtitle, menuItems, styles = {} } = props;
+    const {
+        avatar,
+        backgroundColor,
+        fontColor,
+        iconColor = Colors.gray[500],
+        menuTitle,
+        menuSubtitle,
+        menuItems,
+        styles = {},
+    } = props;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const defaultStyles = useStyles(theme);
 
@@ -75,19 +85,32 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                     </>
                 )}
                 {menuItems &&
-                    menuItems.map((menuItem: InfoListItemProps, index: number) => (
-                        <InfoListItem
-                            {...menuItem}
-                            key={index}
-                            onPress={(): void => {
-                                closeMenu();
-                                if (menuItem.onPress) menuItem.onPress();
-                            }}
-                            iconColor={iconColor || menuItem.iconColor}
-                            fontColor={fontColor || menuItem.fontColor}
-                            backgroundColor={backgroundColor || menuItem.backgroundColor}
-                        />
-                    ))}
+                    menuItems.map((menuItem: InfoListItemProps, index: number) => {
+                        const menuItemStyles = menuItem.styles || {};
+                        return (
+                            <InfoListItem
+                                {...menuItem}
+                                key={index}
+                                onPress={(): void => {
+                                    closeMenu();
+                                    if (menuItem.onPress) menuItem.onPress();
+                                }}
+                                iconColor={iconColor || menuItem.iconColor}
+                                fontColor={fontColor || menuItem.fontColor}
+                                backgroundColor={backgroundColor || menuItem.backgroundColor}
+                                styles={Object.assign(menuItemStyles, {
+                                    title: Object.assign(
+                                        {
+                                            fontSize: 16,
+                                            fontFamily: theme.fonts.regular.fontFamily,
+                                            fontWeight: theme.fonts.regular.fontWeight,
+                                        },
+                                        menuItemStyles.title
+                                    ),
+                                })}
+                            />
+                        );
+                    })}
             </>
         ),
         [menuItems, menuTitle, menuSubtitle, iconColor, fontColor, backgroundColor]
