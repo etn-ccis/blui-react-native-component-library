@@ -248,10 +248,12 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                                   inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                                   outputRange: [getActionPanelWidth(), 0],
                               }),
-                    marginTop: headerHeight.interpolate({
-                        inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                        outputRange: [10, 0],
-                    }),
+                    marginTop: searching
+                        ? 0
+                        : headerHeight.interpolate({
+                              inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                              outputRange: [10, 0],
+                          }),
                 },
                 styles.root,
             ]}
