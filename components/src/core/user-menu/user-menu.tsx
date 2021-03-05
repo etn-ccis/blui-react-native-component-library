@@ -98,7 +98,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                                 iconColor={iconColor || menuItem.iconColor}
                                 fontColor={fontColor || menuItem.fontColor}
                                 backgroundColor={backgroundColor || menuItem.backgroundColor}
-                                dense
+                                dense={menuItem.dense !== undefined ? menuItem.dense : true}
                                 styles={Object.assign(menuItemStyles, {
                                     title: Object.assign(
                                         {
