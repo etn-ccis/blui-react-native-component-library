@@ -131,7 +131,7 @@ export const Button = createTypography((theme) => ({
 }));
 export const Caption = createTypography((theme) => ({
     ...theme.fonts.regular,
-    fontSize: 10,
+    fontSize: 12,
     letterSpacing: 0,
 }));
 export const Overline = createTypography((theme) => ({
