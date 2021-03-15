@@ -12,7 +12,6 @@ const makeStyles = (
     root: ViewStyle;
     stepperContainer: ViewStyle;
     circle: ViewStyle;
-    circleDark: ViewStyle;
     filled: ViewStyle;
     progressBar: ViewStyle;
     text: ViewStyle;
@@ -37,10 +36,7 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            backgroundColor: props.inactiveColor || Colors.gray[200],
-        },
-        circleDark: {
-            backgroundColor: props.inactiveColor || theme.colors.disabled,
+            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
@@ -105,7 +101,6 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                                 style={[
                                     defaultStyles.circle,
                                     styles.circle,
-                                    theme.dark ? defaultStyles.circleDark : {},
                                     active ? defaultStyles.filled : {},
                                     active ? styles.filled : {},
                                 ]}
