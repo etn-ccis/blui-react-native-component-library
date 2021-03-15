@@ -4,6 +4,7 @@ import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Body1 } from '../typography';
+import Color from 'color';
 
 const makeStyles = (
     props: MobileStepperProps,
@@ -36,7 +37,10 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            backgroundColor: props.inactiveColor || Colors.gray['200'],
+            backgroundColor:
+                props.inactiveColor || theme.dark
+                    ? Color(Colors.black[300]).alpha(0.36).rgb().toString()
+                    : Colors.gray[200],
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
