@@ -252,7 +252,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 : Colors.white[50]; // default avatar is dark gray -> white text
         }
         return statusColor ? statusColor : theme.colors.text;
-    }, [iconColor, avatar, statusColor]);
+    }, [iconColor, avatar, statusColor, theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (IconClass) {
