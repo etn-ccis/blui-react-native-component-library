@@ -39,6 +39,7 @@ const headerStyles = (
     StyleSheet.create({
         root: {
             width: '100%',
+            // @ts-ignore
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
