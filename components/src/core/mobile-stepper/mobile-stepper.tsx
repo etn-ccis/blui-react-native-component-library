@@ -36,7 +36,7 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            backgroundColor: props.inactiveColor || Colors.gray['200'],
+            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
