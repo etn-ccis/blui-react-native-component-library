@@ -15,7 +15,8 @@
 ## v4.1.1
 
 ### Fixed
--   Fixes vertical alignment of `<Header>` text.
+-   Missing dependency on react-native-modal
+
 ## v4.1.0
 
 ### Added
