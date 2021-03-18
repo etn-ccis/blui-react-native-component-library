@@ -12,10 +12,9 @@
     -   `titleColor` changes the color of the group title text.
 -   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
-## v4.1.1
-
 ### Fixed
 -   Fixes vertical alignment of `<Header>` text.
+
 ## v4.1.0
 
 ### Added
