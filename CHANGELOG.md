@@ -1,5 +1,10 @@
 # Change Log
 
+## v4.1.1
+
+### Fixed
+-   Missing dependency on react-native-modal
+
 ## v4.1.0
 
 ### Added
