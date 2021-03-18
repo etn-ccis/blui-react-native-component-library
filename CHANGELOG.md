@@ -1,4 +1,16 @@
 # Change Log
+## v5.0.0 (Not Published Yet)
+
+### Changed
+-   Some of the style names for overrides have changed or moved
+-   Updated Caption fontSize to be 12
+
+### Added
+-   Additional configuration properties for `<Drawer>`:
+    -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements.
+-   Additional configuration properties for `<DrawNavGroup>`
+    -   `titleColor` changes the color of the group title text.
+-   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
 ## v4.1.1
 

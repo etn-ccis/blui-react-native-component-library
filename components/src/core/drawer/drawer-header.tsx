@@ -20,7 +20,8 @@ const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, ins
     StyleSheet.create({
         root: {
             paddingTop: insets.top,
-            backgroundColor: props.backgroundColor || theme.colors.primary,
+            // @ts-ignore
+            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
         },
         icon: {
             height: 56,

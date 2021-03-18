@@ -69,7 +69,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
         <View style={[{ flex: 1 }, styles.root]}>
             <Typography.H6
                 testID={'header_title'}
-                style={[{ color: textColor, fontSize: 18 }, styles.title]}
+                style={[{ color: textColor }, styles.title]}
                 font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}

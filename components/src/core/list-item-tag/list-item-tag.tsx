@@ -29,7 +29,8 @@ const listItemTagStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.primary,
+            // @ts-ignore
+            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
             color:
                 props.fontColor ||
                 (Color(props.backgroundColor || theme.colors.primary).isLight()
