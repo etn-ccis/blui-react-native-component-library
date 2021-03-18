@@ -45,8 +45,14 @@ const calcNestedPadding = (depth: number): number => (depth > 0 ? (depth - 1) * 
 
 const makeStyles = (props: DrawerNavItemProps, theme: ReactNativePaper.Theme): any => {
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.colors.primary).fade(0.95).string();
-    const twentyPercentOpacityPrimary = color(theme.colors.primary).fade(0.8).string();
+    // @ts-ignore
+    const fivePercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+        .fade(0.95)
+        .string();
+    // @ts-ignore
+    const twentyPercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+        .fade(0.8)
+        .string();
 
     const {
         // Shared style props
@@ -92,7 +98,11 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const previousActive = usePrevious(activeItem || '');
 
     // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(theme.colors.primary).lighten(0.83).desaturate(0.39).string();
+    // @ts-ignore
+    const lightenedPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+        .lighten(0.83)
+        .desaturate(0.39)
+        .string();
 
     const {
         // Shared style props
