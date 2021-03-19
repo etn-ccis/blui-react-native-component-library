@@ -29,7 +29,6 @@ const listItemTagStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            // @ts-ignore
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
             color:
                 props.fontColor ||
@@ -41,9 +40,7 @@ const listItemTagStyles = (
             paddingLeft: 4,
             paddingRight: 3, // to account for the 1px letter spacing on the last letter
             borderRadius: 2,
-            // @ts-ignore TODO: bold font is not available from default RNP theming yet
             fontFamily: theme.fonts.bold ? theme.fonts.bold.fontFamily : theme.fonts.medium.fontFamily,
-            // @ts-ignore TODO: bold font is not available from default RNP theming yet
             fontWeight: theme.fonts.bold ? theme.fonts.bold.fontWeight : theme.fonts.medium.fontWeight,
             overflow: 'hidden',
             lineHeight: 16,
