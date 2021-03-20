@@ -4,24 +4,32 @@ import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-const defaultStyles = StyleSheet.create({
-    root: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-    },
-    title: {
-        textAlign: 'center',
-        marginTop: 16,
-    },
-    subtitle: {
-        textAlign: 'center',
-    },
-    actions: {
-        marginTop: 10,
-    },
-});
+type EmptyStateStyles = {
+    root?: ViewStyle;
+    title?: TextStyle;
+    subtitle?: TextStyle;
+    actions?: ViewStyle;
+};
+const makeStyles = (theme: ReactNativePaper.Theme): StyleSheet.NamedStyles<EmptyStateStyles> =>
+    StyleSheet.create({
+        root: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 10,
+        },
+        title: {
+            textAlign: 'center',
+            marginTop: 16,
+        },
+        subtitle: {
+            color: theme.dark ? theme.colors.textSecondary : theme.colors.text,
+            textAlign: 'center',
+        },
+        actions: {
+            marginTop: 10,
+        },
+    });
 
 export type EmptyStateProps = ViewProps & {
     /* Primary text to display */
@@ -79,6 +87,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
+    const defaultStyles = makeStyles(theme);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;
@@ -106,9 +115,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
             {getIcon()}
             <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
-                <Subtitle2 color={'primary'} style={[defaultStyles.subtitle, styles.description]}>
-                    {description}
-                </Subtitle2>
+                <Subtitle2 style={[defaultStyles.subtitle, styles.description]}>{description}</Subtitle2>
             ) : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>
