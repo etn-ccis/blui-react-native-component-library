@@ -26,6 +26,10 @@ describe('ListItemTag', () => {
             <ListItemTag label={'label text'} style={{ color: 'blue', borderRadius: 99, marginLeft: 1 }} />
         ).root;
         const textComponent = instance.findAllByType(Overline)[0];
-        expect(textComponent.props.style[2]).toMatchObject({ color: 'blue', borderRadius: 99, marginLeft: 1 });
+        expect(textComponent.props.style[2]).toMatchObject({
+            color: 'blue',
+            borderRadius: 99,
+            marginLeft: 1,
+        });
     });
 });
