@@ -230,7 +230,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200ee",
+          "color": "#000000",
         },
         Object {
           "writingDirection": "ltr",
@@ -246,6 +246,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         undefined,
         Array [
           Object {
+            "color": "#000000",
             "textAlign": "center",
           },
           undefined,
@@ -424,7 +425,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200ee",
+          "color": "#000000",
         },
         Object {
           "writingDirection": "ltr",
@@ -440,6 +441,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         undefined,
         Array [
           Object {
+            "color": "#000000",
             "textAlign": "center",
           },
           undefined,
