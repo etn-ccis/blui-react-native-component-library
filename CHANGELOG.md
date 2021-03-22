@@ -4,6 +4,7 @@
 ### Changed
 -   Some of the style names for overrides have changed or moved
 -   Updated Caption fontSize to be 12
+-   Some default styles for `<EmptyState>` components.
 
 ### Added
 -   Additional configuration properties for `<Drawer>`:

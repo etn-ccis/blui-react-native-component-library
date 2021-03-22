@@ -49,7 +49,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     style={
       Array [
         Object {
-          "marginTop": 10,
+          "marginTop": 16,
         },
         undefined,
       ]
@@ -455,7 +455,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       Array [
         Object {
-          "marginTop": 10,
+          "marginTop": 16,
         },
         undefined,
       ]

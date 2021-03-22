@@ -7,7 +7,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 type EmptyStateStyles = {
     root?: ViewStyle;
     title?: TextStyle;
-    subtitle?: TextStyle;
+    description?: TextStyle;
     actions?: ViewStyle;
 };
 const makeStyles = (theme: ReactNativePaper.Theme): StyleSheet.NamedStyles<EmptyStateStyles> =>
@@ -22,12 +22,12 @@ const makeStyles = (theme: ReactNativePaper.Theme): StyleSheet.NamedStyles<Empty
             textAlign: 'center',
             marginTop: 16,
         },
-        subtitle: {
+        description: {
             color: theme.dark ? theme.colors.textSecondary : theme.colors.text,
             textAlign: 'center',
         },
         actions: {
-            marginTop: 10,
+            marginTop: 16,
         },
     });
 
@@ -115,7 +115,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
             {getIcon()}
             <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
-                <Subtitle2 style={[defaultStyles.subtitle, styles.description]}>{description}</Subtitle2>
+                <Subtitle2 style={[defaultStyles.description, styles.description]}>{description}</Subtitle2>
             ) : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>
