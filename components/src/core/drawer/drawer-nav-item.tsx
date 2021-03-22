@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager, PixelRatio } from 'react-native';
 import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
 import { usePrevious } from '../hooks/usePrevious';
@@ -43,7 +43,15 @@ export type NestedNavItem = NestedDrawerNavItemProps;
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (depth: number): number => (depth > 0 ? (depth - 1) * 32 : 0);
 
-const makeStyles = (props: DrawerNavItemProps, theme: ReactNativePaper.Theme): any => {
+const makeStyles = (
+    props: DrawerNavItemProps,
+    theme: ReactNativePaper.Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    activeBackground: ViewStyle;
+    expandIcon: ViewStyle;
+    flipIcon: ViewStyle;
+}> => {
     // Primary color manipulation
     // @ts-ignore
     const fivePercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
@@ -62,6 +70,8 @@ const makeStyles = (props: DrawerNavItemProps, theme: ReactNativePaper.Theme): a
         depth,
         nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200],
     } = props;
+    const fontScale = PixelRatio.getFontScale();
+
     return StyleSheet.create({
         root: {
             backgroundColor: depth ? nestedBackgroundColor : backgroundColor || 'transparent',
@@ -74,8 +84,8 @@ const makeStyles = (props: DrawerNavItemProps, theme: ReactNativePaper.Theme): a
             width: activeItemBackgroundShape === 'square' ? '100%' : '97%',
             left: 0,
             top: 0,
-            borderTopRightRadius: activeItemBackgroundShape === 'square' ? 0 : 24,
-            borderBottomRightRadius: activeItemBackgroundShape === 'square' ? 0 : 24,
+            borderTopRightRadius: activeItemBackgroundShape === 'square' ? 0 : 24 * fontScale,
+            borderBottomRightRadius: activeItemBackgroundShape === 'square' ? 0 : 24 * fontScale,
         },
         expandIcon: {
             display: 'flex',
@@ -113,16 +123,16 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         collapseIcon = props.depth ? (
-            <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} />
+            <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} allowFontScaling />
         ) : (
-            <MatIcon name={'expand-less'} size={24} color={theme.colors.text} />
+            <MatIcon name={'expand-less'} size={24} color={theme.colors.text} allowFontScaling />
         ),
         disableActiveItemParentStyles = false,
         divider,
         expandIcon = props.depth ? (
-            <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} />
+            <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} allowFontScaling />
         ) : (
-            <MatIcon name={'expand-more'} size={24} color={theme.colors.text} />
+            <MatIcon name={'expand-more'} size={24} color={theme.colors.text} allowFontScaling />
         ),
         hidePadding,
         itemFontColor = theme.colors.text,

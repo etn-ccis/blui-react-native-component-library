@@ -111,7 +111,7 @@ const infoListItemStyles = (
         },
         iconWrapper: {
             marginLeft: 16,
-            width: 40 * fontScale,
+            width: 24 * fontScale + 16,
             alignItems: 'flex-start',
             justifyContent: 'center',
         },

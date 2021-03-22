@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Overline } from '../typography';
-import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle, PixelRatio } from 'react-native';
 import { DrawerNavItem, NavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './drawer-nav-item';
 import { Divider, useTheme } from 'react-native-paper';
 import { AllSharedProps } from './types';
@@ -31,19 +31,35 @@ export type DrawerNavGroupProps = AllSharedProps &
         /** Style overrides */
         styles?: DrawerNavGroupStyles;
     };
-const makeStyles = (props: DrawerNavGroupProps, theme: ReactNativePaper.Theme): any =>
-    StyleSheet.create({
+const makeStyles = (
+    props: DrawerNavGroupProps,
+    theme: ReactNativePaper.Theme
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    textContent: ViewStyle;
+    title: TextStyle;
+    divider: ViewStyle;
+}> => {
+    const fontScale = PixelRatio.getFontScale();
+    return StyleSheet.create({
         root: {},
-        textContent: {},
+        textContent: {
+            height: 52 * fontScale,
+            position: 'relative',
+            justifyContent: 'center',
+        },
         title: {
-            paddingVertical: 8,
             paddingHorizontal: 16,
-            height: 52,
-            lineHeight: 36,
             color: props.titleColor || theme.colors.text,
         },
-        divider: {},
+        divider: {
+            position: 'absolute',
+            left: 0,
+            bottom: 0,
+            width: '100%',
+        },
     });
+};
 
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string | undefined): boolean => {
     if (!activeItem) return false;

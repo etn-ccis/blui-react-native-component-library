@@ -4,6 +4,7 @@
 ### Changed
 -   Some of the style names for overrides have changed or moved
 -   Updated Caption fontSize to be 12
+-   Components will be responsive to the system font size.
 
 ### Added
 -   Additional configuration properties for `<Drawer>`:
