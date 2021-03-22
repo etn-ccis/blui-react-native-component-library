@@ -11,7 +11,7 @@ export const HeaderIcon: React.FC<HeaderIconProps> = (props) => {
     const { IconClass } = props;
     const { color } = useColor();
     if (IconClass) {
-        return <IconClass size={ICON_SIZE} color={color} />;
+        return <IconClass size={ICON_SIZE} color={color} allowFontScaling />;
     }
     return null;
 };

@@ -138,8 +138,10 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         (): ReactNode =>
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
-                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]}>
+                    <H6 style={[defaultStyles.title, styles.title]} numberOfLines={1}>
+                        {title}
+                    </H6>
+                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
                         {subtitle}
                     </Subtitle1>
                 </View>

@@ -9,6 +9,7 @@ import {
     TextStyle,
     I18nManager,
     Platform,
+    PixelRatio,
 } from 'react-native';
 import color from 'color';
 import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
@@ -197,7 +198,10 @@ export type HeaderContentProps = {
     /** Optional header third line of text (hidden when collapsed) */
     info?: string;
 
-    actionCount?: number;
+    actionCount?: {
+        avatars: number;
+        icons: number;
+    };
 
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -211,9 +215,10 @@ export type HeaderContentProps = {
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
-    const { title, subtitle, info, actionCount = 0, theme, styles = {} } = props;
+    const { title, subtitle, info, actionCount = { avatars: 0, icons: 0 }, theme, styles = {} } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
+    const fontScale = PixelRatio.getFontScale();
     const defaultStyles = headerContentStyles;
 
     let content: JSX.Element[] = [];
@@ -229,12 +234,14 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     }
 
     const getActionPanelWidth = useCallback(() => {
-        let length = actionCount;
-        if (searchConfig) length++;
-        if (length < 1) return 0;
-        length = Math.min(3, length);
-        return length * (ICON_SIZE + ICON_SPACING);
-    }, [actionCount, searchConfig]);
+        let iconLength = actionCount.icons;
+        const avatarLength = actionCount.avatars;
+
+        if (searchConfig) iconLength++;
+        if (iconLength + avatarLength < 1) return 0;
+        iconLength = Math.min(3 - avatarLength, iconLength);
+        return iconLength * (ICON_SIZE * fontScale + ICON_SPACING) + avatarLength * (40 * fontScale);
+    }, [actionCount, searchConfig, fontScale]);
 
     return (
         <Animated.View
@@ -252,7 +259,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                         ? 0
                         : headerHeight.interpolate({
                               inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                              outputRange: [10, 0],
+                              outputRange: [10 * fontScale, 0],
                           }),
                 },
                 styles.root,

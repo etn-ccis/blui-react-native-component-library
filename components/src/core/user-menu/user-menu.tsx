@@ -88,7 +88,9 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             title={menuTitle || ''}
                             subtitle={menuSubtitle}
                             leftComponent={
-                                <View style={[defaultStyles.avatar, styles.avatar, { marginLeft: 16 }]}>{avatar}</View>
+                                <View style={[defaultStyles.avatar, styles.avatar, { marginLeft: 16 }]}>
+                                    {getAvatar()}
+                                </View>
                             }
                             fontColor={fontColor}
                             backgroundColor={backgroundColor}
