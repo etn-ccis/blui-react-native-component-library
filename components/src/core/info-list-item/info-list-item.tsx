@@ -16,6 +16,7 @@ import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -154,7 +155,7 @@ export type InfoListItemProps = ViewProps & {
     iconAlign?: IconAlign;
 
     /** Component to render to the left of the title */
-    IconClass?: ComponentType<{ size: number; color: string }>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** Color to use for stripe */
     statusColor?: string;

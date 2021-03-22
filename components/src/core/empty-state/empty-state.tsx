@@ -3,6 +3,7 @@ import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 're
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -31,7 +32,7 @@ export type EmptyStateProps = ViewProps & {
     description?: string;
 
     /* Icon to display */
-    IconClass?: ComponentType<{ size: number; color: string }>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** Props to pass to the Icon component */
     IconProps?: { size?: number; color?: string };
@@ -98,7 +99,13 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (IconClass) {
-            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} {...IconProps} />;
+            return (
+                <IconClass
+                    size={normalizeIconSize()}
+                    color={getColor(iconColor)}
+                    {...IconProps}
+                />
+            );
         }
     }, [IconClass, IconProps, normalizeIconSize, getColor, iconColor]);
 

@@ -4,6 +4,7 @@ import { ChannelValue } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -40,7 +41,7 @@ export type HeroProps = ViewProps & {
     label: string;
 
     /** Primary icon */
-    IconClass: ComponentType<{ size: number; color: string }>;
+    IconClass: ComponentType<WrapIconProps>;
 
     /** Primary icon size */
     iconSize?: number;
@@ -58,7 +59,7 @@ export type HeroProps = ViewProps & {
     value?: number | string;
 
     /** Icon component for ChannelValue child */
-    ValueIconClass?: ComponentType<{ size: number; color: string }>;
+    ValueIconClass?: ComponentType<WrapIconProps>;
 
     /** Value string color */
     valueColor?: string;
