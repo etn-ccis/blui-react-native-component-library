@@ -1,10 +1,12 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { wrapIcon } from './icon-wrapper';
-import { View } from 'react-native';
+import { PixelRatio, View } from 'react-native';
 
 const Icon = (): JSX.Element => <View />;
 const Leaf = (): JSX.Element => <View />;
+
+console.log(PixelRatio.getFontScale());
 
 describe('IconWrapper', () => {
     describe('when passed a MaterialCommunity icon', () => {
@@ -30,8 +32,8 @@ describe('IconWrapper', () => {
             const icon = instance.find((x) => x.props.testID === 'icon');
 
             expect(icon.props).toMatchObject({
-                width: 100,
-                height: 100,
+                width: 200, // default font-scale property in tests is 2
+                height: 200, // default font-scale property in tests is 2
                 fill: 'red',
             });
         });
