@@ -148,7 +148,10 @@ export const Hero: React.FC<HeroProps> = (props) => {
             <View
                 style={[
                     defaultStyles.iconWrapper,
-                    { backgroundColor: iconBackgroundColor || theme.colors.surface, borderRadius: 24 },
+                    {
+                        backgroundColor: iconBackgroundColor || theme.colors.surface,
+                        borderRadius: 24,
+                    },
                     styles.iconWrapper,
                 ]}
             >
