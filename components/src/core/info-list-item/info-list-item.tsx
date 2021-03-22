@@ -8,6 +8,7 @@ import {
     ViewStyle,
     TextStyle,
     I18nManager,
+    PixelRatio,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
@@ -58,7 +59,8 @@ const Divider: React.FC<DividerProps> = (props) => {
 
 const infoListItemStyles = (
     props: InfoListItemProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     title: TextStyle;
@@ -76,7 +78,7 @@ const infoListItemStyles = (
     StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || 'transparent',
-            height: props.dense ? 52 : 72,
+            minHeight: (props.dense ? 52 : 72) * fontScale,
             flexDirection: 'row',
             alignItems: 'center',
             paddingRight: 16,
@@ -87,6 +89,7 @@ const infoListItemStyles = (
         subtitleWrapper: {
             flexDirection: 'row',
             alignItems: 'center',
+            overflow: 'hidden',
         },
         subtitle: {
             color: props.fontColor || theme.colors.text,
@@ -108,20 +111,20 @@ const infoListItemStyles = (
         },
         iconWrapper: {
             marginLeft: 16,
-            width: 40,
+            width: 40 * fontScale,
             alignItems: 'flex-start',
             justifyContent: 'center',
         },
         avatar: {
-            width: 40,
-            height: 40,
-            borderRadius: 20,
+            width: 40 * fontScale,
+            height: 40 * fontScale,
+            borderRadius: 20 * fontScale,
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: props.statusColor || theme.colors.text,
         },
         icon: {
-            width: 40,
+            width: 40 * fontScale,
             justifyContent: 'center',
             backgroundColor: 'transparent',
             alignItems: getIconAlignment(props.iconAlign),
@@ -241,7 +244,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = infoListItemStyles(props, theme);
+    const fontScale = PixelRatio.getFontScale();
+    const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;

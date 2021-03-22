@@ -1,12 +1,10 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { wrapIcon } from './icon-wrapper';
-import { PixelRatio, View } from 'react-native';
+import { View } from 'react-native';
 
 const Icon = (): JSX.Element => <View />;
 const Leaf = (): JSX.Element => <View />;
-
-console.log(PixelRatio.getFontScale());
 
 describe('IconWrapper', () => {
     describe('when passed a MaterialCommunity icon', () => {
