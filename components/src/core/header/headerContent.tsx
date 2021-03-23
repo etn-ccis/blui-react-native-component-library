@@ -254,14 +254,15 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         <Animated.View
             style={[
                 searching ? defaultStyles.searchContainer : defaultStyles.titleContainer,
-                searching ? {} :
-                {
-                    marginRight: headerHeight.interpolate({
-                        inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                        outputRange: [getActionPanelWidth(), 0],
-                    }),
-                    marginTop: 10 * fontScale,
-                },
+                searching
+                    ? {}
+                    : {
+                          marginRight: headerHeight.interpolate({
+                              inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                              outputRange: [getActionPanelWidth(), 0],
+                          }),
+                          marginTop: 10 * fontScale,
+                      },
                 styles.root,
             ]}
         >

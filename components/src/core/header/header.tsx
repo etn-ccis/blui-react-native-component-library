@@ -63,7 +63,7 @@ const headerStyles = (
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 16,
-        }
+        },
     });
 };
 
@@ -216,12 +216,14 @@ export const Header: React.FC<HeaderProps> = (props) => {
         const contractedPadding = (subtitle && !searching ? 12 : 16) * fontScale;
         return [
             searching ? defaultStyles.search : defaultStyles.content,
-            searching ? {} : {
-                paddingBottom: headerHeight.interpolate({
-                    inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                    outputRange: [contractedPadding, 28],
-                }),
-            },
+            searching
+                ? {}
+                : {
+                      paddingBottom: headerHeight.interpolate({
+                          inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                          outputRange: [contractedPadding, 28],
+                      }),
+                  },
         ];
     }, [subtitle, searching, headerHeight]);
 
