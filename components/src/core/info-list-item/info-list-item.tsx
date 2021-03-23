@@ -302,6 +302,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     name="chevron-right"
                     size={24}
                     color={theme.colors.text}
+                    allowFontScaling
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 />
             );
