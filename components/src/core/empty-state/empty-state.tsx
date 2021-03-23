@@ -98,7 +98,6 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 
     const getColor = useCallback(
         (color: string | undefined): string => {
-            // @ts-ignore
             if (!color) return theme.colors.textSecondary || theme.colors.text;
             if (Object.keys(theme.colors).indexOf(color) >= 0)
                 return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
@@ -118,9 +117,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
             {getIcon()}
             <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
-                <Subtitle2 color={'primary'} style={[defaultStyles.description, styles.description]}>
-                    {description}
-                </Subtitle2>
+                <Subtitle2 style={[defaultStyles.description, styles.description]}>{description}</Subtitle2>
             ) : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>

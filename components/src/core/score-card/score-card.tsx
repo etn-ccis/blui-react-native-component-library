@@ -348,7 +348,10 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
                     <ActionPanel
                         actionItems={actionItems}
                         color={headerFontColor}
-                        styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }}
+                        styles={{
+                            root: styles.headerActions,
+                            actionItem: styles.headerActionItem,
+                        }}
                     />
                 </View>
             </View>

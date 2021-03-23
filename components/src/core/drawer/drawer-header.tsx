@@ -35,7 +35,6 @@ const makeStyles = (
     return StyleSheet.create({
         root: {
             paddingTop: insets.top,
-            // @ts-ignore
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
         },
         icon: {

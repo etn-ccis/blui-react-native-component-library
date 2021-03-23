@@ -230,7 +230,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200ee",
+          "color": "#000000",
         },
         Object {
           "writingDirection": "ltr",
@@ -425,7 +425,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#6200ee",
+          "color": "#000000",
         },
         Object {
           "writingDirection": "ltr",
