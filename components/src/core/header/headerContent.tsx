@@ -23,6 +23,13 @@ const headerContentStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-end',
     },
+    searchContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginRight: 56,
+        marginTop: 0,
+    },
 });
 
 type WritingDirection = 'ltr' | 'rtl';
@@ -246,21 +253,14 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     return (
         <Animated.View
             style={[
-                defaultStyles.titleContainer,
+                searching ? defaultStyles.searchContainer : defaultStyles.titleContainer,
+                searching ? {} :
                 {
-                    marginRight:
-                        searchConfig && searching
-                            ? 56
-                            : headerHeight.interpolate({
-                                  inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                                  outputRange: [getActionPanelWidth(), 0],
-                              }),
-                    marginTop: searching
-                        ? 0
-                        : headerHeight.interpolate({
-                              inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                              outputRange: [10 * fontScale, 0],
-                          }),
+                    marginRight: headerHeight.interpolate({
+                        inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                        outputRange: [getActionPanelWidth(), 0],
+                    }),
+                    marginTop: 10 * fontScale,
                 },
                 styles.root,
             ]}

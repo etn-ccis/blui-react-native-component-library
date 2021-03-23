@@ -36,6 +36,7 @@ const headerStyles = (
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
+    search: ViewStyle;
 }> => {
     const fontScale = PixelRatio.getFontScale();
     return StyleSheet.create({
@@ -57,6 +58,12 @@ const headerStyles = (
             paddingHorizontal: 16,
             flexDirection: 'row',
         },
+        search: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 16,
+        }
     });
 };
 
@@ -208,8 +215,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const contentStyle = useCallback((): Array<Record<string, any>> => {
         const contractedPadding = (subtitle && !searching ? 12 : 16) * fontScale;
         return [
-            defaultStyles.content,
-            {
+            searching ? defaultStyles.search : defaultStyles.content,
+            searching ? {} : {
                 paddingBottom: headerHeight.interpolate({
                     inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                     outputRange: [contractedPadding, 28],
