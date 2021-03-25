@@ -1,46 +1,64 @@
 import React, { ComponentType, useCallback } from 'react';
-import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle } from 'react-native';
+import {
+    StyleSheet,
+    TouchableOpacity,
+    View,
+    StyleProp,
+    ViewStyle,
+    ViewProps,
+    TextStyle,
+    PixelRatio,
+} from 'react-native';
 import { ChannelValue } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
-const defaultStyles = StyleSheet.create({
-    root: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 8,
-        paddingVertical: 16,
-    },
-    iconWrapper: {
-        padding: 0,
-        marginBottom: 4,
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        height: 48,
-        width: 48,
-    },
-    values: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: '100%',
-    },
-    label: {
-        width: '100%',
-        overflow: 'hidden',
-        textAlign: 'center',
-    },
-});
+type HeroStyles = {
+    root?: ViewStyle;
+    iconWrapper?: ViewStyle;
+    values?: ViewStyle;
+    label?: TextStyle;
+};
+const makeStyles = (fontScale: number): StyleSheet.NamedStyles<HeroStyles> =>
+    StyleSheet.create({
+        root: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: 8,
+            paddingVertical: 16,
+        },
+        iconWrapper: {
+            padding: 0,
+            marginBottom: 4 * fontScale,
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            height: 48 * fontScale,
+            width: 48 * fontScale,
+            borderRadius: 24 * fontScale,
+        },
+        values: {
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '100%',
+        },
+        label: {
+            width: '100%',
+            overflow: 'hidden',
+            textAlign: 'center',
+        },
+    });
 
 export type HeroProps = ViewProps & {
     /** Label to show */
     label: string;
 
     /** Primary icon */
-    IconClass: ComponentType<{ size: number; color: string }>;
+    IconClass: ComponentType<WrapIconProps>;
 
     /** Primary icon size */
     iconSize?: number;
@@ -58,7 +76,7 @@ export type HeroProps = ViewProps & {
     value?: number | string;
 
     /** Icon component for ChannelValue child */
-    ValueIconClass?: ComponentType<{ size: number; color: string }>;
+    ValueIconClass?: ComponentType<WrapIconProps>;
 
     /** Value string color */
     valueColor?: string;
@@ -116,11 +134,13 @@ export const Hero: React.FC<HeroProps> = (props) => {
     } = props;
 
     const theme = useTheme(themeOverride);
+    const fontScale = PixelRatio.getFontScale();
+    const defaultStyles = makeStyles(fontScale);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 36;
         return Math.max(10, Math.min(48, iconSize));
-    }, [iconSize]);
+    }, [iconSize, fontScale]);
 
     const getColor = useCallback(
         (color: string | undefined): string => {
@@ -148,10 +168,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
             <View
                 style={[
                     defaultStyles.iconWrapper,
-                    {
-                        backgroundColor: iconBackgroundColor || theme.colors.surface,
-                        borderRadius: 24,
-                    },
+                    { backgroundColor: iconBackgroundColor || theme.colors.surface },
                     styles.iconWrapper,
                 ]}
             >

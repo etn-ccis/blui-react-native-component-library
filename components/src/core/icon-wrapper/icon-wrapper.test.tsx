@@ -30,8 +30,8 @@ describe('IconWrapper', () => {
             const icon = instance.find((x) => x.props.testID === 'icon');
 
             expect(icon.props).toMatchObject({
-                width: 100,
-                height: 100,
+                width: 200, // default font-scale property in tests is 2
+                height: 200, // default font-scale property in tests is 2
                 fill: 'red',
             });
         });

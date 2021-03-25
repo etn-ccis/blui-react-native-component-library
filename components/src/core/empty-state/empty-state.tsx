@@ -1,8 +1,9 @@
 import React, { ComponentType, useCallback } from 'react';
-import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -10,24 +11,25 @@ type EmptyStateStyles = {
     description?: TextStyle;
     actions?: ViewStyle;
 };
-const makeStyles = (theme: ReactNativePaper.Theme): StyleSheet.NamedStyles<EmptyStateStyles> =>
+const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleSheet.NamedStyles<EmptyStateStyles> =>
     StyleSheet.create({
         root: {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 10,
+            padding: 16,
         },
         title: {
             textAlign: 'center',
-            marginTop: 16,
+            marginTop: 16 * fontScale,
         },
         description: {
+            // @ts-ignore
             color: theme.dark ? theme.colors.textSecondary : theme.colors.text,
             textAlign: 'center',
         },
         actions: {
-            marginTop: 16,
+            marginTop: 16 * fontScale,
         },
     });
 
@@ -39,7 +41,7 @@ export type EmptyStateProps = ViewProps & {
     description?: string;
 
     /* Icon to display */
-    IconClass?: ComponentType<{ size: number; color: string }>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** Props to pass to the Icon component */
     IconProps?: { size?: number; color?: string };
@@ -87,7 +89,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(theme);
+    const defaultStyles = makeStyles(theme, PixelRatio.getFontScale());
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;

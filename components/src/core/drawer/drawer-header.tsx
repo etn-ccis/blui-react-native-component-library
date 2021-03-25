@@ -9,6 +9,7 @@ import {
     ImageStyle,
     TextStyle,
     ViewProps,
+    PixelRatio,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
@@ -16,25 +17,37 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, insets: EdgeInsets): any =>
-    StyleSheet.create({
+const makeStyles = (
+    props: DrawerHeaderProps,
+    theme: ReactNativePaper.Theme,
+    insets: EdgeInsets
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    icon: ViewStyle;
+    content: ViewStyle;
+    textContent: ViewStyle;
+    title: TextStyle;
+    subtitle: TextStyle;
+    backgroundImageWrapper: ViewStyle;
+    backgroundImage: ImageStyle;
+}> => {
+    const fontScale = PixelRatio.getFontScale();
+    return StyleSheet.create({
         root: {
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
         },
         icon: {
-            height: 56,
-            width: 52,
-            paddingLeft: 4,
+            height: 56 * fontScale,
+            width: 24 * fontScale + 32,
             justifyContent: 'center',
         },
         content: {
             flexDirection: 'row',
         },
         textContent: {
-            color: 'red',
             flexDirection: 'column',
-            padding: 4,
+            paddingVertical: 4 * fontScale,
             paddingLeft: 16,
             flex: 1,
             height: '100%',
@@ -46,7 +59,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, ins
         subtitle: {
             color: props.fontColor || theme.colors.surface,
             lineHeight: 16,
-            marginTop: -2,
+            marginTop: -2 * fontScale,
         },
         backgroundImageWrapper: {
             position: 'absolute',
@@ -62,6 +75,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, ins
             resizeMode: 'cover',
         },
     });
+};
 
 export type DrawerHeaderProps = ViewProps & {
     /** Colored background of the header */
@@ -123,8 +137,10 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         (): ReactNode =>
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
-                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]}>
+                    <H6 style={[defaultStyles.title, styles.title]} numberOfLines={1}>
+                        {title}
+                    </H6>
+                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
                         {subtitle}
                     </Subtitle1>
                 </View>
@@ -139,6 +155,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                     <Image
                         source={backgroundImage}
                         resizeMethod={'resize'}
+                        // @ts-ignore typescript is being weird about the backgroundImage style type
                         style={[defaultStyles.backgroundImage, styles.backgroundImage]}
                     />
                 </View>

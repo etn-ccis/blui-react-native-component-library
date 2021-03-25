@@ -8,7 +8,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 10,
+        "padding": 16,
       },
       undefined,
       undefined,
@@ -35,7 +35,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         undefined,
         Array [
           Object {
-            "marginTop": 16,
+            "marginTop": 32,
             "textAlign": "center",
           },
           undefined,
@@ -49,7 +49,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     style={
       Array [
         Object {
-          "marginTop": 16,
+          "marginTop": 32,
         },
         undefined,
       ]
@@ -189,7 +189,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 10,
+        "padding": 16,
       },
       undefined,
       undefined,
@@ -216,7 +216,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         undefined,
         Array [
           Object {
-            "marginTop": 16,
+            "marginTop": 32,
             "textAlign": "center",
           },
           undefined,
@@ -267,7 +267,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 10,
+        "padding": 16,
       },
       undefined,
       undefined,
@@ -275,7 +275,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
   }
 >
   <Text
-    allowFontScaling={false}
+    allowFontScaling={true}
     style={
       Array [
         Object {
@@ -315,7 +315,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         undefined,
         Array [
           Object {
-            "marginTop": 16,
+            "marginTop": 32,
             "textAlign": "center",
           },
           undefined,
@@ -336,7 +336,7 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 10,
+        "padding": 16,
       },
       undefined,
       undefined,
@@ -363,7 +363,7 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         undefined,
         Array [
           Object {
-            "marginTop": 16,
+            "marginTop": 32,
             "textAlign": "center",
           },
           undefined,
@@ -384,7 +384,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 10,
+        "padding": 16,
       },
       undefined,
       undefined,
@@ -411,7 +411,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         undefined,
         Array [
           Object {
-            "marginTop": 16,
+            "marginTop": 32,
             "textAlign": "center",
           },
           undefined,
@@ -455,7 +455,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       Array [
         Object {
-          "marginTop": 16,
+          "marginTop": 32,
         },
         undefined,
       ]

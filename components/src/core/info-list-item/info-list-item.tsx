@@ -8,6 +8,7 @@ import {
     ViewStyle,
     TextStyle,
     I18nManager,
+    PixelRatio,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
@@ -16,6 +17,7 @@ import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -57,7 +59,8 @@ const Divider: React.FC<DividerProps> = (props) => {
 
 const infoListItemStyles = (
     props: InfoListItemProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     title: TextStyle;
@@ -75,7 +78,7 @@ const infoListItemStyles = (
     StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || 'transparent',
-            height: props.dense ? 52 : 72,
+            minHeight: (props.dense ? 52 : 72) * fontScale,
             flexDirection: 'row',
             alignItems: 'center',
             paddingRight: 16,
@@ -86,6 +89,7 @@ const infoListItemStyles = (
         subtitleWrapper: {
             flexDirection: 'row',
             alignItems: 'center',
+            overflow: 'hidden',
         },
         subtitle: {
             color: props.fontColor || theme.colors.text,
@@ -107,20 +111,20 @@ const infoListItemStyles = (
         },
         iconWrapper: {
             marginLeft: 16,
-            width: 40,
+            width: 40 * fontScale,
             alignItems: 'flex-start',
             justifyContent: 'center',
         },
         avatar: {
-            width: 40,
-            height: 40,
-            borderRadius: 20,
+            width: 40 * fontScale,
+            height: 40 * fontScale,
+            borderRadius: 20 * fontScale,
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: props.statusColor || theme.colors.text,
         },
         icon: {
-            width: 40,
+            width: 40 * fontScale,
             justifyContent: 'center',
             backgroundColor: 'transparent',
             alignItems: getIconAlignment(props.iconAlign),
@@ -154,7 +158,7 @@ export type InfoListItemProps = ViewProps & {
     iconAlign?: IconAlign;
 
     /** Component to render to the left of the title */
-    IconClass?: ComponentType<{ size: number; color: string }>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** Color to use for stripe */
     statusColor?: string;
@@ -240,7 +244,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = infoListItemStyles(props, theme);
+    const fontScale = PixelRatio.getFontScale();
+    const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
@@ -297,6 +302,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     name="chevron-right"
                     size={24}
                     color={theme.colors.text}
+                    allowFontScaling
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 />
             );

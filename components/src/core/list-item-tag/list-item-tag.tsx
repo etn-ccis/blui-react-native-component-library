@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextStyle, StyleSheet } from 'react-native';
+import { TextStyle, StyleSheet, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white } from '@pxblue/colors';
@@ -23,7 +23,8 @@ export type ListItemTagProps = TypographyProps & {
 
 const listItemTagStyles = (
     props: ListItemTagProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: TextStyle;
 }> =>
@@ -35,11 +36,11 @@ const listItemTagStyles = (
                 (Color(props.backgroundColor || theme.colors.primary).isLight()
                     ? theme.colors.onBackground
                     : white[50]),
-            height: 16,
+            height: 16 * fontScale,
             padding: 0,
-            paddingLeft: 4,
-            paddingRight: 3, // to account for the 1px letter spacing on the last letter
-            borderRadius: 2,
+            paddingLeft: 4 * fontScale,
+            paddingRight: 3 * fontScale, // to account for the 1px letter spacing on the last letter
+            borderRadius: 2 * fontScale,
             fontFamily: theme.fonts.bold ? theme.fonts.bold.fontFamily : theme.fonts.medium.fontFamily,
             fontWeight: theme.fonts.bold ? theme.fonts.bold.fontWeight : theme.fonts.medium.fontWeight,
             overflow: 'hidden',
@@ -66,7 +67,8 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         ...otherTextProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = listItemTagStyles(props, theme);
+    const fontScale = PixelRatio.getFontScale();
+    const defaultStyles = listItemTagStyles(props, theme, fontScale);
 
     return (
         <Overline style={[defaultStyles.root, styles.root, style]} {...otherTextProps}>

@@ -3,6 +3,7 @@ import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManag
 import { useTheme } from 'react-native-paper';
 import { Body1, Subtitle1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -17,7 +18,7 @@ export type ChannelValueProps = ViewProps & {
     value: string | number;
 
     /** Icon component to render */
-    IconClass?: ComponentType<{ size: number; color: string }>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** Props to pass to the Icon component */
     IconProps?: { size?: number; color?: string };
