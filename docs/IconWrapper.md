@@ -41,7 +41,14 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', flip: I18nManager.isRTL });
 ```
 
-### TODO: Add Info about autoScale prop
+### Responsive Sizing
+
+When using the `wrapIcon` function, icons will be automatically scaled relative to the current font size selected on the device. If you would like to opt out of this behavior and render a constant icon size irrespective of the device font size setting, you can pass an additional argument for `allowFontScaling`:
+
+```tsx
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', allowFontScaling: false });
+```
 
 ## Notes
 
