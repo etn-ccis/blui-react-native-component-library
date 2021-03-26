@@ -10,13 +10,15 @@ import {
     TextStyle,
     ViewProps,
     PixelRatio,
+    TouchableOpacity,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { EdgeInsets } from '../__types__';
+import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { REGULAR_HEIGHT } from '../header/constants';
+import { HeaderIcon } from '../header/headerIcon';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -40,8 +42,9 @@ const makeStyles = (
             height: REGULAR_HEIGHT,
         },
         icon: {
+            marginLeft: 16,
             height: 56 * fontScale,
-            width: 24 * fontScale + 32,
+            width: 40 * fontScale,
             justifyContent: 'center',
         },
         content: {
@@ -89,7 +92,7 @@ export type DrawerHeaderProps = ViewProps & {
     /** Color to use for header text elements */
     fontColor?: string;
     /** Icon to use to the left of the header text */
-    icon?: ReactNode;
+    icon?: HeaderIconType;
     /** First line of text in the header */
     title?: string;
     /** Second line of text in the header */
@@ -119,6 +122,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         subtitle,
         titleContent,
         backgroundImage,
+        fontColor,
         icon,
         backgroundOpacity,
         theme: themeOverride,
@@ -130,10 +134,28 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
 
-    const getIcon = useCallback((): JSX.Element => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
-        defaultStyles,
-        styles,
-    ]);
+    // const getIcon = useCallback((): JSX.Element => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
+    //     defaultStyles,
+    //     styles,
+    // ]);
+
+    const getIcon = useCallback((): JSX.Element | undefined => {
+        if (icon) {
+            const IconClass = icon.icon;
+            return (
+                <View style={[defaultStyles.icon, style]}>
+                    <TouchableOpacity
+                        testID={'drawer-header-navigation'}
+                        onPress={icon.onPress}
+                        style={{ padding: 8, marginLeft: -8 }}
+                        disabled={!icon.onPress}
+                    >
+                        <IconClass size={24} color={fontColor || 'white'} />
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+    }, [defaultStyles, styles]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>

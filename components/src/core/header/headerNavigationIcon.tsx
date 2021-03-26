@@ -60,6 +60,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                 testID={'header-navigation'}
                 onPress={navigation.onPress}
                 style={[defaultStyles.navigation, style]}
+                disabled={!navigation.onPress}
             >
                 <HeaderIcon IconClass={navigation.icon} />
             </TouchableOpacity>
