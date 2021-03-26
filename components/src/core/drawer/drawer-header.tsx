@@ -18,7 +18,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { REGULAR_HEIGHT } from '../header/constants';
-import { HeaderIcon } from '../header/headerIcon';
 
 const makeStyles = (
     props: DrawerHeaderProps,
