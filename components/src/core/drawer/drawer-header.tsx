@@ -134,11 +134,6 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
 
-    // const getIcon = useCallback((): JSX.Element => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
-    //     defaultStyles,
-    //     styles,
-    // ]);
-
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
             const IconClass = icon.icon;
