@@ -16,6 +16,7 @@ import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { REGULAR_HEIGHT } from '../header/constants';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -36,6 +37,7 @@ const makeStyles = (
         root: {
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            height: REGULAR_HEIGHT,
         },
         icon: {
             height: 56 * fontScale,
