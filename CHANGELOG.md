@@ -6,6 +6,7 @@
 -   Updated Caption fontSize to be 12
 -   Some default styles for `<EmptyState>` components.
 -   Components will be responsive to the system font size.
+-   `icon` prop of the `<DrawerHeader>` now accepts a `HeaderIcon` type instead of a `JSX.Element` to match the implementation in `<Header>`.
 
 ### Added
 -   Additional configuration properties for `<Drawer>`:

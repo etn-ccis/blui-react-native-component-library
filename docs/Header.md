@@ -72,7 +72,7 @@ Header icons specified as a JSON object with the following properties:
 | Key     | Description                        | Type                                               | Required | Default |
 | ------- | ---------------------------------- | -------------------------------------------------- | -------- | ------- |
 | icon    | A component to render for the icon | `React.Component<{ size: number, color: string }>` | yes      |         |
-| onPress | A function to execute when clicked | `function`                                         | yes      |         |
+| onPress | A function to execute when clicked | `function`                                         | no       |         |
 
 </div>
 
