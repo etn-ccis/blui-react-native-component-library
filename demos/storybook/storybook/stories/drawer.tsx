@@ -18,7 +18,6 @@ import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
 
 import _Device from '@pxblue/icons-svg/device.svg';
 import _Temp from '@pxblue/icons-svg/temp.svg';
-import { IconButton } from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Image, View } from 'react-native';
@@ -30,6 +29,7 @@ const eatonLogo = require('../assets/eatonLogo.png');
 const Device = wrapIcon({ IconClass: _Device });
 const Temp = wrapIcon({ IconClass: _Temp });
 const Today = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'calendar-today' });
+const Menu = wrapIcon({ IconClass: MaterialIcon, name: 'menu' });
 const Person = wrapIcon({ IconClass: MaterialIcon, name: 'person' });
 const Settings = wrapIcon({ IconClass: MaterialIcon, name: 'settings' });
 const Group = wrapIcon({ IconClass: MaterialIcon, name: 'group' });
@@ -208,7 +208,6 @@ const drawerDecorator = (storyFn: any): any => (
 );
 
 const iconColor = Colors.white[50];
-const menuIcon = <IconButton icon="menu" size={24} color={iconColor} />;
 
 storiesOf('Drawer', module)
     .addDecorator(withKnobs)
@@ -218,7 +217,9 @@ storiesOf('Drawer', module)
             <DrawerHeader
                 title={text('title', 'Drawer Title')}
                 subtitle={text('subtitle', 'Drawer Subtitle')}
-                icon={menuIcon}
+                icon={{
+                    icon: Menu,
+                }}
             />
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
@@ -229,7 +230,9 @@ storiesOf('Drawer', module)
         <Drawer>
             <DrawerHeader
                 backgroundImage={farmBgImage}
-                icon={menuIcon}
+                icon={{
+                    icon: Menu,
+                }}
                 titleContent={
                     <View style={{ zIndex: 1, paddingLeft: 20, paddingTop: 8, flex: 1, flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
@@ -247,7 +250,13 @@ storiesOf('Drawer', module)
     ))
     .add('with subheader', () => (
         <Drawer>
-            <DrawerHeader title={'Drawer'} subtitle={'with a custom subheader'} icon={menuIcon} />
+            <DrawerHeader
+                title={'Drawer'}
+                subtitle={'with a custom subheader'}
+                icon={{
+                    icon: Menu,
+                }}
+            />
             <DrawerSubheader divider={boolean('divider', true)}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
                     <InfoListItem
@@ -271,7 +280,13 @@ storiesOf('Drawer', module)
             const spacer = boolean('Add Spacer', true);
             return (
                 <Drawer>
-                    <DrawerHeader title={'Drawer'} subtitle={'with multiple NavGroups'} icon={menuIcon} />
+                    <DrawerHeader
+                        title={'Drawer'}
+                        subtitle={'with multiple NavGroups'}
+                        icon={{
+                            icon: Menu,
+                        }}
+                    />
                     <DrawerBody>
                         <DrawerNavGroup title={text('NavGroup 1 title', 'First DrawerNavGroup')} items={navItems1} />
                         {!spacer && <DrawerNavGroup title={text('NavGroup 2 title', 'NavGroup 2')} items={navItems2} />}
@@ -290,7 +305,13 @@ storiesOf('Drawer', module)
     )
     .add('with nested nav items', () => (
         <Drawer>
-            <DrawerHeader title={'Drawer'} subtitle={'with nested nav items'} icon={menuIcon} />
+            <DrawerHeader
+                title={'Drawer'}
+                subtitle={'with nested nav items'}
+                icon={{
+                    icon: Menu,
+                }}
+            />
             <DrawerBody>
                 <DrawerNavGroup
                     divider={boolean('divider', false)}
@@ -304,7 +325,13 @@ storiesOf('Drawer', module)
     ))
     .add('with footer', () => (
         <Drawer>
-            <DrawerHeader title={'Drawer'} subtitle={'with a footer'} icon={menuIcon} />
+            <DrawerHeader
+                title={'Drawer'}
+                subtitle={'with a footer'}
+                icon={{
+                    icon: Menu,
+                }}
+            />
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
             </DrawerBody>
@@ -341,7 +368,9 @@ storiesOf('Drawer', module)
                     backgroundImage={boolean('Show Background Image', false, header) ? farmBgImage : undefined}
                     backgroundColor={color('backgroundColor', Colors.blue[500], header)}
                     fontColor={color('fontColor', Colors.white[50], header)}
-                    icon={menuIcon}
+                    icon={{
+                        icon: Menu,
+                    }}
                 />
                 <DrawerBody>
                     <DrawerNavGroup
