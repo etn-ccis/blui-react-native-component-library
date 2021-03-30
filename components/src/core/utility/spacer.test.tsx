@@ -77,7 +77,9 @@ describe('spacer', () => {
     });
 
     it('accepts style overrides', () => {
-        const spacerStyles: StyleSheet.NamedStyles<{ root: ViewStyle }> = StyleSheet.create({
+        const spacerStyles: StyleSheet.NamedStyles<{
+            root: ViewStyle;
+        }> = StyleSheet.create({
             root: {
                 flexGrow: 12,
                 color: 'red',

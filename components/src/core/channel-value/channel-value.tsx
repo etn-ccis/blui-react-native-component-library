@@ -1,8 +1,9 @@
 import React, { ComponentType, useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { Body1 } from '../typography';
+import { Body1, Subtitle1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { WrapIconProps } from '../icon-wrapper';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -17,7 +18,7 @@ export type ChannelValueProps = ViewProps & {
     value: string | number;
 
     /** Icon component to render */
-    IconClass?: ComponentType<{ size: number; color: string }>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** Props to pass to the Icon component */
     IconProps?: { size?: number; color?: string };
@@ -119,9 +120,9 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 style={[{ color: getColor() }]}
             >
                 {prefixUnits()}
-                <Body1 font={'medium'} fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
+                <Subtitle1 fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
                     {value}
-                </Body1>
+                </Subtitle1>
                 {suffixUnits()}
             </Body1>
         </View>

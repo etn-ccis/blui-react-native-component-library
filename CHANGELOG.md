@@ -1,4 +1,24 @@
 # Change Log
+## v5.0.0
+
+### Changed
+-   Some of the style names for overrides have changed or moved
+-   Updated Caption fontSize to be 12
+-   Some default styles for `<EmptyState>` components.
+-   Components will be responsive to the system font size.
+-   `icon` prop of the `<DrawerHeader>` now accepts a `HeaderIcon` type instead of a `JSX.Element` to match the implementation in `<Header>`.
+
+### Added
+-   Additional configuration properties for `<Drawer>`:
+    -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements.
+-   Additional configuration properties for `<DrawNavGroup>`
+    -   `titleColor` changes the color of the group title text.
+-   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
+
+## v4.1.1
+
+### Fixed
+-   Missing dependency on react-native-modal
 
 ## v4.1.0
 

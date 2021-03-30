@@ -12,6 +12,7 @@ import {
     ViewStyle,
     TextStyle,
     ImageStyle,
+    PixelRatio,
 } from 'react-native';
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
@@ -35,11 +36,13 @@ const headerStyles = (
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
-}> =>
-    StyleSheet.create({
+    search: ViewStyle;
+}> => {
+    const fontScale = PixelRatio.getFontScale();
+    return StyleSheet.create({
         root: {
             width: '100%',
-            backgroundColor: props.backgroundColor || theme.colors.primary,
+            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,
@@ -51,11 +54,19 @@ const headerStyles = (
         },
         content: {
             flex: 1,
-            paddingTop: 16,
+            paddingVertical: 16 * fontScale,
             paddingHorizontal: 16,
             flexDirection: 'row',
+            minHeight: 56 * fontScale,
+        },
+        search: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 16,
         },
     });
+};
 
 export type SearchableConfig = {
     /** Icon to override default search icon */
@@ -157,6 +168,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         title,
         ...viewProps
     } = props;
+    const fontScale = PixelRatio.getFontScale();
 
     const searchRef = useRef<TextInput>(null);
     const theme = useTheme(themeOveride);
@@ -202,17 +214,19 @@ export const Header: React.FC<HeaderProps> = (props) => {
     );
 
     const contentStyle = useCallback((): Array<Record<string, any>> => {
-        const contractedPadding = subtitle && !searching ? 12 : 16;
+        const contractedPadding = (subtitle && !searching ? 12 : 16) * fontScale;
         return [
-            defaultStyles.content,
-            {
-                paddingBottom: headerHeight.interpolate({
-                    inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                    outputRange: [contractedPadding, 28],
-                }),
-            },
+            searching ? defaultStyles.search : defaultStyles.content,
+            searching
+                ? {}
+                : {
+                      paddingBottom: headerHeight.interpolate({
+                          inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                          outputRange: [contractedPadding, 28],
+                      }),
+                  },
         ];
-    }, [subtitle, searching, headerHeight]);
+    }, [subtitle, searching, headerHeight, defaultStyles]);
 
     const onPress = useCallback((): void => {
         if (expanded) {
@@ -254,6 +268,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
         setSearching(false);
         setQuery('');
     }, [searchableConfig, searchRef, setSearching, setQuery]);
+
+    const getActionItemInfo = useCallback(() => {
+        if (!actionItems) return { avatars: 0, icons: 0 };
+        const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
+        return { avatars, icons: actionItems.length - avatars };
+    }, [actionItems]);
 
     return (
         <>
@@ -297,7 +317,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                         title={title}
                                         subtitle={subtitle}
                                         info={info}
-                                        actionCount={actionItems ? actionItems.length : 0}
+                                        actionCount={getActionItemInfo()}
                                         styles={{
                                             root: styles.textContent,
                                             title: styles.title,

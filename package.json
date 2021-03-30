@@ -1,24 +1,6 @@
 {
-    "name": "@pxblue/react-native-components",
-    "version": "4.1.0",
-    "author": "pxblue <pxblue@eaton.com>",
-    "description": "Reusable React Native components for PX Blue applications",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/pxblue/react-native-component-library"
-    },
-    "keywords": [
-        "react native",
-        "components",
-        "pxblue"
-    ],
-    "bugs": {
-        "url": "https://github.com/pxblue/react-native-component-library/issues"
-    },
-    "homepage": "https://github.com/pxblue/react-native-component-library#readme",
-    "license": "BSD-3-Clause",
-    "main": "core/index.js",
-    "types": "core/index.d.ts",
+    "name": "react-native-components",
+    "version": "0.0.0",
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "build": "bash ./scripts/buildComponents.sh",
@@ -48,27 +30,6 @@
         "update:submodule": "git submodule update --remote",
         "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts"
     },
-    "dependencies": {
-        "@pxblue/colors": "^3.0.0",
-        "color": "^3.1.2",
-        "react-native-collapsible": "^1.5.2",
-        "react-native-keyboard-aware-scroll-view": "^0.8.0",
-        "react-native-status-bar-height": "^2.3.1"
-    },
-    "peerDependencies": {
-        "react": "^16.13.0",
-        "react-native": "^0.63.0",
-        "react-native-paper": "^4.0.0",
-        "react-native-safe-area-context": "^3.0.0",
-        "react-native-vector-icons": "^7.0.0"
-    },
-    "files": [
-        "package.json",
-        "LICENSE",
-        "README.md",
-        "CHANGELOG.md",
-        "core/"
-    ],
     "directories": {
         "doc": "docs"
     }

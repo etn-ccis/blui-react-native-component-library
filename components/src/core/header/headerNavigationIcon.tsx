@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager } from 'react-native';
+import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager, PixelRatio } from 'react-native';
 import { ICON_SIZE } from './constants';
 import { HeaderIcon as HeaderIconType } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -7,19 +7,24 @@ import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 
-const defaultStyles = StyleSheet.create({
-    navigation: {
-        marginRight: 24,
-        height: 40,
-        width: 40,
-        margin: -8,
-        padding: 8,
-    },
-    flipIcon: {
-        transform: [{ scaleX: -1 }],
-    },
-});
-
+const makeStyles = (): StyleSheet.NamedStyles<{
+    navigation: ViewStyle;
+    flipIcon: ViewStyle;
+}> => {
+    const fontScale = PixelRatio.getFontScale();
+    return StyleSheet.create({
+        navigation: {
+            marginRight: 24,
+            height: 40 * fontScale,
+            width: 40 * fontScale,
+            margin: -8 * fontScale,
+            padding: 8 * fontScale,
+        },
+        flipIcon: {
+            transform: [{ scaleX: -1 }],
+        },
+    });
+};
 type HeaderNavigationProps = {
     /** Leftmost icon on header, used for navigation */
     navigation?: HeaderIconType;
@@ -30,6 +35,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
     const { navigation, style } = props;
     const { searching, onClose } = useSearch();
     const { color } = useColor();
+    const defaultStyles = makeStyles();
 
     if (searching) {
         return (
@@ -42,6 +48,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                     name={'arrow-back'}
                     size={ICON_SIZE}
                     color={color}
+                    allowFontScaling
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 />
             </TouchableOpacity>
@@ -53,6 +60,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                 testID={'header-navigation'}
                 onPress={navigation.onPress}
                 style={[defaultStyles.navigation, style]}
+                disabled={!navigation.onPress}
             >
                 <HeaderIcon IconClass={navigation.icon} />
             </TouchableOpacity>

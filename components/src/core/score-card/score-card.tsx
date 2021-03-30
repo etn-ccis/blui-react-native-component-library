@@ -9,14 +9,12 @@ import {
     ViewStyle,
     ImageStyle,
     TextStyle,
+    PixelRatio,
 } from 'react-native';
 import * as Typography from '../typography';
 import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-
-const PADDING_AMOUNT = 16;
-const ICON_SIZE = 24;
 
 const backgroundImageStyles = StyleSheet.create({
     root: {
@@ -69,7 +67,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
         <View style={[{ flex: 1 }, styles.root]}>
             <Typography.H6
                 testID={'header_title'}
-                style={[{ color: textColor, fontSize: 18 }, styles.title]}
+                style={[{ color: textColor }, styles.title]}
                 font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
@@ -132,17 +130,25 @@ const HeroPanel: React.FC<HeroPanelProps> = (props) => {
     return null;
 };
 
-const actionPanelStyles = StyleSheet.create({
-    root: {
-        flexDirection: 'row',
-        margin: -8,
-    },
-    actionItem: {
-        height: 40,
-        width: 40,
-        padding: 8,
-    },
-});
+const actionPanelStyles = (
+    fontScale: number
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    actionItem: ViewStyle;
+}> =>
+    StyleSheet.create({
+        root: {
+            flexDirection: 'row',
+            margin: -8 * fontScale,
+        },
+        actionItem: {
+            // vertical padding scales with fontSize, horizontal padding is fixed
+            height: 40 * fontScale,
+            width: 24 * fontScale + 16,
+            paddingHorizontal: 8,
+            paddingVertical: 8 * fontScale,
+        },
+    });
 type ActionPanelProps = {
     actionItems?: HeaderIcon[];
     color?: string;
@@ -153,13 +159,15 @@ type ActionPanelProps = {
 };
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const { actionItems, color = 'white', styles = {} } = props;
-    const defaultStyles = actionPanelStyles;
+    const fontScale = PixelRatio.getFontScale();
+    const defaultStyles = actionPanelStyles(fontScale);
+
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
         | JSX.Element
         | undefined => {
         if (IconClass) {
-            return <IconClass size={ICON_SIZE} color={color} />;
+            return <IconClass size={24} color={color} />;
         }
     }, []);
 
@@ -184,7 +192,8 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
 
 const scoreCardStyles = (
     theme: ReactNativePaper.Theme,
-    props: ScoreCardProps
+    props: ScoreCardProps,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     header: ViewStyle;
@@ -198,7 +207,7 @@ const scoreCardStyles = (
             flex: 1,
         },
         header: {
-            height: 100,
+            height: 100 * fontScale,
             overflow: 'hidden',
             backgroundColor: props.headerColor || theme.colors.primary,
             borderTopLeftRadius: theme.roundness,
@@ -207,16 +216,16 @@ const scoreCardStyles = (
         headerContent: {
             flexDirection: 'row',
             alignItems: 'flex-start',
-            padding: PADDING_AMOUNT,
+            padding: 16,
         },
 
         padded: {
-            padding: PADDING_AMOUNT,
+            padding: 16,
         },
         body: {
             flexDirection: 'row',
             alignItems: 'stretch',
-            padding: PADDING_AMOUNT,
+            padding: 16,
         },
         leftContent: {
             flex: 1,
@@ -313,7 +322,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         style,
         ...cardProps
     } = otherProps;
-    const defaultStyles = scoreCardStyles(theme, props);
+    const fontScale = PixelRatio.getFontScale();
+    const defaultStyles = scoreCardStyles(theme, props, fontScale);
 
     return (
         <Card elevation={1} style={[defaultStyles.root, styles.root, style]} {...cardProps}>
@@ -335,7 +345,10 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
                     <ActionPanel
                         actionItems={actionItems}
                         color={headerFontColor}
-                        styles={{ root: styles.headerActions, actionItem: styles.headerActionItem }}
+                        styles={{
+                            root: styles.headerActions,
+                            actionItem: styles.headerActionItem,
+                        }}
                     />
                 </View>
             </View>

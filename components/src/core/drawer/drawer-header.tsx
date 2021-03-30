@@ -9,32 +9,49 @@ import {
     ImageStyle,
     TextStyle,
     ViewProps,
+    PixelRatio,
+    TouchableOpacity,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { EdgeInsets } from '../__types__';
+import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { REGULAR_HEIGHT } from '../header/constants';
 
-const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, insets: EdgeInsets): any =>
-    StyleSheet.create({
+const makeStyles = (
+    props: DrawerHeaderProps,
+    theme: ReactNativePaper.Theme,
+    insets: EdgeInsets
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    icon: ViewStyle;
+    content: ViewStyle;
+    textContent: ViewStyle;
+    title: TextStyle;
+    subtitle: TextStyle;
+    backgroundImageWrapper: ViewStyle;
+    backgroundImage: ImageStyle;
+}> => {
+    const fontScale = PixelRatio.getFontScale();
+    return StyleSheet.create({
         root: {
             paddingTop: insets.top,
-            backgroundColor: props.backgroundColor || theme.colors.primary,
+            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            height: REGULAR_HEIGHT,
         },
         icon: {
-            height: 56,
-            width: 52,
-            paddingLeft: 4,
+            marginLeft: 16,
+            height: 56 * fontScale,
+            width: 40 * fontScale,
             justifyContent: 'center',
         },
         content: {
             flexDirection: 'row',
         },
         textContent: {
-            color: 'red',
             flexDirection: 'column',
-            padding: 4,
+            paddingVertical: 4 * fontScale,
             paddingLeft: 16,
             flex: 1,
             height: '100%',
@@ -46,7 +63,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, ins
         subtitle: {
             color: props.fontColor || theme.colors.surface,
             lineHeight: 16,
-            marginTop: -2,
+            marginTop: -2 * fontScale,
         },
         backgroundImageWrapper: {
             position: 'absolute',
@@ -62,6 +79,7 @@ const makeStyles = (props: DrawerHeaderProps, theme: ReactNativePaper.Theme, ins
             resizeMode: 'cover',
         },
     });
+};
 
 export type DrawerHeaderProps = ViewProps & {
     /** Colored background of the header */
@@ -73,7 +91,7 @@ export type DrawerHeaderProps = ViewProps & {
     /** Color to use for header text elements */
     fontColor?: string;
     /** Icon to use to the left of the header text */
-    icon?: ReactNode;
+    icon?: HeaderIconType;
     /** First line of text in the header */
     title?: string;
     /** Second line of text in the header */
@@ -103,6 +121,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         subtitle,
         titleContent,
         backgroundImage,
+        fontColor,
         icon,
         backgroundOpacity,
         theme: themeOverride,
@@ -114,17 +133,32 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const insets = useSafeAreaInsets();
     const defaultStyles = makeStyles(props, theme, insets);
 
-    const getIcon = useCallback((): JSX.Element => <View style={[defaultStyles.icon, styles.icon]}>{icon}</View>, [
-        defaultStyles,
-        styles,
-    ]);
+    const getIcon = useCallback((): JSX.Element | undefined => {
+        if (icon) {
+            const IconClass = icon.icon;
+            return (
+                <View style={[defaultStyles.icon, style]}>
+                    <TouchableOpacity
+                        testID={'drawer-header-navigation'}
+                        onPress={icon.onPress}
+                        style={{ padding: 8, marginLeft: -8 }}
+                        disabled={!icon.onPress}
+                    >
+                        <IconClass size={24} color={fontColor || 'white'} />
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+    }, [defaultStyles, styles]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
-                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]}>
+                    <H6 style={[defaultStyles.title, styles.title]} numberOfLines={1}>
+                        {title}
+                    </H6>
+                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
                         {subtitle}
                     </Subtitle1>
                 </View>
@@ -139,6 +173,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                     <Image
                         source={backgroundImage}
                         resizeMethod={'resize'}
+                        // @ts-ignore typescript is being weird about the backgroundImage style type
                         style={[defaultStyles.backgroundImage, styles.backgroundImage]}
                     />
                 </View>

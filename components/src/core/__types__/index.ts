@@ -9,7 +9,7 @@ export type HeaderIcon = {
     icon: ComponentType<{ size: number; color: string }>;
 
     /** Callback when icon is pressed */
-    onPress: () => void;
+    onPress?: () => void;
 };
 
 export type HeaderAvatar = {
