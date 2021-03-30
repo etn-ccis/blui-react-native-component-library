@@ -57,6 +57,7 @@ const headerStyles = (
             paddingVertical: 16 * fontScale,
             paddingHorizontal: 16,
             flexDirection: 'row',
+            minHeight: 56 * fontScale,
         },
         search: {
             flex: 1,
@@ -225,7 +226,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                       }),
                   },
         ];
-    }, [subtitle, searching, headerHeight]);
+    }, [subtitle, searching, headerHeight, defaultStyles]);
 
     const onPress = useCallback((): void => {
         if (expanded) {
