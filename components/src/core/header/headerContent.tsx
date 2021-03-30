@@ -261,7 +261,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                               inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                               outputRange: [getActionPanelWidth(), 0],
                           }),
-                          marginTop: 10 * fontScale,
+                          marginTop: subtitle && title ? 10 * fontScale : 0,
                       },
                 styles.root,
             ]}
