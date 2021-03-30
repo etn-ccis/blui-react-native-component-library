@@ -16,9 +16,6 @@ import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-// const PADDING_AMOUNT = 16;
-// const ICON_SIZE = 24;
-
 const backgroundImageStyles = StyleSheet.create({
     root: {
         position: 'absolute',
