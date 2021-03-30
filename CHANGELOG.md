@@ -1,5 +1,5 @@
 # Change Log
-## v5.0.0 (Not Published Yet)
+## v5.0.0
 
 ### Changed
 -   Some of the style names for overrides have changed or moved
