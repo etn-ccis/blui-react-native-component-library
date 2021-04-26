@@ -12,7 +12,7 @@
         "install:all": "cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
         "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
-        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
+        "publish:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",
         "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
