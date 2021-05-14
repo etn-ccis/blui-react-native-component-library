@@ -21,11 +21,10 @@ yarn add @pxblue/react-native-components
 This library has a few dependencies that you will need to install in your project in order to work correctly. To install them, you can run the following command in your project root:
 
 ```shell
-npm install --save react-native-paper@^3.10.1 react-native-safe-area-context@~0.7.0 react-native-vector-icons@^6.6.0
+npm install --save react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0
 // or 
-yarn add react-native-paper@^3.10.1 react-native-safe-area-context@~0.7.0 react-native-vector-icons@^6.6.0
+yarn add react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0
 ```
-> NOTE: We require an older version of react-native-safe-area-context (0.7.x instead of 3.x.x) to maintain compatibility with Expo projects.
 
 ## Building the Library
 
