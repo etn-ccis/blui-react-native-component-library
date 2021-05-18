@@ -16,6 +16,9 @@ dist
 build.bundle
 storybook-static
 
+# testing
+/components/coverage
+
 # misc
 **/**/.DS_Store
 **/**/Thumbs.db

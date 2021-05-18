@@ -29,7 +29,9 @@
         "lint": "cd components && yarn lint && cd ../demos/api && yarn lint && cd ../storybook && yarn lint",
         "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix",
         "update:submodule": "git submodule update --remote",
-        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts"
+        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
+        "coverage": "yarn test --coverage --watchAll=false",
+        "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json"
     },
     "directories": {
         "doc": "docs"
@@ -37,6 +39,7 @@
     "prettier": "@pxblue/prettier-config",
     "devDependencies": {
         "@pxblue/prettier-config": "^1.0.2",
+        "codecov": "^3.8.2",
         "prettier": "^2.2.1"
     }
 }
