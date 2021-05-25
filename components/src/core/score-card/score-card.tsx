@@ -234,7 +234,10 @@ const scoreCardStyles = (
         },
     });
 
-export type ScoreCardProps = React.ComponentProps<typeof Card> & {
+export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children'> & {
+    /** Optional children for the body */
+    children?: React.ReactNode;
+
     /** Background color of header */
     headerColor?: string;
 
