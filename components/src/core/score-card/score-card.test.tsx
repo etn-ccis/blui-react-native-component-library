@@ -11,7 +11,11 @@ describe('ScoreCard', () => {
         describe('when a single string is passed in as headerText', () => {
             let instance: ReactTestInstance;
             beforeEach(() => {
-                instance = TestRenderer.create(<ScoreCard headerTitle={'Hello'} />).root;
+                instance = TestRenderer.create(
+                    <ScoreCard headerTitle={'Hello'}>
+                        <View />
+                    </ScoreCard>
+                ).root;
             });
 
             it('finds a single header text element', () => {
@@ -29,7 +33,9 @@ describe('ScoreCard', () => {
                         headerTitle={'Portland Datacenter Long Name'}
                         headerSubtitle={'6 UPS Devices'}
                         headerInfo={'Attention Required'}
-                    />
+                    >
+                        <View />
+                    </ScoreCard>
                 ).root;
             });
 
@@ -46,7 +52,9 @@ describe('ScoreCard', () => {
             let instance: ReactTestInstance;
             beforeEach(() => {
                 instance = TestRenderer.create(
-                    <ScoreCard headerTitle={'Hello'} actionRow={<View testID={'my-action'} />} />
+                    <ScoreCard headerTitle={'Hello'} actionRow={<View testID={'my-action'} />}>
+                        <View />
+                    </ScoreCard>
                 ).root;
             });
 
@@ -64,7 +72,9 @@ describe('ScoreCard', () => {
                     <ScoreCard
                         headerTitle={'Hello'}
                         badge={<Hero testID={'my-badge'} label={'...'} IconClass={Line} />}
-                    />
+                    >
+                        <View />
+                    </ScoreCard>
                 ).root;
             });
 
@@ -89,7 +99,9 @@ describe('ScoreCard', () => {
                             { icon: Line, onPress: firstCallback },
                             { icon: Line, onPress: secondCallback },
                         ]}
-                    />
+                    >
+                        <View />
+                    </ScoreCard>
                 ).root;
             });
 
@@ -128,7 +140,9 @@ describe('ScoreCard', () => {
                             { icon: Line, onPress: jest.fn() },
                             { icon: Line, onPress: jest.fn() },
                         ]}
-                    />
+                    >
+                        <View />
+                    </ScoreCard>
                 ).root;
             });
 
