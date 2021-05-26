@@ -234,9 +234,10 @@ const scoreCardStyles = (
         },
     });
 
-// TODO Extend the Card Props once RNP fixes their type definitions in 4.0.0
-// export type ScoreCardProps = React.ComponentProps<typeof Card> & {
-export type ScoreCardProps = {
+export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children'> & {
+    /** Optional children for the body */
+    children?: React.ReactNode;
+
     /** Background color of header */
     headerColor?: string;
 
@@ -263,10 +264,6 @@ export type ScoreCardProps = {
 
     /** Background image to render when header is expanded */
     headerBackgroundImage?: ImageSourcePropType;
-
-    // TODO remove this when we extend from the Card Props
-    /** Styles for the root component */
-    style?: StyleProp<ViewStyle>;
 
     /** Style Overrides */
     styles?: {

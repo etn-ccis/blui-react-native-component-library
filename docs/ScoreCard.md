@@ -61,6 +61,8 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 </div>
 
+Any other props will be provided to the root element ([**Card**](https://callstack.github.io/react-native-paper/card.html)).
+
 ### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:

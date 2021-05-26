@@ -1,5 +1,11 @@
 # Change Log
 
+## v5.0.1 (Unpublished)
+
+### Fixed
+
+-   `<ScoreCard>` component now extends the `<Card>` components from React Native Paper.
+
 ## v5.0.0 (March 30, 2021)
 
 ### Changed
