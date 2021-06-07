@@ -6,6 +6,10 @@
 
 -   `<ScoreCard>` component now extends the `<Card>` components from React Native Paper.
 
+### Changed
+
+-   Updated styles for `<Header>`, `<MobileStepper>`, and `<UserMenu>` to work better with Dark Themes.
+
 ## v5.0.0 (March 30, 2021)
 
 ### Changed
