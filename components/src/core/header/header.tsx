@@ -42,7 +42,7 @@ const headerStyles = (
     return StyleSheet.create({
         root: {
             width: '100%',
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor: props.backgroundColor || (theme.dark ? '#2b353a' : theme.colors.primary), // @TODO: remove this hardcoded color value when doing theme updates for PXBLUE-2122
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,
@@ -197,7 +197,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         if (searching) {
             return theme.colors.surface;
         }
-        return backgroundColor || theme.colors.primary;
+        return backgroundColor || (theme.dark ? '#2b353a' : theme.colors.primary);
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {
