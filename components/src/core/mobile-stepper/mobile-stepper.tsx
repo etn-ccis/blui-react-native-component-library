@@ -85,7 +85,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
         leftButton,
         rightButton,
         steps,
-        style = {},
+        style,
         styles = {},
         variant = 'dots',
     } = props;
@@ -97,7 +97,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const pageIndices = [...Array(adjustedSteps).keys()];
 
     return (
-        <View style={[style, defaultStyles.root, styles.root]}>
+        <View style={[defaultStyles.root, styles.root, style]}>
             {leftButton}
             <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
