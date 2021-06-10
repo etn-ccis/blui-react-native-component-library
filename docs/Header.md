@@ -27,20 +27,20 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 <div style="overflow: auto">
 
-| Prop Name        | Description                             | Type                             | Required | Default                  |
-| ---------------- | --------------------------------------- | -------------------------------- | -------- | ------------------------ |
-| title            | The text to show on the first line      | `string`                         | yes      |                          |
-| subtitle         | The text to show on the second line     | `string`                         | no       |                          |
-| info             | Third line of text (hidden on collapse) | `string`                         | no       |                          |
-| navigation       | Icon to show left of the title          | `HeaderIcon`                     | no       |                          |
-| actionItems      | Icons to show to the right of the title | `Array<HeaderIcon|HeaderAvatar>` | no       |                          |
-| expandable       | Allow the header to expand/collapse     | `boolean`                        | no       | `false`                  |
-| startExpanded    | Default the header to expanded          | `boolean`                        | no       | `false`                  |
-| backgroundColor  | The color used for the background       | `string`                         | no       | `theme.colors.primary`   |
-| fontColor        | The color used for the text             | `string`                         | no       | `theme.colors.onPrimary` |
-| backgroundImage  | An image to display in the header       | `ImageSourcePropType`            | no       |                          |
-| searchableConfig | Configuration for search behavior       | `SearchableConfig`               | no       |                          |
-| theme            | Theme partial for default styling       | `Theme`                          | no       |                          |
+| Prop Name        | Description                             | Type                  | Required       | Default                  |
+| ---------------- | --------------------------------------- | --------------------- | -------------- | ------------------------ | --- |
+| title            | The text to show on the first line      | `string`              | yes            |                          |
+| subtitle         | The text to show on the second line     | `string`              | no             |                          |
+| info             | Third line of text (hidden on collapse) | `string`              | no             |                          |
+| navigation       | Icon to show left of the title          | `HeaderIcon`          | no             |                          |
+| actionItems      | Icons to show to the right of the title | `Array<HeaderIcon     | HeaderAvatar>` | no                       |     |
+| expandable       | Allow the header to expand/collapse     | `boolean`             | no             | `false`                  |
+| startExpanded    | Default the header to expanded          | `boolean`             | no             | `false`                  |
+| backgroundColor  | The color used for the background       | `string`              | no             | `theme.colors.primary`   |
+| fontColor        | The color used for the text             | `string`              | no             | `theme.colors.onPrimary` |
+| backgroundImage  | An image to display in the header       | `ImageSourcePropType` | no             |                          |
+| searchableConfig | Configuration for search behavior       | `SearchableConfig`    | no             |                          |
+| theme            | Theme partial for default styling       | `Theme`               | no             |                          |
 
 </div>
 
@@ -48,20 +48,20 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
 
-| Name              | Description                                    |
-| ----------------- | ---------------------------------------------- |
-| root              | Styles applied to the root element             |
-| backgroundImage   | Styles applied to the background image         |
-| content           | Styles applied to the content wrapper          |
-| navigationIcon    | Styles applied to the navigation icon          |
-| textContent       | Styles applied to the text wrapper             |
-| title             | Styles applied to the title element            |
-| subtitle          | Styles applied to the subtitle element         |
-| info              | Styles applied to the info element             |
-| search            | Styles applied to the search input element     |
-| actionPanel       | Styles applied to the actions container        |
-| actionItem        | Styles applied to the action icon(s)           |
-| avatar            | Styles applied to the action components        |
+| Name            | Description                                |
+| --------------- | ------------------------------------------ |
+| root            | Styles applied to the root element         |
+| backgroundImage | Styles applied to the background image     |
+| content         | Styles applied to the content wrapper      |
+| navigationIcon  | Styles applied to the navigation icon      |
+| textContent     | Styles applied to the text wrapper         |
+| title           | Styles applied to the title element        |
+| subtitle        | Styles applied to the subtitle element     |
+| info            | Styles applied to the info element         |
+| search          | Styles applied to the search input element |
+| actionPanel     | Styles applied to the actions container    |
+| actionItem      | Styles applied to the action icon(s)       |
+| avatar          | Styles applied to the action components    |
 
 # HeaderIcon
 
