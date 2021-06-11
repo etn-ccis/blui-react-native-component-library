@@ -1,6 +1,10 @@
 # Change Log
 
-## v5.0.1 (Unpublished)
+## v5.1.0 (Unpublished)
+
+### Added
+
+-   Support for `ReactNode` content in `<Header>` `title`, `subtitle`, and `info` props.
 
 ### Fixed
 

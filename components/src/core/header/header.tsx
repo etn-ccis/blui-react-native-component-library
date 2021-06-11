@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState, useRef } from 'react';
+import React, { ComponentType, useCallback, useState, useRef, ReactNode } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -90,13 +90,13 @@ export type SearchableConfig = {
 
 export type HeaderProps = ViewProps & {
     /** Header title */
-    title: string;
+    title: ReactNode; // string;
 
     /** Optional header subtitle */
-    subtitle?: string;
+    subtitle?: ReactNode;
 
     /** Optional header third line of text (hidden when collapsed) */
-    info?: string;
+    info?: ReactNode;
 
     /** Leftmost icon on header, used for navigation */
     navigation?: HeaderIcon;

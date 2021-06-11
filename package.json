@@ -9,7 +9,7 @@
         "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
         "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
         "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
-        "install:all": "cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
+        "install:all": "yarn && cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
         "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
         "publish:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
