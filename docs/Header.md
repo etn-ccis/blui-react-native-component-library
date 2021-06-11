@@ -28,12 +28,12 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 <div style="overflow: auto">
 
 | Prop Name        | Description                             | Type                  | Required       | Default                  |
-| ---------------- | --------------------------------------- | --------------------- | -------------- | ------------------------ | --- |
+| ---------------- | --------------------------------------- | --------------------- | -------------- | ------------------------ |
 | title            | The text to show on the first line      | `string`              | yes            |                          |
 | subtitle         | The text to show on the second line     | `string`              | no             |                          |
 | info             | Third line of text (hidden on collapse) | `string`              | no             |                          |
 | navigation       | Icon to show left of the title          | `HeaderIcon`          | no             |                          |
-| actionItems      | Icons to show to the right of the title | `Array<HeaderIcon     | HeaderAvatar>` | no                       |     |
+| actionItems      | Icons to show to the right of the title | `Array<HeaderIcon     | HeaderAvatar>` | no                       |
 | expandable       | Allow the header to expand/collapse     | `boolean`             | no             | `false`                  |
 | startExpanded    | Default the header to expanded          | `boolean`             | no             | `false`                  |
 | backgroundColor  | The color used for the background       | `string`              | no             | `theme.colors.primary`   |
