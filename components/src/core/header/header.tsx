@@ -90,7 +90,7 @@ export type SearchableConfig = {
 
 export type HeaderProps = ViewProps & {
     /** Header title */
-    title: ReactNode; // string;
+    title: ReactNode;
 
     /** Optional header subtitle */
     subtitle?: ReactNode;
