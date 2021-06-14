@@ -1,5 +1,15 @@
 # Change Log
 
+## v5.2.0
+
+### Added
+
+-   `<CollapsibleHeaderLayout>` component that resizes as the screen is scrolled.
+
+### Changed
+
+-   `<Header>` component TBD TBD TBD
+
 ## v5.0.1 (Unpublished)
 
 ### Fixed

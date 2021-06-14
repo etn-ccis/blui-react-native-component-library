@@ -4,7 +4,8 @@ import color from 'color';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { H6 } from '../typography';
-import { HeaderProps as PXBHeaderProps, heightWithStatusBar } from '../header';
+import { ANIMATION_LENGTH, EXTENDED_HEIGHT, Header, HeaderProps as PXBHeaderProps, heightWithStatusBar, REGULAR_HEIGHT } from '../header';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 // import { H6, HeaderProps as PXBHeaderProps, heightWithStatusBar } from '@pxblue/react-native-components';
 
 export type CollapsibleLayoutProps = ViewProps & {
@@ -17,15 +18,15 @@ export type CollapsibleLayoutProps = ViewProps & {
 
     /**
      * Height of the App Bar when fully collapsed
-     * Default: 64 desktop, 56 mobile
+     * Default: 56
      */
-    collapsedHeight?: number;
+    // collapsedHeight?: number;
 
     /**
      * Height of the App Bar when fully expanded
      * Default: 200
      */
-    expandedHeight?: number;
+    // expandedHeight?: number;
 
     /**
      * Current mode of the app bar:
@@ -34,7 +35,7 @@ export type CollapsibleLayoutProps = ViewProps & {
      * - 'dynamic' resizes the toolbar based on the window scroll position.
      * Default: dynamic
      */
-    mode?: 'expanded' | 'collapsed' | 'dynamic';
+    // variant?: 'expanded' | 'collapsed' | 'dynamic' | 'snap';
 
     // TODO: style overrides
     // styles?:
@@ -49,20 +50,15 @@ export type CollapsibleLayoutProps = ViewProps & {
 export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props) => {
     const {
         HeaderProps = {} as PXBHeaderProps,
-        theme: themeOveride,
-        collapsedHeight: collapsedHeightProp = 56,
-        expandedHeight: expandedHeightProp = 150,
-        mode = 'dynamic',
-        // ...viewProps
+        theme: themeOverride,
     } = props;
-    const theme = useTheme(themeOveride);
+    const theme = useTheme(themeOverride);
 
-    const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
-    const expandedHeight = heightWithStatusBar(expandedHeightProp);
+    const collapsedHeight = heightWithStatusBar(HeaderProps.collapsedHeight || 56);
+    const expandedHeight = heightWithStatusBar(HeaderProps.expandedHeight || 200);
 
     const scrollRef = useRef(null);
     const scrollAnimValue = useRef(new Animated.Value(0)).current;
-    const calculatedHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollAnimValue);
 
     const getHeaderBackgroundColor = useCallback((): string => HeaderProps.backgroundColor || theme.colors.primary, [
         theme,
@@ -75,76 +71,33 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         [getHeaderBackgroundColor]
     );
 
-    const getHeaderHeight = (): number | Animated.AnimatedInterpolation =>
-        mode === 'collapsed'
-            ? collapsedHeight
-            : mode === 'expanded'
-            ? expandedHeight
-            : calculatedHeight.interpolate({
-                  inputRange: [collapsedHeight, expandedHeight],
-                  outputRange: [collapsedHeight, expandedHeight],
-                  extrapolate: 'clamp',
-              });
-
     return (
         <>
             <StatusBar barStyle={statusBarStyle()} />
             <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-                <Animated.View
-                    style={{
-                        marginTop: 0,
-                        height: getHeaderHeight(),
-                        backgroundColor: getHeaderBackgroundColor(),
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        zIndex: 100,
+                <Header
+                    {...HeaderProps}
+                    onCollapse={() => {
+                        console.log('collapse'); 
+                        if(scrollRef && scrollRef.current) { 
+                            // @ts-ignore
+                            scrollRef.current.scrollTo({x: 0, y: (HeaderProps.expandedHeight || 200) - (HeaderProps.collapsedHeight || 56), animated: true})
+                        }
                     }}
-                >
-                    <SafeAreaView style={{ height: '100%', overflow: 'hidden', justifyContent: 'flex-end' }}>
-                        <View style={{ padding: 16 }}>
-                            <H6 style={{ color: 'white' }}>{`What's Up`}</H6>
-                        </View>
-                    </SafeAreaView>
-                </Animated.View>
-
-                {/* This kinda works, but we need to do some tweaking to the Header to take in a height prop */}
-                {/* <Header
-                    expandable={true}
-                    title={'South Tin Mill'}
-                    subtitle={'Gary Steel Works'}
-                    info={'Online'}
-                    // @ts-ignore
-                    height={scrollAnimValue.interpolate({
-                        inputRange: [0, EXTENDED_HEIGHT - REGULAR_HEIGHT],
-                        outputRange: [EXTENDED_HEIGHT, REGULAR_HEIGHT],
-                        extrapolate: 'clamp'
-                    })}
+                    onExpand={() => {
+                        console.log('expand'); 
+                        if(scrollRef && scrollRef.current) { 
+                            // @ts-ignore
+                            scrollRef.current.scrollTo({x: 0, y: 0, animated: true})
+                        }
+                    }}
+                    scrollPosition={scrollAnimValue}
                     style={{position: 'absolute', zIndex: 100}}
-                    navigation={{
-                        icon: MenuIcon,
-                        onPress: (): void => {
-                            // navigation.openDrawer();
-                        },
-                    }}
-                    actionItems={[
-                        {
-                            component: (
-                                <UserMenuExample
-                                    onToggleRTL={()=>{}}
-                                    onToggleTheme={(): void => {}}
-                                />
-                            ),
-                        },
-                    ]}
-                    backgroundImage={backgroundImage}
-                    searchableConfig={{ placeholder: 'Search', autoFocus: true }}
-                /> */}
+                />
 
                 <Animated.ScrollView
                     ref={scrollRef}
-                    style={{ paddingTop: mode === 'collapsed' ? collapsedHeight : expandedHeight }}
+                    style={{ paddingTop: (HeaderProps.variant || 'dynamic') === 'collapsed' ? collapsedHeight : expandedHeight }}
                     onScroll={Animated.event(
                         [
                             {

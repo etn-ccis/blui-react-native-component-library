@@ -17,7 +17,7 @@ import {
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { useTheme } from 'react-native-paper';
-import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ANIMATION_LENGTH } from './constants';
+import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ANIMATION_LENGTH, heightWithStatusBar } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
 import { HeaderContent } from './headerContent';
@@ -27,6 +27,7 @@ import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
 import { HeaderAvatar, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { useEffect } from 'react';
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
@@ -88,6 +89,8 @@ export type SearchableConfig = {
     autoCorrect?: boolean;
 };
 
+
+
 export type HeaderProps = ViewProps & {
     /** Header title */
     title: string;
@@ -106,6 +109,33 @@ export type HeaderProps = ViewProps & {
 
     /** Determines whether the header can be expanded by being pressed */
     expandable?: boolean;
+
+    /**
+     * Height of the App Bar when fully collapsed
+     * Default: 56
+     */
+    collapsedHeight?: number;
+
+    // height: any;//Animated.Value | number | Animated.AnimatedInterpolation;
+    scrollPosition?: Animated.Value;
+
+        /**
+     * Current mode of the app bar:
+     * - 'expanded' locks the app bar at the expandedHeight,
+     * - 'collapsed' locks it at the collapsedHeight,
+     * - 'dynamic' resizes the toolbar based on the window scroll position.
+     * Default: dynamic
+     */
+    variant?: 'expanded' | 'collapsed' | 'dynamic';
+
+    /**
+     * Height of the App Bar when fully expanded
+     * Default: 200
+     */
+    expandedHeight?: number;
+
+    onExpand?: () => void;
+    onCollapse?: () => void;
 
     /** Determines whether the header should start in the expanded state */
     startExpanded?: boolean;
@@ -156,42 +186,77 @@ export const Header: React.FC<HeaderProps> = (props) => {
         backgroundColor,
         backgroundImage,
         expandable = false,
+        expandedHeight: expandedHeightProp = 200,
+        collapsedHeight: collapsedHeightProp = 56,
         fontColor,
+        // height,
         info,
         navigation,
+        scrollPosition = new Animated.Value(0),
         searchableConfig,
         startExpanded,
         subtitle,
         style,
         styles = {},
-        theme: themeOveride,
+        theme: themeOverride,
         title,
-        ...viewProps
+        variant = 'dynamic',
+        ...other
     } = props;
     const fontScale = PixelRatio.getFontScale();
+    const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
+    const expandedHeight = heightWithStatusBar(expandedHeightProp);
+
+
 
     const searchRef = useRef<TextInput>(null);
-    const theme = useTheme(themeOveride);
+    const theme = useTheme(themeOverride);
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
     const [query, setQuery] = useState('');
     const [headerHeight] = useState(
-        startExpanded ? new Animated.Value(EXTENDED_HEIGHT) : new Animated.Value(REGULAR_HEIGHT)
+        startExpanded ? new Animated.Value(expandedHeight) : new Animated.Value(collapsedHeight)
     );
 
-    const defaultStyles = headerStyles(props, theme);
-
     const expand = Animated.timing(headerHeight, {
-        toValue: EXTENDED_HEIGHT,
+        toValue: expandedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
 
     const contract = Animated.timing(headerHeight, {
-        toValue: REGULAR_HEIGHT,
+        toValue: collapsedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
+    const { onExpand = () => { console.log('default expand'); expand.start()}, onCollapse = () => { console.log('default collapse'); contract.start()}, ...viewProps } = other;
+
+
+    const defaultStyles = headerStyles(props, theme);
+
+
+    const calculatedHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
+
+    const updateExpanded = useCallback(({value: scrollValue}: {value: number}) => {
+        if(expandedHeight - scrollValue <= collapsedHeight) setExpanded(false);
+        else if(scrollValue <= 0) setExpanded(true);
+    }, [expandedHeight, collapsedHeight]);
+    useEffect(() => {
+        const listen = scrollPosition.addListener(updateExpanded)
+        return () => scrollPosition.removeListener(listen);
+    }, [])
+
+    const getHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
+        variant === 'collapsed'
+            ? new Animated.Value(collapsedHeight)
+            : variant === 'expanded'
+            ? new Animated.Value(expandedHeight)
+            : calculatedHeight.interpolate({
+                  inputRange: [collapsedHeight, expandedHeight],
+                  outputRange: [collapsedHeight, expandedHeight],
+                  extrapolate: 'clamp',
+              });
+
 
     const getBackgroundColor = useCallback((): string => {
         if (searching) {
@@ -220,23 +285,26 @@ export const Header: React.FC<HeaderProps> = (props) => {
             searching
                 ? {}
                 : {
-                      paddingBottom: headerHeight.interpolate({
-                          inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                          outputRange: [contractedPadding, 28],
-                      }),
-                  },
+                    paddingBottom: calculatedHeight.interpolate({
+                        inputRange: [collapsedHeight, expandedHeight],
+                        outputRange: [contractedPadding, 28],
+                        extrapolate: 'clamp',
+                    }),
+                },
         ];
-    }, [subtitle, searching, headerHeight, defaultStyles]);
+    }, [subtitle, searching, calculatedHeight, defaultStyles]);
 
     const onPress = useCallback((): void => {
         if (expanded) {
-            contract.start();
+            onCollapse();
+            // contract.start();
             setExpanded(false);
         } else {
-            expand.start();
+            onExpand();
+            // expand.start();
             setExpanded(true);
         }
-    }, [expanded, setExpanded, expand, contract]);
+    }, [expanded, setExpanded, onExpand, onCollapse]);
 
     const onChangeSearchText = useCallback(
         (text: string): void => {
@@ -288,7 +356,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         defaultStyles.root,
                         styles.root,
                         style,
-                        { height: headerHeight },
+                        // { height: headerHeight },
+                        {height: getHeaderHeight()},
                         searching ? { backgroundColor: theme.colors.surface } : {},
                     ]}
                 >
@@ -305,7 +374,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         }}
                     >
                         <ColorContext.Provider value={{ color: getFontColor() }}>
-                            <HeaderHeightContext.Provider value={{ headerHeight: headerHeight }}>
+                            <HeaderHeightContext.Provider value={{ headerHeight: getHeaderHeight() }}>
                                 <HeaderBackgroundImage
                                     backgroundImage={backgroundImage}
                                     style={styles.backgroundImage}
