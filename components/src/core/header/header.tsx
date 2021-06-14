@@ -119,13 +119,13 @@ export type HeaderProps = ViewProps & {
     // height: any;//Animated.Value | number | Animated.AnimatedInterpolation;
     scrollPosition?: Animated.Value;
 
-        /**
-     * Current mode of the app bar:
-     * - 'expanded' locks the app bar at the expandedHeight,
-     * - 'collapsed' locks it at the collapsedHeight,
-     * - 'dynamic' resizes the toolbar based on the window scroll position.
-     * Default: dynamic
-     */
+    /**
+ * Current mode of the app bar:
+ * - 'expanded' locks the app bar at the expandedHeight,
+ * - 'collapsed' locks it at the collapsedHeight,
+ * - 'dynamic' resizes the toolbar based on the window scroll position.
+ * Default: dynamic
+ */
     variant?: 'expanded' | 'collapsed' | 'dynamic';
 
     /**
@@ -213,23 +213,25 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
+    // const [scrollerValue, setScrollValue] = useState(0);
+    const [useLocalHeight, setUseLocalHeight] = useState(false);
     const [query, setQuery] = useState('');
-    const [headerHeight] = useState(
+    const [localHeaderHeight] = useState(
         startExpanded ? new Animated.Value(expandedHeight) : new Animated.Value(collapsedHeight)
     );
 
-    const expand = Animated.timing(headerHeight, {
+    const expand = Animated.timing(localHeaderHeight, {
         toValue: expandedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
 
-    const contract = Animated.timing(headerHeight, {
+    const contract = Animated.timing(localHeaderHeight, {
         toValue: collapsedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
-    const { onExpand = () => { console.log('default expand'); expand.start()}, onCollapse = () => { console.log('default collapse'); contract.start()}, ...viewProps } = other;
+    const { onExpand, onCollapse, ...viewProps } = other;
 
 
     const defaultStyles = headerStyles(props, theme);
@@ -237,25 +239,48 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     const calculatedHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
 
-    const updateExpanded = useCallback(({value: scrollValue}: {value: number}) => {
-        if(expandedHeight - scrollValue <= collapsedHeight) setExpanded(false);
-        else if(scrollValue <= 0) setExpanded(true);
-    }, [expandedHeight, collapsedHeight]);
-    useEffect(() => {
-        const listen = scrollPosition.addListener(updateExpanded)
-        return () => scrollPosition.removeListener(listen);
-    }, [])
+    // Scroll Listener
+    const onScrollChange = useCallback(({ value: scrollValue }: { value: number }) => {
+        console.log('scrollValue: ', scrollValue)
+        console.log('ecpanded: ', expanded);
+        // We have scrolled past the point of full collapse
+        if (scrollValue >= expandedHeight - collapsedHeight) {
+            console.log('we are scrolling beyond the threshold (local: ', useLocalHeight);
+            if (!useLocalHeight) {
+                console.log('setting to use manual height collapsed');
+                localHeaderHeight.setValue(collapsedHeight);
+                setExpanded(false);
+                setUseLocalHeight(true);
+            }
+        }
+        // we have scrolled into the dynamic window
+        else {
+            if(!expanded){
+                setUseLocalHeight(false);
+            }
 
-    const getHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
+            if (scrollValue <= 0) {
+                console.log('we have scrolled to the very top - switching to dynamic');
+                setUseLocalHeight(false);
+            }
+        }
+    }, [expandedHeight, collapsedHeight, useLocalHeight, localHeaderHeight, expanded]);
+    
+    useEffect(() => {
+        const listen = scrollPosition.addListener(onScrollChange)
+        return () => scrollPosition.removeListener(listen);
+    }, [onScrollChange])
+
+    const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
         variant === 'collapsed'
             ? new Animated.Value(collapsedHeight)
             : variant === 'expanded'
-            ? new Animated.Value(expandedHeight)
-            : calculatedHeight.interpolate({
-                  inputRange: [collapsedHeight, expandedHeight],
-                  outputRange: [collapsedHeight, expandedHeight],
-                  extrapolate: 'clamp',
-              });
+                ? new Animated.Value(expandedHeight)
+                : calculatedHeight.interpolate({
+                    inputRange: [collapsedHeight, expandedHeight],
+                    outputRange: [collapsedHeight, expandedHeight],
+                    extrapolate: 'clamp',
+                });
 
 
     const getBackgroundColor = useCallback((): string => {
@@ -296,15 +321,17 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     const onPress = useCallback((): void => {
         if (expanded) {
-            onCollapse();
-            // contract.start();
+            // if(onCollapse) onCollapse();
+            console.log('contracting on press');
+            contract.start();
             setExpanded(false);
         } else {
-            onExpand();
-            // expand.start();
+            // if(onExpand && !useManualSize) onExpand();
+            console.log('expanding on press');
+            expand.start();
             setExpanded(true);
         }
-    }, [expanded, setExpanded, onExpand, onCollapse]);
+    }, [expanded]);
 
     const onChangeSearchText = useCallback(
         (text: string): void => {
@@ -343,6 +370,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
         return { avatars, icons: actionItems.length - avatars };
     }, [actionItems]);
 
+    // console.log('use Manual:', useManualSize);
+    // console.log('manual height: ', headerHeight);
+
     return (
         <>
             <StatusBar barStyle={statusBarStyle()} />
@@ -357,7 +387,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         styles.root,
                         style,
                         // { height: headerHeight },
-                        {height: getHeaderHeight()},
+                        { height: useLocalHeight ? localHeaderHeight : getDynamicHeaderHeight() },
                         searching ? { backgroundColor: theme.colors.surface } : {},
                     ]}
                 >
@@ -374,7 +404,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         }}
                     >
                         <ColorContext.Provider value={{ color: getFontColor() }}>
-                            <HeaderHeightContext.Provider value={{ headerHeight: getHeaderHeight() }}>
+                            <HeaderHeightContext.Provider value={{ headerHeight: useLocalHeight ? localHeaderHeight : getDynamicHeaderHeight() }}>
                                 <HeaderBackgroundImage
                                     backgroundImage={backgroundImage}
                                     style={styles.backgroundImage}

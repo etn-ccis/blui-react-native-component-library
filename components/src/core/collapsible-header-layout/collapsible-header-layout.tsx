@@ -93,6 +93,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     }}
                     scrollPosition={scrollAnimValue}
                     style={{position: 'absolute', zIndex: 100}}
+                    startExpanded={true}
                 />
 
                 <Animated.ScrollView
