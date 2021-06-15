@@ -2,7 +2,7 @@ import React from 'react';
 import { TextStyle, StyleSheet, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Color from 'color';
-import { white } from '@pxblue/colors';
+import { white, black } from '@pxblue/colors';
 import { Overline, TypographyProps } from '../typography';
 
 export type ListItemTagProps = TypographyProps & {
@@ -33,8 +33,10 @@ const listItemTagStyles = (
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
             color:
                 props.fontColor ||
-                (Color(props.backgroundColor || theme.colors.primary).isLight()
-                    ? theme.colors.onBackground
+                (Color(props.backgroundColor || theme.colors.primaryBase || theme.colors.primary).isLight()
+                    ? theme.dark
+                        ? black[500]
+                        : theme.colors.onSurface // TODO: Swap this with a proper color when we have them in the new theme
                     : white[50]),
             height: 16 * fontScale,
             padding: 0,

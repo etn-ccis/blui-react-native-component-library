@@ -36,7 +36,7 @@ type WritingDirection = 'ltr' | 'rtl';
 type TextAlign = 'left' | 'right' | 'center' | 'auto';
 
 type HeaderTitleProps = {
-    title: string;
+    title: React.ReactNode;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
@@ -76,7 +76,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
 };
 
 type HeaderSubtitleProps = {
-    subtitle?: string;
+    subtitle?: React.ReactNode;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
@@ -112,7 +112,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
 };
 
 type HeaderInfoProps = {
-    info?: string;
+    info?: React.ReactNode;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
@@ -197,13 +197,13 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
 
 export type HeaderContentProps = {
     /** Header title */
-    title: string;
+    title: React.ReactNode;
 
     /** Optional header subtitle */
-    subtitle?: string;
+    subtitle?: React.ReactNode;
 
     /** Optional header third line of text (hidden when collapsed) */
-    info?: string;
+    info?: React.ReactNode;
 
     actionCount?: {
         avatars: number;

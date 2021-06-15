@@ -29,9 +29,9 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 | Prop Name        | Description                             | Type                  | Required       | Default                  |
 | ---------------- | --------------------------------------- | --------------------- | -------------- | ------------------------ |
-| title            | The text to show on the first line      | `string`              | yes            |                          |
-| subtitle         | The text to show on the second line     | `string`              | no             |                          |
-| info             | Third line of text (hidden on collapse) | `string`              | no             |                          |
+| title            | The text to show on the first line      | `ReactNode`           | yes            |                          |
+| subtitle         | The text to show on the second line     | `ReactNode`           | no             |                          |
+| info             | Third line of text (hidden on collapse) | `ReactNode`           | no             |                          |
 | navigation       | Icon to show left of the title          | `HeaderIcon`          | no             |                          |
 | actionItems      | Icons to show to the right of the title | `Array<HeaderIcon     | HeaderAvatar>` | no                       |
 | expandable       | Allow the header to expand/collapse     | `boolean`             | no             | `false`                  |
