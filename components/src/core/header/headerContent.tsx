@@ -79,21 +79,22 @@ type HeaderSubtitleProps = {
     subtitle?: string;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
+    washingtonStyle?: boolean;
 };
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
-    const { subtitle, theme, style } = props;
+    const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
 
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            lineHeight: 18,
-            fontFamily: theme.fonts.light.fontFamily,
-            fontSize: 18,
+            lineHeight: washingtonStyle ? 18 : 16,
+            fontFamily: washingtonStyle ? theme.fonts.light.fontFamily : theme.fonts.regular.fontFamily,
+            fontSize: washingtonStyle ? 18 : 16,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, theme]
+        [textColor, theme, washingtonStyle]
     );
 
     if (subtitle) {
@@ -219,10 +220,12 @@ export type HeaderContentProps = {
     };
 
     theme: ReactNativePaper.Theme;
+
+    washingtonStyle?: boolean;
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
-    const { title, subtitle, info, actionCount = { avatars: 0, icons: 0 }, theme, styles = {} } = props;
+    const { title, subtitle, info, actionCount = { avatars: 0, icons: 0 }, theme, styles = {}, washingtonStyle } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
     const fontScale = PixelRatio.getFontScale();
@@ -236,7 +239,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         content = [
             <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
             <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
-            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} />,
+            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} washingtonStyle={washingtonStyle} />,
         ];
     }
 

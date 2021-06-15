@@ -172,6 +172,11 @@ export type HeaderProps = ViewProps & {
      * Overrides for theme
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
+
+    /**
+     * Set to true to use the alternative 
+     */
+     washingtonStyle?: boolean;
 };
 
 /**
@@ -201,6 +206,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         theme: themeOverride,
         title,
         variant = 'dynamic',
+        washingtonStyle,
         ...other
     } = props;
     const fontScale = PixelRatio.getFontScale();
@@ -240,9 +246,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Scroll Listener
     const onScrollChange = useCallback(({ value: scrollValue }: { value: number }) => {
-        // Adjust whether to collapse or expand based on how far the header is collapsed
+        // Adjust whether to collapse or expand on click based on how far the header is collapsed
         if (scrollValue <= scrollableDistance / 2) setExpanded(true);
-        else if( scrollValue <= scrollableDistance) setExpanded(false);
 
         // We have scrolled past the point of full collapse
         if (scrollValue >= scrollableDistance) {
@@ -421,6 +426,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                             info: styles.info,
                                             search: styles.search,
                                         }}
+                                        washingtonStyle={washingtonStyle}
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}
