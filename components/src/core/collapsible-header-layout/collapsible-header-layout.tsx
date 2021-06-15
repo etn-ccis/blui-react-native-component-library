@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, StatusBar, ViewProps, View, SafeAreaView } from 'react-native';
 import color from 'color';
 import { useTheme } from 'react-native-paper';
@@ -56,9 +56,11 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     const collapsedHeight = heightWithStatusBar(HeaderProps.collapsedHeight || 56);
     const expandedHeight = heightWithStatusBar(HeaderProps.expandedHeight || 200);
+    const scrollableDistance = expandedHeight - collapsedHeight;
 
     const scrollRef = useRef(null);
     const scrollAnimValue = useRef(new Animated.Value(0)).current;
+    let scrollValue = 0; // using a state variable for this causes some out of sync issues with the animated value
 
     const getHeaderBackgroundColor = useCallback((): string => HeaderProps.backgroundColor || theme.colors.primary, [
         theme,
@@ -71,28 +73,40 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         [getHeaderBackgroundColor]
     );
 
+    // Scroll Listener
+    const onScrollChange = useCallback(({ value: scrollDistance }: { value: number }) => {
+        scrollValue = scrollDistance;
+    }, []);
+
+    useEffect(() => {
+        const listen = scrollAnimValue.addListener(onScrollChange)
+        return () => scrollAnimValue.removeListener(listen);
+    }, [])
+
+    const handleCollapse = useCallback(() => {
+        if (scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
+            // @ts-ignore
+            scrollRef.current.scrollTo({ x: 0, y: scrollableDistance, animated: true });
+        }
+    }, [scrollValue, scrollRef, scrollableDistance]);
+
+    const handleExpand = useCallback(() => {
+        if (scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
+                // @ts-ignore
+                scrollRef.current.scrollTo({ x: 0, y: 0, animated: true });
+        }
+    }, [scrollValue, scrollRef, scrollableDistance]);
+
     return (
         <>
             <StatusBar barStyle={statusBarStyle()} />
             <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
                 <Header
                     {...HeaderProps}
-                    onCollapse={() => {
-                        console.log('collapse'); 
-                        if(scrollRef && scrollRef.current) { 
-                            // @ts-ignore
-                            scrollRef.current.scrollTo({x: 0, y: (HeaderProps.expandedHeight || 200) - (HeaderProps.collapsedHeight || 56), animated: true})
-                        }
-                    }}
-                    onExpand={() => {
-                        console.log('expand'); 
-                        if(scrollRef && scrollRef.current) { 
-                            // @ts-ignore
-                            scrollRef.current.scrollTo({x: 0, y: 0, animated: true})
-                        }
-                    }}
+                    onCollapse={handleCollapse}
+                    onExpand={handleExpand}
                     scrollPosition={scrollAnimValue}
-                    style={{position: 'absolute', zIndex: 100}}
+                    style={{ position: 'absolute', zIndex: 100 }}
                     startExpanded={true}
                 />
 
@@ -110,7 +124,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                             },
                         ],
                         {
-                            listener: () => {},
+                            listener: () => { },
                             useNativeDriver: false,
                         }
                     )}

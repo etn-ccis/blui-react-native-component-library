@@ -206,14 +206,13 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const fontScale = PixelRatio.getFontScale();
     const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
     const expandedHeight = heightWithStatusBar(expandedHeightProp);
-
+    const scrollableDistance = expandedHeight - collapsedHeight;
 
 
     const searchRef = useRef<TextInput>(null);
     const theme = useTheme(themeOverride);
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
-    // const [scrollerValue, setScrollValue] = useState(0);
     const [useLocalHeight, setUseLocalHeight] = useState(false);
     const [query, setQuery] = useState('');
     const [localHeaderHeight] = useState(
@@ -241,13 +240,13 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Scroll Listener
     const onScrollChange = useCallback(({ value: scrollValue }: { value: number }) => {
-        console.log('scrollValue: ', scrollValue)
-        console.log('ecpanded: ', expanded);
+        // Adjust whether to collapse or expand based on how far the header is collapsed
+        if (scrollValue <= scrollableDistance / 2) setExpanded(true);
+        else setExpanded(false);
+
         // We have scrolled past the point of full collapse
-        if (scrollValue >= expandedHeight - collapsedHeight) {
-            console.log('we are scrolling beyond the threshold (local: ', useLocalHeight);
+        if (scrollValue >= scrollableDistance) {
             if (!useLocalHeight) {
-                console.log('setting to use manual height collapsed');
                 localHeaderHeight.setValue(collapsedHeight);
                 setExpanded(false);
                 setUseLocalHeight(true);
@@ -255,17 +254,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
         // we have scrolled into the dynamic window
         else {
-            if(!expanded){
-                setUseLocalHeight(false);
-            }
-
-            if (scrollValue <= 0) {
-                console.log('we have scrolled to the very top - switching to dynamic');
+            if (!expanded || scrollValue <= 0) {
                 setUseLocalHeight(false);
             }
         }
-    }, [expandedHeight, collapsedHeight, useLocalHeight, localHeaderHeight, expanded]);
-    
+    }, [expandedHeight, collapsedHeight, scrollableDistance, useLocalHeight, localHeaderHeight, expanded]);
+
     useEffect(() => {
         const listen = scrollPosition.addListener(onScrollChange)
         return () => scrollPosition.removeListener(listen);
@@ -310,7 +304,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
             searching
                 ? {}
                 : {
-                    paddingBottom: calculatedHeight.interpolate({
+                    paddingBottom: (useLocalHeight ? localHeaderHeight : calculatedHeight).interpolate({
                         inputRange: [collapsedHeight, expandedHeight],
                         outputRange: [contractedPadding, 28],
                         extrapolate: 'clamp',
@@ -320,14 +314,16 @@ export const Header: React.FC<HeaderProps> = (props) => {
     }, [subtitle, searching, calculatedHeight, defaultStyles]);
 
     const onPress = useCallback((): void => {
+        // setUseLocalHeight(true);
+        console.log('pressed');
         if (expanded) {
-            // if(onCollapse) onCollapse();
-            console.log('contracting on press');
+            if (onCollapse) onCollapse();
+            // console.log('contracting on press');
             contract.start();
             setExpanded(false);
         } else {
-            // if(onExpand && !useManualSize) onExpand();
-            console.log('expanding on press');
+            if (onExpand) onExpand();
+            // console.log('expanding on press');
             expand.start();
             setExpanded(true);
         }
