@@ -52,6 +52,8 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         HeaderProps = {} as PXBHeaderProps,
         theme: themeOverride,
     } = props;
+    const headerVariant = HeaderProps.variant || 'dynamic';
+    const startExpanded = HeaderProps.startExpanded || false;
     const theme = useTheme(themeOverride);
 
     const collapsedHeight = heightWithStatusBar(HeaderProps.collapsedHeight || 56);
@@ -61,6 +63,8 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const scrollRef = useRef(null);
     const scrollAnimValue = useRef(new Animated.Value(0)).current;
     let scrollValue = 0; // using a state variable for this causes some out of sync issues with the animated value
+
+    const [expanded, setExpanded] = useState(startExpanded || false);
 
     const getHeaderBackgroundColor = useCallback((): string => HeaderProps.backgroundColor || theme.colors.primary, [
         theme,
@@ -84,18 +88,37 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     }, [])
 
     const handleCollapse = useCallback(() => {
-        if (scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
+        if(headerVariant !== 'dynamic') contract.start();
+        setExpanded(false);
+        if (headerVariant === 'dynamic' && scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
             // @ts-ignore
             scrollRef.current.scrollTo({ x: 0, y: scrollableDistance, animated: true });
         }
-    }, [scrollValue, scrollRef, scrollableDistance]);
+    }, [scrollValue, scrollRef, scrollableDistance, headerVariant]);
 
     const handleExpand = useCallback(() => {
-        if (scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
+        if(headerVariant !== 'dynamic') expand.start();
+        setExpanded(true);
+        if (headerVariant === 'dynamic' && scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
             // @ts-ignore
             scrollRef.current.scrollTo({ x: 0, y: 0, animated: true });
         }
-    }, [scrollValue, scrollRef, scrollableDistance]);
+    }, [scrollValue, scrollRef, scrollableDistance, headerVariant]);
+
+    const [contentMargin] = useState(new Animated.Value(headerVariant === 'dynamic' ? expandedHeight : expanded ? expandedHeight : collapsedHeight));
+    const initialScrollPosition = headerVariant === 'static' ? 0 : (!startExpanded ? scrollableDistance : 0);
+
+        const expand = Animated.timing(contentMargin, {
+            toValue: expandedHeight,
+            duration: ANIMATION_LENGTH,
+            useNativeDriver: false,
+        });
+    
+        const contract = Animated.timing(contentMargin, {
+            toValue: collapsedHeight,
+            duration: ANIMATION_LENGTH,
+            useNativeDriver: false,
+        });
 
     return (
         <>
@@ -103,6 +126,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
             <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
                 <Header
                     {...HeaderProps}
+                    // TODO: Merge all of these prop overrides
                     onCollapse={handleCollapse}
                     onExpand={handleExpand}
                     scrollPosition={scrollAnimValue}
@@ -111,9 +135,9 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
                 <Animated.ScrollView
                     ref={scrollRef}
-                    style={{ paddingTop: (HeaderProps.variant || 'dynamic') === 'collapsed' ? collapsedHeight : expandedHeight }}
-                    contentOffset={{ x: 0, y: !HeaderProps.startExpanded ? scrollableDistance : 0 }}
-                    onScroll={Animated.event(
+                    style={{ paddingTop: contentMargin }}
+                    contentOffset={{ x: 0, y: initialScrollPosition}}
+                    onScroll={headerVariant === 'dynamic' ? Animated.event(
                         [
                             {
                                 nativeEvent: {
@@ -127,7 +151,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                             listener: () => { },
                             useNativeDriver: false,
                         }
-                    )}
+                    ) : undefined}
                     scrollEventThrottle={32}
                 >
                     {props.children}

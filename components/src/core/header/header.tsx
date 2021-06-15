@@ -126,7 +126,7 @@ export type HeaderProps = ViewProps & {
  * - 'dynamic' resizes the toolbar based on the window scroll position.
  * Default: dynamic
  */
-    variant?: 'expanded' | 'collapsed' | 'dynamic';
+    variant?: 'dynamic' | 'static';
 
     /**
      * Height of the App Bar when fully expanded
@@ -176,7 +176,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Set to true to use the alternative 
      */
-     washingtonStyle?: boolean;
+    washingtonStyle?: boolean;
 };
 
 /**
@@ -205,7 +205,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         styles = {},
         theme: themeOverride,
         title,
-        variant = 'dynamic',
+        variant = 'static',
         washingtonStyle,
         ...other
     } = props;
@@ -219,7 +219,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
-    const [useLocalHeight, setUseLocalHeight] = useState(false);
+    const [previousExpanded, setPreviousExpanded] = useState(expanded);
+    const [useLocalHeight, setUseLocalHeight] = useState(variant !== 'dynamic');
     const [query, setQuery] = useState('');
     const [localHeaderHeight] = useState(
         startExpanded ? new Animated.Value(expandedHeight) : new Animated.Value(collapsedHeight)
@@ -246,6 +247,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Scroll Listener
     const onScrollChange = useCallback(({ value: scrollValue }: { value: number }) => {
+        if (variant !== 'dynamic') return;
+
         // Adjust whether to collapse or expand on click based on how far the header is collapsed
         if (scrollValue <= scrollableDistance / 2) setExpanded(true);
 
@@ -263,7 +266,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 setUseLocalHeight(false);
             }
         }
-    }, [expandedHeight, collapsedHeight, scrollableDistance, useLocalHeight, localHeaderHeight, expanded]);
+    }, [expandedHeight, collapsedHeight, scrollableDistance, useLocalHeight, localHeaderHeight, expanded, variant]);
 
     useEffect(() => {
         const listen = scrollPosition.addListener(onScrollChange)
@@ -271,15 +274,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
     }, [onScrollChange])
 
     const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
-        variant === 'collapsed'
-            ? new Animated.Value(collapsedHeight)
-            : variant === 'expanded'
-                ? new Animated.Value(expandedHeight)
-                : calculatedHeight.interpolate({
-                    inputRange: [collapsedHeight, expandedHeight],
-                    outputRange: [collapsedHeight, expandedHeight],
-                    extrapolate: 'clamp',
-                });
+        calculatedHeight.interpolate({
+            inputRange: [collapsedHeight, expandedHeight],
+            outputRange: [collapsedHeight, expandedHeight],
+            extrapolate: 'clamp',
+        });
 
 
     const getBackgroundColor = useCallback((): string => {
@@ -319,16 +318,14 @@ export const Header: React.FC<HeaderProps> = (props) => {
     }, [subtitle, searching, calculatedHeight, defaultStyles]);
 
     const onPress = useCallback((): void => {
-        // setUseLocalHeight(true);
-        // console.log('pressed');
         if (expanded) {
             if (onCollapse) onCollapse();
-            // console.log('contracting on press');
+            console.log('contracting on press');
             contract.start();
             setExpanded(false);
         } else {
             if (onExpand) onExpand();
-            // console.log('expanding on press');
+            console.log('expanding on press');
             expand.start();
             setExpanded(true);
         }
@@ -343,10 +340,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
     );
 
     const onPressSearch = useCallback((): void => {
-        if(onCollapse) onCollapse();
+        if (onCollapse) onCollapse();
         contract.start(() => setSearching(true));
+        setPreviousExpanded(expanded);
         setExpanded(false);
-    }, [contract, setSearching, setExpanded, onCollapse]);
+    }, [contract, expandable, onCollapse]);
 
     const onPressSearchClear = useCallback((): void => {
         const searchInput = searchRef.current;
@@ -355,16 +353,20 @@ export const Header: React.FC<HeaderProps> = (props) => {
             if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
         }
         setQuery('');
-    }, [searchableConfig, searchRef, setQuery]);
+    }, [searchableConfig, searchRef]);
 
     const onPressSearchClose = useCallback((): void => {
         const searchInput = searchRef.current;
         if (searchInput) {
             if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
         }
+        if(previousExpanded){
+            expand.start();
+            if(onExpand) onExpand();
+        }
         setSearching(false);
         setQuery('');
-    }, [searchableConfig, searchRef, setSearching, setQuery]);
+    }, [searchableConfig, searchRef, previousExpanded, expand]);
 
     const getActionItemInfo = useCallback(() => {
         if (!actionItems) return { avatars: 0, icons: 0 };
