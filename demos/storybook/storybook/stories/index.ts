@@ -1,5 +1,6 @@
 // import './bucket-view';
 import './channel-value';
+import './collapsible-header-layout';
 import './drawer';
 import './empty-state';
 // import './collapsible-section';

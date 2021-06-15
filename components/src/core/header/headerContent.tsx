@@ -51,11 +51,13 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
+                extrapolate: 'clamp',
             }),
             fontFamily: theme.fonts.medium.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
+                extrapolate: 'clamp',
             }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -128,15 +130,18 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20 * 1.05], // Avoid clipping top of CAP letters
+                extrapolate: 'clamp',
             }),
             opacity: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0, 1],
+                extrapolate: 'clamp',
             }),
             fontFamily: theme.fonts.regular.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20],
+                extrapolate: 'clamp',
             }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -277,6 +282,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                           marginRight: headerHeight.interpolate({
                               inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                               outputRange: [getActionPanelWidth(), 0],
+                              extrapolate: 'clamp',
                           }),
                           marginTop: subtitle && title ? 10 * fontScale : 0,
                       },

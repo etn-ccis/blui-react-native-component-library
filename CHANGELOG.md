@@ -1,14 +1,11 @@
 # Change Log
 
-## v5.2.0
+## v5.2.0 (Unpublished)
 
 ### Added
 
--   `<CollapsibleHeaderLayout>` component that resizes as the screen is scrolled.
-
-### Changed
-
--   `<Header>` component TBD TBD TBD
+-   `<CollapsibleHeaderLayout>` component that resizes Header as the screen is scrolled.
+-   new props for `<Header>` component (`expandedHeight`, `collapsedHeight`, `onExpand`, `onCollapse`, `scrollPosition`, `variant`) to support `<CollapsibleHeaderLayout>`.
 
 ## v5.0.1 (Unpublished)
 
