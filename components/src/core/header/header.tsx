@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState, useRef } from 'react';
+import React, { ComponentType, useCallback, useState, useRef, useEffect } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -17,7 +17,7 @@ import {
 import color from 'color';
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { useTheme } from 'react-native-paper';
-import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ANIMATION_LENGTH, heightWithStatusBar } from './constants';
+import { ANIMATION_LENGTH, heightWithStatusBar } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
 import { HeaderContent } from './headerContent';
@@ -27,7 +27,6 @@ import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
 import { HeaderAvatar, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { useEffect } from 'react';
 
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
@@ -89,8 +88,6 @@ export type SearchableConfig = {
     autoCorrect?: boolean;
 };
 
-
-
 export type HeaderProps = ViewProps & {
     /** Header title */
     title: string;
@@ -120,12 +117,12 @@ export type HeaderProps = ViewProps & {
     scrollPosition?: Animated.Value;
 
     /**
- * Current mode of the app bar:
- * - 'expanded' locks the app bar at the expandedHeight,
- * - 'collapsed' locks it at the collapsedHeight,
- * - 'dynamic' resizes the toolbar based on the window scroll position.
- * Default: dynamic
- */
+     * Current mode of the app bar:
+     * - 'expanded' locks the app bar at the expandedHeight,
+     * - 'collapsed' locks it at the collapsedHeight,
+     * - 'dynamic' resizes the toolbar based on the window scroll position.
+     * Default: dynamic
+     */
     variant?: 'dynamic' | 'static';
 
     /**
@@ -174,7 +171,7 @@ export type HeaderProps = ViewProps & {
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 
     /**
-     * Set to true to use the alternative 
+     * Set to true to use the alternative
      */
     washingtonStyle?: boolean;
 };
@@ -214,7 +211,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const expandedHeight = heightWithStatusBar(expandedHeightProp);
     const scrollableDistance = expandedHeight - collapsedHeight;
 
-
     const searchRef = useRef<TextInput>(null);
     const theme = useTheme(themeOverride);
     const [searching, setSearching] = useState(false);
@@ -239,39 +235,40 @@ export const Header: React.FC<HeaderProps> = (props) => {
     });
     const { onExpand, onCollapse, ...viewProps } = other;
 
-
     const defaultStyles = headerStyles(props, theme);
-
 
     const calculatedHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
 
     // Scroll Listener
-    const onScrollChange = useCallback(({ value: scrollValue }: { value: number }) => {
-        if (variant !== 'dynamic') return;
+    const onScrollChange = useCallback(
+        ({ value: scrollValue }: { value: number }) => {
+            if (variant !== 'dynamic') return;
 
-        // Adjust whether to collapse or expand on click based on how far the header is collapsed
-        if (scrollValue <= scrollableDistance / 2) setExpanded(true);
+            // Adjust whether to collapse or expand on click based on how far the header is collapsed
+            if (scrollValue <= scrollableDistance / 2) setExpanded(true);
 
-        // We have scrolled past the point of full collapse
-        if (scrollValue >= scrollableDistance) {
-            if (!useLocalHeight) {
-                localHeaderHeight.setValue(collapsedHeight);
-                setExpanded(false);
-                setUseLocalHeight(true);
+            // We have scrolled past the point of full collapse
+            if (scrollValue >= scrollableDistance) {
+                if (!useLocalHeight) {
+                    localHeaderHeight.setValue(collapsedHeight);
+                    setExpanded(false);
+                    setUseLocalHeight(true);
+                }
             }
-        }
-        // we have scrolled into the dynamic window
-        else {
-            if (!expanded || scrollValue <= 0) {
-                setUseLocalHeight(false);
+            // we have scrolled into the dynamic window
+            else {
+                if (!expanded || scrollValue <= 0) {
+                    setUseLocalHeight(false);
+                }
             }
-        }
-    }, [expandedHeight, collapsedHeight, scrollableDistance, useLocalHeight, localHeaderHeight, expanded, variant]);
+        },
+        [expandedHeight, collapsedHeight, scrollableDistance, useLocalHeight, localHeaderHeight, expanded, variant]
+    );
 
     useEffect(() => {
-        const listen = scrollPosition.addListener(onScrollChange)
-        return () => scrollPosition.removeListener(listen);
-    }, [onScrollChange])
+        const listen = scrollPosition.addListener(onScrollChange);
+        return (): void => scrollPosition.removeListener(listen);
+    }, [onScrollChange]);
 
     const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
         calculatedHeight.interpolate({
@@ -279,7 +276,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
             outputRange: [collapsedHeight, expandedHeight],
             extrapolate: 'clamp',
         });
-
 
     const getBackgroundColor = useCallback((): string => {
         if (searching) {
@@ -308,24 +304,22 @@ export const Header: React.FC<HeaderProps> = (props) => {
             searching
                 ? {}
                 : {
-                    paddingBottom: (useLocalHeight ? localHeaderHeight : calculatedHeight).interpolate({
-                        inputRange: [collapsedHeight, expandedHeight],
-                        outputRange: [contractedPadding, 28],
-                        extrapolate: 'clamp',
-                    }),
-                },
+                      paddingBottom: (useLocalHeight ? localHeaderHeight : calculatedHeight).interpolate({
+                          inputRange: [collapsedHeight, expandedHeight],
+                          outputRange: [contractedPadding, 28],
+                          extrapolate: 'clamp',
+                      }),
+                  },
         ];
     }, [subtitle, searching, calculatedHeight, defaultStyles]);
 
     const onPress = useCallback((): void => {
         if (expanded) {
             if (onCollapse) onCollapse();
-            console.log('contracting on press');
             contract.start();
             setExpanded(false);
         } else {
             if (onExpand) onExpand();
-            console.log('expanding on press');
             expand.start();
             setExpanded(true);
         }
@@ -360,12 +354,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
         if (searchInput) {
             if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
         }
-        if(previousExpanded){
-            expand.start();
-            if(onExpand) onExpand();
-        }
         setSearching(false);
         setQuery('');
+        if (previousExpanded) {
+            expand.start(() => setExpanded(true));
+            if (onExpand) onExpand();
+        }
     }, [searchableConfig, searchRef, previousExpanded, expand]);
 
     const getActionItemInfo = useCallback(() => {
@@ -373,9 +367,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
         const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
         return { avatars, icons: actionItems.length - avatars };
     }, [actionItems]);
-
-    // console.log('use Manual:', useManualSize);
-    // console.log('manual height: ', headerHeight);
 
     return (
         <>
@@ -408,7 +399,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         }}
                     >
                         <ColorContext.Provider value={{ color: getFontColor() }}>
-                            <HeaderHeightContext.Provider value={{ headerHeight: useLocalHeight ? localHeaderHeight : getDynamicHeaderHeight() }}>
+                            <HeaderHeightContext.Provider
+                                value={{ headerHeight: useLocalHeight ? localHeaderHeight : getDynamicHeaderHeight() }}
+                            >
                                 <HeaderBackgroundImage
                                     backgroundImage={backgroundImage}
                                     style={styles.backgroundImage}

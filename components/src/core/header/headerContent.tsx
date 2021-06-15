@@ -225,7 +225,15 @@ export type HeaderContentProps = {
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
-    const { title, subtitle, info, actionCount = { avatars: 0, icons: 0 }, theme, styles = {}, washingtonStyle } = props;
+    const {
+        title,
+        subtitle,
+        info,
+        actionCount = { avatars: 0, icons: 0 },
+        theme,
+        styles = {},
+        washingtonStyle,
+    } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
     const fontScale = PixelRatio.getFontScale();
@@ -239,7 +247,13 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         content = [
             <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
             <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
-            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} washingtonStyle={washingtonStyle} />,
+            <HeaderSubtitle
+                subtitle={subtitle}
+                key="subtitle_key"
+                theme={theme}
+                style={[styles.subtitle]}
+                washingtonStyle={washingtonStyle}
+            />,
         ];
     }
 
