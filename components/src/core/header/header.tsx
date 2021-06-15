@@ -242,7 +242,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const onScrollChange = useCallback(({ value: scrollValue }: { value: number }) => {
         // Adjust whether to collapse or expand based on how far the header is collapsed
         if (scrollValue <= scrollableDistance / 2) setExpanded(true);
-        else setExpanded(false);
+        else if( scrollValue <= scrollableDistance) setExpanded(false);
 
         // We have scrolled past the point of full collapse
         if (scrollValue >= scrollableDistance) {
@@ -315,7 +315,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     const onPress = useCallback((): void => {
         // setUseLocalHeight(true);
-        console.log('pressed');
+        // console.log('pressed');
         if (expanded) {
             if (onCollapse) onCollapse();
             // console.log('contracting on press');

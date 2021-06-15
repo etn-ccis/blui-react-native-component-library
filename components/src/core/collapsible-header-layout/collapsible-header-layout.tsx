@@ -92,8 +92,8 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     const handleExpand = useCallback(() => {
         if (scrollRef && scrollRef.current && scrollValue <= scrollableDistance) {
-                // @ts-ignore
-                scrollRef.current.scrollTo({ x: 0, y: 0, animated: true });
+            // @ts-ignore
+            scrollRef.current.scrollTo({ x: 0, y: 0, animated: true });
         }
     }, [scrollValue, scrollRef, scrollableDistance]);
 
@@ -107,12 +107,12 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     onExpand={handleExpand}
                     scrollPosition={scrollAnimValue}
                     style={{ position: 'absolute', zIndex: 100 }}
-                    startExpanded={true}
                 />
 
                 <Animated.ScrollView
                     ref={scrollRef}
                     style={{ paddingTop: (HeaderProps.variant || 'dynamic') === 'collapsed' ? collapsedHeight : expandedHeight }}
+                    contentOffset={{ x: 0, y: !HeaderProps.startExpanded ? scrollableDistance : 0 }}
                     onScroll={Animated.event(
                         [
                             {
