@@ -69,43 +69,34 @@ const headerStyles = (
 };
 
 export type SearchableConfig = {
-    /** Icon to override default search icon */
-    icon?: ComponentType<{ size: number; color: string }>;
-
-    /** TextInput Prop. Placeholder text for the search input */
-    placeholder?: string;
-
-    /** TextInput Prop. Determines whether the search input will be focused on when it is rendered */
-    autoFocus?: boolean;
-
-    /** TextInput Prop. Callback for when the text in the search input changes */
-    onChangeText?: (text: string) => void;
-
     /** TextInput Prop. Determines how the search input will be capitalized */
     autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
 
     /** TextInput Prop. Determines whether auto-correct is enabled in the search input */
     autoCorrect?: boolean;
+
+    /** TextInput Prop. Determines whether the search input will be focused on when it is rendered */
+    autoFocus?: boolean;
+
+    /** Icon to override default search icon */
+    icon?: ComponentType<{ size: number; color: string }>;
+
+    /** TextInput Prop. Callback for when the text in the search input changes */
+    onChangeText?: (text: string) => void;
+
+    /** TextInput Prop. Placeholder text for the search input */
+    placeholder?: string;
 };
 
 export type HeaderProps = ViewProps & {
-    /** Header title */
-    title: string;
-
-    /** Optional header subtitle */
-    subtitle?: string;
-
-    /** Optional header third line of text (hidden when collapsed) */
-    info?: string;
-
-    /** Leftmost icon on header, used for navigation */
-    navigation?: HeaderIcon;
-
     /** List of up to three action items on the right of the header */
     actionItems?: Array<HeaderIcon | HeaderAvatar>;
 
-    /** Determines whether the header can be expanded by being pressed */
-    expandable?: boolean;
+    /** Background color of the header */
+    backgroundColor?: string;
+
+    /** Background image to render when header is expanded */
+    backgroundImage?: ImageSourcePropType;
 
     /**
      * Height of the App Bar when fully collapsed
@@ -113,17 +104,8 @@ export type HeaderProps = ViewProps & {
      */
     collapsedHeight?: number;
 
-    // height: any;//Animated.Value | number | Animated.AnimatedInterpolation;
-    scrollPosition?: Animated.Value;
-
-    /**
-     * Current mode of the app bar:
-     * - 'expanded' locks the app bar at the expandedHeight,
-     * - 'collapsed' locks it at the collapsedHeight,
-     * - 'dynamic' resizes the toolbar based on the window scroll position.
-     * Default: dynamic
-     */
-    variant?: 'dynamic' | 'static';
+    /** Determines whether the header can be expanded / collapsed by tapping */
+    expandable?: boolean;
 
     /**
      * Height of the App Bar when fully expanded
@@ -131,23 +113,35 @@ export type HeaderProps = ViewProps & {
      */
     expandedHeight?: number;
 
-    onExpand?: () => void;
-    onCollapse?: () => void;
-
-    /** Determines whether the header should start in the expanded state */
-    startExpanded?: boolean;
-
-    /** Background color of the header */
-    backgroundColor?: string;
-
     /** Color of the title, subtitle, and icons in the header */
     fontColor?: string;
 
-    /** Background image to render when header is expanded */
-    backgroundImage?: ImageSourcePropType;
+    /** Optional header third line of text (hidden when collapsed) */
+    info?: string;
+
+    /** Leftmost icon on header, used for navigation */
+    navigation?: HeaderIcon;
+
+    /**
+     * Callback function to execute when the Header is expanded via tap
+     */
+    onExpand?: () => void;
+
+    /**
+     * Callback function to execute when the Header is collapsed via tap
+     */
+    onCollapse?: () => void;
+
+    /**
+     * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
+     */
+    scrollPosition?: Animated.Value;
 
     /** Configuration object that determines whether the Header can have a search bar */
     searchableConfig?: SearchableConfig;
+
+    /** Determines whether the header should start in the expanded state */
+    startExpanded?: boolean;
 
     /** Style Overrides */
     styles?: {
@@ -165,13 +159,27 @@ export type HeaderProps = ViewProps & {
         avatar?: StyleProp<ViewStyle>;
     };
 
+    /** Optional header subtitle */
+    subtitle?: string;
+
     /**
      * Overrides for theme
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 
+    /** Header title */
+    title: string;
+
     /**
-     * Set to true to use the alternative
+     * Current mode of the Header:
+     * - 'static': Header does not resize based on scroll position,
+     * - 'dynamic' Header resizes based on the provided scrollPosition.
+     * Default: static
+     */
+    variant?: 'dynamic' | 'static';
+
+    /**
+     * Set to true to use the alternative subtitle styling
      */
     washingtonStyle?: boolean;
 };
@@ -191,7 +199,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
         expandedHeight: expandedHeightProp = 200,
         collapsedHeight: collapsedHeightProp = 56,
         fontColor,
-        // height,
         info,
         navigation,
         scrollPosition = new Animated.Value(0),
@@ -204,42 +211,56 @@ export const Header: React.FC<HeaderProps> = (props) => {
         title,
         variant = 'static',
         washingtonStyle,
-        ...other
+        onExpand,
+        onCollapse,
+        ...viewProps
     } = props;
+
+    const theme = useTheme(themeOverride);
+    const defaultStyles = headerStyles(props, theme);
+    const searchRef = useRef<TextInput>(null);
+
+    // Utility variables
     const fontScale = PixelRatio.getFontScale();
     const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
     const expandedHeight = heightWithStatusBar(expandedHeightProp);
     const scrollableDistance = expandedHeight - collapsedHeight;
+    const dynamicHeaderHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
 
-    const searchRef = useRef<TextInput>(null);
-    const theme = useTheme(themeOverride);
+    // Local State
     const [searching, setSearching] = useState(false);
     const [expanded, setExpanded] = useState(startExpanded || false);
     const [previousExpanded, setPreviousExpanded] = useState(expanded);
-    const [useLocalHeight, setUseLocalHeight] = useState(variant !== 'dynamic');
+    const [useStaticHeight, setUseStaticHeight] = useState(variant === 'static');
     const [query, setQuery] = useState('');
-    const [localHeaderHeight] = useState(
+    const [staticHeaderHeight] = useState(
         startExpanded ? new Animated.Value(expandedHeight) : new Animated.Value(collapsedHeight)
     );
 
-    const expand = Animated.timing(localHeaderHeight, {
+    // Animation functions to smoothly transition the static Header height
+    const expand = Animated.timing(staticHeaderHeight, {
         toValue: expandedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
-
-    const contract = Animated.timing(localHeaderHeight, {
+    const contract = Animated.timing(staticHeaderHeight, {
         toValue: collapsedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
-    const { onExpand, onCollapse, ...viewProps } = other;
 
-    const defaultStyles = headerStyles(props, theme);
+    /* UTILITY FUNCTIONS */
 
-    const calculatedHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
+    // returns the count of each type of actionItem (avatar and icon)
+    const getActionItemInfo = useCallback((): { avatars: number; icons: number } => {
+        if (!actionItems) return { avatars: 0, icons: 0 };
+        const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
+        return { avatars, icons: actionItems.length - avatars };
+    }, [actionItems]);
 
-    // Scroll Listener
+    /* EVENT LISTENERS */
+
+    // Make updates based on changes in the scroll position
     const onScrollChange = useCallback(
         ({ value: scrollValue }: { value: number }) => {
             if (variant !== 'dynamic') return;
@@ -249,29 +270,33 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
             // We have scrolled past the point of full collapse
             if (scrollValue >= scrollableDistance) {
-                if (!useLocalHeight) {
-                    localHeaderHeight.setValue(collapsedHeight);
+                if (!useStaticHeight) {
+                    staticHeaderHeight.setValue(collapsedHeight);
                     setExpanded(false);
-                    setUseLocalHeight(true);
+                    setUseStaticHeight(true);
                 }
             }
             // we have scrolled into the dynamic window
             else {
                 if (!expanded || scrollValue <= 0) {
-                    setUseLocalHeight(false);
+                    setUseStaticHeight(false);
                 }
             }
         },
-        [expandedHeight, collapsedHeight, scrollableDistance, useLocalHeight, localHeaderHeight, expanded, variant]
+        [expandedHeight, collapsedHeight, scrollableDistance, useStaticHeight, staticHeaderHeight, expanded, variant]
     );
 
+    // Set up a listener for when the scrollPosition changes
     useEffect(() => {
         const listen = scrollPosition.addListener(onScrollChange);
         return (): void => scrollPosition.removeListener(listen);
     }, [onScrollChange]);
 
+    /* STYLE FUNCTIONS */
+
+    // Returns the clamped header height based on scroll position
     const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
-        calculatedHeight.interpolate({
+        dynamicHeaderHeight.interpolate({
             inputRange: [collapsedHeight, expandedHeight],
             outputRange: [collapsedHeight, expandedHeight],
             extrapolate: 'clamp',
@@ -297,6 +322,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         [getBackgroundColor]
     );
 
+    // Returns the interpolated bottom padding of the Header text elements
     const contentStyle = useCallback((): Array<Record<string, any>> => {
         const contractedPadding = (subtitle && !searching ? 12 : 16) * fontScale;
         return [
@@ -304,15 +330,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
             searching
                 ? {}
                 : {
-                      paddingBottom: (useLocalHeight ? localHeaderHeight : calculatedHeight).interpolate({
+                      paddingBottom: (useStaticHeight ? staticHeaderHeight : dynamicHeaderHeight).interpolate({
                           inputRange: [collapsedHeight, expandedHeight],
                           outputRange: [contractedPadding, 28],
                           extrapolate: 'clamp',
                       }),
                   },
         ];
-    }, [subtitle, searching, calculatedHeight, defaultStyles]);
+    }, [subtitle, searching, dynamicHeaderHeight, defaultStyles]);
 
+    /* CALLBACK FUNCTIONS */
+
+    // Callback when the Header is tapped (expandable only)
     const onPress = useCallback((): void => {
         if (expanded) {
             if (onCollapse) onCollapse();
@@ -325,6 +354,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
     }, [expanded]);
 
+    // Callback when the search bar text is updated
     const onChangeSearchText = useCallback(
         (text: string): void => {
             setQuery(text);
@@ -333,6 +363,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         [setQuery, searchableConfig]
     );
 
+    // Callback when the search icon is clicked
     const onPressSearch = useCallback((): void => {
         if (onCollapse) onCollapse();
         contract.start(() => setSearching(true));
@@ -340,6 +371,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         setExpanded(false);
     }, [contract, expandable, onCollapse]);
 
+    // Callback when the search bar content is cleared
     const onPressSearchClear = useCallback((): void => {
         const searchInput = searchRef.current;
         if (searchInput) {
@@ -349,6 +381,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         setQuery('');
     }, [searchableConfig, searchRef]);
 
+    // Callback when the search bar is closed
     const onPressSearchClose = useCallback((): void => {
         const searchInput = searchRef.current;
         if (searchInput) {
@@ -361,12 +394,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
             if (onExpand) onExpand();
         }
     }, [searchableConfig, searchRef, previousExpanded, expand]);
-
-    const getActionItemInfo = useCallback(() => {
-        if (!actionItems) return { avatars: 0, icons: 0 };
-        const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
-        return { avatars, icons: actionItems.length - avatars };
-    }, [actionItems]);
 
     return (
         <>
@@ -381,8 +408,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         defaultStyles.root,
                         styles.root,
                         style,
-                        // { height: headerHeight },
-                        { height: useLocalHeight ? localHeaderHeight : getDynamicHeaderHeight() },
+                        /* We only use the dynamic height when we are in the dynamic range (from scrollPosition zero to expandedHeight - collapsedHeight)
+                            Everywhere else, we use the fixed header height
+                            */
+                        { height: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight() },
                         searching ? { backgroundColor: theme.colors.surface } : {},
                     ]}
                 >
@@ -400,7 +429,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
                     >
                         <ColorContext.Provider value={{ color: getFontColor() }}>
                             <HeaderHeightContext.Provider
-                                value={{ headerHeight: useLocalHeight ? localHeaderHeight : getDynamicHeaderHeight() }}
+                                value={{
+                                    headerHeight: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight(),
+                                }}
                             >
                                 <HeaderBackgroundImage
                                     backgroundImage={backgroundImage}
