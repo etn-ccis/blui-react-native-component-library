@@ -338,9 +338,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
     );
 
     const onPressSearch = useCallback((): void => {
+        if(onCollapse) onCollapse();
         contract.start(() => setSearching(true));
         setExpanded(false);
-    }, [contract, setSearching, setExpanded]);
+    }, [contract, setSearching, setExpanded, onCollapse]);
 
     const onPressSearchClear = useCallback((): void => {
         const searchInput = searchRef.current;
