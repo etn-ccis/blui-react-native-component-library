@@ -8,7 +8,7 @@ export type CollapsibleLayoutProps = ViewProps & {
     /**
      * Props to pass to the Header component
      * */
-    HeaderProps?: PXBHeaderProps;
+    HeaderProps: PXBHeaderProps;
 
     /**
      * Props to pass to the ScrollView
@@ -35,18 +35,11 @@ export type CollapsibleLayoutProps = ViewProps & {
  * a collapsed size as the page is scrolled.
  */
 export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props) => {
-    const {
-        HeaderProps = {} as PXBHeaderProps,
-        theme: themeOverride,
-        ScrollViewProps = {},
-        styles = {},
-        style,
-        ...viewProps
-    } = props;
+    const { HeaderProps, theme: themeOverride, ScrollViewProps = {}, styles = {}, style, ...viewProps } = props;
 
     const theme = useTheme(themeOverride);
     const scrollRef = useRef(null);
-    const scrollAnimValue = useRef(new Animated.Value(0)).current;
+    const animatedScrollValue = useRef(new Animated.Value(0)).current;
 
     const headerVariant = HeaderProps.variant || 'dynamic';
     const startExpanded = HeaderProps.startExpanded || false;
@@ -58,17 +51,17 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     // Tracks the manually collapsed/expanded state (from click) to adjust the padding to avoid any weird gaps
     const [expanded, setExpanded] = useState(startExpanded || false);
-    const [contentMargin] = useState(
-        new Animated.Value(headerVariant === 'dynamic' ? expandedHeight : expanded ? expandedHeight : collapsedHeight)
+    const [contentPadding] = useState(
+        new Animated.Value(headerVariant === 'dynamic' || expanded ? expandedHeight : collapsedHeight)
     );
 
     // Animation functions to smoothly animate the paddingTop of ScrollView
-    const expand = Animated.timing(contentMargin, {
+    const expand = Animated.timing(contentPadding, {
         toValue: expandedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
-    const contract = Animated.timing(contentMargin, {
+    const contract = Animated.timing(contentPadding, {
         toValue: collapsedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
@@ -81,8 +74,8 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     // Add Scroll Listener to our Animated.Value that is bound to the onScroll prop of ScrollView
     useEffect(() => {
-        const listen = scrollAnimValue.addListener(onScrollChange);
-        return (): void => scrollAnimValue.removeListener(listen);
+        const listen = animatedScrollValue.addListener(onScrollChange);
+        return (): void => animatedScrollValue.removeListener(listen);
     }, []);
 
     // Callback function when the user collapses the Header by clicking
@@ -112,20 +105,22 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     return (
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>
             <Header
+                testID={'pxb-header'}
                 // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
                 {...HeaderProps}
                 onCollapse={handleCollapse}
                 onExpand={handleExpand}
-                scrollPosition={scrollAnimValue}
+                scrollPosition={animatedScrollValue}
                 style={[HeaderProps.styles?.root, HeaderProps.style, { position: 'absolute', zIndex: 100 }]}
             />
 
             <Animated.ScrollView
+                testID={'pxb-scrollview'}
                 scrollEventThrottle={32}
                 // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
                 {...ScrollViewProps}
                 ref={scrollRef}
-                style={[ScrollViewProps.style, { paddingTop: contentMargin }]}
+                style={[ScrollViewProps.style, { paddingTop: contentPadding }]}
                 contentOffset={{ x: 0, y: initialScrollPosition }}
                 // Bind the scroll position directly to our animated value
                 onScroll={
@@ -135,7 +130,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                                   {
                                       nativeEvent: {
                                           contentOffset: {
-                                              y: scrollAnimValue,
+                                              y: animatedScrollValue,
                                           },
                                       },
                                   },

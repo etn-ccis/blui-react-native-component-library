@@ -15,7 +15,6 @@ import {
     PixelRatio,
 } from 'react-native';
 import color from 'color';
-import createAnimatedComponent = Animated.createAnimatedComponent;
 import { useTheme } from 'react-native-paper';
 import { ANIMATION_LENGTH, heightWithStatusBar } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
@@ -28,6 +27,7 @@ import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
 import { HeaderAvatar, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
+import createAnimatedComponent = Animated.createAnimatedComponent;
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -471,3 +471,4 @@ export const Header: React.FC<HeaderProps> = (props) => {
         </>
     );
 };
+Header.displayName = 'Header';
