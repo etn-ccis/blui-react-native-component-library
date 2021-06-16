@@ -132,6 +132,9 @@ export type HeaderProps = ViewProps & {
      */
     onCollapse?: () => void;
 
+    onSearch?: () => void;
+    onCloseSearch?: () => void;
+
     /**
      * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
      */
@@ -213,6 +216,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
         washingtonStyle,
         onExpand,
         onCollapse,
+        onSearch,
+        onCloseSearch,
         ...viewProps
     } = props;
 
@@ -260,10 +265,16 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     /* EVENT LISTENERS */
 
+
+    // if variant is changed to static, update our local state toggle
+    useEffect(() => {
+        if(variant === 'static') setUseStaticHeight(true);
+    }, [variant])
+
     // Make updates based on changes in the scroll position
     const onScrollChange = useCallback(
         ({ value: scrollValue }: { value: number }) => {
-            if (variant !== 'dynamic') return;
+            if (variant !== 'dynamic' || searching) return;
 
             // Adjust whether to collapse or expand on click based on how far the header is collapsed
             if (scrollValue <= scrollableDistance / 2) setExpanded(true);
@@ -283,7 +294,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 }
             }
         },
-        [expandedHeight, collapsedHeight, scrollableDistance, useStaticHeight, staticHeaderHeight, expanded, variant]
+        [expandedHeight, collapsedHeight, scrollableDistance, useStaticHeight, staticHeaderHeight, expanded, variant, searching]
     );
 
     // Set up a listener for when the scrollPosition changes
@@ -337,22 +348,24 @@ export const Header: React.FC<HeaderProps> = (props) => {
                       }),
                   },
         ];
-    }, [subtitle, searching, dynamicHeaderHeight, defaultStyles]);
+    }, [subtitle, searching, dynamicHeaderHeight, defaultStyles, useStaticHeight, staticHeaderHeight]);
 
     /* CALLBACK FUNCTIONS */
 
     // Callback when the Header is tapped (expandable only)
     const onPress = useCallback((): void => {
         if (expanded) {
+            console.log('collapsing on click')
             if (onCollapse) onCollapse();
             contract.start();
             setExpanded(false);
         } else {
+            console.log('expanding on click')
             if (onExpand) onExpand();
             expand.start();
             setExpanded(true);
         }
-    }, [expanded]);
+    }, [expanded, onExpand, onCollapse]);
 
     // Callback when the search bar text is updated
     const onChangeSearchText = useCallback(
@@ -365,11 +378,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Callback when the search icon is clicked
     const onPressSearch = useCallback((): void => {
-        if (onCollapse) onCollapse();
+        if (onSearch) onSearch();
+        setUseStaticHeight(true);
         contract.start(() => setSearching(true));
         setPreviousExpanded(expanded);
         setExpanded(false);
-    }, [contract, expandable, onCollapse]);
+    }, [contract, expandable, onSearch]);
 
     // Callback when the search bar content is cleared
     const onPressSearchClear = useCallback((): void => {
@@ -391,10 +405,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
         setQuery('');
         if (previousExpanded) {
             expand.start(() => setExpanded(true));
-            if (onExpand) onExpand();
         }
-    }, [searchableConfig, searchRef, previousExpanded, expand]);
+        if (onCloseSearch) onCloseSearch();
+    }, [searchableConfig, searchRef, previousExpanded, expand, onCloseSearch]);
 
+// console.log('usingStatic', useStaticHeight);
+    console.log('rendering header', variant)
     return (
         <>
             <StatusBar barStyle={statusBarStyle()} />
