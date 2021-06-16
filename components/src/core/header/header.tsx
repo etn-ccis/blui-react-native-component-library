@@ -125,12 +125,12 @@ export type HeaderProps = ViewProps & {
     /**
      * Callback function to execute when the Header is expanded via tap
      */
-    onExpand?: () => void;
+    onExpand?: (tapped: boolean) => void;
 
     /**
      * Callback function to execute when the Header is collapsed via tap
      */
-    onCollapse?: () => void;
+    onCollapse?: (tapped: boolean) => void;
 
     onSearch?: () => void;
     onCloseSearch?: () => void;
@@ -233,14 +233,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const dynamicHeaderHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
 
     // Local State
+    const [staticHeaderHeightValue, setStaticHeaderHeightValue] = useState(startExpanded ? expandedHeight : collapsedHeight);
+    const [scrollPositionValue, setScrollPositionValue] = useState(0);
     const [searching, setSearching] = useState(false);
-    const [expanded, setExpanded] = useState(startExpanded || false);
+    // const [expanded, setExpanded] = useState(startExpanded || false);
+    const expanded = staticHeaderHeightValue === expandedHeight;
     const [previousExpanded, setPreviousExpanded] = useState(expanded);
     const [useStaticHeight, setUseStaticHeight] = useState(variant === 'static');
     const [query, setQuery] = useState('');
     const [staticHeaderHeight] = useState(
         startExpanded ? new Animated.Value(expandedHeight) : new Animated.Value(collapsedHeight)
     );
+
 
     // Animation functions to smoothly transition the static Header height
     const expand = Animated.timing(staticHeaderHeight, {
@@ -268,29 +272,80 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // if variant is changed to static, update our local state toggle
     useEffect(() => {
-        if(variant === 'static') setUseStaticHeight(true);
+        // Going from dynamic -> static
+        if (variant === 'static') {
+            // console.log('setting use static height');
+            setUseStaticHeight(true);
+            if (scrollPositionValue > scrollableDistance) {
+                if (!expanded && onCollapse) {
+                    console.log('call the onCollapse handler');
+                    onCollapse(false)
+                }
+            }
+            else {
+                if (scrollPositionValue <= scrollableDistance / 2) {
+                    // console.log('call the onCollapse handler');
+                    // if(!expanded && onCollapse) onCollapse
+                    if (expanded && onExpand) {
+                        console.log('call the onExpand handler 2');
+                        onExpand(false)
+                    }
+                }
+                else {
+                    // console.log('call the onCollapse handler');
+                    // if(!expanded && onCollapse) onCollapse
+                    if (!expanded && onCollapse) {
+                        console.log('call the onCollapse handler 2');
+                        onCollapse(false)
+                    }
+                }
+            }
+        }
+        // Going from static -> dynamic
+        else {
+            if (scrollPositionValue > scrollableDistance) {
+                // console.log('setting use static height');
+                setUseStaticHeight(true);
+            }
+            else {
+                // console.log('setting use dynamic height');
+                setUseStaticHeight(false);
+            }
+
+        }
     }, [variant])
+
+    const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {
+        setStaticHeaderHeightValue(newHeight);
+    }, []);
 
     // Make updates based on changes in the scroll position
     const onScrollChange = useCallback(
         ({ value: scrollValue }: { value: number }) => {
+            setScrollPositionValue(scrollValue);
             if (variant !== 'dynamic' || searching) return;
 
-            // Adjust whether to collapse or expand on click based on how far the header is collapsed
-            if (scrollValue <= scrollableDistance / 2) setExpanded(true);
-
-            // We have scrolled past the point of full collapse
-            if (scrollValue >= scrollableDistance) {
-                if (!useStaticHeight) {
+            // We are scrolling within the dynamic window
+            if (scrollValue <= scrollableDistance) {
+                // Adjust whether to collapse or expand on click based on how far the header is collapsed
+                if (scrollValue <= scrollableDistance / 2) {
+                    staticHeaderHeight.setValue(expandedHeight);
+                    if (!expanded || scrollValue <= 0) {
+                        // console.log('collapsed at scroll top setting dynamic');
+                        setUseStaticHeight(false);
+                    }
+                }
+                else {
                     staticHeaderHeight.setValue(collapsedHeight);
-                    setExpanded(false);
-                    setUseStaticHeight(true);
                 }
             }
-            // we have scrolled into the dynamic window
+            // We have scrolled out of the dynamic range (past the point of full collapse)
             else {
-                if (!expanded || scrollValue <= 0) {
-                    setUseStaticHeight(false);
+                if (!useStaticHeight) {
+                    // console.log('setting static height on scroll beyond');
+                    staticHeaderHeight.setValue(collapsedHeight);
+                    // setExpanded(false);
+                    setUseStaticHeight(true);
                 }
             }
         },
@@ -299,8 +354,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Set up a listener for when the scrollPosition changes
     useEffect(() => {
+        const statics = staticHeaderHeight.addListener(onHeightChange)
         const listen = scrollPosition.addListener(onScrollChange);
-        return (): void => scrollPosition.removeListener(listen);
+        return (): void => { scrollPosition.removeListener(listen); staticHeaderHeight.removeListener(statics); }
     }, [onScrollChange]);
 
     /* STYLE FUNCTIONS */
@@ -341,12 +397,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
             searching
                 ? {}
                 : {
-                      paddingBottom: (useStaticHeight ? staticHeaderHeight : dynamicHeaderHeight).interpolate({
-                          inputRange: [collapsedHeight, expandedHeight],
-                          outputRange: [contractedPadding, 28],
-                          extrapolate: 'clamp',
-                      }),
-                  },
+                    paddingBottom: (useStaticHeight ? staticHeaderHeight : dynamicHeaderHeight).interpolate({
+                        inputRange: [collapsedHeight, expandedHeight],
+                        outputRange: [contractedPadding, 28],
+                        extrapolate: 'clamp',
+                    }),
+                },
         ];
     }, [subtitle, searching, dynamicHeaderHeight, defaultStyles, useStaticHeight, staticHeaderHeight]);
 
@@ -356,14 +412,14 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const onPress = useCallback((): void => {
         if (expanded) {
             console.log('collapsing on click')
-            if (onCollapse) onCollapse();
+            if (onCollapse) onCollapse(true);
             contract.start();
-            setExpanded(false);
+            // setExpanded(false);
         } else {
             console.log('expanding on click')
-            if (onExpand) onExpand();
+            if (onExpand) onExpand(true);
             expand.start();
-            setExpanded(true);
+            // setExpanded(true);
         }
     }, [expanded, onExpand, onCollapse]);
 
@@ -378,11 +434,16 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Callback when the search icon is clicked
     const onPressSearch = useCallback((): void => {
+        console.log('calling custom on search');
         if (onSearch) onSearch();
-        setUseStaticHeight(true);
-        contract.start(() => setSearching(true));
+        console.log('starting header contract animation');
+        contract.start(() => {
+            setSearching(true);
+            setUseStaticHeight(true);
+        });
+        console.log('setting previous expanded', expanded);
         setPreviousExpanded(expanded);
-        setExpanded(false);
+        // setExpanded(false);
     }, [contract, expandable, onSearch]);
 
     // Callback when the search bar content is cleared
@@ -397,20 +458,26 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Callback when the search bar is closed
     const onPressSearchClose = useCallback((): void => {
+        console.log('closing search');
         const searchInput = searchRef.current;
         if (searchInput) {
             if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
         }
+        console.log('setting search to false');
         setSearching(false);
         setQuery('');
         if (previousExpanded) {
-            expand.start(() => setExpanded(true));
+            console.log('restoring previous expanded state');
+            expand.start(/*() => setExpanded(true)*/);
         }
+        console.log('calling custom on search close');
         if (onCloseSearch) onCloseSearch();
     }, [searchableConfig, searchRef, previousExpanded, expand, onCloseSearch]);
 
-// console.log('usingStatic', useStaticHeight);
-    console.log('rendering header', variant)
+    // console.log('usingStatic', useStaticHeight);
+    // console.log('rendering header', variant)
+    // console.log('header expanded', expanded);
+    // console.log('header static height', useStaticHeight)
     return (
         <>
             <StatusBar barStyle={statusBarStyle()} />
@@ -457,8 +524,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     <HeaderNavigationIcon navigation={navigation} style={styles.navigationIcon} />
                                     <HeaderContent
                                         theme={theme}
-                                        title={title}
-                                        subtitle={subtitle}
+                                        title={`${title} (${expanded ? 'exp' : 'coll'}) ${staticHeaderHeightValue}`}
+                                        subtitle={`${subtitle} ust: ${useStaticHeight}`}
                                         info={info}
                                         actionCount={getActionItemInfo()}
                                         styles={{
