@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState, useRef, useEffect } from 'react';
+import React, { ComponentType, useCallback, useState, useRef, useEffect, ReactNode } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -118,7 +118,7 @@ export type HeaderProps = ViewProps & {
     fontColor?: string;
 
     /** Optional header third line of text (hidden when collapsed) */
-    info?: string;
+    info?: ReactNode;
 
     /** Leftmost icon on header, used for navigation */
     navigation?: HeaderIcon;
@@ -151,7 +151,7 @@ export type HeaderProps = ViewProps & {
     };
 
     /** Optional header subtitle */
-    subtitle?: string;
+    subtitle?: ReactNode;
 
     /**
      * Overrides for theme
@@ -159,7 +159,7 @@ export type HeaderProps = ViewProps & {
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 
     /** Header title */
-    title: string;
+    title: ReactNode;
 
     /**
      * Callback function to make updates to the linked scrollView (dynamic variant only)

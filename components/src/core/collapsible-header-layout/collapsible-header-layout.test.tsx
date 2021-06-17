@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
-import { CollapsibleHeaderLayout } from '.';
+import { CollapsibleHeaderLayout } from './collapsible-header-layout';
 import { Header, heightWithStatusBar } from '../header';
 
 describe('CollapsibleHeaderLayout', () => {
