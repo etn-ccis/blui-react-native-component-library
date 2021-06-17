@@ -35,7 +35,14 @@ export type CollapsibleLayoutProps = ViewProps & {
  * a collapsed size as the page is scrolled.
  */
 export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props) => {
-    const { HeaderProps, theme: themeOverride, ScrollViewProps = {}, styles = {}, style, ...viewProps } = props;
+    const {
+        HeaderProps = { styles: {} } as PXBHeaderProps,
+        theme: themeOverride,
+        ScrollViewProps = {},
+        styles = {},
+        style,
+        ...viewProps
+    } = props;
 
     const theme = useTheme(themeOverride);
     const scrollRef = useRef(null);
@@ -86,7 +93,11 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                 {...HeaderProps}
                 updateScrollView={updateScrollView}
                 scrollPosition={animatedScrollValue}
-                style={[HeaderProps.styles?.root, HeaderProps.style, { position: 'absolute', zIndex: 100 }]}
+                style={[
+                    HeaderProps.styles ? HeaderProps.styles.root : {},
+                    HeaderProps.style,
+                    { position: 'absolute', zIndex: 100 },
+                ]}
             />
             {/* TODO: Consider using a KeyboardAwareScrollView in the future */}
             <Animated.ScrollView
