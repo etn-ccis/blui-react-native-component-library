@@ -267,7 +267,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 </View>
             );
         }
-    }, [IconClass, avatar, getIconColor]);
+    }, [IconClass, avatar, getIconColor, defaultStyles, styles]);
 
     const getSubtitle = useCallback((): JSX.Element[] | null => {
         if (!subtitle) {

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Animated, ViewProps, View, ScrollViewProps as RNScrollViewProps, StyleProp, ViewStyle } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -49,50 +49,34 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const initialScrollPosition = headerVariant === 'static' ? 0 : !startExpanded ? scrollableDistance : 0;
 
     // State Variables
-    const [scrollValue, setScrollValue] = useState(0); // using a state variable for this causes some out of sync issues with the animated value
     const [contentPadding] = useState(
         new Animated.Value(headerVariant === 'dynamic' || startExpanded || false ? expandedHeight : collapsedHeight)
     );
 
     // Animation function to smoothly animate the paddingTop of ScrollView
-    const animatePadding = (padding: number) =>
+    const animatePadding = (padding: number): Animated.CompositeAnimation =>
         Animated.timing(contentPadding, {
             toValue: padding,
             duration: ANIMATION_LENGTH,
             useNativeDriver: false,
         });
 
-    // stores the current value of Animated.Value of scroll position
-    const onScrollChange = ({ value: scrollDistance }: { value: number }) => {
-        setScrollValue(scrollDistance);
-    };
-
-    // Add Scroll Listener to our Animated.Value that is bound to the onScroll prop of ScrollView
-    useEffect(() => {
-        const listen = animatedScrollValue.addListener(onScrollChange);
-        return (): void => animatedScrollValue.removeListener(listen);
-    }, []);
-
     // Update the ScrollView padding and scroll position
-    const updateScrollView = useCallback(
-        (data: { padding: number | null; animate: boolean; scrollTo: number | null }): void => {
-            const { padding, animate, scrollTo } = data;
-            if (padding !== null) {
-                if (animate) animatePadding(padding).start();
-                else contentPadding.setValue(padding);
-            }
-            if (scrollRef && scrollRef.current && scrollTo !== null) {
-                console.log('updating scroll from', scrollValue, scrollTo);
-                // @ts-ignore scrollRef can't be null here, but TS complains anyway
-                scrollRef.current.scrollTo({
-                    x: 0,
-                    y: scrollTo,
-                    animated: animate,
-                });
-            }
-        },
-        [animatePadding, contentPadding]
-    );
+    const updateScrollView = (data: { padding: number | null; animate: boolean; scrollTo: number | null }): void => {
+        const { padding, animate, scrollTo } = data;
+        if (padding !== null) {
+            if (animate) animatePadding(padding).start();
+            else contentPadding.setValue(padding);
+        }
+        if (scrollRef && scrollRef.current && scrollTo !== null) {
+            // @ts-ignore scrollRef can't be null here, but TS complains anyway
+            scrollRef.current.scrollTo({
+                x: 0,
+                y: scrollTo,
+                animated: animate,
+            });
+        }
+    };
 
     return (
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>

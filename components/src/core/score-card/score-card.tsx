@@ -162,14 +162,15 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = actionPanelStyles(fontScale);
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
-        | JSX.Element
-        | undefined => {
-        if (IconClass) {
-            return <IconClass size={24} color={color} />;
-        }
-    }, []);
+    const getIcon = useCallback(
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        (IconClass: ComponentType<{ size: number; color: string }>): JSX.Element | undefined => {
+            if (IconClass) {
+                return <IconClass size={24} color={color} />;
+            }
+        },
+        [color]
+    );
 
     if (actionItems) {
         return (

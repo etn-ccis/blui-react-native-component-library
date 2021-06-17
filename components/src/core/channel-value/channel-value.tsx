@@ -85,7 +85,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 </View>
             );
         }
-    }, [IconClass, fontSize, getColor, styles]);
+    }, [IconClass, fontSize, getColor, IconProps]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
         if (units) {

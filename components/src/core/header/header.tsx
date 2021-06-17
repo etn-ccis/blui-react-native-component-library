@@ -207,7 +207,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         title,
         variant = 'static',
         washingtonStyle,
-        updateScrollView = () => {},
+        updateScrollView = (): void => {},
         ...viewProps
     } = props;
 
@@ -233,7 +233,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const inDynamicRange = scrollPositionValue <= scrollableDistance;
     const [searching, setSearching] = useState(false);
     const expanded = staticHeaderHeightValue === expandedHeight;
-    console.log('render', staticHeaderHeightValue, expanded);
     const [manuallyExpanded, setManuallyExpanded] = useState(false);
     const [previousExpanded, setPreviousExpanded] = useState(expanded);
     const [useStaticHeight, setUseStaticHeight] = useState(variant === 'static');
@@ -369,7 +368,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     // Track the current value of the Animated header height
     const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {
-        console.log('height changed', newHeight);
         setStaticHeaderHeightValue(newHeight);
     }, []);
 
@@ -401,7 +399,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
             // We have scrolled out of the dynamic range (past the point of full collapse)
             else {
                 if (!useStaticHeight && !manuallyExpanded) {
-                    console.log('setting collapsed height');
                     staticHeaderHeight.setValue(collapsedHeight);
                     setUseStaticHeight(true);
                 }
@@ -413,7 +410,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
             scrollableDistance,
             useStaticHeight,
             staticHeaderHeight,
-            expanded,
             variant,
             searching,
             manuallyExpanded,
@@ -428,7 +424,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
             scrollPosition.removeListener(listen);
             staticHeaderHeight.removeListener(statics);
         };
-    }, [onScrollChange]);
+    }, [onScrollChange, onHeightChange]);
 
     /* STYLE FUNCTIONS */
 
@@ -475,7 +471,16 @@ export const Header: React.FC<HeaderProps> = (props) => {
                       }),
                   },
         ];
-    }, [subtitle, searching, dynamicHeaderHeight, defaultStyles, useStaticHeight, staticHeaderHeight]);
+    }, [
+        subtitle,
+        searching,
+        dynamicHeaderHeight,
+        defaultStyles,
+        useStaticHeight,
+        staticHeaderHeight,
+        collapsedHeight,
+        expandedHeight,
+    ]);
 
     /* CALLBACK FUNCTIONS */
 
@@ -512,7 +517,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         : scrollPositionValue + scrollableDistance,
             });
         }
-    }, [expanded, updateScrollView, variant, inDynamicRange, scrollPositionValue, scrollableDistance]);
+    }, [
+        expanded,
+        updateScrollView,
+        collapsedHeight,
+        contract,
+        expand,
+        expandedHeight,
+        variant,
+        inDynamicRange,
+        scrollPositionValue,
+        scrollableDistance,
+    ]);
 
     // Callback when the search bar text is updated
     const onChangeSearchText = useCallback(
@@ -539,6 +555,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
     }, [
         contract,
         expandable,
+        inDynamicRange,
+        updateScrollView,
         variant,
         expanded,
         scrollPositionValue,
@@ -581,7 +599,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 });
             }
         }
-    }, [searchableConfig, searchRef, previousExpanded, expand]);
+    }, [
+        searchableConfig,
+        searchRef,
+        previousExpanded,
+        expand,
+        expandedHeight,
+        inDynamicRange,
+        scrollPositionValue,
+        scrollableDistance,
+        updateScrollView,
+        variant,
+    ]);
 
     return (
         <>
@@ -629,8 +658,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     <HeaderNavigationIcon navigation={navigation} style={styles.navigationIcon} />
                                     <HeaderContent
                                         theme={theme}
-                                        title={`${title} (${expanded ? 'exp' : 'coll'}) ${staticHeaderHeightValue}`}
-                                        subtitle={`${subtitle} ust: ${useStaticHeight}`}
+                                        title={title}
+                                        subtitle={subtitle}
                                         info={info}
                                         actionCount={getActionItemInfo()}
                                         styles={{

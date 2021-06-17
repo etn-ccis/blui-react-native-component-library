@@ -140,7 +140,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 36;
         return Math.max(10, Math.min(48, iconSize));
-    }, [iconSize, fontScale]);
+    }, [iconSize]);
 
     const getColor = useCallback(
         (color: string | undefined): string => {
