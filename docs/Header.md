@@ -1,6 +1,6 @@
 # Header
 
-The `<Header>` component is used at the top of the page to display page information. It shows a title and has optional parameters to show a subtitle, background image, navigation button, and multiple action buttons. The header can also be configured to expand/collapse as desired. For expand/collapse behavior tied to the screen scroll position, you should use the [`<CollapsibleHeaderLayout>`](./CollapsibleHeaderLayout) component.
+The `<Header>` component is used at the top of the page to display page information. It shows a title and has optional parameters to show a subtitle, background image, navigation button, and multiple action buttons. The header can also be configured to expand/collapse as desired. For expand/collapse behavior tied to the screen scroll position, you should use the [`<CollapsibleHeaderLayout>`](./CollapsibleHeaderLayout.md) component.
 
 <img width="400" alt="Collapsed header" src="./images/header_small.png">
 <img width="400" alt="Expanded header" src="./images/header_large.png">
@@ -27,29 +27,30 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 <div style="overflow: auto">
 
-| Prop Name        | Description                                                                                                                | Type                      | Required       | Default                  |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------------- | ------------------------ |
-| actionItems      | Icons to show to the right of the title                                                                                    | `Array<HeaderIcon         | HeaderAvatar>` | no                       |
-| backgroundColor  | The color used for the background                                                                                          | `string`                  | no             | `theme.colors.primary`   |
-| backgroundImage  | An image to display in the header                                                                                          | `ImageSourcePropType`     | no             |                          |
-| collapsedHeight  | The height of the header when collapsed                                                                                    | `number`                  | no             | 56                       |
-| expandable       | Allow the header to expand/collapse on tap                                                                                 | `boolean`                 | no             | `false`                  |
-| expandedHeight   | The height of the header when expanded                                                                                     | `number`                  | no             | 200                      |
-| fontColor        | The color used for the text                                                                                                | `string`                  | no             | `theme.colors.onPrimary` |
-| info             | Third line of text (hidden on collapse)                                                                                    | `string`                  | no             |                          |
-| navigation       | Icon to show left of the title                                                                                             | `HeaderIcon`              | no             |                          |
-| onExpand         | Function to call when the Header is expanded via tap                                                                       | `() => void`              | no             |                          |
-| onCollapse       | Function to call when the Header is collapsed via tap                                                                      | `() => void`              | no             |                          |
-| scrollPosition   | Y-value of the linked ScrollView (dynamic variant only)                                                                    | `Animated.Value`          | no             |                          |
-| searchableConfig | Configuration for search behavior                                                                                          | `SearchableConfig`        | no             |                          |
-| startExpanded    | Default the header to expanded                                                                                             | `boolean`                 | no             | `false`                  |
-| styles           | Style overrides                                                                                                            | `Object`                  | no             |                          |
-| subtitle         | The text to show on the second line                                                                                        | `string`                  | no             |                          |
-| theme            | Theme partial for default styling                                                                                          | `Theme`                   | no             |                          |
-| title            | The text to show on the first line                                                                                         | `string`                  | yes            |                          |
-| variant          | The resize mode of the Header (static will resize only on taps, if enabled. Dynamic will resize as the screen is scrolled) | `'dynamic'` \| `'static'` | no             | 'static'                 |
+| Prop Name          | Description                                                                                                                | Type                                                                                | Required       | Default                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------- | ------------------------ |
+| actionItems        | Icons to show to the right of the title                                                                                    | `Array<HeaderIcon                                                                   | HeaderAvatar>` | no                       |
+| backgroundColor    | The color used for the background                                                                                          | `string`                                                                            | no             | `theme.colors.primary`   |
+| backgroundImage    | An image to display in the header                                                                                          | `ImageSourcePropType`                                                               | no             |                          |
+| collapsedHeight    | The height of the header when collapsed                                                                                    | `number`                                                                            | no             | 56                       |
+| expandable         | Allow the header to expand/collapse on tap                                                                                 | `boolean`                                                                           | no             | `false`                  |
+| expandedHeight     | The height of the header when expanded                                                                                     | `number`                                                                            | no             | 200                      |
+| fontColor          | The color used for the text                                                                                                | `string`                                                                            | no             | `theme.colors.onPrimary` |
+| info               | Third line of text (hidden on collapse)                                                                                    | `string`                                                                            | no             |                          |
+| navigation         | Icon to show left of the title                                                                                             | `HeaderIcon`                                                                        | no             |                          |
+| scrollPosition     | Y-value of the linked ScrollView (dynamic variant only)                                                                    | `Animated.Value`                                                                    | no             |                          |
+| searchableConfig   | Configuration for search behavior                                                                                          | `SearchableConfig`                                                                  | no             |                          |
+| startExpanded      | Default the header to expanded                                                                                             | `boolean`                                                                           | no             | `false`                  |
+| styles             | Style overrides                                                                                                            | `Object`                                                                            | no             |                          |
+| subtitle           | The text to show on the second line                                                                                        | `string`                                                                            | no             |                          |
+| theme              | Theme partial for default styling                                                                                          | `Theme`                                                                             | no             |                          |
+| updateScrollView\* | Callback function to update a linked ScrollView (dynamic variant only)                                                     | `({ padding: number \| null; animate: boolean; scrollTo: number \| null }) => void` | no             |                          |
+| title              | The text to show on the first line                                                                                         | `string`                                                                            | yes            |                          |
+| variant            | The resize mode of the Header (static will resize only on taps, if enabled. Dynamic will resize as the screen is scrolled) | `'dynamic'` \| `'static'`                                                           | no             | 'static'                 |
 
 </div>
+
+> Props marked with a star (\*) are managed automatically when using the `<CollapsibleHeaderLayout>` component.
 
 ### Styles
 

@@ -124,11 +124,6 @@ export type HeaderProps = ViewProps & {
     navigation?: HeaderIcon;
 
     /**
-     * Callback function to make updates to the linked scrollView (dynamic variant only)
-     */
-    updateScrollView?: (data: { padding: number | null; animate: boolean; scrollTo: number | null }) => void;
-
-    /**
      * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
      */
     scrollPosition?: Animated.Value;
@@ -165,6 +160,11 @@ export type HeaderProps = ViewProps & {
 
     /** Header title */
     title: string;
+
+    /**
+     * Callback function to make updates to the linked scrollView (dynamic variant only)
+     */
+    updateScrollView?: (data: { padding: number | null; animate: boolean; scrollTo: number | null }) => void;
 
     /**
      * Current mode of the Header:

@@ -88,7 +88,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                 scrollPosition={animatedScrollValue}
                 style={[HeaderProps.styles?.root, HeaderProps.style, { position: 'absolute', zIndex: 100 }]}
             />
-
+            {/* TODO: Consider using a KeyboardAwareScrollView in the future */}
             <Animated.ScrollView
                 testID={'pxb-scrollview'}
                 scrollEventThrottle={32}
