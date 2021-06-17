@@ -28,6 +28,7 @@ import { HeaderAvatar, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
+import { usePrevious } from '../hooks/usePrevious';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -217,8 +218,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
     // Utility variables
     const fontScale = PixelRatio.getFontScale();
     const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
+    const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = heightWithStatusBar(expandedHeightProp);
+    const previousExpandedHeight = usePrevious(expandedHeight);
     const scrollableDistance = expandedHeight - collapsedHeight;
+    const previousScrollableDistance = usePrevious(scrollableDistance);
     const dynamicHeaderHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
 
     // Local State
@@ -229,6 +233,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const inDynamicRange = scrollPositionValue <= scrollableDistance;
     const [searching, setSearching] = useState(false);
     const expanded = staticHeaderHeightValue === expandedHeight;
+    console.log('render', staticHeaderHeightValue, expanded);
     const [manuallyExpanded, setManuallyExpanded] = useState(false);
     const [previousExpanded, setPreviousExpanded] = useState(expanded);
     const [useStaticHeight, setUseStaticHeight] = useState(variant === 'static');
@@ -260,7 +265,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     /* EVENT LISTENERS */
 
-    // if variant is changed to static, update our local state toggle
+    // if variant is changed, make the necessary updates to sizing, margins, etc.
     useEffect(() => {
         // Going from dynamic -> static
         if (variant === 'static') {
@@ -319,8 +324,52 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
     }, [variant]);
 
+    // if either height property is changed, make the necessary updates to sizing, margins, etc.
+    useEffect(() => {
+        // don't execute this logic on the first render
+        if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
+
+        const wasExpanded = staticHeaderHeightValue === previousExpandedHeight;
+        staticHeaderHeight.setValue(wasExpanded ? expandedHeight : collapsedHeight);
+
+        if (wasExpanded) expand.start();
+        else contract.start();
+
+        const scrollableDifference = scrollableDistance - (previousScrollableDistance || scrollableDistance);
+        const expandedDifference = expandedHeight - (previousExpandedHeight || expandedHeight);
+        const collapsedDifference = collapsedHeight - (previousCollapsedHeight || collapsedHeight);
+
+        if (inDynamicRange) {
+            updateScrollView({
+                padding: variant === 'dynamic' || wasExpanded ? expandedHeight : collapsedHeight,
+                animate: false,
+                scrollTo:
+                    variant === 'dynamic'
+                        ? scrollPositionValue <= scrollableDistance / 2
+                            ? 0
+                            : scrollableDistance
+                        : scrollPositionValue + scrollableDifference,
+            });
+        } else {
+            if (variant === 'static') {
+                updateScrollView({
+                    padding: wasExpanded ? expandedHeight : collapsedHeight,
+                    animate: false,
+                    scrollTo: scrollPositionValue + (wasExpanded ? expandedDifference : collapsedDifference),
+                });
+            } else {
+                updateScrollView({
+                    padding: expandedHeight,
+                    animate: false,
+                    scrollTo: wasExpanded ? null : scrollPositionValue + scrollableDifference,
+                });
+            }
+        }
+    }, [expandedHeight, collapsedHeight]);
+
     // Track the current value of the Animated header height
     const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {
+        console.log('height changed', newHeight);
         setStaticHeaderHeightValue(newHeight);
     }, []);
 
@@ -351,7 +400,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
             }
             // We have scrolled out of the dynamic range (past the point of full collapse)
             else {
-                if (!useStaticHeight) {
+                if (!useStaticHeight && !manuallyExpanded) {
+                    console.log('setting collapsed height');
                     staticHeaderHeight.setValue(collapsedHeight);
                     setUseStaticHeight(true);
                 }
