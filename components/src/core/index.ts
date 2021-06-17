@@ -1,5 +1,5 @@
 export * from './channel-value';
-// export * from './collapsible-header-layout';
+export * from './collapsible-header-layout';
 export * from './drawer';
 export * from './empty-state';
 export * from './header';
