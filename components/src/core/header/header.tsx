@@ -338,14 +338,15 @@ export const Header: React.FC<HeaderProps> = (props) => {
         const expandedDifference = expandedHeight - (previousExpandedHeight || expandedHeight);
         const collapsedDifference = collapsedHeight - (previousCollapsedHeight || collapsedHeight);
 
-        if (inDynamicRange) {
+        // was in the dynamic range
+        if (scrollPositionValue <= (previousScrollableDistance || scrollableDistance)) {
             updateScrollView({
                 padding: variant === 'dynamic' || wasExpanded ? expandedHeight : collapsedHeight,
                 animate: false,
                 scrollTo:
                     variant === 'dynamic'
-                        ? scrollPositionValue <= scrollableDistance / 2
-                            ? 0
+                        ? wasExpanded
+                            ? -1 // workaround because if we pass 0 the ScrollView won't update because it thinks the scroll position is the same as before
                             : scrollableDistance
                         : scrollPositionValue + scrollableDifference,
             });
@@ -360,7 +361,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 updateScrollView({
                     padding: expandedHeight,
                     animate: false,
-                    scrollTo: wasExpanded ? null : scrollPositionValue + scrollableDifference,
+                    scrollTo: scrollPositionValue + expandedDifference,
                 });
             }
         }
