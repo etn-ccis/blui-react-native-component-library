@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 import { Animated } from 'react-native';
 
 type HeaderHeightContextType = {
-    headerHeight: Animated.Value;
+    headerHeight: Animated.Value | Animated.AnimatedInterpolation;
 };
 
 export const HeaderHeightContext = createContext<HeaderHeightContextType | null>(null);

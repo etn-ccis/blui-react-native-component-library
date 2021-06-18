@@ -4,6 +4,8 @@
 
 ### Added
 
+-   `<CollapsibleHeaderLayout>` component that resizes Header as the screen is scrolled.
+-   New props for `<Header>` component (`expandedHeight`, `collapsedHeight`, `onExpand`, `onCollapse`, `scrollPosition`, `variant`) to support `<CollapsibleHeaderLayout>`.
 -   Support for `ReactNode` content in `<Header>` `title`, `subtitle`, and `info` props.
 
 ### Fixed

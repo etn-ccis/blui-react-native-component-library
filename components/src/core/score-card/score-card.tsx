@@ -169,7 +169,7 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
                 return <IconClass size={24} color={color} />;
             }
         },
-        []
+        [color]
     );
 
     if (actionItems) {

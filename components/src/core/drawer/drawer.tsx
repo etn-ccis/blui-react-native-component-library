@@ -80,7 +80,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
                     }
                     return React.cloneElement(child, inheritableProps);
                 }),
-        [props]
+        [props, theme]
     );
 
     return (
