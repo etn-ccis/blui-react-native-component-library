@@ -61,26 +61,28 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 </div>
 
+Any other props will be provided to the root element ([**Card**](https://callstack.github.io/react-native-paper/card.html)).
+
 ### Styles
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
 
-| Name              | Description                                    |
-| ----------------- | ---------------------------------------------- |
-| root              | Styles applied to the root card element        |
-| header            | Styles applied to the card header element      |
-| backgroundImage   | Styles applied to the background image wrapper |
-| headerContent     | Styles applied to the header content wrapper   |
-| headerText        | Styles applied to the header text wrapper      |
-| title             | Styles applied to the title element            |
-| subtitle          | Styles applied to the subtitle element         |
-| info              | Styles applied to the info element             |
-| headerActions     | Styles applied to the header actions wrapper   |
-| headerActionItem  | Styles applied to the header action icons      |
-| body              | Styles applied to the card body element        |
-| leftContent       | Styles applied to the {children} wrapper       |
-| badge             | Styles applied to the badge wrapper            |
-| actionRow         | Styles applied to the action row element       |
+| Name             | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| root             | Styles applied to the root card element        |
+| header           | Styles applied to the card header element      |
+| backgroundImage  | Styles applied to the background image wrapper |
+| headerContent    | Styles applied to the header content wrapper   |
+| headerText       | Styles applied to the header text wrapper      |
+| title            | Styles applied to the title element            |
+| subtitle         | Styles applied to the subtitle element         |
+| info             | Styles applied to the info element             |
+| headerActions    | Styles applied to the header actions wrapper   |
+| headerActionItem | Styles applied to the header action icons      |
+| body             | Styles applied to the card body element        |
+| leftContent      | Styles applied to the {children} wrapper       |
+| badge            | Styles applied to the badge wrapper            |
+| actionRow        | Styles applied to the action row element       |
 
 # Header Icon
 

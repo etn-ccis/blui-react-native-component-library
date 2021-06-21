@@ -18,7 +18,6 @@ const makeStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
@@ -39,7 +38,7 @@ const makeStyles = (
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
-            backgroundColor: props.activeColor || theme.colors.primary,
+            backgroundColor: props.activeColor || theme.colors.primaryBase || theme.colors.primary,
         },
         progressBar: {},
         text: {},
@@ -56,6 +55,7 @@ export type MobileStepperProps = {
     steps: number;
     theme?: $DeepPartial<ReactNativePaper.Theme>;
     variant?: DotStepperVariant;
+    style?: StyleProp<ViewStyle>;
     styles?: {
         root?: StyleProp<ViewStyle>;
         circle?: StyleProp<ViewStyle>;
@@ -78,8 +78,17 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 };
 
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
-    const { activeColor, activeStep, leftButton, rightButton, steps, styles = {}, variant = 'dots' } = props;
     const theme = useTheme(props.theme);
+    const {
+        activeColor = theme.colors.primaryBase || theme.colors.primary,
+        activeStep,
+        leftButton,
+        rightButton,
+        steps,
+        style,
+        styles = {},
+        variant = 'dots',
+    } = props;
     const defaultStyles = makeStyles(props, theme);
 
     const adjustedSteps = keepInRange(steps, 1);
@@ -88,7 +97,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const pageIndices = [...Array(adjustedSteps).keys()];
 
     return (
-        <View style={[defaultStyles.root, styles.root]}>
+        <View style={[defaultStyles.root, styles.root, style]}>
             {leftButton}
             <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
                 {variant === 'dots' &&
@@ -119,7 +128,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                         <ProgressBar
                             style={[defaultStyles.progressBar, styles.progressBar]}
                             progress={adjustedActiveStep / (adjustedSteps - 1)}
-                            color={activeColor || theme.colors.primary}
+                            color={activeColor}
                         />
                     </View>
                 )}

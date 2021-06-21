@@ -8,5 +8,5 @@ We currently have the following components available for React Native applicatio
 -   [Header](https://github.com/pxblue/react-native-component-library/blob/dev/docs/Header.md)
 -   [Hero & Hero Banner](https://github.com/pxblue/react-native-component-library/blob/dev/docs/Hero.md)
 -   [Info List Item](https://github.com/pxblue/react-native-component-library/blob/dev/docs/InfoListItem.md)
--   [Score Card](https://github.com/pxblue/react-native-component-library/blob/dev/docs/Scorecard.md)
+-   [Score Card](https://github.com/pxblue/react-native-component-library/blob/dev/docs/ScoreCard.md)
 -   [Typography](https://github.com/pxblue/react-native-component-library/blob/dev/docs/Typography.md)

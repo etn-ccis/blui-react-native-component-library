@@ -196,7 +196,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         } else if ((items && items.length > 0) || Boolean(children)) {
             setExpanded(!expanded);
         }
-    }, [onItemSelect, onPress, itemID, items, expanded, setExpanded]);
+    }, [onItemSelect, onPress, itemID, items, expanded, setExpanded, children]);
 
     const getActionComponent = useCallback((): JSX.Element | null => {
         if (!items && !children) {

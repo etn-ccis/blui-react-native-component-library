@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState, useRef } from 'react';
+import React, { ComponentType, useCallback, useState, useRef, useEffect, ReactNode } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -15,9 +15,8 @@ import {
     PixelRatio,
 } from 'react-native';
 import color from 'color';
-import createAnimatedComponent = Animated.createAnimatedComponent;
 import { useTheme } from 'react-native-paper';
-import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ANIMATION_LENGTH } from './constants';
+import { ANIMATION_LENGTH, heightWithStatusBar } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
 import { HeaderContent } from './headerContent';
@@ -28,6 +27,8 @@ import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
 import { HeaderAvatar, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
+import createAnimatedComponent = Animated.createAnimatedComponent;
+import { usePrevious } from '../hooks/usePrevious';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -42,7 +43,7 @@ const headerStyles = (
     return StyleSheet.create({
         root: {
             width: '100%',
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor: props.backgroundColor || (theme.dark ? '#2b353a' : theme.colors.primary), // @TODO: PXBLUE-2122 - remove this hardcoded color value when doing theme updates
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,
@@ -69,58 +70,69 @@ const headerStyles = (
 };
 
 export type SearchableConfig = {
-    /** Icon to override default search icon */
-    icon?: ComponentType<{ size: number; color: string }>;
-
-    /** TextInput Prop. Placeholder text for the search input */
-    placeholder?: string;
-
-    /** TextInput Prop. Determines whether the search input will be focused on when it is rendered */
-    autoFocus?: boolean;
-
-    /** TextInput Prop. Callback for when the text in the search input changes */
-    onChangeText?: (text: string) => void;
-
     /** TextInput Prop. Determines how the search input will be capitalized */
     autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
 
     /** TextInput Prop. Determines whether auto-correct is enabled in the search input */
     autoCorrect?: boolean;
+
+    /** TextInput Prop. Determines whether the search input will be focused on when it is rendered */
+    autoFocus?: boolean;
+
+    /** Icon to override default search icon */
+    icon?: ComponentType<{ size: number; color: string }>;
+
+    /** TextInput Prop. Callback for when the text in the search input changes */
+    onChangeText?: (text: string) => void;
+
+    /** TextInput Prop. Placeholder text for the search input */
+    placeholder?: string;
 };
 
 export type HeaderProps = ViewProps & {
-    /** Header title */
-    title: string;
-
-    /** Optional header subtitle */
-    subtitle?: string;
-
-    /** Optional header third line of text (hidden when collapsed) */
-    info?: string;
-
-    /** Leftmost icon on header, used for navigation */
-    navigation?: HeaderIcon;
-
     /** List of up to three action items on the right of the header */
     actionItems?: Array<HeaderIcon | HeaderAvatar>;
-
-    /** Determines whether the header can be expanded by being pressed */
-    expandable?: boolean;
-
-    /** Determines whether the header should start in the expanded state */
-    startExpanded?: boolean;
 
     /** Background color of the header */
     backgroundColor?: string;
 
-    /** Color of the title, subtitle, and icons in the header */
-    fontColor?: string;
-
     /** Background image to render when header is expanded */
     backgroundImage?: ImageSourcePropType;
 
+    /**
+     * Height of the App Bar when fully collapsed
+     * Default: 56
+     */
+    collapsedHeight?: number;
+
+    /** Determines whether the header can be expanded / collapsed by tapping */
+    expandable?: boolean;
+
+    /**
+     * Height of the App Bar when fully expanded
+     * Default: 200
+     */
+    expandedHeight?: number;
+
+    /** Color of the title, subtitle, and icons in the header */
+    fontColor?: string;
+
+    /** Optional header third line of text (hidden when collapsed) */
+    info?: ReactNode;
+
+    /** Leftmost icon on header, used for navigation */
+    navigation?: HeaderIcon;
+
+    /**
+     * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
+     */
+    scrollPosition?: Animated.Value;
+
     /** Configuration object that determines whether the Header can have a search bar */
     searchableConfig?: SearchableConfig;
+
+    /** Determines whether the header should start in the expanded state */
+    startExpanded?: boolean;
 
     /** Style Overrides */
     styles?: {
@@ -138,10 +150,34 @@ export type HeaderProps = ViewProps & {
         avatar?: StyleProp<ViewStyle>;
     };
 
+    /** Optional header subtitle */
+    subtitle?: ReactNode;
+
     /**
      * Overrides for theme
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
+
+    /** Header title */
+    title: ReactNode;
+
+    /**
+     * Callback function to make updates to the linked scrollView (dynamic variant only)
+     */
+    updateScrollView?: (data: { padding: number | null; animate: boolean; scrollTo: number | null }) => void;
+
+    /**
+     * Current mode of the Header:
+     * - 'static': Header does not resize based on scroll position,
+     * - 'dynamic' Header resizes based on the provided scrollPosition.
+     * Default: static
+     */
+    variant?: 'dynamic' | 'static';
+
+    /**
+     * Set to true to use the alternative subtitle styling
+     */
+    washingtonStyle?: boolean;
 };
 
 /**
@@ -156,48 +192,256 @@ export const Header: React.FC<HeaderProps> = (props) => {
         backgroundColor,
         backgroundImage,
         expandable = false,
+        expandedHeight: expandedHeightProp = 200,
+        collapsedHeight: collapsedHeightProp = 56,
         fontColor,
         info,
         navigation,
+        scrollPosition = new Animated.Value(0),
         searchableConfig,
         startExpanded,
         subtitle,
         style,
         styles = {},
-        theme: themeOveride,
+        theme: themeOverride,
         title,
+        variant = 'static',
+        washingtonStyle,
+        updateScrollView = (): void => {},
         ...viewProps
     } = props;
-    const fontScale = PixelRatio.getFontScale();
 
+    const theme = useTheme(themeOverride);
+    const defaultStyles = headerStyles(props, theme);
     const searchRef = useRef<TextInput>(null);
-    const theme = useTheme(themeOveride);
+
+    // Utility variables
+    const fontScale = PixelRatio.getFontScale();
+    const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
+    const previousCollapsedHeight = usePrevious(collapsedHeight);
+    const expandedHeight = heightWithStatusBar(expandedHeightProp);
+    const previousExpandedHeight = usePrevious(expandedHeight);
+    const scrollableDistance = expandedHeight - collapsedHeight;
+    const previousScrollableDistance = usePrevious(scrollableDistance);
+    const dynamicHeaderHeight = Animated.subtract(new Animated.Value(expandedHeight), scrollPosition);
+
+    // Local State
+    const [staticHeaderHeightValue, setStaticHeaderHeightValue] = useState(
+        startExpanded ? expandedHeight : collapsedHeight
+    );
+    const [scrollPositionValue, setScrollPositionValue] = useState(0);
+    const inDynamicRange = scrollPositionValue <= scrollableDistance;
     const [searching, setSearching] = useState(false);
-    const [expanded, setExpanded] = useState(startExpanded || false);
+    const expanded = staticHeaderHeightValue === expandedHeight;
+    const [manuallyExpanded, setManuallyExpanded] = useState(false);
+    const [previousExpanded, setPreviousExpanded] = useState(expanded);
+    const [useStaticHeight, setUseStaticHeight] = useState(variant === 'static');
     const [query, setQuery] = useState('');
-    const [headerHeight] = useState(
-        startExpanded ? new Animated.Value(EXTENDED_HEIGHT) : new Animated.Value(REGULAR_HEIGHT)
+    const [staticHeaderHeight] = useState(
+        startExpanded ? new Animated.Value(expandedHeight) : new Animated.Value(collapsedHeight)
     );
 
-    const defaultStyles = headerStyles(props, theme);
-
-    const expand = Animated.timing(headerHeight, {
-        toValue: EXTENDED_HEIGHT,
+    // Animation functions to smoothly transition the static Header height
+    const expand = Animated.timing(staticHeaderHeight, {
+        toValue: expandedHeight,
+        duration: ANIMATION_LENGTH,
+        useNativeDriver: false,
+    });
+    const contract = Animated.timing(staticHeaderHeight, {
+        toValue: collapsedHeight,
         duration: ANIMATION_LENGTH,
         useNativeDriver: false,
     });
 
-    const contract = Animated.timing(headerHeight, {
-        toValue: REGULAR_HEIGHT,
-        duration: ANIMATION_LENGTH,
-        useNativeDriver: false,
-    });
+    /* UTILITY FUNCTIONS */
+
+    // returns the count of each type of actionItem (avatar and icon)
+    const getActionItemInfo = useCallback((): { avatars: number; icons: number } => {
+        if (!actionItems) return { avatars: 0, icons: 0 };
+        const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
+        return { avatars, icons: actionItems.length - avatars };
+    }, [actionItems]);
+
+    /* EVENT LISTENERS */
+
+    // if variant is changed, make the necessary updates to sizing, margins, etc.
+    useEffect(() => {
+        // Going from dynamic -> static
+        if (variant === 'static') {
+            setUseStaticHeight(true);
+            if (!inDynamicRange) {
+                if (!expanded) {
+                    updateScrollView({
+                        padding: collapsedHeight,
+                        animate: false,
+                        scrollTo: scrollPositionValue - scrollableDistance,
+                    });
+                }
+            } else {
+                // less than halfway through the dynamic range -> use expanded
+                if (scrollPositionValue <= scrollableDistance / 2) {
+                    if (expanded) {
+                        updateScrollView({ padding: expandedHeight, animate: false, scrollTo: 0 });
+                    }
+                }
+                // more than halfway through the dynamic range -> use collapsed
+                else if (!expanded) {
+                    updateScrollView({ padding: collapsedHeight, animate: false, scrollTo: 0 });
+                }
+            }
+        }
+        // Going from static -> dynamic
+        else {
+            if (!inDynamicRange) {
+                setUseStaticHeight(true);
+                if (!expanded) {
+                    updateScrollView({
+                        padding: expandedHeight,
+                        animate: false,
+                        scrollTo: scrollPositionValue + scrollableDistance,
+                    });
+                }
+            } else {
+                setUseStaticHeight(false);
+                if (expanded) {
+                    staticHeaderHeight.setValue(
+                        scrollPositionValue <= scrollableDistance / 2 ? expandedHeight : collapsedHeight
+                    );
+                    updateScrollView({
+                        padding: expandedHeight,
+                        animate: false,
+                        scrollTo: scrollPositionValue <= scrollableDistance / 2 ? 0 : scrollableDistance,
+                    });
+                } else {
+                    updateScrollView({
+                        padding: expandedHeight,
+                        animate: false,
+                        scrollTo: scrollPositionValue <= scrollableDistance / 2 ? 0 : scrollableDistance,
+                    });
+                }
+            }
+        }
+    }, [variant]);
+
+    // if either height property is changed, make the necessary updates to sizing, margins, etc.
+    useEffect(() => {
+        // don't execute this logic on the first render
+        if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
+
+        const wasExpanded = staticHeaderHeightValue === previousExpandedHeight;
+        staticHeaderHeight.setValue(wasExpanded ? expandedHeight : collapsedHeight);
+
+        if (wasExpanded) expand.start();
+        else contract.start();
+
+        const scrollableDifference = scrollableDistance - (previousScrollableDistance || scrollableDistance);
+        const expandedDifference = expandedHeight - (previousExpandedHeight || expandedHeight);
+        const collapsedDifference = collapsedHeight - (previousCollapsedHeight || collapsedHeight);
+
+        // was in the dynamic range
+        if (scrollPositionValue <= (previousScrollableDistance || scrollableDistance)) {
+            updateScrollView({
+                padding: variant === 'dynamic' || wasExpanded ? expandedHeight : collapsedHeight,
+                animate: false,
+                scrollTo:
+                    variant === 'dynamic'
+                        ? wasExpanded
+                            ? -1 // workaround because if we pass 0 the ScrollView won't update because it thinks the scroll position is the same as before
+                            : scrollableDistance
+                        : scrollPositionValue + scrollableDifference,
+            });
+        } else {
+            if (variant === 'static') {
+                updateScrollView({
+                    padding: wasExpanded ? expandedHeight : collapsedHeight,
+                    animate: false,
+                    scrollTo: scrollPositionValue + (wasExpanded ? expandedDifference : collapsedDifference),
+                });
+            } else {
+                updateScrollView({
+                    padding: expandedHeight,
+                    animate: false,
+                    scrollTo: scrollPositionValue + expandedDifference,
+                });
+            }
+        }
+    }, [expandedHeight, collapsedHeight]);
+
+    // Track the current value of the Animated header height
+    const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {
+        setStaticHeaderHeightValue(newHeight);
+    }, []);
+
+    // Make updates based on changes in the scroll position
+    const onScrollChange = useCallback(
+        ({ value: scrollValue }: { value: number }) => {
+            // save the current value of the animated scroll position
+            setScrollPositionValue(scrollValue);
+
+            if (variant !== 'dynamic' || searching) return;
+
+            if (scrollValue <= scrollableDistance) {
+                if (manuallyExpanded) {
+                    if (!useStaticHeight) setUseStaticHeight(true);
+                    if (scrollValue <= 0) {
+                        setUseStaticHeight(false);
+                        setManuallyExpanded(false);
+                    }
+                } else {
+                    setUseStaticHeight(false);
+                    // Adjust whether to collapse or expand on click based on how far the header is collapsed
+                    if (scrollValue <= scrollableDistance / 2) {
+                        staticHeaderHeight.setValue(expandedHeight);
+                    } else {
+                        staticHeaderHeight.setValue(collapsedHeight);
+                    }
+                }
+            }
+            // We have scrolled out of the dynamic range (past the point of full collapse)
+            else {
+                if (!useStaticHeight && !manuallyExpanded) {
+                    staticHeaderHeight.setValue(collapsedHeight);
+                    setUseStaticHeight(true);
+                }
+            }
+        },
+        [
+            expandedHeight,
+            collapsedHeight,
+            scrollableDistance,
+            useStaticHeight,
+            staticHeaderHeight,
+            variant,
+            searching,
+            manuallyExpanded,
+        ]
+    );
+
+    // Set up listeners
+    useEffect(() => {
+        const statics = staticHeaderHeight.addListener(onHeightChange);
+        const listen = scrollPosition.addListener(onScrollChange);
+        return (): void => {
+            scrollPosition.removeListener(listen);
+            staticHeaderHeight.removeListener(statics);
+        };
+    }, [onScrollChange, onHeightChange]);
+
+    /* STYLE FUNCTIONS */
+
+    // Returns the clamped header height based on scroll position
+    const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
+        dynamicHeaderHeight.interpolate({
+            inputRange: [collapsedHeight, expandedHeight],
+            outputRange: [collapsedHeight, expandedHeight],
+            extrapolate: 'clamp',
+        });
 
     const getBackgroundColor = useCallback((): string => {
         if (searching) {
             return theme.colors.surface;
         }
-        return backgroundColor || theme.colors.primary;
+        return backgroundColor || (theme.dark ? '#2b353a' : theme.colors.primary); // @TODO: PXBLUE-2122 - remove this hardcoded color value when doing theme updates
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {
@@ -213,6 +457,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         [getBackgroundColor]
     );
 
+    // Returns the interpolated bottom padding of the Header text elements
     const contentStyle = useCallback((): Array<Record<string, any>> => {
         const contractedPadding = (subtitle && !searching ? 12 : 16) * fontScale;
         return [
@@ -220,24 +465,73 @@ export const Header: React.FC<HeaderProps> = (props) => {
             searching
                 ? {}
                 : {
-                      paddingBottom: headerHeight.interpolate({
-                          inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                      paddingBottom: (useStaticHeight ? staticHeaderHeight : dynamicHeaderHeight).interpolate({
+                          inputRange: [collapsedHeight, expandedHeight],
                           outputRange: [contractedPadding, 28],
+                          extrapolate: 'clamp',
                       }),
                   },
         ];
-    }, [subtitle, searching, headerHeight, defaultStyles]);
+    }, [
+        subtitle,
+        searching,
+        dynamicHeaderHeight,
+        defaultStyles,
+        useStaticHeight,
+        staticHeaderHeight,
+        collapsedHeight,
+        expandedHeight,
+    ]);
 
+    /* CALLBACK FUNCTIONS */
+
+    // Callback when the Header is tapped (expandable only)
     const onPress = useCallback((): void => {
         if (expanded) {
             contract.start();
-            setExpanded(false);
+            setManuallyExpanded(false);
+            updateScrollView({
+                padding: variant === 'dynamic' ? expandedHeight : collapsedHeight,
+                animate: inDynamicRange,
+                scrollTo:
+                    variant === 'dynamic'
+                        ? inDynamicRange
+                            ? scrollableDistance
+                            : null
+                        : inDynamicRange
+                        ? 0
+                        : scrollPositionValue - scrollableDistance,
+            });
         } else {
             expand.start();
-            setExpanded(true);
+            setManuallyExpanded(true);
+            updateScrollView({
+                padding: expandedHeight,
+                animate: inDynamicRange,
+                scrollTo:
+                    variant === 'dynamic'
+                        ? inDynamicRange
+                            ? 0
+                            : null
+                        : inDynamicRange
+                        ? 0
+                        : scrollPositionValue + scrollableDistance,
+            });
         }
-    }, [expanded, setExpanded, expand, contract]);
+    }, [
+        expanded,
+        updateScrollView,
+        collapsedHeight,
+        contract,
+        expand,
+        expandedHeight,
+        variant,
+        inDynamicRange,
+        scrollPositionValue,
+        scrollableDistance,
+    ]);
 
+    // Callback when the search bar text is updated
     const onChangeSearchText = useCallback(
         (text: string): void => {
             setQuery(text);
@@ -246,11 +540,33 @@ export const Header: React.FC<HeaderProps> = (props) => {
         [setQuery, searchableConfig]
     );
 
+    // Callback when the search icon is clicked
     const onPressSearch = useCallback((): void => {
-        contract.start(() => setSearching(true));
-        setExpanded(false);
-    }, [contract, setSearching, setExpanded]);
+        setUseStaticHeight(true);
+        setSearching(true);
+        contract.start(() => {
+            // setSearching(true);
+        });
+        updateScrollView({
+            padding: collapsedHeight,
+            animate: expanded && inDynamicRange,
+            scrollTo: variant === 'dynamic' || expanded ? Math.max(scrollPositionValue - scrollableDistance, 0) : null,
+        });
+        setPreviousExpanded(expanded);
+    }, [
+        contract,
+        expandable,
+        inDynamicRange,
+        updateScrollView,
+        variant,
+        expanded,
+        scrollPositionValue,
+        scrollableDistance,
+        collapsedHeight,
+        staticHeaderHeightValue,
+    ]);
 
+    // Callback when the search bar content is cleared
     const onPressSearchClear = useCallback((): void => {
         const searchInput = searchRef.current;
         if (searchInput) {
@@ -258,8 +574,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
             if (searchableConfig && searchableConfig.onChangeText) searchableConfig.onChangeText('');
         }
         setQuery('');
-    }, [searchableConfig, searchRef, setQuery]);
+    }, [searchableConfig, searchRef]);
 
+    // Callback when the search bar is closed
     const onPressSearchClose = useCallback((): void => {
         const searchInput = searchRef.current;
         if (searchInput) {
@@ -267,13 +584,34 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
         setSearching(false);
         setQuery('');
-    }, [searchableConfig, searchRef, setSearching, setQuery]);
-
-    const getActionItemInfo = useCallback(() => {
-        if (!actionItems) return { avatars: 0, icons: 0 };
-        const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
-        return { avatars, icons: actionItems.length - avatars };
-    }, [actionItems]);
+        if (previousExpanded) {
+            expand.start();
+            updateScrollView({
+                padding: expandedHeight,
+                animate: inDynamicRange,
+                scrollTo: inDynamicRange ? 0 : scrollPositionValue + scrollableDistance,
+            });
+        } else {
+            if (variant === 'dynamic') {
+                updateScrollView({
+                    padding: expandedHeight,
+                    animate: false,
+                    scrollTo: scrollPositionValue + scrollableDistance,
+                });
+            }
+        }
+    }, [
+        searchableConfig,
+        searchRef,
+        previousExpanded,
+        expand,
+        expandedHeight,
+        inDynamicRange,
+        scrollPositionValue,
+        scrollableDistance,
+        updateScrollView,
+        variant,
+    ]);
 
     return (
         <>
@@ -288,7 +626,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         defaultStyles.root,
                         styles.root,
                         style,
-                        { height: headerHeight },
+                        /* We only use the dynamic height when we are in the dynamic range (from scrollPosition zero to expandedHeight - collapsedHeight)
+                            Everywhere else, we use the fixed header height
+                            */
+                        { height: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight() },
                         searching ? { backgroundColor: theme.colors.surface } : {},
                     ]}
                 >
@@ -305,7 +646,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
                         }}
                     >
                         <ColorContext.Provider value={{ color: getFontColor() }}>
-                            <HeaderHeightContext.Provider value={{ headerHeight: headerHeight }}>
+                            <HeaderHeightContext.Provider
+                                value={{
+                                    headerHeight: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight(),
+                                }}
+                            >
                                 <HeaderBackgroundImage
                                     backgroundImage={backgroundImage}
                                     style={styles.backgroundImage}
@@ -325,6 +670,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                             info: styles.info,
                                             search: styles.search,
                                         }}
+                                        washingtonStyle={washingtonStyle}
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}
@@ -343,3 +689,4 @@ export const Header: React.FC<HeaderProps> = (props) => {
         </>
     );
 };
+Header.displayName = 'Header';

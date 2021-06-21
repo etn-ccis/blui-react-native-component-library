@@ -9,9 +9,10 @@
         "install:storybook-ios": "cd demos/storybook && yarn && cd ios && pod install && cd ../../.. && yarn link:components",
         "install:storybook-android": "cd demos/storybook && yarn && cd ../.. && yarn link:components",
         "install:storybook-api": "cd demos/api && yarn && cd ../.. && yarn link:components",
-        "install:all": "cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
+        "install:all": "yarn && cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
         "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
+        "publish:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",
         "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
@@ -23,14 +24,26 @@
         "test": "cd components && yarn test",
         "test:watch": "cd components && yarn test:watch",
         "test:artifacts": "echo \"TODO: TEST ARTIFACTS\"",
-        "prettier": "cd components && yarn prettier && cd ../demos/api && yarn prettier  && cd ../storybook && yarn prettier",
-        "prettier:check": "cd components && yarn prettier:check && cd ../demos/api && yarn prettier:check && cd ../storybook && yarn prettier:check",
+        "prettier": "prettier \"docs/**.{ts,tsx,js,jsx,json,css,scss,md,html}\" --write && cd components && yarn prettier && cd ../demos/api && yarn prettier  && cd ../storybook && yarn prettier",
+        "prettier:check": "prettier \"docs/**.{ts,tsx,js,jsx,json,css,scss,md,html}\" --check && cd components && yarn prettier:check && cd ../demos/api && yarn prettier:check && cd ../storybook && yarn prettier:check",
         "lint": "cd components && yarn lint && cd ../demos/api && yarn lint && cd ../storybook && yarn lint",
         "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix",
         "update:submodule": "git submodule update --remote",
-        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts"
+        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
+        "coverage": "yarn test --coverage --watchAll=false"
     },
     "directories": {
         "doc": "docs"
+    },
+    "prettier": "@pxblue/prettier-config",
+    "devDependencies": {
+        "@pxblue/prettier-config": "^1.0.2",
+        "codecov": "^3.8.2",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "prettier": "^2.2.1"
+    },
+    "jest": {
+        "coverageDirectory": "./components/coverage/",
+        "collectCoverage": true
     }
 }

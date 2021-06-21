@@ -59,7 +59,6 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | values      | Styles applied to the row of `ChannelValue`s |
 | label       | Styles applied to the label element          |
 
-
 ## Hero Banner
 
 The `<HeroBanner>` component is a simple wrapper component that is used to contain `<Hero>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero>` components by default as children. Any children after the `limit` will not be rendered.
@@ -94,7 +93,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
 
-| Name        | Description                                  |
-| ----------- | -------------------------------------------- |
-| root        | Styles applied to the root element           |
-| divider     | Styles applied to the divider element        |
+| Name    | Description                           |
+| ------- | ------------------------------------- |
+| root    | Styles applied to the root element    |
+| divider | Styles applied to the divider element |

@@ -36,7 +36,7 @@ type WritingDirection = 'ltr' | 'rtl';
 type TextAlign = 'left' | 'right' | 'center' | 'auto';
 
 type HeaderTitleProps = {
-    title: string;
+    title: React.ReactNode;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
@@ -51,11 +51,13 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
+                extrapolate: 'clamp',
             }),
             fontFamily: theme.fonts.medium.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
+                extrapolate: 'clamp',
             }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -76,24 +78,25 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
 };
 
 type HeaderSubtitleProps = {
-    subtitle?: string;
+    subtitle?: React.ReactNode;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
+    washingtonStyle?: boolean;
 };
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
-    const { subtitle, theme, style } = props;
+    const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
 
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            lineHeight: 18,
-            fontFamily: theme.fonts.light.fontFamily,
-            fontSize: 18,
+            lineHeight: washingtonStyle ? 18 : 16,
+            fontFamily: washingtonStyle ? theme.fonts.light.fontFamily : theme.fonts.regular.fontFamily,
+            fontSize: washingtonStyle ? 18 : 16,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, theme]
+        [textColor, theme, washingtonStyle]
     );
 
     if (subtitle) {
@@ -112,7 +115,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
 };
 
 type HeaderInfoProps = {
-    info?: string;
+    info?: React.ReactNode;
     theme: ReactNativePaper.Theme;
     style?: StyleProp<TextStyle>;
 };
@@ -127,15 +130,18 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20 * 1.05], // Avoid clipping top of CAP letters
+                extrapolate: 'clamp',
             }),
             opacity: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0, 1],
+                extrapolate: 'clamp',
             }),
             fontFamily: theme.fonts.regular.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20],
+                extrapolate: 'clamp',
             }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -197,13 +203,13 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
 
 export type HeaderContentProps = {
     /** Header title */
-    title: string;
+    title: React.ReactNode;
 
     /** Optional header subtitle */
-    subtitle?: string;
+    subtitle?: React.ReactNode;
 
     /** Optional header third line of text (hidden when collapsed) */
-    info?: string;
+    info?: React.ReactNode;
 
     actionCount?: {
         avatars: number;
@@ -219,10 +225,20 @@ export type HeaderContentProps = {
     };
 
     theme: ReactNativePaper.Theme;
+
+    washingtonStyle?: boolean;
 };
 
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
-    const { title, subtitle, info, actionCount = { avatars: 0, icons: 0 }, theme, styles = {} } = props;
+    const {
+        title,
+        subtitle,
+        info,
+        actionCount = { avatars: 0, icons: 0 },
+        theme,
+        styles = {},
+        washingtonStyle,
+    } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
     const fontScale = PixelRatio.getFontScale();
@@ -236,7 +252,13 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         content = [
             <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
             <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
-            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} />,
+            <HeaderSubtitle
+                subtitle={subtitle}
+                key="subtitle_key"
+                theme={theme}
+                style={[styles.subtitle]}
+                washingtonStyle={washingtonStyle}
+            />,
         ];
     }
 
@@ -260,6 +282,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                           marginRight: headerHeight.interpolate({
                               inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                               outputRange: [getActionPanelWidth(), 0],
+                              extrapolate: 'clamp',
                           }),
                           marginTop: subtitle && title ? 10 * fontScale : 0,
                       },

@@ -162,14 +162,15 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = actionPanelStyles(fontScale);
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const getIcon = useCallback((IconClass: ComponentType<{ size: number; color: string }>):
-        | JSX.Element
-        | undefined => {
-        if (IconClass) {
-            return <IconClass size={24} color={color} />;
-        }
-    }, []);
+    const getIcon = useCallback(
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        (IconClass: ComponentType<{ size: number; color: string }>): JSX.Element | undefined => {
+            if (IconClass) {
+                return <IconClass size={24} color={color} />;
+            }
+        },
+        [color]
+    );
 
     if (actionItems) {
         return (
@@ -234,9 +235,10 @@ const scoreCardStyles = (
         },
     });
 
-// TODO Extend the Card Props once RNP fixes their type definitions in 4.0.0
-// export type ScoreCardProps = React.ComponentProps<typeof Card> & {
-export type ScoreCardProps = {
+export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children'> & {
+    /** Optional children for the body */
+    children?: React.ReactNode;
+
     /** Background color of header */
     headerColor?: string;
 
@@ -263,10 +265,6 @@ export type ScoreCardProps = {
 
     /** Background image to render when header is expanded */
     headerBackgroundImage?: ImageSourcePropType;
-
-    // TODO remove this when we extend from the Card Props
-    /** Styles for the root component */
-    style?: StyleProp<ViewStyle>;
 
     /** Style Overrides */
     styles?: {

@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-native-components",
-    "version": "5.0.0",
+    "version": "5.1.0",
     "author": "pxblue <pxblue@eaton.com>",
     "description": "Reusable React Native components for PX Blue applications",
     "repository": {
@@ -23,7 +23,7 @@
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
         "build": "tsc --p tsconfig.lib.json",
-        "test": "jest",
+        "test": "jest --maxWorkers=2",
         "test:watch": "jest --watch",
         "verify-build": "tsc --noEmit",
         "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@pxblue/react-native-components",

@@ -47,6 +47,6 @@ All typography components in this library share a common API.
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
 
-| Name  | Description                         |
-| ----- | ----------------------------------- |
-| root  | Styles applied to the root element  |
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |

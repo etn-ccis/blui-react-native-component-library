@@ -24,16 +24,16 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name | Description                           | Type                                                 | Required | Default             |
-| --------- | ------------------------------------- | ---------------------------------------------------- | -------- | ------------------- |
-| value     | The value shown below the icon        | `string` \| `number`                                 | yes      |                     |
-| IconClass | A component to render for the icon    | `React.Component<{ size: number, color: string }>`   | no       |                     |
-| IconProps | Props to pass through to the icon     | `{ size?: number, color?: string }`                  | no       |                     |
-| units     | The units for the supplied value      | `string`                                             | no       |                     |
-| prefix    | If true, shows units before the value | `boolean`                                            | no       | false               |
-| fontSize  | The size of the font for the value    | `number`                                             | no       | 'medium'            |
-| color     | The color used for the text elements  | `string`                                             | no       | `theme.colors.text` |
-| theme     | Theme partial for default styling     | `Theme`                                              | no       |                     |
+| Prop Name | Description                           | Type                                               | Required | Default             |
+| --------- | ------------------------------------- | -------------------------------------------------- | -------- | ------------------- |
+| value     | The value shown below the icon        | `string` \| `number`                               | yes      |                     |
+| IconClass | A component to render for the icon    | `React.Component<{ size: number, color: string }>` | no       |                     |
+| IconProps | Props to pass through to the icon     | `{ size?: number, color?: string }`                | no       |                     |
+| units     | The units for the supplied value      | `string`                                           | no       |                     |
+| prefix    | If true, shows units before the value | `boolean`                                          | no       | false               |
+| fontSize  | The size of the font for the value    | `number`                                           | no       | 'medium'            |
+| color     | The color used for the text elements  | `string`                                           | no       | `theme.colors.text` |
+| theme     | Theme partial for default styling     | `Theme`                                            | no       |                     |
 
 </div>
 

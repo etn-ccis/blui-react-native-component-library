@@ -51,7 +51,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         avatar,
         backgroundColor,
         fontColor,
-        iconColor = Colors.gray[500],
+        iconColor = theme.dark ? Colors.black[200] : Colors.gray[500], // @TODO: PXBLUE-2122 - remove this hardcoded color value when doing theme updates (add black[200] to dark palette, gray[500] to light palette)
         menuTitle,
         menuSubtitle,
         menuItems,

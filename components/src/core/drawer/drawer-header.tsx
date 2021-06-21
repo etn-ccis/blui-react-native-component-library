@@ -123,6 +123,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         backgroundImage,
         fontColor,
         icon,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
         theme: themeOverride,
         styles = {},
@@ -137,7 +138,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         if (icon) {
             const IconClass = icon.icon;
             return (
-                <View style={[defaultStyles.icon, style]}>
+                <View style={[defaultStyles.icon, styles.icon]}>
                     <TouchableOpacity
                         testID={'drawer-header-navigation'}
                         onPress={icon.onPress}
@@ -149,7 +150,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                 </View>
             );
         }
-    }, [defaultStyles, styles]);
+    }, [defaultStyles, styles, icon, fontColor]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
@@ -179,7 +180,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                 </View>
             );
         }
-    }, [backgroundImage, backgroundOpacity, defaultStyles, styles]);
+    }, [backgroundImage, defaultStyles, styles]);
 
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
