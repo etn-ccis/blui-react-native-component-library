@@ -30,7 +30,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | IconClass | A component to render for the icon    | `React.Component<{ size: number, color: string }>` | no       |                     |
 | IconProps | Props to pass through to the icon     | `{ size?: number, color?: string }`                | no       |                     |
 | units     | Text to display for the units         | `string`                                           | no       |                     |
-| prefix    | If true, shows units before the value | `boolean`                                          | no       | false               |
+| prefix    | If true, shows units before the value | `boolean`                                          | no       | `false`             |
 | fontSize  | The size used for the text elements   | `number`                                           | no       | 'medium'            |
 | color     | The color used for the text elements  | `string`                                           | no       | `theme.colors.text` |
 | theme     | Theme value overrides                 | `$DeepPartial<ReactNativePaper.Theme>`             | no       |                     |

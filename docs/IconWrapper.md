@@ -30,7 +30,7 @@ If you need to flip icons for use with RTL languages, you can include a boolean 
 
 ```tsx
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', flip: true });
+const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', flip: `true` });
 ```
 
 If you want to conditionally flip icons based on the active language, you can use the `I18nManager` from react native:
@@ -47,7 +47,7 @@ When using the `wrapIcon` function, icons will be automatically scaled relative 
 
 ```tsx
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', allowFontScaling: false });
+const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', allowFontScaling: `false` });
 ```
 
 ## Notes

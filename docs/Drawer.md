@@ -111,9 +111,9 @@ The `<DrawerSubheader>` is an optional subsection that will appear below the `<D
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                                         | Type      | Required | Default |
-| --------- | --------------------------------------------------- | --------- | -------- | ------- |
-| divider   | Whether to show a dividing line below the subheader | `boolean` | no       | true    |
+| Prop Name | Description                                          | Type      | Required | Default |
+| --------- | ---------------------------------------------------- | --------- | -------- | ------- |
+| divider   | Whether to show a dividing line below the HeroBanner | `boolean` | no       | `true`  |
 
 </div>
 
@@ -193,7 +193,7 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 
 | Prop Name | Description                                  | Type      | Required | Default |
 | --------- | -------------------------------------------- | --------- | -------- | ------- |
-| divider   | Whether to show a dividing line above footer | `boolean` | no       | true    |
+| divider   | Whether to show a dividing line above footer | `boolean` | no       | `true`  |
 
 </div>
 

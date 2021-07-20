@@ -42,10 +42,10 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 | searchableConfig   | Configuration object for search behavior                                                                                   | `SearchableConfig`                                                                  | no       |                          |
 | startExpanded      | Renders header in the expanded state to start                                                                              | `boolean`                                                                           | no       | `false`                  |
 | subtitle           | The text to display on the second line                                                                                     | `ReactNode`                                                                         | no       |                          |
-| theme              | Theme partial for default styling                                                                                          | `Theme`                                                                             | no       |                          |
 | updateScrollView\* | Callback function to update a linked ScrollView (dynamic variant only)                                                     | `({ padding: number \| null; animate: boolean; scrollTo: number \| null }) => void` | no       |                          |
 | title              | The text to display on the first line                                                                                      | `ReactNode`                                                                         | yes      |                          |
 | variant            | The resize mode of the Header (static will resize only on taps, if enabled. Dynamic will resize as the screen is scrolled) | `'dynamic'` \| `'static'`                                                           | no       | 'static'                 |
+| theme              | Theme value overrides                                                                                                      | `$DeepPartial<ReactNativePaper.Theme>`                                              | no       |                          |
 
 </div>
 

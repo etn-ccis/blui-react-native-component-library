@@ -11,10 +11,14 @@ const defaultStyles = StyleSheet.create({
 });
 
 export type HeroBannerProps = ViewProps & {
-    /** Toggles a bottom divider */
+    /**
+     * Whether to show a dividing line below the banner
+     *
+     * Default: false
+     */
     divider?: boolean;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         divider?: StyleProp<ViewStyle>;
@@ -24,8 +28,8 @@ export type HeroBannerProps = ViewProps & {
 /**
  * HeroBanner component
  *
- * Wrapper for Hero components that neatly spaces
- * and displays them in a row.
+ * The HeroBanner is a wrapper component that is used to properly space out
+ * Hero component children in a flex container row.
  */
 export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
     const { divider, children, styles = {}, style, ...viewProps } = props;

@@ -54,40 +54,56 @@ const makeStyles = (fontScale: number): StyleSheet.NamedStyles<HeroStyles> =>
     });
 
 export type HeroProps = ViewProps & {
-    /** Label to show */
+    /** The text shown below the ChannelValue */
     label: string;
 
-    /** Primary icon */
+    /** A component to render for the primary icon  */
     IconClass: ComponentType<WrapIconProps>;
 
-    /** Primary icon size */
+    /**
+     * The size of the primary icon (10-48)
+     *
+     * Default: 36
+     */
     iconSize?: number;
 
-    /** Primary icon color */
+    /**
+     * The color of the primary icon
+     *
+     * Default: Theme.colors.text
+     */
     iconColor?: string;
 
-    /** Primary icon background */
+    /**
+     * The color to use behind the primary icon
+     *
+     * Default: Theme.colors.surface
+     */
     iconBackgroundColor?: string;
 
-    /** Font size used for the values row*/
+    /**
+     * The text size to use for the ChannelValue
+     *
+     * Default: 20
+     */
     fontSize?: number;
 
-    /** Value for ChannelValue child */
+    /** Value for the ChannelValue child */
     value?: number | string;
 
-    /** Icon component for ChannelValue child */
+    /** A component to render for the ChannelValue child */
     ValueIconClass?: ComponentType<WrapIconProps>;
 
-    /** Value string color */
+    /** Color to use for the ChannelValue text */
     valueColor?: string;
 
-    /** Units for value of ChannelValue child */
+    /** Units for the ChannelValue child */
     units?: string;
 
-    /** Callback for onPress event  */
+    /** A callback function to execute when the Hero is pressed  */
     onPress?: () => void;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         iconWrapper?: StyleProp<ViewStyle>;
@@ -96,12 +112,7 @@ export type HeroProps = ViewProps & {
     };
 
     /**
-     * TestID
-     */
-    testID?: string;
-
-    /**
-     * Overrides for theme
+     * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
@@ -109,9 +120,9 @@ export type HeroProps = ViewProps & {
 /**
  * Hero component
  *
- * Used to call attention to particular values of importance to the user.
- * An arbitrary value, value icon, and units may be added,
- * or <ChannelValue/> components may be passed as children.
+ * The Hero is used to call attention to particular values of importance to the user. It includes a
+ * large icon with a label and (typically) a ChannelValue item. The channel value can be configured
+ * through the `value` and `units` props, or passed declaratively as a child.
  */
 export const Hero: React.FC<HeroProps> = (props) => {
     const {
