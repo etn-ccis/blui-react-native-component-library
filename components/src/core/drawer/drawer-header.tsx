@@ -82,12 +82,14 @@ const makeStyles = (
 };
 
 export type DrawerHeaderProps = ViewProps & {
-    /** The color used for the background */
+    /**
+     * The color used for the background
+     *
+     * Default: Theme.colors.primary
+     */
     backgroundColor?: string;
     /**
      * An image to blend with the colored background in the header
-     *
-     * Default: Theme.colors.primary.main
      */
     backgroundImage?: ImageSourcePropType;
 

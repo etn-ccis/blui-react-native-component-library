@@ -26,11 +26,17 @@ const makeStyles = (): StyleSheet.NamedStyles<{
     });
 };
 type HeaderNavigationProps = {
-    /** Leftmost icon on header, used for navigation */
+    /** A component to render for the navigation icon */
     navigation?: HeaderIconType;
 
+    /** Style to apply to the Touchable element */
     style?: StyleProp<ViewStyle>;
 };
+/**
+ * HeaderNavigationIcon component
+ *
+ * The HeaderNavigationIcon is a helper component that is used to properly size and space the main navigation icon (on the left) in the Header component.
+ */
 export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => {
     const { navigation, style } = props;
     const { searching, onClose } = useSearch();

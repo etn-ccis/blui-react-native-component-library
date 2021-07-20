@@ -24,8 +24,8 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 | Prop Name   | Description                                    | Type                                               | Required | Default |
 | ----------- | ---------------------------------------------- | -------------------------------------------------- | -------- | ------- |
-| title       | The primary text to display                    | `string`                                           | yes      |         |
-| description | The secondary text to display                  | `string`                                           | no       |         |
+| title       | The primary text to display (first line)       | `string`                                           | yes      |         |
+| description | The secondary text to display (second line)    | `string`                                           | no       |         |
 | IconClass   | A component to render for the primary icon     | `React.Component<{ size: number, color: string }>` | no       |         |
 | IconProps   | Props to spread to the primary icon            | `{ size?: number, color?: string }`                | no       |         |
 | iconSize    | The size of the primary icon (100-200)         | `number`                                           | no       | 100     |
