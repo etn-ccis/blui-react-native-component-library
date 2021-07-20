@@ -246,7 +246,7 @@ export type InfoListItemProps = ViewProps & {
     /** The text to show on the first line */
     title: string;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         statusStripe?: StyleProp<ViewStyle>;

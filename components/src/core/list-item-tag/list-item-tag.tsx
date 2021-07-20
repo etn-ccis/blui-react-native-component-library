@@ -7,17 +7,21 @@ import { Overline, TypographyProps } from '../typography';
 
 export type ListItemTagProps = TypographyProps & {
     /**
-     * Color of the label background. Default is theme.colors.primary
+     * Background color for the label.
+     *
+     * Default: Theme.colors.primary
      **/
     backgroundColor?: string;
 
     /**
-     * Color of the label. Default is theme.colors.onBackground for light background,
+     * Text color for the label.
+     *
+     * Default: Theme.colors.onBackground for light background,
      * or white[50] on dark background
      */
     fontColor?: string;
 
-    /** The string label of the tag. */
+    /** The label text. */
     label: string;
 };
 
@@ -53,7 +57,10 @@ const listItemTagStyles = (
     });
 
 /**
- * a text item with a colored background and rounded corners that is used to tag lists.
+ * ListItemTag component
+ *
+ * This component is primarily used as a tag for list elements. It is a stylized
+ * text item with a colored background and rounded corners.
  */
 export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
     const {
