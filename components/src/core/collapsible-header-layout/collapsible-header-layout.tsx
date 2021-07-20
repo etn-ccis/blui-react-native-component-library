@@ -13,26 +13,18 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as PXBHeaderProps, heightWithStatusBar } from '../header';
 
 export type CollapsibleLayoutProps = ViewProps & {
-    /**
-     * Props to pass to the Header component
-     * */
+    /** Props to spread to the Header component. */
     HeaderProps: PXBHeaderProps;
 
-    /**
-     * Props to pass to the ScrollView
-     */
+    /** Props to spread to the ScrollView component. */
     ScrollViewProps?: RNScrollViewProps;
 
-    /**
-     * Style Overrides
-     * */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
     };
 
-    /**
-     * Overrides for theme
-     */
+    /** Theme value overrides specific to this component. */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
@@ -40,7 +32,9 @@ export type CollapsibleLayoutProps = ViewProps & {
  * CollapsibleHeaderLayout component
  *
  * This component displays a scrollable page with a header that shrinks between an expanded size and
- * a collapsed size as the page is scrolled.
+ * a collapsed size as the page is scrolled. It uses a standard `Header` and `ScrollView` component under the hood and
+ * you can set all of the props directly to these components in order to configure them. The layout itself
+ * is primarily responsible for tracking the current scroll position and updating the size of the `Header`.
  */
 export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props) => {
     const {

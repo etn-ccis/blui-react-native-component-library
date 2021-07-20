@@ -26,15 +26,22 @@ const makeStyles = (
     });
 export type DrawerProps = ViewProps &
     AllSharedProps & {
-        // the id for the currently active item
+        /** The itemID of the currently active / selected item */
         activeItem?: string;
 
-        // Function called whenever a navigation item or rail item is clicked
+        /** A callback function to execute whenever a navigation item is clicked */
         onItemSelect?: (id: string) => void;
 
-        // Custom style overrides
+        /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerStyles;
     };
+
+/**
+ * Drawer component
+ *
+ * The Drawer is a parent container that manages all of the content displayed in your primary
+ * navigation drawer. It can contain a DrawerHeader, DrawerSubheader, DrawerBody, and DrawerFooter.
+ */
 export const Drawer: React.FC<DrawerProps> = (props) => {
     const {
         // Inheritable Props
