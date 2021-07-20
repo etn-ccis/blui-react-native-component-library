@@ -11,7 +11,7 @@ const spacerStyles = (props: SpacerProps): StyleSheet.NamedStyles<{ root: ViewSt
     });
 
 export type SpacerProps = ViewProps & {
-    /* Flex grow/shrink value for flex layouts */
+    /* Flex grow/shrink value for use in flex layouts */
     flex?: number;
 
     /** Height (in dp) for static layouts */
@@ -20,12 +20,19 @@ export type SpacerProps = ViewProps & {
     /** Width (in dp) for static layouts */
     width?: number;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
     };
 };
 
+/**
+ * Spacer component
+ *
+ * This is a helpful utility component for adding spacer elements
+ * when working within flexbox containers. You can give it a flexible
+ * or a fixed size.
+ */
 export const Spacer: React.FC<SpacerProps> = (props) => {
     const {
         children,

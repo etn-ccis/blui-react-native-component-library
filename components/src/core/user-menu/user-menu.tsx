@@ -4,24 +4,33 @@ import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
 import * as Colors from '@pxblue/colors';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
 export type UserMenuProps = {
-    // Custom avatar to render as bottomsheet trigger
+    /** Avatar component to display as the menu trigger */
     avatar: JSX.Element;
-    // Background color of the bottomsheet
+    /** Background color of the bottom sheet */
     backgroundColor?: string;
-    // Color of font for menu items
+    /** Color of text for the bottom sheet header and menu items */
     fontColor?: string;
-    // Color of icons in the bottomsheet
+    /** Color of icons for the bottom sheet menu items */
     iconColor?: string;
+    /** An array of menu items to display in the bottom sheet */
     menuItems: InfoListItemProps[];
+    /** Title to display in the bottom sheet */
     menuTitle?: string;
+    /** Subtitle to display in the bottom sheet */
     menuSubtitle?: string;
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: ViewStyle;
         avatar?: ViewStyle;
         bottomsheet?: ViewStyle;
     };
+    /**
+     * Theme value overrides specific to this component.
+     */
+    theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 const useStyles = (
@@ -45,8 +54,15 @@ const useStyles = (
         bottomsheet: {},
     });
 
+/**
+ * UserMenu component
+ *
+ * Renders an avatar that can be clicked to open a bottomsheet menu.
+ *
+ * Typically used for a account-style menu with links to settings, log out, etc.
+ */
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
-    const theme = useTheme();
+    const theme = useTheme(props.theme);
     const {
         avatar,
         backgroundColor,

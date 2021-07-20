@@ -26,7 +26,7 @@ import { Spacer } from '@pxblue/react-native-components';
 
 | Prop Name | Description                       | Type     | Required | Default |
 | --------- | --------------------------------- | -------- | -------- | ------- |
-| flex      | Flex value for flex layouts       | `number` | no       | 1       |
+| flex      | Flex grow/shrink value for use in flex layouts       | `number` | no       | 1       |
 | height    | Height (in dp) for static layouts | `number` | no       |         |
 | width     | Width (in dp) for static layouts  | `number` | no       |         |
 
