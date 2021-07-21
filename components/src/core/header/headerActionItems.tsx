@@ -38,10 +38,10 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 };
 
 type ActionItemProps = {
-    /** List of up to three action items on the right of the header */
+    /** Array of up to three action items on the right of the header */
     actionItems?: Array<HeaderIconType | HeaderAvatar>;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         actionItem?: StyleProp<ViewStyle>;
@@ -49,6 +49,12 @@ type ActionItemProps = {
     };
 };
 
+/**
+ * HeaderActionItems component
+ *
+ * The HeaderActionItems is a helper component for organizing the contents in the Header. It is
+ * used for displaying all of the action item icons and avatars.
+ */
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     const { actionItems, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();

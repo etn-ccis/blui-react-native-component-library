@@ -4,9 +4,14 @@ import { ICON_SIZE } from './constants';
 import { useColor } from './contexts/ColorContextProvider';
 
 type HeaderIconProps = {
-    /** The icon to render  */
+    /** A component to render for the icon  */
     IconClass?: ComponentType<WrapIconProps>;
 };
+/**
+ * HeaderIcon component
+ *
+ * The HeaderIcon is a helper component that is used to properly size and space icons in the Header component.
+ */
 export const HeaderIcon: React.FC<HeaderIconProps> = (props) => {
     const { IconClass } = props;
     const { color } = useColor();

@@ -45,19 +45,19 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 
 <div style="overflow: auto">
 
-| Prop Name             | Description                                 | Type                  | Required | Default                  |
-| --------------------- | ------------------------------------------- | --------------------- | -------- | ------------------------ |
-| headerTitle           | The primary text                            | `string`              | yes      |                          |
-| headerSubtitle        | The secondary text                          | `string`              | no       |                          |
-| headerInfo            | Tertiary text (hidden on collapse)          | `string`              | no       |                          |
-| headerColor           | The color of the header                     | `string`              | no       | `theme.colors.primary`   |
-| headerFontColor       | The color for text and icons in header      | `string`              | no       | `theme.colors.onPrimary` |
-| headerBackgroundImage | An image to display in the header           | `ImageSourcePropType` | no       |                          |
-| actionItems           | Icons to show to the right of the text      | `HeaderIcon[]`        | no       |                          |
-| badge                 | The component to render in the callout area | `React.Component`     | no       |                          |
-| badgeOffset           | Vertical offset for the badge component     | `number`              | no       |                          |
-| actionRow             | Component to render for the footer          | `React.Component`     | no       |                          |
-| theme                 | Theme partial for default styling           | `Theme`               | no       |                          |
+| Prop Name             | Description                                           | Type                                   | Required | Default                  |
+| --------------------- | ----------------------------------------------------- | -------------------------------------- | -------- | ------------------------ |
+| actionItems           | Icons to show to the right of the header text (max 6) | `HeaderIcon[]`                         | no       |                          |
+| actionRow             | Component to render for the card footer               | `React.Component`                      | no       |                          |
+| badge                 | The component to render in the call-out area          | `React.Component`                      | no       |                          |
+| badgeOffset           | Vertical offset for the badge component               | `number`                               | no       |                          |
+| headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`                  | no       |                          |
+| headerColor           | The background color of the header                    | `string`                               | no       | `theme.colors.primary`   |
+| headerFontColor       | The color for text and icons in header                | `string`                               | no       | `theme.colors.onPrimary` |
+| headerInfo            | The third line of text in the header                  | `string`                               | no       |                          |
+| headerSubtitle        | The second line of text in the header                 | `string`                               | no       |                          |
+| headerTitle           | The first line of text in the header                  | `string`                               | yes      |                          |
+| theme                 | Theme value overrides                                 | `$DeepPartial<ReactNativePaper.Theme>` | no       |                          |
 
 </div>
 

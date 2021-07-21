@@ -1,13 +1,16 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet, ViewStyle } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTheme } from 'react-native-paper';
 
 type BottomSheetProps = {
+    /** Make the bottom sheet visible */
     show?: boolean;
-    children?: ReactNode;
+    /** Callback function to execute when the bottom sheet is dismissed */
     onClose?: () => void;
+    /** Background color to use for the bottom sheet */
     backgroundColor?: string;
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: ViewStyle;
         background?: ViewStyle;
@@ -30,7 +33,12 @@ const useStyles = (
             backgroundColor: props.backgroundColor || theme.colors.surface,
         },
     });
-
+/**
+ * BottomSheet component
+ *
+ * This is a utility component for the UserMenu. It handles rendering the menu items in
+ * a bottom sheet that appears from the bottom of the screen.
+ */
 export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
     const { show, children, onClose, styles = {} } = props;
     const theme = useTheme();

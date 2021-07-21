@@ -30,15 +30,16 @@ import { UserMenu } from '@pxblue/react-native-components';
 
 <div style="overflow: auto">
 
-| Prop Name       | Description                                             | Type                  | Required | Default |
-| --------------- | ------------------------------------------------------- | --------------------- | -------- | ------- |
-| avatar          | Avatar to be displayed as UserMenu bottomsheet trigger  | `JSX.Element`         | yes      |         |
-| backgroundColor | Background color of the bottomsheet                     | `string`              | no       |         |
-| fontColor       | Color of font for the bottomsheet header and menu items | `string`              | no       |         |
-| iconColor       | Color of icons for the bottomsheet menu items           | `string`              | no       |         |
-| menuItems       | Menu items to display in the bottomsheet                | `InfoListItemProps[]` | yes      |         |
-| menuTitle       | Title shown when bottomsheet is open                    | `string`              | no       |         |
-| menuSubtitle    | Subtitle shown when bottomsheet is open                 | `string`              | no       |         |
+| Prop Name       | Description                                              | Type                                   | Required | Default |
+| --------------- | -------------------------------------------------------- | -------------------------------------- | -------- | ------- |
+| avatar          | Avatar to display as the menu trigger                    | `JSX.Element`                          | yes      |         |
+| backgroundColor | Background color of the bottom sheet                     | `string`                               | no       |         |
+| fontColor       | Color of text for the bottom sheet header and menu items | `string`                               | no       |         |
+| iconColor       | Color of icons for the bottom sheet menu items           | `string`                               | no       |         |
+| menuItems       | An array of menu items to show in the bottom sheet       | `InfoListItemProps[]`                  | yes      |         |
+| menuTitle       | Title to display in the bottom sheet                     | `string`                               | no       |         |
+| menuSubtitle    | Subtitle to display in the bottom sheet                  | `string`                               | no       |         |
+| theme           | Theme value overrides                                    | `$DeepPartial<ReactNativePaper.Theme>` | no       |         |
 
 </div>
 

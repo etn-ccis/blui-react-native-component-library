@@ -22,9 +22,9 @@ import { ListItemTag } from '@pxblue/react-native-components';
 
 | Prop Name       | Description                   | Type     | Required | Default                   |
 | --------------- | ----------------------------- | -------- | -------- | ------------------------- |
+| backgroundColor | Background color of the label | `string` | no       | `theme.colors.primary`    |
+| fontColor       | Text color for the label      | `string` | no       | Varies based on the theme |
 | label           | The label text                | `string` | yes      |                           |
-| fontColor       | Color of the label            | `string` | no       | Varies based on the theme |
-| backgroundColor | Color of the label background | `string` | no       | `theme.colors.primary`    |
 
 </div>
 

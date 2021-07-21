@@ -17,19 +17,19 @@ export type DrawerNavGroupStyles = {
 };
 export type DrawerNavGroupProps = AllSharedProps &
     ViewProps & {
-        // List of navigation items to render
+        /** List of navigation items to render */
         items?: NavItem[];
 
-        // Text to display in the group header
+        /** Text to display in the group header */
         title?: string;
 
-        // Color to use for the group header title text
+        /** Color to use for the group header title text */
         titleColor?: string;
 
-        // Custom element, substitute for title
+        /** Custom content to use in place of the group header title (if you want to use non-string content) */
         titleContent?: ReactNode;
 
-        /** Style overrides */
+        /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerNavGroupStyles;
     };
 const makeStyles = (
@@ -64,6 +64,16 @@ const makeStyles = (
     });
 };
 
+/**
+ * findID function
+ *
+ * A depth-first recursive search function to identify if the specified
+ * id is anywhere in the tree of the supplied item.
+ *
+ * @param item The topmost item to start from
+ * @param activeItem The id to search for
+ * @returns true if the ID is found in the tree, false otherwise
+ */
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string | undefined): boolean => {
     if (!activeItem) return false;
 
@@ -94,6 +104,13 @@ const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem:
     return false;
 };
 
+/**
+ * [DrawerNavGroup](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ *
+ * The DrawerNavGroup represents a collection of navigation items to display in the Drawer, useful for organizing
+ * your links into buckets. Each group can be given a `title` to describe its items. Individual items in each group can be passed
+ * through the `items` prop or passed declaratively as children.
+ */
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const {
         // Inheritable Props

@@ -14,9 +14,18 @@ const makeStyles = (): StyleSheet.NamedStyles<DrawerBodyStyles> =>
 
 export type DrawerBodyProps = ScrollViewProps &
     AllSharedProps & {
-        // Custom style overrides
+        /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerBodyStyles;
     };
+
+/**
+ * [DrawerBody](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ *
+ * The DrawerBody is a wrapper for the main content of your navigation Drawer. This section sits between
+ * the DrawerHeader (or optional DrawerSubheader) and the DrawerFooter. This part of the drawer should hold
+ * your main navigation elements (either using the `items` prop or by passing in DrawerNavGroup and DrawerNavItem children
+ * declaratively).
+ */
 export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
     const {
         // Inheritable Props

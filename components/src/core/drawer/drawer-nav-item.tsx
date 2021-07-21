@@ -22,19 +22,81 @@ export type DrawerNavItemStyles = {
 };
 export type DrawerNavItemProps = AllSharedProps &
     ViewProps & {
+        // We have to explicitly mention this here so Typescript won't complain in some of our functions
+        // that use this type definition as a parameter since it doesn't realize that children is part of
+        // the definition of a React Component.
         children?: ReactNode;
+
+        /**
+         * The nested depth of the item (for creating trees).
+         *
+         * This property is managed automatically when used inside of a DrawerNavGroup.
+         *
+         * Default: 0
+         */
         depth?: number;
+
+        /**
+         * Hides / does not render the item (useful for hiding certain items based on user role or permissions)
+         *
+         * Default: false
+         */
         hidden?: boolean;
+
+        // TODO: Deprecate this any type and use the same thing we've been using for IconClass everywhere else.
+        /** A component to render for the left icon */
         icon?: any;
+
+        /**
+         * Is the item a parent / ancestor of the current activeItem.
+         *
+         * This property is managed automatically when used inside of a DrawerNavGroup.
+         *
+         * Default: false
+         */
         isInActiveTree?: boolean;
+
+        /**
+         * A unique ID for this item. This ID must be unique across all navigation items in a drawer.
+         * The item will have the 'active' styles applied when this ID matches the `activeItem` property
+         * that is set on the drawer.
+         */
         itemID: string;
+
+        /**
+         * An array of navigation items to nest under this item in a tree structure
+         */
         items?: NestedDrawerNavItemProps[];
+
+        /**
+         * A callback function to the parent element to tell it to update the active item hierarchy / styles
+         *
+         * This property is managed automatically when used inside of a DrawerNavGroup.
+         */
         notifyActiveParent?: (ids: string[]) => void;
+
+        /**
+         * Callback function to execute when the navigation item is pressed
+         */
         onPress?: () => void;
+
+        /**
+         * Custom content/component to display to the right
+         */
         rightComponent?: JSX.Element;
+
+        /**
+         * Color used for the status stripe and icon
+         */
         statusColor?: string;
+
+        /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerNavItemStyles;
+
+        /** The text to display on the second line */
         subtitle?: string;
+
+        /** The text to display on the first line */
         title: string;
     };
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
@@ -98,6 +160,17 @@ const makeStyles = (
     });
 };
 
+/**
+ * [DrawerNavItem](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ *
+ * The DrawerNavItem represents a single navigation item in the Drawer, usually a link to some route
+ * in your application, but could also be used for static actions like login or logout. DrawerNavItems
+ * can be nested (either declaratively by passing children or through the `items` prop). DrawerNavItems
+ * are ultimately rendered as an InfoListItem element.
+ *
+ * When used inside of a DrawerNavGroup, certain props of the DrawerNavItem (`depth`, `isInActiveTree`, and `notifyActiveParent`)
+ * are managed automatically for you.
+ */
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // Destructure the props
     const { theme: themeOverride, ...otherProps } = props;

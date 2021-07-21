@@ -38,12 +38,11 @@ import { Drawer, DrawerHeader, DrawerBody, DrawerNavGroup, DrawerNavItem } from 
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                   | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ---------------------- | -------- | ------- |
-| activeItem                      | itemID for the 'active' item                               | `string`               | no       |         |
-| onItemSelect                    | A callback function to execute whenever an item is clicked | `(id: string) => void` | no       |         |
-| styles                          | Style overrides                                            | `DrawerStyles`         | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                      | -        |         |
+| Prop Name                       | Description                                                          | Type                   | Required | Default |
+| ------------------------------- | -------------------------------------------------------------------- | ---------------------- | -------- | ------- |
+| activeItem                      | The itemID of the currently active / selected item                   | `string`               | no       |         |
+| onItemSelect                    | A callback function to execute whenever a navigation item is clicked | `(id: string) => void` | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy           | -                      | -        |         |
 
 </div>
 
@@ -69,16 +68,17 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                          | Type                      | Required | Default                |
-| ----------------- | ------------------------------------ | ------------------------- | -------- | ---------------------- |
-| backgroundColor   | The color used for the background    | `string`                  | no       | `theme.colors.primary` |
-| backgroundImage   | An image to display in the header    | `ImageSourcePropType`     | no       |                        |
-| backgroundOpacity | The opacity of the background image  | `number`                  | no       | `0.3`                  |
-| fontColor         | The color of the text elements       | `string`                  | no       | `theme.colors.surface` |
-| icon              | Icon to show left of the title       | `HeaderIcon` (see Header) | no       |                        |
-| subtitle          | The text to show on the second line  | `string`                  | no       |                        |
-| title             | The text to show on the first line   | `string`                  | no       |                        |
-| titleContent      | Custom content for header title area | `ReactNode`               | no       |                        |
+| Prop Name         | Description                           | Type                                   | Required | Default                |
+| ----------------- | ------------------------------------- | -------------------------------------- | -------- | ---------------------- |
+| backgroundColor   | The color used for the background     | `string`                               | no       | `theme.colors.primary` |
+| backgroundImage   | An image to display in the header     | `ImageSourcePropType`                  | no       |                        |
+| backgroundOpacity | The opacity of the background image   | `number`                               | no       | `0.3`                  |
+| fontColor         | The color of the text elements        | `string`                               | no       | `theme.colors.surface` |
+| icon              | Icon to show to the left of the title | `HeaderIcon` (see Header)              | no       |                        |
+| subtitle          | The second line of text               | `string`                               | no       |                        |
+| title             | The first line of text                | `string`                               | no       |                        |
+| titleContent      | Custom content for header title area  | `ReactNode`                            | no       |                        |
+| theme             | Theme value overrides                 | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
 </div>
 
@@ -111,9 +111,9 @@ The `<DrawerSubheader>` is an optional subsection that will appear below the `<D
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                                    | Type      | Required | Default |
-| --------- | ---------------------------------------------- | --------- | -------- | ------- |
-| divider   | Whether to show a line below subheader content | `boolean` | no       | true    |
+| Prop Name | Description                                          | Type      | Required | Default |
+| --------- | ---------------------------------------------------- | --------- | -------- | ------- |
+| divider   | Whether to show a dividing line below the HeroBanner | `boolean` | no       | `true`  |
 
 </div>
 
@@ -156,14 +156,13 @@ The `items` property supports nested items to generate collapsible sections in t
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                   | Required | Default                     |
-| ------------------------------- | ---------------------------------------------------------- | ---------------------- | -------- | --------------------------- |
-| classes                         | Style overrides                                            | `DrawerNavGroupStyles` | no       |                             |
-| items                           | List of items to render                                    | `NavItem[]`            | yes      |                             |
-| title                           | Text to display in the group header                        | `string`               | no       |                             |
-| titleColor                      | Color used for the title text                              | `string`               | no       | varies for light/dark theme |
-| titleContent                    | Custom element, substitute for title                       | `ReactNode`            | no       |                             |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                      | -        |                             |
+| Prop Name                       | Description                                                | Type        | Required | Default                     |
+| ------------------------------- | ---------------------------------------------------------- | ----------- | -------- | --------------------------- |
+| items                           | List of navigation items to render                         | `NavItem[]` | yes      |                             |
+| title                           | Text to display in the group header                        | `string`    | no       |                             |
+| titleColor                      | Color used for the title text                              | `string`    | no       | varies for light/dark theme |
+| titleContent                    | Custom element, substitute for title                       | `ReactNode` | no       |                             |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -           | -        |                             |
 
 </div>
 
@@ -192,9 +191,9 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                                 | Type      | Required | Default |
-| --------- | ------------------------------------------- | --------- | -------- | ------- |
-| divider   | Whether to show a line above footer content | `boolean` | no       | true    |
+| Prop Name | Description                                  | Type      | Required | Default |
+| --------- | -------------------------------------------- | --------- | -------- | ------- |
+| divider   | Whether to show a dividing line above footer | `boolean` | no       | `true`  |
 
 </div>
 
@@ -206,22 +205,21 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                     | Type                      | Required | Default |
-| ------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
-| depth\*                         | The nested depth of the item                                                                    | `number`                  | no       | 0       |
-| hidden                          | Sets whether to hide the nav item                                                               | `boolean`                 | no       |         |
-| icon                            | A component to render for the left icon                                                         | `JSX.Element`             | no       |         |
-| isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)          | `boolean`                 | no       |         |
-| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                  | yes      |         |
-| items                           | The items nested under this item                                                                | `NestedNavItem[]`         | no       |         |
-| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                       | `(ids: string[]) => void` | no       |         |
-| onPress                         | A function to execute when clicked                                                              | `() => void`              | no       |         |
-| rightComponent                  | An icon/component to display to the right                                                       | `ReactNode`               | no       |         |
-| statusColor                     | Status stripe and icon color                                                                    | `string`                  | no       |         |
-| styles                          | Style overrides                                                                                 | `DrawerNavItemStyles`     | no       |         |
-| subtitle                        | The text to show on the second line                                                             | `string`                  | no       |         |
-| title                           | The text to show on the first line                                                              | `string`                  | yes      |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                         | -        |         |
+| Prop Name                       | Description                                                                                     | Type                                               | Required | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------- | -------- | ------- |
+| depth\*                         | The nested depth of the item                                                                    | `number`                                           | no       | 0       |
+| hidden                          | Hide / do not render the nav item                                                               | `boolean`                                          | no       | `false` |
+| icon                            | A component to render for the left icon                                                         | `React.Component<{ size: number, color: string }>` | no       |         |
+| isInActiveTree\*                | Sets whether the item is a parent of the currently active item                                  | `boolean`                                          | no       | `false` |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                                           | yes      |         |
+| items                           | The items nested under this item                                                                | `NestedNavItem[]`                                  | no       |         |
+| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                       | `(ids: string[]) => void`                          | no       |         |
+| onPress                         | A function to execute when the item is pressed                                                  | `() => void`                                       | no       |         |
+| rightComponent                  | Custom content/component to display to the right                                                | `ReactNode`                                        | no       |         |
+| statusColor                     | Color used for the status stripe and icon                                                       | `string`                                           | no       |         |
+| subtitle                        | The text to show on the second line                                                             | `string`                                           | no       |         |
+| title                           | The text to show on the first line                                                              | `string`                                           | yes      |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                                                  | -        |         |
 
 </div>
 
@@ -250,23 +248,23 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 <div style="overflow: auto;">
 
-| Name                          | Description                                                                   | Type                                   | Required | Default                                                                                           |
-| ----------------------------- | ----------------------------------------------------------------------------- | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| activeItemBackgroundColor     | Background color for the 'active' item                                        | `string`                               | no       | varies for light/dark theme                                                                       |
-| activeItemBackgroundShape     | shape of the active item background highlight                                 | `'round'` \| `'square'`                | no       | square                                                                                            |
-| activeItemFontColor           | Font color for the 'active' item                                              | `string`                               | no       | varies for light/dark theme                                                                       |
-| activeItemIconColor           | Icon color for the 'active' item                                              | `string`                               | no       | varies for light/dark theme                                                                       |
-| backgroundColor               | Color used for the background of the element                                  | `string`                               | no       |                                                                                                   |
-| chevron                       | Whether to have chevrons for all menu items                                   | `boolean`                              | no       |                                                                                                   |
-| collapseIcon                  | Icon used to collapse drawer                                                  | `JSX.Element`                          | no       | `expandIcon` rotated 180 degrees                                                                  |
-| disableActiveItemParentStyles | If true, NavItems will not have a bold title when a child NavItem is selected | `boolean`                              | no       | `false`                                                                                           |
-| divider                       | Whether to show a line between all items                                      | `boolean`                              | no       | false                                                                                             |
-| expandIcon                    | Icon used to expand drawer                                                    | `JSX.Element`                          | no       | `<MatIcon name={'expand-more'}/>` at top-level, `<MatIcon name={'arrow-drop-down'} />` for nested |
-| hidePadding                   | Whether to hide the paddings reserved for menu item icons                     | `boolean`                              | no       |                                                                                                   |
-| itemFontColor                 | The color used for the item text                                              | `string`                               | no       | varies for light/dark theme                                                                       |
-| itemIconColor                 | The color used for the icon                                                   | `string`                               | no       | varies for light/dark theme                                                                       |
-| nestedBackgroundColor         | background color for nested menu items                                        | `string`                               | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100]                                      |
-| nestedDivider                 | Whether to show a line between nested menu items                              | `boolean`                              | no       | false                                                                                             |
-| theme                         | Custom theme variable overrides                                               | `$DeepPartial<ReactNativePaper.Theme>` | no       |                                                                                                   |
+| Name                          | Description                                                                    | Type                                   | Required | Default                                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------ | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| activeItemBackgroundColor     | Background color for the active item                                           | `string`                               | no       | varies for light/dark theme                                                                       |
+| activeItemBackgroundShape     | Shape of the active item background highlight                                  | `'round'` \| `'square'`                | no       | square                                                                                            |
+| activeItemFontColor           | Font color for the active item                                                 | `string`                               | no       | varies for light/dark theme                                                                       |
+| activeItemIconColor           | Icon color for the active item                                                 | `string`                               | no       | varies for light/dark theme                                                                       |
+| backgroundColor               | Color used for the background of the element                                   | `string`                               | no       |                                                                                                   |
+| chevron                       | Add chevrons for all menu items                                                | `boolean`                              | no       | `false`                                                                                           |
+| collapseIcon                  | Icon used to collapse a DrawerNavGroup                                         | `JSX.Element`                          | no       | `expandIcon` rotated 180 degrees                                                                  |
+| disableActiveItemParentStyles | When true, disables the semi-bold text style on parent elements of active item | `boolean`                              | no       | `false`                                                                                           |
+| divider                       | Show a dividing line between all items                                         | `boolean`                              | no       | `false`                                                                                           |
+| expandIcon                    | Icon used to expand a DrawerNavGroup                                           | `JSX.Element`                          | no       | `<MatIcon name={'expand-more'}/>` at top-level, `<MatIcon name={'arrow-drop-down'} />` for nested |
+| hidePadding                   | Hide the padding reserved for DrawerNavItem icons                              | `boolean`                              | no       |                                                                                                   |
+| itemFontColor                 | The color used for the DrawerNavItem text                                      | `string`                               | no       | varies for light/dark theme                                                                       |
+| itemIconColor                 | The color used for the DrawerNavItem icon                                      | `string`                               | no       | varies for light/dark theme                                                                       |
+| nestedBackgroundColor         | Background color for nested items                                              | `string`                               | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100]                                      |
+| nestedDivider                 | Show a dividing line between nested items                                      | `boolean`                              | no       | `false`                                                                                           |
+| theme                         | Theme value overrides                                                          | `$DeepPartial<ReactNativePaper.Theme>` | no       |                                                                                                   |
 
 </div>

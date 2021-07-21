@@ -22,16 +22,16 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name   | Description                            | Type                                               | Required | Default |
-| ----------- | -------------------------------------- | -------------------------------------------------- | -------- | ------- |
-| title       | The main text to display               | `string`                                           | yes      |         |
-| description | The secondary text to display          | `string`                                           | no       |         |
-| IconClass   | The primary icon                       | `React.Component<{ size: number, color: string }>` | no       |         |
-| IconProps   | Props to pass through to the icon      | `{ size?: number, color?: string }`                | no       |         |
-| iconSize    | The size of the primary icon (100-200) | `number`                                           | no       | 100     |
-| iconColor   | The color of the primary icon          | `string`                                           | no       | `text`  |
-| actions     | Additional components to render below  | `JSX.Element`                                      | no       |         |
-| theme       | Theme partial for default styling      | `Theme`                                            | no       |         |
+| Prop Name   | Description                                    | Type                                               | Required | Default |
+| ----------- | ---------------------------------------------- | -------------------------------------------------- | -------- | ------- |
+| title       | The primary text to display (first line)       | `string`                                           | yes      |         |
+| description | The secondary text to display (second line)    | `string`                                           | no       |         |
+| IconClass   | A component to render for the primary icon     | `React.Component<{ size: number, color: string }>` | no       |         |
+| IconProps   | Props to spread to the primary icon            | `{ size?: number, color?: string }`                | no       |         |
+| iconSize    | The size of the primary icon (100-200)         | `number`                                           | no       | 100     |
+| iconColor   | The color of the primary icon                  | `string`                                           | no       | `text`  |
+| actions     | Additional components to render below the text | `JSX.Element`                                      | no       |         |
+| theme       | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>`             | no       |         |
 
 </div>
 

@@ -21,10 +21,27 @@ export type IconArg = IconSetArg | PxBlueIconArg;
 const isIconSetArg = (x: IconSetArg | PxBlueIconArg): x is IconSetArg => (x as any).name !== undefined;
 
 export type WrapIconProps = {
+    /** The size of the icon to render */
     size: number;
+
+    /** The color of the icon to render */
     color: string;
+
+    /** If true, the icon will scale with the system font size */
     allowFontScaling?: boolean;
 };
+/**
+ * [wrapIcon](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--icon-wrapper) function
+ *
+ * This function is a useful utility for making sure that icons you want to use
+ * are in the proper form to be consumed by the PX Blue components. Icons used by the
+ * PX Blue components must have the shape ({size, color}) => JSX.Element;
+ *
+ * This function can wrap SVG files or icons from react-native-vector-icons.
+ *
+ * @param arg an object representing the icon you wish to render
+ * @returns A Component function that properly matches the expected icon shape
+ */
 export const wrapIcon = (arg: IconArg): ComponentType<WrapIconProps> => {
     const flipIcon = {
         transform: [{ scaleX: -1 }],
