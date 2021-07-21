@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import color from 'color';
 import { useTheme } from 'react-native-paper';
-import { ANIMATION_LENGTH, heightWithStatusBar } from './constants';
+import { ANIMATION_LENGTH } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
 import { HeaderContent } from './headerContent';
@@ -29,6 +29,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -211,15 +212,17 @@ export const Header: React.FC<HeaderProps> = (props) => {
         ...viewProps
     } = props;
 
+    const {getScaledHeight} = useHeaderDimensions();
+
     const theme = useTheme(themeOverride);
     const defaultStyles = headerStyles(props, theme);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
     const fontScale = PixelRatio.getFontScale();
-    const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
+    const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
-    const expandedHeight = heightWithStatusBar(expandedHeightProp);
+    const expandedHeight = getScaledHeight(expandedHeightProp);
     const previousExpandedHeight = usePrevious(expandedHeight);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const previousScrollableDistance = usePrevious(scrollableDistance);
@@ -612,6 +615,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
         updateScrollView,
         variant,
     ]);
+
+    console.log('render header');
 
     return (
         <>
