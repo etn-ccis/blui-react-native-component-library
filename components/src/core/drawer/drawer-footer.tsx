@@ -11,7 +11,7 @@ type DrawerFooterProps = {
 };
 
 /**
- * DrawerFooter component
+ * [DrawerFooter](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerFooter is a wrapper for the bottom of your navigation Drawer. This section will always
  * be pinned to the bottom of the Drawer. You can pass in any content you want as a child of this

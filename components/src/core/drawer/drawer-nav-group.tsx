@@ -61,6 +61,16 @@ const makeStyles = (
     });
 };
 
+/**
+ * findID function
+ *
+ * A depth-first recursive search function to identify if the specified
+ * id is anywhere in the tree of the supplied item.
+ *
+ * @param item The topmost item to start from
+ * @param activeItem The id to search for
+ * @returns true if the ID is found in the tree, false otherwise
+ */
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string | undefined): boolean => {
     if (!activeItem) return false;
 
@@ -92,7 +102,7 @@ const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem:
 };
 
 /**
- * DrawerNavGroup component
+ * [DrawerNavGroup](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerNavGroup represents a collection of navigation items to display in the Drawer, useful for organizing
  * your links into buckets. Each group can be given a `title` to describe its items. Individual items in each group can be passed

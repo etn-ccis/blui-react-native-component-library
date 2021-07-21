@@ -57,7 +57,7 @@ const listItemTagStyles = (
     });
 
 /**
- * ListItemTag component
+ * [ListItemTag](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--list-item-tag) component
  *
  * This component is primarily used as a tag for list elements. It is a stylized
  * text item with a colored background and rounded corners.

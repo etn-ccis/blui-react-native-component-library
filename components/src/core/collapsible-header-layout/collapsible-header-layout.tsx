@@ -29,10 +29,11 @@ export type CollapsibleLayoutProps = ViewProps & {
 };
 
 /**
- * CollapsibleHeaderLayout component
+ * [CollapsibleHeaderLayout](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component
  *
  * This component displays a scrollable page with a header that shrinks between an expanded size and
- * a collapsed size as the page is scrolled. It uses a standard `Header` and `ScrollView` component under the hood and
+ * a collapsed size as the page is scrolled. It uses a standard [`Header`](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--header)
+ * and `ScrollView` component under the hood and
  * you can set all of the props directly to these components in order to configure them. The layout itself
  * is primarily responsible for tracking the current scroll position and updating the size of the `Header`.
  */

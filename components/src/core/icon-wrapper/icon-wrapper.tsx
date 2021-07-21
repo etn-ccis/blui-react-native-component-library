@@ -31,7 +31,7 @@ export type WrapIconProps = {
     allowFontScaling?: boolean;
 };
 /**
- * wrapIcon function
+ * [wrapIcon](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--icon-wrapper) function
  *
  * This function is a useful utility for making sure that icons you want to use
  * are in the proper form to be consumed by the PX Blue components. Icons used by the

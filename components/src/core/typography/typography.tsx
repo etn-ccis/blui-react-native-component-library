@@ -70,7 +70,7 @@ const createTypography = (
 };
 
 /**
- * H1 component
+ * [H1](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H1 heading
  */
@@ -80,7 +80,7 @@ export const H1 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * H2 component
+ * [H2](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H2 heading
  */
@@ -90,7 +90,7 @@ export const H2 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * H3 component
+ * [H3](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H3 heading
  */
@@ -100,7 +100,7 @@ export const H3 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * H4 component
+ * [H4](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H4 heading
  */
@@ -110,7 +110,7 @@ export const H4 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * H5 component
+ * [H5](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H5 heading
  */
@@ -120,7 +120,7 @@ export const H5 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * H6 component
+ * [H6](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H6 heading (used commonly for titles)
  */
@@ -130,7 +130,7 @@ export const H6 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Body1 component
+ * [Body1](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for most body copy
  */
@@ -140,7 +140,7 @@ export const Body1 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Body2 component
+ * [Body2](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for alternative body copy
  */
@@ -150,9 +150,11 @@ export const Body2 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Label component
+ * [Label](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
- * A text component used for some labels
+ * A secret, undocumented text component used for some labels in very specific places.
+ *
+ * Not intended for general use.
  */
 export const Label = createTypography((theme) => ({
     ...theme.fonts.regular,
@@ -160,7 +162,7 @@ export const Label = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Subtitle1 component
+ * [Subtitle1](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A subtitle component
  */
@@ -170,7 +172,7 @@ export const Subtitle1 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Subtitle1 component
+ * [Subtitle2](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An alternative subtitle component
  */
@@ -180,7 +182,7 @@ export const Subtitle2 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Button component
+ * [Button](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for button labels
  */
@@ -190,7 +192,7 @@ export const Button = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Caption component
+ * [Caption](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for image captions
  */
@@ -200,7 +202,7 @@ export const Caption = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * Overline component
+ * [Overline](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An all-caps text component used for specific labeling situations.
  */

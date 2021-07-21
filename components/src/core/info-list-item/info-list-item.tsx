@@ -269,7 +269,7 @@ export type InfoListItemProps = ViewProps & {
 };
 
 /**
- * InfoListItem component
+ * [InfoListItem](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--info-list-item) component
  *
  * The InfoListItem is a component used to render lists. It extends the basic implementation
  * of a list item with additional features, such as icons and status stripes and supplies all of

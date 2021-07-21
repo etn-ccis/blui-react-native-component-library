@@ -122,12 +122,12 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 };
 
 /**
- * MobileStepper component
+ * [MobileStepper](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--mobile-stepper) component
  *
  * This component is used to show progress through a set of pages. It displays
  * the total number of pages or steps and which one is currently being displayed.
  *
- * This is based on the MobileStepper component from Material UI.
+ * This is based on the [MobileStepper](https://material-ui.com/components/steppers/#mobile-stepper) component from Material UI.
  */
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const theme = useTheme(props.theme);

@@ -37,7 +37,7 @@ export type DrawerProps = ViewProps &
     };
 
 /**
- * Drawer component
+ * [Drawer](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The Drawer is a parent container that manages all of the content displayed in your primary
  * navigation drawer. It can contain a DrawerHeader, DrawerSubheader, DrawerBody, and DrawerFooter.

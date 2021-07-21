@@ -19,7 +19,7 @@ export type DrawerBodyProps = ScrollViewProps &
     };
 
 /**
- * DrawerBody component
+ * [DrawerBody](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerBody is a wrapper for the main content of your navigation Drawer. This section sits between
  * the DrawerHeader (or optional DrawerSubheader) and the DrawerFooter. This part of the drawer should hold

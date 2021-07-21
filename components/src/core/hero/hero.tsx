@@ -118,10 +118,10 @@ export type HeroProps = ViewProps & {
 };
 
 /**
- * Hero component
+ * [Hero](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--hero) component
  *
  * The Hero is used to call attention to particular values of importance to the user. It includes a
- * large icon with a label and (typically) a ChannelValue item. The channel value can be configured
+ * large icon with a label and (typically) a [ChannelValue](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--channel-value) item. The channel value can be configured
  * through the `value` and `units` props, or passed declaratively as a child.
  */
 export const Hero: React.FC<HeroProps> = (props) => {

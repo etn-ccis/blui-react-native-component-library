@@ -343,13 +343,13 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children'>
 };
 
 /**
- * ScoreCard component
+ * [ScoreCard](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--score-card) component
  *
  * This component renders a "score card" which is typically used in dashboard
  * displays to show the status of individual items along with some details.
- * The Header is configurable with various text elements and icon actions and the
+ * The header is configurable with various text elements and icon actions and the
  * main body is fully customizable. You can use the `badge` prop to supply elements
- * that can span between the header and the body, such as a Hero with a grade icon.
+ * that can span between the header and the body, such as a [Hero](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--hero) with a grade icon.
  */
 export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;

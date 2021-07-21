@@ -159,7 +159,7 @@ const makeStyles = (
 };
 
 /**
- * DrawerNavItem component
+ * [DrawerNavItem](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerNavItem represents a single navigation item in the Drawer, usually a link to some route
  * in your application, but could also be used for static actions like login or logout. DrawerNavItems
