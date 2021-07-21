@@ -59,7 +59,7 @@ const makeStyles = (
             position: 'absolute',
             left: 0,
             bottom: 0,
-            width: '100%',
+            right: 0
         },
     });
 };
