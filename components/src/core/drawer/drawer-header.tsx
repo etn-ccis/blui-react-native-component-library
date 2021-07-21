@@ -11,15 +11,13 @@ import {
     ViewProps,
     PixelRatio,
     TouchableOpacity,
-    ScaledSize,
-    SafeAreaView,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { HeaderDimensions, useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -216,7 +214,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getBackgroundImage()}
-            <View style={[defaultStyles.content, styles.content ]}>
+            <View style={[defaultStyles.content, styles.content]}>
                 {icon && getIcon()}
                 {getHeaderContent()}
             </View>

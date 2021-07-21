@@ -30,7 +30,7 @@ export const HeaderBackgroundImage: React.FC<HeaderBackgroundProps> = (props) =>
     const { searching } = useSearch();
     const { headerHeight } = useHeaderHeight();
 
-    const {REGULAR_HEIGHT, EXTENDED_HEIGHT} = useHeaderDimensions();
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     if (backgroundImage && !searching) {
         return (

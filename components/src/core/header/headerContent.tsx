@@ -59,8 +59,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { title, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-    const {REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
-
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getTitleStyle = useCallback(
         () => ({
@@ -173,8 +172,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
 
-    const {REGULAR_HEIGHT, EXTENDED_HEIGHT} = useHeaderDimensions();
-
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
         () => ({
@@ -324,8 +322,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = headerContentStyles;
 
-    const {REGULAR_HEIGHT, EXTENDED_HEIGHT} = useHeaderDimensions();
-
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     let content: JSX.Element[] = [];
 

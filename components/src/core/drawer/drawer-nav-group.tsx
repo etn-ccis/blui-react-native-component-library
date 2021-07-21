@@ -185,9 +185,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             }}
         >
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-                {titleContent !== null && (
-                    <View style={{paddingLeft: insets.left}}>{titleContent}</View>
-                )}
+                {titleContent !== null && <View style={{ paddingLeft: insets.left }}>{titleContent}</View>}
                 {!titleContent && title && (
                     <View style={[defaultStyles.textContent, styles.textContent]}>
                         <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>

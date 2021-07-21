@@ -51,8 +51,8 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const theme = useTheme(themeOverride);
     const scrollRef = useRef(null);
 
-    const {getScaledHeight} = useHeaderDimensions();
-    
+    const { getScaledHeight } = useHeaderDimensions();
+
     const animatedScrollValue = useRef(new Animated.Value(0)).current;
     const [scrollValue, setScrollValue] = useState(0);
     const headerVariant = HeaderProps.variant || 'dynamic';

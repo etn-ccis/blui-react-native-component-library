@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, ViewStyle, ViewProps, SafeAreaView } from 'react-native';
+import { StyleSheet, ViewStyle, ViewProps } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Surface, useTheme } from 'react-native-paper';
 import { EdgeInsets } from '../__types__';

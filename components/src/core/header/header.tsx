@@ -253,7 +253,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         ...viewProps
     } = props;
 
-    const {getScaledHeight} = useHeaderDimensions();
+    const { getScaledHeight } = useHeaderDimensions();
 
     const theme = useTheme(themeOverride);
     const defaultStyles = headerStyles(props, theme);
@@ -656,8 +656,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
         updateScrollView,
         variant,
     ]);
-
-    console.log('render header');
 
     return (
         <>
