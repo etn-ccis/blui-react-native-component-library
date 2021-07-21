@@ -82,25 +82,40 @@ const makeStyles = (
 };
 
 export type DrawerHeaderProps = ViewProps & {
-    /** Colored background of the header */
+    /**
+     * The color used for the background
+     *
+     * Default: Theme.colors.primary
+     */
     backgroundColor?: string;
-    /** Image to blend with the colored background in the header */
+    /**
+     * An image to blend with the colored background in the header
+     */
     backgroundImage?: ImageSourcePropType;
-    /** Opacity to use for blending the background image into the background color */
+
+    /**
+     * Opacity to use for blending the background image into the background color
+     *
+     * Default: 0.3
+     */
     backgroundOpacity?: number;
+
     /** Color to use for header text elements */
     fontColor?: string;
+
     /** Icon to use to the left of the header text */
     icon?: HeaderIconType;
+
     /** First line of text in the header */
     title?: string;
+
     /** Second line of text in the header */
     subtitle?: string;
-    /** Custom content to use in place of the header text */
+
+    /** Custom content to use in place of the header title / subtitle */
     titleContent?: ReactNode;
-    /** Custom styles (same as styles.root) */
-    style?: StyleProp<ViewStyle>;
-    /** Style Overrides */
+
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         backgroundImageWrapper?: StyleProp<ViewStyle>;
@@ -111,10 +126,19 @@ export type DrawerHeaderProps = ViewProps & {
         subtitle?: StyleProp<TextStyle>;
         icon?: StyleProp<ViewStyle>;
     };
-    /** Overrides for theme */
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
+/**
+ * [DrawerHeader](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ *
+ * The DrawerHeader holds the content at the top of your navigation Drawer. You can supply a title and subtitle to
+ * use the default styles, or you can supply your own custom titleContent to render. This section will always be pinned
+ * at the top of the Drawer.
+ */
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const {
         title,

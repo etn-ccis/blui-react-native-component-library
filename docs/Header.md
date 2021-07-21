@@ -27,26 +27,25 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 <div style="overflow: auto">
 
-| Prop Name          | Description                                                                                                                | Type                                                                                | Required       | Default                  |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------- | ------------------------ |
-| actionItems        | Icons to show to the right of the title                                                                                    | `Array<HeaderIcon                                                                   | HeaderAvatar>` | no                       |
-| backgroundColor    | The color used for the background                                                                                          | `string`                                                                            | no             | `theme.colors.primary`   |
-| backgroundImage    | An image to display in the header                                                                                          | `ImageSourcePropType`                                                               | no             |                          |
-| collapsedHeight    | The height of the header when collapsed                                                                                    | `number`                                                                            | no             | 56                       |
-| expandable         | Allow the header to expand/collapse on tap                                                                                 | `boolean`                                                                           | no             | `false`                  |
-| expandedHeight     | The height of the header when expanded                                                                                     | `number`                                                                            | no             | 200                      |
-| fontColor          | The color used for the text                                                                                                | `string`                                                                            | no             | `theme.colors.onPrimary` |
-| info               | Third line of text (hidden on collapse)                                                                                    | `ReactNode`                                                                         | no             |                          |
-| navigation         | Icon to show left of the title                                                                                             | `HeaderIcon`                                                                        | no             |                          |
-| scrollPosition     | Y-value of the linked ScrollView (dynamic variant only)                                                                    | `Animated.Value`                                                                    | no             |                          |
-| searchableConfig   | Configuration for search behavior                                                                                          | `SearchableConfig`                                                                  | no             |                          |
-| startExpanded      | Default the header to expanded                                                                                             | `boolean`                                                                           | no             | `false`                  |
-| styles             | Style overrides                                                                                                            | `Object`                                                                            | no             |                          |
-| subtitle           | The text to show on the second line                                                                                        | `ReactNode`                                                                         | no             |                          |
-| theme              | Theme partial for default styling                                                                                          | `Theme`                                                                             | no             |                          |
-| updateScrollView\* | Callback function to update a linked ScrollView (dynamic variant only)                                                     | `({ padding: number \| null; animate: boolean; scrollTo: number \| null }) => void` | no             |                          |
-| title              | The text to show on the first line                                                                                         | `ReactNode`                                                                         | yes            |                          |
-| variant            | The resize mode of the Header (static will resize only on taps, if enabled. Dynamic will resize as the screen is scrolled) | `'dynamic'` \| `'static'`                                                           | no             | 'static'                 |
+| Prop Name          | Description                                                                                                                | Type                                                                                | Required | Default                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
+| actionItems        | Array of icons / actions to display on the right (limit 3)                                                                 | `Array<HeaderIcon \| HeaderAvatar>`                                                 | no       |                          |
+| backgroundColor    | The color used for the background                                                                                          | `string`                                                                            | no       | `theme.colors.primary`   |
+| backgroundImage    | An image to blend with the colored background in the header                                                                | `ImageSourcePropType`                                                               | no       |                          |
+| collapsedHeight    | The height of the header when collapsed                                                                                    | `number`                                                                            | no       | 56                       |
+| expandable         | Allow the header to expand/collapse on tap                                                                                 | `boolean`                                                                           | no       | `false`                  |
+| expandedHeight     | The height of the header when expanded                                                                                     | `number`                                                                            | no       | 200                      |
+| fontColor          | Color of the title, subtitle, info, and icons in the header                                                                | `string`                                                                            | no       | `theme.colors.onPrimary` |
+| info               | Third line of text (hidden on collapse)                                                                                    | `ReactNode`                                                                         | no       |                          |
+| navigation         | Icon to show to the left of the title                                                                                      | `HeaderIcon`                                                                        | no       |                          |
+| scrollPosition     | Y-value of the linked ScrollView (dynamic variant only)                                                                    | `Animated.Value`                                                                    | no       |                          |
+| searchableConfig   | Configuration object for search behavior                                                                                   | `SearchableConfig`                                                                  | no       |                          |
+| startExpanded      | Renders header in the expanded state to start                                                                              | `boolean`                                                                           | no       | `false`                  |
+| subtitle           | The text to display on the second line                                                                                     | `ReactNode`                                                                         | no       |                          |
+| updateScrollView\* | Callback function to update a linked ScrollView (dynamic variant only)                                                     | `({ padding: number \| null; animate: boolean; scrollTo: number \| null }) => void` | no       |                          |
+| title              | The text to display on the first line                                                                                      | `ReactNode`                                                                         | yes      |                          |
+| variant            | The resize mode of the Header (static will resize only on taps, if enabled. Dynamic will resize as the screen is scrolled) | `'dynamic'` \| `'static'`                                                           | no       | 'static'                 |
+| theme              | Theme value overrides                                                                                                      | `$DeepPartial<ReactNativePaper.Theme>`                                              | no       |                          |
 
 </div>
 
@@ -80,7 +79,7 @@ Header icons specified as a JSON object with the following properties:
 | Key     | Description                        | Type                                               | Required | Default |
 | ------- | ---------------------------------- | -------------------------------------------------- | -------- | ------- |
 | icon    | A component to render for the icon | `React.Component<{ size: number, color: string }>` | yes      |         |
-| onPress | A function to execute when clicked | `function`                                         | no       |         |
+| onPress | A function to execute when pressed | `function`                                         | no       |         |
 
 </div>
 
@@ -102,13 +101,13 @@ SearchableConfig is an optional object used to configure the search functionalit
 
 <div style="overflow: auto">
 
-| Key            | Description                             | Type                                                                 | Required | Default      |
-| -------------- | --------------------------------------- | -------------------------------------------------------------------- | -------- | ------------ |
-| autoCapitalize | Auto-capitalize search input            | [`TextInput.autoCapitalize`](https://reactnative.dev/docs/textinput) | no       | 'none'       |
-| autoCorrect    | Auto-correct search input               | `boolean`                                                            | no       | `false`      |
-| autoFocus      | Gives focus to search input when opened | `boolean`                                                            | no       | `false`      |
-| icon           | An override for the default search icon | `React.Component<{ size: number, color: string }>`                   | no       | `SearchIcon` |
-| onChangeText   | Callback when search text changes       | `function`                                                           | no       | `null`       |
-| placeholder    | Helper text shown in search field       | `string`                                                             | no       | 'Search'     |
+| Key            | Description                                                    | Type                                                                 | Required | Default  |
+| -------------- | -------------------------------------------------------------- | -------------------------------------------------------------------- | -------- | -------- |
+| autoCapitalize | Determines how the search input will be capitalized            | [`TextInput.autoCapitalize`](https://reactnative.dev/docs/textinput) | no       | 'none'   |
+| autoCorrect    | Determines whether auto-correct is enabled in the search input | `boolean`                                                            | no       | `false`  |
+| autoFocus      | Gives focus to search input when opened                        | `boolean`                                                            | no       | `false`  |
+| icon           | Icon to override default search icon                           | `React.Component<{ size: number, color: string }>`                   | no       |          |
+| onChangeText   | Callback when search text changes                              | `(text: string) => void`                                             | no       |          |
+| placeholder    | Placeholder text for the search input                          | `string`                                                             | no       | 'Search' |
 
 </div>

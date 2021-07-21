@@ -34,9 +34,20 @@ const getIconAlignment = (iconAlign?: IconAlign): 'flex-start' | 'center' | 'fle
 };
 
 type DividerProps = {
+    /** The width of the divider
+     * - partial: inset divider
+     * - full: full-width of parent container
+     */
     divider?: 'full' | 'partial';
     style?: StyleProp<ViewStyle>;
 };
+/**
+ * Divider component
+ *
+ * A utility component for rendering a horizontal rule. This is a wrapper around the
+ * react-native-paper Divider component that gives us the ability to do a partial or
+ * full width divider.
+ */
 const Divider: React.FC<DividerProps> = (props) => {
     const { divider, style } = props;
     if (divider) {
@@ -139,61 +150,103 @@ const infoListItemStyles = (
     });
 
 export type InfoListItemProps = ViewProps & {
-    /** Title to show */
-    title: string;
-
-    /** Subtitle. If an array, will be separated by dots. */
-    subtitle?: string | React.ReactNode[];
-
-    /** Subtitle Separator. Displays between array of subtitle items */
-    subtitleSeparator?: string;
-
-    /** Info. If an array, will be separated by dots. */
-    info?: string | React.ReactNode[];
-
-    /** Specifies whether to show color background around the icon */
+    /**
+     * Show a colored background behind the icon
+     *
+     * Default: false
+     */
     avatar?: boolean;
 
-    /** Icon alignment when avatar prop is set to false */
-    iconAlign?: IconAlign;
-
-    /** Component to render to the left of the title */
-    IconClass?: ComponentType<WrapIconProps>;
-
-    /** Color to use for stripe */
-    statusColor?: string;
-
-    /** Color to use for title text */
-    fontColor?: string;
-
-    /** Color to use for icon */
-    iconColor?: string;
-
-    /** Background color of element */
+    /** The color used for the background of the InfoListItem */
     backgroundColor?: string;
 
-    /* Hide left padding when icon is not present */
-    hidePadding?: boolean;
-
-    /* If present, a Chevron will be displayed on the right. This can be overridden by rightComponent. */
+    /**
+     * Add a chevron icon on the right
+     *
+     * Default: false
+     */
     chevron?: boolean;
 
-    /* Reduce overall height of listItem */
+    /**
+     * Smaller height rows with less padding
+     *
+     * Default: false
+     */
     dense?: boolean;
 
-    /* Whether to show the bottom divider for the list item */
+    /**
+     * Show a dividing line below the row
+     * - partial: aligns with the main text keyline of the row
+     * - full: spans the full width of the row
+     *
+     * Default: none
+     */
     divider?: 'full' | 'partial';
 
-    /* Component to render on the right */
-    rightComponent?: JSX.Element;
+    /**
+     * Color to use for text elements
+     *
+     * Default: Theme.colors.text
+     */
+    fontColor?: string;
 
-    /* Component to render on the left */
+    /**
+     * Hide the padding reserved for icons when there is no icon. If this is set to false, the text for the InfoListItem will align
+     * together even if there is a mix of items with icons and items without. If this is set to true, the extra padding
+     * for items without icons is removed and the text will align with the icon of other rows.
+     *
+     * Default: false
+     */
+    hidePadding?: boolean;
+
+    /**
+     * Icon alignment when avatar prop is set to false
+     *
+     * Default: 'left'
+     */
+    iconAlign?: IconAlign;
+
+    /** A component to render for the icon */
+    IconClass?: ComponentType<WrapIconProps>;
+
+    /** Color to use for the icon */
+    iconColor?: string;
+
+    /** The text to show on the third line.
+     *
+     * If an array is supplied, array items will be separated by the `subtitleSeparator`.
+     * */
+    info?: string | React.ReactNode[];
+
+    /** Custom content to render between the icon and the text elements */
     leftComponent?: JSX.Element;
 
-    /** Callback to be called on press. */
+    /** Callback function to execute when the list item is pressed. */
     onPress?: () => void;
 
-    /** Style Overrides */
+    /** Custom content to render to the right of the text elements */
+    rightComponent?: JSX.Element;
+
+    /** Color to use indicating status. This will apply to the status stripe and icon */
+    statusColor?: string;
+
+    /**
+     * Separator character used between subtitle or info elements when an array is passed.
+     *
+     * Default: '·'
+     */
+    subtitleSeparator?: string;
+
+    /** The text to show on the second line.
+     *
+     * If an array is supplied, array items will be separated by the `subtitleSeparator`.
+     * */
+    subtitle?: string | React.ReactNode[];
+
+    /** The text to show on the first line */
+    title: string;
+
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         statusStripe?: StyleProp<ViewStyle>;
@@ -210,13 +263,17 @@ export type InfoListItemProps = ViewProps & {
     };
 
     /**
-     * Overrides for theme
+     * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**
- * A flexible component to be rendered within FlatLists
+ * [InfoListItem](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--info-list-item) component
+ *
+ * The InfoListItem is a component used to render lists. It extends the basic implementation
+ * of a list item with additional features, such as icons and status stripes and supplies all of
+ * the correct PX Blue styles.
  */
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const {

@@ -14,28 +14,34 @@ const defaultStyles = StyleSheet.create({
 });
 
 export type ChannelValueProps = ViewProps & {
-    /** Value to show (bold text) */
+    /** Text to display for the value (bold text) */
     value: string | number;
 
-    /** Icon component to render */
+    /** A component to render for the icon */
     IconClass?: ComponentType<WrapIconProps>;
 
-    /** Props to pass to the Icon component */
+    /** Props to spread to the icon component */
     IconProps?: { size?: number; color?: string };
 
-    /** Text to show for units (light text) */
+    /** Text to display for the units (light text) */
     units?: string;
 
-    /** Whether to show units before the value. Default: false */
+    /** Whether to show the units before the value (e.g., for currency)
+     *
+     * Default: false
+     */
     prefix?: boolean;
 
-    /** Font size for all text */
+    /** The size to use for the text elements
+     *
+     * Default: 16
+     */
     fontSize?: number;
 
-    /** Font color for all text */
+    /** The color used for the text elements */
     color?: string;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         value?: StyleProp<TextStyle>;
@@ -43,16 +49,16 @@ export type ChannelValueProps = ViewProps & {
     };
 
     /**
-     * Overrides for theme
+     * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**
- * ChannelValue component
+ * [ChannelValue](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--channel-value) component
  *
- * Used to show a channel value and its units.
- * An arbitrary icon may be added
+ * Used to show a stylized value and its units.
+ * You may also include an icon.
  */
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const {
