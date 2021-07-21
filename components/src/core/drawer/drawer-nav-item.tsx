@@ -11,6 +11,8 @@ import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
 import * as Colors from '@pxblue/colors';
 import Collapsible from 'react-native-collapsible';
+import { EdgeInsets } from '../__types__';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -41,7 +43,7 @@ export type NavItem = DrawerNavItemProps;
 export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
-const calcNestedPadding = (depth: number): number => (depth > 0 ? (depth - 1) * 32 : 0);
+const calcNestedPadding = (depth: number, insets: EdgeInsets): number => insets.left + (depth > 0 ? (depth - 1) * 32 : 0);
 
 const makeStyles = (
     props: DrawerNavItemProps,
@@ -146,7 +148,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         isInActiveTree,
         itemID,
         items,
-        notifyActiveParent = (): void => {},
+        notifyActiveParent = (): void => { },
         onPress,
         rightComponent = props.chevron && !props.items && !props.children ? (
             <MatIcon
@@ -161,6 +163,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         title: itemTitle,
         // other View props
     } = otherProps;
+
+    const insets = useSafeAreaInsets();
 
     const [expanded, setExpanded] = useState(isInActiveTree); // isInActiveTree: there is a bug in the react-native-collapsible that incorrectly calculates the initial panel height when using nested collapse panels
     const active = activeItem === itemID;
@@ -228,7 +232,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     );
 
     const infoListItemStyles = styles.infoListItem || {};
-    const { root: iliRoot, title: iliTitle, ...otherILI } = infoListItemStyles;
+    const { root: iliRoot, title: iliTitle, statusStripe: iliStatusStripe, ...otherILI } = infoListItemStyles;
 
     return (
         <>
@@ -257,19 +261,20 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             onPress={hasAction ? onPressAction : undefined}
                             hidePadding={hidePadding}
                             styles={{
-                                root: Object.assign({ paddingLeft: calcNestedPadding(depth) }, iliRoot),
+                                root: Object.assign({ paddingLeft: calcNestedPadding(depth, insets) }, iliRoot),
                                 title: Object.assign(
                                     active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
-                                              fontWeight: theme.fonts.medium.fontWeight,
-                                              fontFamily: theme.fonts.medium.fontFamily,
-                                          }
+                                            fontWeight: theme.fonts.medium.fontWeight,
+                                            fontFamily: theme.fonts.medium.fontFamily,
+                                        }
                                         : {
-                                              fontWeight: theme.fonts.regular.fontWeight,
-                                              fontFamily: theme.fonts.regular.fontFamily,
-                                          },
+                                            fontWeight: theme.fonts.regular.fontWeight,
+                                            fontFamily: theme.fonts.regular.fontFamily,
+                                        },
                                     iliTitle
                                 ),
+                                statusStripe: Object.assign({ left: insets.left }, iliStatusStripe),
                                 ...otherILI,
                             }}
                         />

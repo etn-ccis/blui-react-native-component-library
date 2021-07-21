@@ -7,6 +7,7 @@ import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -33,7 +34,8 @@ export type DrawerNavGroupProps = AllSharedProps &
     };
 const makeStyles = (
     props: DrawerNavGroupProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    insets: EdgeInsets
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     textContent: ViewStyle;
@@ -47,6 +49,7 @@ const makeStyles = (
             height: 52 * fontScale,
             position: 'relative',
             justifyContent: 'center',
+            paddingLeft: insets.left,
         },
         title: {
             paddingHorizontal: 16,
@@ -124,7 +127,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(props, theme);
+    const insets = useSafeAreaInsets();
+    const defaultStyles = makeStyles(props, theme, insets);
     const { activeItem } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
@@ -164,7 +168,9 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             }}
         >
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-                {titleContent}
+                {titleContent !== null && (
+                    <View style={{paddingLeft: insets.left}}>{titleContent}</View>
+                )}
                 {!titleContent && title && (
                     <View style={[defaultStyles.textContent, styles.textContent]}>
                         <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
