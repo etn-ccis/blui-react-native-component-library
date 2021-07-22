@@ -56,7 +56,7 @@ As with all Higher Order Components, there is a performance hit if the function 
 
 ## Alternative to IconWrapper
 
-If you do not wish to use the HOC to wrap all of your icons individually (such as the case where you need to programmatically determine an icon to show at runtime), or you would like to use a component other than a react-native-vector-icon or PX Blue SVG, you can define your own function, so long as it matches the required shape
+If you do not wish to use this Higher Order Component to wrap all of your icons individually (e.g., if you need to determine the icon to show at runtime), or you would like to use a component other than a react-native-vector-icon or PX Blue SVG, you can define your own function, so long as it matches the required shape:
 
 ```tsx
 <ComponentName IconClass={({size, color}) => <OtherComponent size={size} color={color}>}/>
