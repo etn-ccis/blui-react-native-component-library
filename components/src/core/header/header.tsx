@@ -253,7 +253,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         ...viewProps
     } = props;
 
-    const { getScaledHeight } = useHeaderDimensions();
+    const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
 
     const theme = useTheme(themeOverride);
     const defaultStyles = headerStyles(props, theme);
@@ -367,7 +367,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
     }, [variant]);
 
-    // if either height property is changed, make the necessary updates to sizing, margins, etc.
+    // if either height property is changed (or orientation), make the necessary updates to sizing, margins, etc.
     useEffect(() => {
         // don't execute this logic on the first render
         if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
@@ -409,7 +409,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 });
             }
         }
-    }, [expandedHeight, collapsedHeight]);
+    }, [expandedHeight, collapsedHeight, LANDSCAPE]);
 
     // Track the current value of the Animated header height
     const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {

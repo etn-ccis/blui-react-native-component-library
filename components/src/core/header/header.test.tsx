@@ -6,6 +6,15 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import faker from 'faker';
 const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
 
+jest.mock('react-native-safe-area-context', () => ({
+    useSafeAreaInsets: (): { top: number; left: number; right: number; bottom: number } => ({
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    }),
+}));
+
 describe('Header', () => {
     describe('with only required props', () => {
         let instance: ReactTestInstance;

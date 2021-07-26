@@ -1,12 +1,5 @@
 import { useWindowDimensions } from 'react-native';
-import {
-    EXTENDED_HEIGHT_LANDSCAPE,
-    EXTENDED_HEIGHT_PORTRAIT,
-    heightWithoutStatusBar,
-    heightWithStatusBar,
-    REGULAR_HEIGHT_LANDSCAPE,
-    REGULAR_HEIGHT_PORTRAIT,
-} from '../header/constants';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type HeaderDimensions = {
     REGULAR_HEIGHT: number;
@@ -27,11 +20,24 @@ export type HeaderDimensions = {
  * @returns { REGULAR_HEIGHT, EXTENDED_HEIGHT, LANDSCAPE, getScaledHeight }
  */
 export const useHeaderDimensions = (): HeaderDimensions => {
-    const { width: deviceWidth, height: deviceHeight } = useWindowDimensions();
+    const { width: deviceWidth, height: deviceHeight, fontScale } = useWindowDimensions();
+    const insets = useSafeAreaInsets();
     const isLandscape = deviceWidth > deviceHeight;
 
-    const REGULAR_HEIGHT = isLandscape ? REGULAR_HEIGHT_LANDSCAPE : REGULAR_HEIGHT_PORTRAIT;
-    const EXTENDED_HEIGHT = isLandscape ? EXTENDED_HEIGHT_LANDSCAPE : EXTENDED_HEIGHT_PORTRAIT;
+    const heightWithStatusBar = (height: number): number => height * fontScale + insets.top;
+    const heightWithoutStatusBar = (height: number): number => height * fontScale;
+
+    const LANDSCAPE_HEIGHT = {
+        EXTENDED: heightWithoutStatusBar(200),
+        REGULAR: heightWithoutStatusBar(56),
+    };
+    const PORTRAIT_HEIGHT = {
+        EXTENDED: heightWithStatusBar(200),
+        REGULAR: heightWithStatusBar(56),
+    };
+
+    const REGULAR_HEIGHT = isLandscape ? LANDSCAPE_HEIGHT.REGULAR : PORTRAIT_HEIGHT.REGULAR;
+    const EXTENDED_HEIGHT = isLandscape ? LANDSCAPE_HEIGHT.EXTENDED : PORTRAIT_HEIGHT.EXTENDED;
 
     const getScaledHeight = isLandscape ? heightWithoutStatusBar : heightWithStatusBar;
 
