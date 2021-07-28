@@ -1,6 +1,6 @@
 # Change Log
 
-## 5.2.0 (Unreleased)
+## 5.2.0 (July 28, 2021)
 
 ### Added
 
