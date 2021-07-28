@@ -5,6 +5,7 @@ import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
 import * as Colors from '@pxblue/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type UserMenuProps = {
     /** Avatar component to display as the menu trigger */
@@ -77,6 +78,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = useStyles(theme, fontScale, avatarSize);
+    const insets = useSafeAreaInsets();
 
     const openMenu = (): void => {
         if (menuItems) setShowBottomSheet(true);
@@ -111,7 +113,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                             fontColor={fontColor}
                             backgroundColor={backgroundColor}
                         />
-                        <Divider />
+                        <Divider style={{ marginLeft: -1 * insets.left, marginRight: -1 * insets.right }} />
                     </>
                 )}
                 {menuItems &&
@@ -137,6 +139,13 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                                             fontWeight: theme.fonts.regular.fontWeight,
                                         },
                                         menuItemStyles.title
+                                    ),
+                                    divider: Object.assign(
+                                        {
+                                            marginLeft: -1 * insets.left,
+                                            marginRight: -1 * insets.right,
+                                        },
+                                        menuItemStyles.divider
                                     ),
                                 })}
                             />

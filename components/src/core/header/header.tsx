@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import color from 'color';
 import { useTheme } from 'react-native-paper';
-import { ANIMATION_LENGTH, heightWithStatusBar } from './constants';
+import { ANIMATION_LENGTH } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
 import { HeaderContent } from './headerContent';
@@ -30,6 +30,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -252,15 +253,17 @@ export const Header: React.FC<HeaderProps> = (props) => {
         ...viewProps
     } = props;
 
+    const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
+
     const theme = useTheme(themeOverride);
     const defaultStyles = headerStyles(props, theme);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
     const fontScale = PixelRatio.getFontScale();
-    const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
+    const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
-    const expandedHeight = heightWithStatusBar(expandedHeightProp);
+    const expandedHeight = getScaledHeight(expandedHeightProp);
     const previousExpandedHeight = usePrevious(expandedHeight);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const previousScrollableDistance = usePrevious(scrollableDistance);
@@ -364,7 +367,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
     }, [variant]);
 
-    // if either height property is changed, make the necessary updates to sizing, margins, etc.
+    // if either height property is changed (or orientation), make the necessary updates to sizing, margins, etc.
     useEffect(() => {
         // don't execute this logic on the first render
         if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
@@ -406,7 +409,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 });
             }
         }
-    }, [expandedHeight, collapsedHeight]);
+    }, [expandedHeight, collapsedHeight, LANDSCAPE]);
 
     // Track the current value of the Animated header height
     const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {

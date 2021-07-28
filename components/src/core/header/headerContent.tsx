@@ -12,10 +12,11 @@ import {
     PixelRatio,
 } from 'react-native';
 import color from 'color';
-import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
+import { ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -58,6 +59,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { title, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getTitleStyle = useCallback(
         () => ({
@@ -169,6 +171,8 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
+
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
         () => ({
@@ -317,6 +321,8 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     const { searching, searchConfig } = useSearch();
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = headerContentStyles;
+
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     let content: JSX.Element[] = [];
 

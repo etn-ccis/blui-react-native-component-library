@@ -17,12 +17,13 @@ import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { REGULAR_HEIGHT } from '../header/constants';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 const makeStyles = (
     props: DrawerHeaderProps,
     theme: ReactNativePaper.Theme,
-    insets: EdgeInsets
+    insets: EdgeInsets,
+    height: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     icon: ViewStyle;
@@ -34,11 +35,12 @@ const makeStyles = (
     backgroundImage: ImageStyle;
 }> => {
     const fontScale = PixelRatio.getFontScale();
+
     return StyleSheet.create({
         root: {
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
-            height: REGULAR_HEIGHT,
+            height: height,
         },
         icon: {
             marginLeft: 16,
@@ -48,6 +50,7 @@ const makeStyles = (
         },
         content: {
             flexDirection: 'row',
+            paddingLeft: insets.left,
         },
         textContent: {
             flexDirection: 'column',
@@ -156,7 +159,9 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const defaultStyles = makeStyles(props, theme, insets);
+    const { REGULAR_HEIGHT } = useHeaderDimensions();
+
+    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {

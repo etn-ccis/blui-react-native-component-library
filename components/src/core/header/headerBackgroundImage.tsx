@@ -1,13 +1,16 @@
 import React from 'react';
 import { Animated, ImageProps, ImageSourcePropType, StyleSheet } from 'react-native';
-import { REGULAR_HEIGHT, EXTENDED_HEIGHT } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 const defaultStyles = StyleSheet.create({
     root: {
         position: 'absolute',
-        width: '100%',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         resizeMode: 'cover',
     },
 });
@@ -26,6 +29,8 @@ export const HeaderBackgroundImage: React.FC<HeaderBackgroundProps> = (props) =>
     const { backgroundImage, style, ...otherImageProps } = props;
     const { searching } = useSearch();
     const { headerHeight } = useHeaderHeight();
+
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     if (backgroundImage && !searching) {
         return (

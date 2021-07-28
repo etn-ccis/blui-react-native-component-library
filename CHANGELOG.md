@@ -1,5 +1,16 @@
 # Change Log
 
+## 5.2.0 (July 28, 2021)
+
+### Added
+
+-   Improved support for using components in landscape orientation ([#76](https://github.com/pxblue/react-native-component-library/issues/76))
+-   Improved intellisense popup documentation with links to full component documentation.
+
+### Removed
+
+-   Dependency on react-native-status-bar-height
+
 ## v5.1.0 (June 21, 2021)
 
 ### Added
