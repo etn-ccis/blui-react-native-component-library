@@ -44,7 +44,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     const theme = useTheme(themeOverride);
     const {
         color = theme.colors.text,
-        size,
+        size = 24,
         allowFontScaling = true,
         /*scale = false, direction: directionProp = 'auto',*/ source,
         ...rest

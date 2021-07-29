@@ -93,7 +93,7 @@ export type HeroProps = ViewProps & {
     value?: number | string;
 
     /** A component to render for the ChannelValue child */
-    ValueIconClass?: ComponentType<WrapIconProps>;
+    valueIcon?: IconSource;
 
     /** Color to use for the ChannelValue text */
     valueColor?: string;
@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
     const {
         label,
         value,
-        ValueIconClass,
+        valueIcon,
         valueColor,
         fontSize = 20,
         units,
@@ -166,7 +166,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            return <Icon size={normalizeIconSize()} color={getColor(iconColor)} source={icon} />;
+            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
     }, [icon, normalizeIconSize, getColor, iconColor]);
 
@@ -191,7 +191,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                     <ChannelValue
                         value={value}
                         units={units}
-                        IconClass={ValueIconClass}
+                        icon={valueIcon}
                         color={valueColor}
                         fontSize={fontSize}
                     />

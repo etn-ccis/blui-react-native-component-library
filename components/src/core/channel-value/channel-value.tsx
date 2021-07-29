@@ -1,9 +1,10 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { Body1, Subtitle1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon-wrapper';
+import { IconSource } from '../__types__';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -18,10 +19,21 @@ export type ChannelValueProps = ViewProps & {
     value: string | number;
 
     /** A component to render for the icon */
-    IconClass?: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
-    /** Props to spread to the icon component */
-    IconProps?: { size?: number; color?: string };
+    /**
+  * The size of the icon
+  *
+  * Default: fontSize
+  */
+    iconSize?: number;
+
+    /**
+     * The color of the primary icon
+     *
+     * Default: Theme.colors.text
+     */
+    iconColor?: string;
 
     /** Text to display for the units (light text) */
     units?: string;
@@ -64,13 +76,14 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const {
         value,
         fontSize = 16,
-        IconClass,
+        icon,
+        iconColor, 
+        iconSize,
         color,
         units,
         prefix = false,
         styles = {},
         style,
-        IconProps = {},
         theme: themeOverride,
         ...viewProps
     } = props;
@@ -84,14 +97,14 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     }, [color, theme]);
 
     const getIcon = useCallback(() => {
-        if (IconClass) {
+        if (icon) {
             return (
                 <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
-                    <IconClass size={fontSize} color={getColor()} {...IconProps} />
+                    <Icon source={icon} size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
         }
-    }, [IconClass, fontSize, getColor, IconProps]);
+    }, [icon, fontSize, getColor, iconColor, iconSize]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
         if (units) {

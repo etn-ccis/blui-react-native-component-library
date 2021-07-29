@@ -4,13 +4,13 @@ import { ImageSourcePropType } from 'react-native';
 // Icon-Specific Types
 export type IconComponentProps = {
     /** The size of the icon to render */
-    size: number;
+    size?: number;
 
     /** The color of the icon to render
      *
      * Default: Theme.colors.text
      */
-    color: string; // TODO make this not required
+    color?: string; // TODO make this not required
 
     /** If true, the icon should scale with the system font size
      *
