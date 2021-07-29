@@ -10,37 +10,33 @@ import {
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { ANIMATION_LENGTH, Header, HeaderProps as PXBHeaderProps, heightWithStatusBar } from '../header';
+import { ANIMATION_LENGTH, Header, HeaderProps as PXBHeaderProps } from '../header';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 export type CollapsibleLayoutProps = ViewProps & {
-    /**
-     * Props to pass to the Header component
-     * */
+    /** Props to spread to the Header component. */
     HeaderProps: PXBHeaderProps;
 
-    /**
-     * Props to pass to the ScrollView
-     */
+    /** Props to spread to the ScrollView component. */
     ScrollViewProps?: RNScrollViewProps;
 
-    /**
-     * Style Overrides
-     * */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
     };
 
-    /**
-     * Overrides for theme
-     */
+    /** Theme value overrides specific to this component. */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**
- * CollapsibleHeaderLayout component
+ * [CollapsibleHeaderLayout](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component
  *
  * This component displays a scrollable page with a header that shrinks between an expanded size and
- * a collapsed size as the page is scrolled.
+ * a collapsed size as the page is scrolled. It uses a standard [`Header`](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--header)
+ * and `ScrollView` component under the hood and
+ * you can set all of the props directly to these components in order to configure them. The layout itself
+ * is primarily responsible for tracking the current scroll position and updating the size of the `Header`.
  */
 export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props) => {
     const {
@@ -54,12 +50,15 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     const theme = useTheme(themeOverride);
     const scrollRef = useRef(null);
+
+    const { getScaledHeight } = useHeaderDimensions();
+
     const animatedScrollValue = useRef(new Animated.Value(0)).current;
     const [scrollValue, setScrollValue] = useState(0);
     const headerVariant = HeaderProps.variant || 'dynamic';
     const startExpanded = HeaderProps.startExpanded || false;
-    const collapsedHeight = heightWithStatusBar(HeaderProps.collapsedHeight || 56);
-    const expandedHeight = heightWithStatusBar(HeaderProps.expandedHeight || 200);
+    const collapsedHeight = getScaledHeight(HeaderProps.collapsedHeight || 56);
+    const expandedHeight = getScaledHeight(HeaderProps.expandedHeight || 200);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const initialScrollPosition = headerVariant === 'static' ? 0 : !startExpanded ? scrollableDistance : 0;
 

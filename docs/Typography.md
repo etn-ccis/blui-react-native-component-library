@@ -34,12 +34,12 @@ All typography components in this library share a common API.
 
 <div style="overflow: auto">
 
-| Prop Name | Description                         | Type                                                                                | Required | Default |
-| --------- | ----------------------------------- | ----------------------------------------------------------------------------------- | -------- | ------- |
-| font      | The font style (from the theme)     | keyof [`theme.fonts`](https://callstack.github.io/react-native-paper/theming.html)  | no       |         |
-| fontSize  | The font size (from the theme)      | `number`                                                                            | no       |         |
-| color     | The font color (from theme palette) | keyof [`theme.colors`](https://callstack.github.io/react-native-paper/theming.html) | no       | 'text'  |
-| theme     | Theme partial for default styling   | `Theme`                                                                             | no       |         |
+| Prop Name | Description                     | Type                                                                                | Required | Default |
+| --------- | ------------------------------- | ----------------------------------------------------------------------------------- | -------- | ------- |
+| font      | The font style (from the theme) | keyof [`theme.fonts`](https://callstack.github.io/react-native-paper/theming.html)  | no       |         |
+| fontSize  | The font size                   | `number`                                                                            | no       |         |
+| color     | The font color (from the theme) | keyof [`theme.colors`](https://callstack.github.io/react-native-paper/theming.html) | no       | 'text'  |
+| theme     | Theme value overrides           | `$DeepPartial<ReactNativePaper.Theme>`                                              | no       |         |
 
 </div>
 

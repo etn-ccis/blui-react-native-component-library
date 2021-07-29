@@ -1,33 +1,44 @@
 import React from 'react';
-import { Animated, ImageSourcePropType, ImageStyle, StyleProp, StyleSheet } from 'react-native';
-import { REGULAR_HEIGHT, EXTENDED_HEIGHT } from './constants';
+import { Animated, ImageProps, ImageSourcePropType, StyleSheet } from 'react-native';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 const defaultStyles = StyleSheet.create({
     root: {
         position: 'absolute',
-        width: '100%',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         resizeMode: 'cover',
     },
 });
-type HeaderBackgroundProps = {
-    /** Background image to render when header is expanded */
+type HeaderBackgroundProps = Omit<ImageProps, 'source'> & {
+    /** Background image to render */
     backgroundImage?: ImageSourcePropType;
-
-    style?: StyleProp<ImageStyle>;
 };
+
+/**
+ * HeaderBackgroundImage component
+ *
+ * The HeaderBackgroundImage is a helper component for organizing the contents in the Header. It is
+ * used for displaying the background image and blending it with the background color.
+ */
 export const HeaderBackgroundImage: React.FC<HeaderBackgroundProps> = (props) => {
-    const { backgroundImage, style } = props;
+    const { backgroundImage, style, ...otherImageProps } = props;
     const { searching } = useSearch();
     const { headerHeight } = useHeaderHeight();
+
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     if (backgroundImage && !searching) {
         return (
             <Animated.Image
                 testID={'header-background-image'}
-                source={backgroundImage}
                 resizeMethod={'resize'}
+                {...otherImageProps}
+                source={backgroundImage}
                 style={[
                     defaultStyles.root,
                     style,

@@ -34,28 +34,29 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
     });
 
 export type EmptyStateProps = ViewProps & {
-    /* Primary text to display */
+    /* The primary text to display (first line) */
     title: string;
 
-    /* Secondary text to display */
+    /* The secondary text to display (second line) */
     description?: string;
 
-    /* Icon to display */
+    /* A component to render for the primary icon */
     IconClass?: ComponentType<WrapIconProps>;
 
-    /** Props to pass to the Icon component */
+    // TODO: Deprecate this since it is redundant with the other props
+    /** Props to spread to the primary icon component */
     IconProps?: { size?: number; color?: string };
 
-    /** Primary icon color */
+    /** The size of the primary icon (100-200) */
     iconSize?: number;
 
-    /** Primary icon color */
+    /** The color of the primary icon */
     iconColor?: string;
 
-    /* Optional actions to render below the text */
+    /* Additional components to render below the text (e.g., action buttons) */
     actions?: JSX.Element;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
@@ -64,15 +65,17 @@ export type EmptyStateProps = ViewProps & {
     };
 
     /**
-     * Overrides for theme
+     * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
 /**
- * Empty State component
+ * [EmptyState](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--empty-state) component
  *
  * Used as a placeholder when no content is available for a particular area/screen in your application.
+ * It displays an icon with up to two lines of text and has an area for you to add custom actionable content or
+ * calls-to-action.
  */
 export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const {

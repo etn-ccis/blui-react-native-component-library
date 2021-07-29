@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-native-components",
-    "version": "5.1.0",
+    "version": "5.2.0",
     "author": "pxblue <pxblue@eaton.com>",
     "description": "Reusable React Native components for PX Blue applications",
     "repository": {
@@ -36,8 +36,7 @@
         "color": "^3.1.2",
         "react-native-collapsible": "^1.5.3",
         "react-native-keyboard-aware-scroll-view": "^0.8.0",
-        "react-native-modal": "^11.6.1",
-        "react-native-status-bar-height": "^2.3.1"
+        "react-native-modal": ">=11.6.1"
     },
     "peerDependencies": {
         "react": "^16.13.0 || ^17.0.0",

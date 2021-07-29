@@ -31,20 +31,20 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name           | Description                             | Type                                               | Required | Default                |
-| ------------------- | --------------------------------------- | -------------------------------------------------- | -------- | ---------------------- |
-| label               | The text shown below the `ChannelValue` | `string`                                           | yes      |                        |
-| IconClass           | The primary icon                        | `React.Component<{ size: number, color: string }>` | yes      |                        |
-| iconSize            | The size of the primary icon (10-48)    | `number`                                           | no       | 36                     |
-| iconColor           | The color of the primary icon           | `string`                                           | no       | `text`                 |
-| iconBackgroundColor | The color behind the primary icon       | `string`                                           | no       | `theme.colors.surface` |
-| fontSize            | The text size for the value line        | `number`                                           | no       | 'large'                |
-| value               | The value for the channel               | `string` \| `number`                               | no       |                        |
-| ValueIconClass      | The icon to show inline with the value  | `React.Component<{ size: number, color: string }>` | no       |                        |
-| valueColor          | Text color for the value line           | `string`                                           | no       | `text`                 |
-| units               | Text to show after the value            | `string`                                           | no       |                        |
-| onPress             | A function to execute when clicked      | `function`                                         | no       |                        |
-| theme               | Theme partial for default styling       | `Theme`                                            | no       |                        |
+| Prop Name           | Description                                     | Type                                               | Required | Default                |
+| ------------------- | ----------------------------------------------- | -------------------------------------------------- | -------- | ---------------------- |
+| label               | The text shown below the `ChannelValue`         | `string`                                           | yes      |                        |
+| IconClass           | A component to render for the primary icon      | `React.Component<{ size: number, color: string }>` | yes      |                        |
+| iconSize            | The size of the primary icon (10-48)            | `number`                                           | no       | 36                     |
+| iconColor           | The color of the primary icon                   | `string`                                           | no       | `theme.colors.text`    |
+| iconBackgroundColor | The color behind the primary icon               | `string`                                           | no       | `theme.colors.surface` |
+| fontSize            | The text size for the ChannelValue              | `number`                                           | no       | 20                     |
+| value               | The value for the ChannelValue                  | `string` \| `number`                               | no       |                        |
+| ValueIconClass      | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
+| valueColor          | Color to use for the ChannelValue text          | `string`                                           | no       | `text`                 |
+| units               | The units for the ChannelValue                  | `string`                                           | no       |                        |
+| onPress             | A function to execute when pressed              | `function`                                         | no       |                        |
+| theme               | Theme value overrides                           | `$DeepPartial<ReactNativePaper.Theme>`             | no       |                        |
 
 </div>
 
@@ -83,9 +83,9 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 <div style="overflow: auto">
 
-| Prop Name | Description                        | Type      | Required | Default |
-| --------- | ---------------------------------- | --------- | -------- | ------- |
-| divider   | Whether to show the line separator | `boolean` | no       | false   |
+| Prop Name | Description                                         | Type      | Required | Default |
+| --------- | --------------------------------------------------- | --------- | -------- | ------- |
+| divider   | Whether to show a dividing line below the subheader | `boolean` | no       | `false` |
 
 </div>
 

@@ -29,12 +29,11 @@ const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
 
 <div style="overflow: auto">
 
-| Prop Name       | Description                                             | Type                                                               | Required | Default |
-| --------------- | ------------------------------------------------------- | ------------------------------------------------------------------ | -------- | ------- |
-| HeaderProps     | Props to spread to the underlying [Header](./Header.md) | `HeaderProps`                                                      | yes      |         |
-| ScrollViewProps | Props to spread to the underlying ScrollView            | [`ScrollViewProps`](https://reactnative.dev/docs/scrollview#props) | no       |         |
-| styles          | Style overrides                                         | `Object`                                                           | no       |         |
-| theme           | Theme partial for default styling                       | `Theme`                                                            | no       |         |
+| Prop Name       | Description                                                                             | Type                                                               | Required | Default |
+| --------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- | ------- |
+| HeaderProps     | Props to spread to the underlying [Header](./Header.md)                                 | `HeaderProps`                                                      | yes      |         |
+| ScrollViewProps | Props to spread to the underlying [ScrollView](https://reactnative.dev/docs/scrollview) | [`ScrollViewProps`](https://reactnative.dev/docs/scrollview#props) | no       |         |
+| theme           | Theme value overrides                                                                   | `$DeepPartial<ReactNativePaper.Theme>`                             | no       |         |
 
 </div>
 

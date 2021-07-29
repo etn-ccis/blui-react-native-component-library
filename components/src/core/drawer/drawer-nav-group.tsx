@@ -7,6 +7,7 @@ import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -16,24 +17,25 @@ export type DrawerNavGroupStyles = {
 };
 export type DrawerNavGroupProps = AllSharedProps &
     ViewProps & {
-        // List of navigation items to render
+        /** List of navigation items to render */
         items?: NavItem[];
 
-        // Text to display in the group header
+        /** Text to display in the group header */
         title?: string;
 
-        // Color to use for the group header title text
+        /** Color to use for the group header title text */
         titleColor?: string;
 
-        // Custom element, substitute for title
+        /** Custom content to use in place of the group header title (if you want to use non-string content) */
         titleContent?: ReactNode;
 
-        /** Style overrides */
+        /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerNavGroupStyles;
     };
 const makeStyles = (
     props: DrawerNavGroupProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    insets: EdgeInsets
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     textContent: ViewStyle;
@@ -47,6 +49,7 @@ const makeStyles = (
             height: 52 * fontScale,
             position: 'relative',
             justifyContent: 'center',
+            paddingLeft: insets.left,
         },
         title: {
             paddingHorizontal: 16,
@@ -56,11 +59,21 @@ const makeStyles = (
             position: 'absolute',
             left: 0,
             bottom: 0,
-            width: '100%',
+            right: 0,
         },
     });
 };
 
+/**
+ * findID function
+ *
+ * A depth-first recursive search function to identify if the specified
+ * id is anywhere in the tree of the supplied item.
+ *
+ * @param item The topmost item to start from
+ * @param activeItem The id to search for
+ * @returns true if the ID is found in the tree, false otherwise
+ */
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string | undefined): boolean => {
     if (!activeItem) return false;
 
@@ -91,6 +104,13 @@ const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem:
     return false;
 };
 
+/**
+ * [DrawerNavGroup](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ *
+ * The DrawerNavGroup represents a collection of navigation items to display in the Drawer, useful for organizing
+ * your links into buckets. Each group can be given a `title` to describe its items. Individual items in each group can be passed
+ * through the `items` prop or passed declaratively as children.
+ */
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const {
         // Inheritable Props
@@ -124,7 +144,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(props, theme);
+    const insets = useSafeAreaInsets();
+    const defaultStyles = makeStyles(props, theme, insets);
     const { activeItem } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
@@ -164,7 +185,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             }}
         >
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-                {titleContent}
+                {titleContent !== null && <View style={{ paddingLeft: insets.left }}>{titleContent}</View>}
                 {!titleContent && title && (
                     <View style={[defaultStyles.textContent, styles.textContent]}>
                         <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>

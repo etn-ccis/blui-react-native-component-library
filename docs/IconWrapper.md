@@ -30,7 +30,7 @@ If you need to flip icons for use with RTL languages, you can include a boolean 
 
 ```tsx
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', flip: true });
+const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', flip: `true` });
 ```
 
 If you want to conditionally flip icons based on the active language, you can use the `I18nManager` from react native:
@@ -47,9 +47,25 @@ When using the `wrapIcon` function, icons will be automatically scaled relative 
 
 ```tsx
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', allowFontScaling: false });
+const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline', allowFontScaling: `false` });
 ```
 
 ## Notes
 
 As with all Higher Order Components, there is a performance hit if the function is called from another component's `render` method. It is therefore advised to always call `wrapIcon()` once per Icon type, and to do so outside of any methods.
+
+## Alternative to IconWrapper
+
+If you do not wish to use this Higher Order Component to wrap all of your icons individually (e.g., if you need to determine the icon to show at runtime), or you would like to use a component other than a react-native-vector-icon or PX Blue SVG, you can define your own function, so long as it matches the required shape:
+
+```tsx
+<ComponentName IconClass={({size, color}) => <OtherComponent size={size} color={color}>}/>
+```
+
+This can also be useful if you want to display things like a PX Blue [progress icon](https://www.npmjs.com/package/@pxblue/react-native-progress-icons):
+
+```tsx
+import { Battery } from '@pxblue/react-native-progress-icons';
+
+<Hero IconClass={({size, color}) => <Battery percent={50} size={size} color={color}>}/>
+```

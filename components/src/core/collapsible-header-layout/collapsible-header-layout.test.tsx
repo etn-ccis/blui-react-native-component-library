@@ -1,8 +1,20 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { PixelRatio, ScrollView } from 'react-native';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { CollapsibleHeaderLayout } from './collapsible-header-layout';
-import { Header, heightWithStatusBar } from '../header';
+import { Header } from '../header';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+jest.mock('react-native-safe-area-context', () => ({
+    useSafeAreaInsets: (): { top: number; left: number; right: number; bottom: number } => ({
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    }),
+}));
+const insets = useSafeAreaInsets();
+const fontScale = PixelRatio.getFontScale();
+const heightWithStatusBar = (height: number): number => height * fontScale + insets.top;
 
 describe('CollapsibleHeaderLayout', () => {
     let instance: ReactTestInstance;

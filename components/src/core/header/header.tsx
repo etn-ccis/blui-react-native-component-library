@@ -13,10 +13,11 @@ import {
     TextStyle,
     ImageStyle,
     PixelRatio,
+    TextInputProps,
 } from 'react-native';
 import color from 'color';
 import { useTheme } from 'react-native-paper';
-import { ANIMATION_LENGTH, heightWithStatusBar } from './constants';
+import { ANIMATION_LENGTH } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
 import { HeaderContent } from './headerContent';
@@ -29,6 +30,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -70,57 +72,89 @@ const headerStyles = (
 };
 
 export type SearchableConfig = {
-    /** TextInput Prop. Determines how the search input will be capitalized */
-    autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+    /**
+     * Determines how the search input will be capitalized
+     *
+     * Default: 'none'
+     */
+    autoCapitalize?: TextInputProps['autoCapitalize'];
 
-    /** TextInput Prop. Determines whether auto-correct is enabled in the search input */
+    /**
+     * Determines whether auto-correct is enabled in the search input
+     *
+     * Default: false
+     */
     autoCorrect?: boolean;
 
-    /** TextInput Prop. Determines whether the search input will be focused on when it is rendered */
+    /**
+     * Determines whether the search input will be focused on when it is rendered / opened
+     *
+     * Default: false
+     */
     autoFocus?: boolean;
 
     /** Icon to override default search icon */
     icon?: ComponentType<{ size: number; color: string }>;
 
-    /** TextInput Prop. Callback for when the text in the search input changes */
+    /** Callback for when the text in the search input changes */
     onChangeText?: (text: string) => void;
 
-    /** TextInput Prop. Placeholder text for the search input */
+    /**
+     * Placeholder text for the search input
+     *
+     * Default: 'Search'
+     */
     placeholder?: string;
 };
 
 export type HeaderProps = ViewProps & {
-    /** List of up to three action items on the right of the header */
+    /** Array of icons / actions to display on the right */
     actionItems?: Array<HeaderIcon | HeaderAvatar>;
 
-    /** Background color of the header */
+    /**
+     * The color used for the background
+     *
+     * Default: Theme.colors.primary
+     */
     backgroundColor?: string;
 
-    /** Background image to render when header is expanded */
+    /**
+     * An image to blend with the colored background in the header
+     */
     backgroundImage?: ImageSourcePropType;
 
     /**
-     * Height of the App Bar when fully collapsed
+     * Height of the Header when fully collapsed
+     *
      * Default: 56
      */
     collapsedHeight?: number;
 
-    /** Determines whether the header can be expanded / collapsed by tapping */
+    /**
+     * Allow the header to be expanded / collapsed by tapping
+     *
+     * Default: false
+     */
     expandable?: boolean;
 
     /**
-     * Height of the App Bar when fully expanded
+     * Height of the Header when fully expanded
+     *
      * Default: 200
      */
     expandedHeight?: number;
 
-    /** Color of the title, subtitle, and icons in the header */
+    /**
+     * Color of the title, subtitle, info, and icons in the header
+     *
+     * Default: Theme.colors.onPrimary
+     */
     fontColor?: string;
 
     /** Optional header third line of text (hidden when collapsed) */
     info?: ReactNode;
 
-    /** Leftmost icon on header, used for navigation */
+    /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
     navigation?: HeaderIcon;
 
     /**
@@ -128,13 +162,17 @@ export type HeaderProps = ViewProps & {
      */
     scrollPosition?: Animated.Value;
 
-    /** Configuration object that determines whether the Header can have a search bar */
+    /** Configuration object for search behavior */
     searchableConfig?: SearchableConfig;
 
-    /** Determines whether the header should start in the expanded state */
+    /**
+     * Renders the header in the expanded state to start
+     *
+     * Default: false
+     */
     startExpanded?: boolean;
 
-    /** Style Overrides */
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         backgroundImage?: StyleProp<ImageStyle>;
@@ -150,15 +188,15 @@ export type HeaderProps = ViewProps & {
         avatar?: StyleProp<ViewStyle>;
     };
 
-    /** Optional header subtitle */
+    /** The text to display on the second line */
     subtitle?: ReactNode;
 
     /**
-     * Overrides for theme
+     * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 
-    /** Header title */
+    /** The test to display on the first line */
     title: ReactNode;
 
     /**
@@ -167,24 +205,28 @@ export type HeaderProps = ViewProps & {
     updateScrollView?: (data: { padding: number | null; animate: boolean; scrollTo: number | null }) => void;
 
     /**
-     * Current mode of the Header:
+     * Current resize mode of the Header:
      * - 'static': Header does not resize based on scroll position,
      * - 'dynamic' Header resizes based on the provided scrollPosition.
+     *
      * Default: static
      */
     variant?: 'dynamic' | 'static';
 
     /**
-     * Set to true to use the alternative subtitle styling
+     * @experimental
+     *
+     * Set to true to use the alternative subtitle styling (larger size, light weight)
      */
     washingtonStyle?: boolean;
 };
 
 /**
- * Header component
+ * [Header](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--header) component
  *
- * This component is used to display a title and navigation and action items on the top of a screen.
- * It can be tapped to expand or contract.
+ * The Header is used as the main banner at the top of application screens. It can display page information
+ * via the `title`, `subtitle`, and `info` properties, as well as customizable backgrounds, colors, action items,
+ * and more. The header can be configured to expand / collapse on press or on scroll (when using the [CollapsibleHeaderLayout](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component).
  */
 export const Header: React.FC<HeaderProps> = (props) => {
     const {
@@ -211,15 +253,17 @@ export const Header: React.FC<HeaderProps> = (props) => {
         ...viewProps
     } = props;
 
+    const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
+
     const theme = useTheme(themeOverride);
     const defaultStyles = headerStyles(props, theme);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
     const fontScale = PixelRatio.getFontScale();
-    const collapsedHeight = heightWithStatusBar(collapsedHeightProp);
+    const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
-    const expandedHeight = heightWithStatusBar(expandedHeightProp);
+    const expandedHeight = getScaledHeight(expandedHeightProp);
     const previousExpandedHeight = usePrevious(expandedHeight);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const previousScrollableDistance = usePrevious(scrollableDistance);
@@ -323,7 +367,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         }
     }, [variant]);
 
-    // if either height property is changed, make the necessary updates to sizing, margins, etc.
+    // if either height property is changed (or orientation), make the necessary updates to sizing, margins, etc.
     useEffect(() => {
         // don't execute this logic on the first render
         if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
@@ -365,7 +409,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 });
             }
         }
-    }, [expandedHeight, collapsedHeight]);
+    }, [expandedHeight, collapsedHeight, LANDSCAPE]);
 
     // Track the current value of the Animated header height
     const onHeightChange = useCallback(({ value: newHeight }: { value: number }) => {

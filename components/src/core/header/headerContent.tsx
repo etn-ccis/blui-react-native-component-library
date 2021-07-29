@@ -12,10 +12,11 @@ import {
     PixelRatio,
 } from 'react-native';
 import color from 'color';
-import { EXTENDED_HEIGHT, REGULAR_HEIGHT, ICON_SIZE, ICON_SPACING } from './constants';
+import { ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
+import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -36,14 +37,29 @@ type WritingDirection = 'ltr' | 'rtl';
 type TextAlign = 'left' | 'right' | 'center' | 'auto';
 
 type HeaderTitleProps = {
+    /** The content to render for the title */
     title: React.ReactNode;
+
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme: ReactNativePaper.Theme;
+
+    /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
 };
+
+/**
+ * HeaderTitle component
+ *
+ * The HeaderTitle is a helper component for organizing the contents in the Header. It is
+ * used for displaying and resizing the title text.
+ */
 const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { title, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getTitleStyle = useCallback(
         () => ({
@@ -78,11 +94,30 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
 };
 
 type HeaderSubtitleProps = {
+    /** The content to render for the subtitle */
     subtitle?: React.ReactNode;
+
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme: ReactNativePaper.Theme;
+
+    /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
+
+    /**
+     * @experimental
+     *
+     * Set to true to use the alternative subtitle styling (larger size, light weight)
+     */
     washingtonStyle?: boolean;
 };
+/**
+ * HeaderSubtitle component
+ *
+ * The HeaderSubtitle is a helper component for organizing the contents in the Header. It is
+ * used for displaying and resizing the subtitle text.
+ */
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
@@ -115,14 +150,29 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
 };
 
 type HeaderInfoProps = {
+    /** The content to render for the info */
     info?: React.ReactNode;
+
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme: ReactNativePaper.Theme;
+
+    /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
 };
+/**
+ * HeaderInfo component
+ *
+ * The HeaderInfo is a helper component for organizing the contents in the Header. It is
+ * used for displaying and resizing the info text.
+ */
 const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
+
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
         () => ({
@@ -165,9 +215,21 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
 };
 
 type SearchContentProps = {
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme: ReactNativePaper.Theme;
+
+    /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
 };
+/**
+ * SearchContent component
+ *
+ * The SearchContent is a helper component for organizing the contents in the Header. It is
+ * used for displaying and styling the search input. It retrieves the search configuration via
+ * the useSearch hook.
+ */
 const SearchContent: React.FC<SearchContentProps> = (props) => {
     const { theme, style } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
@@ -202,20 +264,22 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
 };
 
 export type HeaderContentProps = {
-    /** Header title */
+    /** The content to render for the title */
     title: React.ReactNode;
 
-    /** Optional header subtitle */
+    /** The content to render for the subtitle */
     subtitle?: React.ReactNode;
 
-    /** Optional header third line of text (hidden when collapsed) */
+    /** The content to render for the info */
     info?: React.ReactNode;
 
+    /** Specifies the number of avatars and icons that are included in the action list */
     actionCount?: {
         avatars: number;
         icons: number;
     };
 
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
@@ -224,11 +288,25 @@ export type HeaderContentProps = {
         search?: StyleProp<TextStyle>;
     };
 
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme: ReactNativePaper.Theme;
 
+    /**
+     * @experimental
+     *
+     * Set to true to use the alternative subtitle styling (larger size, light weight)
+     */
     washingtonStyle?: boolean;
 };
 
+/**
+ * HeaderContent component
+ *
+ * The HeaderContent is a helper component for organizing the contents in the Header. It is
+ * a wrapper that organizes the title, subtitle, info, and search inputs appropriately.
+ */
 export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     const {
         title,
@@ -243,6 +321,8 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     const { searching, searchConfig } = useSearch();
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = headerContentStyles;
+
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     let content: JSX.Element[] = [];
 
