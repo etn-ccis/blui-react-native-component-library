@@ -22,10 +22,10 @@ export type ChannelValueProps = ViewProps & {
     icon?: IconSource;
 
     /**
-  * The size of the icon
-  *
-  * Default: fontSize
-  */
+     * The size of the icon
+     *
+     * Default: fontSize
+     */
     iconSize?: number;
 
     /**
@@ -77,7 +77,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         value,
         fontSize = 16,
         icon,
-        iconColor, 
+        iconColor,
         iconSize,
         color,
         units,

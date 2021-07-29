@@ -42,13 +42,7 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const {
-        color = theme.colors.text,
-        size = 24,
-        allowFontScaling = true,
-        /*scale = false, direction: directionProp = 'auto',*/ source,
-        ...rest
-    } = otherProps;
+    const { color = theme.colors.text, size = 24, allowFontScaling = true, source, ...rest } = otherProps;
     const deviceDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
     // const fontScale = scale ? PixelRatio.getFontScale() : 1;
 

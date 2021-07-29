@@ -12,6 +12,8 @@ import { findChildByType, inheritSharedProps } from './utilities';
 import * as Colors from '@pxblue/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { IconSource } from '../__types__';
+import { Icon } from '../icon-wrapper';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -42,9 +44,8 @@ export type DrawerNavItemProps = AllSharedProps &
          */
         hidden?: boolean;
 
-        // TODO: Deprecate this any type and use the same thing we've been using for IconClass everywhere else.
         /** A component to render for the left icon */
-        icon?: any;
+        icon?: IconSource;
 
         /**
          * Is the item a parent / ancestor of the current activeItem.
@@ -194,18 +195,10 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         activeItemIconColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-        collapseIcon = props.depth ? (
-            <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} allowFontScaling />
-        ) : (
-            <MatIcon name={'expand-less'} size={24} color={theme.colors.text} allowFontScaling />
-        ),
+        collapseIcon = {family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less'},
         disableActiveItemParentStyles = false,
         divider,
-        expandIcon = props.depth ? (
-            <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} allowFontScaling />
-        ) : (
-            <MatIcon name={'expand-more'} size={24} color={theme.colors.text} allowFontScaling />
-        ),
+        expandIcon = {family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more'},
         hidePadding,
         itemFontColor = theme.colors.text,
         itemIconColor = theme.colors.text,
@@ -281,7 +274,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         }
         return (
             <View style={[defaultStyles.expandIcon, styles.expandIcon]}>
-                {collapseIcon && expanded ? collapseIcon : expandIcon}
+                <Icon source={collapseIcon && expanded ? collapseIcon : expandIcon} size={24} color={theme.colors.text} allowFontScaling />
             </View>
         );
     }, [items, children, styles, defaultStyles, collapseIcon, expanded, expandIcon]);
@@ -320,7 +313,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             divider={showDivider ? 'full' : undefined}
                             statusColor={statusColor}
                             fontColor={active ? activeItemFontColor : itemFontColor}
-                            IconClass={icon}
+                            icon={icon}
                             iconColor={active ? activeItemIconColor : itemIconColor}
                             rightComponent={
                                 (actionComponent || rightComponent) && (

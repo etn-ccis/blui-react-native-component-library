@@ -15,9 +15,10 @@ import {
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
+import { EdgeInsets, HeaderIcon as HeaderIconType, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { Icon } from '../icon-wrapper';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -107,7 +108,10 @@ export type DrawerHeaderProps = ViewProps & {
     fontColor?: string;
 
     /** Icon to use to the left of the header text */
-    icon?: HeaderIconType;
+    icon?: IconSource;
+
+    /** Callback to execute when the icon is pressed */
+    onIconPress?: () => void;
 
     /** First line of text in the header */
     title?: string;
@@ -150,6 +154,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         backgroundImage,
         fontColor,
         icon,
+        onIconPress = () => {},
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
         theme: themeOverride,
@@ -165,21 +170,20 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            const IconClass = icon.icon;
             return (
                 <View style={[defaultStyles.icon, styles.icon]}>
                     <TouchableOpacity
                         testID={'drawer-header-navigation'}
-                        onPress={icon.onPress}
+                        onPress={onIconPress}
                         style={{ padding: 8, marginLeft: -8 }}
-                        disabled={!icon.onPress}
+                        disabled={!onIconPress}
                     >
-                        <IconClass size={24} color={fontColor || 'white'} />
+                        <Icon source={icon} size={24} color={fontColor || 'white'} />
                     </TouchableOpacity>
                 </View>
             );
         }
-    }, [defaultStyles, styles, icon, fontColor]);
+    }, [defaultStyles, styles, icon, fontColor, onIconPress]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>

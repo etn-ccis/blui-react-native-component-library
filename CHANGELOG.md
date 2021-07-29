@@ -7,6 +7,7 @@
 -   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see TODO).
 -   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
 -   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
+-   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
 
 
 ## 5.2.0 (July 28, 2021)

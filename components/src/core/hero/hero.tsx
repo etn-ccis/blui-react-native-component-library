@@ -188,13 +188,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
             </View>
             <View style={[defaultStyles.values, styles.values]}>
                 {!children && !!value && (
-                    <ChannelValue
-                        value={value}
-                        units={units}
-                        icon={valueIcon}
-                        color={valueColor}
-                        fontSize={fontSize}
-                    />
+                    <ChannelValue value={value} units={units} icon={valueIcon} color={valueColor} fontSize={fontSize} />
                 )}
                 {children}
             </View>
