@@ -9,7 +9,7 @@ describe('Hero', () => {
     describe('with only a label and icon', () => {
         let instance: ReactTestInstance;
         beforeEach(() => {
-            instance = TestRenderer.create(<Hero label={'Hero'} IconClass={Line} />).root;
+            instance = TestRenderer.create(<Hero label={'Hero'} icon={Line} />).root;
         });
 
         it('renders without a ChannelValue', () => {
@@ -28,7 +28,7 @@ describe('Hero', () => {
         let instance: ReactTestInstance;
         beforeEach(() => {
             instance = TestRenderer.create(
-                <Hero label={'Hero'} IconClass={Line} value={'100'} units={'%'} onPress={jest.fn()} />
+                <Hero label={'Hero'} icon={Line} value={'100'} units={'%'} onPress={jest.fn()} />
             ).root;
         });
 

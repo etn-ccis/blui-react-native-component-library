@@ -13,7 +13,8 @@ import { ChannelValue } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon, WrapIconProps } from '../icon-wrapper';
+import { IconSource } from '../__types__';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -58,7 +59,7 @@ export type HeroProps = ViewProps & {
     label: string;
 
     /** A component to render for the primary icon  */
-    IconClass: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /**
      * The size of the primary icon (10-48)
@@ -133,7 +134,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         fontSize = 20,
         units,
         onPress,
-        IconClass,
+        icon,
         iconColor,
         iconSize,
         iconBackgroundColor,
@@ -164,10 +165,10 @@ export const Hero: React.FC<HeroProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
-            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} />;
+        if (icon) {
+            return <Icon size={normalizeIconSize()} color={getColor(iconColor)} source={icon} />;
         }
-    }, [IconClass, normalizeIconSize, getColor, iconColor]);
+    }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
         <TouchableOpacity

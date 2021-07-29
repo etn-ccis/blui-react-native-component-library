@@ -4,10 +4,11 @@ import { Header } from '.';
 import { wrapIcon } from '..';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import faker from 'faker';
+import { EdgeInsets } from '../__types__';
 const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
 
 jest.mock('react-native-safe-area-context', () => ({
-    useSafeAreaInsets: (): { top: number; left: number; right: number; bottom: number } => ({
+    useSafeAreaInsets: (): EdgeInsets => ({
         top: 0,
         left: 0,
         right: 0,

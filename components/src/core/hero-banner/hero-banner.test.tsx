@@ -9,10 +9,10 @@ describe('HeroBanner', () => {
     it('renders four children when four are passed in', () => {
         const instance = TestRenderer.create(
             <HeroBanner>
-                <Hero label={'Hero One'} IconClass={Line} />
-                <Hero label={'Hero Two'} IconClass={Line} />
-                <Hero label={'Hero Three'} IconClass={Line} />
-                <Hero label={'Hero Four'} IconClass={Line} />
+                <Hero label={'Hero One'} icon={Line} />
+                <Hero label={'Hero Two'} icon={Line} />
+                <Hero label={'Hero Three'} icon={Line} />
+                <Hero label={'Hero Four'} icon={Line} />
             </HeroBanner>
         ).root;
 

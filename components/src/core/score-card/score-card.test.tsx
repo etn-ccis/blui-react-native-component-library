@@ -61,10 +61,7 @@ describe('ScoreCard', () => {
             let instance: ReactTestInstance;
             beforeEach(() => {
                 instance = TestRenderer.create(
-                    <ScoreCard
-                        headerTitle={'Hello'}
-                        badge={<Hero testID={'my-badge'} label={'...'} IconClass={Line} />}
-                    />
+                    <ScoreCard headerTitle={'Hello'} badge={<Hero testID={'my-badge'} label={'...'} icon={Line} />} />
                 ).root;
             });
 
