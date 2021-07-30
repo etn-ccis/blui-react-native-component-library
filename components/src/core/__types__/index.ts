@@ -10,7 +10,7 @@ export type IconComponentProps = {
      *
      * Default: Theme.colors.text
      */
-    color?: string; // TODO make this not required
+    color?: string;
 
     /** If true, the icon should scale with the system font size
      *

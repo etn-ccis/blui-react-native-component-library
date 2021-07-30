@@ -108,7 +108,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                 {...rest}
                 source={source as ImageSourcePropType}
                 style={[
-                    flipIconStyle,
                     {
                         width: size,
                         height: size,
@@ -124,7 +123,7 @@ export const Icon: React.FC<IconProps> = (props) => {
 
     // String
     if (typeof source === 'string') {
-        return <Body1 style={[{ fontSize: size, color: color }, flipIconStyle]}>{source}</Body1>;
+        return <Body1 style={[{ fontSize: size, color: color }]}>{source}</Body1>;
     }
 
     return null;
