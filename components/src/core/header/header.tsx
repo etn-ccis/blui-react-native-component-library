@@ -25,7 +25,7 @@ import { HeaderActionItems } from './headerActionItems';
 import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
-import { HeaderAvatar, HeaderIcon } from '../__types__';
+import { HeaderAvatar, HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
@@ -94,7 +94,7 @@ export type SearchableConfig = {
     autoFocus?: boolean;
 
     /** Icon to override default search icon */
-    icon?: ComponentType<{ size: number; color: string }>;
+    icon?: IconSource;
 
     /** Callback for when the text in the search input changes */
     onChangeText?: (text: string) => void;
@@ -155,7 +155,10 @@ export type HeaderProps = ViewProps & {
     info?: ReactNode;
 
     /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
-    navigation?: HeaderIcon;
+    icon?: IconSource;
+
+    /** Callback to execute when the icon is pressed */
+    onIconPress?: () => void;
 
     /**
      * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
@@ -238,7 +241,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
         collapsedHeight: collapsedHeightProp = 56,
         fontColor,
         info,
-        navigation,
+        icon,
+        onIconPress = () => { },
         scrollPosition = new Animated.Value(0),
         searchableConfig,
         startExpanded,
@@ -700,7 +704,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     style={styles.backgroundImage}
                                 />
                                 <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon navigation={navigation} style={styles.navigationIcon} />
+                                    <HeaderNavigationIcon icon={icon} onPress={onIconPress} style={styles.navigationIcon} />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}

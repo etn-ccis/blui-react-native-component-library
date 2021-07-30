@@ -8,6 +8,7 @@
 -   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
 -   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
 -   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
+-   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
 
 ### Removed
 

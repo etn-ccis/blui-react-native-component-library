@@ -33,8 +33,8 @@ export type IconSourceBase = string | ImageSourcePropType;
 export type IconSource = IconFamily | IconSourceBase | JSX.Element | ComponentType<IconFunctionProps>;
 
 export type HeaderIcon = {
-    /** Name of the icon */
-    icon: ComponentType<IconFunctionProps>;
+    /** Component to render for the icon */
+    icon: IconSource;
 
     /** Callback when icon is pressed */
     onPress?: () => void;

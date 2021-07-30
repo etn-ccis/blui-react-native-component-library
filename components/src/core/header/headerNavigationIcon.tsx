@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager, PixelRatio } from 'react-native';
 import { ICON_SIZE } from './constants';
-import { HeaderIcon as HeaderIconType } from '../__types__';
+import { HeaderIcon as HeaderIconType, IconSource } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
@@ -27,7 +27,10 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 };
 type HeaderNavigationProps = {
     /** A component to render for the navigation icon */
-    navigation?: HeaderIconType;
+    icon?: IconSource;
+
+    /** A callback function to call when the icon is pressed */
+    onPress?: () => void;
 
     /** Style to apply to the Touchable element */
     style?: StyleProp<ViewStyle>;
@@ -38,7 +41,7 @@ type HeaderNavigationProps = {
  * The HeaderNavigationIcon is a helper component that is used to properly size and space the main navigation icon (on the left) in the Header component.
  */
 export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => {
-    const { navigation, style } = props;
+    const { icon, onPress, style } = props;
     const { searching, onClose } = useSearch();
     const { color } = useColor();
     const defaultStyles = makeStyles();
@@ -60,15 +63,15 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
             </TouchableOpacity>
         );
     }
-    if (navigation) {
+    if (icon) {
         return (
             <TouchableOpacity
                 testID={'header-navigation'}
-                onPress={navigation.onPress}
+                onPress={onPress}
                 style={[defaultStyles.navigation, style]}
-                disabled={!navigation.onPress}
+                disabled={!onPress}
             >
-                <HeaderIcon IconClass={navigation.icon} />
+                <HeaderIcon icon={icon} />
             </TouchableOpacity>
         );
     }
