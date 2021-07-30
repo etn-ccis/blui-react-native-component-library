@@ -298,6 +298,8 @@ PODS:
     - React-Core (= 0.63.3)
     - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
+  - RNPXBVectorIcons (1.0.0):
+    - React
   - RNSVG (12.1.0):
     - React
   - RNVectorIcons (8.0.0):
@@ -354,6 +356,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNPXBVectorIcons (from `../node_modules/@pxblue/react-native-vector-icons`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -426,6 +429,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNPXBVectorIcons:
+    :path: "../node_modules/@pxblue/react-native-vector-icons"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
@@ -471,11 +476,12 @@ SPEC CHECKSUMS:
   React-RCTText: 65a6de06a7389098ce24340d1d3556015c38f746
   React-RCTVibration: 8e9fb25724a0805107fc1acc9075e26f814df454
   ReactCommon: 4167844018c9ed375cc01a843e9ee564399e53c3
+  RNPXBVectorIcons: 02e7490d4b67ddef77243f3f4193de9822ca940c
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: f67a1abce2ec73e62fe4606e8110e95a832bc859
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: e46deddcb1c68e27023cc7a7577b306e335ca1b7
+PODFILE CHECKSUM: b78905c9bf1517598ef784e4f92be165c66d6a7b
 
 COCOAPODS: 1.10.1
