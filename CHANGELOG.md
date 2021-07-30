@@ -1,6 +1,12 @@
 # Change Log
 
-## 5.2.0 (July 29, 2021)
+## v5.3.0 (Unpublished)
+
+### Added
+
+-   Deprecation warnings for component properties that will be changing in version 6.0.0.
+
+## v5.2.0 (July 29, 2021)
 
 ### Added
 

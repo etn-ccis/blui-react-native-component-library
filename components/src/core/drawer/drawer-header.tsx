@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { ComponentType, ReactNode, useCallback, useEffect } from 'react';
 import {
     StyleSheet,
     View,
@@ -18,6 +18,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { WrapIconProps } from '../icon-wrapper';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -107,7 +108,10 @@ export type DrawerHeaderProps = ViewProps & {
     fontColor?: string;
 
     /** Icon to use to the left of the header text */
-    icon?: HeaderIconType;
+    icon?: HeaderIconType | ComponentType<WrapIconProps>;
+
+    /** Callback to execute when the icon is pressed */
+    onIconPress?: () => void;
 
     /** First line of text in the header */
     title?: string;
@@ -135,6 +139,10 @@ export type DrawerHeaderProps = ViewProps & {
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
+/** Type guard to determine if they are using the old type for icon */
+const isOldIconFormat = (icon: HeaderIconType | ComponentType<WrapIconProps> | undefined): icon is HeaderIconType =>
+    typeof icon === 'object';
+
 /**
  * [DrawerHeader](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
@@ -149,7 +157,8 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         titleContent,
         backgroundImage,
         fontColor,
-        icon,
+        icon: iconProp,
+        onIconPress: onIconPressProp,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
         theme: themeOverride,
@@ -160,19 +169,33 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-
     const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT);
+
+    // Compatibility to facilitate updates
+    const isOldFormat = isOldIconFormat(iconProp);
+    const icon = isOldFormat ? (iconProp as HeaderIconType).icon : iconProp;
+    const onIconPress = isOldFormat ? (iconProp as HeaderIconType).onPress : onIconPressProp;
+    // Deprecation Warning
+    useEffect(() => {
+        // TODO Update docs
+        if (isOldFormat) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'icon' in DrawerHeader component will no longer support the object syntax in version 6.0.0. You should pass your icon directly to the 'icon' prop and use 'onIconPress' for the press callback function.`
+            );
+        }
+    }, [iconProp]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            const IconClass = icon.icon;
+            const IconClass = icon as ComponentType<WrapIconProps>;
             return (
                 <View style={[defaultStyles.icon, styles.icon]}>
                     <TouchableOpacity
                         testID={'drawer-header-navigation'}
-                        onPress={icon.onPress}
+                        onPress={onIconPress}
                         style={{ padding: 8, marginLeft: -8 }}
-                        disabled={!icon.onPress}
+                        disabled={!onIconPress}
                     >
                         <IconClass size={24} color={fontColor || 'white'} />
                     </TouchableOpacity>

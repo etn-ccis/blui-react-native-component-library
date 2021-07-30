@@ -70,6 +70,8 @@ to bring up a API documentation website (no interactive components).
 
 See the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for information on using these components.
 
+TODO: Add a section for upgrading from 5 -> 6
+
 ## NOTES
 
 This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - this library must be installed in your project in order to use the PX Blue components.

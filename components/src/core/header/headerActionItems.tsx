@@ -108,7 +108,7 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
                             onPress={actionItem.onPress}
                             style={[defaultStyles.actionItem, styles.actionItem]}
                         >
-                            <HeaderIcon IconClass={actionItem.icon} />
+                            <HeaderIcon icon={actionItem.icon} />
                         </TouchableOpacity>
                     );
                 })}

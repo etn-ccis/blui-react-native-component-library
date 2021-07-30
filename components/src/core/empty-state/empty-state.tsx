@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { ComponentType, useCallback, useEffect } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
@@ -43,8 +43,14 @@ export type EmptyStateProps = ViewProps & {
     /* A component to render for the primary icon */
     IconClass?: ComponentType<WrapIconProps>;
 
-    // TODO: Deprecate this since it is redundant with the other props
-    /** Props to spread to the primary icon component */
+    /* A component to render for the primary icon */
+    icon?: ComponentType<WrapIconProps>;
+
+    /**
+     * Props to spread to the primary icon component
+     *
+     * @deprecated in version 6.0.0
+     */
     IconProps?: { size?: number; color?: string };
 
     /** The size of the primary icon (100-200) */
@@ -83,6 +89,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         description,
         actions,
         IconClass,
+        icon: iconProp,
         iconColor,
         iconSize,
         IconProps = {},
@@ -93,6 +100,27 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const defaultStyles = makeStyles(theme, PixelRatio.getFontScale());
+
+    // Compatibility to facilitate updates
+    const Icon = iconProp || IconClass;
+    // Deprecation Warning
+    useEffect(() => {
+        // TODO Update docs
+        if (IconClass) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'IconClass' in EmptyState component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
+            );
+        }
+    }, [IconClass]);
+    useEffect(() => {
+        if (IconProps) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'IconProps' in EmptyState component has been deprecated and will be removed in version 6.0.0. You should update to use the 'iconColor' and 'iconSize' props instead.`
+            );
+        }
+    }, [IconProps]);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;
@@ -110,10 +138,10 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
-            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} {...IconProps} />;
+        if (Icon) {
+            return <Icon size={normalizeIconSize()} color={getColor(iconColor)} {...IconProps} />;
         }
-    }, [IconClass, IconProps, normalizeIconSize, getColor, iconColor]);
+    }, [Icon, IconProps, normalizeIconSize, getColor, iconColor]);
 
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>

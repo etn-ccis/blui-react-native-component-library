@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { ComponentType, useCallback, useEffect } from 'react';
 import {
     StyleSheet,
     View,
@@ -10,7 +10,7 @@ import {
     I18nManager,
     PixelRatio,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Subtitle1 } from '../typography';
 import * as Colors from '@pxblue/colors';
@@ -206,8 +206,15 @@ export type InfoListItemProps = ViewProps & {
      */
     iconAlign?: IconAlign;
 
-    /** A component to render for the icon */
+    /**
+     * A component to render for the icon
+     *
+     * @deprecated in version 6.0.0
+     */
     IconClass?: ComponentType<WrapIconProps>;
+
+    /** A component to render for the icon */
+    icon?: ComponentType<WrapIconProps>;
 
     /** Color to use for the icon */
     iconColor?: string;
@@ -294,6 +301,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         onPress,
         IconClass,
+        icon: iconProp,
         hidePadding,
         styles = {},
         theme: themeOverride,
@@ -303,6 +311,19 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const theme = useTheme(themeOverride);
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
+
+    // Compatibility to facilitate updates
+    const Icon = iconProp || IconClass;
+    // Deprecation Warning
+    useEffect(() => {
+        // TODO Update docs
+        if (IconClass) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'IconClass' in InfoListItem component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
+            );
+        }
+    }, [IconClass]);
 
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
@@ -317,14 +338,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     }, [iconColor, avatar, statusColor, theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
+        if (Icon) {
             return (
                 <View style={avatar ? [defaultStyles.avatar, styles.avatar] : [defaultStyles.icon, styles.icon]}>
-                    <IconClass size={24} color={getIconColor()} />
+                    <Icon size={24} color={getIconColor()} />
                 </View>
             );
         }
-    }, [IconClass, avatar, getIconColor, defaultStyles, styles]);
+    }, [Icon, avatar, getIconColor, defaultStyles, styles]);
 
     const getSubtitle = useCallback((): JSX.Element[] | null => {
         if (!subtitle) {
@@ -355,7 +376,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return rightComponent;
         } else if (chevron) {
             return (
-                <Icon
+                <MatIcon
                     name="chevron-right"
                     size={24}
                     color={theme.colors.text}

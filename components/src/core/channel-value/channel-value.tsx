@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { ComponentType, useCallback, useEffect } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { Body1, Subtitle1 } from '../typography';
@@ -20,8 +20,26 @@ export type ChannelValueProps = ViewProps & {
     /** A component to render for the icon */
     IconClass?: ComponentType<WrapIconProps>;
 
-    /** Props to spread to the icon component */
+    /**
+     * Props to spread to the icon component
+     *
+     * @deprecated in version 6.0.0
+     */
     IconProps?: { size?: number; color?: string };
+
+    /**
+     * The size of the icon
+     *
+     * Default: fontSize
+     */
+    iconSize?: number;
+
+    /**
+     * The color of the primary icon
+     *
+     * Default: Theme.colors.text
+     */
+    iconColor?: string;
 
     /** Text to display for the units (light text) */
     units?: string;
@@ -71,10 +89,34 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         styles = {},
         style,
         IconProps = {},
+        iconColor: iconColorProp,
+        iconSize: iconSizeProp,
         theme: themeOverride,
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
+
+    // Compatibility to facilitate updates
+    const iconColor = iconColorProp || IconProps?.color;
+    const iconSize = iconSizeProp || IconProps?.size;
+    // Deprecation Warning
+    useEffect(() => {
+        // TODO Update docs
+        if (IconClass) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'IconClass' in ChannelValue component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
+            );
+        }
+    }, [IconClass]);
+    useEffect(() => {
+        if (IconProps) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'IconProps' in ChannelValue component has been deprecated and will be removed in version 6.0.0. You should update to use the new 'iconColor' and 'iconSize' props instead.`
+            );
+        }
+    }, [IconProps]);
 
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
@@ -87,11 +129,11 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         if (IconClass) {
             return (
                 <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
-                    <IconClass size={fontSize} color={getColor()} {...IconProps} />
+                    <IconClass size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
         }
-    }, [IconClass, fontSize, getColor, IconProps]);
+    }, [IconClass, fontSize, getColor, iconColor, iconSize]);
 
     const getUnits = useCallback((): JSX.Element | undefined => {
         if (units) {
