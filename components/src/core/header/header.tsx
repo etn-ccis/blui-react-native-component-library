@@ -189,6 +189,7 @@ export type HeaderProps = ViewProps & {
         backgroundImage?: StyleProp<ImageStyle>;
         content?: StyleProp<ViewStyle>;
         navigationIcon?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
         textContent?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
         subtitle?: StyleProp<TextStyle>;
@@ -730,7 +731,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     <HeaderNavigationIcon
                                         icon={Icon}
                                         onPress={onIconPress}
-                                        style={styles.navigationIcon}
+                                        style={[styles.navigationIcon, styles.icon]}
                                     />
                                     <HeaderContent
                                         theme={theme}

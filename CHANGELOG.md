@@ -6,6 +6,10 @@
 
 -   Deprecation warnings for component properties that will be changing in version 6.0.0.
 
+### Fixed
+
+-   Minor sizing issue in the `<Header>` when rotating device from landscape to portrait orientation.
+
 ## v5.2.0 (July 29, 2021)
 
 ### Added

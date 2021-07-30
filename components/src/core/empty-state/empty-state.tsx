@@ -40,10 +40,10 @@ export type EmptyStateProps = ViewProps & {
     /** The secondary text to display (second line) */
     description?: string;
 
-    /** A component to render for the primary icon 
-     * 
+    /** A component to render for the primary icon
+     *
      * @deprecated in version 6.0.0
-    */
+     */
     IconClass?: ComponentType<WrapIconProps>;
 
     /** A component to render for the primary icon */
