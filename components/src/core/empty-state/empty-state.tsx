@@ -108,7 +108,6 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const Icon = iconProp || IconClass;
     // Deprecation Warning
     useEffect(() => {
-        // TODO Update docs
         if (IconClass) {
             // eslint-disable-next-line no-console
             console.warn(

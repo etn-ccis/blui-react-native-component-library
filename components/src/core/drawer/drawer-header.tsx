@@ -177,7 +177,6 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const onIconPress = isOldFormat ? (iconProp as HeaderIconType).onPress : onIconPressProp;
     // Deprecation Warning
     useEffect(() => {
-        // TODO Update docs
         if (isOldFormat) {
             // eslint-disable-next-line no-console
             console.warn(

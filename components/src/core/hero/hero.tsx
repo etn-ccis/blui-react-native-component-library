@@ -164,7 +164,6 @@ export const Hero: React.FC<HeroProps> = (props) => {
     const valueIcon = valueIconProp || ValueIconClass;
     // Deprecation Warning
     useEffect(() => {
-        // TODO Update docs
         if (IconClass) {
             // eslint-disable-next-line no-console
             console.warn(
@@ -173,7 +172,6 @@ export const Hero: React.FC<HeroProps> = (props) => {
         }
     }, [IconClass]);
     useEffect(() => {
-        // TODO Update docs
         if (ValueIconClass) {
             // eslint-disable-next-line no-console
             console.warn(

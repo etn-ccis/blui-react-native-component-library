@@ -101,7 +101,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const iconSize = iconSizeProp || IconProps?.size;
     // Deprecation Warning
     useEffect(() => {
-        // TODO Update docs
         if (IconClass) {
             // eslint-disable-next-line no-console
             console.warn(

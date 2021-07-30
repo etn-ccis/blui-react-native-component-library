@@ -272,7 +272,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const onIconPress = onIconPressProp || navigation?.onPress;
     // Deprecation Warning
     useEffect(() => {
-        // TODO Update docs
         if (navigation) {
             // eslint-disable-next-line no-console
             console.warn(
