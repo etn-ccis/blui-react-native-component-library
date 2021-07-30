@@ -10,12 +10,12 @@ An invisible utility component that acts as a spacer element in various layouts.
 
 ```tsx
 import { Spacer } from '@pxblue/react-native-components';
-...
+
 <View style={{ display: 'flex' }}>
     {/* Left Content */}
     <Spacer />
     {/* Right Content */}
-</View>
+</View>;
 ```
 
 > Using flex elements (like Spacer) inside of a [ScrollView](https://reactnative.dev/docs/scrollview) will not have an effect unless the parent has a fixed height.

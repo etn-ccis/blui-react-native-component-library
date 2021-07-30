@@ -8,14 +8,13 @@ The `<CollapsibleHeaderLayout>` component is used as a full-page layout componen
 
 ```tsx
 import { CollapsibleHeaderLayout } from '@pxblue/react-native-components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
-...
+
 <CollapsibleHeaderLayout
     HeaderProps={
         title=: 'Valley Forge',
         subtitle: 'The Last Stand',
-        navigation: {icon: MenuIcon, onPress: () => {}},
+        icon: {name: 'menu'},
+        onIconPress: () => {},
         actionItems: [
             {icon: MoreIcon, onPress: () => {}}
         ]
