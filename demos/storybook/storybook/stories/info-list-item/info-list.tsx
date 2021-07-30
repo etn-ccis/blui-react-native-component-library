@@ -17,7 +17,7 @@ storiesOf('InfoListItem', module).add('within a full list', () => (
     <FlatList<InfoListItemProps>
         data={[
             {
-                IconClass: DeviceActivating,
+                icon: DeviceActivating,
                 title: 'Status',
                 iconAlign: 'center',
                 statusColor: Colors.green[500],
@@ -30,7 +30,7 @@ storiesOf('InfoListItem', module).add('within a full list', () => (
                 ),
             },
             {
-                IconClass: Voltage,
+                icon: Voltage,
                 avatar: true,
                 title: 'Input Voltage',
                 subtitle: ['Phase A', 'Phase B', 'Phase C'],
@@ -45,7 +45,7 @@ storiesOf('InfoListItem', module).add('within a full list', () => (
                 ),
             },
             {
-                IconClass: Voltage,
+                icon: Voltage,
                 avatar: true,
                 title: 'Output Voltage',
                 subtitle: ['Phase A', 'Phase B', 'Phase C'],
@@ -65,7 +65,7 @@ storiesOf('InfoListItem', module).add('within a full list', () => (
                 },
             },
             {
-                IconClass: Device,
+                icon: Device,
                 iconAlign: 'center',
                 title: 'Output Current',
                 rightComponent: (
@@ -79,7 +79,7 @@ storiesOf('InfoListItem', module).add('within a full list', () => (
                 ),
             },
             {
-                IconClass: Temp,
+                icon: Temp,
                 iconAlign: 'center',
                 title: 'Temperature',
                 rightComponent: <ChannelValue value={'68'} units={'°F'} />,

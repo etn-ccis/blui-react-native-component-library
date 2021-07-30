@@ -40,8 +40,8 @@ storiesOf('ChannelValue', module)
                 <ChannelValue
                     value={'123'}
                     units={'hz'}
-                    IconClass={WrappedTrending}
-                    IconProps={{ color: color('color', Colors.red[500]) }}
+                    icon={WrappedTrending}
+                    iconColor={color('color', Colors.red[500])}
                 />
             </View>
         ),
@@ -55,8 +55,8 @@ storiesOf('ChannelValue', module)
                     value={'123'}
                     units={'hz'}
                     fontSize={number('fontSize', 48)}
-                    IconClass={WrappedTrending}
-                    IconProps={{ color: Colors.red[500] }}
+                    icon={WrappedTrending}
+                    iconColor={Colors.red[500]}
                 />
             </View>
         ),
@@ -68,8 +68,8 @@ storiesOf('ChannelValue', module)
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
                     value={text('value', text('value', '123'))}
-                    IconClass={boolean('Show Icon', true) ? WrappedTrending : undefined}
-                    IconProps={{ color: color('icon color', Colors.red[500]) }}
+                    icon={boolean('Show Icon', true) ? WrappedTrending : undefined}
+                    iconColor={color('icon color', Colors.red[500])}
                     units={text('units', 'hz')}
                     prefix={boolean('prefix', false)}
                     fontSize={number('fontSize', 16)}

@@ -41,7 +41,7 @@ storiesOf('InfoListItem', module)
                 title={'Info List Item'}
                 // TODO: make this work
                 // iconAlign={select('iconAlign', ['left', 'center', 'right'], 'left')}
-                IconClass={AlarmIcon}
+                icon={AlarmIcon}
                 iconColor={color('iconColor', Colors.black[500])}
                 subtitle={'with an icon'}
             />
@@ -53,7 +53,7 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={TempIcon}
+                icon={TempIcon}
                 subtitle={[
                     <ChannelValue key={'temp1'} value={'50'} units={'°C'} />,
                     <ChannelValue key={'temp2'} value={'55'} units={'°C'} />,
@@ -75,7 +75,7 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={AIcon}
+                icon={AIcon}
                 avatar={boolean('avatar', true)}
                 subtitle={'with an avatar and configurable status color'}
                 statusColor={color('statusColor', Colors.green[700])}
@@ -88,7 +88,7 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={LeafIcon}
+                icon={LeafIcon}
                 iconColor={Colors.black[500]}
                 subtitle={'With a configurable background color'}
                 fontColor={Colors.black[500]}
@@ -102,7 +102,7 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={'Info List Item'}
-                IconClass={DeviceIcon}
+                icon={DeviceIcon}
                 subtitle={'with a right component'}
                 rightComponent={
                     <ChannelValue
@@ -119,7 +119,7 @@ storiesOf('InfoListItem', module)
         () => (
             <InfoListItem
                 title={text('title', 'Info List Item')}
-                IconClass={DeviceIcon}
+                icon={DeviceIcon}
                 subtitle={text('subtitle', 'with all customizable properties')}
                 info={text('info', 'more info...')}
                 onPress={

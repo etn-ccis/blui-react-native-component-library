@@ -13,17 +13,17 @@ import * as Colors from '@pxblue/colors';
 
 storiesOf('EmptyState', module)
     .addDecorator(withKnobs)
-    .add('with basic usage', () => <EmptyState IconClass={NoLocation} title={text('title', 'Location Unknown')} />)
+    .add('with basic usage', () => <EmptyState icon={NoLocation} title={text('title', 'Location Unknown')} />)
     .add('with description', () => (
         <EmptyState
-            IconClass={LocationOff}
+            icon={LocationOff}
             title={text('title', 'Location Services Disabled')}
             description={text('description', 'Enable Location Services via Settings to receive GPS information.')}
         />
     ))
     .add('with actions', () => (
         <EmptyState
-            IconClass={Devices}
+            icon={Devices}
             title={'No Devices'}
             description={'Check your network connection or add a new device.'}
             actions={
@@ -50,7 +50,7 @@ storiesOf('EmptyState', module)
             imageStyle={{ opacity: 0.2 }}
         >
             <EmptyState
-                IconClass={TrendingUp}
+                icon={TrendingUp}
                 title={text('title', 'Predictions Page Coming Soon')}
                 description={text('description', 'A fully redesigned predictions page is coming in our next release!')}
                 actions={<Button mode={'outlined'}>{text('button title', 'Learn More')}</Button>}

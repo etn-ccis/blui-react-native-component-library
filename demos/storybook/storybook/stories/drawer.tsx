@@ -217,9 +217,7 @@ storiesOf('Drawer', module)
             <DrawerHeader
                 title={text('title', 'Drawer Title')}
                 subtitle={text('subtitle', 'Drawer Subtitle')}
-                icon={{
-                    icon: Menu,
-                }}
+                icon={Menu}
             />
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
@@ -230,9 +228,7 @@ storiesOf('Drawer', module)
         <Drawer>
             <DrawerHeader
                 backgroundImage={farmBgImage}
-                icon={{
-                    icon: Menu,
-                }}
+                icon={Menu}
                 titleContent={
                     <View style={{ zIndex: 1, paddingLeft: 20, paddingTop: 8, flex: 1, flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
@@ -253,9 +249,7 @@ storiesOf('Drawer', module)
             <DrawerHeader
                 title={'Drawer'}
                 subtitle={'with a custom subheader'}
-                icon={{
-                    icon: Menu,
-                }}
+                icon={Menu}
             />
             <DrawerSubheader divider={boolean('divider', true)}>
                 <View style={{ backgroundColor: Colors.red[500], paddingVertical: 8 }}>
@@ -265,7 +259,7 @@ storiesOf('Drawer', module)
                         subtitle={'4 overheating devices'}
                         iconColor={Colors.white[50]}
                         fontColor={Colors.white[50]}
-                        IconClass={Temp}
+                        icon={Temp}
                     />
                 </View>
             </DrawerSubheader>
@@ -283,9 +277,7 @@ storiesOf('Drawer', module)
                     <DrawerHeader
                         title={'Drawer'}
                         subtitle={'with multiple NavGroups'}
-                        icon={{
-                            icon: Menu,
-                        }}
+                        icon={Menu}
                     />
                     <DrawerBody>
                         <DrawerNavGroup title={text('NavGroup 1 title', 'First DrawerNavGroup')} items={navItems1} />
@@ -308,9 +300,7 @@ storiesOf('Drawer', module)
             <DrawerHeader
                 title={'Drawer'}
                 subtitle={'with nested nav items'}
-                icon={{
-                    icon: Menu,
-                }}
+                icon={Menu}
             />
             <DrawerBody>
                 <DrawerNavGroup
@@ -328,9 +318,7 @@ storiesOf('Drawer', module)
             <DrawerHeader
                 title={'Drawer'}
                 subtitle={'with a footer'}
-                icon={{
-                    icon: Menu,
-                }}
+                icon={Menu}
             />
             <DrawerBody>
                 <DrawerNavGroup items={navItems1} />
@@ -368,9 +356,7 @@ storiesOf('Drawer', module)
                     backgroundImage={boolean('Show Background Image', false, header) ? farmBgImage : undefined}
                     backgroundColor={color('backgroundColor', Colors.blue[500], header)}
                     fontColor={color('fontColor', Colors.white[50], header)}
-                    icon={{
-                        icon: Menu,
-                    }}
+                    icon={Menu}
                 />
                 <DrawerBody>
                     <DrawerNavGroup

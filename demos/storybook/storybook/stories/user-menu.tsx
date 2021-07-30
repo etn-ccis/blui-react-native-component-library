@@ -12,9 +12,9 @@ const ExitToAppIcon = wrapIcon({ IconClass: MatIcon, name: 'exit-to-app', flip: 
 const avatarTestImage = require('../assets/test-avatar.png');
 
 const menuItems: InfoListItemProps[] = [
-    { title: 'Change Password', IconClass: VpnKeyIcon },
-    { title: 'Preferences', IconClass: SettingsIcon },
-    { title: 'Log Out', IconClass: ExitToAppIcon },
+    { title: 'Change Password', icon: VpnKeyIcon },
+    { title: 'Preferences', icon: SettingsIcon },
+    { title: 'Log Out', icon: ExitToAppIcon },
 ];
 
 storiesOf('UserMenu', module)

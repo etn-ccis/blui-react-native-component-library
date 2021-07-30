@@ -11,7 +11,7 @@ const Line = wrapIcon({
 
 describe('EmptyState Tests ', () => {
     it('Icon Renders', () => {
-        const tree = renderer.create(<EmptyState title={'Test'} IconClass={Line} />).toJSON();
+        const tree = renderer.create(<EmptyState title={'Test'} icon={Line} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 

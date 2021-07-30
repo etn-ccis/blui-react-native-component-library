@@ -36,7 +36,7 @@ storiesOf('ListItemTag', module)
                     <InfoListItem
                         title={'@pxblue/react-themes'}
                         subtitle={'Light and dark themes supported'}
-                        IconClass={Build}
+                        icon={Build}
                         rightComponent={
                             <ListItemTag
                                 label={'BUILD PASSING'}

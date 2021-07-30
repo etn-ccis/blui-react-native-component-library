@@ -164,7 +164,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.black[500]}
                                 value={98}
                                 units={'°F'}
-                                IconClass={Temp}
+                                icon={Temp}
                             />,
                             <Hero
                                 key={'hero_2'}
@@ -173,7 +173,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.lightBlue[300]}
                                 value={54}
                                 units={'%'}
-                                IconClass={Humidity}
+                                icon={Humidity}
                             />,
                         ].slice(0, heroCount)}
                     </HeroBanner>
@@ -225,7 +225,7 @@ storiesOf('ScoreCard', module)
                             iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
-                            IconClass={A}
+                            icon={A}
                         />,
                     ]}
                 </HeroBanner>
@@ -236,19 +236,19 @@ storiesOf('ScoreCard', module)
                     title={'1 Alarm'}
                     iconColor={Colors.red[500]}
                     fontColor={Colors.red[500]}
-                    IconClass={wrapIcon({ IconClass: MatIcon, name: 'notifications' })}
+                    icon={wrapIcon({ IconClass: MatIcon, name: 'notifications' })}
                     style={{ height: 40 }}
                 />
                 <InfoListItem
                     title={'1 Event'}
                     iconColor={Colors.blue[500]}
                     fontColor={Colors.blue[500]}
-                    IconClass={wrapIcon({ IconClass: MatIcon, name: 'info' })}
+                    icon={wrapIcon({ IconClass: MatIcon, name: 'info' })}
                     style={{ height: 40 }}
                 />
                 <InfoListItem
                     title={'Online'}
-                    IconClass={wrapIcon({ IconClass: MatIcon, name: 'cloud' })}
+                    icon={wrapIcon({ IconClass: MatIcon, name: 'cloud' })}
                     style={{ height: 40 }}
                     styles={{ title: { fontWeight: 'normal' } }}
                 />
@@ -310,7 +310,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.black[500]}
                                 value={98}
                                 units={'°F'}
-                                IconClass={Temp}
+                                icon={Temp}
                             />,
                             <Hero
                                 key={'hero_2'}
@@ -319,7 +319,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.lightBlue[300]}
                                 value={54}
                                 units={'%'}
-                                IconClass={Humidity}
+                                icon={Humidity}
                             />,
                         ].slice(0, heroCount)}
                     </HeroBanner>
@@ -341,19 +341,19 @@ storiesOf('ScoreCard', module)
                         title={'1 Alarm'}
                         iconColor={Colors.red[500]}
                         fontColor={Colors.red[500]}
-                        IconClass={wrapIcon({ IconClass: MatIcon, name: 'notifications' })}
+                        icon={wrapIcon({ IconClass: MatIcon, name: 'notifications' })}
                         style={{ height: 40 }}
                     />
                     <InfoListItem
                         title={'1 Event'}
                         iconColor={Colors.blue[500]}
                         fontColor={Colors.blue[500]}
-                        IconClass={wrapIcon({ IconClass: MatIcon, name: 'info' })}
+                        icon={wrapIcon({ IconClass: MatIcon, name: 'info' })}
                         style={{ height: 40 }}
                     />
                     <InfoListItem
                         title={'Online'}
-                        IconClass={wrapIcon({ IconClass: MatIcon, name: 'cloud' })}
+                        icon={wrapIcon({ IconClass: MatIcon, name: 'cloud' })}
                         style={{ height: 40 }}
                         styles={{ title: { fontWeight: 'normal' } }}
                     />
