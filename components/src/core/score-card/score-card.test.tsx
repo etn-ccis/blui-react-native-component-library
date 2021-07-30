@@ -2,9 +2,9 @@ import React from 'react';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { ScoreCard } from '.';
 import { View } from 'react-native';
-import { Hero, wrapIcon } from '..';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
+import { Hero } from '..';
+import { IconFamily } from '../__types__';
+const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('ScoreCard', () => {
     describe('headerText', () => {

@@ -15,7 +15,7 @@ import {
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { EdgeInsets, HeaderIcon as HeaderIconType, IconSource } from '../__types__';
+import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 import { Icon } from '../icon-wrapper';
@@ -154,7 +154,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         backgroundImage,
         fontColor,
         icon,
-        onIconPress = () => {},
+        onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
         theme: themeOverride,

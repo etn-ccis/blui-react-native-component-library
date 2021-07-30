@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState, useRef, useEffect, ReactNode } from 'react';
+import React, { useCallback, useState, useRef, useEffect, ReactNode } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -242,7 +242,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         fontColor,
         info,
         icon,
-        onIconPress = () => { },
+        onIconPress,
         scrollPosition = new Animated.Value(0),
         searchableConfig,
         startExpanded,
@@ -704,7 +704,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     style={styles.backgroundImage}
                                 />
                                 <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon icon={icon} onPress={onIconPress} style={styles.navigationIcon} />
+                                    <HeaderNavigationIcon
+                                        icon={icon}
+                                        onPress={onIconPress}
+                                        style={styles.navigationIcon}
+                                    />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}

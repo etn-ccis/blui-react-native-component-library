@@ -1,15 +1,16 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
+import { EmptyState } from '@pxblue/react-native-components';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-const NoLocation = wrapIcon({ IconClass: MaterialIcon, name: 'not-listed-location' });
-const LocationOff = wrapIcon({ IconClass: MaterialIcon, name: 'location-off' });
-const Devices = wrapIcon({ IconClass: MaterialIcon, name: 'devices' });
-const TrendingUp = wrapIcon({ IconClass: MaterialIcon, name: 'trending-up' });
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { ImageBackground } from 'react-native';
 import { Button } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
+const NoLocation: IconFamily = { name: 'not-listed-location' };
+const LocationOff: IconFamily = { name: 'location-off' };
+const Devices: IconFamily = { name: 'devices' };
+const TrendingUp: IconFamily = { name: 'trending-up' };
 
 storiesOf('EmptyState', module)
     .addDecorator(withKnobs)

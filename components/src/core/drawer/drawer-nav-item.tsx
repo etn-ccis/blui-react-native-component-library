@@ -195,10 +195,10 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         activeItemIconColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-        collapseIcon = {family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less'},
+        collapseIcon = { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },
         disableActiveItemParentStyles = false,
         divider,
-        expandIcon = {family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more'},
+        expandIcon = { family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more' },
         hidePadding,
         itemFontColor = theme.colors.text,
         itemIconColor = theme.colors.text,
@@ -274,7 +274,12 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         }
         return (
             <View style={[defaultStyles.expandIcon, styles.expandIcon]}>
-                <Icon source={collapseIcon && expanded ? collapseIcon : expandIcon} size={24} color={theme.colors.text} allowFontScaling />
+                <Icon
+                    source={collapseIcon && expanded ? collapseIcon : expandIcon}
+                    size={24}
+                    color={theme.colors.text}
+                    allowFontScaling
+                />
             </View>
         );
     }, [items, children, styles, defaultStyles, collapseIcon, expanded, expandIcon]);

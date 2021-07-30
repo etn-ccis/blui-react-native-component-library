@@ -2,38 +2,24 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { text, withKnobs, color, boolean, number } from '@storybook/addon-knobs';
 import { centered } from '../decorators';
-import { Hero, ChannelValue, wrapIcon, HeroBanner } from '@pxblue/react-native-components';
-import _Temp from '@pxblue/icons-svg/temp.svg';
-import _A from '@pxblue/icons-svg/grade_a.svg';
-import _B from '@pxblue/icons-svg/grade_b.svg';
-import _Current from '@pxblue/icons-svg/current_circled.svg';
-import _Fan from '@pxblue/icons-svg/fan.svg';
-import _Battery from '@pxblue/icons-svg/battery.svg';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Hero, ChannelValue, HeroBanner } from '@pxblue/react-native-components';
 import * as Colors from '@pxblue/colors';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
-const Clock = wrapIcon({ IconClass: Icon, name: 'clock-outline' });
-const Temp = wrapIcon({ IconClass: _Temp });
-const Battery = wrapIcon({ IconClass: _Battery });
-const A = wrapIcon({ IconClass: _A });
-const B = wrapIcon({ IconClass: _B });
-const Fan = wrapIcon({ IconClass: _Fan });
-const Current = wrapIcon({ IconClass: _Current });
-const TrendingUp = wrapIcon({ IconClass: MaterialIcon, name: 'trending-up' });
+const Clock: IconFamily = { family: 'material-community', name: 'clock-outline' };
+const Temp: IconFamily = { family: 'pxblue', name: 'temp' };
+const Battery: IconFamily = { family: 'pxblue', name: 'battery' };
+const A: IconFamily = { family: 'pxblue', name: 'grade_a' };
+const B: IconFamily = { family: 'pxblue', name: 'grade_b' };
+const Fan: IconFamily = { family: 'pxblue', name: 'fan' };
+const Current: IconFamily = { family: 'pxblue', name: 'current_circled' };
+const TrendingUp: IconFamily = { family: 'material', name: 'trending-up' };
 
 const heroes = [
     <Hero key={'hero_1'} label={'Healthy'} value={96} units={'/100'} icon={A} iconColor={Colors.green[500]} />,
     <Hero key={'hero_2'} label={'Load'} value={'90'} units={'%'} icon={Current} iconColor={Colors.yellow[500]} />,
     <Hero key={'hero_3'} label={'Temp'} value={'55'} units={'C'} icon={Temp} iconColor={Colors.green[500]} />,
-    <Hero
-        key={'hero_4'}
-        label={'Battery'}
-        value={'96'}
-        units={'/100'}
-        icon={Battery}
-        iconColor={Colors.green[500]}
-    />,
+    <Hero key={'hero_4'} label={'Battery'} value={'96'} units={'/100'} icon={Battery} iconColor={Colors.green[500]} />,
 ];
 
 storiesOf('Hero', module)

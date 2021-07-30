@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
     View,
     StyleSheet,
@@ -13,8 +13,9 @@ import {
 } from 'react-native';
 import * as Typography from '../typography';
 import { useTheme, Card, Divider } from 'react-native-paper';
-import { HeaderIcon } from '../__types__';
+import { HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Icon } from '../icon-wrapper';
 
 const backgroundImageStyles = StyleSheet.create({
     root: {
@@ -211,9 +212,9 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
 
     const getIcon = useCallback(
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        (IconClass: ComponentType<{ size: number; color: string }>): JSX.Element | undefined => {
-            if (IconClass) {
-                return <IconClass size={24} color={color} />;
+        (icon: IconSource): JSX.Element | undefined => {
+            if (icon) {
+                return <Icon source={icon} size={24} color={color} />;
             }
         },
         [color]

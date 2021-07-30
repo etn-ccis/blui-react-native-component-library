@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { number, withKnobs } from '@storybook/addon-knobs';
-import { CollapsibleHeaderLayout, wrapIcon } from '@pxblue/react-native-components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { CollapsibleHeaderLayout } from '@pxblue/react-native-components';
 
-const MailIcon = wrapIcon({ IconClass: Icon, name: 'mail' });
-const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
-const MoreIcon = wrapIcon({ IconClass: Icon, name: 'more-vert' });
-const CloudIcon = wrapIcon({ IconClass: Icon, name: 'cloud-upload' });
+const MailIcon: IconFamily = { name: 'mail' };
+const MenuIcon: IconFamily = { name: 'menu' };
+const MoreIcon: IconFamily = { name: 'more-vert' };
+const CloudIcon: IconFamily = { name: 'cloud-upload' };
 import { Text, View } from 'react-native';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
 storiesOf('CollapsibleHeaderLayout', module)
     .addDecorator(withKnobs)
@@ -17,11 +17,9 @@ storiesOf('CollapsibleHeaderLayout', module)
             HeaderProps={{
                 title: 'Title Text',
                 subtitle: 'Subtitle Text',
-                navigation: {
-                    icon: MenuIcon,
-                    onPress: (): void => {
-                        /* do nothing */
-                    },
+                icon: MenuIcon,
+                onIconPress: (): void => {
+                    /* do nothing */
                 },
                 actionItems: [
                     {

@@ -1,13 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Button } from 'react-native-paper';
-import { wrapIcon, EmptyState } from '..';
+import { EmptyState } from '..';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Line = wrapIcon({
-    IconClass: MatCommunityIcon,
+import { IconFamily } from '../__types__';
+
+const Line: IconFamily = {
+    family: 'material-community',
     name: 'chart-line-variant',
-});
+};
 
 describe('EmptyState Tests ', () => {
     it('Icon Renders', () => {

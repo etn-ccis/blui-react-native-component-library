@@ -1,25 +1,21 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { InfoListItem, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
+import { InfoListItem, ChannelValue } from '@pxblue/react-native-components';
 import { text, boolean, withKnobs, color } from '@storybook/addon-knobs';
-import Leaf from '@pxblue/icons-svg/leaf.svg';
-import Temp from '@pxblue/icons-svg/temp.svg';
-import A from '@pxblue/icons-svg/grade_a.svg';
-import Device from '@pxblue/icons-svg/device.svg';
 import { framedRow } from '../../decorators';
 import * as Colors from '@pxblue/colors';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
 const notes = {
     notes:
         'The borders are NOT part of the component; they are provided for framing only. Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
 };
 
-const LeafIcon = wrapIcon({ IconClass: Leaf });
-const AlarmIcon = wrapIcon({ IconClass: MatIcon, name: 'alarm' });
-const TempIcon = wrapIcon({ IconClass: Temp });
-const DeviceIcon = wrapIcon({ IconClass: Device });
-const AIcon = wrapIcon({ IconClass: A });
+const LeafIcon: IconFamily = { family: 'pxblue', name: 'leaf' };
+const AlarmIcon: IconFamily = { name: 'alarm' };
+const TempIcon: IconFamily = { family: 'pxblue', name: 'temp' };
+const DeviceIcon: IconFamily = { family: 'pxblue', name: 'device' };
+const AIcon: IconFamily = { family: 'pxblue', name: 'grade_a' };
 storiesOf('InfoListItem', module)
     .addDecorator(withKnobs)
     .addDecorator(framedRow)

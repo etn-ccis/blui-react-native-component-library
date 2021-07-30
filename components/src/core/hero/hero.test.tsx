@@ -1,9 +1,10 @@
 import React from 'react';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
-import { Hero, ChannelValue, wrapIcon } from '..';
+import { Hero, ChannelValue } from '..';
 import { Text } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
+import { IconFamily } from '../__types__';
+
+const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('Hero', () => {
     describe('with only a label and icon', () => {

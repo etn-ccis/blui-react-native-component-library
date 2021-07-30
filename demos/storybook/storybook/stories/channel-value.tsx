@@ -1,17 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
-import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
+import { ChannelValue } from '@pxblue/react-native-components';
 import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import * as Colors from '@pxblue/colors';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
 const notes = {
     notes:
         'Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
 };
 
-const WrappedTrending = wrapIcon({ IconClass: MatIcon, name: 'trending-up' });
+const WrappedTrending: IconFamily = { name: 'trending-up' };
 
 storiesOf('ChannelValue', module)
     .addDecorator(withKnobs)
