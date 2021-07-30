@@ -9,6 +9,10 @@
 -   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
 -   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
 
+### Removed
+
+-   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
+
 
 ## 5.2.0 (July 28, 2021)
 

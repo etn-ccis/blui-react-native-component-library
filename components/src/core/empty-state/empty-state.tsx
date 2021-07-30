@@ -1,9 +1,10 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { IconSource } from '../__types__';
+import { Icon } from '../icon-wrapper';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -41,11 +42,7 @@ export type EmptyStateProps = ViewProps & {
     description?: string;
 
     /* A component to render for the primary icon */
-    IconClass?: ComponentType<WrapIconProps>;
-
-    // TODO: Deprecate this since it is redundant with the other props
-    /** Props to spread to the primary icon component */
-    IconProps?: { size?: number; color?: string };
+    icon?: IconSource;
 
     /** The size of the primary icon (100-200) */
     iconSize?: number;
@@ -82,10 +79,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         title,
         description,
         actions,
-        IconClass,
+        icon,
         iconColor,
         iconSize,
-        IconProps = {},
         styles = {},
         style,
         theme: themeOverride,
@@ -110,10 +106,10 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
-            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} {...IconProps} />;
+        if (icon) {
+            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
-    }, [IconClass, IconProps, normalizeIconSize, getColor, iconColor]);
+    }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
