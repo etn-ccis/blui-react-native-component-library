@@ -78,7 +78,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, headerHeight, theme]
+        [textColor, headerHeight, theme, REGULAR_HEIGHT, EXTENDED_HEIGHT]
     );
 
     return (
@@ -196,7 +196,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, theme, headerHeight]
+        [textColor, theme, headerHeight, REGULAR_HEIGHT, EXTENDED_HEIGHT]
     );
 
     if (info) {
