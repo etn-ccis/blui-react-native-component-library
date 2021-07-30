@@ -15,7 +15,7 @@ import * as Typography from '../typography';
 import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 
 const backgroundImageStyles = StyleSheet.create({
     root: {

@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManag
 import { useTheme } from 'react-native-paper';
 import { Body1, Subtitle1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 import { IconSource } from '../__types__';
 
 const defaultStyles = StyleSheet.create({

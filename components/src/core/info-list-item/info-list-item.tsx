@@ -17,7 +17,7 @@ import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 import { IconSource } from '../__types__';
 
 type IconAlign = 'left' | 'center' | 'right';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 import { IconSource } from '../__types__';
 import { ICON_SIZE } from './constants';
 import { useColor } from './contexts/ColorContextProvider';

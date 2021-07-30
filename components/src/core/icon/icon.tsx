@@ -7,7 +7,7 @@ import PXBIcon from '@pxblue/react-native-vector-icons';
 import { Body1 } from '../typography';
 import { useTheme } from 'react-native-paper';
 
-type IconProps = IconComponentProps & {
+export type IconProps = IconComponentProps & {
     source: IconSource;
     /**
      * @optional

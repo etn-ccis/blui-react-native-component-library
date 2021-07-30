@@ -13,7 +13,7 @@ import * as Colors from '@pxblue/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;

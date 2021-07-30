@@ -1,0 +1,273 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon Tests  renders in a component 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontSize": 100,
+        },
+        Object {},
+        Object {
+          "fontFamily": "PXBlueIcons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {},
+      ]
+    }
+  >
+    
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+        },
+        Object {
+          "writingDirection": "ltr",
+        },
+        Object {},
+        Object {
+          "fontFamily": "System",
+          "fontSize": 20,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        Object {},
+        undefined,
+        Array [
+          Object {
+            "marginTop": 32,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Test
+  </Text>
+</View>
+`;
+
+exports[`Icon Tests  renders with emoji source 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+      },
+      Object {
+        "writingDirection": "ltr",
+      },
+      Object {},
+      Object {
+        "fontFamily": "System",
+        "fontSize": 16,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+      },
+      Object {},
+      undefined,
+      Array [
+        Object {
+          "color": "#000000",
+          "fontSize": 24,
+        },
+      ],
+    ]
+  }
+>
+  🍇
+</Text>
+`;
+
+exports[`Icon Tests  renders with function source 1`] = `
+<Text
+  allowFontScaling={false}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 24,
+      },
+      undefined,
+      Object {
+        "fontFamily": "PXBlueIcons",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {},
+    ]
+  }
+>
+  
+</Text>
+`;
+
+exports[`Icon Tests  renders with local image source 1`] = `null`;
+
+exports[`Icon Tests  renders with material community object source 1`] = `
+<Text
+  allowFontScaling={true}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 24,
+      },
+      Object {},
+      Object {
+        "fontFamily": "Material Design Icons",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {},
+    ]
+  }
+>
+  󰄫
+</Text>
+`;
+
+exports[`Icon Tests  renders with material object source 1`] = `
+<Text
+  allowFontScaling={true}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 24,
+      },
+      Object {},
+      Object {
+        "fontFamily": "Material Icons",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {},
+    ]
+  }
+>
+  
+</Text>
+`;
+
+exports[`Icon Tests  renders with material object source 2`] = `
+<Text
+  allowFontScaling={true}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 24,
+      },
+      Object {},
+      Object {
+        "fontFamily": "Material Icons",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {},
+    ]
+  }
+>
+  
+</Text>
+`;
+
+exports[`Icon Tests  renders with pxb object source 1`] = `
+<Text
+  allowFontScaling={true}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 24,
+      },
+      Object {},
+      Object {
+        "fontFamily": "PXBlueIcons",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {},
+    ]
+  }
+>
+  
+</Text>
+`;
+
+exports[`Icon Tests  renders with remote image source 1`] = `
+<Image
+  accessibilityElementsHidden={true}
+  importantForAccessibility="no-hide-descendants"
+  source={
+    Object {
+      "uri": "https://raw.githubusercontent.com/pxblue/icons/dev/png/png48/account_settings_black500_48dp.png",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "height": 24,
+        "resizeMode": "contain",
+        "width": 24,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`Icon Tests  renders with string source 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+      },
+      Object {
+        "writingDirection": "ltr",
+      },
+      Object {},
+      Object {
+        "fontFamily": "System",
+        "fontSize": 16,
+        "fontWeight": "400",
+        "letterSpacing": 0,
+      },
+      Object {},
+      undefined,
+      Array [
+        Object {
+          "color": "#000000",
+          "fontSize": 24,
+        },
+      ],
+    ]
+  }
+>
+  String
+</Text>
+`;
+
+exports[`Icon Tests  renders with wrapped source 1`] = `<View />`;

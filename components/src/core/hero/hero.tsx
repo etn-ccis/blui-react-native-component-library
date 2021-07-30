@@ -13,7 +13,7 @@ import { ChannelValue } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 import { IconSource } from '../__types__';
 
 type HeroStyles = {

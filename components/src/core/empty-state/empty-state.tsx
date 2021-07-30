@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 
 type EmptyStateStyles = {
     root?: ViewStyle;

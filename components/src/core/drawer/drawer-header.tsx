@@ -18,7 +18,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
-import { Icon } from '../icon-wrapper';
+import { Icon } from '../icon';
 
 const makeStyles = (
     props: DrawerHeaderProps,
