@@ -34,16 +34,19 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
     });
 
 export type EmptyStateProps = ViewProps & {
-    /* The primary text to display (first line) */
+    /** The primary text to display (first line) */
     title: string;
 
-    /* The secondary text to display (second line) */
+    /** The secondary text to display (second line) */
     description?: string;
 
-    /* A component to render for the primary icon */
+    /** A component to render for the primary icon 
+     * 
+     * @deprecated in version 6.0.0
+    */
     IconClass?: ComponentType<WrapIconProps>;
 
-    /* A component to render for the primary icon */
+    /** A component to render for the primary icon */
     icon?: ComponentType<WrapIconProps>;
 
     /**
@@ -59,7 +62,7 @@ export type EmptyStateProps = ViewProps & {
     /** The color of the primary icon */
     iconColor?: string;
 
-    /* Additional components to render below the text (e.g., action buttons) */
+    /** Additional components to render below the text (e.g., action buttons) */
     actions?: JSX.Element;
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
