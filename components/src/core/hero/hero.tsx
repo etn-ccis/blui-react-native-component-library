@@ -62,7 +62,7 @@ export type HeroProps = ViewProps & {
      *
      * @deprecated in version 6.0.0
      */
-    IconClass: ComponentType<WrapIconProps>;
+    IconClass?: ComponentType<WrapIconProps>;
 
     /** A component to render for the primary icon  */
     icon?: ComponentType<WrapIconProps>;
