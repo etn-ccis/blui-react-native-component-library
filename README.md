@@ -70,7 +70,11 @@ to bring up a API documentation website (no interactive components).
 
 See the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for information on using these components.
 
-TODO: Add a section for upgrading from 5 -> 6
+### Upgrading from version 5 -> 6
+
+Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats along with several other prop changes related to icon usage.
+
+Version 5.3.0 has been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.3.0 and addressing these warnings before upgrading to version 6.
 
 ## NOTES
 
