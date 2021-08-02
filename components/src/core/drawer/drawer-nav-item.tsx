@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState, ComponentType } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager, PixelRatio } from 'react-native';
 import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
@@ -12,6 +12,7 @@ import { findChildByType, inheritSharedProps } from './utilities';
 import * as Colors from '@pxblue/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { WrapIconProps } from '../icon-wrapper';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -42,9 +43,8 @@ export type DrawerNavItemProps = AllSharedProps &
          */
         hidden?: boolean;
 
-        // TODO: Deprecate this any type and use the same thing we've been using for IconClass everywhere else.
         /** A component to render for the left icon */
-        icon?: any;
+        icon?: ComponentType<WrapIconProps>;
 
         /**
          * Is the item a parent / ancestor of the current activeItem.
@@ -320,7 +320,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             divider={showDivider ? 'full' : undefined}
                             statusColor={statusColor}
                             fontColor={active ? activeItemFontColor : itemFontColor}
-                            IconClass={icon}
+                            icon={icon}
                             iconColor={active ? activeItemIconColor : itemIconColor}
                             rightComponent={
                                 (actionComponent || rightComponent) && (

@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { ComponentType, useCallback, useEffect } from 'react';
 import {
     StyleSheet,
     TouchableOpacity,
@@ -57,8 +57,15 @@ export type HeroProps = ViewProps & {
     /** The text shown below the ChannelValue */
     label: string;
 
+    /**
+     * A component to render for the primary icon
+     *
+     * @deprecated in version 6.0.0
+     */
+    IconClass?: ComponentType<WrapIconProps>;
+
     /** A component to render for the primary icon  */
-    IconClass: ComponentType<WrapIconProps>;
+    icon?: ComponentType<WrapIconProps>;
 
     /**
      * The size of the primary icon (10-48)
@@ -91,8 +98,14 @@ export type HeroProps = ViewProps & {
     /** Value for the ChannelValue child */
     value?: number | string;
 
-    /** A component to render for the ChannelValue child */
+    /**
+     * A component to render for the ChannelValue child icon
+     *
+     * @deprecated in version 6.0.0
+     */
     ValueIconClass?: ComponentType<WrapIconProps>;
+    /** A component to render for the ChannelValue child icon */
+    valueIcon?: ComponentType<WrapIconProps>;
 
     /** Color to use for the ChannelValue text */
     valueColor?: string;
@@ -129,11 +142,13 @@ export const Hero: React.FC<HeroProps> = (props) => {
         label,
         value,
         ValueIconClass,
+        valueIcon: valueIconProp,
         valueColor,
         fontSize = 20,
         units,
         onPress,
         IconClass,
+        icon: iconProp,
         iconColor,
         iconSize,
         iconBackgroundColor,
@@ -143,6 +158,27 @@ export const Hero: React.FC<HeroProps> = (props) => {
         theme: themeOverride,
         ...viewProps
     } = props;
+
+    // Compatibility to facilitate updates
+    const Icon = iconProp || IconClass;
+    const valueIcon = valueIconProp || ValueIconClass;
+    // Deprecation Warning
+    useEffect(() => {
+        if (IconClass) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'IconClass' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
+            );
+        }
+    }, [IconClass]);
+    useEffect(() => {
+        if (ValueIconClass) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'ValueIconClass' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'valueIcon' prop instead.`
+            );
+        }
+    }, [ValueIconClass]);
 
     const theme = useTheme(themeOverride);
     const fontScale = PixelRatio.getFontScale();
@@ -164,10 +200,10 @@ export const Hero: React.FC<HeroProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
-            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} />;
+        if (Icon) {
+            return <Icon size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
-    }, [IconClass, normalizeIconSize, getColor, iconColor]);
+    }, [Icon, normalizeIconSize, getColor, iconColor]);
 
     return (
         <TouchableOpacity
@@ -190,7 +226,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                     <ChannelValue
                         value={value}
                         units={units}
-                        IconClass={ValueIconClass}
+                        IconClass={valueIcon}
                         color={valueColor}
                         fontSize={fontSize}
                     />

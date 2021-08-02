@@ -31,6 +31,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { WrapIconProps } from '../icon-wrapper';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -154,8 +155,18 @@ export type HeaderProps = ViewProps & {
     /** Optional header third line of text (hidden when collapsed) */
     info?: ReactNode;
 
-    /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
+    /**
+     * Icon to show to the left of the title, primarily used to trigger the menu / drawer
+     *
+     * @deprecated in version 6.0.0
+     */
     navigation?: HeaderIcon;
+
+    /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
+    icon?: ComponentType<WrapIconProps>;
+
+    /** Callback to execute when the icon is pressed */
+    onIconPress?: () => void;
 
     /**
      * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
@@ -178,6 +189,7 @@ export type HeaderProps = ViewProps & {
         backgroundImage?: StyleProp<ImageStyle>;
         content?: StyleProp<ViewStyle>;
         navigationIcon?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
         textContent?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
         subtitle?: StyleProp<TextStyle>;
@@ -239,6 +251,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
         fontColor,
         info,
         navigation,
+        icon: iconProp,
+        onIconPress: onIconPressProp,
         scrollPosition = new Animated.Value(0),
         searchableConfig,
         startExpanded,
@@ -252,6 +266,19 @@ export const Header: React.FC<HeaderProps> = (props) => {
         updateScrollView = (): void => {},
         ...viewProps
     } = props;
+
+    // Compatibility to facilitate updates
+    const Icon = iconProp || navigation?.icon;
+    const onIconPress = onIconPressProp || navigation?.onPress;
+    // Deprecation Warning
+    useEffect(() => {
+        if (navigation) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'navigation' in Header component has been deprecated and will be removed in version 6.0.0. You should update to use the new 'icon' and 'onIconPress' props instead.`
+            );
+        }
+    }, [navigation]);
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
 
@@ -700,7 +727,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     style={styles.backgroundImage}
                                 />
                                 <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon navigation={navigation} style={styles.navigationIcon} />
+                                    <HeaderNavigationIcon
+                                        icon={Icon}
+                                        onPress={onIconPress}
+                                        style={[styles.navigationIcon, styles.icon]}
+                                    />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}

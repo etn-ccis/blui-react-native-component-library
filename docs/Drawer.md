@@ -68,17 +68,18 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                           | Type                                   | Required | Default                |
-| ----------------- | ------------------------------------- | -------------------------------------- | -------- | ---------------------- |
-| backgroundColor   | The color used for the background     | `string`                               | no       | `theme.colors.primary` |
-| backgroundImage   | An image to display in the header     | `ImageSourcePropType`                  | no       |                        |
-| backgroundOpacity | The opacity of the background image   | `number`                               | no       | `0.3`                  |
-| fontColor         | The color of the text elements        | `string`                               | no       | `theme.colors.surface` |
-| icon              | Icon to show to the left of the title | `HeaderIcon` (see Header)              | no       |                        |
-| subtitle          | The second line of text               | `string`                               | no       |                        |
-| title             | The first line of text                | `string`                               | no       |                        |
-| titleContent      | Custom content for header title area  | `ReactNode`                            | no       |                        |
-| theme             | Theme value overrides                 | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
+| Prop Name         | Description                                    | Type                                                                            | Required | Default                |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- | -------- | ---------------------- |
+| backgroundColor   | The color used for the background              | `string`                                                                        | no       | `theme.colors.primary` |
+| backgroundImage   | An image to display in the header              | `ImageSourcePropType`                                                           | no       |                        |
+| backgroundOpacity | The opacity of the background image            | `number`                                                                        | no       | `0.3`                  |
+| fontColor         | The color of the text elements                 | `string`                                                                        | no       | `theme.colors.surface` |
+| icon              | Icon to show to the left of the title          | `HeaderIcon` (see Header) \| `React.Component<{ size: number, color: string }>` | no       |                        |
+| onIconPress       | A callback to execute when the icon is pressed | `() => void`                                                                    | no       |                        |
+| subtitle          | The second line of text                        | `string`                                                                        | no       |                        |
+| title             | The first line of text                         | `string`                                                                        | no       |                        |
+| titleContent      | Custom content for header title area           | `ReactNode`                                                                     | no       |                        |
+| theme             | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>`                                          | no       |                        |
 
 </div>
 
