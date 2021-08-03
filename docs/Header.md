@@ -37,7 +37,9 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 | expandedHeight     | The height of the header when expanded                                                                                     | `number`                                                                            | no       | 200                      |
 | fontColor          | Color of the title, subtitle, info, and icons in the header                                                                | `string`                                                                            | no       | `theme.colors.onPrimary` |
 | info               | Third line of text (hidden on collapse)                                                                                    | `ReactNode`                                                                         | no       |                          |
-| navigation         | Icon to show to the left of the title                                                                                      | `HeaderIcon`                                                                        | no       |                          |
+| icon               | Icon to show to the left of the title                                                                                      | `React.Component<{ size: number, color: string }>`                                  | no       |                          |
+| onIconPress        | A callback to execute when the icon is pressed                                                                             | `() => void`                                                                        | no       |                          |
+| ~~navigation~~     | Icon to show to the left of the title                                                                                      | `HeaderIcon`                                                                        | no       |                          |
 | scrollPosition     | Y-value of the linked ScrollView (dynamic variant only)                                                                    | `Animated.Value`                                                                    | no       |                          |
 | searchableConfig   | Configuration object for search behavior                                                                                   | `SearchableConfig`                                                                  | no       |                          |
 | startExpanded      | Renders header in the expanded state to start                                                                              | `boolean`                                                                           | no       | `false`                  |
@@ -55,20 +57,21 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
 
-| Name            | Description                                |
-| --------------- | ------------------------------------------ |
-| root            | Styles applied to the root element         |
-| actionItem      | Styles applied to the action icon(s)       |
-| actionPanel     | Styles applied to the actions container    |
-| avatar          | Styles applied to the action components    |
-| backgroundImage | Styles applied to the background image     |
-| content         | Styles applied to the content wrapper      |
-| info            | Styles applied to the info element         |
-| navigationIcon  | Styles applied to the navigation icon      |
-| search          | Styles applied to the search input element |
-| subtitle        | Styles applied to the subtitle element     |
-| textContent     | Styles applied to the text wrapper         |
-| title           | Styles applied to the title element        |
+| Name               | Description                                |
+| ------------------ | ------------------------------------------ |
+| root               | Styles applied to the root element         |
+| actionItem         | Styles applied to the action icon(s)       |
+| actionPanel        | Styles applied to the actions container    |
+| avatar             | Styles applied to the action components    |
+| backgroundImage    | Styles applied to the background image     |
+| content            | Styles applied to the content wrapper      |
+| info               | Styles applied to the info element         |
+| icon               | Styles applied to the navigation icon      |
+| ~~navigationIcon~~ | Styles applied to the navigation icon      |
+| search             | Styles applied to the search input element |
+| subtitle           | Styles applied to the subtitle element     |
+| textContent        | Styles applied to the text wrapper         |
+| title              | Styles applied to the title element        |
 
 # HeaderIcon
 

@@ -42,7 +42,8 @@ You can also supply an array of items that will be displayed as a character-sepa
 | fontColor         | Color to use for text elements                                  | `string`                                           | no       |                |
 | hidePadding       | Hide padding reserved for icons when there is no icon           | `boolean`                                          | no       | `false`        |
 | iconAlign         | Icon alignment when `avatar` is set to`false`                   | `'left'` \| `'center'` \| `'right'`                | no       | 'left'         |
-| IconClass         | A component to render for the icon                              | `React.Component<{ size: number, color: string }>` | no       |                |
+| icon              | A component to render for the icon                              | `React.Component<{ size: number, color: string }>` | no       |                |
+| ~~IconClass~~     | A component to render for the icon                              | `React.Component<{ size: number, color: string }>` | no       |                |
 | iconColor         | Color to use for the icon                                       | `string`                                           | no       |                |
 | info              | The text to show on the third line                              | `string` \| `Array<React.ReactNode>`               | no       |                |
 | leftComponent     | Custom content to render between the icon and the text elements | `JSX.Element`                                      | no       |                |

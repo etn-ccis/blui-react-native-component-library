@@ -34,13 +34,15 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | Prop Name           | Description                                     | Type                                               | Required | Default                |
 | ------------------- | ----------------------------------------------- | -------------------------------------------------- | -------- | ---------------------- |
 | label               | The text shown below the `ChannelValue`         | `string`                                           | yes      |                        |
-| IconClass           | A component to render for the primary icon      | `React.Component<{ size: number, color: string }>` | yes      |                        |
+| ~~IconClass~~       | A component to render for the primary icon      | `React.Component<{ size: number, color: string }>` | yes      |                        |
+| icon                | A component to render for the primary icon      | `React.Component<{ size: number, color: string }>` | yes      |                        |
 | iconSize            | The size of the primary icon (10-48)            | `number`                                           | no       | 36                     |
 | iconColor           | The color of the primary icon                   | `string`                                           | no       | `theme.colors.text`    |
 | iconBackgroundColor | The color behind the primary icon               | `string`                                           | no       | `theme.colors.surface` |
 | fontSize            | The text size for the ChannelValue              | `number`                                           | no       | 20                     |
 | value               | The value for the ChannelValue                  | `string` \| `number`                               | no       |                        |
-| ValueIconClass      | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
+| ~~ValueIconClass~~  | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
+| valueIcon           | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
 | valueColor          | Color to use for the ChannelValue text          | `string`                                           | no       | `text`                 |
 | units               | The units for the ChannelValue                  | `string`                                           | no       |                        |
 | onPress             | A function to execute when pressed              | `function`                                         | no       |                        |

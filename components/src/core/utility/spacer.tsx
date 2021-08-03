@@ -11,7 +11,7 @@ const spacerStyles = (props: SpacerProps): StyleSheet.NamedStyles<{ root: ViewSt
     });
 
 export type SpacerProps = ViewProps & {
-    /* Flex grow/shrink value for use in flex layouts */
+    /** Flex grow/shrink value for use in flex layouts */
     flex?: number;
 
     /** Height (in dp) for static layouts */
