@@ -13,6 +13,7 @@
         "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
+        "tag:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/tag pxb-tag",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",
         "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
