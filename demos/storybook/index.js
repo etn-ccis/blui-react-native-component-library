@@ -2,11 +2,10 @@
  * @format
  */
 
-import { AppRegistry } from 'react-native';
+import { AppRegistry, LogBox } from 'react-native';
 import App from './storybook';
-// import App from './demo'; // switch this line with the previous to toggle storybook/realistic demo
 import { name as appName } from './app.json';
 
-console.disableYellowBox = true;
+LogBox.ignoreAllLogs(true);
 
 AppRegistry.registerComponent(appName, () => App);

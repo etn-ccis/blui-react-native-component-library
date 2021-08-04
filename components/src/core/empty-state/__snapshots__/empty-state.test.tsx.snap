@@ -291,7 +291,6 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         Object {},
       ]
     }
-    testID="icon"
   >
     󰞱
   </Text>

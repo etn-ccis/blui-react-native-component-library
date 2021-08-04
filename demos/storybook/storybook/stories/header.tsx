@@ -1,27 +1,23 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { boolean, color, number, select, text, withKnobs } from '@storybook/addon-knobs';
-import { CollapsibleHeaderLayout, Header, wrapIcon } from '@pxblue/react-native-components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { CollapsibleHeaderLayout, Header } from '@pxblue/react-native-components';
 import { white, blue } from '@pxblue/colors';
-
-const MailIcon = wrapIcon({ IconClass: Icon, name: 'mail' });
-const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
-const MoreIcon = wrapIcon({ IconClass: Icon, name: 'more-vert' });
-const CloudIcon = wrapIcon({ IconClass: Icon, name: 'cloud-upload' });
 import backgroundImage from '../assets/farm.jpg';
 import { Text, View } from 'react-native';
-
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
+const MailIcon: IconFamily = { name: 'mail' };
+const MenuIcon: IconFamily = { name: 'menu' };
+const MoreIcon: IconFamily = { name: 'more-vert' };
+const CloudIcon: IconFamily = { name: 'cloud-upload' };
 storiesOf('Header', module)
     .addDecorator(withKnobs)
     .add('with basic usage', () => (
         <Header
             title={text('title', 'Title')}
-            navigation={{
-                icon: MenuIcon,
-                onPress: (): void => {
-                    /* do nothing */
-                },
+            icon={MenuIcon}
+            onIconPress={(): void => {
+                /* do nothing */
             }}
             actionItems={[
                 {
@@ -50,11 +46,9 @@ storiesOf('Header', module)
             expandable={true}
             title={text('title', 'Long Title Text')}
             subtitle={text('subtitle', 'Really Really Long Subtitle Text')}
-            navigation={{
-                icon: MenuIcon,
-                onPress: (): void => {
-                    /* do nothing */
-                },
+            icon={MenuIcon}
+            onIconPress={(): void => {
+                /* do nothing */
             }}
             actionItems={[
                 {
@@ -83,11 +77,9 @@ storiesOf('Header', module)
         <Header
             expandable={false}
             title={text('title', 'With Search')}
-            navigation={{
-                icon: MenuIcon,
-                onPress: (): void => {
-                    /* do nothing */
-                },
+            icon={MenuIcon}
+            onIconPress={(): void => {
+                /* do nothing */
             }}
             actionItems={[
                 {
@@ -103,11 +95,9 @@ storiesOf('Header', module)
     .add('with custom colors', () => (
         <Header
             title={text('title', 'With Custom Colors')}
-            navigation={{
-                icon: MenuIcon,
-                onPress: (): void => {
-                    /* do nothing */
-                },
+            icon={MenuIcon}
+            onIconPress={(): void => {
+                /* do nothing */
             }}
             actionItems={[
                 {
@@ -125,11 +115,9 @@ storiesOf('Header', module)
         <Header
             title={text('title', 'Title Text')}
             subtitle={text('subtitle', 'Subtitle Text')}
-            navigation={{
-                icon: MenuIcon,
-                onPress: (): void => {
-                    /* do nothing */
-                },
+            icon={MenuIcon}
+            onIconPress={(): void => {
+                /* do nothing */
             }}
             actionItems={[
                 {
@@ -165,11 +153,9 @@ storiesOf('Header', module)
             HeaderProps={{
                 title: 'Title Text',
                 subtitle: 'Subtitle Text',
-                navigation: {
-                    icon: MenuIcon,
-                    onPress: (): void => {
-                        /* do nothing */
-                    },
+                icon: MenuIcon,
+                onIconPress: (): void => {
+                    /* do nothing */
                 },
                 actionItems: [
                     {

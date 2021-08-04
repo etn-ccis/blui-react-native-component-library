@@ -1,15 +1,16 @@
 import React from 'react';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
-import { Hero, ChannelValue, wrapIcon } from '..';
+import { Hero, ChannelValue } from '..';
 import { Text } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
+import { IconFamily } from '../__types__';
+
+const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('Hero', () => {
     describe('with only a label and icon', () => {
         let instance: ReactTestInstance;
         beforeEach(() => {
-            instance = TestRenderer.create(<Hero label={'Hero'} IconClass={Line} />).root;
+            instance = TestRenderer.create(<Hero label={'Hero'} icon={Line} />).root;
         });
 
         it('renders without a ChannelValue', () => {
@@ -28,7 +29,7 @@ describe('Hero', () => {
         let instance: ReactTestInstance;
         beforeEach(() => {
             instance = TestRenderer.create(
-                <Hero label={'Hero'} IconClass={Line} value={'100'} units={'%'} onPress={jest.fn()} />
+                <Hero label={'Hero'} icon={Line} value={'100'} units={'%'} onPress={jest.fn()} />
             ).root;
         });
 

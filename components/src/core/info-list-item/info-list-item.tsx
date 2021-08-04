@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
     StyleSheet,
     View,
@@ -10,14 +10,15 @@ import {
     I18nManager,
     PixelRatio,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Subtitle1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon';
+import { IconSource } from '../__types__';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -207,7 +208,7 @@ export type InfoListItemProps = ViewProps & {
     iconAlign?: IconAlign;
 
     /** A component to render for the icon */
-    IconClass?: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /** Color to use for the icon */
     iconColor?: string;
@@ -293,7 +294,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         iconColor,
         backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         onPress,
-        IconClass,
+        icon,
         hidePadding,
         styles = {},
         theme: themeOverride,
@@ -317,14 +318,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     }, [iconColor, avatar, statusColor, theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
+        if (icon) {
             return (
                 <View style={avatar ? [defaultStyles.avatar, styles.avatar] : [defaultStyles.icon, styles.icon]}>
-                    <IconClass size={24} color={getIconColor()} />
+                    <Icon source={icon} size={24} color={getIconColor()} />
                 </View>
             );
         }
-    }, [IconClass, avatar, getIconColor, defaultStyles, styles]);
+    }, [icon, avatar, getIconColor, defaultStyles, styles]);
 
     const getSubtitle = useCallback((): JSX.Element[] | null => {
         if (!subtitle) {
@@ -355,7 +356,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return rightComponent;
         } else if (chevron) {
             return (
-                <Icon
+                <MatCommunityIcon
                     name="chevron-right"
                     size={24}
                     color={theme.colors.text}
@@ -375,7 +376,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             {...viewProps}
         >
             <View style={[defaultStyles.statusStripe, styles.statusStripe]} />
-            {IconClass || !hidePadding ? (
+            {icon || !hidePadding ? (
                 <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
             ) : null}
             {leftComponent}

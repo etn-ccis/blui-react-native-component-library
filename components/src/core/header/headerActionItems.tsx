@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, PixelRatio } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { wrapIcon } from '../icon-wrapper/icon-wrapper';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
-import { HeaderAvatar, HeaderIcon as HeaderIconType } from '../__types__';
+import { HeaderAvatar, HeaderIcon as HeaderIconType, IconFamily } from '../__types__';
 
-const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
-const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
+const ClearIcon: IconFamily = { name: 'clear' };
+const SearchIcon: IconFamily = { name: 'search' };
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -108,7 +106,7 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
                             onPress={actionItem.onPress}
                             style={[defaultStyles.actionItem, styles.actionItem]}
                         >
-                            <HeaderIcon IconClass={actionItem.icon} />
+                            <HeaderIcon icon={actionItem.icon} />
                         </TouchableOpacity>
                     );
                 })}

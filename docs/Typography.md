@@ -10,7 +10,7 @@ We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Bod
 
 ```tsx
 import * as Typography from '@pxblue/react-native-components';
-...
+
 <View>
     <Typography.H1>Head. 1</Typography.H1>
     <Typography.H2>Heading 2</Typography.H2>
@@ -25,7 +25,7 @@ import * as Typography from '@pxblue/react-native-components';
     <Typography.Button>Button</Typography.Button>
     <Typography.Caption>Caption</Typography.Caption>
     <Typography.Overline>Overline</Typography.Overline>
-</View>
+</View>;
 ```
 
 ## API
