@@ -127,9 +127,9 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                                     closeMenu();
                                     if (menuItem.onPress) menuItem.onPress();
                                 }}
-                                iconColor={iconColor || menuItem.iconColor}
-                                fontColor={fontColor || menuItem.fontColor}
-                                backgroundColor={backgroundColor || menuItem.backgroundColor}
+                                iconColor={menuItem.iconColor || iconColor}
+                                fontColor={menuItem.fontColor || fontColor}
+                                backgroundColor={menuItem.backgroundColor || backgroundColor}
                                 dense={menuItem.dense !== undefined ? menuItem.dense : true}
                                 styles={Object.assign(menuItemStyles, {
                                     title: Object.assign(
