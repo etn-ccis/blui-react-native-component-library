@@ -2,6 +2,10 @@
 
 ## 6.0.0 (Unreleased)
 
+### Fixed
+
+-   Issue with `<UserMenu>` that would not apply `fontColor`, `iconColor`, and `backgroundColor` appropriately via `menuItems` prop object.
+
 ### Added
 
 -   New peerDependency on [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons).
@@ -17,7 +21,6 @@
 ### Removed
 
 -   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
-
 
 ## 5.2.0 (July 28, 2021)
 
