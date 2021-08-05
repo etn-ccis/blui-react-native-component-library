@@ -12,14 +12,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
 ...
 <CollapsibleHeaderLayout
-    HeaderProps={
-        title=: 'Valley Forge',
+    HeaderProps={{
+        title: 'Valley Forge',
         subtitle: 'The Last Stand',
         navigation: {icon: MenuIcon, onPress: () => {}},
         actionItems: [
             {icon: MoreIcon, onPress: () => {}}
         ]
-    }
+    }}
 >
     {/* Main content to go in the ScrollView */ }
 </CollapsibleHeaderLayout>
