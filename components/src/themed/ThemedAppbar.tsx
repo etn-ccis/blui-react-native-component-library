@@ -1,7 +1,6 @@
 import React from 'react';
-import { Appbar, useTheme } from 'react-native-paper';
-import { $DeepPartial } from '@callstack/react-theme-provider';
-import { alternateDarkTheme } from './shared/alternateDarkTheme';
+import { Appbar } from 'react-native-paper';
+import { useAltDarkTheme } from './hooks/useAltDarkTheme';
 
 export type ThemedAppbarProps = React.ComponentProps<typeof Appbar>;
 
@@ -14,12 +13,8 @@ export type ThemedAppbarProps = React.ComponentProps<typeof Appbar>;
  */
 export const ThemedAppbar: React.FC<ThemedAppbarProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAltDarkTheme(themeOverride);
 
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <Appbar {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    return <Appbar {...other} theme={theme} />;
 
 };

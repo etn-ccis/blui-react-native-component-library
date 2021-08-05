@@ -1,7 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, useTheme } from 'react-native-paper';
-import { $DeepPartial } from '@callstack/react-theme-provider';
-import { alternateDarkTheme } from './shared/alternateDarkTheme';
+import { ActivityIndicator } from 'react-native-paper';
+import { useAltDarkTheme } from './hooks/useAltDarkTheme';
 
 export type ThemedActivityIndicator = React.ComponentProps<typeof ActivityIndicator>;
 
@@ -14,11 +13,6 @@ export type ThemedActivityIndicator = React.ComponentProps<typeof ActivityIndica
  */
 export const ThemedActivityIndicator: React.FC<ThemedActivityIndicator> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
-
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <ActivityIndicator {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    const theme = useAltDarkTheme(themeOverride);
+    return <ActivityIndicator {...other} theme={theme} />;
 };

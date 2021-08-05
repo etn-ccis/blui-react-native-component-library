@@ -1,18 +1,13 @@
 import React from 'react';
 import { FAB, Provider, useTheme } from 'react-native-paper';
-import { $DeepPartial } from '@callstack/react-theme-provider';
-import { alternateDarkTheme } from './shared/alternateDarkTheme';
+import { useAltDarkTheme } from './hooks/useAltDarkTheme';
 
 export type ThemedFABProps = React.ComponentProps<typeof FAB>;
 const ThemedFABComponent: React.FC<ThemedFABProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAltDarkTheme(themeOverride);
 
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <FAB {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    return <FAB {...other} theme={theme} />;
 
 };
 
@@ -30,17 +25,13 @@ export type ThemedFABGroupProps = React.ComponentProps<typeof FAB.Group>;
  */
 const ThemedFABGroupComponent: React.FC<ThemedFABGroupProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAltDarkTheme(themeOverride);
 
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme),
-    }, themeOverride);
-
-    const fullAlternateTheme = useTheme(altDarkTheme);
+    const fullTheme = useTheme(theme);
 
     return (
-        <Provider theme={theme.dark ? fullAlternateTheme : theme}>
-            <FAB.Group {...other} theme={theme.dark ? altDarkTheme : themeOverride} />
+        <Provider theme={fullTheme}>
+            <FAB.Group {...other} theme={theme} />
         </Provider>
     )
 };

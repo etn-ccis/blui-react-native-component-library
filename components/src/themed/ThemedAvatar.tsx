@@ -1,39 +1,26 @@
 import React from 'react';
-import { Avatar, useTheme } from 'react-native-paper';
-import { $DeepPartial } from '@callstack/react-theme-provider';
-import { alternateDarkTheme } from './shared/alternateDarkTheme';
+import { Avatar } from 'react-native-paper';
+import { useAltDarkTheme } from './hooks/useAltDarkTheme';
 
 const ThemedIconAvatar: typeof Avatar.Icon = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAltDarkTheme(themeOverride);
 
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <Avatar.Icon {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    return <Avatar.Icon {...other} theme={theme} />;
 };
 
 const ThemedImageAvatar: typeof Avatar.Image = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAltDarkTheme(themeOverride);
 
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <Avatar.Image {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    return <Avatar.Image {...other} theme={theme} />;
 };
 
 const ThemedTextAvatar: typeof Avatar.Text = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAltDarkTheme(themeOverride);
 
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <Avatar.Text {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    return <Avatar.Text {...other} theme={theme} />;
 };
 
 /** 

@@ -1,7 +1,6 @@
 import React from 'react';
-import { BottomNavigation, useTheme } from 'react-native-paper';
-import { $DeepPartial } from '@callstack/react-theme-provider';
-import { alternateDarkTheme } from './shared/alternateDarkTheme';
+import { BottomNavigation } from 'react-native-paper';
+import { useAltDarkTheme } from './hooks/useAltDarkTheme';
 
 export type ThemedBottomNavigationProps = React.ComponentProps<typeof BottomNavigation>;
 
@@ -14,13 +13,9 @@ export type ThemedBottomNavigationProps = React.ComponentProps<typeof BottomNavi
  */
 export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useTheme(themeOverride);
+    // TODO: Check if this needs additional inactive styles
+    const theme = useAltDarkTheme(themeOverride);
 
-    // TODO: Check if this needs additional styles for inactive items - review specs
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({
-        ...alternateDarkTheme(theme)
-    }, themeOverride);
-
-    return <BottomNavigation {...other} theme={theme.dark ? altDarkTheme : themeOverride} />;
+    return <BottomNavigation {...other} theme={theme} />;
 
 };
