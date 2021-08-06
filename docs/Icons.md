@@ -4,7 +4,7 @@ Many PX Blue components support the use of icons. These components will support 
 
 ## Icon Object
 
-The simplest way to use a icon in a component is to specify the icon as a simple object. The object syntax takes a `family` and a `name`. Supported family values include 'pxblue', 'material', and 'material-community'. When specifying 'pxblue', icons will be drawn from the [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons) package. When specifying 'material' or 'material-community, icons will be drawn from the [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons) package. The default family is 'material.'
+The simplest way to use a icon in a component is to specify the icon as a simple object.
 
 ```tsx
 <Component icon={{family: 'pxblue', name: 'device'}} />
@@ -12,20 +12,26 @@ The simplest way to use a icon in a component is to specify the icon as a simple
 <Component icon={{name: 'settings'}} />
 ```
 
+### API
+
+<div style="overflow: auto">
+
+| Prop Name        | Description                                                  | Type                                                 | Required | Default      |
+| ---------------- | ------------------------------------------------------------ | ---------------------------------------------------- | -------- | ------------ |
+| family           | Which library to draw the icon from                          | `'material'` \| `'material-community'` \| `'pxblue'` | no       | `'material'` |
+| name             | The name of the icon to use                                  | `string`                                             | yes      |              |
+| allowFontScaling | Should the icon size scale with the system font size         | `boolean`                                            | no       | `true`       |
+| direction        | How the icon should respond to changes in language direction | `'ltr'` \| `'rtl'` \| `'auto'`                       | no       | `'auto'`     |
+
+</div>
+
+When specifying 'pxblue' as the `family`, icons will be drawn from the [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons) package. When specifying 'material' or 'material-community, icons will be drawn from the [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons) package.
+
+When specifying the `direction`, 'auto' means that the icon will appear flipped for RTL and unflipped for LTR languages. 'ltr' will always appear unflipped, and 'rtl' will always appear flipped, regardless of language direction. Refer to our [internationalization](<https://pxblue.github.io/patterns/internationalization#bidirectionality--right-to-left-(rtl)-support>) guidelines for more information on which icons should flip.
+
 ## Inline Functional Component
 
 You can also use an inline functional component to render other components. This can be especially useful if you want to render something other than a Material, Material Community, or PX Blue icon, such as a progress icon. The functional component should support props for:
-
-```tsx
-{
-    size?: number; // what size to draw the component / icon
-    color?: string; // what color to use for the component / icon
-    allowFonScaling?: boolean; // if the icon / component should scale with the device font size
-    direction?: 'rtl' | 'ltr'; // the current device text direction (for flipping components if necessary for RTL languages)
-}
-```
-
-PX Blue components will pass these values to you for use in your component to achieve the correct appearance. It is your responsibility to apply them.
 
 ```tsx
 import { PixelRatio } from 'react-native';
@@ -48,6 +54,21 @@ import { Battery } from '@pxblue/react-native-progress-icons';
     )}
 />
 ```
+
+### API
+
+<div style="overflow: auto">
+
+| Prop Name        | Description                                                                     | Type               | Required | Default |
+| ---------------- | ------------------------------------------------------------------------------- | ------------------ | -------- | ------- |
+| size             | What size the icon / component should be                                        | `number`           | no       |         |
+| color            | What color the icon / component should be                                       | `string`           | no       |         |
+| allowFontScaling | Should the icon / component size scale with the system font size                | `boolean`          | no       |         |
+| direction        | The current device language direction (for flipping components where necessary) | `'ltr'` \| `'rtl'` | no       |         |
+
+</div>
+
+PX Blue components will pass these values to you for use in your component to achieve the correct appearance. It is your responsibility to apply them.
 
 ## Wrapped Icon
 
