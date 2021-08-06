@@ -13,6 +13,7 @@ const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
 ...
 <CollapsibleHeaderLayout
     HeaderProps={{
+        variant: 'dynamic',
         title: 'Valley Forge',
         subtitle: 'The Last Stand',
         navigation: {icon: MenuIcon, onPress: () => {}},
@@ -24,6 +25,8 @@ const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
     {/* Main content to go in the ScrollView */ }
 </CollapsibleHeaderLayout>
 ```
+
+> Note that you must set the `variant` prop to 'dynamic' in the `HeaderProps` object for the collapsible behavior to work.
 
 ## API
 
