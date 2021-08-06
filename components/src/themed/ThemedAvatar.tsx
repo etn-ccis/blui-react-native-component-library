@@ -1,26 +1,72 @@
 import React from 'react';
-import { Avatar } from 'react-native-paper';
-import { useAlternateTheme } from './hooks/useAlternateTheme';
+import { Avatar, useTheme } from 'react-native-paper';
 
 const ThemedIconAvatar: typeof Avatar.Icon = (props) => {
-    const { theme: themeOverride, ...other } = props;
-    const theme = useAlternateTheme(themeOverride);
+    const { theme: themeOverride, style: styleProp, color: colorProp, ...other } = props;
+    const theme = useTheme(themeOverride);
 
-    return <Avatar.Icon {...other} theme={theme} />;
+    const style = Object.assign(
+        theme.dark
+            ? {
+                  backgroundColor: theme.colors.actionPalette.hover, // TODO: don't love using this because it's not a hover state
+              }
+            : {
+                  backgroundColor: theme.colors.primaryPalette.light,
+              },
+        styleProp
+    );
+
+    return (
+        <Avatar.Icon
+            {...other}
+            style={style}
+            color={colorProp || (theme.dark ? theme.colors.textPalette.primary : theme.colors.primaryPalette.main)}
+            theme={themeOverride}
+        />
+    );
 };
 
 const ThemedImageAvatar: typeof Avatar.Image = (props) => {
-    const { theme: themeOverride, ...other } = props;
-    const theme = useAlternateTheme(themeOverride);
+    const { theme: themeOverride, style: styleProp, ...other } = props;
+    const theme = useTheme(themeOverride);
 
-    return <Avatar.Image {...other} theme={theme} />;
+    const style = Object.assign(
+        theme.dark
+            ? {
+                  backgroundColor: theme.colors.actionPalette.hover, // TODO: don't love using this because it's not a hover state
+              }
+            : {
+                  backgroundColor: theme.colors.primaryPalette.light,
+              },
+        styleProp
+    );
+
+    return <Avatar.Image {...other} style={style} theme={themeOverride} />;
 };
 
 const ThemedTextAvatar: typeof Avatar.Text = (props) => {
-    const { theme: themeOverride, ...other } = props;
-    const theme = useAlternateTheme(themeOverride);
+    const { theme: themeOverride, style: styleProp, color: colorProp, ...other } = props;
+    const theme = useTheme(themeOverride);
 
-    return <Avatar.Text {...other} theme={theme} />;
+    const style = Object.assign(
+        theme.dark
+            ? {
+                  backgroundColor: theme.colors.actionPalette.hover, // TODO: don't love using this because it's not a hover state
+              }
+            : {
+                  backgroundColor: theme.colors.primaryPalette.light,
+              },
+        styleProp
+    );
+
+    return (
+        <Avatar.Text
+            {...other}
+            style={style}
+            color={colorProp || (theme.dark ? theme.colors.textPalette.primary : theme.colors.primaryPalette.main)}
+            theme={themeOverride}
+        />
+    );
 };
 
 /**

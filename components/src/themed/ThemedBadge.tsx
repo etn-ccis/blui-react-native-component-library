@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from 'react-native-paper';
+import { Badge, useTheme } from 'react-native-paper';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
 
 export type ThemedBadgeProps = React.ComponentProps<typeof Badge>;
@@ -13,7 +13,12 @@ export type ThemedBadgeProps = React.ComponentProps<typeof Badge>;
  */
 export const ThemedBadge: React.FC<ThemedBadgeProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useAlternateTheme(themeOverride);
+    const fullTheme = useTheme(themeOverride);
+    const theme = useAlternateTheme(
+        themeOverride,
+        { colors: { notification: fullTheme.colors.primaryPalette.main } },
+        { colors: { notification: fullTheme.colors.primaryPalette.dark } }
+    );
 
     return <Badge {...other} theme={theme} />;
 };

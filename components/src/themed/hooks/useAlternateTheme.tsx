@@ -1,5 +1,6 @@
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useTheme } from 'react-native-paper';
+import merge from 'deepmerge';
 
 /**
  * useAlternateTheme hook
@@ -16,7 +17,7 @@ export const useAlternateTheme = (
     extraDark?: $DeepPartial<ReactNativePaper.Theme>
 ): $DeepPartial<ReactNativePaper.Theme> | undefined => {
     const theme = useTheme(themeOverride);
-    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign(
+    const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = merge.all([
         {
             colors: {
                 primary: theme.colors.primaryPalette.dark,
@@ -25,11 +26,11 @@ export const useAlternateTheme = (
                 notification: theme.colors.accentPalette.dark, // TODO: Add notification palette with dark variation
             },
         },
-        extraDark,
-        themeOverride
-    );
+        extraDark || {},
+        themeOverride || {},
+    ]);
 
-    const altLightTheme: $DeepPartial<ReactNativePaper.Theme> = Object.assign({}, extraLight, themeOverride);
+    const altLightTheme: $DeepPartial<ReactNativePaper.Theme> = merge.all([{}, extraLight || {}, themeOverride || {}]);
 
     return theme.dark ? altDarkTheme : altLightTheme;
 };

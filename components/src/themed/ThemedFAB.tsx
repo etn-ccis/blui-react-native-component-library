@@ -5,7 +5,12 @@ import { useAlternateTheme } from './hooks/useAlternateTheme';
 export type ThemedFABProps = React.ComponentProps<typeof FAB>;
 const ThemedFABComponent: React.FC<ThemedFABProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useAlternateTheme(themeOverride);
+    const fullTheme = useTheme(themeOverride);
+    const theme = useAlternateTheme(
+        themeOverride,
+        { colors: { accent: fullTheme.colors.primaryPalette.main } },
+        { colors: { accent: fullTheme.colors.primaryPalette.dark } }
+    );
 
     return <FAB {...other} theme={theme} />;
 };
@@ -24,7 +29,12 @@ export type ThemedFABGroupProps = React.ComponentProps<typeof FAB.Group>;
  */
 const ThemedFABGroupComponent: React.FC<ThemedFABGroupProps> = (props) => {
     const { theme: themeOverride, ...other } = props;
-    const theme = useAlternateTheme(themeOverride);
+    const defaultTheme = useTheme(themeOverride);
+    const theme = useAlternateTheme(
+        themeOverride,
+        { colors: { accent: defaultTheme.colors.primaryPalette.main } },
+        { colors: { accent: defaultTheme.colors.primaryPalette.dark } }
+    );
 
     const fullTheme = useTheme(theme);
 

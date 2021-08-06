@@ -4,7 +4,7 @@ import { Button, useTheme } from 'react-native-paper';
 import * as PXBColors from '@pxblue/colors';
 import Color from 'color';
 
-export type ThemedButtonProps = Omit<React.ComponentProps<typeof Button>, 'color'>;
+export type ThemedButtonProps = React.ComponentProps<typeof Button>;
 
 const useStyles = (): StyleSheet.NamedStyles<{
     outlined: ViewStyle;
@@ -20,11 +20,11 @@ const useStyles = (): StyleSheet.NamedStyles<{
  * ThemedButton component
  *
  * This component is a wrapper around the React Native Paper [Button](https://callstack.github.io/react-native-paper/button.html)
- * component. It accepts all the same props as the RNP component (except for color). The wrapper simply performs some minor theme / style overrides
+ * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
  * in order to make the component look the way we want for PX Blue projects.
  */
 export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
-    const { style, labelStyle: labelStyleProp, ...other } = props;
+    const { style, color, labelStyle: labelStyleProp, ...other } = props;
     const theme = useTheme(props.theme);
     const styles = useStyles();
 
@@ -72,12 +72,12 @@ export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
     }
 
     const buttonStyle = {
-        backgroundColor: backgroundColor ?? undefined,
-        borderColor: borderColor ?? undefined,
+        backgroundColor: color && props.mode === 'contained' ? color : backgroundColor ?? undefined,
+        borderColor: color && props.mode === 'outlined' ? color : borderColor ?? undefined,
     };
     const labelStyle = textColor
         ? {
-              color: textColor,
+              color: color && (props.mode === 'text' || props.mode === 'outlined') ? color : textColor ?? undefined,
           }
         : {};
 
