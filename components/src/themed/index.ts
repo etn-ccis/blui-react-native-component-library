@@ -7,11 +7,11 @@ export * from './ThemedFAB';
 export * from './ThemedProgressBar';
 export * from './ThemedSnackbar';
 export * from './ThemedCheckbox';
+export * from './ThemedDivider';
+export * from './ThemedRadioButton';
 
 /* TODO:
 Chips
-Divider
-Radio
 Switch
 TextInput
 ToggleButton

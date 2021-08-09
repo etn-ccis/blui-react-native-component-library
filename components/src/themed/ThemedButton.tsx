@@ -8,13 +8,12 @@ export type ThemedButtonProps = React.ComponentProps<typeof Button>;
 
 const useStyles = (): StyleSheet.NamedStyles<{
     outlined: ViewStyle;
-}> => {
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         outlined: {
             borderWidth: 1,
         },
     });
-};
 
 /**
  * ThemedButton component

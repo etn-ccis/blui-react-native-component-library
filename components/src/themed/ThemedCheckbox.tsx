@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Checkbox, useTheme } from 'react-native-paper';
-import * as PXBColors from '@pxblue/colors';
 export type ThemedCheckboxIOSProps = React.ComponentProps<typeof Checkbox.IOS>;
 export type ThemedCheckboxAndroidProps = React.ComponentProps<typeof Checkbox.Android>;
 export type ThemedCheckboxItemProps = React.ComponentProps<typeof Checkbox.Item>;
@@ -37,13 +36,13 @@ export const ThemedCheckboxAndroid: React.FC<ThemedCheckboxAndroidProps> = (prop
                 uncheckedColor ||
                 (props.status === 'unchecked' ? theme.colors.textPalette.secondary : theme.colors.primaryPalette.main)
             }
-            color={PXBColors.purple[200] || color || theme.colors.primaryPalette.main}
+            color={color || theme.colors.primaryPalette.main}
             theme={themeOverride}
         />
     );
 };
 
-const ThemedCheckboxComponent = (props: React.ComponentProps<typeof Checkbox>) =>
+const ThemedCheckboxComponent: React.FC<React.ComponentProps<typeof Checkbox>> = (props) =>
     Platform.OS === 'ios' ? <ThemedCheckboxIOS {...props} /> : <ThemedCheckboxAndroid {...props} />;
 
 /**
