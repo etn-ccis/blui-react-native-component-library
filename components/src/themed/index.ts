@@ -9,9 +9,9 @@ export * from './ThemedSnackbar';
 export * from './ThemedCheckbox';
 export * from './ThemedDivider';
 export * from './ThemedRadioButton';
+export * from './ThemedChip';
 
 /* TODO:
-Chips
 Switch
 TextInput
 ToggleButton
