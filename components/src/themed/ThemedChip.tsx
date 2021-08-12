@@ -6,6 +6,54 @@ import Color from 'color';
 
 export type ThemedChipProps = React.ComponentProps<typeof Chip>;
 
+const getBackgroundColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
+    // Filled Style
+    if (props.mode === undefined || props.mode === 'flat') {
+        if (props.disabled) return theme.dark ? Color(PXBColors.black[200]).alpha(0.24).string() : PXBColors.white[500];
+        else if (props.selected) {
+            return theme.colors.primaryPalette[theme.dark ? 'dark' : 'main'];
+        }
+        return theme.dark ? PXBColors.black[500] : PXBColors.white[500];
+    }
+    // Outlined Style
+    else if (props.disabled) return theme.dark ? 'transparent' : PXBColors.white[50];
+    else if (props.selected) {
+        return theme.dark
+            ? Color(theme.colors.primaryPalette.dark).alpha(0.2).string()
+            : Color(theme.colors.primaryPalette.main).alpha(0.05).string();
+    }
+    return theme.dark ? theme.colors.surface : PXBColors.white[50];
+};
+
+const getTextColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
+    // Filled Style
+    if (props.mode === undefined || props.mode === 'flat') {
+        if (props.disabled)
+            return theme.dark ? PXBColors.black[400] : Color(theme.colors.textPalette.primary).alpha(0.3).string();
+        else if (props.selected) {
+            return theme.colors.textPalette.onPrimary[theme.dark ? 'dark' : 'main'];
+        }
+        return theme.colors.textPalette.primary;
+    }
+    // Outlined Style
+    else if (props.disabled) return theme.dark ? PXBColors.black[400] : theme.colors.actionPalette.disabled;
+    return props.selected ? theme.colors.primaryPalette.main : theme.colors.textPalette.primary;
+};
+
+const getBorderColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
+    // Filled Style
+    if (props.mode === undefined || props.mode === 'flat') return 'transparent';
+    // Outlined Style
+    else if (props.disabled)
+        return theme.dark
+            ? Color(PXBColors.black[200]).alpha(0.36).string()
+            : Color(PXBColors.black[500]).alpha(0.12).string();
+    else if (props.selected) return theme.colors.primaryPalette.main;
+    return theme.dark
+        ? Color(PXBColors.black[200]).alpha(0.32).string()
+        : Color(PXBColors.black[500]).alpha(0.12).string();
+};
+
 /**
  * ThemedChip component
  *
@@ -18,43 +66,25 @@ export const ThemedChip: React.FC<ThemedChipProps> = (props) => {
     const theme = useAlternateTheme(themeOverride);
     const fullTheme = useTheme(theme);
 
-    const backgroundColor =
-        // FLAT style
-        props.mode === 'flat' || props.mode === undefined ?
-            (props.disabled ? (fullTheme.dark ? Color(PXBColors.black[200]).alpha(0.24).string() : PXBColors.white[500]) : // TODO: get from theme
-                (props.selected ?
-                    (fullTheme.colors.primaryPalette[fullTheme.dark ? 'dark' : 'main']) :
-                    (fullTheme.dark ? PXBColors.black[500] : PXBColors.white[500]))) :// TODO: get from theme
-            // OUTLINED style
-            (props.disabled ? (fullTheme.dark ? 'transparent' : PXBColors.white[50]) :
-                (props.selected ?
-                    (fullTheme.dark ? Color(fullTheme.colors.primaryPalette.dark).alpha(0.2).string() : Color(fullTheme.colors.primaryPalette.main).alpha(0.05).string()) : // TODO
-                    (fullTheme.dark ? fullTheme.colors.surface : PXBColors.white[50])
-                ));
-
-    const textColor =
-        // FLAT style
-        props.mode === 'flat' || props.mode === undefined ?
-            (props.disabled ? (fullTheme.dark ? PXBColors.black[400] : Color(fullTheme.colors.textPalette.primary).alpha(0.3).string()) : // TODO: get from theme
-                (props.selected ? fullTheme.colors.textPalette.onPrimary[fullTheme.dark ? 'dark' : 'main'] : fullTheme.colors.textPalette.primary)) :// TODO: get from theme
-            // OUTLINED style
-            (props.disabled ? (fullTheme.dark ? PXBColors.black[400] : fullTheme.colors.actionPalette.disabled) : (props.selected ? fullTheme.colors.primaryPalette.main : fullTheme.colors.textPalette.primary));
-
-    const borderColor =
-        // FLAT style
-        props.mode === 'flat' || props.mode === undefined ?
-            'transparent' :
-            // OUTLINED style
-            (props.disabled ? (fullTheme.dark ? Color(PXBColors.black[200]).alpha(0.36).string() : Color(PXBColors.black[500]).alpha(0.12).string()) :
-                (props.selected ? fullTheme.colors.primaryPalette.main : (fullTheme.dark ? Color(PXBColors.black[200]).alpha(0.32).string() : Color(PXBColors.black[500]).alpha(0.12).string())));
-
+    const backgroundColor = getBackgroundColor(props, fullTheme);
+    const textColor = getTextColor(props, fullTheme);
+    const borderColor = getBorderColor(props, fullTheme);
     const borderWidth = props.mode === 'flat' || props.mode === undefined ? 0 : 1;
-
     /* Unfortunately we cannot fully override the color of the icons for chips. RNP has hardcoded an opacity on the icon
     that cannot be overridden with any styles or props. */
 
+    const finalStyle = Object.assign(
+        { backgroundColor: backgroundColor, borderColor: borderColor, borderWidth: borderWidth },
+        style
+    );
 
-    const finalStyle = Object.assign({ backgroundColor: backgroundColor, borderColor: borderColor, borderWidth: borderWidth }, style);
-
-    return <Chip {...other} style={finalStyle} textStyle={{ color: textColor }} selectedColor={selectedColor || textColor} theme={theme} />;
+    return (
+        <Chip
+            {...other}
+            style={finalStyle}
+            textStyle={{ color: textColor }}
+            selectedColor={selectedColor || textColor}
+            theme={theme}
+        />
+    );
 };
