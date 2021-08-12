@@ -53,11 +53,16 @@ const createTypography = (
             ...theme.fonts[font],
         };
     }
+    let appliedColor = theme.colors.text;
+    if (Object.keys(theme.colors).indexOf(color || '') >= 0) {
+        if (typeof theme.colors[color as keyof ReactNativePaper.Theme['colors']] === 'string')
+            appliedColor = theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
+    }
     return (
         <Text
             {...props}
             style={[
-                { color: color ? theme.colors[color] : theme.colors.text },
+                { color: appliedColor },
                 { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
                 Platform.OS === 'android' ? { textAlign: 'left' } : {},
                 getStyle(theme),

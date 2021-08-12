@@ -102,8 +102,11 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const getColor = useCallback(
         (color: string | undefined): string => {
             if (!color) return theme.colors.textSecondary || theme.colors.text;
-            if (Object.keys(theme.colors).indexOf(color) >= 0)
-                return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
+            if (Object.keys(theme.colors).indexOf(color) >= 0) {
+                if (typeof theme.colors[color as keyof ReactNativePaper.Theme['colors']] === 'string')
+                    return theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
+                return theme.colors.textSecondary || theme.colors.text;
+            }
             return color;
         },
         [theme]
