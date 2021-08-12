@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
     StyleSheet,
     TouchableOpacity,
@@ -13,7 +13,8 @@ import { ChannelValue } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon';
+import { IconSource } from '../__types__';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -58,7 +59,7 @@ export type HeroProps = ViewProps & {
     label: string;
 
     /** A component to render for the primary icon  */
-    IconClass: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /**
      * The size of the primary icon (10-48)
@@ -92,7 +93,7 @@ export type HeroProps = ViewProps & {
     value?: number | string;
 
     /** A component to render for the ChannelValue child */
-    ValueIconClass?: ComponentType<WrapIconProps>;
+    valueIcon?: IconSource;
 
     /** Color to use for the ChannelValue text */
     valueColor?: string;
@@ -128,12 +129,12 @@ export const Hero: React.FC<HeroProps> = (props) => {
     const {
         label,
         value,
-        ValueIconClass,
+        valueIcon,
         valueColor,
         fontSize = 20,
         units,
         onPress,
-        IconClass,
+        icon,
         iconColor,
         iconSize,
         iconBackgroundColor,
@@ -167,10 +168,10 @@ export const Hero: React.FC<HeroProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (IconClass) {
-            return <IconClass size={normalizeIconSize()} color={getColor(iconColor)} />;
+        if (icon) {
+            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
-    }, [IconClass, normalizeIconSize, getColor, iconColor]);
+    }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
         <TouchableOpacity
@@ -190,13 +191,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
             </View>
             <View style={[defaultStyles.values, styles.values]}>
                 {!children && !!value && (
-                    <ChannelValue
-                        value={value}
-                        units={units}
-                        IconClass={ValueIconClass}
-                        color={valueColor}
-                        fontSize={fontSize}
-                    />
+                    <ChannelValue value={value} units={units} icon={valueIcon} color={valueColor} fontSize={fontSize} />
                 )}
                 {children}
             </View>

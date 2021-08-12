@@ -70,8 +70,14 @@ to bring up a API documentation website (no interactive components).
 
 See the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for information on using these components.
 
+### Upgrading from version 5 -> 6
+
+Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats.
+
+Version 5.3.0 has been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.3.0 and addressing these warnings before upgrading to version 6.
+
 ## NOTES
 
-This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - this library must be installed in your project in order to use the PX Blue components.
+This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@pxblue/react-native-vector-icons](https://github.com/pxblue/icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the PX Blue components.
 
-Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up.
+Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up or start your project using the PX Blue [CLI](https://www.npmjs.com/package/@pxblue/cli) and this will be configured for you automatically.

@@ -76,6 +76,7 @@ target 'storybook' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'RNPXBVectorIcons', :path => '../node_modules/@pxblue/react-native-vector-icons'
 
   target 'storybookTests' do
     inherit! :complete

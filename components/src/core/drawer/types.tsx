@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { IconSource } from '../__types__';
 
 export type DrawerContextProps = {
     activeItem: string;
@@ -59,7 +60,7 @@ export type NavItemSharedStyleProps = {
      *
      * Default: `expandIcon` rotated 180-degrees
      */
-    collapseIcon?: JSX.Element;
+    collapseIcon?: IconSource;
 
     /**
      * When true, disables the semi-bold text style on parent elements of active item.
@@ -73,7 +74,7 @@ export type NavItemSharedStyleProps = {
      *
      * Default: top-level items use the 'expand-more' icon from Material. Nested items use the 'arrow-drop-down' icon.
      */
-    expandIcon?: JSX.Element;
+    expandIcon?: IconSource;
 
     /**
      * Whether to hide the padding reserved for DrawerNavItem icons. If this is set to false, the text for all DrawerNavItems will align

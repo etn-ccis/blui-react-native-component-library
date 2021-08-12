@@ -935,6 +935,11 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
+"@pxblue/react-native-vector-icons@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-vector-icons/-/react-native-vector-icons-1.0.0.tgz#518def2dabed0a13f567e408914200706cd8ee1f"
+  integrity sha512-iWm2FyoV5U++c/ACBAsWY1DvsQVVGN5+j2KJwMaPuQpBjAzVaQj+WjzPLZf4rWRnNH/+THXWQ38grFS0GP1p/g==
+
 "@pxblue/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-2.0.0.tgz#3df970352aca5256974a10a97d75a2264bad1eba"

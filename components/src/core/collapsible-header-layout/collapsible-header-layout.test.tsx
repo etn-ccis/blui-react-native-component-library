@@ -4,8 +4,10 @@ import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { CollapsibleHeaderLayout } from './collapsible-header-layout';
 import { Header } from '../header';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { EdgeInsets } from '../__types__';
+
 jest.mock('react-native-safe-area-context', () => ({
-    useSafeAreaInsets: (): { top: number; left: number; right: number; bottom: number } => ({
+    useSafeAreaInsets: (): EdgeInsets => ({
         top: 0,
         left: 0,
         right: 0,

@@ -1,20 +1,20 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Image, View } from 'react-native';
-import { Header, InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
+import { Header, InfoListItemProps, UserMenu } from '@pxblue/react-native-components';
 import { text, withKnobs, color, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { Avatar } from 'react-native-paper';
-const VpnKeyIcon = wrapIcon({ IconClass: MatIcon, name: 'vpn-key', flip: false });
-const SettingsIcon = wrapIcon({ IconClass: MatIcon, name: 'settings', flip: false });
-const ExitToAppIcon = wrapIcon({ IconClass: MatIcon, name: 'exit-to-app', flip: false });
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
+const VpnKeyIcon: IconFamily = { name: 'vpn-key' };
+const SettingsIcon: IconFamily = { name: 'settings' };
+const ExitToAppIcon: IconFamily = { name: 'exit-to-app' };
 const avatarTestImage = require('../assets/test-avatar.png');
 
 const menuItems: InfoListItemProps[] = [
-    { title: 'Change Password', IconClass: VpnKeyIcon },
-    { title: 'Preferences', IconClass: SettingsIcon },
-    { title: 'Log Out', IconClass: ExitToAppIcon },
+    { title: 'Change Password', icon: VpnKeyIcon },
+    { title: 'Preferences', icon: SettingsIcon },
+    { title: 'Log Out', icon: ExitToAppIcon },
 ];
 
 storiesOf('UserMenu', module)

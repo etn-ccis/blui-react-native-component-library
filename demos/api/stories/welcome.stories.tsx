@@ -7,6 +7,7 @@ import * as Colors from '@pxblue/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg') as string;
 import { updateTitle } from '../src/utils';
+import { docFn, getReadMe } from './utils';
 const packageJSON = require('@pxblue/react-native-components/package.json') as { version: string };
 
 export const stories = storiesOf('Intro/Overview', module);
@@ -129,3 +130,4 @@ stories.add('PX Blue React Native Components', () => {
         </div>
     );
 });
+stories.add('Icon Usage', docFn, { notes: { markdown: getReadMe('Icons.md') } });

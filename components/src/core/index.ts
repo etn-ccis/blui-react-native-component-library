@@ -13,3 +13,4 @@ export * from './score-card';
 export * from './typography';
 export * from './user-menu';
 export * from './utility';
+export * from './__types__';

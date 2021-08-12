@@ -13,17 +13,17 @@ The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically us
 
 ```tsx
 import { UserMenu } from '@pxblue/react-native-components';
-...
+
 <UserMenu
     menuTitle={'John Smith'}
     menuSubtitle={'j.smith@example.com'}
     menuItems={[
-        { title: 'Change Password', IconClass: VpnKeyIcon },
-        { title: 'Preferences', IconClass: SettingsIcon },
-        { title: 'Log Out', IconClass: ExitToAppIcon },
+        { title: 'Change Password', icon: { name: 'vpn-key' } },
+        { title: 'Preferences', icon: { name: 'settings' } },
+        { title: 'Log Out', icon: { name: 'exit-to-app' } },
     ]}
     avatar={<Avatar.Text label={'PX'} size={40} />}
-/>
+/>;
 ```
 
 ## API

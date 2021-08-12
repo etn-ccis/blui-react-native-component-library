@@ -1,5 +1,27 @@
 # Change Log
 
+## 6.0.0 (Unreleased)
+
+### Fixed
+
+-   Issue with `<UserMenu>` that would not apply `fontColor`, `iconColor`, and `backgroundColor` appropriately via `menuItems` prop object.
+
+### Added
+
+-   New peerDependency on [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons).
+
+### Changed
+
+-   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see [Icons](https://github.com/pxblue/react-native-component-library/blob/master/docs/Icons.md)]).
+-   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
+-   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
+-   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
+-   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`.
+
+### Removed
+
+-   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
+
 ## 5.2.0 (July 28, 2021)
 
 ### Added
