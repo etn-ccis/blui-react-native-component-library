@@ -11,8 +11,8 @@ export * from './ThemedDivider';
 export * from './ThemedRadioButton';
 export * from './ThemedChip';
 export * from './ThemedSwitch';
+export * from './ThemedToggleButon';
 
 /* TODO:
 TextInput
-ToggleButton
 */
