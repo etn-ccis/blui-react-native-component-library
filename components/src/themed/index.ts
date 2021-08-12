@@ -10,9 +10,9 @@ export * from './ThemedCheckbox';
 export * from './ThemedDivider';
 export * from './ThemedRadioButton';
 export * from './ThemedChip';
+export * from './ThemedSwitch';
 
 /* TODO:
-Switch
 TextInput
 ToggleButton
 */
