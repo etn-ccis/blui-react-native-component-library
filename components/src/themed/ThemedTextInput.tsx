@@ -26,7 +26,8 @@ export const ThemedTextInput: React.FC<ThemedTextInputProps> = (props) => {
         {
             colors: {
                 primary: fullTheme.colors.primaryPalette.main,
-                background: props.mode === 'outlined' ? fullTheme.colors.surface : fullTheme.colors.background, // input background
+                background:
+                    props.mode === 'outlined' ? fullTheme.colors.surface : fullTheme.colors.actionPalette.background, // input background
                 // error: fullTheme.colors.errorPalette.dark
             },
         }

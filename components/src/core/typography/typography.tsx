@@ -15,9 +15,9 @@ export type TypographyProps = {
     font?: keyof ReactNativePaper.Theme['fonts'];
 
     /**
-     * The color to use for the text (from the predefined values in the Theme)
+     * The color to use for the text (from the predefined values in the Theme or custom)
      */
-    color?: keyof ReactNativePaper.Theme['colors'];
+    color?: string;
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
@@ -54,9 +54,10 @@ const createTypography = (
         };
     }
     let appliedColor = theme.colors.text;
-    if (Object.keys(theme.colors).indexOf(color || '') >= 0) {
-        if (typeof theme.colors[color as keyof ReactNativePaper.Theme['colors']] === 'string')
+    if (color) {
+        if (['primary', 'accent', 'error', 'text', 'notification'].includes(color || ''))
             appliedColor = theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
+        else appliedColor = color;
     }
     return (
         <Text

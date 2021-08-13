@@ -9,6 +9,7 @@
 ### Added
 
 -   New peerDependency on [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons).
+-   [Wrapper components](https://github.com/pxblue/react-native-component-library/tree/master/components/src/themed) for various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components. These greatly simplify the theming mechanism for using our dark theme, but does require updating to version 6+ of our [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes) package.
 
 ### Changed
 
@@ -17,10 +18,12 @@
 -   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
 -   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
 -   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`.
+-   `color` prop for `<Typography>` components now supports any valid color string. You can still use string shortcuts for theme colors for 'primary', 'accent', 'text', 'error', and 'notification'.
 
 ### Removed
 
 -   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
+-   `color` prop in `<ChannelValue>`, `<EmptyState>`, and `<Hero>` components no longer supports using theme keys as string. If you would like to use a value from the theme, you must pass it in as a value: `color={theme.colors.primary}` instead of `color={'primary'}`.
 
 ## 5.2.0 (July 28, 2021)
 

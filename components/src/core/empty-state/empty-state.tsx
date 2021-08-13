@@ -96,15 +96,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     }, [iconSize]);
 
     const getColor = useCallback(
-        (color: string | undefined): string => {
-            if (!color) return theme.colors.textPalette.secondary || theme.colors.textPalette.primary;
-            if (Object.keys(theme.colors).indexOf(color) >= 0) {
-                if (typeof theme.colors[color as keyof ReactNativePaper.Theme['colors']] === 'string')
-                    return theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
-                return theme.colors.textPalette.secondary || theme.colors.textPalette.primary;
-            }
-            return color;
-        },
+        (color: string | undefined): string =>
+            color || theme.colors.textPalette.secondary || theme.colors.textPalette.primary,
         [theme]
     );
 

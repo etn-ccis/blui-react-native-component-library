@@ -154,18 +154,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         return Math.max(10, Math.min(48, iconSize));
     }, [iconSize]);
 
-    const getColor = useCallback(
-        (color: string | undefined): string => {
-            if (!color) return theme.colors.text;
-            if (Object.keys(theme.colors).indexOf(color) >= 0) {
-                if (typeof theme.colors[color as keyof ReactNativePaper.Theme['colors']] === 'string')
-                    return theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
-                return theme.colors.text;
-            }
-            return color;
-        },
-        [theme]
-    );
+    const getColor = useCallback((color: string | undefined): string => color || theme.colors.text, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
