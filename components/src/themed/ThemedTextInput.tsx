@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextInput, useTheme } from 'react-native-paper';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
-import * as PXBColors from '@pxblue/colors';
 
 export type ThemedTextInputProps = React.ComponentProps<typeof TextInput>;
 
@@ -19,7 +18,7 @@ export const ThemedTextInput: React.FC<ThemedTextInputProps> = (props) => {
         themeOverride,
         {
             colors: {
-                background: props.mode === 'outlined' ? 'transparent' : PXBColors.white[200], // input background
+                background: props.mode === 'outlined' ? fullTheme.colors.surface : fullTheme.colors.background, // input background
                 // disabled: fullTheme.colors.disabled, // disabled-label disabled-outline
                 placeholder: fullTheme.colors.textPalette.secondary, // outline placeholder inactive-label
             },
@@ -27,8 +26,7 @@ export const ThemedTextInput: React.FC<ThemedTextInputProps> = (props) => {
         {
             colors: {
                 primary: fullTheme.colors.primaryPalette.main,
-                background:
-                    props.mode === 'outlined' ? fullTheme.colors.surface : fullTheme.colors.actionPalette.background, // input background
+                background: props.mode === 'outlined' ? fullTheme.colors.surface : fullTheme.colors.background, // input background
                 // error: fullTheme.colors.errorPalette.dark
             },
         }

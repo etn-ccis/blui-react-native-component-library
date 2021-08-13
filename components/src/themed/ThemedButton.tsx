@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
 import { Button, useTheme } from 'react-native-paper';
-import * as PXBColors from '@pxblue/colors';
-import Color from 'color';
 
 export type ThemedButtonProps = React.ComponentProps<typeof Button>;
 
@@ -41,14 +39,14 @@ export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
                 textColor = theme.colors.textPalette.disabled;
             } else {
                 backgroundColor = theme.colors.primaryPalette.light;
-                textColor = PXBColors.blue[200]; // TODO: Make available in theme
+                textColor = theme.colors.textPalette.highlight;
             }
         } else if (props.mode === 'outlined') {
             if (theme.dark) {
                 borderColor = theme.colors.divider;
                 textColor = theme.colors.actionPalette.disabled;
             } else {
-                borderColor = Color(PXBColors.black[500]).alpha(0.12).string(); // TODO: Make available in theme
+                borderColor = theme.colors.divider;
                 textColor = theme.colors.actionPalette.disabled;
             }
         }

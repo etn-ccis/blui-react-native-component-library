@@ -31,6 +31,7 @@ declare global {
                     main: string;
                     dark: string;
                 };
+                highlight: string;
                 disabled: string;
                 hint: string;
             };

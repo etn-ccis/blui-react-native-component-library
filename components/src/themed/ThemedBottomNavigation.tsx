@@ -1,7 +1,6 @@
 import React from 'react';
 import { BottomNavigation, Provider, useTheme } from 'react-native-paper';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
-import * as PXBColors from '@pxblue/colors';
 
 export type ThemedBottomNavigationProps = React.ComponentProps<typeof BottomNavigation>;
 
@@ -25,7 +24,8 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
     const activeColor =
         props.activeColor ||
         (fullTheme.dark ? fullTheme.colors.primaryPalette.main : fullTheme.colors.textPalette.onPrimary.main);
-    const inactiveColor = props.inactiveColor || (fullTheme.dark ? fullTheme.colors.placeholder : PXBColors.blue[200]); // TODO from theme
+    const inactiveColor =
+        props.inactiveColor || (fullTheme.dark ? fullTheme.colors.placeholder : fullTheme.colors.textPalette.highlight);
 
     return (
         <Provider theme={fullTheme}>

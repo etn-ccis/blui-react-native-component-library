@@ -45,7 +45,8 @@ const headerStyles = (
     return StyleSheet.create({
         root: {
             width: '100%',
-            backgroundColor: props.backgroundColor || (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary),
+            backgroundColor:
+                props.backgroundColor || (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary),
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,

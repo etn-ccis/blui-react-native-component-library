@@ -1,7 +1,6 @@
 import React from 'react';
 import { Chip, useTheme } from 'react-native-paper';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
-import * as PXBColors from '@pxblue/colors';
 import Color from 'color';
 
 export type ThemedChipProps = React.ComponentProps<typeof Chip>;
@@ -9,14 +8,11 @@ export type ThemedChipProps = React.ComponentProps<typeof Chip>;
 const getBackgroundColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
     // Filled Style
     if (props.mode === undefined || props.mode === 'flat') {
-        if (props.disabled)
-            return theme.dark
-                ? theme.colors.actionPalette.disabledBackground
-                : Color(PXBColors.gray[500]).alpha(0.12).string();
+        if (props.disabled) return theme.colors.actionPalette.disabledBackground;
         else if (props.selected) {
             return theme.colors.primaryPalette[theme.dark ? 'dark' : 'main'];
         }
-        return theme.dark ? theme.colors.actionPalette.active : PXBColors.white[500];
+        return theme.dark ? theme.colors.actionPalette.active : theme.colors.actionPalette.background;
     }
     // Outlined Style
     else if (props.disabled) return 'transparent';
@@ -50,10 +46,9 @@ const getBorderColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) =>
     // Filled Style
     if (props.mode === undefined || props.mode === 'flat') return 'transparent';
     // Outlined Style
-    else if (props.disabled)
-        return theme.dark ? theme.colors.divider : Color(PXBColors.black[500]).alpha(0.12).string();
+    else if (props.disabled) return theme.colors.divider;
     else if (props.selected) return theme.colors.primaryPalette.main;
-    return theme.dark ? theme.colors.divider : Color(PXBColors.black[500]).alpha(0.12).string();
+    return theme.colors.divider;
 };
 
 /**
