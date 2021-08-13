@@ -5,6 +5,7 @@ import Color from 'color';
 import { Platform } from 'react-native';
 
 export type ThemedSwitchProps = React.ComponentProps<typeof Switch>;
+
 const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) => { true: string; false: string } = (
     props,
     theme
@@ -35,6 +36,7 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
             .string(),
     };
 };
+
 const getThumbColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
     if (Platform.OS === 'ios') return 'white';
 

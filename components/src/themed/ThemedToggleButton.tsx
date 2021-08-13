@@ -88,6 +88,13 @@ const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) =
     );
 };
 
+/**
+ * ThemedToggleButtonRow component
+ *
+ * This component is a wrapper around the React Native Paper [ToggleButton.Row](https://callstack.github.io/react-native-paper/toggle-button-row.html)
+ * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
+ * in order to make the component look the way we want for PX Blue projects.
+ */
 const ThemedToggleButtonRow: React.FC<ThemedToggleButtonRowProps> = (props) => {
     const { children, ...other } = props;
     const count = React.Children.count(children);
@@ -127,8 +134,22 @@ const ThemedToggleButtonRow: React.FC<ThemedToggleButtonRowProps> = (props) => {
     );
 };
 
+/**
+ * ThemedToggleButtonGroup component
+ *
+ * This component is a wrapper around the React Native Paper [ToggleButton.Group](https://callstack.github.io/react-native-paper/toggle-button-group.html)
+ * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
+ * in order to make the component look the way we want for PX Blue projects.
+ */
 const ThemedToggleButtonGroup = ToggleButton.Group;
 
+/**
+ * ThemedToggleButton component
+ *
+ * This component is a wrapper around the React Native Paper [ToggleButton](https://callstack.github.io/react-native-paper/toggle-button.html)
+ * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
+ * in order to make the component look the way we want for PX Blue projects.
+ */
 export const ThemedToggleButton = Object.assign(ThemedToggleButtonComponent, {
     Group: ThemedToggleButtonGroup,
     Row: ThemedToggleButtonRow,
