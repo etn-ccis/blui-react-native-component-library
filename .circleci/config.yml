@@ -34,6 +34,9 @@ jobs:
                       cd components
                       yarn lint
             - run:
+                  name: Set Max Memory
+                  command: NODE_OPTIONS=--max_old_space_size=8192
+            - run:
                   name: Test
                   command: |
                       yarn test --coverage --watchAll=false
@@ -106,6 +109,9 @@ jobs:
                       cd demos/storybook
                       yarn lint
             - run:
+                  name: Set Max Memory
+                  command: NODE_OPTIONS=--max_old_space_size=8192
+            - run:
                   name: Build Storybook
                   command: |
                       cd demos/storybook
@@ -149,6 +155,9 @@ jobs:
                   command: |
                       cd demos/api
                       yarn lint
+            - run:
+                  name: Set Max Memory
+                  command: NODE_OPTIONS=--max_old_space_size=8192
             - run:
                   name: Build Storybook
                   command: |
@@ -204,6 +213,9 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn prettier:check
+            - run:
+                  name: Set Max Memory
+                  command: NODE_OPTIONS=--max_old_space_size=8192
             - run:
                   name: Build Showcase
                   command: |
