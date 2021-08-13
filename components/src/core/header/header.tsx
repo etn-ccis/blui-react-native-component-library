@@ -46,7 +46,8 @@ const headerStyles = (
         root: {
             width: '100%',
             backgroundColor:
-                props.backgroundColor || (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary),
+                props.backgroundColor ||
+                (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,
@@ -490,7 +491,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
         if (searching) {
             return theme.colors.surface;
         }
-        return backgroundColor || (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary);
+        return (
+            backgroundColor ||
+            (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
+        );
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {

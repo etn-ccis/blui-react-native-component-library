@@ -67,7 +67,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         avatar,
         backgroundColor,
         fontColor,
-        iconColor = theme.colors.textPalette.secondary,
+        iconColor = theme.colors.textPalette?.secondary || theme.colors.text,
         menuTitle,
         menuSubtitle,
         menuItems,
