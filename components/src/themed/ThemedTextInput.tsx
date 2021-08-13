@@ -18,7 +18,6 @@ export const ThemedTextInput: React.FC<ThemedTextInputProps> = (props) => {
     const theme = useAlternateTheme(
         themeOverride,
         {
-            // TODO from theme
             colors: {
                 background: props.mode === 'outlined' ? 'transparent' : PXBColors.white[200], // input background
                 // disabled: fullTheme.colors.disabled, // disabled-label disabled-outline

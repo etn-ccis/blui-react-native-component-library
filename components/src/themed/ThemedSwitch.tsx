@@ -5,7 +5,6 @@ import Color from 'color';
 import { Platform } from 'react-native';
 
 export type ThemedSwitchProps = React.ComponentProps<typeof Switch>;
-// TODO get colors from theme
 const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) => { true: string; false: string } = (
     props,
     theme
@@ -71,7 +70,7 @@ export const ThemedSwitch: React.FC<ThemedSwitchProps> = (props) => {
             ios_backgroundColor={
                 // disabled only
                 theme.dark ? theme.colors.actionPalette.disabled : Color(PXBColors.black[100]).alpha(0.38).string()
-            } // TODO from theme
+            }
             thumbColor={getThumbColor(props, theme)}
             trackColor={getTrackColor(props, theme)}
             {...props}

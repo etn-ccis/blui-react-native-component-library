@@ -70,7 +70,7 @@ const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) =
                 const textColor = fullTheme.dark
                     ? checked
                         ? fullTheme.colors.primaryPalette.main
-                        : fullTheme.colors.placeholder // TODO from theme
+                        : fullTheme.colors.placeholder
                     : checked
                     ? fullTheme.colors.primaryPalette.main
                     : fullTheme.colors.textPalette.secondary;

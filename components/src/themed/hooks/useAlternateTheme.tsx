@@ -23,7 +23,7 @@ export const useAlternateTheme = (
                 primary: theme.colors.primaryPalette.dark,
                 accent: theme.colors.accentPalette.dark,
                 background: theme.colors.surface,
-                notification: theme.colors.accentPalette.dark, // TODO: Add notification palette with dark variation
+                notification: theme.colors.accentPalette.dark,
             },
         },
         extraDark || {},

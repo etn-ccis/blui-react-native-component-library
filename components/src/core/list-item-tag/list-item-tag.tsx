@@ -40,7 +40,7 @@ const listItemTagStyles = (
                 (Color(props.backgroundColor || theme.colors.primaryBase || theme.colors.primary).isLight()
                     ? theme.dark
                         ? black[500]
-                        : theme.colors.onSurface // TODO: Swap this with a proper color when we have them in the new theme
+                        : theme.colors.textPalette.primary
                     : white[50]),
             height: 16 * fontScale,
             padding: 0,
