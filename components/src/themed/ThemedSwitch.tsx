@@ -16,8 +16,8 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
     if (theme.dark) {
         return {
             true: ios
-                ? PXBColors.blue[200]
-                : Color(PXBColors.blue[200])
+                ? theme.colors.primaryPalette.main
+                : Color(theme.colors.primaryPalette.main)
                       .alpha(props.disabled ? 0.25 : 0.5)
                       .string(),
             false: Color(PXBColors.black[300])
@@ -27,8 +27,8 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
     }
     return {
         true: ios
-            ? PXBColors.blue[500]
-            : Color(PXBColors.blue[500])
+            ? theme.colors.primaryPalette.main
+            : Color(theme.colors.primaryPalette.main)
                   .alpha(props.disabled ? 0.19 : 0.38)
                   .string(),
         false: Color(PXBColors.black[100])
@@ -36,21 +36,16 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
             .string(),
     };
 };
-// TODO get colors from theme
 const getThumbColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
     if (Platform.OS === 'ios') return 'white';
 
-    if (theme.dark) {
-        return props.value
-            ? Color(PXBColors.blue[200])
-                  .mix(Color(theme.colors.surface), props.disabled ? 0.5 : 0)
-                  .string()
-            : Color(PXBColors.black[50])
-                  .mix(Color(theme.colors.surface), props.disabled ? 0.5 : 0)
-                  .string();
-    }
-    return props.value
-        ? Color(PXBColors.blue[500])
+    if (props.value)
+        return Color(theme.colors.primaryPalette.main)
+            .mix(Color(theme.colors.surface), props.disabled ? 0.5 : 0)
+            .string();
+
+    return theme.dark
+        ? Color(PXBColors.black[50])
               .mix(Color(theme.colors.surface), props.disabled ? 0.5 : 0)
               .string()
         : Color('white')
@@ -75,9 +70,7 @@ export const ThemedSwitch: React.FC<ThemedSwitchProps> = (props) => {
         <Switch
             ios_backgroundColor={
                 // disabled only
-                theme.dark
-                    ? Color(PXBColors.black[300]).alpha(0.36).string()
-                    : Color(PXBColors.black[100]).alpha(0.38).string()
+                theme.dark ? theme.colors.actionPalette.disabled : Color(PXBColors.black[100]).alpha(0.38).string()
             } // TODO from theme
             thumbColor={getThumbColor(props, theme)}
             trackColor={getTrackColor(props, theme)}

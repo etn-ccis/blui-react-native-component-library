@@ -22,27 +22,7 @@ declare global {
                 main: string;
                 dark: string;
             };
-            successPalette: {
-                light: string;
-                main: string;
-                dark: string;
-            };
-            infoPalette: {
-                light: string;
-                main: string;
-                dark: string;
-            };
             divider: string;
-            warningPalette: {
-                light: string;
-                main: string;
-                dark: string;
-            };
-            // backgroundPalette: {
-            //     default: string;
-            //     paper: string;
-            // };
-            textSecondary: string;
             textPalette: {
                 primary: string;
                 secondary: string;
@@ -57,6 +37,7 @@ declare global {
             actionPalette: {
                 hover: string;
                 active: string;
+                background: string;
                 disabled: string;
                 disabledBackground: string;
             };

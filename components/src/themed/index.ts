@@ -12,7 +12,4 @@ export * from './ThemedRadioButton';
 export * from './ThemedChip';
 export * from './ThemedSwitch';
 export * from './ThemedToggleButton';
-
-/* TODO:
-TextInput
-*/
+export * from './ThemedTextInput';

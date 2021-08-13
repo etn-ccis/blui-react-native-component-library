@@ -23,8 +23,9 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
     const fullTheme = useTheme(theme);
 
     const activeColor =
-        props.activeColor || (fullTheme.dark ? PXBColors.blue[200] : fullTheme.colors.textPalette.onPrimary.main); // TODO from theme
-    const inactiveColor = props.inactiveColor || (fullTheme.dark ? PXBColors.black[200] : PXBColors.blue[200]); // TODO from theme
+        props.activeColor ||
+        (fullTheme.dark ? fullTheme.colors.primaryPalette.main : fullTheme.colors.textPalette.onPrimary.main); // TODO from theme
+    const inactiveColor = props.inactiveColor || (fullTheme.dark ? fullTheme.colors.placeholder : PXBColors.blue[200]); // TODO from theme
 
     return (
         <Provider theme={fullTheme}>
@@ -33,7 +34,7 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
                 activeColor={activeColor}
                 inactiveColor={inactiveColor}
                 barStyle={Object.assign(
-                    fullTheme.dark ? { backgroundColor: PXBColors.black[800] /* TODO get from theme */ } : {},
+                    fullTheme.dark ? { backgroundColor: fullTheme.colors.actionPalette.background } : {},
                     props.barStyle
                 )}
                 theme={theme}

@@ -38,14 +38,14 @@ export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
         } else if (props.mode === 'contained') {
             if (theme.dark) {
                 backgroundColor = theme.colors.actionPalette.disabledBackground;
-                textColor = PXBColors.black[400]; // TODO: Make available in theme
+                textColor = theme.colors.textPalette.disabled;
             } else {
                 backgroundColor = theme.colors.primaryPalette.light;
                 textColor = PXBColors.blue[200]; // TODO: Make available in theme
             }
         } else if (props.mode === 'outlined') {
             if (theme.dark) {
-                borderColor = Color(PXBColors.black[200]).alpha(0.36).string(); // TODO: Make available in theme
+                borderColor = theme.colors.divider;
                 textColor = theme.colors.actionPalette.disabled;
             } else {
                 borderColor = Color(PXBColors.black[500]).alpha(0.12).string(); // TODO: Make available in theme

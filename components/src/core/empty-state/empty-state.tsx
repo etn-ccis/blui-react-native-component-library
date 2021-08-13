@@ -26,7 +26,7 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
         },
         description: {
             // @ts-ignore
-            color: theme.dark ? theme.colors.textSecondary : theme.colors.text,
+            color: theme.dark ? theme.colors.textPalette.secondary : theme.colors.textPalette.primary,
             textAlign: 'center',
         },
         actions: {
@@ -97,11 +97,11 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 
     const getColor = useCallback(
         (color: string | undefined): string => {
-            if (!color) return theme.colors.textSecondary || theme.colors.text;
+            if (!color) return theme.colors.textPalette.secondary || theme.colors.textPalette.primary;
             if (Object.keys(theme.colors).indexOf(color) >= 0) {
                 if (typeof theme.colors[color as keyof ReactNativePaper.Theme['colors']] === 'string')
                     return theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
-                return theme.colors.textSecondary || theme.colors.text;
+                return theme.colors.textPalette.secondary || theme.colors.textPalette.primary;
             }
             return color;
         },

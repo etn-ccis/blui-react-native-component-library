@@ -3,7 +3,6 @@ import { StyleSheet, ViewStyle } from 'react-native';
 import { ToggleButton, useTheme } from 'react-native-paper';
 // @ts-ignore
 import { ToggleButtonGroupContext } from 'react-native-paper/lib/commonjs/components/ToggleButton/ToggleButtonGroup';
-import * as PXBColors from '@pxblue/colors';
 import Color from 'color';
 export type ThemedToggleButtonProps = React.ComponentProps<typeof ToggleButton>;
 export type ThemedToggleButtonRowProps = React.ComponentProps<typeof ToggleButton.Row>;
@@ -63,7 +62,7 @@ const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) =
                 const backgroundColor = fullTheme.dark
                     ? checked
                         ? Color(fullTheme.colors.primaryPalette.dark).alpha(0.36).string()
-                        : PXBColors.black[900] // TODO from theme
+                        : fullTheme.colors.surface
                     : checked
                     ? fullTheme.colors.primaryPalette.light
                     : fullTheme.colors.surface;
@@ -71,7 +70,7 @@ const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) =
                 const textColor = fullTheme.dark
                     ? checked
                         ? fullTheme.colors.primaryPalette.main
-                        : PXBColors.black[200] // TODO from theme
+                        : fullTheme.colors.placeholder // TODO from theme
                     : checked
                     ? fullTheme.colors.primaryPalette.main
                     : fullTheme.colors.textPalette.secondary;
