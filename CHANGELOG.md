@@ -1,5 +1,15 @@
 # Change Log
 
+## v5.4.0 (Unpublished)
+
+### Added
+
+-   Better component sizing for non-avatars in the `<Header>` component.
+
+### Removed
+
+-   `<Header>` actionItems no longer limited to three. However, you should still strive to limit yourself to no more than three actions in most cases.
+
 ## v5.3.0 (August 3, 2021)
 
 ### Added

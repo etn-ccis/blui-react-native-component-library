@@ -81,7 +81,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
         [textColor, headerHeight, theme, REGULAR_HEIGHT, EXTENDED_HEIGHT]
     );
 
-    return (
+    return typeof title === 'string' ? (
         <Animated.Text
             testID={'header-title'}
             style={[getTitleStyle(), style]}
@@ -90,6 +90,8 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
         >
             {title}
         </Animated.Text>
+    ) : (
+        <>{title}</>
     );
 };
 
@@ -135,7 +137,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     );
 
     if (subtitle) {
-        return (
+        return typeof subtitle === 'string' ? (
             <Animated.Text
                 testID={'header-subtitle'}
                 style={[getSubtitleStyle(), style]}
@@ -144,6 +146,8 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
             >
                 {subtitle}
             </Animated.Text>
+        ) : (
+            <>{subtitle}</>
         );
     }
     return null;
@@ -200,7 +204,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     );
 
     if (info) {
-        return (
+        return typeof info === 'string' ? (
             <Animated.Text
                 testID={'header-info'}
                 style={[getInfoStyle(), style]}
@@ -209,6 +213,8 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             >
                 {info}
             </Animated.Text>
+        ) : (
+            <>{info}</>
         );
     }
     return null;
@@ -274,9 +280,14 @@ export type HeaderContentProps = {
     info?: React.ReactNode;
 
     /** Specifies the number of avatars and icons that are included in the action list */
-    actionCount?: {
-        avatars: number;
-        icons: number;
+    actions?: {
+        components: {
+            count: number;
+            width: number;
+        };
+        icons: {
+            count: number;
+        };
     };
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
@@ -312,7 +323,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         title,
         subtitle,
         info,
-        actionCount = { avatars: 0, icons: 0 },
+        actions = { components: { count: 0, width: 0 }, icons: { count: 0 } },
         theme,
         styles = {},
         washingtonStyle,
@@ -343,14 +354,16 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     }
 
     const getActionPanelWidth = useCallback(() => {
-        let iconLength = actionCount.icons;
-        const avatarLength = actionCount.avatars;
+        let iconLength = actions.icons.count;
+        const componentsLength = actions.components.count;
+        const componentsWidth = actions.components.width;
 
         if (searchConfig) iconLength++;
-        if (iconLength + avatarLength < 1) return 0;
-        iconLength = Math.min(3 - avatarLength, iconLength);
-        return iconLength * (ICON_SIZE * fontScale + ICON_SPACING) + avatarLength * (40 * fontScale);
-    }, [actionCount, searchConfig, fontScale]);
+
+        if (iconLength + componentsLength < 1) return 0;
+
+        return iconLength * (ICON_SIZE * fontScale + ICON_SPACING) + componentsWidth;
+    }, [actions, searchConfig, fontScale]);
 
     return (
         <Animated.View
