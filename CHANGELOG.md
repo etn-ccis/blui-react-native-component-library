@@ -4,7 +4,7 @@
 
 ### Added
 
--   Better component sizing for non-avatars in the `<Header>` component.
+-   Better component sizing for non-avatars in the `<Header>` component ([#189](https://github.com/pxblue/react-native-component-library/issues/189)).
 
 ### Removed
 
