@@ -131,7 +131,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200],
+        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.background, // TODO: don't hardcode?
     } = props;
     const fontScale = PixelRatio.getFontScale();
 

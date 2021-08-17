@@ -3,7 +3,6 @@ import { PixelRatio, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } fro
 import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
-import * as Colors from '@pxblue/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -68,7 +67,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         avatar,
         backgroundColor,
         fontColor,
-        iconColor = theme.dark ? Colors.black[200] : Colors.gray[500], // @TODO: PXBLUE-2122 - remove this hardcoded color value when doing theme updates (add black[200] to dark palette, gray[500] to light palette)
+        iconColor = theme.colors.textPalette?.secondary || theme.colors.text,
         menuTitle,
         menuSubtitle,
         menuItems,

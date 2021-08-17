@@ -76,6 +76,8 @@ Version 6 of this library is a major update with several breaking changes. Most 
 
 Version 5.3.0 has been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.3.0 and addressing these warnings before upgrading to version 6.
 
+Version 6 also includes a new subset of [wrapper components](./components/src/themed) around various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to simplify our theming mechanism. These components should be used in conjunction with version 6+ of [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes), which consolidates our blueDark and blueDarkAlt themes into a single theme for simplified usage. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP.
+
 ## NOTES
 
 This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@pxblue/react-native-vector-icons](https://github.com/pxblue/icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the PX Blue components.

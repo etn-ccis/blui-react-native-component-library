@@ -9,7 +9,41 @@ declare global {
         // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         interface ThemeColors {
             primaryBase: string;
-            textSecondary: string;
+            primaryPalette: {
+                light: string;
+                main: string;
+                dark: string;
+            };
+            accentPalette: {
+                light: string;
+                main: string;
+                dark: string;
+            };
+            errorPalette: {
+                light: string;
+                main: string;
+                dark: string;
+            };
+            divider: string;
+            textPalette: {
+                primary: string;
+                secondary: string;
+                onPrimary: {
+                    light: string;
+                    main: string;
+                    dark: string;
+                };
+                highlight: string;
+                disabled: string;
+                hint: string;
+            };
+            actionPalette: {
+                hover: string;
+                active: string;
+                background: string;
+                disabled: string;
+                disabledBackground: string;
+            };
         }
         // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         interface ThemeFonts {
