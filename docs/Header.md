@@ -29,7 +29,7 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 | Prop Name          | Description                                                                                                                | Type                                                                                | Required | Default                  |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
-| actionItems        | Array of icons / actions to display on the right (limit 3)                                                                 | `Array<HeaderIcon \| HeaderAvatar>`                                                 | no       |                          |
+| actionItems        | Array of icons / actions to display on the right                                                                           | `Array<HeaderIcon \| HeaderActionComponent>`                                        | no       |                          |
 | backgroundColor    | The color used for the background                                                                                          | `string`                                                                            | no       | `theme.colors.primary`   |
 | backgroundImage    | An image to blend with the colored background in the header                                                                | `ImageSourcePropType`                                                               | no       |                          |
 | collapsedHeight    | The height of the header when collapsed                                                                                    | `number`                                                                            | no       | 56                       |
@@ -62,7 +62,8 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | root               | Styles applied to the root element         |
 | actionItem         | Styles applied to the action icon(s)       |
 | actionPanel        | Styles applied to the actions container    |
-| avatar             | Styles applied to the action components    |
+| ~~avatar~~         | Styles applied to the action components    |
+| component          | Styles applied to the action components    |
 | backgroundImage    | Styles applied to the background image     |
 | content            | Styles applied to the content wrapper      |
 | info               | Styles applied to the info element         |
@@ -86,15 +87,16 @@ Header icons specified as a JSON object with the following properties:
 
 </div>
 
-# HeaderAvatar
+# HeaderActionComponent
 
-Header avatar component specified as a JSON object with the following properties:
+Header action components (e.g., avatar) are specified as a JSON object with the following properties:
 
 <div style="overflow: auto">
 
 | Key       | Description                          | Type          | Required | Default |
 | --------- | ------------------------------------ | ------------- | -------- | ------- |
 | component | A component to render for the avatar | `JSX.Element` | yes      |         |
+| width     | The width of the component           | `number`      | no       | `40`    |
 
 </div>
 
