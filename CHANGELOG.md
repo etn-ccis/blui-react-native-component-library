@@ -17,7 +17,7 @@
 -   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
 -   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
 -   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
--   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`.
+-   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`. The `avatar` style override has been renamed to `component`.
 -   `color` prop for `<Typography>` components now supports any valid color string. You can still use string shortcuts for theme colors for 'primary', 'accent', 'text', 'error', and 'notification'.
 
 ### Removed
@@ -25,7 +25,27 @@
 -   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
 -   `color` prop in `<ChannelValue>`, `<EmptyState>`, and `<Hero>` components no longer supports using theme keys as string. If you would like to use a value from the theme, you must pass it in as a value: `color={theme.colors.primary}` instead of `color={'primary'}`.
 
-## 5.2.0 (July 28, 2021)
+## v5.4.0 (August 20, 2021)
+
+### Added
+
+-   Better component sizing for non-avatars in the `<Header>` component ([#189](https://github.com/pxblue/react-native-component-library/issues/189)).
+
+### Removed
+
+-   `<Header>` actionItems no longer limited to three. However, you should still strive to limit yourself to no more than three actions in most cases.
+
+## v5.3.0 (August 3, 2021)
+
+### Added
+
+-   Deprecation warnings for component properties that will be changing in version 6.0.0.
+
+### Fixed
+
+-   Minor sizing issue in the `<Header>` when rotating device from landscape to portrait orientation.
+
+## v5.2.0 (July 29, 2021)
 
 ### Added
 

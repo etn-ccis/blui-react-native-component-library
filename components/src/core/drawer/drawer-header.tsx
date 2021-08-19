@@ -165,7 +165,6 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-
     const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT);
 
     const getIcon = useCallback((): JSX.Element | undefined => {

@@ -10,19 +10,20 @@ The `<CollapsibleHeaderLayout>` component is used as a full-page layout componen
 import { CollapsibleHeaderLayout } from '@pxblue/react-native-components';
 
 <CollapsibleHeaderLayout
-    HeaderProps={
-        title=: 'Valley Forge',
+    HeaderProps={{
+        variant: 'dynamic',
+        title: 'Valley Forge',
         subtitle: 'The Last Stand',
-        icon: {name: 'menu'},
+        icon: { name: 'menu' },
         onIconPress: () => {},
-        actionItems: [
-            {icon: MoreIcon, onPress: () => {}}
-        ]
-    }
+        actionItems: [{ icon: MoreIcon, onPress: () => {} }],
+    }}
 >
-    {/* Main content to go in the ScrollView */ }
-</CollapsibleHeaderLayout>
+    {/* Main content to go in the ScrollView */}
+</CollapsibleHeaderLayout>;
 ```
+
+> Note that you must set the `variant` prop to 'dynamic' in the `HeaderProps` object for the collapsible behavior to work.
 
 ## API
 

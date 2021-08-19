@@ -127,7 +127,7 @@ describe('Header', () => {
             ).root;
         });
 
-        it('only renders 3 action items when more than 3 are passed in', () => {
+        it('renders all action items when more than 3 are passed in', () => {
             const actionItem0 = instance.find((x) => x.props.testID === 'header-action-item0');
             const actionItem1 = instance.find((x) => x.props.testID === 'header-action-item1');
             const actionItem2 = instance.find((x) => x.props.testID === 'header-action-item2');
@@ -135,7 +135,7 @@ describe('Header', () => {
             expect(actionItem0).toBeTruthy();
             expect(actionItem1).toBeTruthy();
             expect(actionItem2).toBeTruthy();
-            expect(actionItem3).toHaveLength(0);
+            expect(actionItem3).toBeTruthy();
         });
     });
 });
