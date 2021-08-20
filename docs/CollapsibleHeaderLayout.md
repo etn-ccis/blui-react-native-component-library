@@ -12,18 +12,21 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
 ...
 <CollapsibleHeaderLayout
-    HeaderProps={
-        title=: 'Valley Forge',
+    HeaderProps={{
+        variant: 'dynamic',
+        title: 'Valley Forge',
         subtitle: 'The Last Stand',
         navigation: {icon: MenuIcon, onPress: () => {}},
         actionItems: [
             {icon: MoreIcon, onPress: () => {}}
         ]
-    }
+    }}
 >
     {/* Main content to go in the ScrollView */ }
 </CollapsibleHeaderLayout>
 ```
+
+> Note that you must set the `variant` prop to 'dynamic' in the `HeaderProps` object for the collapsible behavior to work.
 
 ## API
 

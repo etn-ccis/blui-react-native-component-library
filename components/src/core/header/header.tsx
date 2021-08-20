@@ -25,7 +25,7 @@ import { HeaderActionItems } from './headerActionItems';
 import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
-import { HeaderAvatar, HeaderIcon } from '../__types__';
+import { HeaderActionComponent, HeaderIcon } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
@@ -110,7 +110,7 @@ export type SearchableConfig = {
 
 export type HeaderProps = ViewProps & {
     /** Array of icons / actions to display on the right */
-    actionItems?: Array<HeaderIcon | HeaderAvatar>;
+    actionItems?: Array<HeaderIcon | HeaderActionComponent>;
 
     /**
      * The color used for the background
@@ -279,6 +279,14 @@ export const Header: React.FC<HeaderProps> = (props) => {
             );
         }
     }, [navigation]);
+    useEffect(() => {
+        if (styles.avatar) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Style override 'avatar' in Header component has been deprecated and will be removed in version 6.0.0. You should update to use the new 'component' style override instead.`
+            );
+        }
+    }, [styles.avatar]);
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
 
@@ -326,11 +334,27 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     /* UTILITY FUNCTIONS */
 
-    // returns the count of each type of actionItem (avatar and icon)
-    const getActionItemInfo = useCallback((): { avatars: number; icons: number } => {
-        if (!actionItems) return { avatars: 0, icons: 0 };
-        const avatars = actionItems.filter((item) => (item as HeaderAvatar).component).length;
-        return { avatars, icons: actionItems.length - avatars };
+    // returns the count of each type of actionItem (component and icon) and the total width of components
+    const getActionItemInfo = useCallback((): {
+        components: { count: number; width: number };
+        icons: { count: number };
+    } => {
+        if (!actionItems) return { components: { count: 0, width: 0 }, icons: { count: 0 } };
+
+        const actionComponents: HeaderActionComponent[] = actionItems.filter(
+            (item) => (item as HeaderActionComponent).component
+        ) as HeaderActionComponent[];
+
+        const componentsCount = actionComponents.length;
+        const componentsWidth = actionComponents.reduce(
+            (accumulator: number, currentValue: HeaderActionComponent) =>
+                accumulator + (currentValue.width || 40 * fontScale),
+            0
+        );
+        return {
+            components: { count: componentsCount, width: componentsWidth },
+            icons: { count: actionItems.length - componentsCount },
+        };
     }, [actionItems]);
 
     /* EVENT LISTENERS */
@@ -737,7 +761,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                         title={title}
                                         subtitle={subtitle}
                                         info={info}
-                                        actionCount={getActionItemInfo()}
+                                        actions={getActionItemInfo()}
                                         styles={{
                                             root: styles.textContent,
                                             title: styles.title,
