@@ -4,12 +4,14 @@ import { Button } from 'react-native-paper';
 import { wrapIcon, EmptyState } from '..';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { cleanup } from '@testing-library/react-native';
 const Line = wrapIcon({
     IconClass: MatCommunityIcon,
     name: 'chart-line-variant',
 });
 
 describe('EmptyState Tests ', () => {
+    afterEach(cleanup);
     it('Icon Renders', () => {
         const tree = renderer.create(<EmptyState title={'Test'} IconClass={Line} />).toJSON();
         expect(tree).toMatchSnapshot();

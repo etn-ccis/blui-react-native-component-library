@@ -28,7 +28,7 @@ jobs:
                       yarn prettier:check
             - run:
                   name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=4096
+                  command: NODE_OPTIONS=--max_old_space_size=2048
             - run:
                   name: Lint
                   command: |
