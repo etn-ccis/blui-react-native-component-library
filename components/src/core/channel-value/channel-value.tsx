@@ -100,7 +100,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const prefixUnitWhitelist = ['$'];
-    const suffixUnitWhitelist = ['%', '℉','°F','℃','°C','°'];
+    const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
 
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
