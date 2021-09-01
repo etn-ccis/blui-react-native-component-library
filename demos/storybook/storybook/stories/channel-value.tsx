@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
 import { ChannelValue } from '@pxblue/react-native-components';
-import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
+import { text, withKnobs, boolean, color, number, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
 import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
@@ -74,6 +74,7 @@ storiesOf('ChannelValue', module)
                     prefix={boolean('prefix', false)}
                     fontSize={number('fontSize', 16)}
                     color={color('color', Colors.black[500])}
+                    unitSpace={select('unitSpace', ['auto', 'show', 'hide'], 'auto')}
                 />
             </View>
         ),
