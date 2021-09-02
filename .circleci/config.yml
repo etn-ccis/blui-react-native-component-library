@@ -120,6 +120,9 @@ jobs:
                   command: |
                       cd demos/storybook
                       yarn build
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     # Builds the hosted Storybook app
     build_storybook_api:
