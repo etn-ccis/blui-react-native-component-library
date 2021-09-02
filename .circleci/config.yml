@@ -187,6 +187,9 @@ jobs:
                   root: .
                   paths:
                       - demos/api/storybook-static
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     # Builds the Showcase app using @pxblue/react-native-components persisted in /dist folder.
     build_showcase:
@@ -234,6 +237,9 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn build
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     deploy_storybook:
         docker:
