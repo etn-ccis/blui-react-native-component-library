@@ -27,9 +27,6 @@ jobs:
                       cd components
                       yarn prettier:check
             - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
-            - run:
                   name: Lint
                   command: |
                       cd components
@@ -86,9 +83,6 @@ jobs:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/storybook/yarn.lock" }}
             - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
-            - run:
                   name: Install Dependencies
                   command: |
                       cd demos/storybook
@@ -102,9 +96,6 @@ jobs:
                   paths:
                       - demos/storybook/node_modules
                   key: v2-dependencies-react-native-{{ checksum "demos/storybook/yarn.lock" }}
-            - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
             - run:
                   name: Prettier Check
                   command: |
@@ -139,9 +130,6 @@ jobs:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/api/yarn.lock" }}
             - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
-            - run:
                   name: Install Dependencies
                   command: |
                       cd demos/api
@@ -155,9 +143,6 @@ jobs:
                   paths:
                       - demos/api/node_modules
                   key: v2-dependencies-react-native-{{ checksum "demos/api/yarn.lock" }}
-            - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
             - run:
                   name: Prettier Check
                   command: |
@@ -208,9 +193,6 @@ jobs:
                   keys:
                       - v2-dependencies-react-native-{{ checksum "demos/showcase/yarn.lock" }}
             - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
-            - run:
                   name: Install Dependencies
                   command: |
                       cd demos/showcase
@@ -224,9 +206,6 @@ jobs:
                   paths:
                       - demos/showcase/node_modules
                   key: v2-dependencies-react-native-{{ checksum "demos/showcase/yarn.lock" }}
-            - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=2048
             - run:
                   name: Prettier Check
                   command: |
