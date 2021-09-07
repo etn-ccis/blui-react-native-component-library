@@ -3,12 +3,15 @@ import TestRenderer from 'react-test-renderer';
 import { InfoListItem } from '.';
 import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { cleanup } from '@testing-library/react-native';
 
 const OtherComponent = (): JSX.Element => <View />;
 
 describe('InfoListItem', () => {
     describe('subtitle', () => {
+        afterEach(cleanup);
         describe('string subtitle', () => {
+            afterEach(cleanup);
             it('renders as a Text element when a string is passed in', () => {
                 const instance = TestRenderer.create(<InfoListItem title={'some title'} subtitle={'some subtitle'} />)
                     .root;

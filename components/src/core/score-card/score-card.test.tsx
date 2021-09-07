@@ -4,11 +4,14 @@ import { ScoreCard } from '.';
 import { View } from 'react-native';
 import { Hero, wrapIcon } from '..';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { cleanup } from '@testing-library/react-native';
 const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
 
 describe('ScoreCard', () => {
     describe('headerText', () => {
+        afterEach(cleanup);
         describe('when a single string is passed in as headerText', () => {
+            afterEach(cleanup);
             let instance: ReactTestInstance;
             beforeEach(() => {
                 instance = TestRenderer.create(<ScoreCard headerTitle={'Hello'} />).root;

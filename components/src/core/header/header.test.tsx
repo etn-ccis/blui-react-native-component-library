@@ -4,6 +4,7 @@ import { Header } from '.';
 import { wrapIcon } from '..';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import faker from 'faker';
+import { cleanup } from '@testing-library/react-native';
 const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
 
 jest.mock('react-native-safe-area-context', () => ({
@@ -17,6 +18,7 @@ jest.mock('react-native-safe-area-context', () => ({
 
 describe('Header', () => {
     describe('with only required props', () => {
+        afterEach(cleanup);
         let instance: ReactTestInstance;
         beforeEach(() => {
             instance = TestRenderer.create(<Header title={'Test Title'} />).root;
