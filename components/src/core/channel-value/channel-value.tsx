@@ -111,7 +111,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getIcon = useCallback(() => {
         if (icon) {
             return (
-                <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
+                <View style={[{ marginRight: Math.round(fontSize / 3) }]}>
                     <Icon source={icon} size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
