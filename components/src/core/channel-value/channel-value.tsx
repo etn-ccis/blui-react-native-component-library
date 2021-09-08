@@ -7,6 +7,9 @@ import { Icon } from '../icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
 
+const prefixUnitWhitelist = ['$'];
+const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
+
 const defaultStyles = StyleSheet.create({
     root: {
         maxWidth: '100%',
@@ -99,8 +102,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const prefixUnitWhitelist = ['$'];
-    const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
 
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
@@ -125,7 +126,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         {((spacerLocation === 'before' && unitSpace === 'show') ||
                             (spacerLocation === 'before' &&
                                 unitSpace === 'auto' &&
-                                !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={4} />}
+                                !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
                         <Body1
                             font={'light'}
                             fontSize={fontSize}
@@ -141,7 +142,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         {((spacerLocation === 'after' && unitSpace === 'show') ||
                             (spacerLocation === 'after' &&
                                 unitSpace === 'auto' &&
-                                !prefixUnitWhitelist.includes(units))) && <Spacer flex={0} width={4} />}
+                                !prefixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
                     </>
                 );
             }
