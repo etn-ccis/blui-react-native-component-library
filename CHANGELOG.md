@@ -10,6 +10,7 @@
 
 -   New peerDependency on [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons).
 -   [Wrapper components](https://github.com/pxblue/react-native-component-library/tree/master/components/src/themed) for various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components. These greatly simplify the theming mechanism for using our dark theme, but does require updating to version 6+ of our [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes) package.
+-   `unitSpace` prop to `<ChannelValue>` to manage spacing between the value and units.
 
 ### Changed
 

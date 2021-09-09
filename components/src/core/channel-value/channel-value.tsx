@@ -4,7 +4,11 @@ import { useTheme } from 'react-native-paper';
 import { Body1, Subtitle1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
+import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
+
+const prefixUnitWhitelist = ['$'];
+const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -37,6 +41,15 @@ export type ChannelValueProps = ViewProps & {
 
     /** Text to display for the units (light text) */
     units?: string;
+
+    /** Whether to show a space between the value and units
+     *
+     * Default: auto (shows space except for white list items)
+     *
+     * prefixUnitWhitelist: ['$'];
+     * suffixUnitWhitelist: ['%', '℉','°F','℃','°C','°']
+     */
+    unitSpace?: 'show' | 'hide' | 'auto';
 
     /** Whether to show the units before the value (e.g., for currency)
      *
@@ -81,6 +94,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         iconSize,
         color,
         units,
+        unitSpace = 'auto',
         prefix = false,
         styles = {},
         style,
@@ -97,32 +111,54 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getIcon = useCallback(() => {
         if (icon) {
             return (
-                <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
+                <View style={[{ marginRight: Math.round(fontSize / 3) }]}>
                     <Icon source={icon} size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
         }
     }, [icon, fontSize, getColor, iconColor, iconSize]);
 
-    const getUnits = useCallback((): JSX.Element | undefined => {
-        if (units) {
-            return (
-                <Body1 font={'light'} fontSize={fontSize} style={[{ color: getColor() }, styles.units]}>
-                    {units}
-                </Body1>
-            );
-        }
-    }, [units, fontSize, getColor, styles]);
+    const getUnits = useCallback(
+        (spacerLocation: 'before' | 'after'): JSX.Element | undefined => {
+            if (units) {
+                return (
+                    <>
+                        {((spacerLocation === 'before' && unitSpace === 'show') ||
+                            (spacerLocation === 'before' &&
+                                unitSpace === 'auto' &&
+                                !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
+                        <Body1
+                            font={'light'}
+                            fontSize={fontSize}
+                            style={[
+                                {
+                                    color: getColor(),
+                                },
+                                styles.units,
+                            ]}
+                        >
+                            {units}
+                        </Body1>
+                        {((spacerLocation === 'after' && unitSpace === 'show') ||
+                            (spacerLocation === 'after' &&
+                                unitSpace === 'auto' &&
+                                !prefixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
+                    </>
+                );
+            }
+        },
+        [units, fontSize, getColor, styles, unitSpace]
+    );
 
     const prefixUnits = useCallback((): JSX.Element | undefined => {
         if ((!I18nManager.isRTL && prefix) || (I18nManager.isRTL && !prefix)) {
-            return getUnits();
+            return getUnits('after');
         }
     }, [prefix, getUnits]);
 
     const suffixUnits = useCallback((): JSX.Element | undefined => {
         if ((I18nManager.isRTL && prefix) || (!I18nManager.isRTL && !prefix)) {
-            return getUnits();
+            return getUnits('before');
         }
     }, [prefix, getUnits]);
 
