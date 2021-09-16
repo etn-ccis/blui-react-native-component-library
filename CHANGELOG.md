@@ -16,7 +16,7 @@
 
 -   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see [Icons](https://github.com/pxblue/react-native-component-library/blob/master/docs/Icons.md)]).
 -   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
--   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
+-   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`, and `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced with a single `channelValueProps` prop.
 -   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
 -   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`. The `avatar` style override has been renamed to `component`.
 -   `color` prop for `<Typography>` components now supports any valid color string. You can still use string shortcuts for theme colors for 'primary', 'accent', 'text', 'error', and 'notification'.
