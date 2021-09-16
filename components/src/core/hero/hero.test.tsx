@@ -29,7 +29,7 @@ describe('Hero', () => {
         let instance: ReactTestInstance;
         beforeEach(() => {
             instance = TestRenderer.create(
-                <Hero label={'Hero'} icon={Line} value={'100'} units={'%'} onPress={jest.fn()} />
+                <Hero label={'Hero'} icon={Line} channelValueProps={{ value: '100', units: '%' }} onPress={jest.fn()} />
             ).root;
         });
 

@@ -15,23 +15,23 @@ The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) c
 ```tsx
 import { Hero } from '@pxblue/react-native-components';
 
-<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} channelValueProps={{value: 100, units: '%'}} />;
+<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} channelValueProps={{ value: 100, units: '%' }} />;
 ```
 
 ### Hero API
 
 <div style="overflow: auto">
 
-| Prop Name           | Description                                     | Type                                   | Required | Default                |
-| ------------------- | ----------------------------------------------- | -------------------------------------- | -------- | ---------------------- |
-| label               | The text shown below the `ChannelValue`         | `string`                               | yes      |                        |
-| icon                | A component to render for the primary icon      | [`IconSource`](./Icons.md)             | yes      |                        |
-| iconSize            | The size of the primary icon (10-48)            | `number`                               | no       | 36                     |
-| iconColor           | The color of the primary icon                   | `string`                               | no       | `theme.colors.text`    |
-| iconBackgroundColor | The color behind the primary icon               | `string`                               | no       | `theme.colors.surface` |
-| channelValueProps   | Props passed through to ChannelValue child      | `ChannelValueProps`                    | no       |                        |
-| onPress             | A function to execute when pressed              | `function`                             | no       |                        |
-| theme               | Theme value overrides                           | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
+| Prop Name           | Description                                | Type                                   | Required | Default                |
+| ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
+| label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                        |
+| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                        |
+| iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
+| iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
+| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
+| channelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
+| onPress             | A function to execute when pressed         | `function`                             | no       |                        |
+| theme               | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
 </div>
 

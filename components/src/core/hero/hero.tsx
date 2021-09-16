@@ -161,9 +161,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {getIcon()}
             </View>
             <View style={[defaultStyles.values, styles.values]}>
-                {!children && !!channelValueProps?.value && (
-                    <ChannelValue fontSize={20} {...channelValueProps} />
-                )}
+                {!children && !!channelValueProps?.value && <ChannelValue fontSize={20} {...channelValueProps} />}
                 {children}
             </View>
             <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
