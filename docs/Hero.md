@@ -15,7 +15,7 @@ The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) c
 ```tsx
 import { Hero } from '@pxblue/react-native-components';
 
-<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} value={100} units={'%'} />;
+<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} channelValueProps={{value: 100, units: '%'}} />;
 ```
 
 ### Hero API
@@ -29,11 +29,7 @@ import { Hero } from '@pxblue/react-native-components';
 | iconSize            | The size of the primary icon (10-48)            | `number`                               | no       | 36                     |
 | iconColor           | The color of the primary icon                   | `string`                               | no       | `theme.colors.text`    |
 | iconBackgroundColor | The color behind the primary icon               | `string`                               | no       | `theme.colors.surface` |
-| fontSize            | The text size for the ChannelValue              | `number`                               | no       | 20                     |
-| value               | The value for the ChannelValue                  | `string` \| `number`                   | no       |                        |
-| valueIcon           | A component to render for the ChannelValue icon | [`IconSource`](./Icons.md)             | no       |                        |
-| valueColor          | Color to use for the ChannelValue text          | `string`                               | no       | `text`                 |
-| units               | The units for the ChannelValue                  | `string`                               | no       |                        |
+| channelValueProps   | Props passed through to ChannelValue child      | `ChannelValueProps`                    | no       |                        |
 | onPress             | A function to execute when pressed              | `function`                             | no       |                        |
 | theme               | Theme value overrides                           | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
