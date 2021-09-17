@@ -9,7 +9,7 @@ import {
     TextStyle,
     PixelRatio,
 } from 'react-native';
-import { ChannelValue } from '../channel-value';
+import { ChannelValue, ChannelValueProps } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -87,6 +87,11 @@ export type HeroProps = ViewProps & {
      * Default: Theme.colors.surface
      */
     iconBackgroundColor?: string;
+
+    /**
+     * Props to be passed through to ChannelValue child component
+     */
+    ChannelValueProps?: ChannelValueProps;
 
     /**
      * The text size to use for the ChannelValue
@@ -176,6 +181,14 @@ export const Hero: React.FC<HeroProps> = (props) => {
     // Compatibility to facilitate updates
     const Icon = iconProp || IconClass;
     const valueIcon = valueIconProp || ValueIconClass;
+    const ChannelProps: ChannelValueProps = props.ChannelValueProps || {
+        IconClass: props.valueIcon,
+        value: props.value || '',
+        units: props.units,
+        color: props.valueColor,
+        fontSize: props.fontSize,
+    };
+
     // Deprecation Warning
     useEffect(() => {
         if (IconClass) {
@@ -276,15 +289,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {getIcon()}
             </View>
             <View style={[defaultStyles.values, styles.values]}>
-                {!children && !!value && (
-                    <ChannelValue
-                        value={value}
-                        units={units}
-                        IconClass={valueIcon}
-                        color={valueColor}
-                        fontSize={fontSize}
-                    />
-                )}
+                {!children && (!!value || props.ChannelValueProps) && <ChannelValue {...ChannelProps} />}
                 {children}
             </View>
             <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
