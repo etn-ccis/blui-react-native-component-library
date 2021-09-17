@@ -24,12 +24,12 @@ import { Hero } from '@pxblue/react-native-components';
 
 | Prop Name           | Description                                | Type                                   | Required | Default                |
 | ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
-| label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                        |
-| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                        |
-| iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
-| iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
-| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
 | ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
+| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                        |
+| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
+| iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
+| iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
+| label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                        |
 | onPress             | A function to execute when pressed         | `function`                             | no       |                        |
 | theme               | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
@@ -43,8 +43,8 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | ----------- | -------------------------------------------- |
 | root        | Styles applied to the root element           |
 | iconWrapper | Styles applied to the icon wrapper element   |
-| values      | Styles applied to the row of `ChannelValue`s |
 | label       | Styles applied to the label element          |
+| values      | Styles applied to the row of `ChannelValue`s |
 
 ## Hero Banner
 
