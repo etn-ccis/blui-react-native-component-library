@@ -9,7 +9,7 @@ import {
     TextStyle,
     PixelRatio,
 } from 'react-native';
-import { ChannelValue, ChannelValueProps } from '../channel-value';
+import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -85,7 +85,7 @@ export type HeroProps = ViewProps & {
     /**
      * Props to be passed through to ChannelValue child component
      */
-    ChannelValueProps?: ChannelValueProps;
+    ChannelValueProps?: ChannelValuePropsType;
 
     /** A callback function to execute when the Hero is pressed  */
     onPress?: () => void;
