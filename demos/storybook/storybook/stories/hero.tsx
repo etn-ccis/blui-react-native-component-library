@@ -19,28 +19,28 @@ const heroes = [
     <Hero
         key={'hero_1'}
         label={'Healthy'}
-        channelValueProps={{ value: 96, units: '/100' }}
+        ChannelValueProps={{ value: 96, units: '/100' }}
         icon={A}
         iconColor={Colors.green[500]}
     />,
     <Hero
         key={'hero_2'}
         label={'Load'}
-        channelValueProps={{ value: 90, units: '%' }}
+        ChannelValueProps={{ value: 90, units: '%' }}
         icon={Current}
         iconColor={Colors.yellow[500]}
     />,
     <Hero
         key={'hero_3'}
         label={'Temp'}
-        channelValueProps={{ value: 55, units: 'C' }}
+        ChannelValueProps={{ value: 55, units: 'C' }}
         icon={Temp}
         iconColor={Colors.green[500]}
     />,
     <Hero
         key={'hero_4'}
         label={'Battery'}
-        channelValueProps={{ value: 96, units: '/100' }}
+        ChannelValueProps={{ value: 96, units: '/100' }}
         icon={Battery}
         iconColor={Colors.green[500]}
     />,
@@ -55,9 +55,7 @@ storiesOf('Hero', module)
             style={{ width: '100%' }}
             label={'Efficiency'}
             icon={B}
-            channelValueProps={{ value: text('value', '88'), units: text('units', '%') }}
-            // value={text('value', '88')}
-            // units={text('units', '%')}
+            ChannelValueProps={{ value: text('value', '88'), units: text('units', '%') }}
         />
     ))
     .add('with ChannelValue children', () => (
@@ -71,9 +69,7 @@ storiesOf('Hero', module)
             style={{ width: '100%' }}
             label={'Temperature'}
             icon={Temp}
-            channelValueProps={{ value: '38', units: '°C' }}
-            // value={'38'}
-            // units={'°C'}
+            ChannelValueProps={{ value: '38', units: '°C' }}
             iconColor={color('iconColor', Colors.white[500])}
             iconBackgroundColor={color('iconBackgroundColor', Colors.red[500])}
         />
@@ -86,18 +82,13 @@ storiesOf('Hero', module)
             iconSize={number('iconSize', 48)}
             iconColor={color('iconColor', Colors.white[500])}
             iconBackgroundColor={color('icon background color', Colors.blue[500])}
-            channelValueProps={{
+            ChannelValueProps={{
                 fontSize: number('fontSize', 24),
                 value: text('value', '470'),
                 units: text('units', 'RPM'),
                 icon: boolean('Show Value Icon', true) ? TrendingUp : undefined,
                 color: color('color', Colors.black[500]),
             }}
-            // fontSize={number('fontSize', 24)}
-            // value={text('value', '470')}
-            // valueIcon={boolean('Show Value Icon', true) ? TrendingUp : undefined}
-            // valueColor={color('color', Colors.black[500])}
-            // units={text('units', 'RPM')}
         />
     ))
     .add('within a hero banner', () => (

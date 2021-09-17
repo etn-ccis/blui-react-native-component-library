@@ -8,14 +8,14 @@ Hero items are used to call attention to particular values.
 
 The `<Hero>` component displays a particular icon / icon-like component, value/units, and a label.
 
-The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as `channelValueProps`. For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
+The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as `ChannelValueProps`. For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
 ### Hero Usage
 
 ```tsx
 import { Hero } from '@pxblue/react-native-components';
 
-<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} channelValueProps={{ value: 100, units: '%' }} />;
+<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} ChannelValueProps={{ value: 100, units: '%' }} />;
 ```
 
 ### Hero API
@@ -29,7 +29,7 @@ import { Hero } from '@pxblue/react-native-components';
 | iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
 | iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
 | iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
-| channelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
+| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
 | onPress             | A function to execute when pressed         | `function`                             | no       |                        |
 | theme               | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 

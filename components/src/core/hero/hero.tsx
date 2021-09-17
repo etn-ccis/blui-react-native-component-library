@@ -85,7 +85,7 @@ export type HeroProps = ViewProps & {
     /**
      * Props to be passed through to ChannelValue child component
      */
-    channelValueProps?: ChannelValueProps;
+    ChannelValueProps?: ChannelValueProps;
 
     /** A callback function to execute when the Hero is pressed  */
     onPress?: () => void;
@@ -109,12 +109,12 @@ export type HeroProps = ViewProps & {
  *
  * The Hero is used to call attention to particular values of importance to the user. It includes a
  * large icon with a label and (typically) a [ChannelValue](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--channel-value) item. The channel value can be configured
- * through the `ChannelValue` props, or passed declaratively as a child.
+ * through the `ChannelValueProps`, or passed declaratively as a child.
  */
 export const Hero: React.FC<HeroProps> = (props) => {
     const {
         label,
-        channelValueProps,
+        ChannelValueProps,
         onPress,
         icon,
         iconColor,
@@ -161,7 +161,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {getIcon()}
             </View>
             <View style={[defaultStyles.values, styles.values]}>
-                {!children && !!channelValueProps?.value && <ChannelValue fontSize={20} {...channelValueProps} />}
+                {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={20} {...ChannelValueProps} />}
                 {children}
             </View>
             <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
