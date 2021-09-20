@@ -9,7 +9,7 @@ import {
     TextStyle,
     PixelRatio,
 } from 'react-native';
-import { ChannelValue } from '../channel-value';
+import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -83,23 +83,9 @@ export type HeroProps = ViewProps & {
     iconBackgroundColor?: string;
 
     /**
-     * The text size to use for the ChannelValue
-     *
-     * Default: 20
+     * Props to be passed through to ChannelValue child component
      */
-    fontSize?: number;
-
-    /** Value for the ChannelValue child */
-    value?: number | string;
-
-    /** A component to render for the ChannelValue child */
-    valueIcon?: IconSource;
-
-    /** Color to use for the ChannelValue text */
-    valueColor?: string;
-
-    /** Units for the ChannelValue child */
-    units?: string;
+    ChannelValueProps?: ChannelValuePropsType;
 
     /** A callback function to execute when the Hero is pressed  */
     onPress?: () => void;
@@ -123,16 +109,12 @@ export type HeroProps = ViewProps & {
  *
  * The Hero is used to call attention to particular values of importance to the user. It includes a
  * large icon with a label and (typically) a [ChannelValue](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--channel-value) item. The channel value can be configured
- * through the `value` and `units` props, or passed declaratively as a child.
+ * through the `ChannelValueProps`, or passed declaratively as a child.
  */
 export const Hero: React.FC<HeroProps> = (props) => {
     const {
         label,
-        value,
-        valueIcon,
-        valueColor,
-        fontSize = 20,
-        units,
+        ChannelValueProps,
         onPress,
         icon,
         iconColor,
@@ -179,9 +161,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {getIcon()}
             </View>
             <View style={[defaultStyles.values, styles.values]}>
-                {!children && !!value && (
-                    <ChannelValue value={value} units={units} icon={valueIcon} color={valueColor} fontSize={fontSize} />
-                )}
+                {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={20} {...ChannelValueProps} />}
                 {children}
             </View>
             <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>

@@ -8,34 +8,30 @@ Hero items are used to call attention to particular values.
 
 The `<Hero>` component displays a particular icon / icon-like component, value/units, and a label.
 
-The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as props (`value`, `units`, `valueIcon`). For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
+The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as `ChannelValueProps`. For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
 ### Hero Usage
 
 ```tsx
 import { Hero } from '@pxblue/react-native-components';
 
-<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} value={100} units={'%'} />;
+<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} ChannelValueProps={{ value: 100, units: '%' }} />;
 ```
 
 ### Hero API
 
 <div style="overflow: auto">
 
-| Prop Name           | Description                                     | Type                                   | Required | Default                |
-| ------------------- | ----------------------------------------------- | -------------------------------------- | -------- | ---------------------- |
-| label               | The text shown below the `ChannelValue`         | `string`                               | yes      |                        |
-| icon                | A component to render for the primary icon      | [`IconSource`](./Icons.md)             | yes      |                        |
-| iconSize            | The size of the primary icon (10-48)            | `number`                               | no       | 36                     |
-| iconColor           | The color of the primary icon                   | `string`                               | no       | `theme.colors.text`    |
-| iconBackgroundColor | The color behind the primary icon               | `string`                               | no       | `theme.colors.surface` |
-| fontSize            | The text size for the ChannelValue              | `number`                               | no       | 20                     |
-| value               | The value for the ChannelValue                  | `string` \| `number`                   | no       |                        |
-| valueIcon           | A component to render for the ChannelValue icon | [`IconSource`](./Icons.md)             | no       |                        |
-| valueColor          | Color to use for the ChannelValue text          | `string`                               | no       | `text`                 |
-| units               | The units for the ChannelValue                  | `string`                               | no       |                        |
-| onPress             | A function to execute when pressed              | `function`                             | no       |                        |
-| theme               | Theme value overrides                           | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
+| Prop Name           | Description                                | Type                                   | Required | Default                |
+| ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
+| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
+| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                        |
+| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
+| iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
+| iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
+| label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                        |
+| onPress             | A function to execute when pressed         | `function`                             | no       |                        |
+| theme               | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
 </div>
 
@@ -47,8 +43,8 @@ You can override the internal styles used by PX Blue by passing a `styles` prop.
 | ----------- | -------------------------------------------- |
 | root        | Styles applied to the root element           |
 | iconWrapper | Styles applied to the icon wrapper element   |
-| values      | Styles applied to the row of `ChannelValue`s |
 | label       | Styles applied to the label element          |
+| values      | Styles applied to the row of `ChannelValue`s |
 
 ## Hero Banner
 
