@@ -9,7 +9,7 @@ import {
     TextStyle,
     PixelRatio,
 } from 'react-native';
-import { ChannelValue } from '../channel-value';
+import { ChannelValue, ChannelValueProps } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -89,13 +89,23 @@ export type HeroProps = ViewProps & {
     iconBackgroundColor?: string;
 
     /**
+     * Props to be passed through to ChannelValue child component
+     */
+    ChannelValueProps?: ChannelValueProps;
+
+    /**
      * The text size to use for the ChannelValue
      *
      * Default: 20
+     *
+     * @deprecated in version 6.0.0
      */
     fontSize?: number;
 
-    /** Value for the ChannelValue child */
+    /** Value for the ChannelValue child
+     *
+     * @deprecated in version 6.0.0
+     */
     value?: number | string;
 
     /**
@@ -104,13 +114,22 @@ export type HeroProps = ViewProps & {
      * @deprecated in version 6.0.0
      */
     ValueIconClass?: ComponentType<WrapIconProps>;
-    /** A component to render for the ChannelValue child icon */
+    /** A component to render for the ChannelValue child icon
+     *
+     * @deprecated in version 6.0.0
+     */
     valueIcon?: ComponentType<WrapIconProps>;
 
-    /** Color to use for the ChannelValue text */
+    /** Color to use for the ChannelValue text
+     *
+     * @deprecated in version 6.0.0
+     */
     valueColor?: string;
 
-    /** Units for the ChannelValue child */
+    /** Units for the ChannelValue child
+     *
+     * @deprecated in version 6.0.0
+     */
     units?: string;
 
     /** A callback function to execute when the Hero is pressed  */
@@ -162,6 +181,14 @@ export const Hero: React.FC<HeroProps> = (props) => {
     // Compatibility to facilitate updates
     const Icon = iconProp || IconClass;
     const valueIcon = valueIconProp || ValueIconClass;
+    const ChannelProps: ChannelValueProps = props.ChannelValueProps || {
+        IconClass: props.valueIcon,
+        value: props.value || '',
+        units: props.units,
+        color: props.valueColor,
+        fontSize: props.fontSize,
+    };
+
     // Deprecation Warning
     useEffect(() => {
         if (IconClass) {
@@ -179,6 +206,46 @@ export const Hero: React.FC<HeroProps> = (props) => {
             );
         }
     }, [ValueIconClass]);
+    useEffect(() => {
+        if (fontSize) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'fontSize' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
+            );
+        }
+    }, [fontSize]);
+    useEffect(() => {
+        if (value) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'value' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
+            );
+        }
+    }, [value]);
+    useEffect(() => {
+        if (valueIcon) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'valueIcon' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
+            );
+        }
+    }, [valueIcon]);
+    useEffect(() => {
+        if (valueColor) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'valueColor' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
+            );
+        }
+    }, [valueColor]);
+    useEffect(() => {
+        if (units) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                `Property 'units' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
+            );
+        }
+    }, [units]);
 
     const theme = useTheme(themeOverride);
     const fontScale = PixelRatio.getFontScale();
@@ -222,15 +289,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {getIcon()}
             </View>
             <View style={[defaultStyles.values, styles.values]}>
-                {!children && !!value && (
-                    <ChannelValue
-                        value={value}
-                        units={units}
-                        IconClass={valueIcon}
-                        color={valueColor}
-                        fontSize={fontSize}
-                    />
-                )}
+                {!children && (!!value || props.ChannelValueProps) && <ChannelValue {...ChannelProps} />}
                 {children}
             </View>
             <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>

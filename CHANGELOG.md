@@ -1,5 +1,11 @@
 # Change Log
 
+## v5.4.1 (September 20, 2021)
+
+### Added
+
+-   Deprecation warnings for the `<Hero>` component properties that will be changing in version 6.0.0.
+
 ## v5.4.0 (August 20, 2021)
 
 ### Added
