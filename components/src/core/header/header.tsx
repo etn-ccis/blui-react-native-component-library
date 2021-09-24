@@ -32,6 +32,8 @@ import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 import { WrapIconProps } from '../icon-wrapper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -710,81 +712,83 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     return (
         <>
-            <StatusBar barStyle={statusBarStyle()} />
-            <TouchableWithoutFeedback
-                onPress={(): void => onPress()}
-                disabled={!expandable || searching}
-                {...viewProps}
-            >
-                <AnimatedSafeAreaView
-                    style={[
-                        defaultStyles.root,
-                        styles.root,
-                        style,
-                        /* We only use the dynamic height when we are in the dynamic range (from scrollPosition zero to expandedHeight - collapsedHeight)
+            <SafeAreaProvider style={{ flex: 0 }}>
+                <StatusBar barStyle={statusBarStyle()} />
+                <TouchableWithoutFeedback
+                    onPress={(): void => onPress()}
+                    disabled={!expandable || searching}
+                    {...viewProps}
+                >
+                    <AnimatedSafeAreaView
+                        style={[
+                            defaultStyles.root,
+                            styles.root,
+                            style,
+                            /* We only use the dynamic height when we are in the dynamic range (from scrollPosition zero to expandedHeight - collapsedHeight)
                             Everywhere else, we use the fixed header height
                             */
-                        { height: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight() },
-                        searching ? { backgroundColor: theme.colors.surface } : {},
-                    ]}
-                >
-                    <SearchContext.Provider
-                        value={{
-                            searchRef: searchRef,
-                            query: query,
-                            searching: searching,
-                            onQueryChange: onChangeSearchText,
-                            searchConfig: searchableConfig,
-                            onSearch: onPressSearch,
-                            onClear: onPressSearchClear,
-                            onClose: onPressSearchClose,
-                        }}
+                            { height: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight() },
+                            searching ? { backgroundColor: theme.colors.surface } : {},
+                        ]}
                     >
-                        <ColorContext.Provider value={{ color: getFontColor() }}>
-                            <HeaderHeightContext.Provider
-                                value={{
-                                    headerHeight: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight(),
-                                }}
-                            >
-                                <HeaderBackgroundImage
-                                    backgroundImage={backgroundImage}
-                                    style={styles.backgroundImage}
-                                />
-                                <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon
-                                        icon={Icon}
-                                        onPress={onIconPress}
-                                        style={[styles.navigationIcon, styles.icon]}
+                        <SearchContext.Provider
+                            value={{
+                                searchRef: searchRef,
+                                query: query,
+                                searching: searching,
+                                onQueryChange: onChangeSearchText,
+                                searchConfig: searchableConfig,
+                                onSearch: onPressSearch,
+                                onClear: onPressSearchClear,
+                                onClose: onPressSearchClose,
+                            }}
+                        >
+                            <ColorContext.Provider value={{ color: getFontColor() }}>
+                                <HeaderHeightContext.Provider
+                                    value={{
+                                        headerHeight: useStaticHeight ? staticHeaderHeight : getDynamicHeaderHeight(),
+                                    }}
+                                >
+                                    <HeaderBackgroundImage
+                                        backgroundImage={backgroundImage}
+                                        style={styles.backgroundImage}
                                     />
-                                    <HeaderContent
-                                        theme={theme}
-                                        title={title}
-                                        subtitle={subtitle}
-                                        info={info}
-                                        actions={getActionItemInfo()}
-                                        styles={{
-                                            root: styles.textContent,
-                                            title: styles.title,
-                                            subtitle: styles.subtitle,
-                                            info: styles.info,
-                                            search: styles.search,
-                                        }}
-                                        washingtonStyle={washingtonStyle}
-                                    />
-                                    <HeaderActionItems
-                                        actionItems={actionItems}
-                                        styles={{
-                                            root: styles.actionPanel,
-                                            actionItem: styles.actionItem,
-                                            avatar: styles.avatar,
-                                        }}
-                                    />
-                                </Animated.View>
-                            </HeaderHeightContext.Provider>
-                        </ColorContext.Provider>
-                    </SearchContext.Provider>
-                </AnimatedSafeAreaView>
-            </TouchableWithoutFeedback>
+                                    <Animated.View style={[contentStyle(), styles.content]}>
+                                        <HeaderNavigationIcon
+                                            icon={Icon}
+                                            onPress={onIconPress}
+                                            style={[styles.navigationIcon, styles.icon]}
+                                        />
+                                        <HeaderContent
+                                            theme={theme}
+                                            title={title}
+                                            subtitle={subtitle}
+                                            info={info}
+                                            actions={getActionItemInfo()}
+                                            styles={{
+                                                root: styles.textContent,
+                                                title: styles.title,
+                                                subtitle: styles.subtitle,
+                                                info: styles.info,
+                                                search: styles.search,
+                                            }}
+                                            washingtonStyle={washingtonStyle}
+                                        />
+                                        <HeaderActionItems
+                                            actionItems={actionItems}
+                                            styles={{
+                                                root: styles.actionPanel,
+                                                actionItem: styles.actionItem,
+                                                avatar: styles.avatar,
+                                            }}
+                                        />
+                                    </Animated.View>
+                                </HeaderHeightContext.Provider>
+                            </ColorContext.Provider>
+                        </SearchContext.Provider>
+                    </AnimatedSafeAreaView>
+                </TouchableWithoutFeedback>
+            </SafeAreaProvider>
         </>
     );
 };
