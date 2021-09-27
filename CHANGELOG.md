@@ -8,7 +8,7 @@
 
 ### Changed
 
--   Update `<EmptyState>` default icon color to match the DSM ([#173](https://github.com/pxblue/react-native-component-library/issues/173)).
+-   Update `<EmptyState>` default icon color to match the design ([#173](https://github.com/pxblue/react-native-component-library/issues/173)).
 
 ## v5.4.0 (August 20, 2021)
 
