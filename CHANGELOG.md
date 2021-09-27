@@ -1,10 +1,14 @@
 # Change Log
 
-## v5.4.1 (September 20, 2021)
+## v5.4.1 (unreleased)
 
 ### Added
 
 -   Deprecation warnings for the `<Hero>` component properties that will be changing in version 6.0.0.
+
+### Changed
+
+-   Update `<EmptyState>` default icon color to match the DSM ([#173](https://github.com/pxblue/react-native-component-library/issues/173)).
 
 ## v5.4.0 (August 20, 2021)
 
