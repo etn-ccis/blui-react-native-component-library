@@ -16,8 +16,8 @@ export const ThemedSnackbar: React.FC<ThemedSnackbarProps> = (props) => {
     const currentTheme = useTheme(themeOverride);
     const theme = useAlternateTheme(
         themeOverride,
-        { colors: { accent: currentTheme.colors.textPalette.highlight } },
-        { colors: { accent: currentTheme.colors.primaryBase } }
+        { colors: { accent: currentTheme.colors.overrides.snackbar?.accent } },
+        { colors: { accent: currentTheme.colors.primaryPalette.dark } }
     );
 
     const fullTheme = useTheme(theme);

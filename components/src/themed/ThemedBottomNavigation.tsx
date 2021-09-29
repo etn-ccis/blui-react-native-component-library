@@ -25,7 +25,8 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
         props.activeColor ||
         (fullTheme.dark ? fullTheme.colors.primaryPalette.main : fullTheme.colors.textPalette.onPrimary.main);
     const inactiveColor =
-        props.inactiveColor || (fullTheme.dark ? fullTheme.colors.placeholder : fullTheme.colors.textPalette.highlight);
+        props.inactiveColor ||
+        (fullTheme.dark ? fullTheme.colors.placeholder : fullTheme.colors.overrides.bottomNavigation?.inactive);
 
     return (
         <Provider theme={fullTheme}>
