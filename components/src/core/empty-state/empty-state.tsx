@@ -4,6 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { WrapIconProps } from '../icon-wrapper';
+import * as PXBColors from '@pxblue/colors';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -24,7 +25,6 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
             marginTop: 16 * fontScale,
         },
         description: {
-            // @ts-ignore
             color: theme.dark ? theme.colors.textSecondary : theme.colors.text,
             textAlign: 'center',
         },
@@ -131,7 +131,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 
     const getColor = useCallback(
         (color: string | undefined): string => {
-            if (!color) return theme.colors.textSecondary || theme.colors.text;
+            if (!color) return theme.dark ? PXBColors.black[200] : PXBColors.gray[500];
             if (Object.keys(theme.colors).indexOf(color) >= 0)
                 return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
             return color;
