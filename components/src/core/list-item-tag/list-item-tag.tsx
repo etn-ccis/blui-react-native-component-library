@@ -34,10 +34,17 @@ const listItemTagStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor:
+                props.backgroundColor ||
+                (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) ||
+                theme.colors.primary,
             color:
                 props.fontColor ||
-                (Color(props.backgroundColor || theme.colors.primaryBase || theme.colors.primary).isLight()
+                (Color(
+                    props.backgroundColor ||
+                        (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) ||
+                        theme.colors.primary
+                ).isLight()
                     ? theme.dark
                         ? black[500]
                         : theme.colors.textPalette?.primary || theme.colors.text

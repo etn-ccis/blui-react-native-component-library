@@ -40,7 +40,10 @@ const makeStyles = (
     return StyleSheet.create({
         root: {
             paddingTop: insets.top,
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor:
+                props.backgroundColor ||
+                (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) ||
+                theme.colors.primary,
             height: height,
         },
         icon: {

@@ -38,7 +38,10 @@ const makeStyles = (
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
-            backgroundColor: props.activeColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor:
+                props.activeColor ||
+                (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) ||
+                theme.colors.primary,
         },
         progressBar: {},
         text: {},
@@ -132,7 +135,8 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const theme = useTheme(props.theme);
     const {
-        activeColor = theme.colors.primaryBase || theme.colors.primary,
+        activeColor = (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) ||
+            theme.colors.primary,
         activeStep,
         leftButton,
         rightButton,

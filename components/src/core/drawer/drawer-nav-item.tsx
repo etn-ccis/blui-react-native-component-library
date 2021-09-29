@@ -118,10 +118,14 @@ const makeStyles = (
     flipIcon: ViewStyle;
 }> => {
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+    const fivePercentOpacityPrimary = color(
+        (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) || theme.colors.primary
+    )
         .fade(0.95)
         .string();
-    const twentyPercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+    const twentyPercentOpacityPrimary = color(
+        (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) || theme.colors.primary
+    )
         .fade(0.8)
         .string();
 
@@ -182,7 +186,9 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const previousActive = usePrevious(activeItem || '');
 
     // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+    const lightenedPrimary = color(
+        (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) || theme.colors.primary
+    )
         .lighten(0.83)
         .desaturate(0.39)
         .string();
