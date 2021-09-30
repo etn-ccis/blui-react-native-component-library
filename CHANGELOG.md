@@ -6,7 +6,7 @@
 
 -   Deprecation warnings for the `<Hero>` component properties that will be changing in version 6.0.0.
 
-### Changed
+### Fixed
 
 -   Default `iconColor` for `<InfoListItem>` ([#183](https://github.com/pxblue/react-native-component-library/issues/183)).
 
