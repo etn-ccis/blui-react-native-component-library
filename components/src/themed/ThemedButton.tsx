@@ -40,7 +40,9 @@ export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
             } else {
                 backgroundColor = theme.colors.primaryPalette.light;
                 textColor =
-                    theme.colors.overrides.button?.contained?.text?.disabled || theme.colors.textPalette.disabled;
+                    theme.colors.overrides.button?.contained?.text?.disabled ||
+                    theme.colors.textPalette.disabled ||
+                    theme.colors.text;
             }
         } else if (props.mode === 'outlined') {
             if (theme.dark) {
