@@ -1,11 +1,11 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager, PixelRatio } from 'react-native';
 import { ICON_SIZE } from './constants';
+import { IconSource } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
-import { WrapIconProps } from '../icon-wrapper';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     navigation: ViewStyle;
@@ -27,9 +27,9 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 };
 type HeaderNavigationProps = {
     /** A component to render for the navigation icon */
-    icon?: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
-    /** Callback function to call when the icon is pressed */
+    /** A callback function to call when the icon is pressed */
     onPress?: () => void;
 
     /** Style to apply to the Touchable element */

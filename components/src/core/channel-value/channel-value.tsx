@@ -1,9 +1,14 @@
-import React, { ComponentType, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { Body1, Subtitle1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon';
+import { Spacer } from '../utility';
+import { IconSource } from '../__types__';
+
+const prefixUnitWhitelist = ['$'];
+const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -18,14 +23,7 @@ export type ChannelValueProps = ViewProps & {
     value: string | number;
 
     /** A component to render for the icon */
-    IconClass?: ComponentType<WrapIconProps>;
-
-    /**
-     * Props to spread to the icon component
-     *
-     * @deprecated in version 6.0.0
-     */
-    IconProps?: { size?: number; color?: string };
+    icon?: IconSource;
 
     /**
      * The size of the icon
@@ -43,6 +41,15 @@ export type ChannelValueProps = ViewProps & {
 
     /** Text to display for the units (light text) */
     units?: string;
+
+    /** Whether to show a space between the value and units
+     *
+     * Default: auto (shows space except for white list items)
+     *
+     * prefixUnitWhitelist: ['$'];
+     * suffixUnitWhitelist: ['%', '℉','°F','℃','°C','°']
+     */
+    unitSpace?: 'show' | 'hide' | 'auto';
 
     /** Whether to show the units before the value (e.g., for currency)
      *
@@ -82,77 +89,76 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const {
         value,
         fontSize = 16,
-        IconClass,
+        icon,
+        iconColor,
+        iconSize,
         color,
         units,
+        unitSpace = 'auto',
         prefix = false,
         styles = {},
         style,
-        IconProps = {},
-        iconColor: iconColorProp,
-        iconSize: iconSizeProp,
         theme: themeOverride,
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
 
-    // Compatibility to facilitate updates
-    const iconColor = iconColorProp || IconProps?.color;
-    const iconSize = iconSizeProp || IconProps?.size;
-    // Deprecation Warning
-    useEffect(() => {
-        if (IconClass) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'IconClass' in ChannelValue component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
-            );
-        }
-    }, [IconClass]);
-    useEffect(() => {
-        if (IconProps) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'IconProps' in ChannelValue component has been deprecated and will be removed in version 6.0.0. You should update to use the new 'iconColor' and 'iconSize' props instead.`
-            );
-        }
-    }, [IconProps]);
-
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
-        if (Object.keys(theme.colors).indexOf(color) >= 0)
-            return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
         return color;
     }, [color, theme]);
 
     const getIcon = useCallback(() => {
-        if (IconClass) {
+        if (icon) {
             return (
-                <View style={[{ marginRight: Math.round(fontSize / 6) }]}>
-                    <IconClass size={iconSize || fontSize} color={iconColor || getColor()} />
+                <View style={[{ marginRight: Math.round(fontSize / 3) }]}>
+                    <Icon source={icon} size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
         }
-    }, [IconClass, fontSize, getColor, iconColor, iconSize]);
+    }, [icon, fontSize, getColor, iconColor, iconSize]);
 
-    const getUnits = useCallback((): JSX.Element | undefined => {
-        if (units) {
-            return (
-                <Body1 font={'light'} fontSize={fontSize} style={[{ color: getColor() }, styles.units]}>
-                    {units}
-                </Body1>
-            );
-        }
-    }, [units, fontSize, getColor, styles]);
+    const getUnits = useCallback(
+        (spacerLocation: 'before' | 'after'): JSX.Element | undefined => {
+            if (units) {
+                return (
+                    <>
+                        {((spacerLocation === 'before' && unitSpace === 'show') ||
+                            (spacerLocation === 'before' &&
+                                unitSpace === 'auto' &&
+                                !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
+                        <Body1
+                            font={'light'}
+                            fontSize={fontSize}
+                            style={[
+                                {
+                                    color: getColor(),
+                                },
+                                styles.units,
+                            ]}
+                        >
+                            {units}
+                        </Body1>
+                        {((spacerLocation === 'after' && unitSpace === 'show') ||
+                            (spacerLocation === 'after' &&
+                                unitSpace === 'auto' &&
+                                !prefixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
+                    </>
+                );
+            }
+        },
+        [units, fontSize, getColor, styles, unitSpace]
+    );
 
     const prefixUnits = useCallback((): JSX.Element | undefined => {
         if ((!I18nManager.isRTL && prefix) || (I18nManager.isRTL && !prefix)) {
-            return getUnits();
+            return getUnits('after');
         }
     }, [prefix, getUnits]);
 
     const suffixUnits = useCallback((): JSX.Element | undefined => {
         if ((I18nManager.isRTL && prefix) || (!I18nManager.isRTL && !prefix)) {
-            return getUnits();
+            return getUnits('before');
         }
     }, [prefix, getUnits]);
 

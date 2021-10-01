@@ -12,26 +12,36 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 
 ```tsx
 import { Drawer, DrawerHeader, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@pxblue/react-native-components';
-...
-<Drawer activeItem={selectedItem} onItemSelect={(id) => {/* updateSelectedItem */}}>
-    <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'} icon={<Menu/>} />
-    <DrawerSubheader>{/* contents */ }</DrawerSubheader>
+
+<Drawer
+    activeItem={selectedItem}
+    onItemSelect={(id) => {
+        /* updateSelectedItem */
+    }}
+>
+    <DrawerHeader title={'Drawer Title'} subtitle={'Drawer Subtitle'} icon={<Menu />} />
+    <DrawerSubheader>{/* contents */}</DrawerSubheader>
     <DrawerBody>
         {/* Using 'items' prop */}
-        <DrawerNavGroup title={'Navigation Group'} items={[{
-            title: 'Identity Management',
-            itemID: 'g1i1',
-        }]} />
+        <DrawerNavGroup
+            title={'Navigation Group'}
+            items={[
+                {
+                    title: 'Identity Management',
+                    itemID: 'g1i1',
+                },
+            ]}
+        />
         {/* Using children */}
         <DrawerNavGroup title={'Navigation Group'}>
-            <DrawerNavItem itemID={'item1'} title={'Item 1'}/>
+            <DrawerNavItem itemID={'item1'} title={'Item 1'} />
             <DrawerNavItem itemID={'item2'} title={'Item 2'}>
-                <DrawerNavItem itemID={'item3'} title={'Item 3'}/>
+                <DrawerNavItem itemID={'item3'} title={'Item 3'} />
             </DrawerNavItem>
         </DrawerNavGroup>
     </DrawerBody>
-    <DrawerFooter>{/* contents */ }</DrawerFooter>
-</Drawer>
+    <DrawerFooter>{/* contents */}</DrawerFooter>
+</Drawer>;
 ```
 
 ### Drawer API
@@ -68,18 +78,18 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                                    | Type                                                                            | Required | Default                |
-| ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- | -------- | ---------------------- |
-| backgroundColor   | The color used for the background              | `string`                                                                        | no       | `theme.colors.primary` |
-| backgroundImage   | An image to display in the header              | `ImageSourcePropType`                                                           | no       |                        |
-| backgroundOpacity | The opacity of the background image            | `number`                                                                        | no       | `0.3`                  |
-| fontColor         | The color of the text elements                 | `string`                                                                        | no       | `theme.colors.surface` |
-| icon              | Icon to show to the left of the title          | `HeaderIcon` (see Header) \| `React.Component<{ size: number, color: string }>` | no       |                        |
-| onIconPress       | A callback to execute when the icon is pressed | `() => void`                                                                    | no       |                        |
-| subtitle          | The second line of text                        | `string`                                                                        | no       |                        |
-| title             | The first line of text                         | `string`                                                                        | no       |                        |
-| titleContent      | Custom content for header title area           | `ReactNode`                                                                     | no       |                        |
-| theme             | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>`                                          | no       |                        |
+| Prop Name         | Description                                    | Type                                   | Required | Default                |
+| ----------------- | ---------------------------------------------- | -------------------------------------- | -------- | ---------------------- |
+| backgroundColor   | The color used for the background              | `string`                               | no       | `theme.colors.primary` |
+| backgroundImage   | An image to display in the header              | `ImageSourcePropType`                  | no       |                        |
+| backgroundOpacity | The opacity of the background image            | `number`                               | no       | `0.3`                  |
+| fontColor         | The color of the text elements                 | `string`                               | no       | `theme.colors.surface` |
+| icon              | A component to render for the icon             | [`IconSource`](./Icons.md)             | no       |                        |
+| onIconPress       | A callback to execute when the icon is pressed | `() => void`                           | no       |                        |
+| subtitle          | The second line of text                        | `string`                               | no       |                        |
+| title             | The first line of text                         | `string`                               | no       |                        |
+| titleContent      | Custom content for header title area           | `ReactNode`                            | no       |                        |
+| theme             | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
 </div>
 
@@ -206,21 +216,21 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                     | Type                                               | Required | Default |
-| ------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------- | -------- | ------- |
-| depth\*                         | The nested depth of the item                                                                    | `number`                                           | no       | 0       |
-| hidden                          | Hide / do not render the nav item                                                               | `boolean`                                          | no       | `false` |
-| icon                            | A component to render for the left icon                                                         | `React.Component<{ size: number, color: string }>` | no       |         |
-| isInActiveTree\*                | Sets whether the item is a parent of the currently active item                                  | `boolean`                                          | no       | `false` |
-| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                                           | yes      |         |
-| items                           | The items nested under this item                                                                | `NestedNavItem[]`                                  | no       |         |
-| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                       | `(ids: string[]) => void`                          | no       |         |
-| onPress                         | A function to execute when the item is pressed                                                  | `() => void`                                       | no       |         |
-| rightComponent                  | Custom content/component to display to the right                                                | `ReactNode`                                        | no       |         |
-| statusColor                     | Color used for the status stripe and icon                                                       | `string`                                           | no       |         |
-| subtitle                        | The text to show on the second line                                                             | `string`                                           | no       |         |
-| title                           | The text to show on the first line                                                              | `string`                                           | yes      |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                                                  | -        |         |
+| Prop Name                       | Description                                                                                     | Type                       | Required | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------- | -------- | ------- |
+| depth\*                         | The nested depth of the item                                                                    | `number`                   | no       | 0       |
+| hidden                          | Hide / do not render the nav item                                                               | `boolean`                  | no       | `false` |
+| icon                            | A component to render for the left icon                                                         | [`IconSource`](./Icons.md) | no       |         |
+| isInActiveTree\*                | Sets whether the item is a parent of the currently active item                                  | `boolean`                  | no       | `false` |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                   | yes      |         |
+| items                           | The items nested under this item                                                                | `NestedNavItem[]`          | no       |         |
+| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                       | `(ids: string[]) => void`  | no       |         |
+| onPress                         | A function to execute when the item is pressed                                                  | `() => void`               | no       |         |
+| rightComponent                  | Custom content/component to display to the right                                                | `ReactNode`                | no       |         |
+| statusColor                     | Color used for the status stripe and icon                                                       | `string`                   | no       |         |
+| subtitle                        | The text to show on the second line                                                             | `string`                   | no       |         |
+| title                           | The text to show on the first line                                                              | `string`                   | yes      |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                          | -        |         |
 
 </div>
 

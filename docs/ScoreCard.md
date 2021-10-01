@@ -8,17 +8,13 @@ Card component that calls attention to particular values.
 ## Usage
 
 ```tsx
-import { Hero, HeroBanner, InfoListItem, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import _A from '@pxblue/icons-svg/grade_a.svg';
-const A = wrapIcon({ IconClass: _A });
-const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
-...
+import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@pxblue/react-native-components';);
+
 <ScoreCard
     headerTitle={'Portland Datacenter Long Name'}
     headerSubtitle={'6 UPS Devices'}
     actionItems={[
-        { icon: MoreIcon, onPress: () => { } }
+        { icon: { name: 'more-vert' }, onPress: () => { } }
     ]}
     badgeOffset={-55}
     badge={
@@ -29,7 +25,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
                 iconColor={PXBColors.green[500]}
                 value={98}
                 units={'/100'}
-                IconClass={A}
+                icon={{ family: 'pxblue', name: 'grade_a' }}
             />
         </HeroBanner>
     }
@@ -90,9 +86,9 @@ Header icons specified as a JSON object with the following properties:
 
 <div style="overflow: auto">
 
-| Key     | Description                        | Type                                               | Required | Default |
-| ------- | ---------------------------------- | -------------------------------------------------- | -------- | ------- |
-| icon    | A component to render for the icon | `React.Component<{ size: number, color: string }>` | yes      |         |
-| onPress | A function to execute when clicked | `function`                                         | yes      |         |
+| Key     | Description                        | Type                       | Required | Default |
+| ------- | ---------------------------------- | -------------------------- | -------- | ------- |
+| icon    | A component to render for the icon | [`IconSource`](./Icons.md) | yes      |         |
+| onPress | A function to execute when clicked | `function`                 | yes      |         |
 
 </div>

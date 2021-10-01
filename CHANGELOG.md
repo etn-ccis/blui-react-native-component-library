@@ -1,5 +1,32 @@
 # Change Log
 
+## 6.0.0 (October 1, 2021)
+
+### Fixed
+
+-   Issue with `<UserMenu>` that would not apply `fontColor`, `iconColor`, and `backgroundColor` appropriately via `menuItems` prop object.
+
+### Added
+
+-   New peerDependency on [@pxblue/react-native-vector-icons](https://www.npmjs.com/package/@pxblue/react-native-vector-icons).
+-   [Wrapper components](https://github.com/pxblue/react-native-component-library/tree/master/components/src/themed) for various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components. These greatly simplify the theming mechanism for using our dark theme, but does require updating to version 6+ of our [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes) package.
+-   `unitSpace` prop to `<ChannelValue>` to manage spacing between the value and units.
+
+### Changed
+
+-   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see [Icons](https://github.com/pxblue/react-native-component-library/blob/master/docs/Icons.md)]).
+-   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
+-   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
+-   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component.
+-   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
+-   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`. The `avatar` style override has been renamed to `component`.
+-   `color` prop for `<Typography>` components now supports any valid color string. You can still use string shortcuts for theme colors for 'primary', 'accent', 'text', 'error', and 'notification'.
+
+### Removed
+
+-   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
+-   `color` prop in `<ChannelValue>`, `<EmptyState>`, and `<Hero>` components no longer supports using theme keys as string. If you would like to use a value from the theme, you must pass it in as a value: `color={theme.colors.primary}` instead of `color={'primary'}`.
+
 ## v5.4.1 (October 1, 2021)
 
 ### Added

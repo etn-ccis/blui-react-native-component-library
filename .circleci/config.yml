@@ -54,6 +54,7 @@ jobs:
                       - dist
                       - components/coverage
             - run:
+                  name: Memory Usage
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
                   when: always
     coverage_report:
@@ -63,10 +64,10 @@ jobs:
         steps:
             - checkout
             - attach_workspace:
-                at: .
+                  at: .
             - codecov/upload:
-                file: './components/coverage/clover.xml'
-                token: c0991605-ebc1-430d-aa3f-3e134c6a8a0e
+                  file: './components/coverage/clover.xml'
+                  token: c0991605-ebc1-430d-aa3f-3e134c6a8a0e
 
     # Builds the Storybook app using @pxblue/react-native-components persisted in /dist folder.
     build_storybook:
@@ -112,6 +113,7 @@ jobs:
                       cd demos/storybook
                       yarn build
             - run:
+                  name: Memory Usage
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
                   when: always
 
@@ -173,6 +175,7 @@ jobs:
                   paths:
                       - demos/api/storybook-static
             - run:
+                  name: Memory Usage
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
                   when: always
 
@@ -217,6 +220,7 @@ jobs:
                       cd demos/showcase
                       yarn build
             - run:
+                  name: Memory Usage
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
                   when: always
 
@@ -264,33 +268,33 @@ jobs:
                       git push
     publish:
         docker:
-          - image: circleci/node:12.9.1-browsers
+            - image: circleci/node:12.9.1-browsers
         steps:
-          - checkout
-          - attach_workspace:
-              at: .
-          - run:
-              name: Authenticate with registry
-              command: |
-                echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-                echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-          - run:
-              name: Publish @pxblue/react-native-components
-              command:  |
-                 yarn publish:package -b $CIRCLE_BRANCH
+            - checkout
+            - attach_workspace:
+                  at: .
+            - run:
+                  name: Authenticate with registry
+                  command: |
+                      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+                      echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            - run:
+                  name: Publish @pxblue/react-native-components
+                  command: |
+                      yarn publish:package -b $CIRCLE_BRANCH
 
     tag:
-      docker:
-        - image: circleci/node:12.9.1-browsers
-      steps:
-        - checkout
-        - attach_workspace:
-            at: .
-        - gh/setup
-        - run:
-            name: Tag @pxblue/react-native-components
-            command: |
-                yarn tag:package -b $CIRCLE_BRANCH
+        docker:
+            - image: circleci/node:12.9.1-browsers
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: .
+            - gh/setup
+            - run:
+                  name: Tag @pxblue/react-native-components
+                  command: |
+                      yarn tag:package -b $CIRCLE_BRANCH
 
 workflows:
     version: 2
@@ -315,26 +319,26 @@ workflows:
                               - master
                               - dev
             - publish:
-                requires:
-                    - build_storybook
-                    - build_showcase
-                    - build_storybook_api
-                filters:
-                    branches:
-                        only:
-                          - master
-                          - dev
+                  requires:
+                      - build_storybook
+                      - build_showcase
+                      - build_storybook_api
+                  filters:
+                      branches:
+                          only:
+                              - master
+                              - dev
             - tag:
-                requires:
-                  - publish
-                filters:
-                    branches:
-                        only:
-                          - master
+                  requires:
+                      - publish
+                  filters:
+                      branches:
+                          only:
+                              - master
             - coverage_report:
-                   requires:
-                        - build_library
-                   filters:
-                        branches:
-                            only:
-                                - master
+                  requires:
+                      - build_library
+                  filters:
+                      branches:
+                          only:
+                              - master

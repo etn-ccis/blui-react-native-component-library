@@ -1,17 +1,17 @@
 import React from 'react';
 import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
-import { ListItemTag, InfoListItem, wrapIcon } from '@pxblue/react-native-components';
+import { ListItemTag, InfoListItem } from '@pxblue/react-native-components';
 import { withKnobs, color, text } from '@storybook/addon-knobs';
 import { padded } from '../decorators';
 import * as Colors from '@pxblue/colors';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
 const notes = {
     notes: 'A text item with a colored background and rounded corners that is used to tag lists.',
 };
 
-const Build = wrapIcon({ IconClass: MatIcon, name: 'build' });
+const Build: IconFamily = { name: 'build' };
 
 storiesOf('ListItemTag', module)
     .addDecorator(withKnobs)
@@ -36,7 +36,7 @@ storiesOf('ListItemTag', module)
                     <InfoListItem
                         title={'@pxblue/react-themes'}
                         subtitle={'Light and dark themes supported'}
-                        IconClass={Build}
+                        icon={Build}
                         rightComponent={
                             <ListItemTag
                                 label={'BUILD PASSING'}

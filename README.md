@@ -18,11 +18,12 @@ yarn add @pxblue/react-native-components
 > **NOTE**: This install command will install the package from NPM. If you are a PX Blue developer working with components locally, you will want to follow the manual linking instructions - see below.
 
 ### Peer Dependencies
+
 This library has a few dependencies that you will need to install in your project in order to work correctly. To install them, you can run the following command in your project root:
 
 ```shell
 npm install --save react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0 react-native-modal@^12.0.0
-// or 
+// or
 yarn add react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0 react-native-modal@^12.0.0
 ```
 
@@ -72,12 +73,14 @@ See the [documentation](https://github.com/pxblue/react-native-component-library
 
 ### Upgrading from version 5 -> 6
 
-Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats along with several other prop changes related to icon usage.
+Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats.
 
-Version 5.3.0 has been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.3.0 and addressing these warnings before upgrading to version 6.
+Versions 5.3.x -> 5.4.x have been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.4.x and addressing these warnings before upgrading to version 6.
+
+Version 6 also includes a new set of [wrappers](./components/src/themed) around a subset of [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to provide the correct styles. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP. These wrapper components should be used in conjunction with version 6+ of [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes), which consolidated our blueDark and blueDarkAlt themes into a single theme for simpler usage.
 
 ## NOTES
 
-This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - this library must be installed in your project in order to use the PX Blue components.
+This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@pxblue/react-native-vector-icons](https://github.com/pxblue/icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the PX Blue components.
 
-Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up.
+Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up or start your project using the PX Blue [CLI](https://www.npmjs.com/package/@pxblue/cli) and this will be configured for you automatically.

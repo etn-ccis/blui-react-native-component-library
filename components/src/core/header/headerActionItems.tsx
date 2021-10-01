@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, PixelRatio } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { wrapIcon } from '../icon-wrapper/icon-wrapper';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
-import { HeaderActionComponent, HeaderIcon as HeaderIconType } from '../__types__';
+import { HeaderActionComponent, HeaderIcon as HeaderIconType, IconFamily } from '../__types__';
 
-const ClearIcon = wrapIcon({ IconClass: Icon, name: 'clear' });
-const SearchIcon = wrapIcon({ IconClass: Icon, name: 'search' });
+const ClearIcon: IconFamily = { name: 'clear' };
+const SearchIcon: IconFamily = { name: 'search' };
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -47,8 +45,6 @@ type ActionItemProps = {
         root?: StyleProp<ViewStyle>;
         actionItem?: StyleProp<ViewStyle>;
         component?: StyleProp<ViewStyle>;
-        /** TODO: Deprecated - remove this in 6.0.0, Add a changelog entry */
-        avatar?: StyleProp<ViewStyle>;
     };
 };
 
@@ -97,11 +93,9 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
                             <View
                                 key={`action_${index}`}
                                 testID={`header-action-item${index}`}
-                                // TODO: Remove the avatar style in 6.0.0 - it's been deprecated
                                 style={[
                                     defaultStyles.component,
                                     actionItem.width ? { width: actionItem.width } : {},
-                                    styles.avatar,
                                     styles.component,
                                 ]}
                             >

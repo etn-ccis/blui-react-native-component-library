@@ -7,32 +7,24 @@ The `<EmptyState>` component is an element that can be used as a placeholder whe
 ## Usage
 
 ```tsx
-import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
-import _Battery from '@pxblue/icons-svg/battery.svg';
-const Battery = wrapIcon({ IconClass: _Battery });
-...
-<EmptyState
-    title={'Nothing Found'}
-    description={'Not a single thing'}
-    IconClass={Battery}
-/>
+import { EmptyState } from '@pxblue/react-native-components';
+
+<EmptyState title={'Nothing Found'} description={'Not a single thing'} icon={{ family: 'pxblue', name: 'battery' }} />;
 ```
 
 ## API
 
 <div style="overflow: auto">
 
-| Prop Name     | Description                                    | Type                                               | Required | Default |
-| ------------- | ---------------------------------------------- | -------------------------------------------------- | -------- | ------- |
-| title         | The primary text to display (first line)       | `string`                                           | yes      |         |
-| description   | The secondary text to display (second line)    | `string`                                           | no       |         |
-| ~~IconClass~~ | A component to render for the primary icon     | `React.Component<{ size: number, color: string }>` | no       |         |
-| icon          | A component to render for the primary icon     | `React.Component<{ size: number, color: string }>` | no       |         |
-| ~~IconProps~~ | Props to spread to the primary icon            | `{ size?: number, color?: string }`                | no       |         |
-| iconSize      | The size of the primary icon (100-200)         | `number`                                           | no       | 100     |
-| iconColor     | The color of the primary icon                  | `string`                                           | no       | `text`  |
-| actions       | Additional components to render below the text | `JSX.Element`                                      | no       |         |
-| theme         | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>`             | no       |         |
+| Prop Name   | Description                                    | Type                                   | Required | Default |
+| ----------- | ---------------------------------------------- | -------------------------------------- | -------- | ------- |
+| title       | The primary text to display (first line)       | `string`                               | yes      |         |
+| description | The secondary text to display (second line)    | `string`                               | no       |         |
+| icon        | A component to render for the primary icon     | [`IconSource`](./Icons.md)             | no       |         |
+| iconSize    | The size of the primary icon (100-200)         | `number`                               | no       | 100     |
+| iconColor   | The color of the primary icon                  | `string`                               | no       | `text`  |
+| actions     | Additional components to render below the text | `JSX.Element`                          | no       |         |
+| theme       | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>` | no       |         |
 
 </div>
 

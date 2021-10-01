@@ -1,10 +1,10 @@
-import React, { ComponentType, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
-import * as PXBColors from '@pxblue/colors';
+import { IconSource } from '../__types__';
+import { Icon } from '../icon';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -25,7 +25,9 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
             marginTop: 16 * fontScale,
         },
         description: {
-            color: theme.dark ? theme.colors.textSecondary : theme.colors.text,
+            color:
+                (theme.dark ? theme.colors.textPalette?.secondary : theme.colors.textPalette?.primary) ||
+                theme.colors.text,
             textAlign: 'center',
         },
         actions: {
@@ -40,21 +42,8 @@ export type EmptyStateProps = ViewProps & {
     /** The secondary text to display (second line) */
     description?: string;
 
-    /** A component to render for the primary icon
-     *
-     * @deprecated in version 6.0.0
-     */
-    IconClass?: ComponentType<WrapIconProps>;
-
     /** A component to render for the primary icon */
-    icon?: ComponentType<WrapIconProps>;
-
-    /**
-     * Props to spread to the primary icon component
-     *
-     * @deprecated in version 6.0.0
-     */
-    IconProps?: { size?: number; color?: string };
+    icon?: IconSource;
 
     /** The size of the primary icon (100-200) */
     iconSize?: number;
@@ -91,11 +80,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         title,
         description,
         actions,
-        IconClass,
-        icon: iconProp,
+        icon,
         iconColor,
         iconSize,
-        IconProps = {},
         styles = {},
         style,
         theme: themeOverride,
@@ -104,46 +91,22 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const theme = useTheme(themeOverride);
     const defaultStyles = makeStyles(theme, PixelRatio.getFontScale());
 
-    // Compatibility to facilitate updates
-    const Icon = iconProp || IconClass;
-    // Deprecation Warning
-    useEffect(() => {
-        if (IconClass) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'IconClass' in EmptyState component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
-            );
-        }
-    }, [IconClass]);
-    useEffect(() => {
-        if (IconProps) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'IconProps' in EmptyState component has been deprecated and will be removed in version 6.0.0. You should update to use the 'iconColor' and 'iconSize' props instead.`
-            );
-        }
-    }, [IconProps]);
-
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;
         return Math.max(100, Math.min(200, iconSize));
     }, [iconSize]);
 
     const getColor = useCallback(
-        (color: string | undefined): string => {
-            if (!color) return theme.dark ? PXBColors.black[200] : PXBColors.gray[500];
-            if (Object.keys(theme.colors).indexOf(color) >= 0)
-                return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
-            return color;
-        },
+        (color: string | undefined): string =>
+            color || theme.colors.textPalette?.secondary || theme.colors.textPalette?.primary || theme.colors.text,
         [theme]
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (Icon) {
-            return <Icon size={normalizeIconSize()} color={getColor(iconColor)} {...IconProps} />;
+        if (icon) {
+            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
-    }, [Icon, IconProps, normalizeIconSize, getColor, iconColor]);
+    }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>

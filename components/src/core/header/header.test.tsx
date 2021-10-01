@@ -1,14 +1,14 @@
 import React from 'react';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { Header } from '.';
-import { wrapIcon } from '..';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import faker from 'faker';
+import { EdgeInsets, IconFamily } from '../__types__';
 import { cleanup } from '@testing-library/react-native';
-const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });
+
+const MenuIcon: IconFamily = { name: 'menu' };
 
 jest.mock('react-native-safe-area-context', () => ({
-    useSafeAreaInsets: (): { top: number; left: number; right: number; bottom: number } => ({
+    useSafeAreaInsets: (): EdgeInsets => ({
         top: 0,
         left: 0,
         right: 0,
@@ -45,11 +45,9 @@ describe('Header', () => {
                 <Header
                     title={'Test Title'}
                     subtitle={'Subtitle'}
-                    navigation={{
-                        icon: MenuIcon,
-                        onPress: (): void => {
-                            /* do nothing */
-                        },
+                    icon={MenuIcon}
+                    onIconPress={(): void => {
+                        /* do nothing */
                     }}
                     actionItems={[
                         {

@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import {
     StyleSheet,
     View,
@@ -10,14 +10,15 @@ import {
     I18nManager,
     PixelRatio,
 } from 'react-native';
-import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Subtitle1 } from '../typography';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon';
+import { IconSource } from '../__types__';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -206,15 +207,8 @@ export type InfoListItemProps = ViewProps & {
      */
     iconAlign?: IconAlign;
 
-    /**
-     * A component to render for the icon
-     *
-     * @deprecated in version 6.0.0
-     */
-    IconClass?: ComponentType<WrapIconProps>;
-
     /** A component to render for the icon */
-    icon?: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /** Color to use for the icon */
     iconColor?: string;
@@ -300,8 +294,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         iconColor,
         backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
         onPress,
-        IconClass,
-        icon: iconProp,
+        icon,
         hidePadding,
         styles = {},
         theme: themeOverride,
@@ -312,18 +305,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
-    // Compatibility to facilitate updates
-    const Icon = iconProp || IconClass;
-    // Deprecation Warning
-    useEffect(() => {
-        if (IconClass) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'IconClass' in InfoListItem component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
-            );
-        }
-    }, [IconClass]);
-
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
         if (avatar) {
@@ -333,18 +314,18 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     : Colors.black[500]
                 : Colors.white[50]; // default avatar is dark gray -> white text
         }
-        return statusColor ? statusColor : theme.dark ? Colors.black[200] : Colors.gray[500];
+        return statusColor ? statusColor : theme.colors.textPalette.secondary;
     }, [iconColor, avatar, statusColor, theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (Icon) {
+        if (icon) {
             return (
                 <View style={avatar ? [defaultStyles.avatar, styles.avatar] : [defaultStyles.icon, styles.icon]}>
-                    <Icon size={24} color={getIconColor()} />
+                    <Icon source={icon} size={24} color={getIconColor()} />
                 </View>
             );
         }
-    }, [Icon, avatar, getIconColor, defaultStyles, styles]);
+    }, [icon, avatar, getIconColor, defaultStyles, styles]);
 
     const getSubtitle = useCallback((): JSX.Element[] | null => {
         if (!subtitle) {
@@ -375,7 +356,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return rightComponent;
         } else if (chevron) {
             return (
-                <MatIcon
+                <MatCommunityIcon
                     name="chevron-right"
                     size={24}
                     color={theme.colors.text}
@@ -395,7 +376,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             {...viewProps}
         >
             <View style={[defaultStyles.statusStripe, styles.statusStripe]} />
-            {IconClass || !hidePadding ? (
+            {icon || !hidePadding ? (
                 <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
             ) : null}
             {leftComponent}

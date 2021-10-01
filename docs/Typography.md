@@ -10,7 +10,7 @@ We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Bod
 
 ```tsx
 import * as Typography from '@pxblue/react-native-components';
-...
+
 <View>
     <Typography.H1>Head. 1</Typography.H1>
     <Typography.H2>Heading 2</Typography.H2>
@@ -25,7 +25,7 @@ import * as Typography from '@pxblue/react-native-components';
     <Typography.Button>Button</Typography.Button>
     <Typography.Caption>Caption</Typography.Caption>
     <Typography.Overline>Overline</Typography.Overline>
-</View>
+</View>;
 ```
 
 ## API
@@ -34,12 +34,12 @@ All typography components in this library share a common API.
 
 <div style="overflow: auto">
 
-| Prop Name | Description                     | Type                                                                                | Required | Default |
-| --------- | ------------------------------- | ----------------------------------------------------------------------------------- | -------- | ------- |
-| font      | The font style (from the theme) | keyof [`theme.fonts`](https://callstack.github.io/react-native-paper/theming.html)  | no       |         |
-| fontSize  | The font size                   | `number`                                                                            | no       |         |
-| color     | The font color (from the theme) | keyof [`theme.colors`](https://callstack.github.io/react-native-paper/theming.html) | no       | 'text'  |
-| theme     | Theme value overrides           | `$DeepPartial<ReactNativePaper.Theme>`                                              | no       |         |
+| Prop Name | Description                     | Type                                                                               | Required | Default             |
+| --------- | ------------------------------- | ---------------------------------------------------------------------------------- | -------- | ------------------- |
+| font      | The font style (from the theme) | keyof [`theme.fonts`](https://callstack.github.io/react-native-paper/theming.html) | no       |                     |
+| fontSize  | The font size                   | `number`                                                                           | no       |                     |
+| color     | The font color (from the theme) | `string`                                                                           | no       | `theme.colors.text` |
+| theme     | Theme value overrides           | `$DeepPartial<ReactNativePaper.Theme>`                                             | no       |                     |
 
 </div>
 

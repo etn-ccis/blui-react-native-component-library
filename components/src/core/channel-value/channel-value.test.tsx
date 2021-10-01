@@ -49,7 +49,7 @@ describe('ChannelValue', () => {
 
     it('renders an icon if passed in', (): void => {
         const instance = TestRenderer.create(
-            <ChannelValue value={123} IconClass={(): JSX.Element => <TouchableOpacity />} />
+            <ChannelValue value={123} icon={(): JSX.Element => <TouchableOpacity />} />
         ).root;
 
         const icon = instance.findByType(TouchableOpacity);

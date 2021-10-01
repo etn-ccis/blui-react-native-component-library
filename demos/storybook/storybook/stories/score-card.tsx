@@ -2,27 +2,21 @@ import React from 'react';
 import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { text, color, withKnobs, number, boolean } from '@storybook/addon-knobs';
-import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1, InfoListItem } from '@pxblue/react-native-components';
+import { ScoreCard, Hero, HeroBanner, Body1, InfoListItem } from '@pxblue/react-native-components';
 import { padded } from '../decorators';
-
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import _A from '@pxblue/icons-svg/grade_a.svg';
-import _Temp from '@pxblue/icons-svg/temp.svg';
-
-import _Humidity from '@pxblue/icons-svg/moisture.svg';
-
 import * as Colors from '@pxblue/colors';
 import backgroundImage from '../assets/farm.jpg';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
-const A = wrapIcon({ IconClass: _A });
-const Temp = wrapIcon({ IconClass: _Temp });
-const Humidity = wrapIcon({ IconClass: _Humidity });
-const MailIcon = wrapIcon({ IconClass: MatIcon, name: 'mail' });
-const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
-const NotificationsIcon = wrapIcon({ IconClass: MatIcon, name: 'notifications' });
-const ListAltIcon = wrapIcon({ IconClass: MatIcon, name: 'list-alt' });
-const CloudIcon = wrapIcon({ IconClass: MatIcon, name: 'cloud' });
-const SearchIcon = wrapIcon({ IconClass: MatIcon, name: 'search' });
+const A: IconFamily = { family: 'pxblue', name: 'grade_a' };
+const Temp: IconFamily = { family: 'pxblue', name: 'temp' };
+const Humidity: IconFamily = { family: 'pxblue', name: 'moisture' };
+const MailIcon: IconFamily = { name: 'mail' };
+const MoreIcon: IconFamily = { name: 'more-vert' };
+const NotificationsIcon: IconFamily = { name: 'notifications' };
+const ListAltIcon: IconFamily = { name: 'list-alt' };
+const CloudIcon: IconFamily = { name: 'cloud' };
+const SearchIcon: IconFamily = { name: 'search' };
 
 storiesOf('ScoreCard', module)
     .addDecorator(withKnobs)
@@ -164,7 +158,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.black[500]}
                                 value={98}
                                 units={'°F'}
-                                IconClass={Temp}
+                                icon={Temp}
                             />,
                             <Hero
                                 key={'hero_2'}
@@ -173,7 +167,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.lightBlue[300]}
                                 value={54}
                                 units={'%'}
-                                IconClass={Humidity}
+                                icon={Humidity}
                             />,
                         ].slice(0, heroCount)}
                     </HeroBanner>
@@ -225,7 +219,7 @@ storiesOf('ScoreCard', module)
                             iconColor={Colors.green[500]}
                             value={98}
                             units={'/100'}
-                            IconClass={A}
+                            icon={A}
                         />,
                     ]}
                 </HeroBanner>
@@ -236,19 +230,19 @@ storiesOf('ScoreCard', module)
                     title={'1 Alarm'}
                     iconColor={Colors.red[500]}
                     fontColor={Colors.red[500]}
-                    IconClass={wrapIcon({ IconClass: MatIcon, name: 'notifications' })}
+                    icon={{ name: 'notifications' }}
                     style={{ height: 40 }}
                 />
                 <InfoListItem
                     title={'1 Event'}
                     iconColor={Colors.blue[500]}
                     fontColor={Colors.blue[500]}
-                    IconClass={wrapIcon({ IconClass: MatIcon, name: 'info' })}
+                    icon={{ name: 'info' }}
                     style={{ height: 40 }}
                 />
                 <InfoListItem
                     title={'Online'}
-                    IconClass={wrapIcon({ IconClass: MatIcon, name: 'cloud' })}
+                    icon={{ name: 'cloud' }}
                     style={{ height: 40 }}
                     styles={{ title: { fontWeight: 'normal' } }}
                 />
@@ -310,7 +304,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.black[500]}
                                 value={98}
                                 units={'°F'}
-                                IconClass={Temp}
+                                icon={Temp}
                             />,
                             <Hero
                                 key={'hero_2'}
@@ -319,7 +313,7 @@ storiesOf('ScoreCard', module)
                                 iconColor={Colors.lightBlue[300]}
                                 value={54}
                                 units={'%'}
-                                IconClass={Humidity}
+                                icon={Humidity}
                             />,
                         ].slice(0, heroCount)}
                     </HeroBanner>
@@ -341,19 +335,19 @@ storiesOf('ScoreCard', module)
                         title={'1 Alarm'}
                         iconColor={Colors.red[500]}
                         fontColor={Colors.red[500]}
-                        IconClass={wrapIcon({ IconClass: MatIcon, name: 'notifications' })}
+                        icon={{ name: 'notifications' }}
                         style={{ height: 40 }}
                     />
                     <InfoListItem
                         title={'1 Event'}
                         iconColor={Colors.blue[500]}
                         fontColor={Colors.blue[500]}
-                        IconClass={wrapIcon({ IconClass: MatIcon, name: 'info' })}
+                        icon={{ name: 'info' }}
                         style={{ height: 40 }}
                     />
                     <InfoListItem
                         title={'Online'}
-                        IconClass={wrapIcon({ IconClass: MatIcon, name: 'cloud' })}
+                        icon={{ name: 'cloud' }}
                         style={{ height: 40 }}
                         styles={{ title: { fontWeight: 'normal' } }}
                     />
