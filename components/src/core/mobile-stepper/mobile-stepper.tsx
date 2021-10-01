@@ -4,6 +4,7 @@ import { ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Body1 } from '../typography';
+import { getPrimary500 } from '../utility/shared';
 
 const makeStyles = (
     props: MobileStepperProps,
@@ -38,7 +39,7 @@ const makeStyles = (
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
-            backgroundColor: props.activeColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor: props.activeColor || getPrimary500(theme) || theme.colors.primary,
         },
         progressBar: {},
         text: {},
@@ -132,7 +133,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const theme = useTheme(props.theme);
     const {
-        activeColor = theme.colors.primaryBase || theme.colors.primary,
+        activeColor = getPrimary500(theme) || theme.colors.primary,
         activeStep,
         leftButton,
         rightButton,

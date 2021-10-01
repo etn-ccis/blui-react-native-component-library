@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useState, ComponentType } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager, PixelRatio } from 'react-native';
 import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
@@ -12,7 +12,9 @@ import { findChildByType, inheritSharedProps } from './utilities';
 import * as Colors from '@pxblue/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { WrapIconProps } from '../icon-wrapper';
+import { IconSource } from '../__types__';
+import { Icon } from '../icon';
+import { getPrimary500 } from '../utility/shared';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -44,7 +46,7 @@ export type DrawerNavItemProps = AllSharedProps &
         hidden?: boolean;
 
         /** A component to render for the left icon */
-        icon?: ComponentType<WrapIconProps>;
+        icon?: IconSource;
 
         /**
          * Is the item a parent / ancestor of the current activeItem.
@@ -117,11 +119,11 @@ const makeStyles = (
     flipIcon: ViewStyle;
 }> => {
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
-        .fade(0.95)
+    const fivePercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primary)
+        .alpha(0.05)
         .string();
-    const twentyPercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
-        .fade(0.8)
+    const twentyPercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primary)
+        .alpha(0.2)
         .string();
 
     const {
@@ -130,7 +132,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : Colors.white[200],
+        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.background, // TODO: don't hardcode?
     } = props;
     const fontScale = PixelRatio.getFontScale();
 
@@ -181,7 +183,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const previousActive = usePrevious(activeItem || '');
 
     // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+    const lightenedPrimary = color(getPrimary500(theme) || theme.colors.primary)
         .lighten(0.83)
         .desaturate(0.39)
         .string();
@@ -194,18 +196,10 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         activeItemIconColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-        collapseIcon = props.depth ? (
-            <MatIcon name={'arrow-drop-up'} size={24} color={theme.colors.text} allowFontScaling />
-        ) : (
-            <MatIcon name={'expand-less'} size={24} color={theme.colors.text} allowFontScaling />
-        ),
+        collapseIcon = { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },
         disableActiveItemParentStyles = false,
         divider,
-        expandIcon = props.depth ? (
-            <MatIcon name={'arrow-drop-down'} size={24} color={theme.colors.text} allowFontScaling />
-        ) : (
-            <MatIcon name={'expand-more'} size={24} color={theme.colors.text} allowFontScaling />
-        ),
+        expandIcon = { family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more' },
         hidePadding,
         itemFontColor = theme.colors.text,
         itemIconColor = theme.colors.text,
@@ -281,7 +275,12 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         }
         return (
             <View style={[defaultStyles.expandIcon, styles.expandIcon]}>
-                {collapseIcon && expanded ? collapseIcon : expandIcon}
+                <Icon
+                    source={collapseIcon && expanded ? collapseIcon : expandIcon}
+                    size={24}
+                    color={theme.colors.text}
+                    allowFontScaling
+                />
             </View>
         );
     }, [items, children, styles, defaultStyles, collapseIcon, expanded, expandIcon]);

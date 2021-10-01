@@ -4,6 +4,7 @@ import { useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white, black } from '@pxblue/colors';
 import { Overline, TypographyProps } from '../typography';
+import { getPrimary500 } from '../utility/shared';
 
 export type ListItemTagProps = TypographyProps & {
     /**
@@ -34,13 +35,13 @@ const listItemTagStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor: props.backgroundColor || getPrimary500(theme) || theme.colors.primary,
             color:
                 props.fontColor ||
-                (Color(props.backgroundColor || theme.colors.primaryBase || theme.colors.primary).isLight()
+                (Color(props.backgroundColor || getPrimary500(theme) || theme.colors.primary).isLight()
                     ? theme.dark
                         ? black[500]
-                        : theme.colors.onSurface // TODO: Swap this with a proper color when we have them in the new theme
+                        : theme.colors.textPalette?.primary || theme.colors.text
                     : white[50]),
             height: 16 * fontScale,
             padding: 0,

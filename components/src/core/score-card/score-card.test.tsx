@@ -2,10 +2,10 @@ import React from 'react';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { ScoreCard } from '.';
 import { View } from 'react-native';
-import { Hero, wrapIcon } from '..';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Hero } from '..';
+import { IconFamily } from '../__types__';
 import { cleanup } from '@testing-library/react-native';
-const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
+const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('ScoreCard', () => {
     describe('headerText', () => {
@@ -64,10 +64,7 @@ describe('ScoreCard', () => {
             let instance: ReactTestInstance;
             beforeEach(() => {
                 instance = TestRenderer.create(
-                    <ScoreCard
-                        headerTitle={'Hello'}
-                        badge={<Hero testID={'my-badge'} label={'...'} IconClass={Line} />}
-                    />
+                    <ScoreCard headerTitle={'Hello'} badge={<Hero testID={'my-badge'} label={'...'} icon={Line} />} />
                 ).root;
             });
 

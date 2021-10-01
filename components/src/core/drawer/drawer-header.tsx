@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactNode, useCallback, useEffect } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import {
     StyleSheet,
     View,
@@ -15,10 +15,11 @@ import {
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { EdgeInsets, HeaderIcon as HeaderIconType } from '../__types__';
+import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon';
+import { getPrimary500 } from '../utility/shared';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -40,7 +41,7 @@ const makeStyles = (
     return StyleSheet.create({
         root: {
             paddingTop: insets.top,
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor: props.backgroundColor || getPrimary500(theme) || theme.colors.primary,
             height: height,
         },
         icon: {
@@ -108,7 +109,7 @@ export type DrawerHeaderProps = ViewProps & {
     fontColor?: string;
 
     /** Icon to use to the left of the header text */
-    icon?: HeaderIconType | ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /** Callback to execute when the icon is pressed */
     onIconPress?: () => void;
@@ -139,10 +140,6 @@ export type DrawerHeaderProps = ViewProps & {
     theme?: $DeepPartial<ReactNativePaper.Theme>;
 };
 
-/** Type guard to determine if they are using the old type for icon */
-const isOldIconFormat = (icon: HeaderIconType | ComponentType<WrapIconProps> | undefined): icon is HeaderIconType =>
-    typeof icon === 'object';
-
 /**
  * [DrawerHeader](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
@@ -157,8 +154,8 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         titleContent,
         backgroundImage,
         fontColor,
-        icon: iconProp,
-        onIconPress: onIconPressProp,
+        icon,
+        onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
         theme: themeOverride,
@@ -171,23 +168,8 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const { REGULAR_HEIGHT } = useHeaderDimensions();
     const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT);
 
-    // Compatibility to facilitate updates
-    const isOldFormat = isOldIconFormat(iconProp);
-    const icon = isOldFormat ? (iconProp as HeaderIconType).icon : iconProp;
-    const onIconPress = isOldFormat ? (iconProp as HeaderIconType).onPress : onIconPressProp;
-    // Deprecation Warning
-    useEffect(() => {
-        if (isOldFormat) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'icon' in DrawerHeader component will no longer support the object syntax in version 6.0.0. You should pass your icon directly to the 'icon' prop and use 'onIconPress' for the press callback function.`
-            );
-        }
-    }, [iconProp]);
-
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            const IconClass = icon as ComponentType<WrapIconProps>;
             return (
                 <View style={[defaultStyles.icon, styles.icon]}>
                     <TouchableOpacity
@@ -196,12 +178,12 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <IconClass size={24} color={fontColor || 'white'} />
+                        <Icon source={icon} size={24} color={fontColor || 'white'} />
                     </TouchableOpacity>
                 </View>
             );
         }
-    }, [defaultStyles, styles, icon, fontColor]);
+    }, [defaultStyles, styles, icon, fontColor, onIconPress]);
 
     const getHeaderContent = useCallback(
         (): ReactNode =>

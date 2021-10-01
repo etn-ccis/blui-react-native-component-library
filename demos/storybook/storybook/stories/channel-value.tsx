@@ -1,16 +1,16 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
-import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
-import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { ChannelValue } from '@pxblue/react-native-components';
+import { text, withKnobs, boolean, color, number, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
+import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
 const notes = {
     notes: 'Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
 };
 
-const WrappedTrending = wrapIcon({ IconClass: MatIcon, name: 'trending-up' });
+const WrappedTrending: IconFamily = { name: 'trending-up' };
 
 storiesOf('ChannelValue', module)
     .addDecorator(withKnobs)
@@ -39,8 +39,8 @@ storiesOf('ChannelValue', module)
                 <ChannelValue
                     value={'123'}
                     units={'hz'}
-                    IconClass={WrappedTrending}
-                    IconProps={{ color: color('color', Colors.red[500]) }}
+                    icon={WrappedTrending}
+                    iconColor={color('color', Colors.red[500])}
                 />
             </View>
         ),
@@ -54,8 +54,8 @@ storiesOf('ChannelValue', module)
                     value={'123'}
                     units={'hz'}
                     fontSize={number('fontSize', 48)}
-                    IconClass={WrappedTrending}
-                    IconProps={{ color: Colors.red[500] }}
+                    icon={WrappedTrending}
+                    iconColor={Colors.red[500]}
                 />
             </View>
         ),
@@ -67,12 +67,13 @@ storiesOf('ChannelValue', module)
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ChannelValue
                     value={text('value', text('value', '123'))}
-                    IconClass={boolean('Show Icon', true) ? WrappedTrending : undefined}
-                    IconProps={{ color: color('icon color', Colors.red[500]) }}
+                    icon={boolean('Show Icon', true) ? WrappedTrending : undefined}
+                    iconColor={color('icon color', Colors.red[500])}
                     units={text('units', 'hz')}
                     prefix={boolean('prefix', false)}
                     fontSize={number('fontSize', 16)}
                     color={color('color', Colors.black[500])}
+                    unitSpace={select('unitSpace', ['auto', 'show', 'hide'], 'auto')}
                 />
             </View>
         ),

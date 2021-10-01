@@ -145,6 +145,8 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
                   "color": "#000000",
                   "fontFamily": "System",
                   "fontWeight": "400",
+                },
+                Object {
                   "textAlign": "left",
                 },
                 Array [
@@ -279,7 +281,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#727e84",
+          "color": "#000000",
           "fontSize": 100,
         },
         Object {},
@@ -291,7 +293,6 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         Object {},
       ]
     }
-    testID="icon"
   >
     󰞱
   </Text>
@@ -551,6 +552,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
                   "color": "#000000",
                   "fontFamily": "System",
                   "fontWeight": "400",
+                },
+                Object {
                   "textAlign": "left",
                 },
                 Array [

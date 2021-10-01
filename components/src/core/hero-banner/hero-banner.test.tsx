@@ -1,20 +1,20 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
-import { HeroBanner, Hero, wrapIcon } from '..';
+import { HeroBanner, Hero } from '..';
 import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { IconFamily } from '../__types__';
 import { cleanup } from '@testing-library/react-native';
-const Line = wrapIcon({ IconClass: Icon, name: 'chart-line-variant' });
+const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('HeroBanner', () => {
     afterEach(cleanup);
     it('renders four children when four are passed in', () => {
         const instance = TestRenderer.create(
             <HeroBanner>
-                <Hero label={'Hero One'} IconClass={Line} />
-                <Hero label={'Hero Two'} IconClass={Line} />
-                <Hero label={'Hero Three'} IconClass={Line} />
-                <Hero label={'Hero Four'} IconClass={Line} />
+                <Hero label={'Hero One'} icon={Line} />
+                <Hero label={'Hero Two'} icon={Line} />
+                <Hero label={'Hero Three'} icon={Line} />
+                <Hero label={'Hero Four'} icon={Line} />
             </HeroBanner>
         ).root;
 

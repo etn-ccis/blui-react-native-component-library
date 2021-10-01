@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useState, useRef, useEffect, ReactNode } from 'react';
+import React, { useCallback, useState, useRef, useEffect, ReactNode } from 'react';
 import {
     Animated,
     ImageSourcePropType,
@@ -25,13 +25,12 @@ import { HeaderActionItems } from './headerActionItems';
 import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
-import { HeaderActionComponent, HeaderIcon } from '../__types__';
+import { HeaderActionComponent, HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
-import { WrapIconProps } from '../icon-wrapper';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -46,7 +45,9 @@ const headerStyles = (
     return StyleSheet.create({
         root: {
             width: '100%',
-            backgroundColor: props.backgroundColor || (theme.dark ? '#2b353a' : theme.colors.primary), // @TODO: PXBLUE-2122 - remove this hardcoded color value when doing theme updates
+            backgroundColor:
+                props.backgroundColor ||
+                (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
             shadowColor: 'rgba(0, 0, 0, 0.3)',
             shadowOffset: {
                 width: 0,
@@ -95,7 +96,7 @@ export type SearchableConfig = {
     autoFocus?: boolean;
 
     /** Icon to override default search icon */
-    icon?: ComponentType<{ size: number; color: string }>;
+    icon?: IconSource;
 
     /** Callback for when the text in the search input changes */
     onChangeText?: (text: string) => void;
@@ -155,15 +156,8 @@ export type HeaderProps = ViewProps & {
     /** Optional header third line of text (hidden when collapsed) */
     info?: ReactNode;
 
-    /**
-     * Icon to show to the left of the title, primarily used to trigger the menu / drawer
-     *
-     * @deprecated in version 6.0.0
-     */
-    navigation?: HeaderIcon;
-
     /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
-    icon?: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /** Callback to execute when the icon is pressed */
     onIconPress?: () => void;
@@ -187,8 +181,8 @@ export type HeaderProps = ViewProps & {
     styles?: {
         root?: StyleProp<ViewStyle>;
         backgroundImage?: StyleProp<ImageStyle>;
+        component?: StyleProp<ViewStyle>;
         content?: StyleProp<ViewStyle>;
-        navigationIcon?: StyleProp<ViewStyle>;
         icon?: StyleProp<ViewStyle>;
         textContent?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
@@ -197,7 +191,6 @@ export type HeaderProps = ViewProps & {
         search?: StyleProp<TextStyle>;
         actionPanel?: StyleProp<ViewStyle>;
         actionItem?: StyleProp<ViewStyle>;
-        avatar?: StyleProp<ViewStyle>;
     };
 
     /** The text to display on the second line */
@@ -250,9 +243,8 @@ export const Header: React.FC<HeaderProps> = (props) => {
         collapsedHeight: collapsedHeightProp = 56,
         fontColor,
         info,
-        navigation,
-        icon: iconProp,
-        onIconPress: onIconPressProp,
+        icon,
+        onIconPress,
         scrollPosition = new Animated.Value(0),
         searchableConfig,
         startExpanded,
@@ -266,27 +258,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
         updateScrollView = (): void => {},
         ...viewProps
     } = props;
-
-    // Compatibility to facilitate updates
-    const Icon = iconProp || navigation?.icon;
-    const onIconPress = onIconPressProp || navigation?.onPress;
-    // Deprecation Warning
-    useEffect(() => {
-        if (navigation) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'navigation' in Header component has been deprecated and will be removed in version 6.0.0. You should update to use the new 'icon' and 'onIconPress' props instead.`
-            );
-        }
-    }, [navigation]);
-    useEffect(() => {
-        if (styles.avatar) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Style override 'avatar' in Header component has been deprecated and will be removed in version 6.0.0. You should update to use the new 'component' style override instead.`
-            );
-        }
-    }, [styles.avatar]);
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
 
@@ -536,7 +507,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
         if (searching) {
             return theme.colors.surface;
         }
-        return backgroundColor || (theme.dark ? '#2b353a' : theme.colors.primary); // @TODO: PXBLUE-2122 - remove this hardcoded color value when doing theme updates
+        return (
+            backgroundColor ||
+            (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
+        );
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {
@@ -751,11 +725,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     style={styles.backgroundImage}
                                 />
                                 <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon
-                                        icon={Icon}
-                                        onPress={onIconPress}
-                                        style={[styles.navigationIcon, styles.icon]}
-                                    />
+                                    <HeaderNavigationIcon icon={icon} onPress={onIconPress} style={styles.icon} />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}
@@ -776,7 +746,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                         styles={{
                                             root: styles.actionPanel,
                                             actionItem: styles.actionItem,
-                                            avatar: styles.avatar,
+                                            component: styles.component,
                                         }}
                                     />
                                 </Animated.View>

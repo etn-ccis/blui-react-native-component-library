@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import {
     StyleSheet,
     TouchableOpacity,
@@ -9,11 +9,12 @@ import {
     TextStyle,
     PixelRatio,
 } from 'react-native';
-import { ChannelValue, ChannelValueProps } from '../channel-value';
+import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { WrapIconProps } from '../icon-wrapper';
+import { Icon } from '../icon';
+import { IconSource } from '../__types__';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -57,15 +58,8 @@ export type HeroProps = ViewProps & {
     /** The text shown below the ChannelValue */
     label: string;
 
-    /**
-     * A component to render for the primary icon
-     *
-     * @deprecated in version 6.0.0
-     */
-    IconClass?: ComponentType<WrapIconProps>;
-
     /** A component to render for the primary icon  */
-    icon?: ComponentType<WrapIconProps>;
+    icon?: IconSource;
 
     /**
      * The size of the primary icon (10-48)
@@ -91,46 +85,7 @@ export type HeroProps = ViewProps & {
     /**
      * Props to be passed through to ChannelValue child component
      */
-    ChannelValueProps?: ChannelValueProps;
-
-    /**
-     * The text size to use for the ChannelValue
-     *
-     * Default: 20
-     *
-     * @deprecated in version 6.0.0
-     */
-    fontSize?: number;
-
-    /** Value for the ChannelValue child
-     *
-     * @deprecated in version 6.0.0
-     */
-    value?: number | string;
-
-    /**
-     * A component to render for the ChannelValue child icon
-     *
-     * @deprecated in version 6.0.0
-     */
-    ValueIconClass?: ComponentType<WrapIconProps>;
-    /** A component to render for the ChannelValue child icon
-     *
-     * @deprecated in version 6.0.0
-     */
-    valueIcon?: ComponentType<WrapIconProps>;
-
-    /** Color to use for the ChannelValue text
-     *
-     * @deprecated in version 6.0.0
-     */
-    valueColor?: string;
-
-    /** Units for the ChannelValue child
-     *
-     * @deprecated in version 6.0.0
-     */
-    units?: string;
+    ChannelValueProps?: ChannelValuePropsType;
 
     /** A callback function to execute when the Hero is pressed  */
     onPress?: () => void;
@@ -154,20 +109,14 @@ export type HeroProps = ViewProps & {
  *
  * The Hero is used to call attention to particular values of importance to the user. It includes a
  * large icon with a label and (typically) a [ChannelValue](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--channel-value) item. The channel value can be configured
- * through the `value` and `units` props, or passed declaratively as a child.
+ * through the `ChannelValueProps`, or passed declaratively as a child.
  */
 export const Hero: React.FC<HeroProps> = (props) => {
     const {
         label,
-        value,
-        ValueIconClass,
-        valueIcon: valueIconProp,
-        valueColor,
-        fontSize = 20,
-        units,
+        ChannelValueProps,
         onPress,
-        IconClass,
-        icon: iconProp,
+        icon,
         iconColor,
         iconSize,
         iconBackgroundColor,
@@ -178,75 +127,6 @@ export const Hero: React.FC<HeroProps> = (props) => {
         ...viewProps
     } = props;
 
-    // Compatibility to facilitate updates
-    const Icon = iconProp || IconClass;
-    const valueIcon = valueIconProp || ValueIconClass;
-    const ChannelProps: ChannelValueProps = props.ChannelValueProps || {
-        IconClass: props.valueIcon,
-        value: props.value || '',
-        units: props.units,
-        color: props.valueColor,
-        fontSize: props.fontSize,
-    };
-
-    // Deprecation Warning
-    useEffect(() => {
-        if (IconClass) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'IconClass' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'icon' prop instead.`
-            );
-        }
-    }, [IconClass]);
-    useEffect(() => {
-        if (ValueIconClass) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'ValueIconClass' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the renamed 'valueIcon' prop instead.`
-            );
-        }
-    }, [ValueIconClass]);
-    useEffect(() => {
-        if (fontSize) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'fontSize' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
-            );
-        }
-    }, [fontSize]);
-    useEffect(() => {
-        if (value) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'value' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
-            );
-        }
-    }, [value]);
-    useEffect(() => {
-        if (valueIcon) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'valueIcon' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
-            );
-        }
-    }, [valueIcon]);
-    useEffect(() => {
-        if (valueColor) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'valueColor' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
-            );
-        }
-    }, [valueColor]);
-    useEffect(() => {
-        if (units) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                `Property 'units' in Hero component has been deprecated and will be removed in version 6.0.0. You should update to use the 'channelValueProps' prop instead.`
-            );
-        }
-    }, [units]);
-
     const theme = useTheme(themeOverride);
     const fontScale = PixelRatio.getFontScale();
     const defaultStyles = makeStyles(fontScale);
@@ -256,21 +136,13 @@ export const Hero: React.FC<HeroProps> = (props) => {
         return Math.max(10, Math.min(48, iconSize));
     }, [iconSize]);
 
-    const getColor = useCallback(
-        (color: string | undefined): string => {
-            if (!color) return theme.colors.text;
-            if (Object.keys(theme.colors).indexOf(color) >= 0)
-                return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
-            return color;
-        },
-        [theme]
-    );
+    const getColor = useCallback((color: string | undefined): string => color || theme.colors.text, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (Icon) {
-            return <Icon size={normalizeIconSize()} color={getColor(iconColor)} />;
+        if (icon) {
+            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
-    }, [Icon, normalizeIconSize, getColor, iconColor]);
+    }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
         <TouchableOpacity
@@ -289,7 +161,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {getIcon()}
             </View>
             <View style={[defaultStyles.values, styles.values]}>
-                {!children && (!!value || props.ChannelValueProps) && <ChannelValue {...ChannelProps} />}
+                {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={20} {...ChannelValueProps} />}
                 {children}
             </View>
             <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>

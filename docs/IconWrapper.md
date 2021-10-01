@@ -1,16 +1,18 @@
 # Icon Wrapper
 
-The Icon Wrapper is a utility that allows the PX Blue components to interact nicely with SVG icons from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) and [`@pxblue/icons-svg`](https://www.npmjs.com/package/@pxblue/icons-svg). Several components in this library accept a `IconClass` property of the type `React.ComponentType<{ size: number, color: string }>`. This allows the icon to be parameterized while allowing the library component to control the icon's size and color.
+> The IconWrapper utility is being replaced by more user-friendly icon usage alternatives. If you are still using the iconWrapper, you should start to migrate to one of the other options outlined in the [Icon](./Icons.md) guide.
 
-However, the recommended icon libraries, `@pxblue/icons-svg` and `react-native-vector-icons`, do not conform to this shape. Therefore, this utility exports `wrapIcon`, a Higher Order Component that can be used to convert them.
+The Icon Wrapper is a utility that allows the PX Blue components to interact nicely with SVG icons from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) and [`@pxblue/icons-svg`](https://www.npmjs.com/package/@pxblue/icons-svg). Several components in this library accept a `icon` property including the type `React.ComponentType<{ size: number, color: string }>`. This allows the icon to be parameterized while allowing the library component to control the icon's size and color.
+
+However, the icon libraries `@pxblue/icons-svg` and `react-native-vector-icons`, do not conform to this shape. Therefore, this utility exports `wrapIcon`, a Higher Order Component that can be used to convert them.
 
 ### Usage (@pxblue/icons-svg)
 
 ```tsx
 import Leaf from '@pxblue/icons-svg/leaf.svg';
 const LeafIcon = wrapIcon({ IconClass: Leaf });
-...
-<ComponentName IconClass={LeafIcon}></ComponentName>
+
+<ComponentName IconClass={LeafIcon}></ComponentName>;
 ```
 
 ### Usage (react-native-vector-icons)
@@ -20,8 +22,8 @@ Icons from `react-native-vector-icons` require a class and a name. Refer to [the
 ```tsx
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Cloud = wrapIcon({ IconClass: MaterialCommunityIcon, name: 'cloud-off-outline' });
-...
-<ComponentName IconClass={Cloud}></ComponentName>
+
+<ComponentName IconClass={Cloud}></ComponentName>;
 ```
 
 ### RTL (Right-to-Left) Support
