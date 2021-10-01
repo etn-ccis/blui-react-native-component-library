@@ -3,9 +3,11 @@ import TestRenderer from 'react-test-renderer';
 import { HeroBanner, Hero } from '..';
 import { View } from 'react-native';
 import { IconFamily } from '../__types__';
+import { cleanup } from '@testing-library/react-native';
 const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('HeroBanner', () => {
+    afterEach(cleanup);
     it('renders four children when four are passed in', () => {
         const instance = TestRenderer.create(
             <HeroBanner>
@@ -20,6 +22,7 @@ describe('HeroBanner', () => {
     });
 
     describe('divider', () => {
+        afterEach(cleanup);
         it('does not render if the prop is not specified', () => {
             const instance = TestRenderer.create(<HeroBanner />).root;
 

@@ -1,6 +1,6 @@
 # Change Log
 
-## 6.0.0 (Unreleased)
+## 6.0.0 (October 1, 2021)
 
 ### Fixed
 
@@ -16,7 +16,7 @@
 
 -   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see [Icons](https://github.com/pxblue/react-native-component-library/blob/master/docs/Icons.md)]).
 -   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
--   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`. 
+-   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
 -   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component.
 -   In `<DrawerHeader>` component, `icon` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components.
 -   In `<Header>` component, `navigation` prop has been split into `icon` and `onIconPress` to better align with icon usage in other components. The `navigationIcon` style override has been renamed to `icon`. The `avatar` style override has been renamed to `component`.
@@ -26,6 +26,17 @@
 
 -   `IconProps` prop from `<EmptyState>` component — use `iconSize` and `iconColor` props instead.
 -   `color` prop in `<ChannelValue>`, `<EmptyState>`, and `<Hero>` components no longer supports using theme keys as string. If you would like to use a value from the theme, you must pass it in as a value: `color={theme.colors.primary}` instead of `color={'primary'}`.
+
+## v5.4.1 (October 1, 2021)
+
+### Added
+
+-   Deprecation warnings for the `<Hero>` component properties that will be changing in version 6.0.0.
+
+### Fixed
+
+-   Default `iconColor` for `<InfoListItem>` ([#183](https://github.com/pxblue/react-native-component-library/issues/183)).
+-   Update `<EmptyState>` default icon color to match the design ([#173](https://github.com/pxblue/react-native-component-library/issues/173)).
 
 ## v5.4.0 (August 20, 2021)
 

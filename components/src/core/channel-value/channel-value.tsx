@@ -26,6 +26,13 @@ export type ChannelValueProps = ViewProps & {
     icon?: IconSource;
 
     /**
+     * Props to spread to the icon component
+     *
+     * @deprecated in version 6.0.0
+     */
+    IconProps?: { size?: number; color?: string };
+
+    /**
      * The size of the icon
      *
      * Default: fontSize

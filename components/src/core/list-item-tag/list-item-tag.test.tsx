@@ -2,8 +2,10 @@ import React from 'react';
 import { ListItemTag } from '.';
 import { Overline } from '..';
 import TestRenderer from 'react-test-renderer';
+import { cleanup } from '@testing-library/react-native';
 
 describe('ListItemTag', () => {
+    afterEach(cleanup);
     it('renders the label text correctly', () => {
         const instance = TestRenderer.create(<ListItemTag label={'label text'} />).root;
         const textComponent = instance.findAllByType(Overline)[0];

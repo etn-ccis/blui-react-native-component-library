@@ -4,6 +4,7 @@ import { Button } from 'react-native-paper';
 import { EmptyState } from '..';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { IconFamily } from '../__types__';
+import { cleanup } from '@testing-library/react-native';
 
 const Line: IconFamily = {
     family: 'material-community',
@@ -11,6 +12,7 @@ const Line: IconFamily = {
 };
 
 describe('EmptyState Tests ', () => {
+    afterEach(cleanup);
     it('Icon Renders', () => {
         const tree = renderer.create(<EmptyState title={'Test'} icon={Line} />).toJSON();
         expect(tree).toMatchSnapshot();
