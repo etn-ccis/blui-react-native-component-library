@@ -7,8 +7,7 @@ import * as Colors from '@pxblue/colors';
 import { IconFamily } from '@pxblue/react-native-components/core/__types__';
 
 const notes = {
-    notes:
-        'Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
+    notes: 'Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',
 };
 
 const WrappedTrending: IconFamily = { name: 'trending-up' };

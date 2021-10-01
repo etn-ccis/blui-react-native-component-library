@@ -281,7 +281,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#727e84",
+          "color": "#000000",
           "fontSize": 100,
         },
         Object {},
