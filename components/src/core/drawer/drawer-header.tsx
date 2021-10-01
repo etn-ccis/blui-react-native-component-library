@@ -19,6 +19,7 @@ import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 import { Icon } from '../icon';
+import { getPrimary500 } from '../utility/shared';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -40,7 +41,7 @@ const makeStyles = (
     return StyleSheet.create({
         root: {
             paddingTop: insets.top,
-            backgroundColor: props.backgroundColor || theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor: props.backgroundColor || getPrimary500(theme) || theme.colors.primary,
             height: height,
         },
         icon: {

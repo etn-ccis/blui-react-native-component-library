@@ -8,7 +8,10 @@ const ThemedIconAvatar: typeof Avatar.Icon = (props) => {
     const style = Object.assign(
         theme.dark
             ? {
-                  backgroundColor: theme.colors.actionPalette.hover, // TODO: don't love using this because it's not a hover state
+                  backgroundColor:
+                      theme.colors.overrides.avatar?.background ||
+                      theme.colors.primaryPalette.main ||
+                      theme.colors.primary,
               }
             : {
                   backgroundColor: theme.colors.primaryPalette.light,
@@ -33,7 +36,10 @@ const ThemedImageAvatar: typeof Avatar.Image = (props) => {
     const style = Object.assign(
         theme.dark
             ? {
-                  backgroundColor: theme.colors.actionPalette.hover, // TODO: don't love using this because it's not a hover state
+                  backgroundColor:
+                      theme.colors.overrides.avatar?.background ||
+                      theme.colors.primaryPalette.main ||
+                      theme.colors.primary,
               }
             : {
                   backgroundColor: theme.colors.primaryPalette.light,
@@ -51,7 +57,10 @@ const ThemedTextAvatar: typeof Avatar.Text = (props) => {
     const style = Object.assign(
         theme.dark
             ? {
-                  backgroundColor: theme.colors.actionPalette.hover, // TODO: don't love using this because it's not a hover state
+                  backgroundColor:
+                      theme.colors.overrides.avatar?.background ||
+                      theme.colors.primaryPalette.main ||
+                      theme.colors.primary,
               }
             : {
                   backgroundColor: theme.colors.primaryPalette.light,

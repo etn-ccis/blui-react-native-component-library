@@ -1,3 +1,6 @@
+import { ThemeOpacity, ThemeOverrides } from './types/shared';
+import { $DeepPartial } from '@callstack/react-theme-provider';
+
 /**
  Copyright (c) 2021-present, Eaton
  All rights reserved.
@@ -8,7 +11,6 @@ declare global {
     namespace ReactNativePaper {
         // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         interface ThemeColors {
-            primaryBase: string;
             primaryPalette: {
                 light: string;
                 main: string;
@@ -33,17 +35,16 @@ declare global {
                     main: string;
                     dark: string;
                 };
-                highlight: string;
                 disabled: string;
-                hint: string;
             };
             actionPalette: {
-                hover: string;
                 active: string;
                 background: string;
                 disabled: string;
                 disabledBackground: string;
             };
+            overrides: $DeepPartial<ThemeOverrides>;
+            opacity: Partial<ThemeOpacity>;
         }
         // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         interface ThemeFonts {

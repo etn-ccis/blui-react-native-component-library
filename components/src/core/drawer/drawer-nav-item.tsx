@@ -14,6 +14,7 @@ import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
+import { getPrimary500 } from '../utility/shared';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -118,11 +119,11 @@ const makeStyles = (
     flipIcon: ViewStyle;
 }> => {
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
-        .fade(0.95)
+    const fivePercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primary)
+        .alpha(0.05)
         .string();
-    const twentyPercentOpacityPrimary = color(theme.colors.primaryBase || theme.colors.primary)
-        .fade(0.8)
+    const twentyPercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primary)
+        .alpha(0.2)
         .string();
 
     const {
@@ -182,7 +183,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const previousActive = usePrevious(activeItem || '');
 
     // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(theme.colors.primaryBase || theme.colors.primary)
+    const lightenedPrimary = color(getPrimary500(theme) || theme.colors.primary)
         .lighten(0.83)
         .desaturate(0.39)
         .string();
