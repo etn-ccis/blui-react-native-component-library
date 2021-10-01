@@ -3,8 +3,10 @@ import { MobileStepper } from '.';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { ProgressBar } from 'react-native-paper';
 import { View } from 'react-native';
+import { cleanup } from '@testing-library/react-native';
 
 describe('MobileStepper', () => {
+    afterEach(cleanup);
     it('should render typical number of steps', () => {
         const stepper: ReactTestInstance = TestRenderer.create(<MobileStepper steps={5} activeStep={2} />).root;
         const dots = stepper.findAllByType(View).filter((x) => x.props.testID === 'pxb-dot');

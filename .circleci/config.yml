@@ -27,9 +27,6 @@ jobs:
                       cd components
                       yarn prettier:check
             - run:
-                  name: Set Max Memory
-                  command: NODE_OPTIONS=--max_old_space_size=4096
-            - run:
                   name: Lint
                   command: |
                       cd components
@@ -59,6 +56,9 @@ jobs:
                   paths:
                       - dist
                       - components/coverage
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
     coverage_report:
         working_directory: ~/react-native-component-library
         docker:
@@ -117,6 +117,9 @@ jobs:
                   command: |
                       cd demos/storybook
                       yarn build
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     # Builds the hosted Storybook app
     build_storybook_api:
@@ -178,6 +181,9 @@ jobs:
                   root: .
                   paths:
                       - demos/api/storybook-static
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     # Builds the Showcase app using @pxblue/react-native-components persisted in /dist folder.
     build_showcase:
@@ -222,6 +228,9 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn build
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     deploy_storybook:
         docker:

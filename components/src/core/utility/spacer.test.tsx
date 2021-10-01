@@ -2,8 +2,10 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { Spacer } from '.';
 import { StyleSheet, ViewStyle } from 'react-native';
+import { cleanup } from '@testing-library/react-native';
 
 describe('spacer', () => {
+    afterEach(cleanup);
     it('renders the correct default style', () => {
         const instance = TestRenderer.create(<Spacer />).root;
         const spacer = instance.find((x) => x.props.testID === 'spacer-root');
