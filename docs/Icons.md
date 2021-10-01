@@ -1,5 +1,7 @@
 # Using Icons in PX Blue React Native Components
 
+> For icon usage before v6.0.0, [check here](https://github.com/pxblue/react-native-component-library/blob/master/docs/IconWrapper.md).
+
 Many PX Blue components support the use of icons. These components will support passing in an icon in a variety of different formats.
 
 ## Icon Object
@@ -72,7 +74,7 @@ PX Blue components will pass these values to you for use in your component to ac
 
 ## Wrapped Icon
 
-You can use the [IconWrapper](./IconWrapper.md) utility to create a functional component that matches the signature required for the inline option above.
+You can use the [IconWrapper](https://github.com/pxblue/react-native-component-library/blob/master/docs/IconWrapper.md) utility to create a functional component that matches the signature required for the inline option above.
 
 > **NOTE:** This was previously the only way to pass icons to PX Blue components. With the introduction of the newer options in version 6.0.0, this method is no longer recommended and will be deprecated in the future.
 

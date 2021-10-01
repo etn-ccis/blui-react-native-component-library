@@ -9,7 +9,7 @@ stories.add('Drawer', docFn, { notes: { markdown: getReadMe('Drawer.md') } });
 stories.add('Empty State', docFn, { notes: { markdown: getReadMe('EmptyState.md') } });
 stories.add('Header', docFn, { notes: { markdown: getReadMe('Header.md') } });
 stories.add('Hero', docFn, { notes: { markdown: getReadMe('Hero.md') } });
-stories.add('Icon Wrapper', docFn, { notes: { markdown: getReadMe('IconWrapper.md') } });
+stories.add('Icons', docFn, { notes: { markdown: getReadMe('Icons.md') } });
 stories.add('Info List Item', docFn, { notes: { markdown: getReadMe('InfoListItem.md') } });
 stories.add('List Item Tag', docFn, { notes: { markdown: getReadMe('ListItemTag.md') } });
 stories.add('Mobile Stepper', docFn, { notes: { markdown: getReadMe('MobileStepper.md') } });
