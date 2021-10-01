@@ -39,12 +39,13 @@ const Battery = wrapIcon({ IconClass: _Battery });
 | iconSize            | The size of the primary icon (10-48)            | `number`                                           | no       | 36                     |
 | iconColor           | The color of the primary icon                   | `string`                                           | no       | `theme.colors.text`    |
 | iconBackgroundColor | The color behind the primary icon               | `string`                                           | no       | `theme.colors.surface` |
-| fontSize            | The text size for the ChannelValue              | `number`                                           | no       | 20                     |
-| value               | The value for the ChannelValue                  | `string` \| `number`                               | no       |                        |
+| ~~fontSize~~        | The text size for the ChannelValue              | `number`                                           | no       | 20                     |
+| ~~value~~           | The value for the ChannelValue                  | `string` \| `number`                               | no       |                        |
 | ~~ValueIconClass~~  | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
-| valueIcon           | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
-| valueColor          | Color to use for the ChannelValue text          | `string`                                           | no       | `text`                 |
-| units               | The units for the ChannelValue                  | `string`                                           | no       |                        |
+| ~~valueIcon~~       | A component to render for the ChannelValue icon | `React.Component<{ size: number, color: string }>` | no       |                        |
+| ~~valueColor~~      | Color to use for the ChannelValue text          | `string`                                           | no       | `text`                 |
+| ~~units~~           | The units for the ChannelValue                  | `string`                                           | no       |                        |
+| ChannelValueProps   | Props passed through to ChannelValue child      | `ChannelValueProps`                                | no       |                        |
 | onPress             | A function to execute when pressed              | `function`                                         | no       |                        |
 | theme               | Theme value overrides                           | `$DeepPartial<ReactNativePaper.Theme>`             | no       |                        |
 

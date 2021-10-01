@@ -2,8 +2,10 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { ChannelValue } from '.';
 import { Text, TouchableOpacity } from 'react-native';
+import { cleanup } from '@testing-library/react-native';
 
 describe('ChannelValue', () => {
+    afterEach(cleanup);
     const getChildTextComponents = (channelValue: TestRenderer.ReactTestInstance): TestRenderer.ReactTestInstance[] =>
         channelValue.findAllByType(Text).filter((x) => x.props.testID !== 'text-wrapper');
 
