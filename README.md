@@ -75,9 +75,9 @@ See the [documentation](https://github.com/pxblue/react-native-component-library
 
 Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats.
 
-Version 5.3.0 has been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.3.0 and addressing these warnings before upgrading to version 6.
+Versions 5.3.x -> 5.4.x have been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.4.x and addressing these warnings before upgrading to version 6.
 
-Version 6 also includes a new subset of [wrapper components](./components/src/themed) around various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to simplify our theming mechanism. These components should be used in conjunction with version 6+ of [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes), which consolidates our blueDark and blueDarkAlt themes into a single theme for simplified usage. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP.
+Version 6 also includes a new set of [wrappers](./components/src/themed) around a subset of [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to provide the correct styles. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP. These wrapper components should be used in conjunction with version 6+ of [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes), which consolidated our blueDark and blueDarkAlt themes into a single theme for simpler usage.
 
 ## NOTES
 

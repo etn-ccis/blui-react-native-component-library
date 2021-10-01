@@ -1,12 +1,12 @@
 # Themed React Native Paper Components
 
-This folder contains a set of wrapper components around various [React Native Paper](https://callstack.github.io/react-native-paper/index.html).
+This folder contains a set of wrappers around various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components.
 
-By default, the theming mechanism provided by RNP is very minimal and does not allow us to style components precisely the way we want for PX Blue applications. To circumvent this issue, we introduced an alternate dark theme in [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes) version 5.1.0. 
+By default, the theming mechanism provided by RNP is very minimal and does not allow us to style components precisely the way we want for PX Blue applications. To circumvent this issue, we introduced an alternate dark theme in [@pxblue/react-native-themes](https://www.npmjs.com/package/@pxblue/react-native-themes) version 5.1.0.
 
-This approach required users to wrap their application with two separate theme providers and  write their own wrapper components to correctly take different parts from each theme to apply to RNP components.
+This approach required users to wrap their application with two separate theme providers and write their own wrapper components to correctly take different parts from each theme to apply to RNP components.
 
-These new wrapper components simplify this process so that only one theme is necessary for dark mode and users no longer need to write their own wrapper components. 
+These new wrapper components simplify this process so that only one theme is necessary for dark mode and users no longer need to write their own wrapper components.
 
 ## Available Components
 
