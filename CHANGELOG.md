@@ -1,6 +1,6 @@
 # Change Log
 
-## v5.4.1 (unreleased)
+## v5.4.1 (October 1, 2021)
 
 ### Added
 
