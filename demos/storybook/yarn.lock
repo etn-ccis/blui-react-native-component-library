@@ -1871,10 +1871,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.3.tgz#285b9ba346f714d397ef4a59579443b95a77e63e"
   integrity sha512-x9SDup4pf5H54r/stZBXz7/XlMcIqnwHkEJ+9pyXVtGyQljI28lDGQCWQj6heipWAett50yx0RB3P2+MWZDhJA==
 
-"@pxblue/react-native-components@^5.4.0":
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-5.4.1.tgz#56498d76c7a11a9419ad8f936e739a0270116001"
-  integrity sha512-nmZRBBvsm6OCFfYPBR1wox9WLQC4lafmfa2wa47boeZgfwccKVsaHS5TiZ1hbUJ//s7wQGFCT6MwJDgD9weO4Q==
+"@pxblue/react-native-components@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-6.0.0.tgz#2347f207e8757fe210f1b3e3f6ae4f3a570207a0"
+  integrity sha512-G0fq6yhJYiaJftkp/vmS8uN/tJ/0SWCwfCrKn/Sv5FsooTEC9ZsGUwxR4Q/odzekpuMZfWWFsXe3hMHd+JmorQ==
   dependencies:
     "@pxblue/colors" "^3.0.0"
     color "^3.1.2"
