@@ -23,13 +23,20 @@ import { ChannelValue } from '@pxblue/react-native-components';
 | iconSize  | The size to render the icon                         | `number`                               | no       | `fontSize`          |
 | iconColor | A component to render for the icon                  | `string`                               | no       | `theme.colors.text` |
 | units     | Text to display for the units                       | `string`                               | no       |                     |
-| unitSpace | Whether to show a space between the value and units | `'show' \| 'hide' \| 'auto'`           | no       | `'auto'`            |
+| unitSpace | Whether to show a space between the value and units | `'show'` \| `'hide'` \| `'auto'`       | no       | `'auto'`            |
 | prefix    | If true, shows units before the value               | `boolean`                              | no       | `false`             |
 | fontSize  | The size used for the text elements                 | `number`                               | no       | 'medium'            |
 | color     | The color used for the text elements                | `string`                               | no       | `theme.colors.text` |
 | theme     | Theme value overrides                               | `$DeepPartial<ReactNativePaper.Theme>` | no       |                     |
 
 </div>
+
+#### unitSpace Whitelist Values
+
+```tsx
+const prefixUnitWhitelist = ['$'];
+const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
+```
 
 ### Styles
 
