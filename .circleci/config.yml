@@ -230,10 +230,10 @@ jobs:
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
-            - DEV_TARGET: https://github.com/pxblue-components/react-native-dev
-            - MASTER_TARGET: https://github.com/pxblue-components/react-native
+            - DEV_TARGET: https://github.com/brightlayer-ui-components/react-native-dev
+            - MASTER_TARGET: https://github.com/brightlayer-ui-components/react-native
             - GH_EMAIL: pxblue@eaton.com
-            - GH_NAME: PX Blue Agent
+            - GH_NAME: Brightlayer UI Agent
         steps:
             - checkout
             - attach_workspace:
@@ -254,10 +254,6 @@ jobs:
 
                       cd out
                       git rm -rf .
-                      # Add the CNAME record for pxblue.eaton.com
-                      # if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                      #   echo "pxblue-components.eaton.com/react-native" > CNAME
-                      # fi
                       cd ..
 
                       cp -a storybook-static/. out/.
