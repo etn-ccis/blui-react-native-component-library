@@ -31,7 +31,7 @@ import { ChannelValue } from '@pxblue/react-native-components';
 
 </div>
 
-> *Setting `unitSpace` to `'auto'` will show a space for all units except for '%', '℉', '°F', '℃', '°C', and '°'. When `prefix` is true, the space will be shown for all units except for '$'.
+> \*Setting `unitSpace` to `'auto'` will show a space for all units except for '%', '℉', '°F', '℃', '°C', and '°'. When `prefix` is true, the space will be shown for all units except for '$'.
 
 ### Styles
 

@@ -32,42 +32,42 @@ export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
     if (props.disabled) {
         if (props.mode === 'text' || props.mode === undefined) {
             backgroundColor = 'transparent';
-            textColor = theme.colors.actionPalette.disabled;
+            textColor = theme.colors.actionPalette?.disabled || theme.colors.disabled;
         } else if (props.mode === 'contained') {
             if (theme.dark) {
-                backgroundColor = theme.colors.actionPalette.disabledBackground;
-                textColor = theme.colors.textPalette.disabled;
+                backgroundColor = theme.colors.actionPalette?.disabledBackground || theme.colors.disabled;
+                textColor = theme.colors.textPalette?.disabled || theme.colors.text;
             } else {
-                backgroundColor = theme.colors.primaryPalette.light;
+                backgroundColor = theme.colors.primaryPalette?.light || theme.colors.disabled;
                 textColor =
-                    theme.colors.overrides.button?.contained?.text?.disabled ||
-                    theme.colors.textPalette.disabled ||
+                    theme.colors.overrides?.button?.contained?.text?.disabled ||
+                    theme.colors.textPalette?.disabled ||
                     theme.colors.text;
             }
         } else if (props.mode === 'outlined') {
             if (theme.dark) {
                 borderColor = theme.colors.divider;
-                textColor = theme.colors.actionPalette.disabled;
+                textColor = theme.colors.actionPalette?.disabled || theme.colors.text;
             } else {
                 borderColor = theme.colors.divider;
-                textColor = theme.colors.actionPalette.disabled;
+                textColor = theme.colors.actionPalette?.disabled || theme.colors.text;
             }
         }
     } else {
         if (props.mode === 'text' || props.mode === undefined) {
             backgroundColor = 'transparent';
-            textColor = theme.colors.primaryPalette.main;
+            textColor = theme.colors.primaryPalette?.main || theme.colors.primary;
         } else if (props.mode === 'contained') {
             if (theme.dark) {
-                backgroundColor = theme.colors.primaryPalette.dark;
-                textColor = theme.colors.textPalette.onPrimary.dark;
+                backgroundColor = theme.colors.primaryPalette?.dark || theme.colors.primary;
+                textColor = theme.colors.textPalette?.onPrimary?.dark || theme.colors.text;
             } else {
-                backgroundColor = theme.colors.primaryPalette.main;
-                textColor = theme.colors.textPalette.onPrimary.main;
+                backgroundColor = theme.colors.primaryPalette?.main || theme.colors.primary;
+                textColor = theme.colors.textPalette?.onPrimary?.main || theme.colors.text;
             }
         } else if (props.mode === 'outlined') {
-            borderColor = theme.colors.primaryPalette.main;
-            textColor = theme.colors.primaryPalette.main;
+            borderColor = theme.colors.primaryPalette?.main || theme.colors.primary;
+            textColor = theme.colors.primaryPalette?.main || theme.colors.text;
         }
     }
 
