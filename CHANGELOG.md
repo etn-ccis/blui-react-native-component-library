@@ -1,6 +1,6 @@
 # Change Log
 
-## v6.0.0 (Unpublished)
+## v6.0.1 (Unpublished)
 
 ### Fixed
 
