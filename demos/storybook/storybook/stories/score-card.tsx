@@ -156,8 +156,7 @@ storiesOf('ScoreCard', module)
                                 label={'Temperature'}
                                 iconSize={48}
                                 iconColor={Colors.black[500]}
-                                value={98}
-                                units={'°F'}
+                                ChannelValueProps={{ value: 98, units: '°F' }}
                                 icon={Temp}
                             />,
                             <Hero
@@ -165,8 +164,7 @@ storiesOf('ScoreCard', module)
                                 label={'Humidity'}
                                 iconSize={54}
                                 iconColor={Colors.lightBlue[300]}
-                                value={54}
-                                units={'%'}
+                                ChannelValueProps={{ value: 54, units: '%' }}
                                 icon={Humidity}
                             />,
                         ].slice(0, heroCount)}
@@ -217,15 +215,14 @@ storiesOf('ScoreCard', module)
                             label={'Score'}
                             iconSize={48}
                             iconColor={Colors.green[500]}
-                            value={98}
-                            units={'/100'}
+                            ChannelValueProps={{ value: 98, units: '/100' }}
                             icon={A}
                         />,
                     ]}
                 </HeroBanner>
             }
         >
-            <View style={{ justifyContent: 'center' }}>
+            <View style={{ justifyContent: 'space-evenly', flex: 1 }}>
                 <InfoListItem
                     title={'1 Alarm'}
                     iconColor={Colors.red[500]}
@@ -302,8 +299,7 @@ storiesOf('ScoreCard', module)
                                 label={'Temperature'}
                                 iconSize={48}
                                 iconColor={Colors.black[500]}
-                                value={98}
-                                units={'°F'}
+                                ChannelValueProps={{ value: 98, units: '°F' }}
                                 icon={Temp}
                             />,
                             <Hero
@@ -311,8 +307,7 @@ storiesOf('ScoreCard', module)
                                 label={'Humidity'}
                                 iconSize={54}
                                 iconColor={Colors.lightBlue[300]}
-                                value={54}
-                                units={'%'}
+                                ChannelValueProps={{ value: 54, units: '%' }}
                                 icon={Humidity}
                             />,
                         ].slice(0, heroCount)}
@@ -330,7 +325,7 @@ storiesOf('ScoreCard', module)
                     />
                 }
             >
-                <View style={{ justifyContent: 'center' }}>
+                <View style={{ justifyContent: 'space-evenly', flex: 1 }}>
                     <InfoListItem
                         title={'1 Alarm'}
                         iconColor={Colors.red[500]}
