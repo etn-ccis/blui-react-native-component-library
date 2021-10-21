@@ -303,12 +303,12 @@ workflows:
             - build_showcase:
                   requires:
                       - build_library
-            - build_storybook:
-                  requires:
-                      - build_showcase
+            # - build_storybook:
+            #       requires:
+            #           - build_showcase
             - build_storybook_api:
-                  requires:
-                      - build_storybook
+                #   requires:
+                #       - build_storybook
             - deploy_storybook:
                   requires:
                       - build_storybook_api
