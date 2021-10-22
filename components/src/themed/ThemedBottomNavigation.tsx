@@ -17,20 +17,21 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
     const defaultTheme = useTheme(themeOverride);
     const theme = useAlternateTheme(
         themeOverride,
-        { colors: { notification: defaultTheme.colors.errorPalette.main } },
-        { colors: { notification: defaultTheme.colors.errorPalette.dark } }
+        { colors: { notification: defaultTheme.colors.errorPalette?.main || defaultTheme.colors.error } },
+        { colors: { notification: defaultTheme.colors.errorPalette?.dark || defaultTheme.colors.error } }
     );
     const fullTheme = useTheme(theme);
 
     const activeColor =
         props.activeColor ||
-        (fullTheme.dark ? fullTheme.colors.primaryPalette.main : fullTheme.colors.textPalette.onPrimary.main);
+        (fullTheme.dark ? fullTheme.colors.primaryPalette?.main : fullTheme.colors.textPalette?.onPrimary?.main) ||
+        fullTheme.colors.text;
     const inactiveColor =
         props.inactiveColor ||
-        fullTheme.colors.overrides.bottomNavigation?.inactive ||
+        fullTheme.colors.overrides?.bottomNavigation?.inactive ||
         (fullTheme.dark
-            ? fullTheme.colors.textPalette.onPrimary.main
-            : Color(fullTheme.colors.textPalette.onPrimary.main).alpha(0.5).string()) ||
+            ? fullTheme.colors.textPalette?.onPrimary?.main
+            : Color(fullTheme.colors.textPalette?.onPrimary?.main).alpha(0.5).string()) ||
         fullTheme.colors.placeholder;
 
     return (
@@ -40,7 +41,9 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
                 activeColor={activeColor}
                 inactiveColor={inactiveColor}
                 barStyle={Object.assign(
-                    fullTheme.dark ? { backgroundColor: fullTheme.colors.actionPalette.background } : {},
+                    fullTheme.dark
+                        ? { backgroundColor: fullTheme.colors.actionPalette?.background || fullTheme.colors.primary }
+                        : {},
                     props.barStyle
                 )}
                 theme={theme}

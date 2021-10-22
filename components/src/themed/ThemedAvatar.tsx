@@ -9,12 +9,12 @@ const ThemedIconAvatar: typeof Avatar.Icon = (props) => {
         theme.dark
             ? {
                   backgroundColor:
-                      theme.colors.overrides.avatar?.background ||
-                      theme.colors.primaryPalette.main ||
+                      theme.colors.overrides?.avatar?.background ||
+                      theme.colors.primaryPalette?.main ||
                       theme.colors.primary,
               }
             : {
-                  backgroundColor: theme.colors.primaryPalette.light,
+                  backgroundColor: theme.colors.primaryPalette?.light || theme.colors.primary,
               },
         styleProp
     );
@@ -23,7 +23,11 @@ const ThemedIconAvatar: typeof Avatar.Icon = (props) => {
         <Avatar.Icon
             {...other}
             style={style}
-            color={colorProp || (theme.dark ? theme.colors.textPalette.primary : theme.colors.primaryPalette.main)}
+            color={
+                colorProp ||
+                (theme.dark ? theme.colors.textPalette?.primary : theme.colors.primaryPalette?.main) ||
+                theme.colors.text
+            }
             theme={themeOverride}
         />
     );
@@ -37,12 +41,12 @@ const ThemedImageAvatar: typeof Avatar.Image = (props) => {
         theme.dark
             ? {
                   backgroundColor:
-                      theme.colors.overrides.avatar?.background ||
-                      theme.colors.primaryPalette.main ||
+                      theme.colors.overrides?.avatar?.background ||
+                      theme.colors.primaryPalette?.main ||
                       theme.colors.primary,
               }
             : {
-                  backgroundColor: theme.colors.primaryPalette.light,
+                  backgroundColor: theme.colors.primaryPalette?.light || theme.colors.primary,
               },
         styleProp
     );
@@ -58,12 +62,12 @@ const ThemedTextAvatar: typeof Avatar.Text = (props) => {
         theme.dark
             ? {
                   backgroundColor:
-                      theme.colors.overrides.avatar?.background ||
-                      theme.colors.primaryPalette.main ||
+                      theme.colors.overrides?.avatar?.background ||
+                      theme.colors.primaryPalette?.main ||
                       theme.colors.primary,
               }
             : {
-                  backgroundColor: theme.colors.primaryPalette.light,
+                  backgroundColor: theme.colors.primaryPalette?.light || theme.colors.primary,
               },
         styleProp
     );
@@ -72,7 +76,11 @@ const ThemedTextAvatar: typeof Avatar.Text = (props) => {
         <Avatar.Text
             {...other}
             style={style}
-            color={colorProp || (theme.dark ? theme.colors.textPalette.primary : theme.colors.primaryPalette.main)}
+            color={
+                colorProp ||
+                (theme.dark ? theme.colors.textPalette?.primary : theme.colors.primaryPalette?.main) ||
+                theme.colors.primary
+            }
             theme={themeOverride}
         />
     );

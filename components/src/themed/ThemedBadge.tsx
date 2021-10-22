@@ -16,8 +16,8 @@ export const ThemedBadge: React.FC<ThemedBadgeProps> = (props) => {
     const fullTheme = useTheme(themeOverride);
     const theme = useAlternateTheme(
         themeOverride,
-        { colors: { notification: fullTheme.colors.primaryPalette.main } },
-        { colors: { notification: fullTheme.colors.primaryPalette.dark } }
+        { colors: { notification: fullTheme.colors.primaryPalette?.main || fullTheme.colors.primary } },
+        { colors: { notification: fullTheme.colors.primaryPalette?.dark || fullTheme.colors.primary } }
     );
 
     return <Badge {...other} theme={theme} />;

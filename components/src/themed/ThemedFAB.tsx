@@ -8,8 +8,8 @@ const ThemedFABComponent: React.FC<ThemedFABProps> = (props) => {
     const fullTheme = useTheme(themeOverride);
     const theme = useAlternateTheme(
         themeOverride,
-        { colors: { accent: fullTheme.colors.primaryPalette.main } },
-        { colors: { accent: fullTheme.colors.primaryPalette.dark } }
+        { colors: { accent: fullTheme.colors.primaryPalette?.main || fullTheme.colors.primary } },
+        { colors: { accent: fullTheme.colors.primaryPalette?.dark || fullTheme.colors.primary } }
     );
 
     return <FAB {...other} theme={theme} />;
@@ -32,8 +32,8 @@ const ThemedFABGroupComponent: React.FC<ThemedFABGroupProps> = (props) => {
     const defaultTheme = useTheme(themeOverride);
     const theme = useAlternateTheme(
         themeOverride,
-        { colors: { accent: defaultTheme.colors.primaryPalette.main } },
-        { colors: { accent: defaultTheme.colors.primaryPalette.dark } }
+        { colors: { accent: defaultTheme.colors.primaryPalette?.main || defaultTheme.colors.primary } },
+        { colors: { accent: defaultTheme.colors.primaryPalette?.dark || defaultTheme.colors.primary } }
     );
 
     const fullTheme = useTheme(theme);
