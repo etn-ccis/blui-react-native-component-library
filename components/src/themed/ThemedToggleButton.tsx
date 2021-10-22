@@ -61,19 +61,21 @@ const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) =
 
                 const backgroundColor = fullTheme.dark
                     ? checked
-                        ? Color(fullTheme.colors.primaryPalette.dark).alpha(0.36).string()
+                        ? Color(fullTheme.colors.primaryPalette?.dark || fullTheme.colors.primary)
+                              .alpha(0.36)
+                              .string()
                         : fullTheme.colors.surface
                     : checked
-                    ? fullTheme.colors.primaryPalette.light
+                    ? fullTheme.colors.primaryPalette?.light || Color(fullTheme.colors.primary).alpha(0.05).toString()
                     : fullTheme.colors.surface;
 
                 const textColor = fullTheme.dark
                     ? checked
-                        ? fullTheme.colors.primaryPalette.main
+                        ? fullTheme.colors.primaryPalette?.main || fullTheme.colors.primary
                         : fullTheme.colors.placeholder
                     : checked
-                    ? fullTheme.colors.primaryPalette.main
-                    : fullTheme.colors.textPalette.secondary;
+                    ? fullTheme.colors.primaryPalette?.main || fullTheme.colors.primary
+                    : fullTheme.colors.textPalette?.secondary || fullTheme.colors.text;
 
                 return (
                     <ToggleButton

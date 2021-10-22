@@ -190,6 +190,9 @@ jobs:
             - attach_workspace:
                   at: .
             - run:
+                  name: 'Set Max Memory'
+                  command: NODE_OPTIONS=--max_old_space_size=2048
+            - run:
                   name: 'Initialize Submodule'
                   command: yarn initialize
             - restore_cache:
@@ -300,12 +303,13 @@ workflows:
             - build_showcase:
                   requires:
                       - build_library
-            - build_storybook:
-                  requires:
-                      - build_library
+            # - build_storybook:
+            #       requires:
+            #           - build_showcase
             - build_storybook_api:
                   requires:
                       - build_library
+                    #   - build_storybook
             - deploy_storybook:
                   requires:
                       - build_storybook_api
@@ -316,7 +320,7 @@ workflows:
                               - dev
             - publish:
                   requires:
-                      - build_storybook
+                    #   - build_storybook
                       - build_showcase
                       - build_storybook_api
                   filters:

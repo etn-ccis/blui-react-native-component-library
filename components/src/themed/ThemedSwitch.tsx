@@ -16,8 +16,8 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
     if (theme.dark) {
         return {
             true: ios
-                ? theme.colors.primaryPalette.main
-                : Color(theme.colors.primaryPalette.main)
+                ? theme.colors.primaryPalette?.main || theme.colors.primary
+                : Color(theme.colors.primaryPalette?.main || theme.colors.primary)
                       .alpha(props.disabled ? 0.25 : 0.5)
                       .string(),
             false: Color(PXBColors.black[300])
@@ -27,8 +27,8 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
     }
     return {
         true: ios
-            ? theme.colors.primaryPalette.main
-            : Color(theme.colors.primaryPalette.main)
+            ? theme.colors.primaryPalette?.main || theme.colors.primary
+            : Color(theme.colors.primaryPalette?.main || theme.colors.primary)
                   .alpha(props.disabled ? 0.19 : 0.38)
                   .string(),
         false: Color(PXBColors.black[100])
@@ -41,7 +41,7 @@ const getThumbColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
     if (Platform.OS === 'ios') return 'white';
 
     if (props.value)
-        return Color(theme.colors.primaryPalette.main)
+        return Color(theme.colors.primaryPalette?.main || theme.colors.primary)
             .mix(Color(theme.colors.surface), props.disabled ? 0.5 : 0)
             .string();
 
@@ -71,7 +71,9 @@ export const ThemedSwitch: React.FC<ThemedSwitchProps> = (props) => {
         <Switch
             ios_backgroundColor={
                 // disabled only
-                theme.dark ? theme.colors.actionPalette.disabled : Color(PXBColors.black[100]).alpha(0.38).string()
+                theme.dark
+                    ? theme.colors.actionPalette?.disabled || theme.colors.disabled
+                    : Color(PXBColors.black[100]).alpha(0.38).string()
             }
             thumbColor={getThumbColor(props, theme)}
             trackColor={getTrackColor(props, theme)}

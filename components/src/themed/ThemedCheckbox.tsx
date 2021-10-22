@@ -16,7 +16,13 @@ export const ThemedCheckboxIOS: React.FC<ThemedCheckboxIOSProps> = (props) => {
     const { theme: themeOverride, color, ...other } = props;
     const theme = useTheme(themeOverride);
 
-    return <Checkbox.IOS {...other} color={color || theme.colors.primaryPalette.main} theme={themeOverride} />;
+    return (
+        <Checkbox.IOS
+            {...other}
+            color={color || theme.colors.primaryPalette?.main || theme.colors.primary}
+            theme={themeOverride}
+        />
+    );
 };
 /**
  * ThemedCheckboxAndroid component
@@ -34,9 +40,11 @@ export const ThemedCheckboxAndroid: React.FC<ThemedCheckboxAndroidProps> = (prop
             {...other}
             uncheckedColor={
                 uncheckedColor ||
-                (props.status === 'unchecked' ? theme.colors.textPalette.secondary : theme.colors.primaryPalette.main)
+                (props.status === 'unchecked'
+                    ? theme.colors.textPalette?.secondary || theme.colors.text
+                    : theme.colors.primaryPalette?.main || theme.colors.primary)
             }
-            color={color || theme.colors.primaryPalette.main}
+            color={color || theme.colors.primaryPalette?.main || theme.colors.primary}
             theme={themeOverride}
         />
     );
