@@ -8,18 +8,28 @@ export type ThemedChipProps = React.ComponentProps<typeof Chip>;
 const getBackgroundColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
     // Filled Style
     if (props.mode === undefined || props.mode === 'flat') {
-        if (props.disabled) return theme.colors.actionPalette.disabledBackground;
+        if (props.disabled) return theme.colors.actionPalette?.disabledBackground || theme.colors.disabled;
         else if (props.selected) {
-            return theme.colors.primaryPalette[theme.dark ? 'dark' : 'main'];
+            return (
+                (theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main) ||
+                theme.colors.primary
+            );
         }
-        return theme.dark ? theme.colors.actionPalette.active : theme.colors.actionPalette.background;
+        return (
+            (theme.dark ? theme.colors.actionPalette?.active : theme.colors.actionPalette?.background) ||
+            theme.colors.background
+        );
     }
     // Outlined Style
     else if (props.disabled) return 'transparent';
     else if (props.selected) {
         return theme.dark
-            ? Color(theme.colors.primaryPalette.dark).alpha(0.2).string()
-            : Color(theme.colors.primaryPalette.main).alpha(0.05).string();
+            ? Color(theme.colors.primaryPalette?.dark || theme.colors.primary)
+                  .alpha(0.2)
+                  .string()
+            : Color(theme.colors.primaryPalette?.main || theme.colors.primary)
+                  .alpha(0.05)
+                  .string();
     }
     return 'transparent';
 };
@@ -29,17 +39,27 @@ const getTextColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => s
     if (props.mode === undefined || props.mode === 'flat') {
         if (props.disabled)
             return theme.dark
-                ? theme.colors.textPalette.disabled
-                : Color(theme.colors.textPalette.primary).alpha(0.3).string();
+                ? theme.colors.textPalette?.disabled || theme.colors.disabled
+                : Color(theme.colors.textPalette?.primary || theme.colors.text)
+                      .alpha(0.3)
+                      .string();
         else if (props.selected) {
-            return theme.colors.textPalette.onPrimary[theme.dark ? 'dark' : 'main'];
+            return (
+                (theme.dark ? theme.colors.textPalette?.onPrimary?.dark : theme.colors.textPalette?.onPrimary?.main) ||
+                theme.colors.text
+            );
         }
-        return theme.colors.textPalette.primary;
+        return theme.colors.textPalette?.primary || theme.colors.text;
     }
     // Outlined Style
     else if (props.disabled)
-        return theme.dark ? theme.colors.textPalette.disabled : theme.colors.actionPalette.disabled;
-    return props.selected ? theme.colors.primaryPalette.main : theme.colors.textPalette.primary;
+        return (
+            (theme.dark ? theme.colors.textPalette?.disabled : theme.colors.actionPalette?.disabled) ||
+            theme.colors.disabled
+        );
+    return props.selected
+        ? theme.colors.primaryPalette?.main || theme.colors.primary
+        : theme.colors.textPalette?.primary || theme.colors.text;
 };
 
 const getBorderColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) => string = (props, theme) => {
@@ -47,7 +67,7 @@ const getBorderColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) =>
     if (props.mode === undefined || props.mode === 'flat') return 'transparent';
     // Outlined Style
     else if (props.disabled) return theme.colors.divider;
-    else if (props.selected) return theme.colors.primaryPalette.main;
+    else if (props.selected) return theme.colors.primaryPalette?.main || theme.colors.primary;
     return theme.colors.divider;
 };
 

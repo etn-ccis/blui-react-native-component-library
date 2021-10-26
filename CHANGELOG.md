@@ -1,6 +1,13 @@
 # Change Log
 
-## 6.0.0 (October 1, 2021)
+## v6.0.1 (October 26, 2021)
+
+### Fixed
+
+-   Issue with missing color fallback values ([#214](https://github.com/pxblue/react-native-component-library/issues/214)).
+-   Issue regarding inability to set ref on `<ThemedTextInput>` ([#213](https://github.com/pxblue/react-native-component-library/issues/213)).
+
+## v6.0.0 (October 1, 2021)
 
 ### Fixed
 

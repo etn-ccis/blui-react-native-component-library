@@ -34,7 +34,7 @@ jobs:
             - run:
                   name: Test
                   command: |
-                      yarn test --coverage --watchAll=false
+                      yarn test --maxWorkers=2 --coverage --watchAll=false
             - run:
                   name: Build Library
                   command: |
@@ -190,6 +190,9 @@ jobs:
             - attach_workspace:
                   at: .
             - run:
+                  name: 'Set Max Memory'
+                  command: NODE_OPTIONS=--max_old_space_size=2048
+            - run:
                   name: 'Initialize Submodule'
                   command: yarn initialize
             - restore_cache:
@@ -230,10 +233,10 @@ jobs:
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
-            - DEV_TARGET: https://github.com/pxblue-components/react-native-dev
-            - MASTER_TARGET: https://github.com/pxblue-components/react-native
+            - DEV_TARGET: https://github.com/brightlayer-ui-components/react-native-dev
+            - MASTER_TARGET: https://github.com/brightlayer-ui-components/react-native
             - GH_EMAIL: pxblue@eaton.com
-            - GH_NAME: PX Blue Agent
+            - GH_NAME: Brightlayer UI Agent
         steps:
             - checkout
             - attach_workspace:
@@ -254,10 +257,6 @@ jobs:
 
                       cd out
                       git rm -rf .
-                      # Add the CNAME record for pxblue.eaton.com
-                      # if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                      #   echo "pxblue-components.eaton.com/react-native" > CNAME
-                      # fi
                       cd ..
 
                       cp -a storybook-static/. out/.
@@ -304,12 +303,13 @@ workflows:
             - build_showcase:
                   requires:
                       - build_library
-            - build_storybook:
-                  requires:
-                      - build_library
+            # - build_storybook:
+            #       requires:
+            #           - build_showcase
             - build_storybook_api:
                   requires:
                       - build_library
+                    #   - build_storybook
             - deploy_storybook:
                   requires:
                       - build_storybook_api
@@ -320,7 +320,7 @@ workflows:
                               - dev
             - publish:
                   requires:
-                      - build_storybook
+                    #   - build_storybook
                       - build_showcase
                       - build_storybook_api
                   filters:

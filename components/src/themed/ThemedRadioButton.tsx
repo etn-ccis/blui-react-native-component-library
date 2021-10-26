@@ -16,7 +16,13 @@ export const ThemedRadioButtonIOS: React.FC<ThemedRadioButtonIOSProps> = (props)
     const { theme: themeOverride, color, ...other } = props;
     const theme = useTheme(themeOverride);
 
-    return <RadioButton.IOS {...other} color={color || theme.colors.primaryPalette.main} theme={themeOverride} />;
+    return (
+        <RadioButton.IOS
+            {...other}
+            color={color || theme.colors.primaryPalette?.main || theme.colors.primary}
+            theme={themeOverride}
+        />
+    );
 };
 /**
  * ThemedRadioButtonAndroid component
@@ -34,9 +40,11 @@ export const ThemedRadioButtonAndroid: React.FC<ThemedRadioButtonAndroidProps> =
             {...other}
             uncheckedColor={
                 uncheckedColor ||
-                (props.status === 'unchecked' ? theme.colors.textPalette.secondary : theme.colors.primaryPalette.main)
+                (props.status === 'unchecked'
+                    ? theme.colors.textPalette?.secondary || theme.colors.text
+                    : theme.colors.primaryPalette?.main || theme.colors.primary)
             }
-            color={color || theme.colors.primaryPalette.main}
+            color={color || theme.colors.primaryPalette?.main || theme.colors.primary}
             theme={themeOverride}
         />
     );

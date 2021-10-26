@@ -20,10 +20,10 @@ export const useAlternateTheme = (
     const altDarkTheme: $DeepPartial<ReactNativePaper.Theme> = merge.all([
         {
             colors: {
-                primary: theme.colors.primaryPalette.dark,
-                accent: theme.colors.accentPalette.dark,
+                primary: theme.colors?.primaryPalette?.dark || theme.colors.primary,
+                accent: theme.colors?.accentPalette?.dark || theme.colors.accent,
                 background: theme.colors.surface,
-                notification: theme.colors.accentPalette.dark,
+                notification: theme.colors?.accentPalette?.dark || theme.colors.notification,
             },
         },
         extraDark || {},
