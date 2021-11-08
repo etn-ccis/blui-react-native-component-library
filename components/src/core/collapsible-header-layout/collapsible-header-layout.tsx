@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { ANIMATION_LENGTH, Header, HeaderProps as PXBHeaderProps } from '../header';
+import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
 export type CollapsibleLayoutProps = ViewProps & {
     /** Props to spread to the Header component. */
-    HeaderProps: PXBHeaderProps;
+    HeaderProps: BLUIHeaderProps;
 
     /** Props to spread to the ScrollView component. */
     ScrollViewProps?: RNScrollViewProps;
@@ -30,17 +30,17 @@ export type CollapsibleLayoutProps = ViewProps & {
 };
 
 /**
- * [CollapsibleHeaderLayout](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component
+ * [CollapsibleHeaderLayout](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component
  *
  * This component displays a scrollable page with a header that shrinks between an expanded size and
- * a collapsed size as the page is scrolled. It uses a standard [`Header`](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--header)
+ * a collapsed size as the page is scrolled. It uses a standard [`Header`](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--header)
  * and `ScrollView` component under the hood and
  * you can set all of the props directly to these components in order to configure them. The layout itself
  * is primarily responsible for tracking the current scroll position and updating the size of the `Header`.
  */
 export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props) => {
     const {
-        HeaderProps = { styles: {} } as PXBHeaderProps,
+        HeaderProps = { styles: {} } as BLUIHeaderProps,
         theme: themeOverride,
         ScrollViewProps = {},
         styles = {},
@@ -121,7 +121,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     return (
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>
             <Header
-                testID={'pxb-header'}
+                testID={'blui-header'}
                 // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
                 {...HeaderProps}
                 updateScrollView={updateScrollView}
@@ -134,7 +134,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
             />
             {/* TODO: Consider using a KeyboardAwareScrollView in the future or perhaps allowing for a FlatList */}
             <ScrollView
-                testID={'pxb-scrollview'}
+                testID={'blui-scrollview'}
                 scrollEventThrottle={32}
                 // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
                 {...ScrollViewProps}
@@ -158,7 +158,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     }
                 )}
             >
-                <Animated.View testID={'pxb-padded-view'} style={{ paddingTop: contentPadding }}>
+                <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
                     {props.children}
                 </Animated.View>
             </ScrollView>

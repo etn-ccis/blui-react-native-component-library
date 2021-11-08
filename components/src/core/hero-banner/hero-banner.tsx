@@ -26,10 +26,10 @@ export type HeroBannerProps = ViewProps & {
 };
 
 /**
- * [HeroBanner](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--hero) component
+ * [HeroBanner](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--hero) component
  *
  * The HeroBanner is a wrapper component that is used to properly space out
- * [Hero](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--hero) component children in a flex container row.
+ * [Hero](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--hero) component children in a flex container row.
  */
 export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
     const { divider, children, styles = {}, style, ...viewProps } = props;

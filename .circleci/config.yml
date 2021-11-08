@@ -69,7 +69,7 @@ jobs:
                   file: './components/coverage/clover.xml'
                   token: c0991605-ebc1-430d-aa3f-3e134c6a8a0e
 
-    # Builds the Storybook app using @pxblue/react-native-components persisted in /dist folder.
+    # Builds the Storybook app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_storybook:
         docker:
             - image: circleci/node:12.9.1-browsers
@@ -89,9 +89,9 @@ jobs:
                       cd demos/storybook
                       yarn install --frozen-lockfile
 
-                      # Install the packed version of @pxblue/react-native-components
+                      # Install the packed version of @brightlayer-ui/react-native-components
                       PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/pxblue-react-native-components-$PACKAGED_VERSION.tgz
+                      yarn add ../../dist/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
@@ -137,9 +137,9 @@ jobs:
                       cd demos/api
                       yarn install --frozen-lockfile
 
-                      # Install the packed version of @pxblue/react-native-components
+                      # Install the packed version of @brightlayer-ui/react-native-components
                       PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/pxblue-react-native-components-$PACKAGED_VERSION.tgz
+                      yarn add ../../dist/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
@@ -179,7 +179,7 @@ jobs:
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
                   when: always
 
-    # Builds the Showcase app using @pxblue/react-native-components persisted in /dist folder.
+    # Builds the Showcase app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_showcase:
         docker:
             - image: circleci/node:12.9.1-browsers
@@ -204,9 +204,9 @@ jobs:
                       cd demos/showcase
                       yarn install --frozen-lockfile
 
-                      # Install the packed version of @pxblue/react-native-components
+                      # Install the packed version of @brightlayer-ui/react-native-components
                       PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/pxblue-react-native-components-$PACKAGED_VERSION.tgz
+                      yarn add ../../dist/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
@@ -235,7 +235,7 @@ jobs:
             - DEV_BRANCH: dev
             - DEV_TARGET: https://github.com/brightlayer-ui-components/react-native-dev
             - MASTER_TARGET: https://github.com/brightlayer-ui-components/react-native
-            - GH_EMAIL: pxblue@eaton.com
+            - GH_EMAIL: brightlayer-ui@eaton.com
             - GH_NAME: Brightlayer UI Agent
         steps:
             - checkout
@@ -278,7 +278,7 @@ jobs:
                       echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
                       echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
             - run:
-                  name: Publish @pxblue/react-native-components
+                  name: Publish @brightlayer-ui/react-native-components
                   command: |
                       yarn publish:package -b $CIRCLE_BRANCH
 
@@ -291,7 +291,7 @@ jobs:
                   at: .
             - gh/setup
             - run:
-                  name: Tag @pxblue/react-native-components
+                  name: Tag @brightlayer-ui/react-native-components
                   command: |
                       yarn tag:package -b $CIRCLE_BRANCH
 

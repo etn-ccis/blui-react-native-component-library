@@ -13,9 +13,9 @@ The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) c
 ### Hero Usage
 
 ```tsx
-import { Hero } from '@pxblue/react-native-components';
+import { Hero } from '@brightlayer-ui/react-native-components';
 
-<Hero label={'Charge'} icon={{ family: 'pxblue', name: 'battery' }} ChannelValueProps={{ value: 100, units: '%' }} />;
+<Hero label={'Charge'} icon={{ family: 'brightlayer-ui', name: 'battery' }} ChannelValueProps={{ value: 100, units: '%' }} />;
 ```
 
 ### Hero API
@@ -37,7 +37,7 @@ import { Hero } from '@pxblue/react-native-components';
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name        | Description                                  |
 | ----------- | -------------------------------------------- |
@@ -53,13 +53,13 @@ The `<HeroBanner>` component is a simple wrapper component that is used to conta
 ### Hero Banner Usage
 
 ```tsx
-import { Hero, HeroBanner } from '@pxblue/react-native-components';
+import { Hero, HeroBanner } from '@brightlayer-ui/react-native-components';
 
 <HeroBanner divider>
-    <Hero label={'Hero One'} icon={{ family: 'pxblue', name: 'battery' }} />
-    <Hero label={'Hero Two'} icon={{ family: 'pxblue', name: 'battery' }} />
-    <Hero label={'Hero Three'} icon={{ family: 'pxblue', name: 'battery' }} />
-    <Hero label={'Hero Four'} icon={{ family: 'pxblue', name: 'battery' }} />
+    <Hero label={'Hero One'} icon={{ family: 'brightlayer-ui', name: 'battery' }} />
+    <Hero label={'Hero Two'} icon={{ family: 'brightlayer-ui', name: 'battery' }} />
+    <Hero label={'Hero Three'} icon={{ family: 'brightlayer-ui', name: 'battery' }} />
+    <Hero label={'Hero Four'} icon={{ family: 'brightlayer-ui', name: 'battery' }} />
 </HeroBanner>;
 ```
 
@@ -75,7 +75,7 @@ import { Hero, HeroBanner } from '@pxblue/react-native-components';
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name    | Description                           |
 | ------- | ------------------------------------- |

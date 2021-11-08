@@ -24,7 +24,7 @@ describe('IconWrapper', () => {
         });
     });
 
-    describe('when passed a pxblue svg icon', () => {
+    describe('when passed a brightlayer-ui svg icon', () => {
         afterEach(cleanup);
         it('converts size and color to height, width, and fill', () => {
             const WrappedLeaf = wrapIcon({ IconClass: Leaf });

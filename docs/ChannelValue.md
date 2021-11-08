@@ -7,9 +7,9 @@ The `<ChannelValue>` component is used to display a channel value (and units). T
 ## Usage
 
 ```tsx
-import { ChannelValue } from '@pxblue/react-native-components';
+import { ChannelValue } from '@brightlayer-ui/react-native-components';
 
-<ChannelValue value={100} units={'%'} icon={{ family: 'pxblue', name: 'battery' }} />;
+<ChannelValue value={100} units={'%'} icon={{ family: 'brightlayer-ui', name: 'battery' }} />;
 ```
 
 ## API
@@ -35,7 +35,7 @@ import { ChannelValue } from '@pxblue/react-native-components';
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name  | Description                         |
 | ----- | ----------------------------------- |

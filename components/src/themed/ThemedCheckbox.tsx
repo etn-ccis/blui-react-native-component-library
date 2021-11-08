@@ -10,7 +10,7 @@ export type ThemedCheckboxItemProps = React.ComponentProps<typeof Checkbox.Item>
  *
  * This component is a wrapper around the React Native Paper [Checkbox.IOS](https://callstack.github.io/react-native-paper/checkbox-ios.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedCheckboxIOS: React.FC<ThemedCheckboxIOSProps> = (props) => {
     const { theme: themeOverride, color, ...other } = props;
@@ -29,7 +29,7 @@ export const ThemedCheckboxIOS: React.FC<ThemedCheckboxIOSProps> = (props) => {
  *
  * This component is a wrapper around the React Native Paper [Checkbox.Android](https://callstack.github.io/react-native-paper/checkbox-android.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedCheckboxAndroid: React.FC<ThemedCheckboxAndroidProps> = (props) => {
     const { theme: themeOverride, color, uncheckedColor, ...other } = props;
@@ -58,11 +58,11 @@ const ThemedCheckboxComponent: React.FC<React.ComponentProps<typeof Checkbox>> =
  *
  * This component is a wrapper around the React Native Paper [Checkbox](https://callstack.github.io/react-native-paper/checkbox.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  *
  * Note: We do not provide a wrapper around the `Checkbox.Item` component. This component from RNP uses the unstyled checkbox components
  * and unstyled text, so we do not recommend using it. If you wish to have this behavior, you should implement your own component making
- * use of the PX Blue `Typography` components and the `ThemedCheckbox` provided here.
+ * use of the Brightlayer UI `Typography` components and the `ThemedCheckbox` provided here.
  */
 export const ThemedCheckbox = Object.assign(ThemedCheckboxComponent, {
     Android: ThemedCheckboxAndroid,

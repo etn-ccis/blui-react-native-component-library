@@ -80,7 +80,7 @@ export type ChannelValueProps = ViewProps & {
 };
 
 /**
- * [ChannelValue](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--channel-value) component
+ * [ChannelValue](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--channel-value) component
  *
  * Used to show a stylized value and its units.
  * You may also include an icon.

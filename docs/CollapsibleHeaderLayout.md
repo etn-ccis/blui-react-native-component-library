@@ -7,7 +7,7 @@ The `<CollapsibleHeaderLayout>` component is used as a full-page layout componen
 ## Usage
 
 ```tsx
-import { CollapsibleHeaderLayout } from '@pxblue/react-native-components';
+import { CollapsibleHeaderLayout } from '@brightlayer-ui/react-native-components';
 
 <CollapsibleHeaderLayout
     HeaderProps={{
@@ -41,7 +41,7 @@ Any other props will be provided to the root element ([**View**](https://reactna
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |

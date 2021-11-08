@@ -41,7 +41,7 @@ describe('CollapsibleHeaderLayout', () => {
 
     it('renders correct sizes - default props', () => {
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'pxb-padded-view' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(200));
         expect(sv.props.contentOffset.y).toBe(heightWithStatusBar(200) - heightWithStatusBar(56));
     });
@@ -57,7 +57,7 @@ describe('CollapsibleHeaderLayout', () => {
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'pxb-padded-view' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(heightWithStatusBar(500) - heightWithStatusBar(200));
     });
@@ -74,7 +74,7 @@ describe('CollapsibleHeaderLayout', () => {
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'pxb-padded-view' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(heightWithStatusBar(500) - heightWithStatusBar(200));
     });
@@ -92,7 +92,7 @@ describe('CollapsibleHeaderLayout', () => {
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'pxb-padded-view' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(0);
     });
@@ -110,7 +110,7 @@ describe('CollapsibleHeaderLayout', () => {
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'pxb-padded-view' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(0);
     });
