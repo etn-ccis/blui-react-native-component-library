@@ -1,6 +1,6 @@
 {
     "name": "react-native-components",
-    "version": "0.1.0-beta.0",
+    "version": "0.0.0-beta.0",
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "build": "bash ./scripts/buildComponents.sh",
@@ -13,7 +13,7 @@
         "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
-        "tag:package": "cd dist && set npm_config_yes=true && npx -p @brightlayer-ui/tag blui-tag",
+        "tag:package": "cd dist && set npm_config_yes=true && npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-component-library",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",
         "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
