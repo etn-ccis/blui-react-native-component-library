@@ -8,7 +8,7 @@ Card component that calls attention to particular values.
 ## Usage
 
 ```tsx
-import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@pxblue/react-native-components';);
+import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@brightlayer-ui/react-native-components';);
 
 <ScoreCard
     headerTitle={'Portland Datacenter Long Name'}
@@ -22,10 +22,10 @@ import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@pxblue/react-n
             <Hero
                 label={'Score'}
                 iconSize={48}
-                iconColor={PXBColors.green[500]}
+                iconColor={BLUIColors.green[500]}
                 value={98}
                 units={'/100'}
-                icon={{ family: 'pxblue', name: 'grade_a' }}
+                icon={{ family: 'brightlayer-ui', name: 'grade_a' }}
             />
         </HeroBanner>
     }
@@ -61,7 +61,7 @@ Any other props will be provided to the root element ([**Card**](https://callsta
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name             | Description                                    |
 | ---------------- | ---------------------------------------------- |

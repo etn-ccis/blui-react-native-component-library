@@ -18,7 +18,7 @@ const useStyles = (): StyleSheet.NamedStyles<{
  *
  * This component is a wrapper around the React Native Paper [Button](https://callstack.github.io/react-native-paper/button.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedButton: React.FC<ThemedButtonProps> = (props) => {
     const { style, color, labelStyle: labelStyleProp, ...other } = props;

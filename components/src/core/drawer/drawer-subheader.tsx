@@ -11,7 +11,7 @@ type DrawerSubheaderProps = {
 };
 
 /**
- * [DrawerSubheader](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ * [DrawerSubheader](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerSubheader is a wrapper for additional content in your navigation Drawer. This section will always
  * be pinned between the DrawerHeader and the DrawerBody. You can pass in any content you want as a child of this

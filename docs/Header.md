@@ -8,7 +8,7 @@ The `<Header>` component is used at the top of the page to display page informat
 ## Usage
 
 ```tsx
-import { Header } from '@pxblue/react-native-components';
+import { Header } from '@brightlayer-ui/react-native-components';
 
 <Header
     title={'Valley Forge'}
@@ -55,7 +55,7 @@ import { Header } from '@pxblue/react-native-components';
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name            | Description                                |
 | --------------- | ------------------------------------------ |

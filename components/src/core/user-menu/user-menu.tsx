@@ -55,7 +55,7 @@ const useStyles = (
     });
 
 /**
- * [UserMenu](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--user-menu) component
+ * [UserMenu](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--user-menu) component
  *
  * Renders an avatar that can be clicked to open a bottomsheet menu.
  *

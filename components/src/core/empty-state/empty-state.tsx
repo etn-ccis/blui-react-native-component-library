@@ -69,7 +69,7 @@ export type EmptyStateProps = ViewProps & {
 };
 
 /**
- * [EmptyState](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--empty-state) component
+ * [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component
  *
  * Used as a placeholder when no content is available for a particular area/screen in your application.
  * It displays an icon with up to two lines of text and has an area for you to add custom actionable content or

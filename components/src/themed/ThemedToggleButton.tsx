@@ -47,7 +47,7 @@ const useStyles = (
  *
  * This component is a wrapper around the React Native Paper [ToggleButton](https://callstack.github.io/react-native-paper/toggle-button.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) => {
     const { theme: themeOverride, style, color, ...other } = props;
@@ -95,7 +95,7 @@ const ThemedToggleButtonComponent: React.FC<ThemedToggleButtonProps> = (props) =
  *
  * This component is a wrapper around the React Native Paper [ToggleButton.Row](https://callstack.github.io/react-native-paper/toggle-button-row.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 const ThemedToggleButtonRow: React.FC<ThemedToggleButtonRowProps> = (props) => {
     const { children, ...other } = props;
@@ -141,7 +141,7 @@ const ThemedToggleButtonRow: React.FC<ThemedToggleButtonRowProps> = (props) => {
  *
  * This component is a wrapper around the React Native Paper [ToggleButton.Group](https://callstack.github.io/react-native-paper/toggle-button-group.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 const ThemedToggleButtonGroup = ToggleButton.Group;
 
@@ -150,7 +150,7 @@ const ThemedToggleButtonGroup = ToggleButton.Group;
  *
  * This component is a wrapper around the React Native Paper [ToggleButton](https://callstack.github.io/react-native-paper/toggle-button.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedToggleButton = Object.assign(ThemedToggleButtonComponent, {
     Group: ThemedToggleButtonGroup,

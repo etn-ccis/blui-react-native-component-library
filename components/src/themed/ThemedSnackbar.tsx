@@ -9,7 +9,7 @@ export type ThemedSnackbarProps = React.ComponentProps<typeof Snackbar>;
  *
  * This component is a wrapper around the React Native Paper [Snackbar](https://callstack.github.io/react-native-paper/snackbar.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedSnackbar: React.FC<ThemedSnackbarProps> = (props) => {
     const { theme: themeOverride, ...other } = props;

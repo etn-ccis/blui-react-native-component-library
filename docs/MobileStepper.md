@@ -7,7 +7,7 @@ The `<MobileStepper>` is used to minimally display progress when completing a wo
 ## Usage
 
 ```tsx
-import { MobileStepper } from '@pxblue/react-native-components';
+import { MobileStepper } from '@brightlayer-ui/react-native-components';
 
 <MobileStepper
     activeStep={activeStep}
@@ -39,7 +39,7 @@ Any other props will be provided to the root element ([**View**](https://reactna
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following key:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following key:
 
 | Name             | Description                                                      |
 | ---------------- | ---------------------------------------------------------------- |

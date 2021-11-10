@@ -76,7 +76,7 @@ const createTypography = (
 };
 
 /**
- * [H1](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [H1](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H1 heading
  */
@@ -86,7 +86,7 @@ export const H1 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [H2](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [H2](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H2 heading
  */
@@ -96,7 +96,7 @@ export const H2 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [H3](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [H3](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H3 heading
  */
@@ -106,7 +106,7 @@ export const H3 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [H4](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [H4](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H4 heading
  */
@@ -116,7 +116,7 @@ export const H4 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [H5](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [H5](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H5 heading
  */
@@ -126,7 +126,7 @@ export const H5 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [H6](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [H6](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An H6 heading (used commonly for titles)
  */
@@ -136,7 +136,7 @@ export const H6 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Body1](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Body1](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for most body copy
  */
@@ -146,7 +146,7 @@ export const Body1 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Body2](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Body2](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for alternative body copy
  */
@@ -156,7 +156,7 @@ export const Body2 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Label](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Label](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A secret, undocumented text component used for some labels in very specific places.
  *
@@ -168,7 +168,7 @@ export const Label = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Subtitle1](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Subtitle1](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A subtitle component
  */
@@ -178,7 +178,7 @@ export const Subtitle1 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Subtitle2](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Subtitle2](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An alternative subtitle component
  */
@@ -188,7 +188,7 @@ export const Subtitle2 = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Button](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Button](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for button labels
  */
@@ -198,7 +198,7 @@ export const Button = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Caption](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Caption](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * A text component used for image captions
  */
@@ -208,7 +208,7 @@ export const Caption = createTypography((theme) => ({
     letterSpacing: 0,
 }));
 /**
- * [Overline](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--typography) component
+ * [Overline](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component
  *
  * An all-caps text component used for specific labeling situations.
  */

@@ -9,7 +9,7 @@ An invisible utility component that acts as a spacer element in various layouts.
 ## Usage
 
 ```tsx
-import { Spacer } from '@pxblue/react-native-components';
+import { Spacer } from '@brightlayer-ui/react-native-components';
 
 <View style={{ display: 'flex' }}>
     {/* Left Content */}
@@ -36,7 +36,7 @@ Any other props supplied will be provided to the root element (`View`).
 
 ### Styles
 
-You can override the classes used by PX Blue by passing a `styles` prop. It supports the following key:
+You can override the classes used by Brightlayer UI by passing a `styles` prop. It supports the following key:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |
