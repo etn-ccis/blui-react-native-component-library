@@ -12,7 +12,7 @@ The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically us
 ## Usage
 
 ```tsx
-import { UserMenu } from '@pxblue/react-native-components';
+import { UserMenu } from '@brightlayer-ui/react-native-components';
 
 <UserMenu
     menuTitle={'John Smith'}
@@ -22,7 +22,7 @@ import { UserMenu } from '@pxblue/react-native-components';
         { title: 'Preferences', icon: { name: 'settings' } },
         { title: 'Log Out', icon: { name: 'exit-to-app' } },
     ]}
-    avatar={<Avatar.Text label={'PX'} size={40} />}
+    avatar={<Avatar.Text label={'BLUI'} size={40} />}
 />;
 ```
 
@@ -45,7 +45,7 @@ import { UserMenu } from '@pxblue/react-native-components';
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name        | Description                               |
 | ----------- | ----------------------------------------- |

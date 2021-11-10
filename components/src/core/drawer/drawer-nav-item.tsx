@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager, PixelRatio } from 'react-native';
-import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../info-list-item';
+import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
 import { usePrevious } from '../hooks/usePrevious';
 import { AllSharedProps } from './types';
@@ -9,7 +9,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
@@ -20,7 +20,7 @@ export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
     activeBackground?: StyleProp<ViewStyle>;
     expandIcon?: StyleProp<ViewStyle>;
-    infoListItem?: PXBInfoListItemProps['styles'];
+    infoListItem?: BLUIInfoListItemProps['styles'];
 };
 export type DrawerNavItemProps = AllSharedProps &
     ViewProps & {
@@ -163,7 +163,7 @@ const makeStyles = (
 };
 
 /**
- * [DrawerNavItem](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ * [DrawerNavItem](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerNavItem represents a single navigation item in the Drawer, usually a link to some route
  * in your application, but could also be used for static actions like login or logout. DrawerNavItems
@@ -211,7 +211,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         depth = 0,
         hidden,
         icon: itemIcon,
-        // InfoListItemProps = {} as PXBInfoListItemProps,
+        // InfoListItemProps = {} as BLUIInfoListItemProps,
         isInActiveTree,
         itemID,
         items,

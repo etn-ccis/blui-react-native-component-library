@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Icon } from './icon';
-import PXBIcon from '@pxblue/react-native-vector-icons';
+import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { wrapIcon } from '../icon-wrapper';
 import { EmptyState } from '../empty-state';
 import { View } from 'react-native';
@@ -17,8 +17,8 @@ describe('Icon Tests ', () => {
         const tree = renderer.create(<Icon source={'🍇'} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it('renders with pxb object source', () => {
-        const tree = renderer.create(<Icon source={{ family: 'pxblue', name: 'broccoli' }} />).toJSON();
+    it('renders with blui object source', () => {
+        const tree = renderer.create(<Icon source={{ family: 'brightlayer-ui', name: 'broccoli' }} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it('renders with material community object source', () => {
@@ -39,7 +39,7 @@ describe('Icon Tests ', () => {
         const tree = renderer
             .create(
                 <Icon
-                    source={({ size, color }): JSX.Element => <PXBIcon name={'broccoli'} size={size} color={color} />}
+                    source={({ size, color }): JSX.Element => <BLUIIcon name={'broccoli'} size={size} color={color} />}
                 />
             )
             .toJSON();
@@ -51,7 +51,7 @@ describe('Icon Tests ', () => {
                 <Icon
                     source={{
                         uri:
-                            'https://raw.githubusercontent.com/pxblue/icons/dev/png/png48/account_settings_black500_48dp.png',
+                            'https://raw.githubusercontent.com/brightlayer-ui/icons/dev/png/png48/account_settings_black500_48dp.png',
                     }}
                 />
             )
@@ -64,7 +64,7 @@ describe('Icon Tests ', () => {
     });
     it('renders in a component', () => {
         const tree = renderer
-            .create(<EmptyState title={'Test'} icon={{ family: 'pxblue', name: 'broccoli' }} />)
+            .create(<EmptyState title={'Test'} icon={{ family: 'brightlayer-ui', name: 'broccoli' }} />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

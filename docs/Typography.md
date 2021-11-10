@@ -9,7 +9,7 @@ We provide components for: `<H1>`, `<H2>`, `<H3>`, `<H4>`, `<H5>`, `<H6>`, `<Bod
 ## Usage
 
 ```tsx
-import * as Typography from '@pxblue/react-native-components';
+import * as Typography from '@brightlayer-ui/react-native-components';
 
 <View>
     <Typography.H1>Head. 1</Typography.H1>
@@ -45,7 +45,7 @@ All typography components in this library share a common API.
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |

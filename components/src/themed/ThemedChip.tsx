@@ -76,7 +76,7 @@ const getBorderColor: (props: ThemedChipProps, theme: ReactNativePaper.Theme) =>
  *
  * This component is a wrapper around the React Native Paper [Chip](https://callstack.github.io/react-native-paper/chip.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedChip: React.FC<ThemedChipProps> = (props) => {
     const { theme: themeOverride, style, selectedColor, ...other } = props;

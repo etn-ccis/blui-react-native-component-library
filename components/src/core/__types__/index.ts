@@ -25,7 +25,7 @@ export type IconFunctionProps = IconComponentProps & {
 
 export type IconFamily = {
     name: string;
-    family?: 'material' | 'pxblue' | 'material-community';
+    family?: 'material' | 'brightlayer-ui' | 'material-community';
     direction?: 'rtl' | 'ltr' | 'auto';
     allowFontScaling?: boolean;
 };

@@ -3,7 +3,7 @@ import { Image, I18nManager, Platform, ImageSourcePropType } from 'react-native'
 import { IconComponentProps, IconFamily, IconSource, IconSourceBase } from '../__types__';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import PXBIcon from '@pxblue/react-native-vector-icons';
+import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { Body1 } from '../typography';
 import { useTheme } from 'react-native-paper';
 
@@ -71,9 +71,9 @@ export const Icon: React.FC<IconProps> = (props) => {
                         style={flip ? flipIconStyle : {}}
                     />
                 );
-            case 'pxblue':
+            case 'brightlayer-ui':
                 return (
-                    <PXBIcon
+                    <BLUIIcon
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}

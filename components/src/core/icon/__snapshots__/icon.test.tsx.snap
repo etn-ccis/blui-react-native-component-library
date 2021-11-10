@@ -25,7 +25,7 @@ exports[`Icon Tests  renders in a component 1`] = `
         },
         Object {},
         Object {
-          "fontFamily": "PXBlueIcons",
+          "fontFamily": "BrightlayerUIIcons",
           "fontStyle": "normal",
           "fontWeight": "normal",
         },
@@ -33,7 +33,7 @@ exports[`Icon Tests  renders in a component 1`] = `
       ]
     }
   >
-    
+    
   </Text>
   <Text
     style={
@@ -66,6 +66,29 @@ exports[`Icon Tests  renders in a component 1`] = `
     Test
   </Text>
 </View>
+`;
+
+exports[`Icon Tests  renders with blui object source 1`] = `
+<Text
+  allowFontScaling={true}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 24,
+      },
+      Object {},
+      Object {
+        "fontFamily": "BrightlayerUIIcons",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      Object {},
+    ]
+  }
+>
+  
+</Text>
 `;
 
 exports[`Icon Tests  renders with emoji source 1`] = `
@@ -111,7 +134,7 @@ exports[`Icon Tests  renders with function source 1`] = `
       },
       undefined,
       Object {
-        "fontFamily": "PXBlueIcons",
+        "fontFamily": "BrightlayerUIIcons",
         "fontStyle": "normal",
         "fontWeight": "normal",
       },
@@ -119,7 +142,7 @@ exports[`Icon Tests  renders with function source 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;
 
@@ -194,36 +217,13 @@ exports[`Icon Tests  renders with material object source 2`] = `
 </Text>
 `;
 
-exports[`Icon Tests  renders with pxb object source 1`] = `
-<Text
-  allowFontScaling={true}
-  style={
-    Array [
-      Object {
-        "color": "#000000",
-        "fontSize": 24,
-      },
-      Object {},
-      Object {
-        "fontFamily": "PXBlueIcons",
-        "fontStyle": "normal",
-        "fontWeight": "normal",
-      },
-      Object {},
-    ]
-  }
->
-  
-</Text>
-`;
-
 exports[`Icon Tests  renders with remote image source 1`] = `
 <Image
   accessibilityElementsHidden={true}
   importantForAccessibility="no-hide-descendants"
   source={
     Object {
-      "uri": "https://raw.githubusercontent.com/pxblue/icons/dev/png/png48/account_settings_black500_48dp.png",
+      "uri": "https://raw.githubusercontent.com/brightlayer-ui/icons/dev/png/png48/account_settings_black500_48dp.png",
     }
   }
   style={

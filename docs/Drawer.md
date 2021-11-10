@@ -1,8 +1,8 @@
 # Drawer
 
-The `<Drawer>` component is side-menu that houses navigation items. The PX Blue Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, and `<DrawerFooter>`to help organize the content. To integrate in-app navigation, the `<Drawer>` component needs to be paired with a navigation provider — we recommend using [React Navigation](https://reactnavigation.org/docs/getting-started).
+The `<Drawer>` component is side-menu that houses navigation items. The Brightlayer UI Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, and `<DrawerFooter>`to help organize the content. To integrate in-app navigation, the `<Drawer>` component needs to be paired with a navigation provider — we recommend using [React Navigation](https://reactnavigation.org/docs/getting-started).
 
-To learn more about the Navigation design pattern, check out our [documentation](https://pxblue.github.io/patterns/navigation).
+To learn more about the Navigation design pattern, check out our [documentation](https://brightlayer-ui.github.io/patterns/navigation).
 
 ## Drawer
 
@@ -11,7 +11,7 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 ### Drawer Usage
 
 ```tsx
-import { Drawer, DrawerHeader, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@pxblue/react-native-components';
+import { Drawer, DrawerHeader, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-native-components';
 
 <Drawer
     activeItem={selectedItem}
@@ -60,7 +60,7 @@ Any other props will be provided to the root element ([**Surface**](https://call
 
 #### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. The Drawer supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. The Drawer supports the following keys:
 
 <div style="overflow: auto;">
 
@@ -97,7 +97,7 @@ Any other props will be provided to the root element ([**View**](https://reactna
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerHeader supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. The DrawerHeader supports the following keys:
 
 <div style="overflow: auto">
 
@@ -147,7 +147,7 @@ Any other props will be provided to the root element ([**ScrollView**](https://r
 
 #### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. The Drawer supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. The Drawer supports the following keys:
 
 <div style="overflow: auto;">
 
@@ -181,7 +181,7 @@ Any other props will be provided to the root element ([**View**](https://reactna
 
 #### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerNavGroup supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. The DrawerNavGroup supports the following keys:
 
 <div style="overflow: auto;">
 
@@ -240,7 +240,7 @@ A `<NestedNavItem>` has all the same properties as a `<NavItem>` but does not su
 
 #### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. The DrawerNavItem supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. The DrawerNavItem supports the following keys:
 
 <div style="overflow: auto;">
     

@@ -9,10 +9,10 @@ The `<InfoListItem>` is intended to be used in List views. It positions a title 
 ```tsx
 <InfoListItem
     title={'Title'}
-    icon={{ family: 'pxblue', name: 'leaf' }}
+    icon={{ family: 'brightlayer-ui', name: 'leaf' }}
     subtitle={'A subtitle'}
-    statusColor={PXBColors.red[500]}
-    backgroundColor={PXBColors.blue[50]}
+    statusColor={BLUIColors.red[500]}
+    backgroundColor={BLUIColors.blue[50]}
 />
 ```
 
@@ -54,7 +54,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name            | Description                                     |
 | --------------- | ----------------------------------------------- |

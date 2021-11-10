@@ -141,7 +141,7 @@ export type DrawerHeaderProps = ViewProps & {
 };
 
 /**
- * [DrawerHeader](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ * [DrawerHeader](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerHeader holds the content at the top of your navigation Drawer. You can supply a title and subtitle to
  * use the default styles, or you can supply your own custom titleContent to render. This section will always be pinned

@@ -12,8 +12,8 @@
         "install:all": "yarn && cd components && yarn install && cd .. && yarn install:showcase-ios && yarn install:storybook-ios && yarn install:storybook-api",
         "install:all-android": "cd components && yarn install && cd .. && yarn install:showcase-android && yarn install:storybook-android && yarn install:storybook-api",
         "link:components": "bash ./scripts/linkComponents.sh",
-        "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
-        "tag:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/tag pxb-tag",
+        "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
+        "tag:package": "cd dist && set npm_config_yes=true && npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-component-library",
         "start": "yarn start:showcase",
         "start:showcase": "yarn start:showcase-ios",
         "start:showcase-ios": "yarn install:showcase-ios && cd demos/showcase && yarn ios",
@@ -36,9 +36,9 @@
     "directories": {
         "doc": "docs"
     },
-    "prettier": "@pxblue/prettier-config",
+    "prettier": "@brightlayer-ui/prettier-config",
     "devDependencies": {
-        "@pxblue/prettier-config": "^1.0.2",
+        "@brightlayer-ui/prettier-config": "^1.0.2",
         "codecov": "^3.8.2",
         "eslint-plugin-react-hooks": "^4.2.0",
         "prettier": "^2.2.1"

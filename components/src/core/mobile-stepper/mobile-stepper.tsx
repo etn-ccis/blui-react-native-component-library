@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, ViewProps } from 'react-native';
 import { ProgressBar, useTheme } from 'react-native-paper';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Body1 } from '../typography';
 import { getPrimary500 } from '../utility/shared';
@@ -123,7 +123,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 };
 
 /**
- * [MobileStepper](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--mobile-stepper) component
+ * [MobileStepper](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--mobile-stepper) component
  *
  * This component is used to show progress through a set of pages. It displays
  * the total number of pages or steps and which one is currently being displayed.
@@ -160,7 +160,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                         return (
                             <View
                                 key={i}
-                                testID={'pxb-dot'}
+                                testID={'blui-dot'}
                                 style={[
                                     defaultStyles.circle,
                                     styles.circle,

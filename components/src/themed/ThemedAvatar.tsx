@@ -91,7 +91,7 @@ const ThemedTextAvatar: typeof Avatar.Text = (props) => {
  *
  * This component is a wrapper around the React Native Paper [Avatar](https://callstack.github.io/react-native-paper/avatar-icon.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedAvatar = {
     Icon: ThemedIconAvatar,

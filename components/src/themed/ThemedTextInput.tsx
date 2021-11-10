@@ -10,7 +10,7 @@ export type ThemedTextInputProps = React.ComponentProps<typeof TextInput>;
  *
  * This component is a wrapper around the React Native Paper [TextInput](https://callstack.github.io/react-native-paper/text-input.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 const ThemedTextInputRender: React.ForwardRefRenderFunction<{}, ThemedTextInputProps> = (

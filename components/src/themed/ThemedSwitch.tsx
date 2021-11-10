@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, useTheme } from 'react-native-paper';
-import * as PXBColors from '@pxblue/colors';
+import * as BLUIColors from '@brightlayer-ui/colors';
 import Color from 'color';
 import { Platform } from 'react-native';
 
@@ -20,7 +20,7 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
                 : Color(theme.colors.primaryPalette?.main || theme.colors.primary)
                       .alpha(props.disabled ? 0.25 : 0.5)
                       .string(),
-            false: Color(PXBColors.black[300])
+            false: Color(BLUIColors.black[300])
                 .alpha(disabledAndroid ? 0.18 : 0.36)
                 .string(),
         };
@@ -31,7 +31,7 @@ const getTrackColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
             : Color(theme.colors.primaryPalette?.main || theme.colors.primary)
                   .alpha(props.disabled ? 0.19 : 0.38)
                   .string(),
-        false: Color(PXBColors.black[100])
+        false: Color(BLUIColors.black[100])
             .alpha(disabledAndroid ? 0.19 : 0.38)
             .string(),
     };
@@ -46,7 +46,7 @@ const getThumbColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
             .string();
 
     return theme.dark
-        ? Color(PXBColors.black[50])
+        ? Color(BLUIColors.black[50])
               .mix(Color(theme.colors.surface), props.disabled ? 0.5 : 0)
               .string()
         : Color('white')
@@ -59,7 +59,7 @@ const getThumbColor: (props: ThemedSwitchProps, theme: ReactNativePaper.Theme) =
  *
  * This component is a wrapper around the React Native Paper [Switch](https://callstack.github.io/react-native-paper/switch.html)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
- * in order to make the component look the way we want for PX Blue projects.
+ * in order to make the component look the way we want for Brightlayer UI projects.
  */
 export const ThemedSwitch: React.FC<ThemedSwitchProps> = (props) => {
     const { color, theme: themeOverride } = props;
@@ -73,7 +73,7 @@ export const ThemedSwitch: React.FC<ThemedSwitchProps> = (props) => {
                 // disabled only
                 theme.dark
                     ? theme.colors.actionPalette?.disabled || theme.colors.disabled
-                    : Color(PXBColors.black[100]).alpha(0.38).string()
+                    : Color(BLUIColors.black[100]).alpha(0.38).string()
             }
             thumbColor={getThumbColor(props, theme)}
             trackColor={getTrackColor(props, theme)}
