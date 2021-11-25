@@ -6,7 +6,7 @@ Hero items are used to call attention to particular values.
 
 ## Hero
 
-The `<Hero>` component displays a particular icon, value/units, and a label. The [IconClass](./IconWrapper.md) property will accept any valid icon from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) and [`@pxblue/icons-svg`](https://www.npmjs.com/package/@pxblue/icons-svg).
+The `<Hero>` component displays a particular icon, value/units, and a label. The [IconClass](./IconWrapper.md) property will accept any valid icon from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) and [`@brightlayer-ui/icons-svg`](https://www.npmjs.com/package/@brightlayer-ui/icons-svg).
 
 > In the future this component will be extended to work with other graphic types, including progress icons, text, and emojis.
 
@@ -15,8 +15,8 @@ The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) c
 ### Hero Usage
 
 ```tsx
-import { Hero, wrapIcon } from '@pxblue/react-native-components';
-import _Battery from '@pxblue/icons-svg/battery.svg';
+import { Hero, wrapIcon } from '@brightlayer-ui/react-native-components';
+import _Battery from '@brightlayer-ui/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });
 ...
 <Hero
@@ -53,7 +53,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name        | Description                                  |
 | ----------- | -------------------------------------------- |
@@ -69,8 +69,8 @@ The `<HeroBanner>` component is a simple wrapper component that is used to conta
 ### Hero Banner Usage
 
 ```tsx
-import { Hero, HeroBanner, wrapIcon } from '@pxblue/react-native-components';
-import _Battery from '@pxblue/icons-svg/battery.svg';
+import { Hero, HeroBanner, wrapIcon } from '@brightlayer-ui/react-native-components';
+import _Battery from '@brightlayer-ui/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });
 ...
 ...
@@ -94,7 +94,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name    | Description                           |
 | ------- | ------------------------------------- |

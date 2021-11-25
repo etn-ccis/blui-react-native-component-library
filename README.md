@@ -1,21 +1,21 @@
-# PX Blue React Native Components
+# Brightlayer UI React Native Components
 
-[![](https://img.shields.io/circleci/project/github/pxblue/react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/pxblue/react-native-component-library/tree/master)
-![npm](https://img.shields.io/npm/v/@pxblue/react-native-components?label=%40pxblue%2Freact-native-components)
+[![](https://img.shields.io/circleci/project/github/brightlayer-ui/react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/brightlayer-ui/react-native-component-library/tree/master)
+![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-native-components?label=%40brightlayer-ui%2Freact-native-components)
 
-This is a library of re-usable React Native components for use in PX Blue applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in PX Blue and eliminate the need for multiple teams to build their own components for these.
+This is a library of re-usable React Native components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
-Refer to the [Component Library](https://pxblue-components.github.io/react-native/?path=/story/intro-welcome--to-pxblue) API documentation site for a list of available components or see the repository [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for each individual component.
+Refer to the [Component Library](https://brightlayer-ui-components.github.io/react-native/?path=/story/intro-welcome--to-brightlayer-ui) API documentation site for a list of available components or see the repository [documentation](https://github.com/brightlayer-ui/react-native-component-library/tree/dev/docs) for each individual component.
 
 ## Installation
 
-To install the PX Blue react native components from NPM as a dependency for your project, you can run the following command in your project root:
+To install the Brightlayer UI react native components from NPM as a dependency for your project, you can run the following command in your project root:
 
 ```
-yarn add @pxblue/react-native-components
+yarn add @brightlayer-ui/react-native-components
 ```
 
-> **NOTE**: This install command will install the package from NPM. If you are a PX Blue developer working with components locally, you will want to follow the manual linking instructions - see below.
+> **NOTE**: This install command will install the package from NPM. If you are a Brightlayer UI developer working with components locally, you will want to follow the manual linking instructions - see below.
 
 ### Peer Dependencies
 This library has a few dependencies that you will need to install in your project in order to work correctly. To install them, you can run the following command in your project root:
@@ -31,7 +31,7 @@ yarn add react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-n
 To work with this library, first clone down the repository and install dependencies:
 
 ```
-git clone https://github.com/pxblue/react-native-component-library
+git clone https://github.com/brightlayer-ui/react-native-component-library
 cd react-native-component-library
 ```
 
@@ -68,7 +68,7 @@ to bring up a API documentation website (no interactive components).
 
 ## Using the Components
 
-See the [documentation](https://github.com/pxblue/react-native-component-library/tree/dev/docs) for information on using these components.
+See the [documentation](https://github.com/brightlayer-ui/react-native-component-library/tree/dev/docs) for information on using these components.
 
 ### Upgrading from version 5 -> 6
 
@@ -78,6 +78,6 @@ Version 5.3.0 has been updated to include warning messages if you are using any 
 
 ## NOTES
 
-This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - this library must be installed in your project in order to use the PX Blue components.
+This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - this library must be installed in your project in order to use the Brightlayer UI components.
 
-Additionally, if using [@pxblue/icons-svg](https://github.com/pxblue/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up.
+Additionally, if using [@brightlayer-ui/icons-svg](https://github.com/brightlayer-ui/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up.

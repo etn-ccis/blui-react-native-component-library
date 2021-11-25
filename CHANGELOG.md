@@ -8,14 +8,14 @@
 
 ### Fixed
 
--   Default `iconColor` for `<InfoListItem>` ([#183](https://github.com/pxblue/react-native-component-library/issues/183)).
--   Update `<EmptyState>` default icon color to match the design ([#173](https://github.com/pxblue/react-native-component-library/issues/173)).
+-   Default `iconColor` for `<InfoListItem>` ([#183](https://github.com/brightlayer-ui/react-native-component-library/issues/183)).
+-   Update `<EmptyState>` default icon color to match the design ([#173](https://github.com/brightlayer-ui/react-native-component-library/issues/173)).
 
 ## v5.4.0 (August 20, 2021)
 
 ### Added
 
--   Better component sizing for non-avatars in the `<Header>` component ([#189](https://github.com/pxblue/react-native-component-library/issues/189)).
+-   Better component sizing for non-avatars in the `<Header>` component ([#189](https://github.com/brightlayer-ui/react-native-component-library/issues/189)).
 
 ### Removed
 
@@ -35,7 +35,7 @@
 
 ### Added
 
--   Improved support for using components in landscape orientation ([#76](https://github.com/pxblue/react-native-component-library/issues/76))
+-   Improved support for using components in landscape orientation ([#76](https://github.com/brightlayer-ui/react-native-component-library/issues/76))
 -   Improved intellisense popup documentation with links to full component documentation.
 
 ### Removed
@@ -122,7 +122,7 @@
 
 -   RTL Support
     -   Components/Text/Icons will change directions correctly based on the current language selection on device.
-    -   IconWrapper allows you to easily flip icons that you supply to PX Blue components.
+    -   IconWrapper allows you to easily flip icons that you supply to Brightlayer UI components.
 -   New component for `<ListItemTag>` and `<Spacer>`.
 -   Adds `iconAlign` prop to `<InfoListItem>` to align icons left (default), center or right.
 
@@ -140,7 +140,7 @@
 
 ### Changed
 
--   Updated components to use react-native-paper theming (requires @pxblue/react-themes v5.0.0+).
+-   Updated components to use react-native-paper theming (requires @brightlayer-ui/react-themes v5.0.0+).
 -   Internal style properties are now override-able via the `styles` prop in each component.
 -   `fontSize` prop for `<Hero>`, `<ChannelValue>`, and Typography components now takes a `number` instead of a string.
 -   Renamed some of the typography variants (`<Label>` -> `<Body1>`, `<Subtitle>` -> `<Subtitle2>`) and added some new ones.
@@ -149,8 +149,8 @@
 
 ### Changed
 
--   PX Blue theme is no longer bundled with the component library
-    -   Theme is now available from [@pxblue/themes](https://www.npmjs.com/package/@pxblue/themes)
+-   Brightlayer UI theme is no longer bundled with the component library
+    -   Theme is now available from [@brightlayer-ui/themes](https://www.npmjs.com/package/@brightlayer-ui/themes)
 
 ## v1.1.0 (October 29, 2019)
 

@@ -4,13 +4,13 @@ The `<ChannelValue>` component is used to display...a channel value (and units).
 
 <img width="300" alt="Channel Value component" src="./images/channelValue.png">
 
-> Note: If provided, the IconClass must be a `React.ComponentClass` or `React.FunctionComponent` with props of `{ size: number, color: string }`. This library exposes a `wrapIcon` higher-order function that can convert components from `react-native-vector-icons` or from `@pxblue/icons-svg` to this format. See [IconWrapper](./IconWrapper.md).
+> Note: If provided, the IconClass must be a `React.ComponentClass` or `React.FunctionComponent` with props of `{ size: number, color: string }`. This library exposes a `wrapIcon` higher-order function that can convert components from `react-native-vector-icons` or from `@brightlayer-ui/icons-svg` to this format. See [IconWrapper](./IconWrapper.md).
 
 ## Usage
 
 ```tsx
-import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
-import _Battery from '@pxblue/icons-svg/battery.svg';
+import { ChannelValue, wrapIcon } from '@brightlayer-ui/react-native-components';
+import _Battery from '@brightlayer-ui/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });
 ...
 <ChannelValue
@@ -42,7 +42,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name  | Description                         |
 | ----- | ----------------------------------- |
