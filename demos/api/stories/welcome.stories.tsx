@@ -3,7 +3,7 @@ import { Button, createStyles, makeStyles, Typography } from '@material-ui/core'
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
-import * as Colors from '@brightlayer-ui/colors';
+import * as Colors from '@pxblue/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg') as string;
 import { updateTitle } from '../src/utils';
