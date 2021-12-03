@@ -13,15 +13,15 @@ import {
     NavItem,
     Subtitle1,
     wrapIcon,
-} from '@pxblue/react-native-components';
+} from '@brightlayer-ui/react-native-components';
 import { boolean, color, text, withKnobs } from '@storybook/addon-knobs';
 
-import _Device from '@pxblue/icons-svg/device.svg';
-import _Temp from '@pxblue/icons-svg/temp.svg';
+import _Device from '@brightlayer-ui/icons-svg/device.svg';
+import _Temp from '@brightlayer-ui/icons-svg/temp.svg';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Image, View } from 'react-native';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const farmBgImage = require('../assets/farm.jpg');

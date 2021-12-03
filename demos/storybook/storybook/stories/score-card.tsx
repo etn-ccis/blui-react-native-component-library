@@ -2,16 +2,16 @@ import React from 'react';
 import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { text, color, withKnobs, number, boolean } from '@storybook/addon-knobs';
-import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1, InfoListItem } from '@pxblue/react-native-components';
+import { ScoreCard, Hero, wrapIcon, HeroBanner, Body1, InfoListItem } from '@brightlayer-ui/react-native-components';
 import { padded } from '../decorators';
 
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import _A from '@pxblue/icons-svg/grade_a.svg';
-import _Temp from '@pxblue/icons-svg/temp.svg';
+import _A from '@brightlayer-ui/icons-svg/grade_a.svg';
+import _Temp from '@brightlayer-ui/icons-svg/temp.svg';
 
-import _Humidity from '@pxblue/icons-svg/moisture.svg';
+import _Humidity from '@brightlayer-ui/icons-svg/moisture.svg';
 
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import backgroundImage from '../assets/farm.jpg';
 
 const A = wrapIcon({ IconClass: _A });

@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { StyleSheet, View } from 'react-native';
-import { BucketView, InfoListItem } from '@pxblue/react-native-components';
+import { BucketView, InfoListItem } from '@brightlayer-ui/react-native-components';
 import { withKnobs } from '@storybook/addon-knobs';
-import { red, blue, gray, white } from '@pxblue/colors';
+import { red, blue, gray, white } from '@brightlayer-ui/colors';
 
 const styles = StyleSheet.create({
     style: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { number, withKnobs } from '@storybook/addon-knobs';
-import { CollapsibleHeaderLayout, wrapIcon } from '@pxblue/react-native-components';
+import { CollapsibleHeaderLayout, wrapIcon } from '@brightlayer-ui/react-native-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const MailIcon = wrapIcon({ IconClass: Icon, name: 'mail' });

@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
-import { ListItemTag, InfoListItem, wrapIcon } from '@pxblue/react-native-components';
+import { ListItemTag, InfoListItem, wrapIcon } from '@brightlayer-ui/react-native-components';
 import { withKnobs, color, text } from '@storybook/addon-knobs';
 import { padded } from '../decorators';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 const notes = {
@@ -34,7 +34,7 @@ storiesOf('ListItemTag', module)
             <View style={{ justifyContent: 'center', width: '100%', height: '100%', backgroundColor: Colors.gray[50] }}>
                 <View style={{ width: '100%', backgroundColor: Colors.white[50] }}>
                     <InfoListItem
-                        title={'@pxblue/react-themes'}
+                        title={'@brightlayer-ui/react-themes'}
                         subtitle={'Light and dark themes supported'}
                         IconClass={Build}
                         rightComponent={

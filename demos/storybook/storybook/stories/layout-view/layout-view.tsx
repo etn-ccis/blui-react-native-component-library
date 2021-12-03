@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { LayoutView } from '@pxblue/react-native-components';
+import { LayoutView } from '@brightlayer-ui/react-native-components';
 import { SafeAreaView, Text, View } from 'react-native';
 import faker from 'faker';
 import { Appbar, TextInput } from 'react-native-paper';
-import { blue } from '@pxblue/colors';
+import { blue } from '@brightlayer-ui/colors';
 import { color, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 

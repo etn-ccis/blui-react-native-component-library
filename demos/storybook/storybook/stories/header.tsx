@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { boolean, color, number, select, text, withKnobs } from '@storybook/addon-knobs';
-import { CollapsibleHeaderLayout, Header, wrapIcon } from '@pxblue/react-native-components';
+import { CollapsibleHeaderLayout, Header, wrapIcon } from '@brightlayer-ui/react-native-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { white, blue } from '@pxblue/colors';
+import { white, blue } from '@brightlayer-ui/colors';
 
 const MailIcon = wrapIcon({ IconClass: Icon, name: 'mail' });
 const MenuIcon = wrapIcon({ IconClass: Icon, name: 'menu' });

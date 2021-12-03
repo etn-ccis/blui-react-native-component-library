@@ -2,9 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
 import { withKnobs, boolean, number, select, color } from '@storybook/addon-knobs';
-import { MobileStepper } from '@pxblue/react-native-components';
+import { MobileStepper } from '@brightlayer-ui/react-native-components';
 import { Button } from 'react-native-paper';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 storiesOf('MobileStepper', module)
     .addDecorator(withKnobs)

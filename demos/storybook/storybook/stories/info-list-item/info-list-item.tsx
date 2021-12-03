@@ -1,13 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { InfoListItem, ChannelValue, wrapIcon } from '@pxblue/react-native-components';
+import { InfoListItem, ChannelValue, wrapIcon } from '@brightlayer-ui/react-native-components';
 import { text, boolean, withKnobs, color } from '@storybook/addon-knobs';
-import Leaf from '@pxblue/icons-svg/leaf.svg';
-import Temp from '@pxblue/icons-svg/temp.svg';
-import A from '@pxblue/icons-svg/grade_a.svg';
-import Device from '@pxblue/icons-svg/device.svg';
+import Leaf from '@brightlayer-ui/icons-svg/leaf.svg';
+import Temp from '@brightlayer-ui/icons-svg/temp.svg';
+import A from '@brightlayer-ui/icons-svg/grade_a.svg';
+import Device from '@brightlayer-ui/icons-svg/device.svg';
 import { framedRow } from '../../decorators';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 const notes = {

@@ -2,9 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { color, withKnobs } from '@storybook/addon-knobs';
 import { safeArea } from '../decorators';
-import * as Typography from '@pxblue/react-native-components';
+import * as Typography from '@brightlayer-ui/react-native-components';
 import { View } from 'react-native';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 storiesOf('Typography', module)
     .addDecorator(withKnobs)
