@@ -1172,7 +1172,7 @@
     react-native-keyboard-aware-scroll-view "^0.8.0"
     react-native-modal ">=11.6.1"
 
-"@brightlayer-ui/react-native-themes@^5.1.0":
+"@brightlayer-ui/react-native-themes@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-6.0.0.tgz#9415041d4b66cf6e06d5db8f387354ab2c03a81e"
   integrity sha512-vGBuntv0A6tywgQjxwxXcRoV0IjSVVBUMEMqmv7HlH+Uyf5je/yrJczvQOVHOXzMwNm1HnvHXUhuDQ1t7Mhcuw==
