@@ -6,6 +6,7 @@ jobs:
     build_library:
         docker:
             - image: circleci/node:14.17-browsers
+        resource_class: large
         steps:
             - checkout
             - restore_cache:
@@ -73,6 +74,7 @@ jobs:
     build_storybook:
         docker:
             - image: circleci/node:12.9.1-browsers
+        resource_class: large
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -121,6 +123,7 @@ jobs:
     build_storybook_api:
         docker:
             - image: circleci/node:12.9.1-browsers
+        resource_class: large
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -183,15 +186,16 @@ jobs:
     build_showcase:
         docker:
             - image: circleci/node:12.9.1-browsers
+        resource_class: large
         environment:
             - MASTER_BRANCH: master
         steps:
             - checkout
             - attach_workspace:
                   at: .
-            - run:
-                  name: 'Set Max Memory'
-                  command: NODE_OPTIONS=--max_old_space_size=2048
+            # - run:
+            #       name: 'Set Max Memory'
+            #       command: NODE_OPTIONS=--max_old_space_size=2048
             - run:
                   name: 'Initialize Submodule'
                   command: yarn initialize
@@ -303,13 +307,13 @@ workflows:
             - build_showcase:
                   requires:
                       - build_library
-            # - build_storybook:
-            #       requires:
-            #           - build_showcase
+            - build_storybook:
+                  requires:
+                      - build_showcase
             - build_storybook_api:
                   requires:
                       - build_library
-                    #   - build_storybook
+                      - build_storybook
             - deploy_storybook:
                   requires:
                       - build_storybook_api
@@ -320,7 +324,7 @@ workflows:
                               - dev
             - publish:
                   requires:
-                    #   - build_storybook
+                      - build_storybook
                       - build_showcase
                       - build_storybook_api
                   filters:
