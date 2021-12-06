@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Image, View } from 'react-native';
-import { Header, InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
+import { Header, InfoListItemProps, UserMenu, wrapIcon } from '@brightlayer-ui/react-native-components';
 import { text, withKnobs, color, select } from '@storybook/addon-knobs';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { Avatar } from 'react-native-paper';
 const VpnKeyIcon = wrapIcon({ IconClass: MatIcon, name: 'vpn-key', flip: false });
@@ -25,7 +25,7 @@ storiesOf('UserMenu', module)
                 menuItems={menuItems}
                 avatar={
                     <Avatar.Text
-                        label={text('Avatar.Text label', 'PX')}
+                        label={text('Avatar.Text label', 'BLUI')}
                         size={40}
                         color={Colors.blue[500]}
                         style={{ backgroundColor: Colors.blue[50] }}
@@ -43,7 +43,7 @@ storiesOf('UserMenu', module)
                 iconColor={color('iconColor', Colors.white[50])}
                 avatar={
                     <Avatar.Text
-                        label={text('Avatar.Text label', 'PX')}
+                        label={text('Avatar.Text label', 'BLUI')}
                         size={40}
                         color={color('Avatar.Text text color', Colors.blue[500])}
                         style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[50]) }}
@@ -94,7 +94,7 @@ storiesOf('UserMenu', module)
                 menuItems={menuItems}
                 avatar={
                     <Avatar.Text
-                        label={'PX'}
+                        label={'BLUI'}
                         size={40}
                         color={Colors.blue[500]}
                         style={{ backgroundColor: Colors.blue[50] }}
@@ -114,7 +114,7 @@ storiesOf('UserMenu', module)
                 iconColor={color('iconColor', Colors.white[50])}
                 avatar={
                     <Avatar.Text
-                        label={text('Avatar.Text label', 'PX')}
+                        label={text('Avatar.Text label', 'BLUI')}
                         size={40}
                         color={color('Avatar.Text text color', Colors.blue[500])}
                         style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[50]) }}
@@ -136,7 +136,7 @@ storiesOf('UserMenu', module)
                                 menuItems={menuItems}
                                 avatar={
                                     <Avatar.Text
-                                        label={'PX'}
+                                        label={'BLUI'}
                                         size={40}
                                         color={Colors.blue[500]}
                                         style={{ backgroundColor: Colors.blue[50] }}

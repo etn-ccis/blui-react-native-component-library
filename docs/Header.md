@@ -8,7 +8,7 @@ The `<Header>` component is used at the top of the page to display page informat
 ## Usage
 
 ```tsx
-import { Header } from '@pxblue/react-native-components';
+import { Header } from '@brightlayer-ui/react-native-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const MenuIcon = wrapIcon({IconClass: Icon, name:'menu'});
 const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
@@ -55,7 +55,7 @@ const MoreIcon = wrapIcon({IconClass: Icon, name:'more-vert'});
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name               | Description                                |
 | ------------------ | ------------------------------------------ |

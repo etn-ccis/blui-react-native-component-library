@@ -2,10 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View, StyleSheet } from 'react-native';
 import { text, withKnobs, color } from '@storybook/addon-knobs';
-import Leaf from '@pxblue/icons-svg/leaf.svg';
+import Leaf from '@brightlayer-ui/icons-svg/leaf.svg';
 import { safeArea } from '../decorators';
-import { CollapsibleSection } from '@pxblue/react-native-components';
-import { red, blue } from '@pxblue/colors';
+import { CollapsibleSection } from '@brightlayer-ui/react-native-components';
+import { red, blue } from '@brightlayer-ui/colors';
 
 const styles = StyleSheet.create({
     contentContainer: {

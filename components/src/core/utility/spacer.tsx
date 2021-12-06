@@ -27,7 +27,7 @@ export type SpacerProps = ViewProps & {
 };
 
 /**
- * [Spacer](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--spacer) component
+ * [Spacer](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--spacer) component
  *
  * This is a helpful utility component for adding spacer elements
  * when working within flexbox containers. You can give it a flexible

@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View } from 'react-native';
-import { ChannelValue, wrapIcon } from '@pxblue/react-native-components';
+import { ChannelValue, wrapIcon } from '@brightlayer-ui/react-native-components';
 import { text, withKnobs, boolean, color, number } from '@storybook/addon-knobs';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 const notes = {
     notes: 'Any React Element may be passed in as `icon`; if using an svg, its color and size are not controlled by `ChannelValue`',

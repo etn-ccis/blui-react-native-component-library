@@ -2,7 +2,7 @@ import React from 'react';
 import { TextStyle, StyleSheet, PixelRatio } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Color from 'color';
-import { white, black } from '@pxblue/colors';
+import { white, black } from '@brightlayer-ui/colors';
 import { Overline, TypographyProps } from '../typography';
 
 export type ListItemTagProps = TypographyProps & {
@@ -57,7 +57,7 @@ const listItemTagStyles = (
     });
 
 /**
- * [ListItemTag](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--list-item-tag) component
+ * [ListItemTag](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--list-item-tag) component
  *
  * This component is primarily used as a tag for list elements. It is a stylized
  * text item with a colored background and rounded corners.

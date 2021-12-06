@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { SearchScreen, InfoListItem } from '@pxblue/react-native-components';
+import { SearchScreen, InfoListItem } from '@brightlayer-ui/react-native-components';
 import { View } from 'react-native';
-import { blue, green, white } from '@pxblue/colors';
-import Flow from '@pxblue/icons-svg/flow.svg';
-import Apple from '@pxblue/icons-svg/apple.svg';
-import { InfoListItemProps } from '@pxblue/react-native-components/dist/info-list-item/info-list-item';
+import { blue, green, white } from '@brightlayer-ui/colors';
+import Flow from '@brightlayer-ui/icons-svg/flow.svg';
+import Apple from '@brightlayer-ui/icons-svg/apple.svg';
+import { InfoListItemProps } from '@brightlayer-ui/react-native-components/dist/info-list-item/info-list-item';
 import * as _ from 'lodash';
 import faker from 'faker';
 

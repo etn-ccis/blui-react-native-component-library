@@ -15,10 +15,10 @@ describe('UserMenu', () => {
     it('should render avatar with correct label', () => {
         const userMenu = TestRenderer.create(
             <SafeAreaProvider initialMetrics={initialSafeAreaMetrics}>
-                <UserMenu avatar={<Avatar.Text label={'PX'} />} menuItems={[{ title: 'Test Item' }]} />
+                <UserMenu avatar={<Avatar.Text label={'BLUI'} />} menuItems={[{ title: 'Test Item' }]} />
             </SafeAreaProvider>
         ).root;
         const avatar: ReactTestInstance[] = userMenu.findAllByType(Avatar.Text);
-        expect(avatar[0].props.label).toContain('PX');
+        expect(avatar[0].props.label).toContain('BLUI');
     });
 });

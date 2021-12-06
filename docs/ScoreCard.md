@@ -8,9 +8,9 @@ Card component that calls attention to particular values.
 ## Usage
 
 ```tsx
-import { Hero, HeroBanner, InfoListItem, Body, ScoreCard, wrapIcon } from '@pxblue/react-native-components';
+import { Hero, HeroBanner, InfoListItem, Body, ScoreCard, wrapIcon } from '@brightlayer-ui/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import _A from '@pxblue/icons-svg/grade_a.svg';
+import _A from '@brightlayer-ui/icons-svg/grade_a.svg';
 const A = wrapIcon({ IconClass: _A });
 const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
 ...
@@ -26,7 +26,7 @@ const MoreIcon = wrapIcon({ IconClass: MatIcon, name: 'more-vert' });
             <Hero
                 label={'Score'}
                 iconSize={48}
-                iconColor={PXBColors.green[500]}
+                iconColor={BLUIColors.green[500]}
                 value={98}
                 units={'/100'}
                 IconClass={A}
@@ -65,7 +65,7 @@ Any other props will be provided to the root element ([**Card**](https://callsta
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name             | Description                                    |
 | ---------------- | ---------------------------------------------- |

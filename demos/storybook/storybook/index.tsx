@@ -1,7 +1,7 @@
 import React from 'react';
 import { getStorybookUI, configure } from '@storybook/react-native';
 import { Provider as ThemeProvider } from 'react-native-paper';
-import * as PXBThemes from '@pxblue/react-native-themes';
+import * as BLUIThemes from '@brightlayer-ui/react-native-themes';
 import './rn-addons';
 
 // import stories
@@ -14,7 +14,7 @@ configure(() => {
 const StorybookUIRoot = getStorybookUI({});
 
 const ThemedStorybook = (): JSX.Element => (
-    <ThemeProvider theme={PXBThemes.blue}>
+    <ThemeProvider theme={BLUIThemes.blue}>
         <StorybookUIRoot />
     </ThemeProvider>
 );

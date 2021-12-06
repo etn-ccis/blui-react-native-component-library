@@ -13,7 +13,7 @@ import {
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Subtitle1 } from '../typography';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -276,11 +276,11 @@ export type InfoListItemProps = ViewProps & {
 };
 
 /**
- * [InfoListItem](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--info-list-item) component
+ * [InfoListItem](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--info-list-item) component
  *
  * The InfoListItem is a component used to render lists. It extends the basic implementation
  * of a list item with additional features, such as icons and status stripes and supplies all of
- * the correct PX Blue styles.
+ * the correct Brightlayer UI styles.
  */
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const {

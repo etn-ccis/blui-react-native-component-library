@@ -2,9 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { safeArea } from '../decorators';
-import { Spacer, Body1 } from '@pxblue/react-native-components';
+import { Spacer, Body1 } from '@brightlayer-ui/react-native-components';
 import { View } from 'react-native';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 storiesOf('Spacer', module)
     .addDecorator(withKnobs)

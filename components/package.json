@@ -1,21 +1,21 @@
 {
-    "name": "@pxblue/react-native-components",
-    "version": "5.4.1",
-    "author": "pxblue <pxblue@eaton.com>",
-    "description": "Reusable React Native components for PX Blue applications",
+    "name": "@brightlayer-ui/react-native-components",
+    "version": "5.4.1-beta.0",
+    "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
+    "description": "Reusable React Native components for Brightlayer UI applications",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pxblue/react-native-component-library"
+        "url": "git+https://github.com/brightlayer-ui/react-native-component-library"
     },
     "keywords": [
         "react native",
         "components",
-        "pxblue"
+        "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/pxblue/react-native-component-library/issues"
+        "url": "https://github.com/brightlayer-ui/react-native-component-library/issues"
     },
-    "homepage": "https://github.com/pxblue/react-native-component-library#readme",
+    "homepage": "https://github.com/brightlayer-ui/react-native-component-library#readme",
     "license": "BSD-3-Clause",
     "main": "core/index.js",
     "types": "core/index.d.ts",
@@ -26,13 +26,13 @@
         "test": "jest --maxWorkers=2",
         "test:watch": "jest --watch",
         "verify-build": "tsc --noEmit",
-        "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@pxblue/react-native-components",
+        "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@brightlayer-ui/react-native-components",
         "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
         "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
     },
-    "prettier": "@pxblue/prettier-config",
+    "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@pxblue/colors": "^3.0.0",
+        "@brightlayer-ui/colors": "^3.0.0",
         "color": "^3.1.2",
         "react-native-collapsible": "^1.5.3",
         "react-native-keyboard-aware-scroll-view": "^0.8.0",
@@ -46,9 +46,9 @@
         "react-native-vector-icons": "^7.0.0 || ^8.0.0"
     },
     "devDependencies": {
-        "@pxblue/eslint-config": "^2.0.4",
-        "@pxblue/icons-svg": "^1.1.0",
-        "@pxblue/prettier-config": "^1.0.2",
+        "@brightlayer-ui/eslint-config": "^2.0.4",
+        "@brightlayer-ui/icons-svg": "^1.1.0",
+        "@brightlayer-ui/prettier-config": "^1.0.2",
         "@testing-library/react-native": "^7.2.0",
         "@types/color": "^3.0.0",
         "@types/faker": "^4.1.5",

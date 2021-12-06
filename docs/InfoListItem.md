@@ -1,22 +1,22 @@
 # Info List Item
 
-The `<InfoListItem>` is intended to be used in List views. It positions a title as well as optional subtitle(s), icon, and status stripe. The [IconClass](./IconWrapper.md) property will accept any valid icon from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) or [`@pxblue/icons-svg`](https://www.npmjs.com/package/@pxblue/icons-svg).
+The `<InfoListItem>` is intended to be used in List views. It positions a title as well as optional subtitle(s), icon, and status stripe. The [IconClass](./IconWrapper.md) property will accept any valid icon from [`react-native-vector-icons`](https://www.npmjs.com/package/react-native-vector-icons) or [`@brightlayer-ui/icons-svg`](https://www.npmjs.com/package/@brightlayer-ui/icons-svg).
 
 <img width="400" alt="Info List Item component" src="./images/infoListItem.png">
 
 ## Usage
 
 ```tsx
-import Leaf from '@pxblue/icons-svg/leaf.svg';
-import { wrapIcon } from '@pxblue/react-native-components';
+import Leaf from '@brightlayer-ui/icons-svg/leaf.svg';
+import { wrapIcon } from '@brightlayer-ui/react-native-components';
 const LeafIcon = wrapIcon({ IconClass: Leaf });
 ...
 <InfoListItem
     title={'Title'}
     IconClass={LeafIcon}
     subtitle={'A subtitle'}
-    statusColor={PXBColors.red[500]}
-    backgroundColor={PXBColors.blue[50]}
+    statusColor={BLUIColors.red[500]}
+    backgroundColor={BLUIColors.blue[50]}
 />
 ```
 
@@ -59,7 +59,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name            | Description                                     |
 | --------------- | ----------------------------------------------- |

@@ -665,6 +665,38 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@brightlayer-ui/colors@^3.0.0":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.0.1.tgz#f085acf6b6b4266a01798c78bc25841d15e44b3e"
+  integrity sha512-AE9F6FN1EQWMoqFTak6q8MN3wg9et2u2SUs6HjYhcS3GVSHjMWVSsuJZ2aD5Lu9409Gfi6pBHDWsJZ5PyeLsdQ==
+  dependencies:
+    "@brightlayer-ui/types" "^2.0.0"
+
+"@brightlayer-ui/eslint-config@^2.0.4":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-2.0.5.tgz#b7ee0c47f4669d2ecefc45d5fc37d7a9e209ccc9"
+  integrity sha512-qUxNX/1z+cmBWzbOeFftxGD7SPT+xkT1rUj++xsZjIQajEkwF1Ka+0mRlSY5qqAsQpRLGDCHDszx8uztmSm1lA==
+  dependencies:
+    "@typescript-eslint/parser" "^4.8.0"
+    eslint-config-prettier ">= 6.3.0"
+  optionalDependencies:
+    eslint-plugin-react "^7.16.0"
+
+"@brightlayer-ui/icons-svg@^1.1.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-svg/-/icons-svg-1.7.0.tgz#8e80ce276eaa1b9d6aa1f736f3857856d3e1179a"
+  integrity sha512-z6LZgr0XFJ+HSDR7PxEHXavClsfR8I7FQww53vmFU0jv4fW5e3m5z2iYQjTi5MddgZJDX1CHvsvX+Mls8Z9iow==
+
+"@brightlayer-ui/prettier-config@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
+  integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
+
+"@brightlayer-ui/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/types/-/types-2.0.0.tgz#d8adc0cdb96c164943adbad6e74043128a8b4112"
+  integrity sha512-DTCVwND6YC9qrkQl7pkFlN6QxDReJHtjuAiFU9HkXJN368vlw+fzHQ5/j4sB1sZl2eNwOgccv5ecl2XrlolOCw==
+
 "@callstack/react-theme-provider@^3.0.5":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@callstack/react-theme-provider/-/react-theme-provider-3.0.5.tgz#a173e455e9603c9c45357a3b6ace1273086527ca"
@@ -918,38 +950,6 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
-
-"@pxblue/colors@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-3.0.0.tgz#080fb5cfd5a08fea018ece7cac8022ed38f7878f"
-  integrity sha512-rMFW4an1V9M5KX4BiNzrbbaYe2fic4o9iGL8/bPYvITbeiwgAapyFX0VbMIoo8XKlIbNaxyn7oWnrxzI/tp8Rw==
-  dependencies:
-    "@pxblue/types" "^2.0.0"
-
-"@pxblue/eslint-config@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-2.0.4.tgz#b22d637e2e8bbf1d8606de99bfd7e95f3af2ce34"
-  integrity sha512-PDBj5dhi/6c14/QYhoFLTkMnrYRTKw8hW7AuFq/9wc7pJ4MdSOF3i5MJH1NZ1p9chBl9na4ZASPeHWsDCvvk8A==
-  dependencies:
-    "@typescript-eslint/parser" "^4.8.0"
-    eslint-config-prettier ">= 6.3.0"
-  optionalDependencies:
-    eslint-plugin-react "^7.16.0"
-
-"@pxblue/icons-svg@^1.1.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/icons-svg/-/icons-svg-1.1.1.tgz#64ba59fa7e7ae4e82d8fc218de07cd67a8c09eed"
-  integrity sha512-z77H5q2/ywBYRLhhpsbjxFHNJhW0eMm5EXVIwC8uyS0xdHaQAvWREDftWt4kYxTt8La2y+EmEQaJJ4K/mVNqbQ==
-
-"@pxblue/prettier-config@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
-  integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
-
-"@pxblue/types@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-2.0.0.tgz#3df970352aca5256974a10a97d75a2264bad1eba"
-  integrity sha512-rHABCqYALGjrDxdCfw/v4mFsHhE9y9+vdSD3VHfIzA3HY1g1Bp/VWwEuEXWbtj2H5n75D+jkMQZ0rTqSKY3vLw==
 
 "@react-native-community/cli-debugger-ui@^4.9.0":
   version "4.9.0"

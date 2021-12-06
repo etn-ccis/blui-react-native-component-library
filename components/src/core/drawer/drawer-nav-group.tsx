@@ -105,7 +105,7 @@ const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem:
 };
 
 /**
- * [DrawerNavGroup](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--drawer) component
+ * [DrawerNavGroup](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--drawer) component
  *
  * The DrawerNavGroup represents a collection of navigation items to display in the Drawer, useful for organizing
  * your links into buckets. Each group can be given a `title` to describe its items. Individual items in each group can be passed

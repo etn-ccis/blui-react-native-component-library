@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { WrapIconProps } from '../icon-wrapper';
-import * as PXBColors from '@pxblue/colors';
+import * as BLUIColors from '@brightlayer-ui/colors';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -80,7 +80,7 @@ export type EmptyStateProps = ViewProps & {
 };
 
 /**
- * [EmptyState](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--empty-state) component
+ * [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component
  *
  * Used as a placeholder when no content is available for a particular area/screen in your application.
  * It displays an icon with up to two lines of text and has an area for you to add custom actionable content or
@@ -131,7 +131,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 
     const getColor = useCallback(
         (color: string | undefined): string => {
-            if (!color) return theme.dark ? PXBColors.black[200] : PXBColors.gray[500];
+            if (!color) return theme.dark ? BLUIColors.black[200] : BLUIColors.gray[500];
             if (Object.keys(theme.colors).indexOf(color) >= 0)
                 return theme.colors[color as keyof ReactNativePaper.Theme['colors']];
             return color;

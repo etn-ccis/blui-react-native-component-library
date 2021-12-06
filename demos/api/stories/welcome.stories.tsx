@@ -88,7 +88,7 @@ stories.addParameters({
     },
 });
 
-stories.add('PX Blue React Native Components', () => {
+stories.add('Brightlayer UI React Native Components', () => {
     autoNavToStory();
     const classes = useStyles();
     const icon = require('../assets/pxb-icon.svg') as string;
@@ -96,15 +96,15 @@ stories.add('PX Blue React Native Components', () => {
         <div className={classes.root}>
             <div className={classes.container}>
                 <div className={classes.icon}>
-                    <img src={icon} alt="pxb-icon" className={'rotate'} />
+                    <img src={icon} alt="blui-icon" className={'rotate'} />
                 </div>
                 <Typography variant={'h2'}>
-                    Power Xpert <strong>Blue</strong>
+                    <strong>Brightlayer UI</strong>
                 </Typography>
                 <Typography variant={'h4'}>React Native Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
-                    Learn about our PX Blue components in the API section.
+                    Learn about our Brightlayer UI components in the API section.
                 </Typography>
 
                 <div className={classes.buttons}>

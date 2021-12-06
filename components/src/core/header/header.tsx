@@ -234,11 +234,11 @@ export type HeaderProps = ViewProps & {
 };
 
 /**
- * [Header](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--header) component
+ * [Header](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--header) component
  *
  * The Header is used as the main banner at the top of application screens. It can display page information
  * via the `title`, `subtitle`, and `info` properties, as well as customizable backgrounds, colors, action items,
- * and more. The header can be configured to expand / collapse on press or on scroll (when using the [CollapsibleHeaderLayout](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component).
+ * and more. The header can be configured to expand / collapse on press or on scroll (when using the [CollapsibleHeaderLayout](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component).
  */
 export const Header: React.FC<HeaderProps> = (props) => {
     const {

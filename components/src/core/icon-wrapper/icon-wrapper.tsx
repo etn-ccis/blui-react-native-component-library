@@ -10,15 +10,15 @@ type IconSetArg = {
     allowFontScaling?: boolean;
 };
 
-type PxBlueIconArg = {
+type BrightlayerUIIconArg = {
     IconClass: ComponentType<SvgProps>;
     flip?: boolean;
     allowFontScaling?: boolean;
 };
 
-export type IconArg = IconSetArg | PxBlueIconArg;
+export type IconArg = IconSetArg | BrightlayerUIIconArg;
 
-const isIconSetArg = (x: IconSetArg | PxBlueIconArg): x is IconSetArg => (x as any).name !== undefined;
+const isIconSetArg = (x: IconSetArg | BrightlayerUIIconArg): x is IconSetArg => (x as any).name !== undefined;
 
 export type WrapIconProps = {
     /** The size of the icon to render */
@@ -31,11 +31,11 @@ export type WrapIconProps = {
     allowFontScaling?: boolean;
 };
 /**
- * [wrapIcon](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--icon-wrapper) function
+ * [wrapIcon](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--icon-wrapper) function
  *
  * This function is a useful utility for making sure that icons you want to use
- * are in the proper form to be consumed by the PX Blue components. Icons used by the
- * PX Blue components must have the shape ({size, color}) => JSX.Element;
+ * are in the proper form to be consumed by the Brightlayer UI components. Icons used by the
+ * Brightlayer UI components must have the shape ({size, color}) => JSX.Element;
  *
  * This function can wrap SVG files or icons from react-native-vector-icons.
  *
@@ -66,7 +66,7 @@ export const wrapIcon = (arg: IconArg): ComponentType<WrapIconProps> => {
             );
         };
     }
-    // If it is a PX Blue icon
+    // If it is a Brightlayer UI icon
     const { IconClass } = arg;
     // eslint-disable-next-line react/display-name
     return (props: WrapIconProps): JSX.Element => {

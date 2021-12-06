@@ -1,14 +1,14 @@
 # Empty State
 
-The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://pxblue.github.io/patterns/empty-states)).
+The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://brightlayer-ui.github.io/patterns/empty-states)).
 
 <img width="500" alt="Empty state with all props" src="./images/emptyState.png">
 
 ## Usage
 
 ```tsx
-import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
-import _Battery from '@pxblue/icons-svg/battery.svg';
+import { EmptyState, wrapIcon } from '@brightlayer-ui/react-native-components';
+import _Battery from '@brightlayer-ui/icons-svg/battery.svg';
 const Battery = wrapIcon({ IconClass: _Battery });
 ...
 <EmptyState
@@ -38,7 +38,7 @@ const Battery = wrapIcon({ IconClass: _Battery });
 
 ### Styles
 
-You can override the internal styles used by PX Blue by passing a `styles` prop. It supports the following keys:
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
 | Name  | Description                         |
 | ----- | ----------------------------------- |

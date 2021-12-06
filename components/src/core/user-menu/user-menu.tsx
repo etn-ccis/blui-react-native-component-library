@@ -3,7 +3,7 @@ import { PixelRatio, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } fro
 import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -56,7 +56,7 @@ const useStyles = (
     });
 
 /**
- * [UserMenu](https://pxblue-components.github.io/react-native/?path=/info/components-documentation--user-menu) component
+ * [UserMenu](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--user-menu) component
  *
  * Renders an avatar that can be clicked to open a bottomsheet menu.
  *

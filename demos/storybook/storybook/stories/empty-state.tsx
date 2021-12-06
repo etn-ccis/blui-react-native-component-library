@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
+import { EmptyState, wrapIcon } from '@brightlayer-ui/react-native-components';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 const NoLocation = wrapIcon({ IconClass: MaterialIcon, name: 'not-listed-location' });
 const LocationOff = wrapIcon({ IconClass: MaterialIcon, name: 'location-off' });
@@ -9,7 +9,7 @@ const TrendingUp = wrapIcon({ IconClass: MaterialIcon, name: 'trending-up' });
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { ImageBackground } from 'react-native';
 import { Button } from 'react-native-paper';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 storiesOf('EmptyState', module)
     .addDecorator(withKnobs)
