@@ -1,4 +1,4 @@
-## v5.4.1-beta.0 (Not yet published)
+## v5.4.1 (December 7, 2021)
 
 ### Changed
 
