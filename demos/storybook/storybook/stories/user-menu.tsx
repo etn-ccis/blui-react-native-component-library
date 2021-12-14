@@ -25,7 +25,7 @@ storiesOf('UserMenu', module)
                 menuItems={menuItems}
                 avatar={
                     <Avatar.Text
-                        label={text('Avatar.Text label', 'PX')}
+                        label={text('Avatar.Text label', 'JS')}
                         size={40}
                         color={Colors.blue[500]}
                         style={{ backgroundColor: Colors.blue[50] }}
@@ -43,7 +43,7 @@ storiesOf('UserMenu', module)
                 iconColor={color('iconColor', Colors.white[50])}
                 avatar={
                     <Avatar.Text
-                        label={text('Avatar.Text label', 'PX')}
+                        label={text('Avatar.Text label', 'JS')}
                         size={40}
                         color={color('Avatar.Text text color', Colors.blue[500])}
                         style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[50]) }}
@@ -94,7 +94,7 @@ storiesOf('UserMenu', module)
                 menuItems={menuItems}
                 avatar={
                     <Avatar.Text
-                        label={'PX'}
+                        label={'JS'}
                         size={40}
                         color={Colors.blue[500]}
                         style={{ backgroundColor: Colors.blue[50] }}
@@ -114,7 +114,7 @@ storiesOf('UserMenu', module)
                 iconColor={color('iconColor', Colors.white[50])}
                 avatar={
                     <Avatar.Text
-                        label={text('Avatar.Text label', 'PX')}
+                        label={text('Avatar.Text label', 'JS')}
                         size={40}
                         color={color('Avatar.Text text color', Colors.blue[500])}
                         style={{ backgroundColor: color('Avatar.Text background color', Colors.blue[50]) }}
@@ -136,7 +136,7 @@ storiesOf('UserMenu', module)
                                 menuItems={menuItems}
                                 avatar={
                                     <Avatar.Text
-                                        label={'PX'}
+                                        label={'JS'}
                                         size={40}
                                         color={Colors.blue[500]}
                                         style={{ backgroundColor: Colors.blue[50] }}
