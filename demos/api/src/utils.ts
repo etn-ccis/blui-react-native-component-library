@@ -9,7 +9,7 @@ export const updateTitle = (): void => {
         // @ts-ignore
         link.rel = 'shortcut icon';
         // @ts-ignore
-        link.href = './pxblue.png';
+        link.href = './brightlayer-ui.png';
         window.top.document.getElementsByTagName('head')[0].appendChild(link);
     })();
 };
