@@ -9,7 +9,11 @@ The `<EmptyState>` component is an element that can be used as a placeholder whe
 ```tsx
 import { EmptyState } from '@brightlayer-ui/react-native-components';
 
-<EmptyState title={'Nothing Found'} description={'Not a single thing'} icon={{ family: 'brightlayer-ui', name: 'battery' }} />;
+<EmptyState
+    title={'Nothing Found'}
+    description={'Not a single thing'}
+    icon={{ family: 'brightlayer-ui', name: 'battery' }}
+/>;
 ```
 
 ## API
