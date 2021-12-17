@@ -99,7 +99,7 @@ stories.add('Brightlayer UI React Native Components', () => {
                     <img src={icon} alt="brightlayer-ui-icon" className={'rotate'} />
                 </div>
                 <Typography variant={'h2'}>
-                    Power Xpert <strong>Blue</strong>
+                    Brightlayer <strong>UI</strong>
                 </Typography>
                 <Typography variant={'h4'}>React Native Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
