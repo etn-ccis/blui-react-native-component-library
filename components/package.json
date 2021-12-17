@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-native-components",
-    "version": "6.0.1",
+    "version": "6.0.2",
     "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
     "description": "Reusable React Native components for Brightlayer UI applications",
     "repository": {

@@ -1,5 +1,5 @@
 # Storybook Demo
-The storybook demo shows the API documentation for PX Blue React Native components.
+The storybook demo shows the API documentation for Brightlayer UI React Native components.
 
 To start the storybook demo, run from the root folder:
 

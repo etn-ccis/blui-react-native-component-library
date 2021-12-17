@@ -18,12 +18,12 @@ The simplest way to use a icon in a component is to specify the icon as a simple
 
 <div style="overflow: auto">
 
-| Prop Name        | Description                                                  | Type                                                 | Required | Default      |
-| ---------------- | ------------------------------------------------------------ | ---------------------------------------------------- | -------- | ------------ |
+| Prop Name        | Description                                                  | Type                                                         | Required | Default      |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------------ |
 | family           | Which library to draw the icon from                          | `'material'` \| `'material-community'` \| `'brightlayer-ui'` | no       | `'material'` |
-| name             | The name of the icon to use                                  | `string`                                             | yes      |              |
-| allowFontScaling | Should the icon size scale with the system font size         | `boolean`                                            | no       | `true`       |
-| direction        | How the icon should respond to changes in language direction | `'ltr'` \| `'rtl'` \| `'auto'`                       | no       | `'auto'`     |
+| name             | The name of the icon to use                                  | `string`                                                     | yes      |              |
+| allowFontScaling | Should the icon size scale with the system font size         | `boolean`                                                    | no       | `true`       |
+| direction        | How the icon should respond to changes in language direction | `'ltr'` \| `'rtl'` \| `'auto'`                               | no       | `'auto'`     |
 
 </div>
 

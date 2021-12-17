@@ -1,20 +1,20 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blue as ReactThemes } from '@pxblue/react-themes';
-import * as Colors from '@pxblue/colors';
-import '@pxblue/react-themes/open-sans';
-import { pxblueTheme } from '@pxblue/storybook-themes';
+import { blue as ReactThemes } from '@brightlayer-ui/react-themes';
+import * as Colors from '@brightlayer-ui/colors';
+import '@brightlayer-ui/react-themes/open-sans';
+import { bluiTheme } from '@brightlayer-ui/storybook-themes';
 import { CssBaseline } from '@material-ui/core';
 
-pxblueTheme.brandTitle = 'PX Blue React Native Component Library';
-pxblueTheme.brandUrl = 'https://pxblue.github.io';
+bluiTheme.brandTitle = 'Brightlayer UI React Native Component Library';
+bluiTheme.brandUrl = 'https://brightlayer-ui.github.io';
 if (window.top.location.hostname === 'localhost') {
-    pxblueTheme.brandImage = require('../assets/pxblue-react-native-alpha.svg');
+    bluiTheme.brandImage = require('../assets/brightlayer-ui-react-native-alpha.svg');
 } else if (window.top.location.pathname.slice(0, 18) === '/react-native-dev/') {
-    pxblueTheme.brandImage = require('../assets/pxblue-react-native-beta.svg');
+    bluiTheme.brandImage = require('../assets/brightlayer-ui-react-native-beta.svg');
 } else {
-    pxblueTheme.brandImage = require('../assets/pxblue-react-native.svg');
+    bluiTheme.brandImage = require('../assets/brightlayer-ui-react-native.svg');
 }
 
 addParameters({
@@ -23,7 +23,7 @@ addParameters({
         markdown: '<div> </div>',
     },
     options: {
-        theme: pxblueTheme,
+        theme: bluiTheme,
         showRoots: true,
     },
 });

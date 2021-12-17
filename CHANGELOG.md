@@ -1,5 +1,11 @@
 # Change Log
 
+## v6.0.2 (December 17, 2021)
+
+### Changed
+
+-   Changed license to Eaton.
+
 ## v6.0.1 (November 10, 2021)
 
 ### Changed

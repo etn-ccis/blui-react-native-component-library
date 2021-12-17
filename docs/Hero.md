@@ -15,7 +15,11 @@ The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) c
 ```tsx
 import { Hero } from '@brightlayer-ui/react-native-components';
 
-<Hero label={'Charge'} icon={{ family: 'brightlayer-ui', name: 'battery' }} ChannelValueProps={{ value: 100, units: '%' }} />;
+<Hero
+    label={'Charge'}
+    icon={{ family: 'brightlayer-ui', name: 'battery' }}
+    ChannelValueProps={{ value: 100, units: '%' }}
+/>;
 ```
 
 ### Hero API

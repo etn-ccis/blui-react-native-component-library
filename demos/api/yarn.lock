@@ -1135,6 +1135,63 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@brightlayer-ui/colors@^3.0.0", "@brightlayer-ui/colors@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.0.1.tgz#f085acf6b6b4266a01798c78bc25841d15e44b3e"
+  integrity sha512-AE9F6FN1EQWMoqFTak6q8MN3wg9et2u2SUs6HjYhcS3GVSHjMWVSsuJZ2aD5Lu9409Gfi6pBHDWsJZ5PyeLsdQ==
+  dependencies:
+    "@brightlayer-ui/types" "^2.0.0"
+
+"@brightlayer-ui/eslint-config@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-1.1.5.tgz#72881843a4bc2f36cdd77d3b2423e4e7e330d20d"
+  integrity sha512-YGuTQ4lPckw7KZuDlbGQo/H7Mx2ZhJE6OJCxWXgTAUyyaZ2CmARVHZzrivQ73r8jmOkIiGVQ1G5Pj7VgX21/Aw==
+  dependencies:
+    "@typescript-eslint/parser" ">= 2.3.2"
+    eslint-config-prettier ">= 6.3.0"
+  optionalDependencies:
+    eslint-plugin-react "^7.16.0"
+
+"@brightlayer-ui/icons-mui@^2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-2.8.1.tgz#9e713d54c087930f9e50e7db9c67354fc686fec0"
+  integrity sha512-Lpb7nO8wNpH886lgfZJ6k5PQy7oBNz+t+a9NllVvx/pjktQuSjq6vI08nqLxhlO5muNcax3WKjNJ6oIumDL4Bg==
+
+"@brightlayer-ui/prettier-config@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
+  integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
+
+"@brightlayer-ui/react-native-components@latest":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-6.0.1.tgz#8143bc7dc01045a68be5e293db9f3ae8276e48e6"
+  integrity sha512-h3Rfbw+d9465jQIbnB4NWs2oquqL0p7Xip6MxlWFPcAcEkV6aCIh1HCExNokIkLVyoRk2Nqr5QfUGfQQId1Fng==
+  dependencies:
+    "@brightlayer-ui/colors" "^3.0.0"
+    color "^3.1.2"
+    react-native-collapsible "^1.5.3"
+    react-native-keyboard-aware-scroll-view "^0.8.0"
+    react-native-modal ">=11.6.1"
+
+"@brightlayer-ui/react-themes@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-6.1.0.tgz#d53a89adaaeb9fb665a07f076505ea654ec04afb"
+  integrity sha512-x3EIEULFjtMLFxJG2zBwx4vTgGBQeqlz2wS0V+xZft9oi/iWDwnQsBL95dgQXBJWDdRNzm8M8VpT3AbsdxLs+Q==
+  dependencies:
+    "@brightlayer-ui/colors" "^3.0.0"
+    "@fontsource/open-sans" "^4.2.2"
+    color "^3.1.3"
+
+"@brightlayer-ui/storybook-themes@^1.0.4":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/storybook-themes/-/storybook-themes-1.1.0.tgz#11d89f7d1419ec64c9d8c0d0ba8ad793e9007693"
+  integrity sha512-VLg7Ux085kS6Zw6NBdmzo4GQHlNCCXX5fdnDvpOZSTlMsqfKtsdXpO9SF1DTrigL/I48yCjktAOjEDCWZ/0+2g==
+
+"@brightlayer-ui/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/types/-/types-2.0.0.tgz#d8adc0cdb96c164943adbad6e74043128a8b4112"
+  integrity sha512-DTCVwND6YC9qrkQl7pkFlN6QxDReJHtjuAiFU9HkXJN368vlw+fzHQ5/j4sB1sZl2eNwOgccv5ecl2XrlolOCw==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -1523,75 +1580,6 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
-
-"@pxblue/colors@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-2.0.1.tgz#d24dae5bc6c3b9755b52a22738aa567bfeea3b8c"
-  integrity sha512-Uceh+1Bd0acoC+KulmhxrUOkWMlOgnqXFLS02l5SHYRL3ggyjSgHBVMRp2DLt24e/OJn5tAOoNJTC9q77U297w==
-  dependencies:
-    "@pxblue/types" "^1.0.0"
-
-"@pxblue/colors@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-3.0.0.tgz#080fb5cfd5a08fea018ece7cac8022ed38f7878f"
-  integrity sha512-rMFW4an1V9M5KX4BiNzrbbaYe2fic4o9iGL8/bPYvITbeiwgAapyFX0VbMIoo8XKlIbNaxyn7oWnrxzI/tp8Rw==
-  dependencies:
-    "@pxblue/types" "^2.0.0"
-
-"@pxblue/eslint-config@^1.1.4":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-1.1.5.tgz#7890242cb81170514aa02defd549032a834f29c3"
-  integrity sha512-GEdq5TMZrp6ijrnwx6Ks0mgWM/Hg4EVgByWzK/XqURhwQis4ortNKfEOI5DpKLLb0DjsTBt1OQOzkGOpNpE68Q==
-  dependencies:
-    "@typescript-eslint/parser" ">= 2.3.2"
-    eslint-config-prettier ">= 6.3.0"
-  optionalDependencies:
-    eslint-plugin-react "^7.16.0"
-
-"@pxblue/icons-mui@^1.0.15":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@pxblue/icons-mui/-/icons-mui-1.0.18.tgz#dc9d23637fc104dbcc25efd926a8f36259c98489"
-  integrity sha512-/NI7GDYCz+dn/qI7W10pZt7x5gGY7IngqwFI2zyLBDMgeawD+ryzvzZ6LOvxjdeht0R8cZFa6ZPZuJjtIcLrjw==
-
-"@pxblue/prettier-config@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
-  integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
-
-"@pxblue/react-native-components@latest":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-3.0.1.tgz#eff47b163d6cb1f55107e10171176eca0ddf956c"
-  integrity sha512-Fmfwl4m35c9xkAbE3IZQbJlOmrfCelMxUyLsoBKXq9HXghPLPrgUm7COAVP5nnC2131CgvrYZkTfKsChJ8N/qA==
-  dependencies:
-    "@pxblue/colors" "^3.0.0"
-    color "^3.1.2"
-    react-native-collapsible "^1.5.2"
-    react-native-keyboard-aware-scroll-view "^0.8.0"
-    react-native-status-bar-height "^2.3.1"
-
-"@pxblue/react-themes@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-6.0.0.tgz#35ce84165263d8721bde638ed594f820c408727c"
-  integrity sha512-KiDJjMK3Dg45VayemC+NNIPAXA0kX0ExrBcln4wYn/yVfzH9/fK5GZF1yya6i3LWgHJYQo40Z6dCluFgn0GzvQ==
-  dependencies:
-    "@fontsource/open-sans" "^4.2.2"
-    "@pxblue/colors" "^3.0.0"
-    color "^3.1.3"
-
-"@pxblue/storybook-themes@^1.0.4":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.1.0.tgz#60bfbc6670142c4be0f4a21d5ec7523f5b26662c"
-  integrity sha512-wUM69MYAQTrTqxcFyAIhsPIWZOlF0YxqwFLZDlYe5dvm/iJu9wXDuwdrC5RVgb/JAXuxTwTSkIXXrnPFjlEwXA==
-
-"@pxblue/types@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-1.0.0.tgz#befa98a12ae95a407c252399c69677aa7427d97e"
-  integrity sha512-K0liTITRTZfv7n/2UmbP0g/nTelr3aaDlA5XleGqC+1hLRab20MpVaOSgLRiU8+4f0vayGtbBm63HyHgoXMROw==
-
-"@pxblue/types@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-2.0.0.tgz#3df970352aca5256974a10a97d75a2264bad1eba"
-  integrity sha512-rHABCqYALGjrDxdCfw/v4mFsHhE9y9+vdSD3VHfIzA3HY1g1Bp/VWwEuEXWbtj2H5n75D+jkMQZ0rTqSKY3vLw==
 
 "@reach/router@^1.2.1":
   version "1.3.4"
@@ -10907,12 +10895,17 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-collapsible@^1.5.2:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-1.5.3.tgz#d6bc7274ae8f40f7688cca23ededa263e6c81c63"
-  integrity sha512-Ciuy3yF8wcHeLxXFtx9vxoyrq8l+9EJqLM/ADw54gVwzTQc1/e2ojhQbVFPlxhDA+Pba2qezkaKfv5ifxg8hoQ==
+react-native-animatable@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
+  integrity sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==
   dependencies:
-    prop-types "^15.6.2"
+    prop-types "^15.7.2"
+
+react-native-collapsible@^1.5.3:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-1.6.0.tgz#ca261ffff16914f872059bb0972e3a78c4b37f9c"
+  integrity sha512-beZjdgbT9Y/Pg591Xy5XkKG20HffJiVad4n9bfcUF/f783A+tvOVXnqvbS58Lkaym93mi4jcDPMuW9Vc1t6rqg==
 
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.1"
@@ -10927,10 +10920,13 @@ react-native-keyboard-aware-scroll-view@^0.8.0:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-status-bar-height@^2.3.1:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.5.0.tgz#bc0fb85230603850aab9667ee8111a62954de90c"
-  integrity sha512-sYBCPYA/NapBSHkdm/IVL4ID3LLlIuLqINi2FBDyMkc2BU9pfSGOtkz9yfxoK39mYJuTrlTOQ7mManARUsYDSA==
+react-native-modal@>=11.6.1:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.0.tgz#b7117400cae8548e713eed760077dee44f78628e"
+  integrity sha512-k6r9T31mc7HIDFj1V53ceAAN1dwc8052c4JLtDVEmEQ19Bbq9yiLXoDsQuNb+hB8A+2tVOXmo5Gq4IQfb11upw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
 
 react-popper-tooltip@^2.8.3:
   version "2.11.1"

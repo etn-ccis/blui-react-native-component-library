@@ -3,11 +3,11 @@ import { Button, createStyles, makeStyles, Typography } from '@material-ui/core'
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 /* eslint-disable @typescript-eslint/no-var-requires  */
 const backgroundImage = require('../assets/circles-bg.svg') as string;
 import { updateTitle } from '../src/utils';
-const packageJSON = require('@pxblue/react-native-components/package.json') as { version: string };
+const packageJSON = require('@brightlayer-ui/react-native-components/package.json') as { version: string };
 
 export const stories = storiesOf('Intro/Overview', module);
 
@@ -88,23 +88,23 @@ stories.addParameters({
     },
 });
 
-stories.add('PX Blue React Native Components', () => {
+stories.add('Brightlayer UI React Native Components', () => {
     autoNavToStory();
     const classes = useStyles();
-    const icon = require('../assets/pxb-icon.svg') as string;
+    const icon = require('../assets/brightlayer-ui-icon.svg') as string;
     return (
         <div className={classes.root}>
             <div className={classes.container}>
                 <div className={classes.icon}>
-                    <img src={icon} alt="pxb-icon" className={'rotate'} />
+                    <img src={icon} alt="brightlayer-ui-icon" className={'rotate'} />
                 </div>
                 <Typography variant={'h2'}>
-                    Power Xpert <strong>Blue</strong>
+                    Brightlayer <strong>UI</strong>
                 </Typography>
                 <Typography variant={'h4'}>React Native Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
-                    Learn about our PX Blue components in the API section.
+                    Learn about our Brightlayer UI components in the API section.
                 </Typography>
 
                 <div className={classes.buttons}>
@@ -113,7 +113,7 @@ stories.add('PX Blue React Native Components', () => {
                         color="primary"
                         className={classes.link}
                         target={'_blank'}
-                        href={'https://github.com/pxblue/react-native-component-library'}
+                        href={'https://github.com/brightlayer-ui/react-native-component-library'}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={classes.githubIcon}>
                             <title>github</title>

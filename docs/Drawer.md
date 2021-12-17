@@ -11,7 +11,13 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 ### Drawer Usage
 
 ```tsx
-import { Drawer, DrawerHeader, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-native-components';
+import {
+    Drawer,
+    DrawerHeader,
+    DrawerBody,
+    DrawerNavGroup,
+    DrawerNavItem,
+} from '@brightlayer-ui/react-native-components';
 
 <Drawer
     activeItem={selectedItem}
