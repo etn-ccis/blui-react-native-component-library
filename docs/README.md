@@ -8,7 +8,6 @@ We currently have the following components available for React Native applicatio
 -   [Empty State](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/EmptyState.md)
 -   [Header](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/Header.md)
 -   [Hero & Hero Banner](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/Hero.md)
--   [Icon Wrapper](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/IconWrapper.md)
 -   [Icons](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/Icons.md)
 -   [Info List Item](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/InfoListItem.md)
 -   [List Item Tag](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/ListItemTag.md)
