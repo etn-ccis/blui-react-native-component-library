@@ -126,7 +126,7 @@ jobs:
         resource_class: large
         environment:
             - MASTER_BRANCH: master
-            - DEV_BRANCH: dev
+            - DEV_BRANCH: feature/pxblue-2367-analytics
         steps:
             - checkout
             - attach_workspace:
@@ -321,7 +321,7 @@ workflows:
                       branches:
                           only:
                               - master
-                              - dev
+                              - feature/pxblue-2367-analytics
             - publish:
                   requires:
                       - build_storybook
@@ -331,7 +331,7 @@ workflows:
                       branches:
                           only:
                               - master
-                              - dev
+                              - feature/pxblue-2367-analytics
             - tag:
                   requires:
                       - publish
