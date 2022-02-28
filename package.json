@@ -30,8 +30,9 @@
         "lint": "cd components && yarn lint && cd ../demos/api && yarn lint && cd ../storybook && yarn lint",
         "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix",
         "update:submodule": "git submodule update --remote",
-        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
-        "coverage": "yarn test --coverage --watchAll=false"
+        "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts && yarn generate:licenses",
+        "coverage": "yarn test --coverage --watchAll=false",
+        "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "directories": {
         "doc": "docs"
@@ -41,6 +42,7 @@
         "@brightlayer-ui/prettier-config": "^1.0.2",
         "codecov": "^3.8.2",
         "eslint-plugin-react-hooks": "^4.2.0",
+        "npm-license-crawler": "^0.2.1",
         "prettier": "^2.2.1"
     },
     "jest": {
