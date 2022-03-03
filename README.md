@@ -1,7 +1,7 @@
 # Brightlayer UI React Native Components
 
 [![](https://img.shields.io/circleci/project/github/brightlayer-ui/react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/brightlayer-ui/react-native-component-library/tree/master)
-![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-native-components?label=%40brightlayer-ui%2Freact-native-components)
+![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-native-components?label=%40brightlayer-ui%2Freact-native-components) [![codecov](https://codecov.io/gh/brightlayer-ui/react-native-component-library/branch/master/graph/badge.svg?token=HQ7P6R23KZ)](https://codecov.io/gh/brightlayer-ui/react-native-component-library)
 
 This is a library of re-usable React Native components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
