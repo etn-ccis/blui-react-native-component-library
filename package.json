@@ -32,7 +32,7 @@
         "update:submodule": "git submodule update --remote",
         "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts && yarn generate:licenses",
         "coverage": "yarn test --coverage --watchAll=false",
-        "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
+        "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "directories": {
         "doc": "docs"

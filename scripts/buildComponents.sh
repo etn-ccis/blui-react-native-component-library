@@ -21,5 +21,6 @@ cp -r ./components/package.json ./dist/package.json
 cp -r README.md ./dist/README.md
 cp -r LICENSE ./dist/LICENSE
 cp -r CHANGELOG.md ./dist/CHANGELOG.md
+cp -r components/LICENSES.json ./dist/LICENSES.json
 
 echo -e "${GRAY}Complete${NC}\r\n"
