@@ -12169,7 +12169,7 @@ react-native-simple-markdown@^1.1.0:
   integrity sha1-TUYvjO0mOTxSMEZ0IMYaUMxqgJU=
   dependencies:
     lodash "^4.15.0"
-    simple-markdown "github:CharlesMangwa/simple-markdown.git"
+    simple-markdown "git://github.com/CharlesMangwa/simple-markdown.git"
 
 react-native-svg-transformer@^0.14.3:
   version "0.14.3"
@@ -13194,13 +13194,13 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.5.tgz#9e3e8cc0c75a99472b44321033a7702e7738252f"
   integrity sha512-KWcOiKeQj6ZyXx7zq4YxSMgHRlod4czeBQZrPb8OKcohcqAXShm7E20kEMle9WBt26hFcAf0qLOcp5zmY7kOqQ==
 
-"simple-markdown@github:CharlesMangwa/simple-markdown.git":
+"simple-markdown@git://github.com/CharlesMangwa/simple-markdown.git":
   version "0.1.1"
-  resolved "https://github.com/CharlesMangwa/simple-markdown.git#33d963c760b8196bee01b1a5ba9974bc7f669af1"
+  resolved "git://github.com/CharlesMangwa/simple-markdown.git#33d963c760b8196bee01b1a5ba9974bc7f669af1"
 
 simple-plist@^1.0.0:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/simple-plist/-/simple-plist-1.1.1.tgz#54367ca28bc5996a982c325c1c4a4c1a05f4047c"
+  resolved "https://registry.yarnpkg.com/simple-plist/-/simple-plist-1.1.1.tgz/54367ca28bc5996a982c325c1c4a4c1a05f4047c"
   integrity sha512-pKMCVKvZbZTsqYR6RKgLfBHkh2cV89GXcA/0CVPje3sOiNOnXA8+rp/ciAMZ7JRaUdLzlEM6JFfUn+fS6Nt3hg==
   dependencies:
     bplist-creator "0.0.8"
