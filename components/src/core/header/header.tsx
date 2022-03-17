@@ -686,7 +686,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <>
             <StatusBar barStyle={statusBarStyle()} />
             <TouchableWithoutFeedback
-                accessibilty={false}
+                accessible={false}
                 onPress={(): void => onPress()}
                 disabled={!expandable || searching}
                 {...viewProps}
