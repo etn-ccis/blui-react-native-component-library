@@ -50,7 +50,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
         return (
             <TouchableOpacity
                 testID={'header-search-close'}
-                accessibiltyLabel={'header-search-close'}
+                accessibilityLabel={'header-search-close'}
                 onPress={onClose ? (): void => onClose() : undefined}
                 style={[defaultStyles.navigation, style]}
             >
@@ -68,7 +68,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
         return (
             <TouchableOpacity
                 testID={'header-navigation'}
-                accessibiltyLabel={'header-navigation'}
+                accessibilityLabel={'header-navigation'}
                 onPress={onPress}
                 style={[defaultStyles.navigation, style]}
                 disabled={!onPress}

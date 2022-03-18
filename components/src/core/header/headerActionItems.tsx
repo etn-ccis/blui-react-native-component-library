@@ -93,7 +93,7 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
                             <View
                                 key={`action_${index}`}
                                 testID={`header-action-item${index}`}
-                                accessibiltyLabel={`header-action-item${index}`}
+                                accessibilityLabel={`header-action-item${index}`}
                                 style={[
                                     defaultStyles.component,
                                     actionItem.width ? { width: actionItem.width } : {},
@@ -108,7 +108,7 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
                         <TouchableOpacity
                             key={`action_${index}`}
                             testID={`header-action-item${index}`}
-                            accessibiltyLabel={`header-action-item${index}`}
+                            accessibilityLabel={`header-action-item${index}`}
                             onPress={actionItem.onPress}
                             style={[defaultStyles.actionItem, styles.actionItem]}
                         >
