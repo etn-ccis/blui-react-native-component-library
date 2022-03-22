@@ -4,7 +4,7 @@
 
 ### Added
 
--   Added `testID` and `accessibilityLabel` to `<InfoListItem>` for easy access in UI and E2E tests.
+-   Added `testID` and `accessibilityLabel` to `<InfoListItem>`, `<Header>`, `<HeaderActionItems>`, and `<HeaderNavigationIcon>` for easy access in UI and E2E tests.
 
 ## v6.0.2 (December 17, 2021)
 
