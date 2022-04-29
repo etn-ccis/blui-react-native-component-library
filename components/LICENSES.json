@@ -1,0 +1,32 @@
+{
+    "@brightlayer-ui/colors@3.0.1": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/colors",
+        "licenseUrl": "https://github.com/brightlayer-ui/colors/raw/master/LICENSE",
+        "parents": "@brightlayer-ui/react-native-components"
+    },
+    "color@3.1.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/Qix-/color",
+        "licenseUrl": "https://github.com/Qix-/color/raw/master/LICENSE",
+        "parents": "@brightlayer-ui/react-native-components"
+    },
+    "react-native-collapsible@1.5.3": {
+        "licenses": "MIT",
+        "repository": "https://oblador@github.com/oblador/react-native-collapsible",
+        "licenseUrl": "https://oblador@github.com/oblador/react-native-collapsible/raw/master/LICENSE",
+        "parents": "@brightlayer-ui/react-native-components"
+    },
+    "react-native-keyboard-aware-scroll-view@0.8.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/APSL/react-native-keyboard-aware-scroll-view",
+        "licenseUrl": "https://github.com/APSL/react-native-keyboard-aware-scroll-view/raw/master/LICENSE",
+        "parents": "@brightlayer-ui/react-native-components"
+    },
+    "react-native-modal@12.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-native-community/react-native-modal",
+        "licenseUrl": "https://github.com/react-native-community/react-native-modal/raw/master/LICENSE.md",
+        "parents": "@brightlayer-ui/react-native-components"
+    }
+}
