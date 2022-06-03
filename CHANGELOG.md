@@ -1,5 +1,11 @@
 # Change Log
 
+## v6.1.0 (Unreleased)
+
+### Added
+
+-   Added `testID` and `accessibilityLabel` to `<InfoListItem>`, `<Header>`, `<HeaderActionItems>`, and `<HeaderNavigationIcon>` for easy access in UI and E2E tests.
+
 ## v6.0.2 (December 17, 2021)
 
 ### Changed
