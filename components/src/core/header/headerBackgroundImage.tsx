@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, ImageProps, ImageSourcePropType, StyleSheet } from 'react-native';
+import { Animated, ImageProps, ImageSourcePropType, StyleSheet, Text } from 'react-native';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
@@ -12,6 +12,7 @@ const defaultStyles = StyleSheet.create({
         right: 0,
         bottom: 0,
         resizeMode: 'cover',
+        width: '100%',
     },
 });
 type HeaderBackgroundProps = Omit<ImageProps, 'source'> & {

@@ -1,10 +1,14 @@
 # Change Log
 
-## v6.1.0 (Unreleased)
+## v6.0.3 (Unreleased)
 
 ### Added
 
 -   Added `testID` and `accessibilityLabel` to `<InfoListItem>`, `<Header>`, `<HeaderActionItems>`, and `<HeaderNavigationIcon>` for easy access in UI and E2E tests.
+
+### Fixed
+
+-   Issue with `<Header>` default backgroundImage size ([#228](https://github.com/brightlayer-ui/react-native-component-library/issues/228)).
 
 ## v6.0.2 (December 17, 2021)
 
