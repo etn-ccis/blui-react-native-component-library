@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, ImageProps, ImageSourcePropType, StyleSheet, Text } from 'react-native';
+import { Animated, ImageProps, ImageSourcePropType, StyleSheet } from 'react-native';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
