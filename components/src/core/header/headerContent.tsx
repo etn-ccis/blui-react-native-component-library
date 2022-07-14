@@ -66,7 +66,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             color: textColor,
             lineHeight: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [20, 30],
+                outputRange: [24, 36],
                 extrapolate: 'clamp',
             }),
             fontFamily: theme.fonts.medium.fontFamily,
