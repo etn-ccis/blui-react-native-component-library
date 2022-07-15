@@ -14,10 +14,11 @@ const makeStyles = (): StyleSheet.NamedStyles<{
     const fontScale = PixelRatio.getFontScale();
     return StyleSheet.create({
         navigation: {
-            marginRight: 24,
             height: 40 * fontScale,
             width: 40 * fontScale,
-            margin: -8 * fontScale,
+            marginLeft: -8 * fontScale,
+            marginRight: 24,
+            marginTop: 8 * fontScale,
             padding: 8 * fontScale,
         },
         flipIcon: {
