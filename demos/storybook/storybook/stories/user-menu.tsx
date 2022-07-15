@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { Image, View } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 import { Header, InfoListItemProps, UserMenu } from '@pxblue/react-native-components';
 import { text, withKnobs, color, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
@@ -10,6 +10,12 @@ const VpnKeyIcon: IconFamily = { name: 'vpn-key' };
 const SettingsIcon: IconFamily = { name: 'settings' };
 const ExitToAppIcon: IconFamily = { name: 'exit-to-app' };
 const avatarTestImage = require('../assets/test-avatar.png');
+
+const customStyles = StyleSheet.create({
+    root: {
+        maxHeight: 56,
+    },
+});
 
 const menuItems: InfoListItemProps[] = [
     { title: 'Change Password', icon: VpnKeyIcon },
@@ -127,6 +133,7 @@ storiesOf('UserMenu', module)
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Header
                 title={'Title'}
+                styles={{ root: customStyles.root }}
                 actionItems={[
                     {
                         component: (
