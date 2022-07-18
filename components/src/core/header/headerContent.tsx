@@ -64,11 +64,6 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            lineHeight: headerHeight.interpolate({
-                inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [20, 30],
-                extrapolate: 'clamp',
-            }),
             fontFamily: theme.fonts.medium.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
@@ -127,7 +122,6 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            lineHeight: washingtonStyle ? 18 : 16,
             fontFamily: washingtonStyle ? theme.fonts.light.fontFamily : theme.fonts.regular.fontFamily,
             fontSize: washingtonStyle ? 18 : 16,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
@@ -175,15 +169,15 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-
+    const fontScale = PixelRatio.getFontScale();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
         () => ({
             color: textColor,
-            lineHeight: headerHeight.interpolate({
+            marginTop: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [0.1, 20 * 1.05], // Avoid clipping top of CAP letters
+                outputRange: [-2 * fontScale, 0],
                 extrapolate: 'clamp',
             }),
             opacity: headerHeight.interpolate({
@@ -200,7 +194,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, theme, headerHeight, REGULAR_HEIGHT, EXTENDED_HEIGHT]
+        [textColor, theme, headerHeight, REGULAR_HEIGHT, EXTENDED_HEIGHT, fontScale]
     );
 
     if (info) {
@@ -377,7 +371,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                               outputRange: [getActionPanelWidth(), 0],
                               extrapolate: 'clamp',
                           }),
-                          marginTop: subtitle && title ? 10 * fontScale : 0,
+                          marginBottom: subtitle && title ? 5 * fontScale : 15 * fontScale,
                       },
                 styles.root,
             ]}
