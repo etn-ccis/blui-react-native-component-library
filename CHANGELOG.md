@@ -8,7 +8,9 @@
 
 ### Fixed
 
+-   Issue with `<MobileStepper>` default dark theme fill color ([#276](https://github.com/brightlayer-ui/react-native-component-library/issues/276)).
 -   Issue with `<Header>` default backgroundImage size ([#228](https://github.com/brightlayer-ui/react-native-component-library/issues/228)).
+-   Issue with `<Header>` title cutting off the top of CJK characters ([#156](https://github.com/brightlayer-ui/react-native-component-library/issues/156)).
 
 ## v6.0.2 (December 17, 2021)
 

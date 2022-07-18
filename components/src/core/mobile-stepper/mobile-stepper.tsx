@@ -39,7 +39,7 @@ const makeStyles = (
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
-            backgroundColor: props.activeColor || getPrimary500(theme) || theme.colors.primary,
+            backgroundColor: props.activeColor || theme.colors.primary,
         },
         progressBar: {},
         text: {},
