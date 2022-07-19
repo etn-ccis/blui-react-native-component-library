@@ -12,6 +12,7 @@ const defaultStyles = StyleSheet.create({
         right: 0,
         bottom: 0,
         resizeMode: 'cover',
+        width: '100%',
     },
 });
 type HeaderBackgroundProps = Omit<ImageProps, 'source'> & {
