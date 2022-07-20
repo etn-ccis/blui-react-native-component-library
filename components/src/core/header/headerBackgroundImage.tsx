@@ -1,10 +1,14 @@
 import React from 'react';
-import { Animated, Dimensions, ImageProps, ImageSourcePropType, ScaledSize, StyleSheet } from 'react-native';
+import { Animated, Dimensions, ImageProps, ImageSourcePropType, ImageStyle, StyleSheet } from 'react-native';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 
-const defaultStyles = (deviceWidth: number) =>
+type HeaderBackgroundImageStyles = {
+    root: ImageStyle;
+};
+
+const defaultStyles = (deviceWidth: number): HeaderBackgroundImageStyles =>
     StyleSheet.create({
         root: {
             position: 'absolute',
