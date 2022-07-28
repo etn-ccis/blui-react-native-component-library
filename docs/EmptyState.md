@@ -36,8 +36,9 @@ import { EmptyState } from '@brightlayer-ui/react-native-components';
 
 You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
-| Name  | Description                         |
-| ----- | ----------------------------------- |
-| root  | Styles applied to the root element  |
-| units | Styles applied to the units element |
-| value | Styles applied to the value element |
+| Name        | Description                               |
+| ----------- | ----------------------------------------- |
+| root        | Styles applied to the root element        |
+| title       | Styles applied to the title element       |
+| description | Styles applied to the description element |
+| actions     | Styles applied to the actions element     |
