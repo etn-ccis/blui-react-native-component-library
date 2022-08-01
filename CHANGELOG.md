@@ -1,10 +1,16 @@
 # Change Log
 
-## v6.1.0 (Unreleased)
+## v6.0.3 (August 2, 2022)
 
 ### Added
 
 -   Added `testID` and `accessibilityLabel` to `<InfoListItem>`, `<Header>`, `<HeaderActionItems>`, and `<HeaderNavigationIcon>` for easy access in UI and E2E tests.
+
+### Fixed
+
+-   Issue with `<MobileStepper>` default dark theme fill color ([#276](https://github.com/brightlayer-ui/react-native-component-library/issues/276)).
+-   Issue with `<Header>` default backgroundImage size ([#228](https://github.com/brightlayer-ui/react-native-component-library/issues/228)).
+-   Issue with `<Header>` title cutting off the top of CJK characters ([#156](https://github.com/brightlayer-ui/react-native-component-library/issues/156)).
 
 ## v6.0.2 (December 17, 2021)
 
