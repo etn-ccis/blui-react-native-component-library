@@ -59,7 +59,6 @@ const headerStyles = (
         },
         content: {
             flex: 1,
-            paddingVertical: 16 * fontScale,
             paddingHorizontal: 16,
             flexDirection: 'row',
             minHeight: 56 * fontScale,
@@ -527,30 +526,30 @@ export const Header: React.FC<HeaderProps> = (props) => {
     );
 
     // Returns the interpolated bottom padding of the Header text elements
-    const contentStyle = useCallback((): Array<Record<string, any>> => {
-        const contractedPadding = (subtitle && !searching ? 12 : 16) * fontScale;
-        return [
+    const contentStyle = useCallback(
+        (): Array<Record<string, any>> => [
             searching ? defaultStyles.search : defaultStyles.content,
             searching
                 ? {}
                 : {
                       paddingBottom: (useStaticHeight ? staticHeaderHeight : dynamicHeaderHeight).interpolate({
                           inputRange: [collapsedHeight, expandedHeight],
-                          outputRange: [contractedPadding, 28],
+                          outputRange: [0, 28],
                           extrapolate: 'clamp',
                       }),
                   },
-        ];
-    }, [
-        subtitle,
-        searching,
-        dynamicHeaderHeight,
-        defaultStyles,
-        useStaticHeight,
-        staticHeaderHeight,
-        collapsedHeight,
-        expandedHeight,
-    ]);
+        ],
+        [
+            subtitle,
+            searching,
+            dynamicHeaderHeight,
+            defaultStyles,
+            useStaticHeight,
+            staticHeaderHeight,
+            collapsedHeight,
+            expandedHeight,
+        ]
+    );
 
     /* CALLBACK FUNCTIONS */
 
@@ -686,6 +685,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <>
             <StatusBar barStyle={statusBarStyle()} />
             <TouchableWithoutFeedback
+                accessible={false}
                 onPress={(): void => onPress()}
                 disabled={!expandable || searching}
                 {...viewProps}

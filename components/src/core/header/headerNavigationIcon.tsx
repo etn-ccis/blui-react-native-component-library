@@ -14,10 +14,11 @@ const makeStyles = (): StyleSheet.NamedStyles<{
     const fontScale = PixelRatio.getFontScale();
     return StyleSheet.create({
         navigation: {
-            marginRight: 24,
             height: 40 * fontScale,
             width: 40 * fontScale,
-            margin: -8 * fontScale,
+            marginLeft: -8 * fontScale,
+            marginRight: 24,
+            marginTop: 8 * fontScale,
             padding: 8 * fontScale,
         },
         flipIcon: {
@@ -50,6 +51,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
         return (
             <TouchableOpacity
                 testID={'header-search-close'}
+                accessibilityLabel={'header-search-close'}
                 onPress={onClose ? (): void => onClose() : undefined}
                 style={[defaultStyles.navigation, style]}
             >
@@ -67,6 +69,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
         return (
             <TouchableOpacity
                 testID={'header-navigation'}
+                accessibilityLabel={'header-navigation'}
                 onPress={onPress}
                 style={[defaultStyles.navigation, style]}
                 disabled={!onPress}
