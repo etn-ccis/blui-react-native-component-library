@@ -39,11 +39,11 @@
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "devDependencies": {
-        "@brightlayer-ui/prettier-config": "^1.0.2",
-        "codecov": "^3.8.2",
-        "eslint-plugin-react-hooks": "^4.2.0",
+        "@brightlayer-ui/prettier-config": "^1.0.3",
+        "codecov": "^3.8.3",
+        "eslint-plugin-react-hooks": "^4.6.0",
         "npm-license-crawler": "^0.2.1",
-        "prettier": "^2.2.1"
+        "prettier": "^2.7.1"
     },
     "jest": {
         "coverageDirectory": "./components/coverage/",
