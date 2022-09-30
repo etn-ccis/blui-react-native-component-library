@@ -1,5 +1,11 @@
 # Change Log
 
+## v7.0.0 (unreleased)
+
+### Changed
+
+-   Update to build with react-native 0.70.0.
+
 ## v6.0.3 (August 4, 2022)
 
 ### Added
