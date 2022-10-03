@@ -1082,10 +1082,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-native-vector-icons@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-1.7.0.tgz#de14fd74595fcbb59dd37efa3efd4f9c195717d9"
-  integrity sha512-nwCEwfxZyZeZVzvYQo/4BymGvmJ+ggnSPzOW5eFYb3+1swI2PeDGNA18Edcol2gCBrvFP8NzuzyCZ2dAix30cw==
+"@brightlayer-ui/react-native-vector-icons@^2.0.0-beta.0":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-2.0.0-beta.0.tgz#5cc7ee8dfdb80c0ff780e458a26a154a88dfca5b"
+  integrity sha512-IwPzaUGzUwTR4wWLlnn0HrPyRhzWjGrwjFqq7prSxvkQt/rmMFCb+VojHSvk7dtAMBQJet1PCgK9G7xUHcX4+Q==
 
 "@brightlayer-ui/types@^2.0.0":
   version "2.0.0"
