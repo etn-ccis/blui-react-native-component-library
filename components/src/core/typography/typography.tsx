@@ -38,42 +38,42 @@ export type TypographyProps = {
  * @param getStyle a function that takes in a theme and returns a text style object
  * @returns a theme-wrapped text component that utilizes that styles and theme that are provided
  */
-const createTypography = (
-    getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>
-): React.FC<TypographyProps> => ({ font, fontSize, color, style, styles = {}, ...props }): JSX.Element => {
-    const theme = useTheme(props.theme);
+const createTypography =
+    (getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> =>
+    ({ font, fontSize, color, style, styles = {}, ...props }): JSX.Element => {
+        const theme = useTheme(props.theme);
 
-    let customStyle: StyleProp<TextStyle> = {};
-    if (fontSize) {
-        customStyle.fontSize = fontSize;
-    }
-    if (font) {
-        customStyle = {
-            ...customStyle,
-            ...theme.fonts[font],
-        };
-    }
-    let appliedColor = theme.colors.text;
-    if (color) {
-        if (['primary', 'accent', 'error', 'text', 'notification'].includes(color || ''))
-            appliedColor = theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
-        else appliedColor = color;
-    }
-    return (
-        <Text
-            {...props}
-            style={[
-                { color: appliedColor },
-                { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
-                Platform.OS === 'android' ? { textAlign: 'left' } : {},
-                getStyle(theme),
-                customStyle,
-                styles.root,
-                style,
-            ]}
-        />
-    );
-};
+        let customStyle: StyleProp<TextStyle> = {};
+        if (fontSize) {
+            customStyle.fontSize = fontSize;
+        }
+        if (font) {
+            customStyle = {
+                ...customStyle,
+                ...theme.fonts[font],
+            };
+        }
+        let appliedColor = theme.colors.text;
+        if (color) {
+            if (['primary', 'accent', 'error', 'text', 'notification'].includes(color || ''))
+                appliedColor = theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
+            else appliedColor = color;
+        }
+        return (
+            <Text
+                {...props}
+                style={[
+                    { color: appliedColor },
+                    { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
+                    Platform.OS === 'android' ? { textAlign: 'left' } : {},
+                    getStyle(theme),
+                    customStyle,
+                    styles.root,
+                    style,
+                ]}
+            />
+        );
+    };
 
 /**
  * [H1](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography) component

@@ -1,7 +1,7 @@
 import React from 'react';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { Header } from '.';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { EdgeInsets, IconFamily } from '../__types__';
 import { cleanup } from '@testing-library/react-native';
 
