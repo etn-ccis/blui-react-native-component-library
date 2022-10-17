@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-native-components",
-    "version": "7.0.0-beta.0",
+    "version": "7.0.0",
     "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
     "description": "Reusable React Native components for Brightlayer UI applications",
     "repository": {
@@ -39,18 +39,18 @@
         "react-native-modal": ">=13.0.1"
     },
     "peerDependencies": {
-        "@brightlayer-ui/react-native-vector-icons": "^2.0.0-beta.0",
+        "@brightlayer-ui/react-native-vector-icons": "^2.0.0",
         "react": "^17.0.0 || ^18.0.0",
         "react-native": "0.68.0 || 0.69.0 || ^0.70.0",
         "react-native-paper": "^4.0.0",
         "react-native-safe-area-context": "^4.0.0",
-        "react-native-vector-icons": "^7.0.0 || ^8.0.0 || ^9.0.0"
+        "react-native-vector-icons": "^9.0.0"
     },
     "devDependencies": {
         "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/icons-svg": "^1.11.0",
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "@brightlayer-ui/react-native-vector-icons": "^2.0.0-beta.0",
+        "@brightlayer-ui/react-native-vector-icons": "^2.0.0",
         "@faker-js/faker": "^7.5.0",
         "@testing-library/react-native": "^11.0.0",
         "@types/color": "^3.0.3",
