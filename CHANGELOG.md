@@ -1,11 +1,11 @@
 # Change Log
 
-## v7.0.0 (October 14, 2022)
+## v7.0.0 (October 17, 2022)
 
 ### Changed
 
 -   Update to build with react-native 0.70.0.
--   Update peer dependencies to use "react-native-vector-icons": "^9.0.0".
+-   This package now requires that you are using react-native-vector-icons version 9.0.0 or higher in your project.
 
 ## v6.0.3 (August 4, 2022)
 
