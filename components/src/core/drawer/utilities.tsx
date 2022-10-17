@@ -12,10 +12,8 @@ import { AllSharedProps } from './types';
  * @returns The child value if it is defined, otherwise the parent value
  */
 
-/* eslint-disable */
 export const mergeStyleProp = <T extends unknown>(parentValue: T, childValue: T): T | undefined =>
     childValue !== undefined ? childValue : parentValue;
-/* eslint-enable */
 
 /**
  * inheritSharedProps function
