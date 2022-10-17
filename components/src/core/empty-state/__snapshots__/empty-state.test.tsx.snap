@@ -3,8 +3,8 @@
 exports[`EmptyState Tests  Actions Renders 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
@@ -17,24 +17,24 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
 >
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "marginTop": 32,
             "textAlign": "center",
           },
@@ -47,8 +47,8 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
   </Text>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "marginTop": 32,
         },
         undefined,
@@ -56,8 +56,9 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     }
   >
     <View
+      collapsable={false}
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "borderColor": "transparent",
           "borderRadius": 4,
@@ -65,14 +66,21 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
           "borderWidth": 0,
           "elevation": 0,
           "minWidth": 64,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
         }
       }
     >
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
-            "disabled": undefined,
+          {
+            "disabled": true,
           }
         }
         accessible={true}
@@ -85,11 +93,11 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "overflow": "hidden",
             },
-            Object {
+            {
               "borderRadius": 4,
             },
           ]
@@ -97,8 +105,8 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "justifyContent": "center",
@@ -109,7 +117,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "marginLeft": 12,
                 "marginRight": -4,
               }
@@ -117,19 +125,20 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
           >
             <Text
               allowFontScaling={false}
+              selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": undefined,
                     "fontSize": 12,
                   },
                   undefined,
-                  Object {
+                  {
                     "fontFamily": "Material Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
             >
@@ -140,32 +149,32 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
             numberOfLines={1}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#000000",
                   "fontFamily": "System",
                   "fontWeight": "400",
                 },
-                Object {
+                {
                   "textAlign": "left",
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "letterSpacing": 1,
                     "marginHorizontal": 16,
                     "marginVertical": 9,
                     "textAlign": "center",
                   },
                   undefined,
-                  Object {
+                  {
                     "textTransform": "uppercase",
                   },
-                  Object {
+                  {
                     "color": "#6200ee",
                     "fontFamily": "System",
                     "fontWeight": "500",
                   },
-                  Object {
+                  {
                     "fontFamily": "System",
                     "fontWeight": "500",
                   },
@@ -186,8 +195,8 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
 exports[`EmptyState Tests  Description Renders 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
@@ -200,24 +209,24 @@ exports[`EmptyState Tests  Description Renders 1`] = `
 >
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "marginTop": 32,
             "textAlign": "center",
           },
@@ -230,24 +239,24 @@ exports[`EmptyState Tests  Description Renders 1`] = `
   </Text>
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 14,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "color": "#000000",
             "textAlign": "center",
           },
@@ -264,8 +273,8 @@ exports[`EmptyState Tests  Description Renders 1`] = `
 exports[`EmptyState Tests  Icon Renders 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
@@ -278,19 +287,20 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
 >
   <Text
     allowFontScaling={true}
+    selectable={false}
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
           "fontSize": 100,
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "Material Design Icons",
           "fontStyle": "normal",
           "fontWeight": "normal",
         },
-        Object {},
+        {},
       ]
     }
   >
@@ -298,24 +308,24 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
   </Text>
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "marginTop": 32,
             "textAlign": "center",
           },
@@ -332,8 +342,8 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
 exports[`EmptyState Tests  Only Title Renders 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
@@ -346,24 +356,24 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
 >
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "marginTop": 32,
             "textAlign": "center",
           },
@@ -380,8 +390,8 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
 exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
@@ -394,24 +404,24 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
 >
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 20,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "marginTop": 32,
             "textAlign": "center",
           },
@@ -424,24 +434,24 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
   </Text>
   <Text
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "#000000",
         },
-        Object {
+        {
           "writingDirection": "ltr",
         },
-        Object {},
-        Object {
+        {},
+        {
           "fontFamily": "System",
           "fontSize": 14,
           "fontWeight": "500",
           "letterSpacing": 0,
         },
-        Object {},
+        {},
         undefined,
-        Array [
-          Object {
+        [
+          {
             "color": "#000000",
             "textAlign": "center",
           },
@@ -454,8 +464,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
   </Text>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "marginTop": 32,
         },
         undefined,
@@ -463,8 +473,9 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     }
   >
     <View
+      collapsable={false}
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "borderColor": "transparent",
           "borderRadius": 4,
@@ -472,14 +483,21 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
           "borderWidth": 0,
           "elevation": 0,
           "minWidth": 64,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
         }
       }
     >
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
-            "disabled": undefined,
+          {
+            "disabled": true,
           }
         }
         accessible={true}
@@ -492,11 +510,11 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "overflow": "hidden",
             },
-            Object {
+            {
               "borderRadius": 4,
             },
           ]
@@ -504,8 +522,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "justifyContent": "center",
@@ -516,7 +534,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "marginLeft": 12,
                 "marginRight": -4,
               }
@@ -524,19 +542,20 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
           >
             <Text
               allowFontScaling={false}
+              selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": undefined,
                     "fontSize": 12,
                   },
                   undefined,
-                  Object {
+                  {
                     "fontFamily": "Material Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
             >
@@ -547,32 +566,32 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
             numberOfLines={1}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#000000",
                   "fontFamily": "System",
                   "fontWeight": "400",
                 },
-                Object {
+                {
                   "textAlign": "left",
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "letterSpacing": 1,
                     "marginHorizontal": 16,
                     "marginVertical": 9,
                     "textAlign": "center",
                   },
                   undefined,
-                  Object {
+                  {
                     "textTransform": "uppercase",
                   },
-                  Object {
+                  {
                     "color": "#6200ee",
                     "fontFamily": "System",
                     "fontWeight": "500",
                   },
-                  Object {
+                  {
                     "fontFamily": "System",
                     "fontWeight": "500",
                   },

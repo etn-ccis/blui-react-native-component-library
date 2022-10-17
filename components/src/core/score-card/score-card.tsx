@@ -375,6 +375,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
     const defaultStyles = scoreCardStyles(theme, props, fontScale);
 
     return (
+        // @ts-ignore bad types from RNP
         <Card elevation={1} style={[defaultStyles.root, styles.root, style]} {...cardProps}>
             <View style={[defaultStyles.header, styles.header]}>
                 <BackgroundImage headerBackgroundImage={headerBackgroundImage} style={styles.backgroundImage} />

@@ -13,8 +13,9 @@ describe('InfoListItem', () => {
         describe('string subtitle', () => {
             afterEach(cleanup);
             it('renders as a Text element when a string is passed in', () => {
-                const instance = TestRenderer.create(<InfoListItem title={'some title'} subtitle={'some subtitle'} />)
-                    .root;
+                const instance = TestRenderer.create(
+                    <InfoListItem title={'some title'} subtitle={'some subtitle'} />
+                ).root;
 
                 const textElements = instance.findAllByType(Text);
 
@@ -79,8 +80,9 @@ describe('InfoListItem', () => {
             });
 
             it('does not appear when there is a rightComponent', () => {
-                instance = TestRenderer.create(<InfoListItem title={'some title'} chevron rightComponent={<View />} />)
-                    .root;
+                instance = TestRenderer.create(
+                    <InfoListItem title={'some title'} chevron rightComponent={<View />} />
+                ).root;
                 expect(instance.findAllByType(Icon)).toHaveLength(0);
             });
         });
