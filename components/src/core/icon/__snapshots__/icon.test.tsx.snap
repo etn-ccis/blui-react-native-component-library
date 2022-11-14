@@ -8,13 +8,10 @@ exports[`Icon Tests  renders in a component 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 16,
-      },
-      undefined,
-      undefined,
-      {
         "padding": 8,
       },
+      undefined,
+      undefined,
     ]
   }
 >

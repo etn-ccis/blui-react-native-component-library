@@ -8,13 +8,10 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 16,
-      },
-      undefined,
-      undefined,
-      {
         "padding": 8,
       },
+      undefined,
+      undefined,
     ]
   }
 >
@@ -203,13 +200,10 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 16,
-      },
-      undefined,
-      undefined,
-      {
         "padding": 8,
       },
+      undefined,
+      undefined,
     ]
   }
 >
@@ -284,13 +278,10 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 16,
-      },
-      undefined,
-      undefined,
-      {
         "padding": 8,
       },
+      undefined,
+      undefined,
     ]
   }
 >
@@ -356,13 +347,10 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 16,
-      },
-      undefined,
-      undefined,
-      {
         "padding": 8,
       },
+      undefined,
+      undefined,
     ]
   }
 >
@@ -407,13 +395,10 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "padding": 16,
-      },
-      undefined,
-      undefined,
-      {
         "padding": 8,
       },
+      undefined,
+      undefined,
     ]
   }
 >

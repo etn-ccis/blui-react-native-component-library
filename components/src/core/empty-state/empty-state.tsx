@@ -18,7 +18,7 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 16,
+            padding: 8,
         },
         title: {
             textAlign: 'center',
@@ -109,7 +109,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, style, { padding: 8 }]} {...viewProps}>
+        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
             <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
