@@ -12,6 +12,9 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
       },
       undefined,
       undefined,
+      {
+        "padding": 8,
+      },
     ]
   }
 >
@@ -204,6 +207,9 @@ exports[`EmptyState Tests  Description Renders 1`] = `
       },
       undefined,
       undefined,
+      {
+        "padding": 8,
+      },
     ]
   }
 >
@@ -282,6 +288,9 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
       },
       undefined,
       undefined,
+      {
+        "padding": 8,
+      },
     ]
   }
 >
@@ -351,6 +360,9 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
       },
       undefined,
       undefined,
+      {
+        "padding": 8,
+      },
     ]
   }
 >
@@ -399,6 +411,9 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
       },
       undefined,
       undefined,
+      {
+        "padding": 8,
+      },
     ]
   }
 >
