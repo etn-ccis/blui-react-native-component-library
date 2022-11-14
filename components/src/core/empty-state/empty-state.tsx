@@ -109,7 +109,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     }, [icon, normalizeIconSize, getColor, iconColor]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
+        <View style={[defaultStyles.root, styles.root, style, { padding: 8 }]} {...viewProps}>
             {getIcon()}
             <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
