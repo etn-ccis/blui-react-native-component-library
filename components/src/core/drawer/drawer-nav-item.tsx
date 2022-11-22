@@ -14,7 +14,7 @@ import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
-import { getPrimary500 } from '../utility/shared';
+import { getPrimary500, MAX_FONT_SCALE } from '../utility/shared';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -134,7 +134,7 @@ const makeStyles = (
         depth,
         nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.background, // TODO: don't hardcode?
     } = props;
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
 
     return StyleSheet.create({
         root: {

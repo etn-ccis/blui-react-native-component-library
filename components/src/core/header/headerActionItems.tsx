@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, PixelRatio } 
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { HeaderActionComponent, HeaderIcon as HeaderIconType, IconFamily } from '../__types__';
+import { MAX_FONT_SCALE } from '../utility/shared';
 
 const ClearIcon: IconFamily = { name: 'clear' };
 const SearchIcon: IconFamily = { name: 'search' };
@@ -12,7 +13,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
     actionItem: ViewStyle;
     component: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
 
     return StyleSheet.create({
         root: {

@@ -11,6 +11,7 @@ import {
     ViewProps,
     PixelRatio,
     TouchableOpacity,
+    Text,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
@@ -19,7 +20,7 @@ import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 import { Icon } from '../icon';
-import { getPrimary500 } from '../utility/shared';
+import { getPrimary500, MAX_FONT_SCALE } from '../utility/shared';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -36,7 +37,7 @@ const makeStyles = (
     backgroundImageWrapper: ViewStyle;
     backgroundImage: ImageStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
 
     return StyleSheet.create({
         root: {
@@ -178,7 +179,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <Icon source={icon} size={24} color={fontColor || 'white'} />
+                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling />
                     </TouchableOpacity>
                 </View>
             );

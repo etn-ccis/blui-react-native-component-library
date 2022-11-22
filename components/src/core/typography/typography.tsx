@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TextProps, TextStyle, StyleProp, I18nManager, Platform } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { MAX_FONT_SCALE } from '../utility/shared';
 
 export type TypographyProps = {
     /**
@@ -71,6 +72,8 @@ const createTypography =
                     styles.root,
                     style,
                 ]}
+                allowFontScaling
+                maxFontSizeMultiplier={MAX_FONT_SCALE}
             />
         );
     };

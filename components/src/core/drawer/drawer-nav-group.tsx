@@ -8,6 +8,7 @@ import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { MAX_FONT_SCALE } from '../utility/shared';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -42,7 +43,7 @@ const makeStyles = (
     title: TextStyle;
     divider: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
     return StyleSheet.create({
         root: {},
         textContent: {

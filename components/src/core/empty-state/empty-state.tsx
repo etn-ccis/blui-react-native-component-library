@@ -5,6 +5,7 @@ import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
+import { MAX_FONT_SCALE } from '../utility/shared';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -12,8 +13,10 @@ type EmptyStateStyles = {
     description?: TextStyle;
     actions?: ViewStyle;
 };
-const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleSheet.NamedStyles<EmptyStateStyles> =>
-    StyleSheet.create({
+const makeStyles = (theme: ReactNativePaper.Theme): StyleSheet.NamedStyles<EmptyStateStyles> => {
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+
+    return StyleSheet.create({
         root: {
             flex: 1,
             justifyContent: 'center',
@@ -34,6 +37,7 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleShee
             marginTop: 16 * fontScale,
         },
     });
+};
 
 export type EmptyStateProps = ViewProps & {
     /** The primary text to display (first line) */
@@ -89,7 +93,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(theme, PixelRatio.getFontScale());
+    const defaultStyles = makeStyles(theme);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;

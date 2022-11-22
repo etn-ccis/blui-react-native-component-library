@@ -31,6 +31,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { MAX_FONT_SCALE } from '../utility/shared';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
@@ -41,7 +42,7 @@ const headerStyles = (
     content: ViewStyle;
     search: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
     return StyleSheet.create({
         root: {
             width: '100%',
@@ -265,7 +266,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
     const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);

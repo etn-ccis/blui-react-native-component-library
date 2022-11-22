@@ -5,6 +5,7 @@ import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { MAX_FONT_SCALE } from '../utility/shared';
 
 export type UserMenuProps = {
     /** Avatar component to display as the menu trigger */
@@ -75,7 +76,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     } = props;
     const avatarSize = avatar.props.size || 40;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
     const defaultStyles = useStyles(theme, fontScale, avatarSize);
     const insets = useSafeAreaInsets();
 

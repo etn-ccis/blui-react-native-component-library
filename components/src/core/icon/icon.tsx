@@ -6,6 +6,7 @@ import MatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { Body1 } from '../typography';
 import { useTheme } from 'react-native-paper';
+import { MAX_FONT_SCALE } from '../utility/shared';
 
 export type IconProps = IconComponentProps & {
     source: IconSource;
@@ -69,6 +70,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         allowFontScaling={scale}
                         color={color}
                         style={flip ? flipIconStyle : {}}
+                        maxFontSizeMultiplier={MAX_FONT_SCALE}
                     />
                 );
             case 'brightlayer-ui':
@@ -79,6 +81,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         allowFontScaling={scale}
                         color={color}
                         style={flip ? flipIconStyle : {}}
+                        maxFontSizeMultiplier={MAX_FONT_SCALE}
                     />
                 );
             case 'material':
@@ -90,6 +93,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         allowFontScaling={scale}
                         color={color}
                         style={flip ? flipIconStyle : {}}
+                        maxFontSizeMultiplier={MAX_FONT_SCALE}
                     />
                 );
         }
