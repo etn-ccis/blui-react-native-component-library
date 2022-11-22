@@ -16,6 +16,8 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -35,7 +37,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
         undefined,
         [
           {
-            "marginTop": 32,
+            "marginTop": 20.8,
             "textAlign": "center",
           },
           undefined,
@@ -49,7 +51,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     style={
       [
         {
-          "marginTop": 32,
+          "marginTop": 20.8,
         },
         undefined,
       ]
@@ -208,6 +210,8 @@ exports[`EmptyState Tests  Description Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -227,7 +231,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
         undefined,
         [
           {
-            "marginTop": 32,
+            "marginTop": 20.8,
             "textAlign": "center",
           },
           undefined,
@@ -238,6 +242,8 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     Test
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -287,6 +293,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
 >
   <Text
     allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     selectable={false}
     style={
       [
@@ -307,6 +314,8 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     󰞱
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -326,7 +335,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
         undefined,
         [
           {
-            "marginTop": 32,
+            "marginTop": 20.8,
             "textAlign": "center",
           },
           undefined,
@@ -355,6 +364,8 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -374,7 +385,7 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
         undefined,
         [
           {
-            "marginTop": 32,
+            "marginTop": 20.8,
             "textAlign": "center",
           },
           undefined,
@@ -403,6 +414,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -422,7 +435,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
         undefined,
         [
           {
-            "marginTop": 32,
+            "marginTop": 20.8,
             "textAlign": "center",
           },
           undefined,
@@ -433,6 +446,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     EmptyState
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={1.3}
     style={
       [
         {
@@ -466,7 +481,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     style={
       [
         {
-          "marginTop": 32,
+          "marginTop": 20.8,
         },
         undefined,
       ]
