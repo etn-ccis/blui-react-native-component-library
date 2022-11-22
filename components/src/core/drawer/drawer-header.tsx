@@ -11,7 +11,6 @@ import {
     ViewProps,
     PixelRatio,
     TouchableOpacity,
-    Text,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
