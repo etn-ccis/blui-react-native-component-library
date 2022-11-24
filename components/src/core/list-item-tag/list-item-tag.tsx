@@ -4,7 +4,8 @@ import { useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white, black } from '@brightlayer-ui/colors';
 import { Overline, TypographyProps } from '../typography';
-import { getPrimary500, MAX_FONT_SCALE } from '../utility/shared';
+import { getPrimary500 } from '../utility/shared';
+import { useFontScaleContext } from '..';
 
 export type ListItemTagProps = TypographyProps & {
     /**
@@ -77,7 +78,8 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         ...otherTextProps
     } = props;
     const theme = useTheme(themeOverride);
-    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+    const { maxScaleFont } = useFontScaleContext();
+    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     const defaultStyles = listItemTagStyles(props, theme, fontScale);
 
     return (

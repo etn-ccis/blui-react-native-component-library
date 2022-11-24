@@ -6,13 +6,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
-import { MAX_FONT_SCALE } from '../utility/shared';
+import { useFontScaleContext } from '..';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     navigation: ViewStyle;
     flipIcon: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+    const { maxScaleFont } = useFontScaleContext();
+    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     return StyleSheet.create({
         navigation: {
             height: 40 * fontScale,

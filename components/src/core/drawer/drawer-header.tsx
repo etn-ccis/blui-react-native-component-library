@@ -19,13 +19,15 @@ import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
 import { Icon } from '../icon';
-import { getPrimary500, MAX_FONT_SCALE } from '../utility/shared';
+import { getPrimary500 } from '../utility/shared';
+import { useFontScaleContext } from '.';
 
 const makeStyles = (
     props: DrawerHeaderProps,
     theme: ReactNativePaper.Theme,
     insets: EdgeInsets,
-    height: number
+    height: number,
+    maxScaleFont: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     icon: ViewStyle;
@@ -36,7 +38,7 @@ const makeStyles = (
     backgroundImageWrapper: ViewStyle;
     backgroundImage: ImageStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
 
     return StyleSheet.create({
         root: {
@@ -166,7 +168,8 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT);
+    const { maxScaleFont } = useFontScaleContext();
+    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT, maxScaleFont);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {

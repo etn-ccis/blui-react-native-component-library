@@ -15,7 +15,7 @@ import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
-import { MAX_FONT_SCALE } from '../utility/shared';
+import { useFontScaleContext } from '..';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -129,7 +129,8 @@ export const Hero: React.FC<HeroProps> = (props) => {
     } = props;
 
     const theme = useTheme(themeOverride);
-    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+    const { maxScaleFont } = useFontScaleContext();
+    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     const defaultStyles = makeStyles(fontScale);
 
     const normalizeIconSize = useCallback((): number => {

@@ -16,7 +16,7 @@ import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
-import { MAX_FONT_SCALE } from '../utility/shared';
+import { useFontScaleContext } from '..';
 
 const backgroundImageStyles = StyleSheet.create({
     root: {
@@ -208,7 +208,8 @@ type ActionPanelProps = {
  */
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const { actionItems, color = 'white', styles = {} } = props;
-    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+    const { maxScaleFont } = useFontScaleContext();
+    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     const defaultStyles = actionPanelStyles(fontScale);
 
     const getIcon = useCallback(
@@ -372,7 +373,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         style,
         ...cardProps
     } = otherProps;
-    const fontScale = PixelRatio.getFontScale() < MAX_FONT_SCALE ? PixelRatio.getFontScale() : MAX_FONT_SCALE;
+    const { maxScaleFont } = useFontScaleContext();
+    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     const defaultStyles = scoreCardStyles(theme, props, fontScale);
 
     return (
