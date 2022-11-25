@@ -168,7 +168,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-    const { maxScaleFont } = useFontScaleContext();
+    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
     const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT, maxScaleFont);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
@@ -192,10 +192,21 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         (): ReactNode =>
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <H6 style={[defaultStyles.title, styles.title]} numberOfLines={1}>
+                    <H6
+                        style={[defaultStyles.title, styles.title]}
+                        numberOfLines={1}
+                        maxFontSizeMultiplier={maxScaleFont}
+                        allowFontScaling={!disableFontScaling}
+                    >
                         {title}
                     </H6>
-                    <Subtitle1 font={'light'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
+                    <Subtitle1
+                        font={'light'}
+                        style={[defaultStyles.subtitle, styles.subtitle]}
+                        numberOfLines={1}
+                        maxFontSizeMultiplier={maxScaleFont}
+                        allowFontScaling={!disableFontScaling}
+                    >
                         {subtitle}
                     </Subtitle1>
                 </View>

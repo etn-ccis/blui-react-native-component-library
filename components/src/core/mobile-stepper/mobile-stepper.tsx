@@ -5,6 +5,7 @@ import * as Colors from '@brightlayer-ui/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Body1 } from '../typography';
 import { getPrimary500 } from '../utility/shared';
+import { useFontScaleContext } from '..';
 
 const makeStyles = (
     props: MobileStepperProps,
@@ -133,6 +134,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
  */
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const theme = useTheme(props.theme);
+    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
     const {
         activeColor = getPrimary500(theme) || theme.colors.primary,
         activeStep,
@@ -173,7 +175,11 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     })}
 
                 {variant === 'text' && (
-                    <Body1 style={[defaultStyles.text, styles.text]}>
+                    <Body1
+                        style={[defaultStyles.text, styles.text]}
+                        maxFontSizeMultiplier={maxScaleFont}
+                        allowFontScaling={!disableFontScaling}
+                    >
                         {adjustedActiveStep + 1} / {adjustedSteps}
                     </Body1>
                 )}

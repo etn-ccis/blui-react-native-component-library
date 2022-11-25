@@ -6,6 +6,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
+import { useFontScaleContext } from '..';
 
 const prefixUnitWhitelist = ['$'];
 const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
@@ -102,7 +103,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-
+    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.text;
         return color;
@@ -136,6 +137,8 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                                 },
                                 styles.units,
                             ]}
+                            maxFontSizeMultiplier={maxScaleFont}
+                            allowFontScaling={!disableFontScaling}
                         >
                             {units}
                         </Body1>
@@ -171,9 +174,16 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 testID={'text-wrapper'}
                 fontSize={fontSize}
                 style={[{ color: getColor() }]}
+                maxFontSizeMultiplier={maxScaleFont}
+                allowFontScaling={!disableFontScaling}
             >
                 {prefixUnits()}
-                <Subtitle1 fontSize={fontSize} style={[{ color: getColor() }, styles.value]}>
+                <Subtitle1
+                    fontSize={fontSize}
+                    style={[{ color: getColor() }, styles.value]}
+                    maxFontSizeMultiplier={maxScaleFont}
+                    allowFontScaling={!disableFontScaling}
+                >
                     {value}
                 </Subtitle1>
                 {suffixUnits()}

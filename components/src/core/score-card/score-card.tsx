@@ -83,6 +83,7 @@ type HeaderTextProps = {
  */
 const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const { title, subtitle, info, color, styles = {} } = props;
+    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
     const textColor = color || 'white';
     return (
         <View style={[{ flex: 1 }, styles.root]}>
@@ -92,6 +93,8 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                 font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
+                maxFontSizeMultiplier={maxScaleFont}
+                allowFontScaling={!disableFontScaling}
             >
                 {title}
             </Typography.H6>
@@ -102,6 +105,8 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                     font={'regular'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
+                    maxFontSizeMultiplier={maxScaleFont}
+                    allowFontScaling={!disableFontScaling}
                 >
                     {subtitle}
                 </Typography.Subtitle2>
@@ -113,6 +118,8 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                     font={'light'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
+                    maxFontSizeMultiplier={maxScaleFont}
+                    allowFontScaling={!disableFontScaling}
                 >
                     {info}
                 </Typography.Subtitle2>

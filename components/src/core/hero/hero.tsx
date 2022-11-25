@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
     } = props;
 
     const theme = useTheme(themeOverride);
-    const { maxScaleFont } = useFontScaleContext();
+    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
     const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     const defaultStyles = makeStyles(fontScale);
 
@@ -166,7 +166,13 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={20} {...ChannelValueProps} />}
                 {children}
             </View>
-            <Body1 style={[defaultStyles.label, styles.label]} numberOfLines={1} ellipsizeMode={'tail'}>
+            <Body1
+                style={[defaultStyles.label, styles.label]}
+                numberOfLines={1}
+                ellipsizeMode={'tail'}
+                maxFontSizeMultiplier={maxScaleFont}
+                allowFontScaling={!disableFontScaling}
+            >
                 {label}
             </Body1>
         </TouchableOpacity>

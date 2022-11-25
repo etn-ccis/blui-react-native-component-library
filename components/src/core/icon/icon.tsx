@@ -43,7 +43,7 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const { maxScaleFont } = useFontScaleContext();
+    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
     const { color = theme.colors.text, size = 24, allowFontScaling = true, source, ...rest } = otherProps;
     const deviceDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
     // const fontScale = scale ? PixelRatio.getFontScale() : 1;
@@ -128,7 +128,15 @@ export const Icon: React.FC<IconProps> = (props) => {
 
     // String
     if (typeof source === 'string') {
-        return <Body1 style={[{ fontSize: size, color: color }]}>{source}</Body1>;
+        return (
+            <Body1
+                style={[{ fontSize: size, color: color }]}
+                maxFontSizeMultiplier={maxScaleFont}
+                allowFontScaling={!disableFontScaling}
+            >
+                {source}
+            </Body1>
+        );
     }
 
     return null;
