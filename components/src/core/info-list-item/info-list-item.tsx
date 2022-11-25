@@ -303,7 +303,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
+    const { maxScaleFont } = useFontScaleContext();
     const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
@@ -386,13 +386,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             ) : null}
             {leftComponent}
             <View style={[defaultStyles.mainContent, styles.mainContent]}>
-                <Subtitle1
-                    style={[defaultStyles.title, styles.title]}
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                    maxFontSizeMultiplier={maxScaleFont}
-                    allowFontScaling={!disableFontScaling}
-                >
+                <Subtitle1 style={[defaultStyles.title, styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>
                     {title}
                 </Subtitle1>
                 <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>

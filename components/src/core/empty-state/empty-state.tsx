@@ -93,7 +93,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
+    const { maxScaleFont } = useFontScaleContext();
     const defaultStyles = makeStyles(theme, maxScaleFont);
 
     const normalizeIconSize = useCallback((): number => {
@@ -116,21 +116,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
-            <H6
-                style={[defaultStyles.title, styles.title]}
-                maxFontSizeMultiplier={maxScaleFont}
-                allowFontScaling={!disableFontScaling}
-            >
-                {title}
-            </H6>
+            <H6 style={[defaultStyles.title, styles.title]}>{title}</H6>
             {description ? (
-                <Subtitle2
-                    style={[defaultStyles.description, styles.description]}
-                    maxFontSizeMultiplier={maxScaleFont}
-                    allowFontScaling={!disableFontScaling}
-                >
-                    {description}
-                </Subtitle2>
+                <Subtitle2 style={[defaultStyles.description, styles.description]}>{description}</Subtitle2>
             ) : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>

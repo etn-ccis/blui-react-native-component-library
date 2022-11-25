@@ -146,7 +146,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const { maxScaleFont, disableFontScaling } = useFontScaleContext();
+    const { maxScaleFont } = useFontScaleContext();
     const defaultStyles = makeStyles(props, theme, insets, maxScaleFont);
     const { activeItem } = useDrawerContext();
 
@@ -190,13 +190,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 {titleContent !== null && <View style={{ paddingLeft: insets.left }}>{titleContent}</View>}
                 {!titleContent && title && (
                     <View style={[defaultStyles.textContent, styles.textContent]}>
-                        <Overline
-                            style={[defaultStyles.title, styles.title]}
-                            maxFontSizeMultiplier={maxScaleFont}
-                            allowFontScaling={!disableFontScaling}
-                        >
-                            {title}
-                        </Overline>
+                        <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
                         <Divider style={[defaultStyles.divider, styles.divider]} />
                     </View>
                 )}
