@@ -1,5 +1,11 @@
 # Change Log
 
+## v7.0.1 (Unreleased)
+
+### Fixed
+
+-   Issue with the extra large accessibilty sizes on iOS [#224](https://github.com/brightlayer-ui/react-native-component-library/issues/224).
+
 ## v7.0.0 (October 17, 2022)
 
 ### Changed
