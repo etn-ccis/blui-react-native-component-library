@@ -1,37 +1,26 @@
 import React from 'react';
 import { ListItemTag } from '.';
-import { Overline } from '..';
-import TestRenderer from 'react-test-renderer';
 import { cleanup } from '@testing-library/react-native';
+import TestRenderer from 'react-test-renderer';
 
 describe('ListItemTag', () => {
     afterEach(cleanup);
-    it('renders the label text correctly', () => {
-        const instance = TestRenderer.create(<ListItemTag label={'label text'} />).root;
-        const textComponent = instance.findAllByType(Overline)[0];
-        expect(textComponent.props.children).toEqual('label text');
+    it('ListItemTag Renders', () => {
+        const tree = TestRenderer.create(<ListItemTag label={'label text'} />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
-    it('renders the background color and font color correctly', () => {
-        const instance = TestRenderer.create(
+    it('Renders the background color and font color correctly', () => {
+        const tree = TestRenderer.create(
             <ListItemTag label={'label text'} backgroundColor={'yellow'} fontColor={'brown'} />
-        ).root;
-        const textComponent = instance.findAllByType(Overline)[0];
-        expect(textComponent.props.style[0]).toMatchObject({
-            backgroundColor: 'yellow',
-            color: 'brown',
-        });
+        ).toJSON;
+        expect(tree).toMatchSnapshot();
     });
 
-    it('accepts style override', () => {
-        const instance = TestRenderer.create(
+    it('Accepts style override', () => {
+        const tree = TestRenderer.create(
             <ListItemTag label={'label text'} style={{ color: 'blue', borderRadius: 99, marginLeft: 1 }} />
-        ).root;
-        const textComponent = instance.findAllByType(Overline)[0];
-        expect(textComponent.props.style[2]).toMatchObject({
-            color: 'blue',
-            borderRadius: 99,
-            marginLeft: 1,
-        });
+        ).toJSON;
+        expect(tree).toMatchSnapshot();
     });
 });
