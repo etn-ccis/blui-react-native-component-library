@@ -80,10 +80,10 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
     const theme = useTheme(themeOverride);
     const { maxScale, disableScaling } = useFontScale();
     const fontScale = !disableScaling
-    ? PixelRatio.getFontScale() < maxScale
-        ? PixelRatio.getFontScale()
-        : maxScale
-    : 1;
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = listItemTagStyles(props, theme, fontScale);
 
     return (

@@ -78,10 +78,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const { maxScale, disableScaling } = useFontScale();
     const fontScale = !disableScaling
-    ? PixelRatio.getFontScale() < maxScale
-        ? PixelRatio.getFontScale()
-        : maxScale
-    : 1;
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = useStyles(theme, fontScale, avatarSize);
     const insets = useSafeAreaInsets();
 

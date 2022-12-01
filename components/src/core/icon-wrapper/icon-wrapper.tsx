@@ -73,11 +73,12 @@ export const wrapIcon = (arg: IconArg): ComponentType<WrapIconProps> => {
     return (props: WrapIconProps): JSX.Element => {
         const { allowFontScaling: inlineScaling = allowFontScaling, size, color } = props;
         const { maxScale, disableScaling } = useFontScale();
-        const fontScale = inlineScaling
-            || !disableScaling ? PixelRatio.getFontScale() < maxScale
-                ? PixelRatio.getFontScale()
-                : maxScale
-            : 1;
+        const fontScale =
+            inlineScaling || !disableScaling
+                ? PixelRatio.getFontScale() < maxScale
+                    ? PixelRatio.getFontScale()
+                    : maxScale
+                : 1;
         return (
             <IconClass
                 fill={color}

@@ -209,7 +209,11 @@ type ActionPanelProps = {
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const { actionItems, color = 'white', styles = {} } = props;
     const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling ? PixelRatio.getFontScale() < maxScale ? PixelRatio.getFontScale() : maxScale: 1;
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = actionPanelStyles(fontScale);
 
     const getIcon = useCallback(
@@ -374,7 +378,11 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         ...cardProps
     } = otherProps;
     const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling ? PixelRatio.getFontScale() < maxScale ? PixelRatio.getFontScale() : maxScale: 1;
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = scoreCardStyles(theme, props, fontScale);
 
     return (

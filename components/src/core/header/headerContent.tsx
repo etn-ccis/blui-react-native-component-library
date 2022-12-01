@@ -172,10 +172,10 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { headerHeight } = useHeaderHeight();
     const { maxScale, disableScaling } = useFontScale();
     const fontScale = !disableScaling
-    ? PixelRatio.getFontScale() < maxScale
-        ? PixelRatio.getFontScale()
-        : maxScale
-    : 1;
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
