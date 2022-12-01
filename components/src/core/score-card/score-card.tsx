@@ -16,7 +16,7 @@ import { useTheme, Card, Divider } from 'react-native-paper';
 import { HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
-import { useFontScaleContext } from '..';
+import { useFontScale } from '..';
 
 const backgroundImageStyles = StyleSheet.create({
     root: {
@@ -208,8 +208,8 @@ type ActionPanelProps = {
  */
 const ActionPanel: React.FC<ActionPanelProps> = (props) => {
     const { actionItems, color = 'white', styles = {} } = props;
-    const { maxScaleFont } = useFontScaleContext();
-    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
+    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = !disableScaling ? PixelRatio.getFontScale() < maxScale ? PixelRatio.getFontScale() : maxScale: 1;
     const defaultStyles = actionPanelStyles(fontScale);
 
     const getIcon = useCallback(
@@ -373,8 +373,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         style,
         ...cardProps
     } = otherProps;
-    const { maxScaleFont } = useFontScaleContext();
-    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
+    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = !disableScaling ? PixelRatio.getFontScale() < maxScale ? PixelRatio.getFontScale() : maxScale: 1;
     const defaultStyles = scoreCardStyles(theme, props, fontScale);
 
     return (

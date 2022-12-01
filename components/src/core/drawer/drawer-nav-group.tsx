@@ -6,7 +6,7 @@ import { Divider, useTheme } from 'react-native-paper';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
-import { NavGroupContext, useFontScaleContext } from './context';
+import { NavGroupContext, useFontScale } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type DrawerNavGroupStyles = {
@@ -36,14 +36,19 @@ const makeStyles = (
     props: DrawerNavGroupProps,
     theme: ReactNativePaper.Theme,
     insets: EdgeInsets,
-    maxScaleFont: number
+    maxScale: number,
+    disableScaling?: boolean
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     textContent: ViewStyle;
     title: TextStyle;
     divider: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     return StyleSheet.create({
         root: {},
         textContent: {
@@ -146,8 +151,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const { maxScaleFont } = useFontScaleContext();
-    const defaultStyles = makeStyles(props, theme, insets, maxScaleFont);
+    const { maxScale, disableScaling } = useFontScale();
+    const defaultStyles = makeStyles(props, theme, insets, maxScale, disableScaling);
     const { activeItem } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */

@@ -19,7 +19,7 @@ import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
-import { useFontScaleContext } from '..';
+import { useFontScale } from '..';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -303,8 +303,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const { maxScaleFont } = useFontScaleContext();
-    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
+    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
     const getIconColor = useCallback((): string => {

@@ -31,19 +31,24 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
-import { useFontScaleContext } from '..';
+import { useFontScale } from '..';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
     theme: ReactNativePaper.Theme,
-    maxScaleFont: number
+    maxScale: number,
+    disableScaling?: boolean
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
     search: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     return StyleSheet.create({
         root: {
             width: '100%',
@@ -261,14 +266,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
     } = props;
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
-    const { maxScaleFont } = useFontScaleContext();
+    const { maxScale, disableScaling } = useFontScale();
 
     const theme = useTheme(themeOverride);
-    const defaultStyles = headerStyles(props, theme, maxScaleFont);
+    const defaultStyles = headerStyles(props, theme, maxScale, disableScaling);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
-    const fontScale = PixelRatio.getFontScale() < maxScaleFont ? PixelRatio.getFontScale() : maxScaleFont;
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);
