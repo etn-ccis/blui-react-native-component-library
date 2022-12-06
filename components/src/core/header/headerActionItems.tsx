@@ -3,17 +3,24 @@ import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, PixelRatio } 
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { HeaderActionComponent, HeaderIcon as HeaderIconType, IconFamily } from '../__types__';
+import { useFontScale } from '..';
 
 const ClearIcon: IconFamily = { name: 'clear' };
 const SearchIcon: IconFamily = { name: 'search' };
 
-const makeStyles = (): StyleSheet.NamedStyles<{
+const makeStyles = (
+    maxScale: number,
+    disableScaling?: boolean
+): StyleSheet.NamedStyles<{
     root: ViewStyle;
     actionItem: ViewStyle;
     component: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
-
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     return StyleSheet.create({
         root: {
             flexDirection: 'row',
@@ -57,7 +64,8 @@ type ActionItemProps = {
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     const { actionItems, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();
-    const defaultStyles = makeStyles();
+    const { maxScale } = useFontScale();
+    const defaultStyles = makeStyles(maxScale);
 
     let items: Array<HeaderIconType | HeaderActionComponent> = actionItems || [];
 

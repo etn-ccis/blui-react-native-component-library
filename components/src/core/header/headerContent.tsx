@@ -17,6 +17,7 @@ import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useFontScale } from '..';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -169,7 +170,12 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-    const fontScale = PixelRatio.getFontScale();
+    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
@@ -324,7 +330,12 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
-    const fontScale = PixelRatio.getFontScale();
+    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = headerContentStyles;
 
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();

@@ -31,17 +31,24 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../hooks/usePrevious';
 import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useFontScale } from '..';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    maxScale: number,
+    disableScaling?: boolean
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
     search: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     return StyleSheet.create({
         root: {
             width: '100%',
@@ -259,13 +266,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
     } = props;
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
+    const { maxScale, disableScaling } = useFontScale();
 
     const theme = useTheme(themeOverride);
-    const defaultStyles = headerStyles(props, theme);
+    const defaultStyles = headerStyles(props, theme, maxScale, disableScaling);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);

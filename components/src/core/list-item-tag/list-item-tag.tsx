@@ -5,6 +5,7 @@ import Color from 'color';
 import { white, black } from '@brightlayer-ui/colors';
 import { Overline, TypographyProps } from '../typography';
 import { getPrimary500 } from '../utility/shared';
+import { useFontScale } from '..';
 
 export type ListItemTagProps = TypographyProps & {
     /**
@@ -77,7 +78,12 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         ...otherTextProps
     } = props;
     const theme = useTheme(themeOverride);
-    const fontScale = PixelRatio.getFontScale();
+    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     const defaultStyles = listItemTagStyles(props, theme, fontScale);
 
     return (

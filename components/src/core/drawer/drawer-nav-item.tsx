@@ -15,6 +15,7 @@ import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
 import { getPrimary500 } from '../utility/shared';
+import { useFontScale } from '.';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -111,7 +112,9 @@ const calcNestedPadding = (depth: number, insets: EdgeInsets): number =>
 
 const makeStyles = (
     props: DrawerNavItemProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    maxScale: number,
+    disableScaling?: boolean
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     activeBackground: ViewStyle;
@@ -134,8 +137,11 @@ const makeStyles = (
         depth,
         nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.background, // TODO: don't hardcode?
     } = props;
-    const fontScale = PixelRatio.getFontScale();
-
+    const fontScale = !disableScaling
+        ? PixelRatio.getFontScale() < maxScale
+            ? PixelRatio.getFontScale()
+            : maxScale
+        : 1;
     return StyleSheet.create({
         root: {
             backgroundColor: depth ? nestedBackgroundColor : backgroundColor || 'transparent',
@@ -177,7 +183,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // Destructure the props
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(props, theme);
+    const { maxScale, disableScaling } = useFontScale();
+    const defaultStyles = makeStyles(props, theme, maxScale, disableScaling);
     const { activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem || '');
