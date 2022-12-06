@@ -1,5 +1,11 @@
 # Change Log
 
+## v7.0.1 (Unreleased)
+
+### Added
+
+-   Added custom children to render inside the header ([#288](https://github.com/brightlayer-ui/react-native-component-library/issues/288)).
+
 ## v7.0.0 (October 17, 2022)
 
 ### Changed
