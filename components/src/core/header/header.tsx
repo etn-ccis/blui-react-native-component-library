@@ -762,6 +762,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                         }}
                                     />
                                 </Animated.View>
+                                {props.children}
                             </HeaderHeightContext.Provider>
                         </ColorContext.Provider>
                     </SearchContext.Provider>
