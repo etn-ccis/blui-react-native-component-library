@@ -278,9 +278,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
             ? PixelRatio.getFontScale()
             : maxScale
         : 1;
-    const collapsedHeight = getScaledHeight(collapsedHeightProp);
+    const collapsedHeight = getScaledHeight(collapsedHeightProp) * fontScale;
     const previousCollapsedHeight = usePrevious(collapsedHeight);
-    const expandedHeight = getScaledHeight(expandedHeightProp);
+    const expandedHeight = getScaledHeight(expandedHeightProp) * fontScale;
     const previousExpandedHeight = usePrevious(expandedHeight);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const previousScrollableDistance = usePrevious(scrollableDistance);
