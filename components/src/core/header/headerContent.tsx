@@ -61,7 +61,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
-
+    const { maxScale, minScale, disableScaling } = useFontScale();
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
@@ -83,6 +83,9 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             style={[getTitleStyle(), style]}
             numberOfLines={1}
             ellipsizeMode={'tail'}
+            allowFontScaling={!disableScaling}
+            maxFontSizeMultiplier={maxScale}
+            minimumFontScale={minScale}
         >
             {title}
         </Animated.Text>
@@ -119,6 +122,7 @@ type HeaderSubtitleProps = {
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
+    const { maxScale, minScale, disableScaling } = useFontScale();
 
     const getSubtitleStyle = useCallback(
         () => ({
@@ -138,6 +142,9 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
                 style={[getSubtitleStyle(), style]}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
+                minimumFontScale={minScale}
             >
                 {subtitle}
             </Animated.Text>
@@ -170,7 +177,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-    const { maxScale, disableScaling } = useFontScale();
+    const { maxScale, minScale, disableScaling } = useFontScale();
     const fontScale = !disableScaling
         ? PixelRatio.getFontScale() < maxScale
             ? PixelRatio.getFontScale()
@@ -210,6 +217,9 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 style={[getInfoStyle(), style]}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
+                minimumFontScale={minScale}
             >
                 {info}
             </Animated.Text>
@@ -240,6 +250,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
     const { theme, style } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
     const { color: textColor } = useColor();
+    const { maxScale, disableScaling } = useFontScale();
     const placeholderTextColor = color(textColor).fade(0.4).string();
 
     return (
@@ -265,6 +276,8 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
             returnKeyType={'search'}
             selectionColor={placeholderTextColor}
             underlineColorAndroid={'transparent'}
+            allowFontScaling={!disableScaling}
+            maxFontSizeMultiplier={maxScale}
         />
     );
 };
