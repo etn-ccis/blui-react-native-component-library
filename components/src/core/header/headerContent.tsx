@@ -9,15 +9,14 @@ import {
     TextStyle,
     I18nManager,
     Platform,
-    PixelRatio,
 } from 'react-native';
 import color from 'color';
 import { ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
-import { useFontScale } from '..';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -61,7 +60,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
-    const { maxScale, minScale, disableScaling } = useFontScale();
+    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
@@ -122,7 +121,7 @@ type HeaderSubtitleProps = {
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
-    const { maxScale, minScale, disableScaling } = useFontScale();
+    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
 
     const getSubtitleStyle = useCallback(
         () => ({
@@ -177,12 +176,8 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-    const { maxScale, minScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
+    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
+    const fontScale = useFontScale();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
@@ -250,7 +245,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
     const { theme, style } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
     const { color: textColor } = useColor();
-    const { maxScale, disableScaling } = useFontScale();
+    const { maxScale, disableScaling } = useFontScaleSettings();
     const placeholderTextColor = color(textColor).fade(0.4).string();
 
     return (
@@ -343,12 +338,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
-    const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
+    const fontScale = useFontScale();
     const defaultStyles = headerContentStyles;
 
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();

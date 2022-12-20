@@ -2,7 +2,7 @@ import React from 'react';
 import { Animated, Dimensions, ImageProps, ImageSourcePropType, ImageStyle, StyleSheet } from 'react-native';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
 type HeaderBackgroundImageStyles = {
     root: ImageStyle;

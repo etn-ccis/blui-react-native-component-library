@@ -1,13 +1,14 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Overline } from '../typography';
-import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle, PixelRatio } from 'react-native';
+import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './drawer-nav-item';
 import { Divider, useTheme } from 'react-native-paper';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
-import { NavGroupContext, useFontScale } from './context';
+import { NavGroupContext } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -36,20 +37,14 @@ const makeStyles = (
     props: DrawerNavGroupProps,
     theme: ReactNativePaper.Theme,
     insets: EdgeInsets,
-    maxScale: number,
-    disableScaling?: boolean
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     textContent: ViewStyle;
     title: TextStyle;
     divider: ViewStyle;
-}> => {
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {},
         textContent: {
             height: 52 * fontScale,
@@ -68,7 +63,6 @@ const makeStyles = (
             right: 0,
         },
     });
-};
 
 /**
  * findID function
@@ -151,8 +145,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const { maxScale, disableScaling } = useFontScale();
-    const defaultStyles = makeStyles(props, theme, insets, maxScale, disableScaling);
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(props, theme, insets, fontScale);
     const { activeItem } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */

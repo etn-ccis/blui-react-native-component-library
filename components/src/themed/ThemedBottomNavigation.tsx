@@ -2,7 +2,7 @@ import React from 'react';
 import { BottomNavigation, Provider, useTheme } from 'react-native-paper';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
 import Color from 'color';
-import { useFontScale } from '..';
+import { useFontScaleSettings } from '../core/__contexts__/font-scale-context';
 
 export type ThemedBottomNavigationProps = React.ComponentProps<typeof BottomNavigation>;
 
@@ -22,7 +22,7 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
         { colors: { notification: defaultTheme.colors.errorPalette?.dark || defaultTheme.colors.error } }
     );
     const fullTheme = useTheme(theme);
-    const { maxScale } = useFontScale();
+    const { maxScale, disableScaling } = useFontScaleSettings();
 
     const activeColor =
         props.activeColor ||
@@ -49,7 +49,7 @@ export const ThemedBottomNavigation: React.FC<ThemedBottomNavigationProps> = (pr
                     props.barStyle
                 )}
                 theme={theme}
-                labelMaxFontSizeMultiplier={maxScale}
+                labelMaxFontSizeMultiplier={disableScaling ? 1 : maxScale}
             />
         </Provider>
     );
