@@ -49,7 +49,7 @@ const makeStyles = (
         root: {
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || getPrimary500(theme) || theme.colors.primary,
-            height: height,
+            height: height * fontScale,
         },
         icon: {
             marginLeft: 16,
@@ -186,7 +186,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling />
+                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling={!disableScaling} />
                     </TouchableOpacity>
                 </View>
             );

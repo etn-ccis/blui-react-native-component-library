@@ -64,8 +64,8 @@ type ActionItemProps = {
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     const { actionItems, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();
-    const { maxScale } = useFontScale();
-    const defaultStyles = makeStyles(maxScale);
+    const { maxScale, disableScaling } = useFontScale();
+    const defaultStyles = makeStyles(maxScale, disableScaling);
 
     let items: Array<HeaderIconType | HeaderActionComponent> = actionItems || [];
 

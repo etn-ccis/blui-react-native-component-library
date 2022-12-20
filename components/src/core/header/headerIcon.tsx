@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFontScale } from '..';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
 import { ICON_SIZE } from './constants';
@@ -16,8 +17,9 @@ type HeaderIconProps = {
 export const HeaderIcon: React.FC<HeaderIconProps> = (props) => {
     const { icon } = props;
     const { color } = useColor();
+    const { disableScaling } = useFontScale();
     if (icon) {
-        return <Icon source={icon} size={ICON_SIZE} color={color} allowFontScaling />;
+        return <Icon source={icon} size={ICON_SIZE} color={color} allowFontScaling={!disableScaling} />;
     }
     return null;
 };
