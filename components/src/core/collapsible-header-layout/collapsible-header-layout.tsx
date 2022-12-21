@@ -11,7 +11,7 @@ import {
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
 export type CollapsibleLayoutProps = ViewProps & {
     /** Props to spread to the Header component. */

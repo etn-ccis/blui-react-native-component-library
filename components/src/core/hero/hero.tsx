@@ -1,21 +1,12 @@
 import React, { useCallback } from 'react';
-import {
-    StyleSheet,
-    TouchableOpacity,
-    View,
-    StyleProp,
-    ViewStyle,
-    ViewProps,
-    TextStyle,
-    PixelRatio,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, ViewProps, TextStyle } from 'react-native';
 import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../channel-value';
 import { useTheme } from 'react-native-paper';
 import { Body1 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
-import { useFontScale } from '..';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -129,12 +120,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
     } = props;
 
     const theme = useTheme(themeOverride);
-    const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
+    const fontScale = useFontScale();
     const defaultStyles = makeStyles(fontScale);
 
     const normalizeIconSize = useCallback((): number => {
