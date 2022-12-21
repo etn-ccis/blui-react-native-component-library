@@ -15,6 +15,8 @@ type BottomSheetProps = {
         root?: ViewStyle;
         background?: ViewStyle;
     };
+    /** Make the status bar translucent */
+    statusBarTranslucent?: boolean;
 };
 
 const useStyles = (
@@ -40,7 +42,7 @@ const useStyles = (
  * a bottom sheet that appears from the bottom of the screen.
  */
 export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
-    const { show, children, onClose, styles = {} } = props;
+    const { show, children, onClose, statusBarTranslucent, styles = {} } = props;
     const theme = useTheme();
     const defaultStyles = useStyles(theme, props);
 
@@ -50,6 +52,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
             backdropOpacity={0.5}
             onBackdropPress={onClose}
             supportedOrientations={['portrait', 'landscape']}
+            statusBarTranslucent={statusBarTranslucent}
             style={[defaultStyles.root, styles.root]}
         >
             <SafeAreaView style={[defaultStyles.background, styles.background]}>{children}</SafeAreaView>
