@@ -32,8 +32,6 @@ export type UserMenuProps = {
      * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ReactNativePaper.Theme>;
-    /** Make the status bar translucent */
-    statusBarTranslucent?: boolean
 };
 
 const useStyles = (
@@ -75,7 +73,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         menuSubtitle,
         menuItems,
         styles = {},
-        statusBarTranslucent
     } = props;
     const avatarSize = avatar.props.size || 40;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
@@ -178,7 +175,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 backgroundColor={backgroundColor}
                 onClose={(): void => closeMenu()}
                 styles={{ root: styles.bottomsheet }}
-                statusBarTranslucent={statusBarTranslucent}
             >
                 {getMenu()}
             </BottomSheet>
