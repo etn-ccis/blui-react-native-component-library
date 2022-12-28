@@ -51,6 +51,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
             onBackdropPress={onClose}
             supportedOrientations={['portrait', 'landscape']}
             style={[defaultStyles.root, styles.root]}
+            statusBarTranslucent
         >
             <SafeAreaView style={[defaultStyles.background, styles.background]}>{children}</SafeAreaView>
         </Modal>
