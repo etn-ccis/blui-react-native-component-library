@@ -12,7 +12,7 @@
 
 ### Changed
 
--   Update the `<Modal>` within the `<BottomSheet>` component to use `statusBarTranslucent` prop by default.
+-   Update the `<Modal>` within the `<BottomSheet>` component to use the `statusBarTranslucent` prop by default.
 
 ## v7.0.0 (October 17, 2022)
 
