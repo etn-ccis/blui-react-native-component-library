@@ -4,11 +4,15 @@
 
 ### Fixed
 
--   Issue with the extra large accessibilty sizes on iOS [#224](https://github.com/brightlayer-ui/react-native-component-library/issues/224).
+-   Issue with the extra large accessibility sizes on iOS [#224](https://github.com/brightlayer-ui/react-native-component-library/issues/224).
 
 ### Added
 
 -   Added custom children to render inside the header ([#288](https://github.com/brightlayer-ui/react-native-component-library/issues/288)).
+
+### Changed
+
+-   Update the `<Modal>` within the `<BottomSheet>` component to use `statusBarTranslucent` prop by default.
 
 ## v7.0.0 (October 17, 2022)
 
