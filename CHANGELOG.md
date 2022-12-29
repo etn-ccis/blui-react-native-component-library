@@ -5,6 +5,11 @@
 ### Fixed
 
 -   Issue with the extra large accessibilty sizes on iOS [#224](https://github.com/brightlayer-ui/react-native-component-library/issues/224).
+-   Rendering of chevron and right component in `<InfoListItem>` at the same time ([#312](https://github.com/brightlayer-ui/react-native-component-library/issues/312)).
+
+### Updated
+
+-   `<DrawerNavItem>` to pass `chevron` and `chevronColor` props to `<InfoListItem>` ([#312](https://github.com/brightlayer-ui/react-component-library/issues/312)).
 
 ### Added
 

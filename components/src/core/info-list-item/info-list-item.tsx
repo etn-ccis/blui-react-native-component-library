@@ -357,21 +357,23 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableInfoParts, subtitleSeparator));
     }, [info, subtitleSeparator, styles]);
 
-    const getRightComponent = useCallback((): JSX.Element | undefined => {
-        if (rightComponent) {
-            return rightComponent;
-        } else if (chevron) {
-            return (
-                <MatCommunityIcon
-                    name="chevron-right"
-                    size={24}
-                    color={theme.colors.text}
-                    allowFontScaling
-                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
-                />
-            );
-        }
-    }, [rightComponent, chevron, theme]);
+    const getRightComponent = useCallback(
+        (): JSX.Element | undefined => (
+            <>
+                {rightComponent && rightComponent}
+                {chevron && (
+                    <MatCommunityIcon
+                        name="chevron-right"
+                        size={24}
+                        color={theme.colors.text}
+                        allowFontScaling
+                        style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                    />
+                )}
+            </>
+        ),
+        [rightComponent, chevron, theme]
+    );
 
     return (
         <TouchableOpacity

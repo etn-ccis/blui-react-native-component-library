@@ -224,14 +224,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         items,
         notifyActiveParent = (): void => {},
         onPress,
-        rightComponent = props.chevron && !props.items && !props.children ? (
-            <MatIcon
-                name={'chevron-right'}
-                size={24}
-                color={theme.colors.text}
-                style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
-            />
-        ) : undefined,
+        rightComponent,
         statusColor,
         subtitle: itemSubtitle,
         title: itemTitle,
@@ -328,6 +321,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             fontColor={active ? activeItemFontColor : itemFontColor}
                             icon={icon}
                             iconColor={active ? activeItemIconColor : itemIconColor}
+                            chevron={chevron && !props.items && !props.children}
                             rightComponent={
                                 (actionComponent || rightComponent) && (
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
