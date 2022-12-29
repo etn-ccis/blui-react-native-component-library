@@ -1,11 +1,10 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager, PixelRatio } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, PixelRatio } from 'react-native';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
 import { usePrevious } from '../hooks/usePrevious';
 import { AllSharedProps } from './types';
 import color from 'color';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
