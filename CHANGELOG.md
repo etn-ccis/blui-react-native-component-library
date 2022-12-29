@@ -15,6 +15,10 @@
 
 -   Added custom children to render inside the header ([#288](https://github.com/brightlayer-ui/react-native-component-library/issues/288)).
 
+### Changed
+
+-   Update the `<Modal>` within the `<BottomSheet>` component to use the `statusBarTranslucent` prop by default.
+
 ## v7.0.0 (October 17, 2022)
 
 ### Changed
