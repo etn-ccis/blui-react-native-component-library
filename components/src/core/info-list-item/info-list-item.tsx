@@ -18,7 +18,7 @@ import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
-import { useFontScale } from '../__contexts__/font-scale-context';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -303,6 +303,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const fontScale = useFontScale();
+    const { disableScaling, maxScale, minScale } = useFontScaleSettings();
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
     const getIconColor = useCallback((): string => {
@@ -360,7 +361,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     name="chevron-right"
                     size={24}
                     color={theme.colors.text}
-                    allowFontScaling
+                    allowFontScaling={!disableScaling}
+                    maxFontSizeMultiplier={maxScale}
+                    minimumFontScale={minScale}
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 />
             );

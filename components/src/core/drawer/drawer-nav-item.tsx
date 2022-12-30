@@ -15,7 +15,7 @@ import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
 import { getPrimary500 } from '../utility/shared';
-import { useFontScale } from '../__contexts__/font-scale-context';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -179,6 +179,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
     const fontScale = useFontScale();
+    const { disableScaling, maxScale, minScale } = useFontScaleSettings();
     const defaultStyles = makeStyles(props, theme, fontScale);
     const { activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
@@ -225,6 +226,9 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 size={24}
                 color={theme.colors.text}
                 style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
+                minimumFontScale={minScale}
             />
         ) : undefined,
         statusColor,
