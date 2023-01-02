@@ -4,16 +4,12 @@
 
 ### Fixed
 
--   Issue with the extra large accessibilty sizes on iOS [#224](https://github.com/brightlayer-ui/react-native-component-library/issues/224).
--   Rendering of chevron and right component in `<InfoListItem>` at the same time ([#312](https://github.com/brightlayer-ui/react-native-component-library/issues/312)).
-
-### Updated
-
--   `<DrawerNavItem>` to pass `chevron` and `chevronColor` props to `<InfoListItem>` ([#312](https://github.com/brightlayer-ui/react-component-library/issues/312)).
+-   Issue with the extra large accessibilty sizes on iOS [#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224).
+-   Rendering of chevron and right component in `<InfoListItem>` at the same time ([#312](https://github.com/etn-ccis/blui-react-native-component-library/issues/312)).
 
 ### Added
 
--   Added custom children to render inside the header ([#288](https://github.com/brightlayer-ui/react-native-component-library/issues/288)).
+-   Added custom children to render inside the header ([#288](https://github.com/etn-ccis/blui-react-native-component-library/issues/288)).
 
 ### Changed
 
@@ -34,9 +30,9 @@
 
 ### Fixed
 
--   Issue with `<MobileStepper>` default dark theme fill color ([#276](https://github.com/brightlayer-ui/react-native-component-library/issues/276)).
--   Issue with `<Header>` default backgroundImage size ([#228](https://github.com/brightlayer-ui/react-native-component-library/issues/228)).
--   Issue with `<Header>` title cutting off the top of CJK characters ([#156](https://github.com/brightlayer-ui/react-native-component-library/issues/156)).
+-   Issue with `<MobileStepper>` default dark theme fill color ([#276](https://github.com/etn-ccis/blui-react-native-component-library/issues/276)).
+-   Issue with `<Header>` default backgroundImage size ([#228](https://github.com/etn-ccis/blui-react-native-component-library/issues/228)).
+-   Issue with `<Header>` title cutting off the top of CJK characters ([#156](https://github.com/etn-ccis/blui-react-native-component-library/issues/156)).
 
 ## v6.0.2 (December 17, 2021)
 
@@ -60,8 +56,8 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 
 ### Fixed
 
--   Issue with missing color fallback values ([#214](https://github.com/brightlayer-ui/react-native-component-library/issues/214)).
--   Issue regarding inability to set ref on `<ThemedTextInput>` ([#213](https://github.com/brightlayer-ui/react-native-component-library/issues/213)).
+-   Issue with missing color fallback values ([#214](https://github.com/etn-ccis/blui-react-native-component-library/issues/214)).
+-   Issue regarding inability to set ref on `<ThemedTextInput>` ([#213](https://github.com/etn-ccis/blui-react-native-component-library/issues/213)).
 
 ## v6.0.0 (October 1, 2021)
 
@@ -72,12 +68,12 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 ### Added
 
 -   New peerDependency on [@brightlayer-ui/react-native-vector-icons](https://www.npmjs.com/package/@brightlayer-ui/react-native-vector-icons).
--   [Wrapper components](https://github.com/brightlayer-ui/react-native-component-library/tree/master/components/src/themed) for various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components. These greatly simplify the theming mechanism for using our dark theme, but does require updating to version 6+ of our [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes) package.
+-   [Wrapper components](https://github.com/etn-ccis/blui-react-native-component-library/tree/master/components/src/themed) for various [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components. These greatly simplify the theming mechanism for using our dark theme, but does require updating to version 6+ of our [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes) package.
 -   `unitSpace` prop to `<ChannelValue>` to manage spacing between the value and units.
 
 ### Changed
 
--   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see [Icons](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/Icons.md)]).
+-   `IconClass` prop for most components has been renamed to `icon` for clarification and has bee extended to support a wider variety of icon formats (see [Icons](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/Icons.md)]).
 -   In `<Hero>` component, `ValueIconClass` prop has been renamed to `valueIcon`.
 -   In `<ChannelValue>` component, `IconProps` has been replaced with separate props for `iconSize` and `iconColor`.
 -   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component.
@@ -98,14 +94,14 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 
 ### Fixed
 
--   Default `iconColor` for `<InfoListItem>` ([#183](https://github.com/brightlayer-ui/react-native-component-library/issues/183)).
--   Update `<EmptyState>` default icon color to match the design ([#173](https://github.com/brightlayer-ui/react-native-component-library/issues/173)).
+-   Default `iconColor` for `<InfoListItem>` ([#183](https://github.com/etn-ccis/blui-react-native-component-library/issues/183)).
+-   Update `<EmptyState>` default icon color to match the design ([#173](https://github.com/etn-ccis/blui-react-native-component-library/issues/173)).
 
 ## v5.4.0 (August 20, 2021)
 
 ### Added
 
--   Better component sizing for non-avatars in the `<Header>` component ([#189](https://github.com/brightlayer-ui/react-native-component-library/issues/189)).
+-   Better component sizing for non-avatars in the `<Header>` component ([#189](https://github.com/etn-ccis/blui-react-native-component-library/issues/189)).
 
 ### Removed
 
@@ -125,7 +121,7 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 
 ### Added
 
--   Improved support for using components in landscape orientation ([#76](https://github.com/brightlayer-ui/react-native-component-library/issues/76))
+-   Improved support for using components in landscape orientation ([#76](https://github.com/etn-ccis/blui-react-native-component-library/issues/76))
 -   Improved intellisense popup documentation with links to full component documentation.
 
 ### Removed
