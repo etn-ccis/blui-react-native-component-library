@@ -6,7 +6,7 @@ import MatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { Body1 } from '../typography';
 import { useTheme } from 'react-native-paper';
-import { useFontScale } from '..';
+import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 export type IconProps = IconComponentProps & {
     source: IconSource;
@@ -43,10 +43,9 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const { maxScale, disableScaling } = useFontScale();
+    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
     const { color = theme.colors.text, size = 24, allowFontScaling = !disableScaling, source, ...rest } = otherProps;
     const deviceDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
-    // const fontScale = scale ? PixelRatio.getFontScale() : 1;
 
     // const flipIcon = (directionProp === 'auto' && deviceDirection === 'rtl') || directionProp === 'rtl';
     const flipIconStyle = {
@@ -72,6 +71,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
+                        minimumFontScale={minScale}
                     />
                 );
             case 'brightlayer-ui':
@@ -83,6 +83,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
+                        minimumFontScale={minScale}
                     />
                 );
             case 'material':
@@ -95,6 +96,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
+                        minimumFontScale={minScale}
                     />
                 );
         }

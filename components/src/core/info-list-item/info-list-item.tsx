@@ -8,7 +8,6 @@ import {
     ViewStyle,
     TextStyle,
     I18nManager,
-    PixelRatio,
 } from 'react-native';
 import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider } from 'react-native-paper';
@@ -19,7 +18,7 @@ import { renderableSubtitleComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
-import { useFontScale } from '..';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -303,12 +302,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
+    const fontScale = useFontScale();
+    const { disableScaling, maxScale, minScale } = useFontScaleSettings();
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
     const getIconColor = useCallback((): string => {
@@ -357,23 +352,23 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableInfoParts, subtitleSeparator));
     }, [info, subtitleSeparator, styles]);
 
-    const getRightComponent = useCallback(
-        (): JSX.Element | undefined => (
-            <>
-                {rightComponent && rightComponent}
-                {chevron && (
-                    <MatCommunityIcon
-                        name="chevron-right"
-                        size={24}
-                        color={theme.colors.text}
-                        allowFontScaling
-                        style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
-                    />
-                )}
-            </>
-        ),
-        [rightComponent, chevron, theme]
-    );
+    const getRightComponent = useCallback((): JSX.Element | undefined => {
+        if (rightComponent) {
+            return rightComponent;
+        } else if (chevron) {
+            return (
+                <MatCommunityIcon
+                    name="chevron-right"
+                    size={24}
+                    color={theme.colors.text}
+                    allowFontScaling={!disableScaling}
+                    maxFontSizeMultiplier={maxScale}
+                    minimumFontScale={minScale}
+                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                />
+            );
+        }
+    }, [rightComponent, chevron, theme]);
 
     return (
         <TouchableOpacity
