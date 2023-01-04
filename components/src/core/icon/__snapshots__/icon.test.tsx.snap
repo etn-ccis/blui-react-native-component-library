@@ -18,6 +18,7 @@ exports[`Icon Tests  renders in a component 1`] = `
   <Text
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     selectable={false}
     style={
       [
@@ -76,6 +77,7 @@ exports[`Icon Tests  renders with blui object source 1`] = `
 <Text
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
+  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -161,6 +163,7 @@ exports[`Icon Tests  renders with material community object source 1`] = `
 <Text
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
+  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -186,6 +189,7 @@ exports[`Icon Tests  renders with material object source 1`] = `
 <Text
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
+  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -211,6 +215,7 @@ exports[`Icon Tests  renders with material object source 2`] = `
 <Text
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
+  minimumFontScale={0.01}
   selectable={false}
   style={
     [
