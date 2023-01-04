@@ -5,7 +5,6 @@ import { useTheme } from 'react-native-paper';
 import { usePrevious } from '../__hooks__/usePrevious';
 import { AllSharedProps } from './types';
 import color from 'color';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
@@ -16,6 +15,7 @@ import { IconSource } from '../__types__';
 import { Icon } from '../icon';
 import { getPrimary500 } from '../utility/shared';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -327,6 +327,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             fontColor={active ? activeItemFontColor : itemFontColor}
                             icon={icon}
                             iconColor={active ? activeItemIconColor : itemIconColor}
+                            chevron={chevron && !props.items && !props.children}
                             rightComponent={
                                 (actionComponent || rightComponent) && (
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>

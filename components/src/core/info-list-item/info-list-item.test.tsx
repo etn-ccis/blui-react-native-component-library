@@ -79,11 +79,11 @@ describe('InfoListItem', () => {
                 expect(instance.findAllByType(Icon)).toHaveLength(1);
             });
 
-            it('does not appear when there is a rightComponent', () => {
+            it('appears when there is a rightComponent', () => {
                 instance = TestRenderer.create(
                     <InfoListItem title={'some title'} chevron rightComponent={<View />} />
                 ).root;
-                expect(instance.findAllByType(Icon)).toHaveLength(0);
+                expect(instance.findAllByType(Icon)).toHaveLength(1);
             });
         });
 
