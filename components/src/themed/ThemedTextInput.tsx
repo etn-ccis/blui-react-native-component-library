@@ -1,6 +1,7 @@
 import React, { MutableRefObject } from 'react';
 import { TextInput as ReactTextInput } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
+import { useFontScaleSettings } from '../core/__contexts__/font-scale-context';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
 
 export type ThemedTextInputProps = React.ComponentProps<typeof TextInput>;
@@ -27,7 +28,7 @@ const ThemedTextInputRender: React.ForwardRefRenderFunction<{}, ThemedTextInputP
 
     const { theme: themeOverride, style, ...other } = props;
     const fullTheme = useTheme(themeOverride);
-
+    const { maxScale, disableScaling } = useFontScaleSettings();
     const backgroundColorLight = props.mode === 'outlined' ? fullTheme.colors.surface : fullTheme.colors.background;
     const backgroundColorDark =
         props.mode === 'outlined'
@@ -60,6 +61,8 @@ const ThemedTextInputRender: React.ForwardRefRenderFunction<{}, ThemedTextInputP
             style={props.mode !== 'outlined' ? [{ backgroundColor }, style] : style}
             outlineColor={props.outlineColor || fullTheme.colors.divider}
             theme={theme}
+            allowFontScaling={!disableScaling}
+            maxFontSizeMultiplier={maxScale}
         />
     );
 };

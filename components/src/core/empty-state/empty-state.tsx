@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, PixelRatio } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
-import { useFontScale } from '..';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -13,17 +13,8 @@ type EmptyStateStyles = {
     description?: TextStyle;
     actions?: ViewStyle;
 };
-const makeStyles = (
-    theme: ReactNativePaper.Theme,
-    maxScale: number,
-    disableScaling?: boolean
-): StyleSheet.NamedStyles<EmptyStateStyles> => {
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
-    return StyleSheet.create({
+const makeStyles = (theme: ReactNativePaper.Theme, fontScale: number): StyleSheet.NamedStyles<EmptyStateStyles> =>
+    StyleSheet.create({
         root: {
             flex: 1,
             justifyContent: 'center',
@@ -44,7 +35,6 @@ const makeStyles = (
             marginTop: 16 * fontScale,
         },
     });
-};
 
 export type EmptyStateProps = ViewProps & {
     /** The primary text to display (first line) */
@@ -100,8 +90,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const { maxScale, disableScaling } = useFontScale();
-    const defaultStyles = makeStyles(theme, maxScale, disableScaling);
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(theme, fontScale);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;

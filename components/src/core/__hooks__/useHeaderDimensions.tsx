@@ -1,5 +1,6 @@
 import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 export type HeaderDimensions = {
     REGULAR_HEIGHT: number;
@@ -20,7 +21,8 @@ export type HeaderDimensions = {
  * @returns { REGULAR_HEIGHT, EXTENDED_HEIGHT, LANDSCAPE, getScaledHeight }
  */
 export const useHeaderDimensions = (): HeaderDimensions => {
-    const { width: deviceWidth, height: deviceHeight, fontScale } = useWindowDimensions();
+    const { width: deviceWidth, height: deviceHeight } = useWindowDimensions();
+    const fontScale = useFontScale();
     const insets = useSafeAreaInsets();
     const isLandscape = deviceWidth > deviceHeight;
 

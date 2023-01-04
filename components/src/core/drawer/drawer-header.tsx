@@ -9,7 +9,6 @@ import {
     ImageStyle,
     TextStyle,
     ViewProps,
-    PixelRatio,
     TouchableOpacity,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
@@ -17,18 +16,17 @@ import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { Icon } from '../icon';
 import { getPrimary500 } from '../utility/shared';
-import { useFontScale } from '.';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 const makeStyles = (
     props: DrawerHeaderProps,
     theme: ReactNativePaper.Theme,
     insets: EdgeInsets,
     height: number,
-    maxScale: number,
-    disableScaling?: boolean
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     icon: ViewStyle;
@@ -38,14 +36,8 @@ const makeStyles = (
     subtitle: TextStyle;
     backgroundImageWrapper: ViewStyle;
     backgroundImage: ImageStyle;
-}> => {
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
-
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || getPrimary500(theme) || theme.colors.primary,
@@ -91,7 +83,6 @@ const makeStyles = (
             resizeMode: 'cover',
         },
     });
-};
 
 export type DrawerHeaderProps = ViewProps & {
     /**
@@ -173,8 +164,9 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-    const { maxScale, disableScaling } = useFontScale();
-    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT, maxScale, disableScaling);
+    const { disableScaling } = useFontScaleSettings();
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT, fontScale);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
@@ -186,7 +178,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling />
+                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling={!disableScaling} />
                     </TouchableOpacity>
                 </View>
             );

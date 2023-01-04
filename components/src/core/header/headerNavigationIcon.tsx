@@ -1,23 +1,18 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager, PixelRatio } from 'react-native';
+import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager } from 'react-native';
 import { ICON_SIZE } from './constants';
 import { IconSource } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
-import { useFontScale } from '..';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     navigation: ViewStyle;
     flipIcon: ViewStyle;
 }> => {
-    const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
+    const fontScale = useFontScale();
     return StyleSheet.create({
         navigation: {
             height: 40 * fontScale,

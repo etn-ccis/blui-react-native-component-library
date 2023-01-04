@@ -1,8 +1,7 @@
 import React, { ComponentType } from 'react';
-import { PixelRatio } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { IconProps } from 'react-native-vector-icons/Icon';
-import { useFontScale } from '..';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 type IconSetArg = {
     IconClass: ComponentType<IconProps>;
@@ -72,13 +71,7 @@ export const wrapIcon = (arg: IconArg): ComponentType<WrapIconProps> => {
     // eslint-disable-next-line react/display-name
     return (props: WrapIconProps): JSX.Element => {
         const { allowFontScaling: inlineScaling = allowFontScaling, size, color } = props;
-        const { maxScale, disableScaling } = useFontScale();
-        const fontScale =
-            inlineScaling || !disableScaling
-                ? PixelRatio.getFontScale() < maxScale
-                    ? PixelRatio.getFontScale()
-                    : maxScale
-                : 1;
+        const fontScale = useFontScale(inlineScaling);
         return (
             <IconClass
                 fill={color}

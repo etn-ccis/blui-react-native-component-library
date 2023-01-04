@@ -12,7 +12,6 @@ import {
     ViewStyle,
     TextStyle,
     ImageStyle,
-    PixelRatio,
     TextInputProps,
 } from 'react-native';
 import color from 'color';
@@ -29,27 +28,21 @@ import { HeaderActionComponent, HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
-import { usePrevious } from '../hooks/usePrevious';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
-import { useFontScale } from '..';
+import { usePrevious } from '../__hooks__/usePrevious';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
+import { useFontScale } from '../__contexts__/font-scale-context';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
     theme: ReactNativePaper.Theme,
-    maxScale: number,
-    disableScaling?: boolean
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
     search: ViewStyle;
-}> => {
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {
             width: '100%',
             backgroundColor:
@@ -77,7 +70,6 @@ const headerStyles = (
             paddingHorizontal: 16,
         },
     });
-};
 
 export type SearchableConfig = {
     /**
@@ -266,18 +258,13 @@ export const Header: React.FC<HeaderProps> = (props) => {
     } = props;
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
-    const { maxScale, disableScaling } = useFontScale();
+    const fontScale = useFontScale();
 
     const theme = useTheme(themeOverride);
-    const defaultStyles = headerStyles(props, theme, maxScale, disableScaling);
+    const defaultStyles = headerStyles(props, theme, fontScale);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
     const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);

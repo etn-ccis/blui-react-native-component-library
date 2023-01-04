@@ -294,6 +294,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
   <Text
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     selectable={false}
     style={
       [

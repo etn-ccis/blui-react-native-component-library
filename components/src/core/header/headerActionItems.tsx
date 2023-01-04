@@ -1,27 +1,21 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle, PixelRatio } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { HeaderActionComponent, HeaderIcon as HeaderIconType, IconFamily } from '../__types__';
-import { useFontScale } from '..';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 const ClearIcon: IconFamily = { name: 'clear' };
 const SearchIcon: IconFamily = { name: 'search' };
 
 const makeStyles = (
-    maxScale: number,
-    disableScaling?: boolean
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     actionItem: ViewStyle;
     component: ViewStyle;
-}> => {
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {
             flexDirection: 'row',
             alignItems: 'center',
@@ -41,7 +35,6 @@ const makeStyles = (
             justifyContent: 'center',
         },
     });
-};
 
 type ActionItemProps = {
     /** Array of up to three action items on the right of the header */
@@ -64,8 +57,8 @@ type ActionItemProps = {
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
     const { actionItems, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();
-    const { maxScale } = useFontScale();
-    const defaultStyles = makeStyles(maxScale);
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(fontScale);
 
     let items: Array<HeaderIconType | HeaderActionComponent> = actionItems || [];
 

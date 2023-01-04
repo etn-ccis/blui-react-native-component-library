@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { PixelRatio, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 import { BottomSheet } from './bottom-sheet';
 import { useTheme, Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../info-list-item/info-list-item';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useFontScale } from '..';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 export type UserMenuProps = {
     /** Avatar component to display as the menu trigger */
@@ -76,12 +76,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     } = props;
     const avatarSize = avatar.props.size || 40;
     const [showBottomSheet, setShowBottomSheet] = useState(false);
-    const { maxScale, disableScaling } = useFontScale();
-    const fontScale = !disableScaling
-        ? PixelRatio.getFontScale() < maxScale
-            ? PixelRatio.getFontScale()
-            : maxScale
-        : 1;
+    const fontScale = useFontScale();
     const defaultStyles = useStyles(theme, fontScale, avatarSize);
     const insets = useSafeAreaInsets();
 
