@@ -1,6 +1,6 @@
 # Using Icons in Brightlayer UI React Native Components
 
-> For icon usage before v6.0.0, [check here](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/IconWrapper.md).
+> For icon usage before v6.0.0, [check here](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/IconWrapper.md).
 
 Many Brightlayer UI components support the use of icons. These components will support passing in an icon in a variety of different formats.
 
@@ -74,7 +74,7 @@ Brightlayer UI components will pass these values to you for use in your componen
 
 ## Wrapped Icon
 
-You can use the [IconWrapper](https://github.com/brightlayer-ui/react-native-component-library/blob/master/docs/IconWrapper.md) utility to create a functional component that matches the signature required for the inline option above.
+You can use the [IconWrapper](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/IconWrapper.md) utility to create a functional component that matches the signature required for the inline option above.
 
 > **NOTE:** This was previously the only way to pass icons to Brightlayer UI components. With the introduction of the newer options in version 6.0.0, this method is no longer recommended and will be deprecated in the future.
 
@@ -107,6 +107,6 @@ In some rare cases, you may wish to pass a simple string (e.g., a single letter 
 The icon prop will also support images in various formats, either from local resources or from the web.
 
 ```tsx
-<Component icon={{ uri: 'https://raw.githubusercontent.com/brightlayer-ui/icons/dev/png/png48/account_settings_black500_48dp.png' }} />
+<Component icon={{ uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/png/png48/account_settings_black500_48dp.png' }} />
 <Component icon={require('./path/to/image.png')} />
 ```
