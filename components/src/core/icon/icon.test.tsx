@@ -50,7 +50,7 @@ describe('Icon Tests ', () => {
             .create(
                 <Icon
                     source={{
-                        uri: 'https://raw.githubusercontent.com/brightlayer-ui/icons/dev/png/png48/account_settings_black500_48dp.png',
+                        uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/png/png48/account_settings_black500_48dp.png',
                     }}
                 />
             )
