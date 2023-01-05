@@ -107,6 +107,6 @@ In some rare cases, you may wish to pass a simple string (e.g., a single letter 
 The icon prop will also support images in various formats, either from local resources or from the web.
 
 ```tsx
-<Component icon={{ uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/png/png48/account_settings_black500_48dp.png' }} />
+<Component icon={{ uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/packages/png/png48/account_settings_black500_48dp.png' }} />
 <Component icon={require('./path/to/image.png')} />
 ```
