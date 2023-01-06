@@ -303,7 +303,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const fontScale = useFontScale();
-    const { disableScaling, maxScale, minScale } = useFontScaleSettings();
+    const { disableScaling, adjustsFontSizeToFit, maxScale, minScale } = useFontScaleSettings();
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
 
     const getIconColor = useCallback((): string => {
@@ -362,6 +362,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                         size={24}
                         color={theme.colors.text}
                         allowFontScaling={!disableScaling}
+                        adjustsFontSizeToFit={adjustsFontSizeToFit}
                         maxFontSizeMultiplier={maxScale}
                         minimumFontScale={minScale}
                         style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}

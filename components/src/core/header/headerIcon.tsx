@@ -17,9 +17,17 @@ type HeaderIconProps = {
 export const HeaderIcon: React.FC<HeaderIconProps> = (props) => {
     const { icon } = props;
     const { color } = useColor();
-    const { disableScaling } = useFontScaleSettings();
+    const { disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
     if (icon) {
-        return <Icon source={icon} size={ICON_SIZE} color={color} allowFontScaling={!disableScaling} />;
+        return (
+            <Icon
+                source={icon}
+                size={ICON_SIZE}
+                color={color}
+                allowFontScaling={!disableScaling}
+                adjustsFontSizeToFit={adjustsFontSizeToFit}
+            />
+        );
     }
     return null;
 };

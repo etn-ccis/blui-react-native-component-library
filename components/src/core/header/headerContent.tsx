@@ -60,7 +60,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
-    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
+    const { maxScale, minScale, disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
@@ -83,6 +83,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             numberOfLines={1}
             ellipsizeMode={'tail'}
             allowFontScaling={!disableScaling}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}
             maxFontSizeMultiplier={maxScale}
             minimumFontScale={minScale}
         >
@@ -121,7 +122,7 @@ type HeaderSubtitleProps = {
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
-    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
+    const { maxScale, minScale, disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
 
     const getSubtitleStyle = useCallback(
         () => ({
@@ -142,6 +143,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 allowFontScaling={!disableScaling}
+                adjustsFontSizeToFit={adjustsFontSizeToFit}
                 maxFontSizeMultiplier={maxScale}
                 minimumFontScale={minScale}
             >
@@ -176,7 +178,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
+    const { maxScale, minScale, disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
     const fontScale = useFontScale();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
@@ -213,6 +215,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 allowFontScaling={!disableScaling}
+                adjustsFontSizeToFit={adjustsFontSizeToFit}
                 maxFontSizeMultiplier={maxScale}
                 minimumFontScale={minScale}
             >

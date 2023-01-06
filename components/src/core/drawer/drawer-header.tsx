@@ -164,7 +164,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-    const { disableScaling } = useFontScaleSettings();
+    const { disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
     const fontScale = useFontScale();
     const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT, fontScale);
 
@@ -178,7 +178,13 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling={!disableScaling} />
+                        <Icon
+                            source={icon}
+                            size={24}
+                            color={fontColor || 'white'}
+                            allowFontScaling={!disableScaling}
+                            adjustsFontSizeToFit={adjustsFontSizeToFit}
+                        />
                     </TouchableOpacity>
                 </View>
             );

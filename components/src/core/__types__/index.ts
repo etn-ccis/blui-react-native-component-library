@@ -17,6 +17,12 @@ export type IconComponentProps = {
      * Default: true
      */
     allowFontScaling?: boolean;
+
+    /** If true, the fonts should be scaled down automatically to fit given style constraints
+     *
+     * Default: true
+     */
+    adjustsFontSizeToFit?: boolean;
 };
 export type IconFunctionProps = IconComponentProps & {
     /** The direction of the current device language */
@@ -28,6 +34,7 @@ export type IconFamily = {
     family?: 'material' | 'brightlayer-ui' | 'material-community';
     direction?: 'rtl' | 'ltr' | 'auto';
     allowFontScaling?: boolean;
+    adjustsFontSizeToFit?: boolean;
 };
 export type IconSourceBase = string | ImageSourcePropType;
 export type IconSource = IconFamily | IconSourceBase | JSX.Element | ComponentType<IconFunctionProps>;
