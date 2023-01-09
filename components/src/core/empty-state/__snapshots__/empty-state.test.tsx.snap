@@ -16,8 +16,10 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
   }
 >
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {
@@ -210,8 +212,10 @@ exports[`EmptyState Tests  Description Renders 1`] = `
   }
 >
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {
@@ -242,8 +246,10 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     Test
   </Text>
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {
@@ -292,6 +298,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
   }
 >
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
     minimumFontScale={0.01}
@@ -315,8 +322,10 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     󰞱
   </Text>
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {
@@ -365,8 +374,10 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
   }
 >
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {
@@ -415,8 +426,10 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
   }
 >
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {
@@ -447,8 +460,10 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     EmptyState
   </Text>
   <Text
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
+    minimumFontScale={0.01}
     style={
       [
         {

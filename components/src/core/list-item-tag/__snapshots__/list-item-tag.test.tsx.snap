@@ -4,8 +4,10 @@ exports[`ListItemTag Accepts style override 1`] = `[Function]`;
 
 exports[`ListItemTag ListItemTag Renders 1`] = `
 <Text
+  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
+  minimumFontScale={0.01}
   style={
     [
       {
