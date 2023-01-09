@@ -10,7 +10,7 @@ type FontScaleContextType = {
 
 const FontScaleContext = createContext<FontScaleContextType>({
     maxScale: 100,
-    minScale: 0.01,
+    minScale: 0.1,
     adjustsFontSizeToFit: true,
     disableScaling: false,
 });
