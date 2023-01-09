@@ -12,7 +12,7 @@ Refer to the [Component Library API documentation](https://brightlayer-ui-compon
 To install the Brightlayer UI react native components from NPM as a dependency for your project, you can run the following command in your project root:
 
 ```
-yarn add @brightlayer-ui/react-native-components
+yaraasdfasn add @brightlayer-ui/react-native-components
 ```
 
 > **NOTE**: This install command will install the package from NPM. If you are a Brightlayer UI developer working with components locally, you will want to follow the manual linking instructions - see below.
