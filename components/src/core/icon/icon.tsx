@@ -43,7 +43,7 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const { maxScale, minScale, disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
+    const { maxScale, disableScaling } = useFontScaleSettings();
     const { color = theme.colors.text, size = 24, allowFontScaling = !disableScaling, source, ...rest } = otherProps;
     const deviceDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
 
@@ -70,9 +70,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         allowFontScaling={scale}
                         color={color}
                         style={flip ? flipIconStyle : {}}
-                        adjustsFontSizeToFit={adjustsFontSizeToFit}
                         maxFontSizeMultiplier={maxScale}
-                        minimumFontScale={minScale}
                     />
                 );
             case 'brightlayer-ui':
@@ -83,9 +81,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         allowFontScaling={scale}
                         color={color}
                         style={flip ? flipIconStyle : {}}
-                        adjustsFontSizeToFit={adjustsFontSizeToFit}
                         maxFontSizeMultiplier={maxScale}
-                        minimumFontScale={minScale}
                     />
                 );
             case 'material':
@@ -97,9 +93,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         allowFontScaling={scale}
                         color={color}
                         style={flip ? flipIconStyle : {}}
-                        adjustsFontSizeToFit={adjustsFontSizeToFit}
                         maxFontSizeMultiplier={maxScale}
-                        minimumFontScale={minScale}
                     />
                 );
         }
@@ -108,15 +102,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     // Function component or wrapIcon output
     if (typeof source === 'function') {
         const Component = source;
-        return (
-            <Component
-                size={size}
-                color={color}
-                direction={deviceDirection}
-                allowFontScaling={allowFontScaling}
-                adjustsFontSizeToFit={adjustsFontSizeToFit}
-            />
-        );
+        return <Component size={size} color={color} direction={deviceDirection} allowFontScaling={allowFontScaling} />;
     }
 
     // Image source

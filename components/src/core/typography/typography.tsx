@@ -43,7 +43,7 @@ const createTypography =
     (getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> =>
     ({ font, fontSize, color, style, styles = {}, ...props }): JSX.Element => {
         const theme = useTheme(props.theme);
-        const { maxScale, minScale, disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
+        const { maxScale, disableScaling } = useFontScaleSettings();
 
         let customStyle: StyleProp<TextStyle> = {};
         if (fontSize) {
@@ -74,9 +74,7 @@ const createTypography =
                     style,
                 ]}
                 allowFontScaling={!disableScaling}
-                adjustsFontSizeToFit={adjustsFontSizeToFit}
                 maxFontSizeMultiplier={maxScale}
-                minimumFontScale={minScale}
             />
         );
     };

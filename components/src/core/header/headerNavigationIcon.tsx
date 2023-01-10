@@ -47,7 +47,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
     const { searching, onClose } = useSearch();
     const { color } = useColor();
     const defaultStyles = makeStyles();
-    const { disableScaling, adjustsFontSizeToFit, maxScale, minScale } = useFontScaleSettings();
+    const { disableScaling, maxScale } = useFontScaleSettings();
 
     if (searching) {
         return (
@@ -64,8 +64,6 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                     allowFontScaling={!disableScaling}
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                     maxFontSizeMultiplier={maxScale}
-                    minimumFontScale={minScale}
-                    adjustsFontSizeToFit={adjustsFontSizeToFit}
                 />
             </TouchableOpacity>
         );

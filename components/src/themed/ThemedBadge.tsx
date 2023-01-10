@@ -20,16 +20,7 @@ export const ThemedBadge: React.FC<ThemedBadgeProps> = (props) => {
         { colors: { notification: fullTheme.colors.primaryPalette?.main || fullTheme.colors.primary } },
         { colors: { notification: fullTheme.colors.primaryPalette?.dark || fullTheme.colors.primary } }
     );
-    const { maxScale, minScale, disableScaling, adjustsFontSizeToFit } = useFontScaleSettings();
+    const { maxScale, disableScaling } = useFontScaleSettings();
 
-    return (
-        <Badge
-            {...other}
-            theme={theme}
-            allowFontScaling={!disableScaling}
-            adjustsFontSizeToFit={adjustsFontSizeToFit}
-            maxFontSizeMultiplier={maxScale}
-            minimumFontScale={minScale}
-        />
-    );
+    return <Badge {...other} theme={theme} allowFontScaling={!disableScaling} maxFontSizeMultiplier={maxScale} />;
 };

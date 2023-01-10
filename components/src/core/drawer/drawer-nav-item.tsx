@@ -179,7 +179,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
     const fontScale = useFontScale();
-    const { disableScaling, adjustsFontSizeToFit, maxScale, minScale } = useFontScaleSettings();
+    const { disableScaling, maxScale } = useFontScaleSettings();
     const defaultStyles = makeStyles(props, theme, fontScale);
     const { activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
@@ -227,9 +227,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 color={theme.colors.text}
                 style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 allowFontScaling={!disableScaling}
-                adjustsFontSizeToFit={adjustsFontSizeToFit}
                 maxFontSizeMultiplier={maxScale}
-                minimumFontScale={minScale}
             />
         ) : undefined,
         statusColor,
@@ -287,7 +285,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     size={24}
                     color={theme.colors.text}
                     allowFontScaling={!disableScaling}
-                    adjustsFontSizeToFit={adjustsFontSizeToFit}
                 />
             </View>
         );

@@ -16,10 +16,8 @@ exports[`Icon Tests  renders in a component 1`] = `
   }
 >
   <Text
-    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
     selectable={false}
     style={
       [
@@ -40,10 +38,8 @@ exports[`Icon Tests  renders in a component 1`] = `
     
   </Text>
   <Text
-    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
     style={
       [
         {
@@ -78,10 +74,8 @@ exports[`Icon Tests  renders in a component 1`] = `
 
 exports[`Icon Tests  renders with blui object source 1`] = `
 <Text
-  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -105,10 +99,8 @@ exports[`Icon Tests  renders with blui object source 1`] = `
 
 exports[`Icon Tests  renders with emoji source 1`] = `
 <Text
-  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
   style={
     [
       {
@@ -167,10 +159,8 @@ exports[`Icon Tests  renders with local image source 1`] = `null`;
 
 exports[`Icon Tests  renders with material community object source 1`] = `
 <Text
-  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -194,10 +184,8 @@ exports[`Icon Tests  renders with material community object source 1`] = `
 
 exports[`Icon Tests  renders with material object source 1`] = `
 <Text
-  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -221,10 +209,8 @@ exports[`Icon Tests  renders with material object source 1`] = `
 
 exports[`Icon Tests  renders with material object source 2`] = `
 <Text
-  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
   selectable={false}
   style={
     [
@@ -269,10 +255,8 @@ exports[`Icon Tests  renders with remote image source 1`] = `
 
 exports[`Icon Tests  renders with string source 1`] = `
 <Text
-  adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
   style={
     [
       {
