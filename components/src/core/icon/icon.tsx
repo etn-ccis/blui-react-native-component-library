@@ -43,7 +43,7 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const { maxScale, minScale, disableScaling } = useFontScaleSettings();
+    const { maxScale, disableScaling } = useFontScaleSettings();
     const { color = theme.colors.text, size = 24, allowFontScaling = !disableScaling, source, ...rest } = otherProps;
     const deviceDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
 
@@ -71,7 +71,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
-                        minimumFontScale={minScale}
                     />
                 );
             case 'brightlayer-ui':
@@ -83,7 +82,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
-                        minimumFontScale={minScale}
                     />
                 );
             case 'material':
@@ -96,7 +94,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
-                        minimumFontScale={minScale}
                     />
                 );
         }

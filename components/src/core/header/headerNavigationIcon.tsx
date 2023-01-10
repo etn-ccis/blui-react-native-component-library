@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
-import { useFontScale } from '../__contexts__/font-scale-context';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     navigation: ViewStyle;
@@ -47,6 +47,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
     const { searching, onClose } = useSearch();
     const { color } = useColor();
     const defaultStyles = makeStyles();
+    const { disableScaling, maxScale } = useFontScaleSettings();
 
     if (searching) {
         return (
@@ -60,8 +61,9 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                     name={'arrow-back'}
                     size={ICON_SIZE}
                     color={color}
-                    allowFontScaling
+                    allowFontScaling={!disableScaling}
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                    maxFontSizeMultiplier={maxScale}
                 />
             </TouchableOpacity>
         );

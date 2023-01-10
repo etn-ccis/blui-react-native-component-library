@@ -3,13 +3,11 @@ import { PixelRatio } from 'react-native';
 
 type FontScaleContextType = {
     maxScale: number;
-    minScale: number;
     disableScaling?: boolean;
 };
 
 const FontScaleContext = createContext<FontScaleContextType>({
     maxScale: 100,
-    minScale: 0.01,
     disableScaling: false,
 });
 
@@ -26,8 +24,8 @@ export const useFontScaleSettings = (): FontScaleContextType => useContext(FontS
  * @returns the clamped fontScale value taking into account settings in the FontScaleContext
  */
 export const useFontScale = (forceEnable = false): number => {
-    const { disableScaling, maxScale, minScale } = useFontScaleSettings();
+    const { disableScaling, maxScale } = useFontScaleSettings();
     const systemScale = PixelRatio.getFontScale();
     // Clamp the scale between min and max
-    return disableScaling && !forceEnable ? 1 : Math.min(maxScale, Math.max(minScale, systemScale));
+    return disableScaling && !forceEnable ? 1 : Math.min(maxScale, systemScale);
 };
