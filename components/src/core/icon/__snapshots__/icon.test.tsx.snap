@@ -19,7 +19,7 @@ exports[`Icon Tests  renders in a component 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     selectable={false}
     style={
       [
@@ -43,7 +43,7 @@ exports[`Icon Tests  renders in a component 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -81,7 +81,7 @@ exports[`Icon Tests  renders with blui object source 1`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   selectable={false}
   style={
     [
@@ -108,7 +108,7 @@ exports[`Icon Tests  renders with emoji source 1`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   style={
     [
       {
@@ -170,7 +170,7 @@ exports[`Icon Tests  renders with material community object source 1`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   selectable={false}
   style={
     [
@@ -197,7 +197,7 @@ exports[`Icon Tests  renders with material object source 1`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   selectable={false}
   style={
     [
@@ -224,7 +224,7 @@ exports[`Icon Tests  renders with material object source 2`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   selectable={false}
   style={
     [
@@ -272,7 +272,7 @@ exports[`Icon Tests  renders with string source 1`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   style={
     [
       {

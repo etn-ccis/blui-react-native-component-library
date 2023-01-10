@@ -19,7 +19,7 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -215,7 +215,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -249,7 +249,7 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -301,7 +301,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     selectable={false}
     style={
       [
@@ -325,7 +325,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -377,7 +377,7 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -429,7 +429,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {
@@ -463,7 +463,7 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     adjustsFontSizeToFit={true}
     allowFontScaling={true}
     maxFontSizeMultiplier={100}
-    minimumFontScale={0.01}
+    minimumFontScale={0.1}
     style={
       [
         {

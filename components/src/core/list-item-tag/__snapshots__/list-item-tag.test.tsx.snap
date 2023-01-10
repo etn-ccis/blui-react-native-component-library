@@ -7,7 +7,7 @@ exports[`ListItemTag ListItemTag Renders 1`] = `
   adjustsFontSizeToFit={true}
   allowFontScaling={true}
   maxFontSizeMultiplier={100}
-  minimumFontScale={0.01}
+  minimumFontScale={0.1}
   style={
     [
       {
