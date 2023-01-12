@@ -1,10 +1,10 @@
 # Change Log
 
-## v7.0.1 (Unreleased)
+## v7.1.0 (Unreleased)
 
 ### Fixed
 
--   Issue with the extra large accessibilty sizes on iOS [#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224).
+-   Issue with extra large accessibility sizes on iOS [#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224).
 
 ### Added
 
