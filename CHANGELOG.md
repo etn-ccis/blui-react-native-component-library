@@ -14,6 +14,7 @@
 
 -   Updated the `<Modal>` within the `<BottomSheet>` component to use the `statusBarTranslucent` prop by default.
 -   Allowed chevron and right component in `<InfoListItem>` to be displayed at the same time ([#312](https://github.com/etn-ccis/blui-react-native-component-library/issues/312)).
+-   Updated test cases for `<UserMenu>` component [#106](https://github.com/etn-ccis/blui-react-native-component-library/issues/106)).
 
 ## v7.0.0 (October 17, 2022)
 
