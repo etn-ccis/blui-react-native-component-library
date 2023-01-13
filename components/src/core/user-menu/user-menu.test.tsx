@@ -1,8 +1,7 @@
 import React from 'react';
-import { screen } from '@testing-library/react-native';
 import { Avatar } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { cleanup, fireEvent, render } from '@testing-library/react-native';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react-native';
 import { UserMenu, UserMenuProps } from '.';
 
 const initialSafeAreaMetrics = {
@@ -15,7 +14,7 @@ const defaultProps: UserMenuProps = {
     menuItems: [{ title: 'Test Item' }],
 };
 
-const renderer = (props = defaultProps) =>
+const renderer = (props = defaultProps): React.ReactNode =>
     render(
         <SafeAreaProvider initialMetrics={initialSafeAreaMetrics}>
             <UserMenu {...props} />
@@ -27,7 +26,7 @@ describe('UserMenu', () => {
 
     it('should render avatar with correct label', () => {
         renderer();
-        expect(screen.getByText('BLUI')).toBeDefined;
+        expect(screen.getByText('BLUI')).toBeDefined();
     });
 
     it('should render bottom sheet on avatar press', () => {
