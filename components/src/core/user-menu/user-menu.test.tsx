@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { screen } from '@testing-library/react-native';
 import { Avatar } from 'react-native-paper';
@@ -43,7 +42,7 @@ describe('UserMenu', () => {
     it('should render bottom sheet InfoListItem with correct content', () => {
         const props = defaultProps;
         props.menuTitle = 'Bottom Sheet';
-        props.menuItems = [{title: 'Title', subtitle: 'Subtitle', info: 'Info'}]
+        props.menuItems = [{ title: 'Title', subtitle: 'Subtitle', info: 'Info' }];
         renderer(props);
         expect(screen.queryByText('Title')).toBeNull();
         expect(screen.queryByText('Subtitle')).toBeNull();
