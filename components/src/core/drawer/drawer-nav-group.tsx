@@ -30,6 +30,9 @@ export type DrawerNavGroupProps = AllSharedProps &
         /** Custom content to use in place of the group header title (if you want to use non-string content) */
         titleContent?: ReactNode;
 
+        /** Whether to show a dividing line below the title */
+        titleDivider?: boolean;
+
         /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerNavGroupStyles;
     };
@@ -136,6 +139,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         title,
         titleContent,
         titleColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        titleDivider = true,
         items = [],
         styles = {},
         // Other View Props
@@ -190,7 +194,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 {!titleContent && title && (
                     <View style={[defaultStyles.textContent, styles.textContent]}>
                         <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
-                        <Divider style={[defaultStyles.divider, styles.divider]} />
+                        {titleDivider && <Divider style={[defaultStyles.divider, styles.divider]} />}
                     </View>
                 )}
                 {items.map((item: NavItem, index: number) => (
