@@ -100,6 +100,9 @@ export type DrawerNavItemProps = AllSharedProps &
 
         /** The text to display on the first line */
         title: string;
+
+        /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--info-list-item) default props */
+        InfoListItemProps?: Partial<BLUIInfoListItemProps>;
     };
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
@@ -214,7 +217,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         depth = 0,
         hidden,
         icon: itemIcon,
-        // InfoListItemProps = {} as BLUIInfoListItemProps,
+        InfoListItemProps = {} as BLUIInfoListItemProps,
         isInActiveTree,
         itemID,
         items,
@@ -355,6 +358,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                 statusStripe: Object.assign({ left: insets.left }, iliStatusStripe),
                                 ...otherILI,
                             }}
+                            {...InfoListItemProps}
                         />
                     </View>
                     {/* If the NavItem has child items defined, render them in a collapse panel */}
