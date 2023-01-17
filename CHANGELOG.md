@@ -4,11 +4,12 @@
 
 ### Fixed
 
--   Issue with extra large accessibility sizes on iOS [#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224).
+-   Issue with extra large accessibility sizes on iOS ([#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224)).
 
 ### Added
 
 -   Added custom children to render inside the header ([#288](https://github.com/etn-ccis/blui-react-native-component-library/issues/288)).
+-   `titleDivider` prop to `<DrawerNavGroup>` component ([#187](https://github.com/etn-ccis/blui-react-native-component-library/issues/187)).
 
 ### Changed
 
