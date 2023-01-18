@@ -374,6 +374,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     return (
         <TouchableOpacity
             accessible={true}
+            testID={`list-item-${title.replace(/\s+/g, '-').toLowerCase()}`}
+            accessibilityLabel={`list-item-${title.replace(/\s+/g, '-').toLowerCase()}`}
             onPress={onPress}
             style={[defaultStyles.root, styles.root, style]}
             disabled={!onPress}
