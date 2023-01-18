@@ -9,6 +9,7 @@
 ### Added
 
 -   Added custom children to render inside the header ([#288](https://github.com/etn-ccis/blui-react-native-component-library/issues/288)).
+-   `InfoListItemProps` prop to `<DrawerNavItem>` component ([#252](https://github.com/etn-ccis/blui-react-native-component-library/issues/252)).
 -   `titleDivider` prop to `<DrawerNavGroup>` component ([#187](https://github.com/etn-ccis/blui-react-native-component-library/issues/187)).
 
 ### Changed
