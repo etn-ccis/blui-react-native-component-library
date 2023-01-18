@@ -10,6 +10,7 @@
 
 -   Added custom children to render inside the header ([#288](https://github.com/etn-ccis/blui-react-native-component-library/issues/288)).
 -   `titleDivider` prop to `<DrawerNavGroup>` component ([#187](https://github.com/etn-ccis/blui-react-native-component-library/issues/187)).
+-   `onPress` event to `<DrawerHeader>` component ([#84](https://github.com/etn-ccis/blui-react-native-component-library/issues/84)).
 
 ### Changed
 
