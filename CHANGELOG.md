@@ -4,17 +4,19 @@
 
 ### Fixed
 
--   Issue with extra large accessibility sizes on iOS [#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224).
+-   Issue with extra large accessibility sizes on iOS ([#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224)).
 
 ### Added
 
 -   Added custom children to render inside the header ([#288](https://github.com/etn-ccis/blui-react-native-component-library/issues/288)).
 -   `InfoListItemProps` prop to `<DrawerNavItem>` component ([#252](https://github.com/etn-ccis/blui-react-native-component-library/issues/252)).
+-   `titleDivider` prop to `<DrawerNavGroup>` component ([#187](https://github.com/etn-ccis/blui-react-native-component-library/issues/187)).
 
 ### Changed
 
 -   Updated the `<Modal>` within the `<BottomSheet>` component to use the `statusBarTranslucent` prop by default.
 -   Allowed chevron and right component in `<InfoListItem>` to be displayed at the same time ([#312](https://github.com/etn-ccis/blui-react-native-component-library/issues/312)).
+-   Updated test cases for `<UserMenu>` component [#106](https://github.com/etn-ccis/blui-react-native-component-library/issues/106)).
 
 ## v7.0.0 (October 17, 2022)
 
