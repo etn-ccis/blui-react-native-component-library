@@ -8,8 +8,9 @@ import {
     ViewStyle,
     ImageStyle,
     TextStyle,
-    ViewProps,
     TouchableOpacity,
+    TouchableWithoutFeedbackProps,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
@@ -84,7 +85,7 @@ const makeStyles = (
         },
     });
 
-export type DrawerHeaderProps = ViewProps & {
+export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * The color used for the background
      *
@@ -102,6 +103,9 @@ export type DrawerHeaderProps = ViewProps & {
      * Default: 0.3
      */
     backgroundOpacity?: number;
+
+    /** Callback to execute when the drawer header is pressed */
+    onPress?: () => void;
 
     /** Color to use for header text elements */
     fontColor?: string;
@@ -124,6 +128,7 @@ export type DrawerHeaderProps = ViewProps & {
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
+        headerContainer?: StyleProp<ViewStyle>;
         backgroundImageWrapper?: StyleProp<ViewStyle>;
         backgroundImage?: StyleProp<ImageStyle>;
         content?: StyleProp<ViewStyle>;
@@ -153,6 +158,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         backgroundImage,
         fontColor,
         icon,
+        onPress,
         onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
@@ -216,14 +222,16 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     }, [backgroundImage, defaultStyles, styles]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-            {getBackgroundImage()}
-            <View style={[defaultStyles.content, styles.content]}>
-                {icon && getIcon()}
-                {getHeaderContent()}
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
+                {getBackgroundImage()}
+                <View style={[defaultStyles.content, styles.content]}>
+                    {icon && getIcon()}
+                    {getHeaderContent()}
+                </View>
+                <Divider />
             </View>
-            <Divider />
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 
