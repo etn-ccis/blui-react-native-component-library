@@ -95,7 +95,10 @@ const infoListItemStyles = (
             height: !isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
             flexDirection: 'row',
             alignItems: 'center',
+            paddingLeft: 16,
             paddingRight: 16,
+            paddingTop: 8,
+            paddingBottom: 8,
         },
         title: {
             color: props.fontColor || theme.colors.text,
