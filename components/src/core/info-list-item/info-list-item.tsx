@@ -14,7 +14,7 @@ import { useTheme, Divider as PaperDivider } from 'react-native-paper';
 import { Subtitle1 } from '../typography';
 import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
-import { renderableSubtitleComponent, withKeys, separate } from './utilities';
+import { renderableSubtitleComponent, renderableInfoComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../icon';
 import { IconSource } from '../__types__';
@@ -86,11 +86,13 @@ const infoListItemStyles = (
     avatar: ViewStyle;
     mainContent: ViewStyle;
     flipIcon: ViewStyle;
-}> =>
-    StyleSheet.create({
+}> => {
+    const isWrapEnabled = props.wrapSubtitle || props.wrapTitle || props.wrapInfo;
+    return StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || 'transparent',
-            minHeight: (props.dense ? 52 : 72) * fontScale,
+            minHeight: isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
+            height: !isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
             flexDirection: 'row',
             alignItems: 'center',
             paddingRight: 16,
@@ -149,6 +151,7 @@ const infoListItemStyles = (
             transform: [{ scaleX: -1 }],
         },
     });
+};
 
 export type InfoListItemProps = ViewProps & {
     /**
@@ -247,6 +250,24 @@ export type InfoListItemProps = ViewProps & {
     /** The text to show on the first line */
     title: string;
 
+    /** Whether the info line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
+    wrapInfo?: boolean;
+
+    /** Whether the subtitle line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
+    wrapSubtitle?: boolean;
+
+    /** Whether the title line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
+    wrapTitle?: boolean;
+
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -280,13 +301,16 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const {
         avatar,
         title,
+        wrapTitle,
         leftComponent,
         rightComponent,
         chevron,
         divider,
         subtitle,
+        wrapSubtitle,
         subtitleSeparator,
         info,
+        wrapInfo,
         statusColor,
         dense, //eslint-disable-line @typescript-eslint/no-unused-vars
         fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
@@ -334,7 +358,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         }
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
         const renderableSubtitleParts = subtitleParts.map((element) =>
-            renderableSubtitleComponent(element, Object.assign({}, defaultStyles.subtitle, styles.subtitle))
+            renderableSubtitleComponent(
+                element,
+                Object.assign({}, defaultStyles.subtitle, styles.subtitle),
+                wrapSubtitle
+            )
         );
 
         return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
@@ -346,7 +374,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         }
         const infoParts = Array.isArray(info) ? [...info] : [info];
         const renderableInfoParts = infoParts.map((element) =>
-            renderableSubtitleComponent(element, Object.assign({}, defaultStyles.info, styles.info))
+            renderableInfoComponent(element, Object.assign({}, defaultStyles.info, styles.info), wrapInfo)
         );
 
         return withKeys(separate(renderableInfoParts, subtitleSeparator));
@@ -388,7 +416,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             ) : null}
             {leftComponent}
             <View style={[defaultStyles.mainContent, styles.mainContent]}>
-                <Subtitle1 style={[defaultStyles.title, styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Subtitle1
+                    style={[defaultStyles.title, styles.title]}
+                    numberOfLines={wrapTitle ? 0 : 1}
+                    ellipsizeMode={'tail'}
+                >
                     {title}
                 </Subtitle1>
                 <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
