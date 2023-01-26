@@ -12,6 +12,7 @@
 -   `InfoListItemProps` prop to `<DrawerNavItem>` component ([#252](https://github.com/etn-ccis/blui-react-native-component-library/issues/252)).
 -   `titleDivider` prop to `<DrawerNavGroup>` component ([#187](https://github.com/etn-ccis/blui-react-native-component-library/issues/187)).
 -   `onPress` prop to `<DrawerHeader>` component ([#84](https://github.com/etn-ccis/blui-react-native-component-library/issues/84)).
+-   `wrapTitle`, `wrapSubtitle` and `wrapInfo` props to `<InfoListItem>` component ([#168](https://github.com/etn-ccis/blui-react-native-component-library/issues/168)).
 
 ### Changed
 
