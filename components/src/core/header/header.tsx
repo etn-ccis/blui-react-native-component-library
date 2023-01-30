@@ -13,6 +13,7 @@ import {
     TextStyle,
     ImageStyle,
     TextInputProps,
+    Platform,
 } from 'react-native';
 import color from 'color';
 import { useTheme } from 'react-native-paper';
@@ -56,6 +57,7 @@ const headerStyles = (
             shadowRadius: 2,
             shadowOpacity: 1,
             elevation: 0,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
         content: {
             flex: 1,
@@ -682,7 +684,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     return (
         <>
-            <StatusBar barStyle={statusBarStyle()} />
+            <StatusBar barStyle={statusBarStyle()} translucent backgroundColor={'transparent'} />
             <TouchableWithoutFeedback
                 accessible={false}
                 onPress={(): void => onPress()}
