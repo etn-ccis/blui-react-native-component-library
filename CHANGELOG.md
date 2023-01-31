@@ -5,6 +5,7 @@
 ### Fixed
 
 -   Issue with extra large accessibility sizes on iOS ([#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224)).
+-   Issue with the `<Header>` not blending behind the StatusBar on android devices([#186](https://github.com/etn-ccis/blui-react-native-component-library/issues/186)). 
 
 ### Added
 
