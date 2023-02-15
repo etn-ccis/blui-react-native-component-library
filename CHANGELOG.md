@@ -1,6 +1,6 @@
 # Change Log
 
-## v7.1.0 (Unreleased)
+## v7.1.0 (February 15, 2023)
 
 ### Fixed
 
