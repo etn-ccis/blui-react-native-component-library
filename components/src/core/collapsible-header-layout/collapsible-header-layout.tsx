@@ -7,6 +7,11 @@ import {
     StyleProp,
     ViewStyle,
     ScrollView,
+    ScrollViewPropsIOS,
+    FlatList,
+    KeyboardAvoidingViewProps,
+    Text,
+    SectionList,
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -16,7 +21,8 @@ import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 export type CollapsibleLayoutProps = ViewProps & {
     /** Props to spread to the Header component. */
     HeaderProps: BLUIHeaderProps;
-
+    ScrollComponent?: any;
+    scrollComponentProps?: any;
     /** Props to spread to the ScrollView component. */
     ScrollViewProps?: RNScrollViewProps;
 
@@ -45,6 +51,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         ScrollViewProps = {},
         styles = {},
         style,
+        ScrollComponent,
         ...viewProps
     } = props;
 
@@ -118,6 +125,25 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         }
     };
 
+    const renderChildren = () => (
+        <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding, backgroundColor: 'green' }}>
+            {props.children}
+        </Animated.View>
+    );
+
+    let Component: any = ScrollView;
+    switch (props.ScrollComponent) {
+        case 'flatlist':
+            Component = FlatList;
+            break;
+        case 'sectionlist':
+            Component = SectionList;
+            break;
+        default:
+            Component = ScrollView;
+            break;
+    }
+
     return (
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>
             <Header
@@ -133,35 +159,40 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                 ]}
             />
             {/* TODO: Consider using a KeyboardAwareScrollView in the future or perhaps allowing for a FlatList */}
-            <ScrollView
-                testID={'blui-scrollview'}
-                scrollEventThrottle={32}
-                // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
-                {...ScrollViewProps}
-                ref={scrollRef}
-                contentOffset={{ x: 0, y: initialScrollPosition }}
-                // Bind the scroll position directly to our animated value
-                onScroll={Animated.event(
-                    [
-                        {
-                            nativeEvent: {
-                                contentOffset: {
-                                    y: animatedScrollValue,
+            {ScrollComponent ? (
+                <Component {...props.scrollComponentProps}>{renderChildren()}</Component>
+            ) : (
+                <ScrollView
+                    style={{ backgroundColor: 'blue' }}
+                    testID={'blui-scrollview'}
+                    scrollEventThrottle={32}
+                    // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+                    {...ScrollViewProps}
+                    ref={scrollRef}
+                    contentOffset={{ x: 0, y: initialScrollPosition }}
+                    // Bind the scroll position directly to our animated value
+                    onScroll={Animated.event(
+                        [
+                            {
+                                nativeEvent: {
+                                    contentOffset: {
+                                        y: animatedScrollValue,
+                                    },
                                 },
                             },
-                        },
-                    ],
-                    {
-                        // User-supplied callback function
-                        listener: ScrollViewProps.onScroll,
-                        useNativeDriver: false,
-                    }
-                )}
-            >
-                <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
-                    {props.children}
-                </Animated.View>
-            </ScrollView>
+                        ],
+                        {
+                            // User-supplied callback function
+                            listener: ScrollViewProps.onScroll,
+                            useNativeDriver: false,
+                        }
+                    )}
+                >
+                    <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
+                        {props.children}
+                    </Animated.View>
+                </ScrollView>
+            )}
         </View>
     );
 };
