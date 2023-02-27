@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
     Animated,
@@ -122,17 +124,52 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         }
     };
 
-    let Component: any = ScrollView;
-    switch (props.ScrollComponent) {
-        case 'flatlist':
-            Component = FlatList;
-            break;
-        case 'sectionlist':
-            Component = SectionList;
-            break;
-        default:
-            Component = ScrollView;
-            break;
+    let Component: any = (
+        <ScrollView
+            style={{ backgroundColor: 'blue' }}
+            testID={'blui-scrollview'}
+            scrollEventThrottle={32}
+            // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+            contentOffset={{ x: 0, y: initialScrollPosition }}
+            // Bind the scroll position directly to our animated value
+            onScroll={Animated.event(
+                [
+                    {
+                        nativeEvent: {
+                            contentOffset: {
+                                y: animatedScrollValue,
+                            },
+                        },
+                    },
+                ],
+                {
+                    // User-supplied callback function
+                    listener: ScrollViewProps.onScroll,
+                    useNativeDriver: false,
+                }
+            )}
+        />
+    );
+
+    if (props.children) {
+        Component = React.cloneElement(props.children[0], {
+            onScroll: Animated.event(
+                [
+                    {
+                        nativeEvent: {
+                            contentOffset: {
+                                y: animatedScrollValue,
+                            },
+                        },
+                    },
+                ],
+                {
+                    // User-supplied callback function
+                    listener: ScrollViewProps.onScroll,
+                    useNativeDriver: false,
+                }
+            ),
+        });
     }
 
     return (
@@ -149,41 +186,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     { position: 'absolute', zIndex: 100 },
                 ]}
             />
-            {/* TODO: Consider using a KeyboardAwareScrollView in the future or perhaps allowing for a FlatList */}
-            <Component
-                {...props.scrollComponentProps}
-                style={{ backgroundColor: 'blue' }}
-                testID={'blui-scrollview'}
-                scrollEventThrottle={32}
-                // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
-                {...ScrollViewProps}
-                ref={scrollRef}
-                contentOffset={{ x: 0, y: initialScrollPosition }}
-                // Bind the scroll position directly to our animated value
-                onScroll={Animated.event(
-                    [
-                        {
-                            nativeEvent: {
-                                contentOffset: {
-                                    y: animatedScrollValue,
-                                },
-                            },
-                        },
-                    ],
-                    {
-                        // User-supplied callback function
-                        listener: ScrollViewProps.onScroll,
-                        useNativeDriver: false,
-                    }
-                )}
-            >
-                <Animated.View
-                    testID={'blui-padded-view'}
-                    style={{ paddingTop: contentPadding, backgroundColor: 'green' }}
-                >
-                    {props.children}
-                </Animated.View>
-            </Component>
+            {Component}
         </View>
     );
 };
