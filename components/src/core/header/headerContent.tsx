@@ -64,7 +64,6 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: theme.fonts.medium.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
@@ -125,7 +124,6 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: washingtonStyle ? theme.fonts.light.fontFamily : theme.fonts.regular.fontFamily,
             fontSize: washingtonStyle ? 18 : 16,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -191,7 +189,6 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 outputRange: [0, 1],
                 extrapolate: 'clamp',
             }),
-            fontFamily: theme.fonts.regular.fontFamily,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20],

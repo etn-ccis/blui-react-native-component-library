@@ -7,10 +7,7 @@ import {
     StyleProp,
     ViewStyle,
     ScrollView,
-    ScrollViewPropsIOS,
     FlatList,
-    KeyboardAvoidingViewProps,
-    Text,
     SectionList,
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
@@ -125,12 +122,6 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         }
     };
 
-    const renderChildren = () => (
-        <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding, backgroundColor: 'green' }}>
-            {props.children}
-        </Animated.View>
-    );
-
     let Component: any = ScrollView;
     switch (props.ScrollComponent) {
         case 'flatlist':
@@ -159,40 +150,40 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                 ]}
             />
             {/* TODO: Consider using a KeyboardAwareScrollView in the future or perhaps allowing for a FlatList */}
-            {ScrollComponent ? (
-                <Component {...props.scrollComponentProps}>{renderChildren()}</Component>
-            ) : (
-                <ScrollView
-                    style={{ backgroundColor: 'blue' }}
-                    testID={'blui-scrollview'}
-                    scrollEventThrottle={32}
-                    // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
-                    {...ScrollViewProps}
-                    ref={scrollRef}
-                    contentOffset={{ x: 0, y: initialScrollPosition }}
-                    // Bind the scroll position directly to our animated value
-                    onScroll={Animated.event(
-                        [
-                            {
-                                nativeEvent: {
-                                    contentOffset: {
-                                        y: animatedScrollValue,
-                                    },
+            <Component
+                {...props.scrollComponentProps}
+                style={{ backgroundColor: 'blue' }}
+                testID={'blui-scrollview'}
+                scrollEventThrottle={32}
+                // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+                {...ScrollViewProps}
+                ref={scrollRef}
+                contentOffset={{ x: 0, y: initialScrollPosition }}
+                // Bind the scroll position directly to our animated value
+                onScroll={Animated.event(
+                    [
+                        {
+                            nativeEvent: {
+                                contentOffset: {
+                                    y: animatedScrollValue,
                                 },
                             },
-                        ],
-                        {
-                            // User-supplied callback function
-                            listener: ScrollViewProps.onScroll,
-                            useNativeDriver: false,
-                        }
-                    )}
+                        },
+                    ],
+                    {
+                        // User-supplied callback function
+                        listener: ScrollViewProps.onScroll,
+                        useNativeDriver: false,
+                    }
+                )}
+            >
+                <Animated.View
+                    testID={'blui-padded-view'}
+                    style={{ paddingTop: contentPadding, backgroundColor: 'green' }}
                 >
-                    <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
-                        {props.children}
-                    </Animated.View>
-                </ScrollView>
-            )}
+                    {props.children}
+                </Animated.View>
+            </Component>
         </View>
     );
 };
