@@ -1083,9 +1083,9 @@
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
 "@brightlayer-ui/react-native-vector-icons@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-2.0.0.tgz#768e8e2c72fcaabffd34b2f49a5e3ae1f1818f1a"
-  integrity sha512-L/s0Mc/NKQpyFLKz1kyzfwKpIMX7SECZfun1I0eG/lwC56CXV+MpSvEvrpKl1i5lgVpDCy3vP1SJPYuceLfTCA==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-2.1.0.tgz#98aa139e96a2b9973d4a994e8f75d3dcc3d4b2fd"
+  integrity sha512-SdQDXXrm7RrQgC52mNDe51dRXmOcS6kUdhfCaIX6GE3sJbULSanft/EFe8HeLqgz+yCllTqrN1/cZWBxqa2mmw==
 
 "@brightlayer-ui/types@^2.0.0":
   version "2.0.0"
