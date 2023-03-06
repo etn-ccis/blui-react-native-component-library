@@ -86,6 +86,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     // Track the scroll position here too so we can minimize unnecessary updates
     const onScrollChange = useCallback(({ value: scrollDistance }: { value: number }) => {
+        // console.log('scrollDistance', scrollDistance);
         // save the current value of the animated scroll position
         setScrollValue(scrollDistance);
     }, []);
@@ -124,53 +125,20 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         }
     };
 
-    let Component: any = (
-        <ScrollView
-            style={{ backgroundColor: 'blue' }}
-            testID={'blui-scrollview'}
-            scrollEventThrottle={32}
-            // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
-            contentOffset={{ x: 0, y: initialScrollPosition }}
-            // Bind the scroll position directly to our animated value
-            onScroll={Animated.event(
-                [
-                    {
-                        nativeEvent: {
-                            contentOffset: {
-                                y: animatedScrollValue,
-                            },
-                        },
+    const handleScroll = Animated.event(
+        [
+            {
+                nativeEvent: {
+                    contentOffset: {
+                        y: animatedScrollValue,
                     },
-                ],
-                {
-                    // User-supplied callback function
-                    listener: ScrollViewProps.onScroll,
-                    useNativeDriver: false,
-                }
-            )}
-        />
+                },
+            },
+        ],
+        {
+            useNativeDriver: false,
+        }
     );
-
-    if (props.children) {
-        Component = React.cloneElement(props.children[0], {
-            onScroll: Animated.event(
-                [
-                    {
-                        nativeEvent: {
-                            contentOffset: {
-                                y: animatedScrollValue,
-                            },
-                        },
-                    },
-                ],
-                {
-                    // User-supplied callback function
-                    listener: ScrollViewProps.onScroll,
-                    useNativeDriver: false,
-                }
-            ),
-        });
-    }
 
     return (
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>
@@ -186,7 +154,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     { position: 'absolute', zIndex: 100 },
                 ]}
             />
-            {Component}
+            {props.ScrollComponent(handleScroll, contentPadding)}
         </View>
     );
 };
