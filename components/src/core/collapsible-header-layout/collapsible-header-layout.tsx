@@ -1,29 +1,29 @@
-/* eslint-disable */
-// @ts-nocheck
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {
-    Animated,
-    ViewProps,
-    View,
-    ScrollViewProps as RNScrollViewProps,
-    StyleProp,
-    ViewStyle,
-    ScrollView,
-    FlatList,
-    SectionList,
-} from 'react-native';
+import { Animated, ViewProps, View, StyleProp, ViewStyle } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
-export type CollapsibleLayoutProps = ViewProps & {
+export type CollapsibleLayoutProps = Omit<ViewProps, 'children'> & {
     /** Props to spread to the Header component. */
     HeaderProps: BLUIHeaderProps;
-    ScrollComponent?: any;
-    scrollComponentProps?: any;
-    /** Props to spread to the ScrollView component. */
-    ScrollViewProps?: RNScrollViewProps;
+
+    /** Scroll components passed as a prop */
+    ScrollComponent?: (
+        handleScroll: (e: any) => void,
+        contentPadding: Animated.Value,
+        contentOffset: { x: number; y: number }
+    ) => JSX.Element;
+
+    // We have to explicitly mention this here so Typescript won't complain in some of our functions
+    // that use this type definition as a parameter since it doesn't realize that children is part of
+    // the definition of a React Component.
+    children?: (
+        handleScroll: (e: any) => void,
+        contentPadding: Animated.Value,
+        contentOffset: { x: number; y: number }
+    ) => JSX.Element;
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
@@ -47,7 +47,6 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const {
         HeaderProps = { styles: {} } as BLUIHeaderProps,
         theme: themeOverride,
-        ScrollViewProps = {},
         styles = {},
         style,
         ScrollComponent,
@@ -67,6 +66,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const expandedHeight = getScaledHeight(HeaderProps.expandedHeight || 200);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const initialScrollPosition = headerVariant === 'static' ? 0 : !startExpanded ? scrollableDistance : 0;
+    const contentOffset = { x: 0, y: initialScrollPosition };
 
     // State Variables
     const [contentPadding] = useState(
@@ -154,7 +154,11 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     { position: 'absolute', zIndex: 100 },
                 ]}
             />
-            {props.ScrollComponent(handleScroll, contentPadding)}
+            {ScrollComponent ? (
+                ScrollComponent(handleScroll, contentPadding, contentOffset)
+            ) : (
+                <>{props.children && props.children(handleScroll, contentPadding, contentOffset)}</>
+            )}
         </View>
     );
 };
