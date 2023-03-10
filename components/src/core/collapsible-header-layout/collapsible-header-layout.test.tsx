@@ -25,12 +25,12 @@ describe('CollapsibleHeaderLayout', () => {
         instance = TestRenderer.create(
             <CollapsibleHeaderLayout
                 HeaderProps={{ title: 'Hello' }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any) => (
+                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
                     <Animated.ScrollView
                         testID={'blui-scrollview'}
                         style={{ paddingTop: contentPadding }}
                         contentOffset={contentOffset}
-                        onScroll={(e) => handleScroll(e)}
+                        onScroll={(e): any => handleScroll(e)}
                     >
                         <Text>Test</Text>
                     </Animated.ScrollView>
@@ -68,12 +68,12 @@ describe('CollapsibleHeaderLayout', () => {
                     expandedHeight: 500,
                     collapsedHeight: 200,
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any) => (
+                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
                     <Animated.ScrollView
                         testID={'blui-scrollview'}
                         style={{ paddingTop: contentPadding }}
                         contentOffset={contentOffset}
-                        onScroll={(e) => handleScroll(e)}
+                        onScroll={(e): any => handleScroll(e)}
                     >
                         <Text>Test</Text>
                     </Animated.ScrollView>
@@ -95,12 +95,12 @@ describe('CollapsibleHeaderLayout', () => {
                     collapsedHeight: 200,
                     variant: 'dynamic',
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any) => (
+                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
                     <Animated.ScrollView
                         testID={'blui-scrollview'}
                         style={{ paddingTop: contentPadding }}
                         contentOffset={contentOffset}
-                        onScroll={(e) => handleScroll(e)}
+                        onScroll={(e): any => handleScroll(e)}
                     >
                         <Text>Test</Text>
                     </Animated.ScrollView>
@@ -123,12 +123,12 @@ describe('CollapsibleHeaderLayout', () => {
                     variant: 'static',
                     startExpanded: true,
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any) => (
+                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
                     <Animated.ScrollView
                         testID={'blui-scrollview'}
                         style={{ paddingTop: contentPadding }}
                         contentOffset={contentOffset}
-                        onScroll={(e) => handleScroll(e)}
+                        onScroll={(e): any => handleScroll(e)}
                     >
                         <Text>Test</Text>
                     </Animated.ScrollView>
@@ -151,12 +151,12 @@ describe('CollapsibleHeaderLayout', () => {
                     variant: 'dynamic',
                     startExpanded: true,
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any) => (
+                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
                     <Animated.ScrollView
                         testID={'blui-scrollview'}
                         style={{ paddingTop: contentPadding }}
                         contentOffset={contentOffset}
-                        onScroll={(e) => handleScroll(e)}
+                        onScroll={(e): any => handleScroll(e)}
                     >
                         <Text>Test</Text>
                     </Animated.ScrollView>
