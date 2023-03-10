@@ -1083,9 +1083,9 @@
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
 "@brightlayer-ui/react-native-vector-icons@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-2.0.0.tgz#768e8e2c72fcaabffd34b2f49a5e3ae1f1818f1a"
-  integrity sha512-L/s0Mc/NKQpyFLKz1kyzfwKpIMX7SECZfun1I0eG/lwC56CXV+MpSvEvrpKl1i5lgVpDCy3vP1SJPYuceLfTCA==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-2.1.0.tgz#98aa139e96a2b9973d4a994e8f75d3dcc3d4b2fd"
+  integrity sha512-SdQDXXrm7RrQgC52mNDe51dRXmOcS6kUdhfCaIX6GE3sJbULSanft/EFe8HeLqgz+yCllTqrN1/cZWBxqa2mmw==
 
 "@brightlayer-ui/types@^2.0.0":
   version "2.0.0"
@@ -1646,9 +1646,9 @@
     "@hapi/hoek" "^9.0.0"
 
 "@sideway/formula@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@sideway/formula/-/formula-3.0.0.tgz#fe158aee32e6bd5de85044be615bc08478a0a13c"
-  integrity sha512-vHe7wZ4NOXVfkoRb8T5otiENVlT7a3IAiw7H5M2+GO+9CDgcVUUsX1zalAztCmwyOr2RUTGJdgB+ZvSVqmdHmg==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@sideway/formula/-/formula-3.0.1.tgz#80fcbcbaf7ce031e0ef2dd29b1bfc7c3f583611f"
+  integrity sha512-/poHZJJVjx3L+zVD6g9KgHfYnb443oi7wLu/XKojDviHy6HOEOA6z1Trk5aR1dGcmPenJEgb2sK2I80LeS3MIg==
 
 "@sideway/pinpoint@^2.0.0":
   version "2.0.0"
@@ -5467,9 +5467,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
+  integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 mixin-deep@^1.2.0:
   version "1.3.2"
