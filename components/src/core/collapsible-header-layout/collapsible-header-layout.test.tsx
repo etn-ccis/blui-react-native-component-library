@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, PixelRatio, ScrollView, Text } from 'react-native';
+import { PixelRatio, ScrollView } from 'react-native';
 import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
 import { CollapsibleHeaderLayout } from './collapsible-header-layout';
 import { Header } from '../header';
@@ -22,21 +22,7 @@ describe('CollapsibleHeaderLayout', () => {
     afterEach(cleanup);
     let instance: ReactTestInstance;
     beforeEach(() => {
-        instance = TestRenderer.create(
-            <CollapsibleHeaderLayout
-                HeaderProps={{ title: 'Hello' }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
-                    <Animated.ScrollView
-                        testID={'blui-scrollview'}
-                        style={{ paddingTop: contentPadding }}
-                        contentOffset={contentOffset}
-                        onScroll={(e): any => handleScroll(e)}
-                    >
-                        <Text>Test</Text>
-                    </Animated.ScrollView>
-                )}
-            />
-        ).root;
+        instance = TestRenderer.create(<CollapsibleHeaderLayout HeaderProps={{ title: 'Hello' }} />).root;
     });
 
     it('renders without error', () => {
@@ -55,7 +41,7 @@ describe('CollapsibleHeaderLayout', () => {
 
     it('renders correct sizes - default props', () => {
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'blui-scrollview' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(200));
         expect(sv.props.contentOffset.y).toBe(heightWithStatusBar(200) - heightWithStatusBar(56));
     });
@@ -68,20 +54,10 @@ describe('CollapsibleHeaderLayout', () => {
                     expandedHeight: 500,
                     collapsedHeight: 200,
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
-                    <Animated.ScrollView
-                        testID={'blui-scrollview'}
-                        style={{ paddingTop: contentPadding }}
-                        contentOffset={contentOffset}
-                        onScroll={(e): any => handleScroll(e)}
-                    >
-                        <Text>Test</Text>
-                    </Animated.ScrollView>
-                )}
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'blui-scrollview' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(heightWithStatusBar(500) - heightWithStatusBar(200));
     });
@@ -95,20 +71,10 @@ describe('CollapsibleHeaderLayout', () => {
                     collapsedHeight: 200,
                     variant: 'dynamic',
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
-                    <Animated.ScrollView
-                        testID={'blui-scrollview'}
-                        style={{ paddingTop: contentPadding }}
-                        contentOffset={contentOffset}
-                        onScroll={(e): any => handleScroll(e)}
-                    >
-                        <Text>Test</Text>
-                    </Animated.ScrollView>
-                )}
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'blui-scrollview' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(heightWithStatusBar(500) - heightWithStatusBar(200));
     });
@@ -123,20 +89,10 @@ describe('CollapsibleHeaderLayout', () => {
                     variant: 'static',
                     startExpanded: true,
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
-                    <Animated.ScrollView
-                        testID={'blui-scrollview'}
-                        style={{ paddingTop: contentPadding }}
-                        contentOffset={contentOffset}
-                        onScroll={(e): any => handleScroll(e)}
-                    >
-                        <Text>Test</Text>
-                    </Animated.ScrollView>
-                )}
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'blui-scrollview' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(0);
     });
@@ -151,20 +107,10 @@ describe('CollapsibleHeaderLayout', () => {
                     variant: 'dynamic',
                     startExpanded: true,
                 }}
-                ScrollComponent={(handleScroll: any, contentPadding: any, contentOffset: any): any => (
-                    <Animated.ScrollView
-                        testID={'blui-scrollview'}
-                        style={{ paddingTop: contentPadding }}
-                        contentOffset={contentOffset}
-                        onScroll={(e): any => handleScroll(e)}
-                    >
-                        <Text>Test</Text>
-                    </Animated.ScrollView>
-                )}
             />
         ).root;
         const sv = instance.findByType(ScrollView);
-        const v = instance.findByProps({ testID: 'blui-scrollview' });
+        const v = instance.findByProps({ testID: 'blui-padded-view' });
         expect(v.props.style.paddingTop.toJSON()).toEqual(heightWithStatusBar(500));
         expect(sv.props.contentOffset.y).toBe(0);
     });

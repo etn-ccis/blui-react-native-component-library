@@ -1,11 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, ViewProps, View, StyleProp, ViewStyle } from 'react-native';
+import {
+    Animated,
+    ViewProps,
+    View,
+    ScrollViewProps as RNScrollViewProps,
+    StyleProp,
+    ViewStyle,
+    ScrollView,
+} from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
-export type CollapsibleLayoutProps = Omit<ViewProps, 'children'> & {
+export type CollapsibleLayoutProps = ViewProps & {
     /** Props to spread to the Header component. */
     HeaderProps: BLUIHeaderProps;
 
@@ -16,14 +24,17 @@ export type CollapsibleLayoutProps = Omit<ViewProps, 'children'> & {
         contentOffset: { x: number; y: number }
     ) => JSX.Element;
 
+    /** Props to spread to the ScrollView component. */
+    ScrollViewProps?: RNScrollViewProps;
+
     // We have to explicitly mention this here so Typescript won't complain in some of our functions
     // that use this type definition as a parameter since it doesn't realize that children is part of
     // the definition of a React Component.
-    children?: (
-        handleScroll: (e: any) => void,
-        contentPadding: Animated.Value,
-        contentOffset: { x: number; y: number }
-    ) => JSX.Element;
+    // children?: (
+    //     handleScroll: (e: any) => void,
+    //     contentPadding: Animated.Value,
+    //     contentOffset: { x: number; y: number }
+    // ) => JSX.Element;
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
@@ -47,6 +58,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const {
         HeaderProps = { styles: {} } as BLUIHeaderProps,
         theme: themeOverride,
+        ScrollViewProps = {},
         styles = {},
         style,
         ScrollComponent,
@@ -157,7 +169,39 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
             {ScrollComponent ? (
                 ScrollComponent(handleScroll, contentPadding, contentOffset)
             ) : (
-                <>{props.children && props.children(handleScroll, contentPadding, contentOffset)}</>
+                /* TODO: Refactor this to use scroll component passed as a children to CollapsibleHeaderLayout in the next major release 
+                 (
+                     <>{props.children && props.children(handleScroll, contentPadding, contentOffset)}</>
+                 )
+                */ <ScrollView
+                    testID={'blui-scrollview'}
+                    scrollEventThrottle={32}
+                    // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+                    {...ScrollViewProps}
+                    ref={scrollRef}
+                    contentOffset={contentOffset}
+                    // Bind the scroll position directly to our animated value
+                    onScroll={Animated.event(
+                        [
+                            {
+                                nativeEvent: {
+                                    contentOffset: {
+                                        y: animatedScrollValue,
+                                    },
+                                },
+                            },
+                        ],
+                        {
+                            // User-supplied callback function
+                            listener: ScrollViewProps.onScroll,
+                            useNativeDriver: false,
+                        }
+                    )}
+                >
+                    <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
+                        {props.children}
+                    </Animated.View>
+                </ScrollView>
             )}
         </View>
     );
