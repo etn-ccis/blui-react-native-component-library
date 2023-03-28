@@ -14,12 +14,12 @@ import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../hea
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
 const useUpdateScrollView = (
-    contentPaddingValue: any,
-    contentPadding: any,
-    animatePadding: any,
-    scrollRef: any,
-    scrollValue: any
-) =>
+    contentPaddingValue: number,
+    contentPadding: Animated.Value,
+    animatePadding: (padding: number) => Animated.CompositeAnimation,
+    scrollRef: React.MutableRefObject<any>,
+    scrollValue: number
+): any =>
     useMemo(() => {
         const updateScrollView = (data: {
             padding: number | null;
