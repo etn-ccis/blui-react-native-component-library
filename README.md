@@ -86,11 +86,3 @@ Version 6 also includes a new set of [wrappers](./components/src/themed) around 
 This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@brightlayer-ui/react-native-vector-icons](https://github.com/etn-ccis/blui-icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the Brightlayer UI components.
 
 Additionally, if using [@brightlayer-ui/icons-svg](https://github.com/etn-ccis/blui-icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up or start your project using the Brightlayer UI [CLI](https://www.npmjs.com/package/@brightlayer-ui/cli) and this will be configured for you automatically.
-
-The scroll components other than `ScrollView` have to be passed as a `ScrollComponent` prop to `<CollapsibleHeaderLayout>` component, where we give a control to the user to update `onScroll` event. 
-`ScrollComponent` prop accepts a function with `handleScroll`, `contentPadding` and `contentOffset` arguments and returns JSX.Element.
-```ts
-ScrollComponent?: (handleScroll: (e: any) => void, 
-                   contentPadding: Animated.Value, 
-                   contentOffset: { x: number; y: number;}) => JSX.Element
-```
