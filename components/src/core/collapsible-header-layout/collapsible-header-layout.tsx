@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
     Animated,
     ViewProps,
@@ -13,11 +13,42 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
+const useUpdateScrollView = (
+    contentPaddingValue: number,
+    contentPadding: Animated.Value,
+    animatePadding: (padding: number) => Animated.CompositeAnimation,
+    scrollRef: React.MutableRefObject<any>,
+    scrollValue: number
+): any =>
+    useMemo(() => {
+        const updateScrollView = (data: {
+            padding: number | null;
+            animate: boolean;
+            scrollTo: number | null;
+        }): void => {
+            const { padding, animate, scrollTo } = data;
+
+            if (padding !== null && padding !== contentPaddingValue) {
+                if (animate) animatePadding(padding).start();
+                else contentPadding.setValue(padding);
+            }
+            // Only update the scroll position if it is not null and is different from the current
+            if (scrollRef && scrollRef.current && scrollTo !== null && scrollTo !== scrollValue) {
+                scrollRef.current.scrollTo({
+                    x: 0,
+                    y: scrollTo,
+                    animated: animate,
+                });
+            }
+        };
+        return updateScrollView;
+    }, [contentPaddingValue, contentPadding, animatePadding, scrollRef, scrollValue]);
+
 export type CollapsibleLayoutProps = ViewProps & {
     /** Props to spread to the Header component. */
     HeaderProps: BLUIHeaderProps;
 
-    /** Scroll components passed as a prop */
+    /** Scroll component passed as a prop */
     ScrollComponent?: (
         handleScroll: (e: any) => void,
         contentPadding: Animated.Value,
@@ -118,24 +149,13 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         };
     }, [onScrollChange, onPaddingChange]);
 
-    // Update the ScrollView padding and scroll position
-    const updateScrollView = (data: { padding: number | null; animate: boolean; scrollTo: number | null }): void => {
-        const { padding, animate, scrollTo } = data;
-
-        if (padding !== null && padding !== contentPaddingValue) {
-            if (animate) animatePadding(padding).start();
-            else contentPadding.setValue(padding);
-        }
-        // Only update the scroll position if it is not null and is different from the current
-        if (scrollRef && scrollRef.current && scrollTo !== null && scrollTo !== scrollValue) {
-            // @ts-ignore scrollRef can't be null here, but TS complains anyway
-            scrollRef.current.scrollTo({
-                x: 0,
-                y: scrollTo,
-                animated: animate,
-            });
-        }
-    };
+    const updateScrollView = useUpdateScrollView(
+        contentPaddingValue,
+        contentPadding,
+        animatePadding,
+        scrollRef,
+        scrollValue
+    );
 
     const handleScroll = Animated.event(
         [
