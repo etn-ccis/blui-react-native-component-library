@@ -29,22 +29,14 @@ import { CollapsibleHeaderLayout } from '@brightlayer-ui/react-native-components
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                                                                             | Type                                                                                                                    | Required | Default |
-| ----------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| HeaderProps       | Props to spread to the underlying [Header](./Header.md)                                 | `HeaderProps`                                                                                                           | yes      |         |
-| ScrollViewProps   | Props to spread to the underlying [ScrollView](https://reactnative.dev/docs/scrollview) | [`ScrollViewProps`](https://reactnative.dev/docs/scrollview#props)                                                      | no       |         |
-| theme             | Theme value overrides                                                                   | `$DeepPartial<ReactNativePaper.Theme>`                                                                                  | no       |         |
-| ScrollComponent\* | Scroll container to render inside the `CollapsibleHeaderLayout`                         | handleScroll: (e: any) => void, contentPadding: Animated.Value, contentOffset: { x: number; y: number } => JSX.Element; | no       |         |
+| Prop Name       | Description                                                                             | Type                                                                                                                    | Required | Default |
+| --------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| HeaderProps     | Props to spread to the underlying [Header](./Header.md)                                 | `HeaderProps`                                                                                                           | yes      |         |
+| ScrollViewProps | Props to spread to the underlying [ScrollView](https://reactnative.dev/docs/scrollview) | [`ScrollViewProps`](https://reactnative.dev/docs/scrollview#props)                                                      | no       |         |
+| theme           | Theme value overrides                                                                   | `$DeepPartial<ReactNativePaper.Theme>`                                                                                  | no       |         |
+| ScrollComponent | A Custom Scroll container to render inside the `CollapsibleHeaderLayout`                | (handleScroll: (e: any) => void, contentPadding: Animated.Value,contentOffset: { x: number; y: number;}) => JSX.Element | no       |         |
 
 </div>
-
-> \* Scroll components other than `ScrollView` must be passed as a `ScrollComponent` prop to the `<CollapsibleHeaderLayout>` component. The `ScrollComponent` prop accepts a `handleScroll` function, as well as `contentPadding` and `contentOffset` arguments and returns a JSX.Element. The `<CollapsibleHeaderLayout>` component handles the necessary scroll calculations by calling the handleScroll method within the `onScroll` event. This is demonstrated in detail in the examples section.
-
-```ts
-ScrollComponent?: (handleScroll: (e: any) => void,
-                   contentPadding: Animated.Value,
-                   contentOffset: { x: number; y: number;}) => JSX.Element
-```
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
@@ -56,11 +48,19 @@ You can override the internal styles used by Brightlayer UI by passing a `styles
 | ---- | ---------------------------------- |
 | root | Styles applied to the root element |
 
-### Examples
+### Using a Custom Scroll Component
+
+Components other than `ScrollView` must be passed as a `ScrollComponent` prop to the `<CollapsibleHeaderLayout>` component. The `ScrollComponent` prop accepts a `handleScroll` function, as well as `contentPadding` and `contentOffset` arguments and returns a JSX.Element. The `<CollapsibleHeaderLayout>` component handles the necessary scroll calculations by calling the handleScroll method within the `onScroll` event. This is demonstrated in detail in the examples section.
+
+```ts
+ScrollComponent?: (handleScroll: (e: any) => void,
+                   contentPadding: Animated.Value,
+                   contentOffset: { x: number; y: number;}) => JSX.Element
+```
+
+#### FlatList as a ScrollComponent Example
 
 ```tsx
-// CollapsibleHeaderLayout w/ FlatList ScrollComponent
-
 <CollapsibleHeaderLayout
     HeaderProps={{
         expandedHeight: EXPANDED_HEADER_HEIGHT,
@@ -113,8 +113,9 @@ You can override the internal styles used by Brightlayer UI by passing a `styles
 />
 ```
 
+#### SectionList as a ScrollComponent Example
+
 ```tsx
-// CollapsibleHeaderLayout w/ SectionList ScrollComponent
 <CollapsibleHeaderLayout
     HeaderProps={{
         expandedHeight: EXPANDED_HEADER_HEIGHT,
@@ -134,7 +135,11 @@ You can override the internal styles used by Brightlayer UI by passing a `styles
             testID={'blui-scrollview'}
             scrollEventThrottle={32}
             contentContainerStyle={{
+                // You must convert the contentPadding Animated.value to a number before using it in the context of contentContainerStyles since the container is not Animated
+                // If this is omitted you will be unable to scroll to the bottom of the FlatList
                 paddingTop: parseInt(JSON.stringify(contentPadding)),
+
+                // Additional padding added to the bottom of the contentContainer
                 paddingBottom: 24,
             }}
             contentOffset={contentOffset}
@@ -149,6 +154,7 @@ You can override the internal styles used by Brightlayer UI by passing a `styles
                     title: 'Title 2',
                     data: ['Item 4', 'Item 5', 'Item 6'],
                 },
+                //...
             ]}
             renderItem={({ item }: any): any => (
                 <View style={styles.item}>
@@ -156,6 +162,7 @@ You can override the internal styles used by Brightlayer UI by passing a `styles
                 </View>
             )}
             keyExtractor={(item: any, index): any => index}
+            // Be sure to call the handleScroll method here to update the view on scroll
             onScroll={(e: any): any => handleScroll(e)}
             renderSectionHeader={({ section: { title } }: any): JSX.Element => <Text>{title}</Text>}
         />
