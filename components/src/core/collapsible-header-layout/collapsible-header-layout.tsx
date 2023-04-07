@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
     Animated,
     ViewProps,
@@ -13,12 +13,59 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 
+const useUpdateScrollView = (
+    contentPaddingValue: number,
+    contentPadding: Animated.Value,
+    animatePadding: (padding: number) => Animated.CompositeAnimation,
+    scrollRef: React.MutableRefObject<any>,
+    scrollValue: number
+): any =>
+    useMemo(() => {
+        const updateScrollView = (data: {
+            padding: number | null;
+            animate: boolean;
+            scrollTo: number | null;
+        }): void => {
+            const { padding, animate, scrollTo } = data;
+
+            if (padding !== null && padding !== contentPaddingValue) {
+                if (animate) animatePadding(padding).start();
+                else contentPadding.setValue(padding);
+            }
+            // Only update the scroll position if it is not null and is different from the current
+            if (scrollRef && scrollRef.current && scrollTo !== null && scrollTo !== scrollValue) {
+                scrollRef.current.scrollTo({
+                    x: 0,
+                    y: scrollTo,
+                    animated: animate,
+                });
+            }
+        };
+        return updateScrollView;
+    }, [contentPaddingValue, contentPadding, animatePadding, scrollRef, scrollValue]);
+
 export type CollapsibleLayoutProps = ViewProps & {
     /** Props to spread to the Header component. */
     HeaderProps: BLUIHeaderProps;
 
+    /** Scroll component passed as a prop */
+    ScrollComponent?: (
+        handleScroll: (e: any) => void,
+        contentPadding: Animated.Value,
+        contentOffset: { x: number; y: number }
+    ) => JSX.Element;
+
     /** Props to spread to the ScrollView component. */
     ScrollViewProps?: RNScrollViewProps;
+
+    // We have to explicitly mention this here so Typescript won't complain in some of our functions
+    // that use this type definition as a parameter since it doesn't realize that children is part of
+    // the definition of a React Component.
+    // children?: (
+    //     handleScroll: (e: any) => void,
+    //     contentPadding: Animated.Value,
+    //     contentOffset: { x: number; y: number }
+    // ) => JSX.Element;
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
@@ -45,6 +92,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         ScrollViewProps = {},
         styles = {},
         style,
+        ScrollComponent,
         ...viewProps
     } = props;
 
@@ -61,6 +109,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
     const expandedHeight = getScaledHeight(HeaderProps.expandedHeight || 200);
     const scrollableDistance = expandedHeight - collapsedHeight;
     const initialScrollPosition = headerVariant === 'static' ? 0 : !startExpanded ? scrollableDistance : 0;
+    const contentOffset = { x: 0, y: initialScrollPosition };
 
     // State Variables
     const [contentPadding] = useState(
@@ -80,6 +129,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
 
     // Track the scroll position here too so we can minimize unnecessary updates
     const onScrollChange = useCallback(({ value: scrollDistance }: { value: number }) => {
+        // console.log('scrollDistance', scrollDistance);
         // save the current value of the animated scroll position
         setScrollValue(scrollDistance);
     }, []);
@@ -99,24 +149,28 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         };
     }, [onScrollChange, onPaddingChange]);
 
-    // Update the ScrollView padding and scroll position
-    const updateScrollView = (data: { padding: number | null; animate: boolean; scrollTo: number | null }): void => {
-        const { padding, animate, scrollTo } = data;
+    const updateScrollView = useUpdateScrollView(
+        contentPaddingValue,
+        contentPadding,
+        animatePadding,
+        scrollRef,
+        scrollValue
+    );
 
-        if (padding !== null && padding !== contentPaddingValue) {
-            if (animate) animatePadding(padding).start();
-            else contentPadding.setValue(padding);
+    const handleScroll = Animated.event(
+        [
+            {
+                nativeEvent: {
+                    contentOffset: {
+                        y: animatedScrollValue,
+                    },
+                },
+            },
+        ],
+        {
+            useNativeDriver: false,
         }
-        // Only update the scroll position if it is not null and is different from the current
-        if (scrollRef && scrollRef.current && scrollTo !== null && scrollTo !== scrollValue) {
-            // @ts-ignore scrollRef can't be null here, but TS complains anyway
-            scrollRef.current.scrollTo({
-                x: 0,
-                y: scrollTo,
-                animated: animate,
-            });
-        }
-    };
+    );
 
     return (
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>
@@ -132,36 +186,43 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     { position: 'absolute', zIndex: 100 },
                 ]}
             />
-            {/* TODO: Consider using a KeyboardAwareScrollView in the future or perhaps allowing for a FlatList */}
-            <ScrollView
-                testID={'blui-scrollview'}
-                scrollEventThrottle={32}
-                // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
-                {...ScrollViewProps}
-                ref={scrollRef}
-                contentOffset={{ x: 0, y: initialScrollPosition }}
-                // Bind the scroll position directly to our animated value
-                onScroll={Animated.event(
-                    [
-                        {
-                            nativeEvent: {
-                                contentOffset: {
-                                    y: animatedScrollValue,
+            {ScrollComponent ? (
+                ScrollComponent(handleScroll, contentPadding, contentOffset)
+            ) : (
+                /* TODO: Refactor this to use scroll component passed as a children to CollapsibleHeaderLayout in the next major release 
+                 (
+                     <>{props.children && props.children(handleScroll, contentPadding, contentOffset)}</>
+                 )
+                */ <ScrollView
+                    testID={'blui-scrollview'}
+                    scrollEventThrottle={32}
+                    // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+                    {...ScrollViewProps}
+                    ref={scrollRef}
+                    contentOffset={contentOffset}
+                    // Bind the scroll position directly to our animated value
+                    onScroll={Animated.event(
+                        [
+                            {
+                                nativeEvent: {
+                                    contentOffset: {
+                                        y: animatedScrollValue,
+                                    },
                                 },
                             },
-                        },
-                    ],
-                    {
-                        // User-supplied callback function
-                        listener: ScrollViewProps.onScroll,
-                        useNativeDriver: false,
-                    }
-                )}
-            >
-                <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
-                    {props.children}
-                </Animated.View>
-            </ScrollView>
+                        ],
+                        {
+                            // User-supplied callback function
+                            listener: ScrollViewProps.onScroll,
+                            useNativeDriver: false,
+                        }
+                    )}
+                >
+                    <Animated.View testID={'blui-padded-view'} style={{ paddingTop: contentPadding }}>
+                        {props.children}
+                    </Animated.View>
+                </ScrollView>
+            )}
         </View>
     );
 };
