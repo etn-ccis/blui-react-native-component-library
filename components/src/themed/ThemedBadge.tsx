@@ -1,5 +1,6 @@
 import React from 'react';
 import { Badge, useTheme } from 'react-native-paper';
+import { useFontScaleSettings } from '../core/__contexts__/font-scale-context';
 import { useAlternateTheme } from './hooks/useAlternateTheme';
 
 export type ThemedBadgeProps = React.ComponentProps<typeof Badge>;
@@ -19,6 +20,7 @@ export const ThemedBadge: React.FC<ThemedBadgeProps> = (props) => {
         { colors: { notification: fullTheme.colors.primaryPalette?.main || fullTheme.colors.primary } },
         { colors: { notification: fullTheme.colors.primaryPalette?.dark || fullTheme.colors.primary } }
     );
+    const { maxScale, disableScaling } = useFontScaleSettings();
 
-    return <Badge {...other} theme={theme} />;
+    return <Badge {...other} theme={theme} allowFontScaling={!disableScaling} maxFontSizeMultiplier={maxScale} />;
 };

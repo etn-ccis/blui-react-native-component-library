@@ -16,6 +16,8 @@ exports[`EmptyState Tests  Actions Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -208,6 +210,8 @@ exports[`EmptyState Tests  Description Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -238,6 +242,8 @@ exports[`EmptyState Tests  Description Renders 1`] = `
     Test
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -287,6 +293,7 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
 >
   <Text
     allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     selectable={false}
     style={
       [
@@ -307,6 +314,8 @@ exports[`EmptyState Tests  Icon Renders 1`] = `
     󰞱
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -355,6 +364,8 @@ exports[`EmptyState Tests  Only Title Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -403,6 +414,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
   }
 >
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -433,6 +446,8 @@ exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
     EmptyState
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {

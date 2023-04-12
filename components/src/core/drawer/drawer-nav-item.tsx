@@ -1,11 +1,10 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager, PixelRatio } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager } from 'react-native';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../info-list-item';
 import { useTheme } from 'react-native-paper';
-import { usePrevious } from '../hooks/usePrevious';
+import { usePrevious } from '../__hooks__/usePrevious';
 import { AllSharedProps } from './types';
 import color from 'color';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
@@ -15,6 +14,8 @@ import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
 import { getPrimary500 } from '../utility/shared';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -99,6 +100,9 @@ export type DrawerNavItemProps = AllSharedProps &
 
         /** The text to display on the first line */
         title: string;
+
+        /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--info-list-item) default props */
+        InfoListItemProps?: Partial<BLUIInfoListItemProps>;
     };
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
@@ -111,7 +115,8 @@ const calcNestedPadding = (depth: number, insets: EdgeInsets): number =>
 
 const makeStyles = (
     props: DrawerNavItemProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     activeBackground: ViewStyle;
@@ -134,7 +139,6 @@ const makeStyles = (
         depth,
         nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.background, // TODO: don't hardcode?
     } = props;
-    const fontScale = PixelRatio.getFontScale();
 
     return StyleSheet.create({
         root: {
@@ -177,7 +181,9 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // Destructure the props
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(props, theme);
+    const fontScale = useFontScale();
+    const { disableScaling, maxScale } = useFontScaleSettings();
+    const defaultStyles = makeStyles(props, theme, fontScale);
     const { activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem || '');
@@ -211,7 +217,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         depth = 0,
         hidden,
         icon: itemIcon,
-        // InfoListItemProps = {} as BLUIInfoListItemProps,
+        InfoListItemProps = {} as BLUIInfoListItemProps,
         isInActiveTree,
         itemID,
         items,
@@ -223,6 +229,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 size={24}
                 color={theme.colors.text}
                 style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
             />
         ) : undefined,
         statusColor,
@@ -279,7 +287,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                     source={collapseIcon && expanded ? collapseIcon : expandIcon}
                     size={24}
                     color={theme.colors.text}
-                    allowFontScaling
+                    allowFontScaling={!disableScaling}
                 />
             </View>
         );
@@ -321,6 +329,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             fontColor={active ? activeItemFontColor : itemFontColor}
                             icon={icon}
                             iconColor={active ? activeItemIconColor : itemIconColor}
+                            chevron={chevron && !props.items && !props.children}
                             rightComponent={
                                 (actionComponent || rightComponent) && (
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -349,6 +358,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                 statusStripe: Object.assign({ left: insets.left }, iliStatusStripe),
                                 ...otherILI,
                             }}
+                            {...InfoListItemProps}
                         />
                     </View>
                     {/* If the NavItem has child items defined, render them in a collapse panel */}

@@ -12,8 +12,8 @@ import {
     ViewStyle,
     TextStyle,
     ImageStyle,
-    PixelRatio,
     TextInputProps,
+    Platform,
 } from 'react-native';
 import color from 'color';
 import { useTheme } from 'react-native-paper';
@@ -29,20 +29,21 @@ import { HeaderActionComponent, HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 import createAnimatedComponent = Animated.createAnimatedComponent;
-import { usePrevious } from '../hooks/usePrevious';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { usePrevious } from '../__hooks__/usePrevious';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
+import { useFontScale } from '../__contexts__/font-scale-context';
 const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
-    theme: ReactNativePaper.Theme
+    theme: ReactNativePaper.Theme,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
     search: ViewStyle;
-}> => {
-    const fontScale = PixelRatio.getFontScale();
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {
             width: '100%',
             backgroundColor:
@@ -56,6 +57,7 @@ const headerStyles = (
             shadowRadius: 2,
             shadowOpacity: 1,
             elevation: 0,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
         content: {
             flex: 1,
@@ -70,7 +72,6 @@ const headerStyles = (
             paddingHorizontal: 16,
         },
     });
-};
 
 export type SearchableConfig = {
     /**
@@ -259,13 +260,13 @@ export const Header: React.FC<HeaderProps> = (props) => {
     } = props;
 
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
+    const fontScale = useFontScale();
 
     const theme = useTheme(themeOverride);
-    const defaultStyles = headerStyles(props, theme);
+    const defaultStyles = headerStyles(props, theme, fontScale);
     const searchRef = useRef<TextInput>(null);
 
     // Utility variables
-    const fontScale = PixelRatio.getFontScale();
     const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);
@@ -683,7 +684,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
     return (
         <>
-            <StatusBar barStyle={statusBarStyle()} />
+            <StatusBar barStyle={statusBarStyle()} translucent backgroundColor={'transparent'} />
             <TouchableWithoutFeedback
                 accessible={false}
                 onPress={(): void => onPress()}
@@ -750,6 +751,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                         }}
                                     />
                                 </Animated.View>
+                                {props.children}
                             </HeaderHeightContext.Provider>
                         </ColorContext.Provider>
                     </SearchContext.Provider>

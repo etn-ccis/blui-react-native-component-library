@@ -84,18 +84,19 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                                    | Type                                   | Required | Default                |
-| ----------------- | ---------------------------------------------- | -------------------------------------- | -------- | ---------------------- |
-| backgroundColor   | The color used for the background              | `string`                               | no       | `theme.colors.primary` |
-| backgroundImage   | An image to display in the header              | `ImageSourcePropType`                  | no       |                        |
-| backgroundOpacity | The opacity of the background image            | `number`                               | no       | `0.3`                  |
-| fontColor         | The color of the text elements                 | `string`                               | no       | `theme.colors.surface` |
-| icon              | A component to render for the icon             | [`IconSource`](./Icons.md)             | no       |                        |
-| onIconPress       | A callback to execute when the icon is pressed | `() => void`                           | no       |                        |
-| subtitle          | The second line of text                        | `string`                               | no       |                        |
-| title             | The first line of text                         | `string`                               | no       |                        |
-| titleContent      | Custom content for header title area           | `ReactNode`                            | no       |                        |
-| theme             | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
+| Prop Name         | Description                                      | Type                                   | Required | Default                |
+| ----------------- | ------------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
+| backgroundColor   | The color used for the background                | `string`                               | no       | `theme.colors.primary` |
+| backgroundImage   | An image to display in the header                | `ImageSourcePropType`                  | no       |                        |
+| backgroundOpacity | The opacity of the background image              | `number`                               | no       | `0.3`                  |
+| fontColor         | The color of the text elements                   | `string`                               | no       | `theme.colors.surface` |
+| icon              | A component to render for the icon               | [`IconSource`](./Icons.md)             | no       |                        |
+| onPress           | A callback to execute when the header is pressed | `() => void`                           | no       |                        |
+| onIconPress       | A callback to execute when the icon is pressed   | `() => void`                           | no       |                        |
+| subtitle          | The second line of text                          | `string`                               | no       |                        |
+| title             | The first line of text                           | `string`                               | no       |                        |
+| titleContent      | Custom content for header title area             | `ReactNode`                            | no       |                        |
+| theme             | Theme value overrides                            | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
 
 </div>
 
@@ -179,6 +180,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                           | Text to display in the group header                        | `string`    | no       |                             |
 | titleColor                      | Color used for the title text                              | `string`    | no       | varies for light/dark theme |
 | titleContent                    | Custom element, substitute for title                       | `ReactNode` | no       |                             |
+| titleDivider                    | Whether to show a divider below the title                  | `boolean`   | no       | true                        |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -           | -        |                             |
 
 </div>

@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Overline } from '../typography';
-import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle, PixelRatio } from 'react-native';
+import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './drawer-nav-item';
 import { Divider, useTheme } from 'react-native-paper';
 import { AllSharedProps } from './types';
@@ -8,6 +8,7 @@ import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -29,21 +30,24 @@ export type DrawerNavGroupProps = AllSharedProps &
         /** Custom content to use in place of the group header title (if you want to use non-string content) */
         titleContent?: ReactNode;
 
+        /** Whether to show a dividing line below the title */
+        titleDivider?: boolean;
+
         /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
         styles?: DrawerNavGroupStyles;
     };
 const makeStyles = (
     props: DrawerNavGroupProps,
     theme: ReactNativePaper.Theme,
-    insets: EdgeInsets
+    insets: EdgeInsets,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     textContent: ViewStyle;
     title: TextStyle;
     divider: ViewStyle;
-}> => {
-    const fontScale = PixelRatio.getFontScale();
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {},
         textContent: {
             height: 52 * fontScale,
@@ -62,7 +66,6 @@ const makeStyles = (
             right: 0,
         },
     });
-};
 
 /**
  * findID function
@@ -136,6 +139,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         title,
         titleContent,
         titleColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        titleDivider = true,
         items = [],
         styles = {},
         // Other View Props
@@ -145,7 +149,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const defaultStyles = makeStyles(props, theme, insets);
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(props, theme, insets, fontScale);
     const { activeItem } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
@@ -189,7 +194,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 {!titleContent && title && (
                     <View style={[defaultStyles.textContent, styles.textContent]}>
                         <Overline style={[defaultStyles.title, styles.title]}>{title}</Overline>
-                        <Divider style={[defaultStyles.divider, styles.divider]} />
+                        {titleDivider && <Divider style={[defaultStyles.divider, styles.divider]} />}
                     </View>
                 )}
                 {items.map((item: NavItem, index: number) => (

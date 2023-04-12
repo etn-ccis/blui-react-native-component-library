@@ -17,6 +17,7 @@ exports[`Icon Tests  renders in a component 1`] = `
 >
   <Text
     allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     selectable={false}
     style={
       [
@@ -34,9 +35,11 @@ exports[`Icon Tests  renders in a component 1`] = `
       ]
     }
   >
-    
+    
   </Text>
   <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
     style={
       [
         {
@@ -72,6 +75,7 @@ exports[`Icon Tests  renders in a component 1`] = `
 exports[`Icon Tests  renders with blui object source 1`] = `
 <Text
   allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   selectable={false}
   style={
     [
@@ -89,12 +93,14 @@ exports[`Icon Tests  renders with blui object source 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;
 
 exports[`Icon Tests  renders with emoji source 1`] = `
 <Text
+  allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   style={
     [
       {
@@ -145,7 +151,7 @@ exports[`Icon Tests  renders with function source 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;
 
@@ -154,6 +160,7 @@ exports[`Icon Tests  renders with local image source 1`] = `null`;
 exports[`Icon Tests  renders with material community object source 1`] = `
 <Text
   allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   selectable={false}
   style={
     [
@@ -178,6 +185,7 @@ exports[`Icon Tests  renders with material community object source 1`] = `
 exports[`Icon Tests  renders with material object source 1`] = `
 <Text
   allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   selectable={false}
   style={
     [
@@ -202,6 +210,7 @@ exports[`Icon Tests  renders with material object source 1`] = `
 exports[`Icon Tests  renders with material object source 2`] = `
 <Text
   allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   selectable={false}
   style={
     [
@@ -229,7 +238,7 @@ exports[`Icon Tests  renders with remote image source 1`] = `
   importantForAccessibility="no-hide-descendants"
   source={
     {
-      "uri": "https://raw.githubusercontent.com/brightlayer-ui/icons/dev/png/png48/account_settings_black500_48dp.png",
+      "uri": "https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/png/png48/account_settings_black500_48dp.png",
     }
   }
   style={
@@ -246,6 +255,8 @@ exports[`Icon Tests  renders with remote image source 1`] = `
 
 exports[`Icon Tests  renders with string source 1`] = `
 <Text
+  allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   style={
     [
       {

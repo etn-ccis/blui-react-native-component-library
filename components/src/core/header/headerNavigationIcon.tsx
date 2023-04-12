@@ -1,17 +1,18 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager, PixelRatio } from 'react-native';
+import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager } from 'react-native';
 import { ICON_SIZE } from './constants';
 import { IconSource } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { HeaderIcon } from './headerIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     navigation: ViewStyle;
     flipIcon: ViewStyle;
 }> => {
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = useFontScale();
     return StyleSheet.create({
         navigation: {
             height: 40 * fontScale,
@@ -46,6 +47,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
     const { searching, onClose } = useSearch();
     const { color } = useColor();
     const defaultStyles = makeStyles();
+    const { disableScaling, maxScale } = useFontScaleSettings();
 
     if (searching) {
         return (
@@ -59,8 +61,9 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                     name={'arrow-back'}
                     size={ICON_SIZE}
                     color={color}
-                    allowFontScaling
+                    allowFontScaling={!disableScaling}
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                    maxFontSizeMultiplier={maxScale}
                 />
             </TouchableOpacity>
         );

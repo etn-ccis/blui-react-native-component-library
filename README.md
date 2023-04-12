@@ -1,11 +1,11 @@
 # Brightlayer UI React Native Components
 
-[![](https://img.shields.io/circleci/project/github/brightlayer-ui/react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/brightlayer-ui/react-native-component-library/tree/master)
-![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-native-components?label=%40brightlayer-ui%2Freact-native-components) [![codecov](https://codecov.io/gh/brightlayer-ui/react-native-component-library/branch/master/graph/badge.svg?token=HQ7P6R23KZ)](https://codecov.io/gh/brightlayer-ui/react-native-component-library)
+[![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-native-component-library/tree/master)
+![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-native-components?label=%40brightlayer-ui%2Freact-native-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-native-component-library/branch/master/graph/badge.svg?token=HQ7P6R23KZ)](https://codecov.io/gh/etn-ccis/blui-react-native-component-library)
 
 This is a library of re-usable React Native components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
-Refer to the [Component Library](https://brightlayer-ui-components.github.io/react-native/?path=/story/intro-welcome--to-brightlayer-ui) API documentation site for a list of available components or see the repository [documentation](https://github.com/brightlayer-ui/react-native-component-library/tree/master/docs) for each individual component.
+Refer to the [Component Library API documentation](https://brightlayer-ui-components.github.io/react-native) site for a list of available components or see the repository documentation for each individual component.
 
 ## Installation
 
@@ -27,12 +27,14 @@ npm install --save react-native-paper@^4.0.0 react-native-safe-area-context@^3.0
 yarn add react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0 react-native-modal@^12.0.0
 ```
 
+> **NOTE**: react-native-paper@^5.0.0 is currently available, however, we only support RNP v4 at this time. Please be sure to keep peer-dependencies aligned as defined above to avoid potential conflicts.
+
 ## Building the Library
 
 To work with this library, first clone down the repository and install dependencies:
 
 ```
-git clone https://github.com/brightlayer-ui/react-native-component-library
+git clone https://github.com/etn-ccis/blui-react-native-component-library
 cd react-native-component-library
 ```
 
@@ -69,7 +71,7 @@ to bring up a API documentation website (no interactive components).
 
 ## Using the Components
 
-See the [documentation](https://github.com/brightlayer-ui/react-native-component-library/tree/master/docs) for information on using these components.
+See the [documentation](https://brightlayer-ui-components.github.io/react-native) for information on using these components.
 
 ### Upgrading from version 5 -> 6
 
@@ -81,6 +83,6 @@ Version 6 also includes a new set of [wrappers](./components/src/themed) around 
 
 ## NOTES
 
-This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@brightlayer-ui/react-native-vector-icons](https://github.com/brightlayer-ui/icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the Brightlayer UI components.
+This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@brightlayer-ui/react-native-vector-icons](https://github.com/etn-ccis/blui-icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the Brightlayer UI components.
 
-Additionally, if using [@brightlayer-ui/icons-svg](https://github.com/brightlayer-ui/icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up or start your project using the Brightlayer UI [CLI](https://www.npmjs.com/package/@brightlayer-ui/cli) and this will be configured for you automatically.
+Additionally, if using [@brightlayer-ui/icons-svg](https://github.com/etn-ccis/blui-icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up or start your project using the Brightlayer UI [CLI](https://www.npmjs.com/package/@brightlayer-ui/cli) and this will be configured for you automatically.

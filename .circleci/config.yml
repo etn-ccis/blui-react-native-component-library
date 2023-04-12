@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-    codecov: codecov/codecov@1.1.3
+    codecov: codecov/codecov@3.2.2
     gh: circleci/github-cli@1.0.3
     browser-tools: circleci/browser-tools@1.2.4
 jobs:
@@ -70,7 +70,7 @@ jobs:
                   at: .
             - codecov/upload:
                   file: './components/coverage/clover.xml'
-                  token: c0991605-ebc1-430d-aa3f-3e134c6a8a0e
+                  token: CODECOV_TOKEN
 
     # Builds the Storybook app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_storybook:
@@ -288,19 +288,6 @@ jobs:
                   command: |
                       yarn publish:package -b $CIRCLE_BRANCH
 
-    tag:
-        docker:
-            - image: cimg/node:14.19.0-browsers
-        steps:
-            - checkout
-            - attach_workspace:
-                  at: .
-            - gh/setup
-            - run:
-                  name: Tag @brightlayer-ui/react-native-components
-                  command: |
-                      yarn tag:package -b $CIRCLE_BRANCH
-
 workflows:
     version: 2
     react-native_library:
@@ -334,13 +321,6 @@ workflows:
                           only:
                               - master
                               - dev
-            - tag:
-                  requires:
-                      - publish
-                  filters:
-                      branches:
-                          only:
-                              - master
             - coverage_report:
                   requires:
                       - build_library

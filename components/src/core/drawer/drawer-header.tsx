@@ -8,24 +8,26 @@ import {
     ViewStyle,
     ImageStyle,
     TextStyle,
-    ViewProps,
-    PixelRatio,
     TouchableOpacity,
+    TouchableWithoutFeedbackProps,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { H6, Subtitle1 } from '../typography';
 import { Divider, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { Icon } from '../icon';
 import { getPrimary500 } from '../utility/shared';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 const makeStyles = (
     props: DrawerHeaderProps,
     theme: ReactNativePaper.Theme,
     insets: EdgeInsets,
-    height: number
+    height: number,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     icon: ViewStyle;
@@ -35,10 +37,8 @@ const makeStyles = (
     subtitle: TextStyle;
     backgroundImageWrapper: ViewStyle;
     backgroundImage: ImageStyle;
-}> => {
-    const fontScale = PixelRatio.getFontScale();
-
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         root: {
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || getPrimary500(theme) || theme.colors.primary,
@@ -84,9 +84,8 @@ const makeStyles = (
             resizeMode: 'cover',
         },
     });
-};
 
-export type DrawerHeaderProps = ViewProps & {
+export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * The color used for the background
      *
@@ -104,6 +103,9 @@ export type DrawerHeaderProps = ViewProps & {
      * Default: 0.3
      */
     backgroundOpacity?: number;
+
+    /** Callback to execute when the drawer header is pressed */
+    onPress?: () => void;
 
     /** Color to use for header text elements */
     fontColor?: string;
@@ -126,6 +128,7 @@ export type DrawerHeaderProps = ViewProps & {
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
+        headerContainer?: StyleProp<ViewStyle>;
         backgroundImageWrapper?: StyleProp<ViewStyle>;
         backgroundImage?: StyleProp<ImageStyle>;
         content?: StyleProp<ViewStyle>;
@@ -155,6 +158,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         backgroundImage,
         fontColor,
         icon,
+        onPress,
         onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
@@ -166,7 +170,9 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
-    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT);
+    const { disableScaling } = useFontScaleSettings();
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(props, theme, insets, REGULAR_HEIGHT, fontScale);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
@@ -178,7 +184,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <Icon source={icon} size={24} color={fontColor || 'white'} />
+                        <Icon source={icon} size={24} color={fontColor || 'white'} allowFontScaling={!disableScaling} />
                     </TouchableOpacity>
                 </View>
             );
@@ -216,14 +222,16 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     }, [backgroundImage, defaultStyles, styles]);
 
     return (
-        <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
-            {getBackgroundImage()}
-            <View style={[defaultStyles.content, styles.content]}>
-                {icon && getIcon()}
-                {getHeaderContent()}
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
+                {getBackgroundImage()}
+                <View style={[defaultStyles.content, styles.content]}>
+                    {icon && getIcon()}
+                    {getHeaderContent()}
+                </View>
+                <Divider />
             </View>
-            <Divider />
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 

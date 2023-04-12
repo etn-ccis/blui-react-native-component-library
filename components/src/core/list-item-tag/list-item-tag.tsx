@@ -1,10 +1,11 @@
 import React from 'react';
-import { TextStyle, StyleSheet, PixelRatio } from 'react-native';
+import { TextStyle, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white, black } from '@brightlayer-ui/colors';
 import { Overline, TypographyProps } from '../typography';
 import { getPrimary500 } from '../utility/shared';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 export type ListItemTagProps = TypographyProps & {
     /**
@@ -77,7 +78,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         ...otherTextProps
     } = props;
     const theme = useTheme(themeOverride);
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = useFontScale();
     const defaultStyles = listItemTagStyles(props, theme, fontScale);
 
     return (

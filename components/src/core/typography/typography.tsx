@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TextProps, TextStyle, StyleProp, I18nManager, Platform } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 export type TypographyProps = {
     /**
@@ -42,6 +43,7 @@ const createTypography =
     (getStyle: (theme: ReactNativePaper.Theme) => StyleProp<TextStyle>): React.FC<TypographyProps> =>
     ({ font, fontSize, color, style, styles = {}, ...props }): JSX.Element => {
         const theme = useTheme(props.theme);
+        const { maxScale, disableScaling } = useFontScaleSettings();
 
         let customStyle: StyleProp<TextStyle> = {};
         if (fontSize) {
@@ -71,6 +73,8 @@ const createTypography =
                     styles.root,
                     style,
                 ]}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
             />
         );
     };

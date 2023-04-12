@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, PixelRatio } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { H6, Subtitle2 } from '../typography';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
 import { Icon } from '../icon';
+import { useFontScale } from '../__contexts__/font-scale-context';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -89,7 +90,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         ...viewProps
     } = props;
     const theme = useTheme(themeOverride);
-    const defaultStyles = makeStyles(theme, PixelRatio.getFontScale());
+    const fontScale = useFontScale();
+    const defaultStyles = makeStyles(theme, fontScale);
 
     const normalizeIconSize = useCallback((): number => {
         if (!iconSize) return 100;

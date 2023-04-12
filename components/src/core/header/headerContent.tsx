@@ -9,14 +9,14 @@ import {
     TextStyle,
     I18nManager,
     Platform,
-    PixelRatio,
 } from 'react-native';
 import color from 'color';
 import { ICON_SIZE, ICON_SPACING } from './constants';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
-import { useHeaderDimensions } from '../hooks/useHeaderDimensions';
+import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -60,7 +60,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
-
+    const { maxScale, disableScaling } = useFontScaleSettings();
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
@@ -82,6 +82,8 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
             style={[getTitleStyle(), style]}
             numberOfLines={1}
             ellipsizeMode={'tail'}
+            allowFontScaling={!disableScaling}
+            maxFontSizeMultiplier={maxScale}
         >
             {title}
         </Animated.Text>
@@ -118,6 +120,7 @@ type HeaderSubtitleProps = {
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const { subtitle, theme, style, washingtonStyle } = props;
     const { color: textColor } = useColor();
+    const { maxScale, disableScaling } = useFontScaleSettings();
 
     const getSubtitleStyle = useCallback(
         () => ({
@@ -137,6 +140,8 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
                 style={[getSubtitleStyle(), style]}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
             >
                 {subtitle}
             </Animated.Text>
@@ -169,7 +174,8 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
     const { info, theme, style } = props;
     const { color: textColor } = useColor();
     const { headerHeight } = useHeaderHeight();
-    const fontScale = PixelRatio.getFontScale();
+    const { maxScale, disableScaling } = useFontScaleSettings();
+    const fontScale = useFontScale();
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getInfoStyle = useCallback(
@@ -204,6 +210,8 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 style={[getInfoStyle(), style]}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
+                allowFontScaling={!disableScaling}
+                maxFontSizeMultiplier={maxScale}
             >
                 {info}
             </Animated.Text>
@@ -234,6 +242,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
     const { theme, style } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
     const { color: textColor } = useColor();
+    const { maxScale, disableScaling } = useFontScaleSettings();
     const placeholderTextColor = color(textColor).fade(0.4).string();
 
     return (
@@ -259,6 +268,8 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
             returnKeyType={'search'}
             selectionColor={placeholderTextColor}
             underlineColorAndroid={'transparent'}
+            allowFontScaling={!disableScaling}
+            maxFontSizeMultiplier={maxScale}
         />
     );
 };
@@ -324,7 +335,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
-    const fontScale = PixelRatio.getFontScale();
+    const fontScale = useFontScale();
     const defaultStyles = headerContentStyles;
 
     const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
