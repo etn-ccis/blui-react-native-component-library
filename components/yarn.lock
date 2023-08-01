@@ -1073,9 +1073,9 @@
     eslint-plugin-react "^7.28.0"
 
 "@brightlayer-ui/icons-svg@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-svg/-/icons-svg-1.11.0.tgz#2f4d6ea83bd7628f8e18064e4391ed19a581647e"
-  integrity sha512-ANrFfZ/QseSdkef4ufUelH9PGDsHfvLZwSdmWyQjkj/WcrXYG+aVn2CB8Pij+4E9nwd2XFv+4HHXrD5L0bNLpw==
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-svg/-/icons-svg-1.13.1.tgz#91adca3925fdf8b4e682bbb300785eec1d5c40ec"
+  integrity sha512-s5HBvia4g+cAlSZxKnCCS8O0Id3CoTjKxoxLNG+ctP1kNQ13A9brpjcsqACqZp1Icv+1BfszW+kF6ojnqiTzsg==
 
 "@brightlayer-ui/prettier-config@^1.0.3":
   version "1.0.3"
