@@ -129,10 +129,11 @@ export const Icon: React.FC<IconProps> = (props) => {
                 {...rest}
                 source={source as ImageSourcePropType}
                 style={[
+                    // @ts-ignore
                     {
                         width: size,
                         height: size,
-                        // tintColor: color,
+                        tintColor: color,
                         resizeMode: 'contain',
                     },
                 ]}
@@ -148,9 +149,10 @@ export const Icon: React.FC<IconProps> = (props) => {
             <Text
                 variant={'bodyMedium'}
                 style={[
+                    // @ts-ignore
                     {
                         fontSize: size,
-                        // color: color
+                        color: color,
                     },
                 ]}
             >
