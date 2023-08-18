@@ -53,12 +53,15 @@ const App = (): JSX.Element => {
                         <Card style={defaultStyles.demoCard}>
                             <Card.Title title="Icon Button" />
                             <Card.Content style={defaultStyles.demoCardContent}>
-                                <IconButton icon={(iconProps) => <BLUIIcon name="broccoli" {...iconProps} />} />
-                                <IconButton icon="chart-pie" />
+                                <IconButton
+                                    icon={(iconProps) => <BLUIIcon name="broccoli" {...iconProps} />}
+                                    onPress={() => {}}
+                                />
+                                <IconButton icon="chart-pie" onPress={() => {}} />
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>
-                            <Card.Title title="Icons (displayed in the context of ChannelValue)" />
+                            <Card.Title title="Icons (in ChannelValue)" />
                             <Card.Content style={defaultStyles.demoCardContent}>
                                 <ChannelValue
                                     value="2"
