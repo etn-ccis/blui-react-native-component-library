@@ -8,10 +8,19 @@
 import React from 'react';
 import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Appbar, Avatar, Button, Card, Text, Provider as ThemeProvider /*, useTheme */ } from 'react-native-paper';
+import {
+    Appbar,
+    Avatar,
+    Button,
+    Card,
+    IconButton,
+    Text,
+    Provider as ThemeProvider /*, useTheme */,
+} from 'react-native-paper';
 
 import { ChannelValue } from './components/ChannelValue';
 import { MD3BluiLightTheme } from './md3-themes';
+import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 
 const styles = (): any =>
     StyleSheet.create({
@@ -41,6 +50,13 @@ const App = (): JSX.Element => {
                 </Appbar.Header>
                 <SafeAreaView>
                     <ScrollView>
+                        <Card style={defaultStyles.demoCard}>
+                            <Card.Title title="Icon Button" />
+                            <Card.Content style={defaultStyles.demoCardContent}>
+                                <IconButton icon={(iconProps) => <BLUIIcon name="broccoli" {...iconProps} />} />
+                                <IconButton icon="chart-pie" />
+                            </Card.Content>
+                        </Card>
                         <Card style={defaultStyles.demoCard}>
                             <Card.Title title="Icons (displayed in the context of ChannelValue)" />
                             <Card.Content style={defaultStyles.demoCardContent}>
