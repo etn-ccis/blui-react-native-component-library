@@ -1,5 +1,5 @@
-import { ThemeOpacity, ThemeOverrides } from './types/shared';
-import { $DeepPartial } from '@callstack/react-theme-provider';
+// import { ThemeOpacity, ThemeOverrides } from './types/shared';
+// import { $DeepPartial } from '@callstack/react-theme-provider';
 
 /**
  Copyright (c) 2021-present, Eaton
