@@ -58,7 +58,7 @@ const createTypography =
         let appliedColor = theme.colors.text;
         if (color) {
             if (['primary', 'accent', 'error', 'text', 'notification'].includes(color || ''))
-                appliedColor = theme.colors[color as keyof ReactNativePaper.Theme['colors']] as string;
+                appliedColor = theme.colors[color as keyof ReactNativePaper.Theme['colors']];
             else appliedColor = color;
         }
         return (

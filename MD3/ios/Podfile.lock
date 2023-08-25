@@ -370,7 +370,7 @@ PODS:
     - React-jsi (= 0.70.10)
     - React-logger (= 0.70.10)
     - React-perflogger (= 0.70.10)
-  - RNBLUIVectorIcons (2.0.0):
+  - RNBLUIVectorIcons (2.2.0):
     - React
   - RNGestureHandler (1.10.3):
     - React-Core
@@ -595,7 +595,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 0b23ba09f2f6671a1ddee3c37d27b772b9448346
   React-runtimeexecutor: 77aa3714a353cfb1a5f5e315e8af5154cd3d9402
   ReactCommon: a29dac86d7219579db079cef8f380ebffe1ba545
-  RNBLUIVectorIcons: 740ff5d589f9e1e40caf0714204449a43235fd4f
+  RNBLUIVectorIcons: 2198bfdf9aa57f08d56360e85ca6568821b67b5e
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
@@ -603,6 +603,6 @@ SPEC CHECKSUMS:
   Yoga: 0518155cfbcc68c56223422f6a20a71b82e307d2
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: bfa93da6248db44b5f44788a13b582cfb9f72c9d
+PODFILE CHECKSUM: bbecef8adf7cbfcc8e2ef4e0117a341f566d3c66
 
 COCOAPODS: 1.12.1
