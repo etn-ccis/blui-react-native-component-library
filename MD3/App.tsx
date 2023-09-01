@@ -21,6 +21,7 @@ import {
 import { ChannelValue } from './components/ChannelValue';
 import { MD3BluiLightTheme } from './md3-themes';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
+import { ListItemTag } from './components/ListItemTag';
 
 const styles = (): any =>
     StyleSheet.create({
@@ -50,6 +51,14 @@ const App = (): JSX.Element => {
                 </Appbar.Header>
                 <SafeAreaView>
                     <ScrollView>
+                        {/* List Item Tag */}
+                        <Card style={defaultStyles.demoCard}>
+                            <Card.Title title="List Item Tag" />
+                            <Card.Content style={defaultStyles.demoCardContent}>
+                                <ListItemTag label={'IN PROGRESS'} />
+                                <ListItemTag label={'Foo Bar'} backgroundColor={'red'} fontColor={'black'} />
+                            </Card.Content>
+                        </Card>
                         <Card style={defaultStyles.demoCard}>
                             <Card.Title title="Icon Button" />
                             <Card.Content style={defaultStyles.demoCardContent}>
