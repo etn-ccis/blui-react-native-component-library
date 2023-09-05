@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextStyle,TextProps,StyleProp, StyleSheet } from 'react-native';
+import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import Color from 'color';
 import { white, black } from '@brightlayer-ui/colors';
@@ -78,8 +78,9 @@ const listItemTagStyles = (
             fontWeight: '700',
             overflow: 'hidden',
             lineHeight: 16,
-            fontSize: 10,
-            letterSpacing: 1,
+            fontSize: 12,
+            letterSpacing: 2,
+            textTransform: 'uppercase',
         },
     });
 

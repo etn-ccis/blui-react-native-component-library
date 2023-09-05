@@ -54,9 +54,9 @@ const App = (): JSX.Element => {
                         {/* List Item Tag */}
                         <Card style={defaultStyles.demoCard}>
                             <Card.Title title="List Item Tag" />
-                            <Card.Content style={defaultStyles.demoCardContent}>
+                            <Card.Content style={[defaultStyles.demoCardContent, {alignItems: 'center'}]}>
                                 <ListItemTag label={'IN PROGRESS'} />
-                                <ListItemTag label={'Foo Bar'} backgroundColor={'red'} fontColor={'black'} />
+                                <ListItemTag label={'Foo Bar'} backgroundColor={'red'} fontColor={'black'} style={{marginTop: 12}}/>
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>
