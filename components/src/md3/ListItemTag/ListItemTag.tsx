@@ -78,8 +78,8 @@ const listItemTagStyles = (
             fontWeight: '700',
             overflow: 'hidden',
             lineHeight: 16,
-            fontSize: 12,
-            letterSpacing: 2,
+            fontSize: 10,
+            letterSpacing: 1,
             textTransform: 'uppercase',
         },
     });
