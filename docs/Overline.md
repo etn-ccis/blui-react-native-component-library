@@ -8,7 +8,7 @@ Overline component is used to render text on the screen.
 ## Usage
 
 ```tsx
-import * as Overline from '@brightlayer-ui/react-native-components';
+import { Overline } from '@brightlayer-ui/react-native-components';
 
 <View>
     <Overline>Overline</Overline>
@@ -23,7 +23,7 @@ import * as Overline from '@brightlayer-ui/react-native-components';
 | --------- | ------------------------------- | ---------------------------------------------------------------------------------- | -------- | ------------------- |
 | font      | The font style (from the theme) | keyof MD3Theme['fonts'](https://callstack.github.io/react-native-paper/theming.html) | no       |                     |
 | fontSize  | The font size                   | `number`                                                                           | no       |                     |
-| color     | The font color (from the theme) | `string`                                                                           | no       | `theme.colors.primary` |
+| color     | The font color (from the theme) | `string`                                                                           | no       | `theme.colors.onSurface` |
 | theme     | Theme value overrides           | `$DeepPartial<MD3Theme>`                                             | no       |                     |
 
 </div>
