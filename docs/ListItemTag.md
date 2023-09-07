@@ -28,7 +28,7 @@ import { ListItemTag } from '@brightlayer-ui/react-native-components';
 
 </div>
 
-Any other props will be provided to the root element [`<Overline>`](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--typography).
+Any other props will be provided to the root element [`<Text>`](https://callstack.github.io/react-native-paper/docs/components/Text).
 
 ### Styles
 
