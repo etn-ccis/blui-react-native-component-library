@@ -2,10 +2,9 @@ import React from 'react';
 import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import Color from 'color';
-import { white, black } from '@brightlayer-ui/colors';
+import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 
-export type TypographyProps = {
+type TypographyProps = {
     /**
      * The font size to use
      */
@@ -40,12 +39,11 @@ const overlineStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            color:
-                props.color ||
-                (Color(theme.colors.primary).isLight() ? (theme.dark ? white[50] : theme.colors.primary) : black[500]),
+            color: props.color || theme.colors.onSurface,
             fontSize: 12,
             letterSpacing: 2,
             textTransform: 'uppercase',
+            lineHeight: 16,
         },
     });
 
@@ -53,9 +51,16 @@ export const Overline: React.FC<TypographyProps> = (props) => {
     const { children, style, styles = {}, theme: themeOverride, ...otherTextProps } = props;
     const theme = useTheme(themeOverride);
     const defaultStyles = overlineStyles(props, theme);
+    const { maxScale, disableScaling } = useFontScaleSettings();
 
     return (
-        <Text variant={'bodyMedium'} style={[defaultStyles.root, styles.root, style]} {...otherTextProps}>
+        <Text
+            variant={'bodyMedium'}
+            style={[defaultStyles.root, styles.root, style]}
+            allowFontScaling={!disableScaling}
+            maxFontSizeMultiplier={maxScale}
+            {...otherTextProps}
+        >
             {children}
         </Text>
     );
