@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../Icon';
+import { Icon } from '../icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
 
@@ -110,7 +110,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getIcon = useCallback(() => {
         if (icon) {
             return (
-                <View style={[{ marginRight: Math.round(fontSize / 3) }]}>
+                <View style={[{ marginRight: Math.round(fontSize / 3), paddingTop: 2 }]}>
                     <Icon source={icon} size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
@@ -127,14 +127,13 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                                 unitSpace === 'auto' &&
                                 !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
                         <Text
-                            variant={'bodyMedium'}
-                            // font={'light'}
-                            // fontSize={fontSize}
+                            variant={'bodyLarge'}
                             style={[
                                 {
                                     color: getColor(),
                                     fontSize: fontSize,
                                     fontWeight: '300',
+                                    letterSpacing: 0,
                                     fontFamily: 'OpenSans-Regular',
                                 },
                                 styles.units,
@@ -169,18 +168,19 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
             <Text
-                variant={'bodyMedium'}
+                variant={'bodyLarge'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
-                // fontSize={fontSize}
-                style={[{ color: getColor(), fontSize: fontSize, fontFamily: 'OpenSans-Regular' }]}
+                style={[{ color: getColor(), fontSize: fontSize, letterSpacing: 0, fontFamily: 'OpenSans-Regular' }]}
             >
                 {prefixUnits()}
                 <Text
-                    variant={'labelMedium'}
-                    // fontSize={fontSize}
-                    style={[{ color: getColor(), fontSize: fontSize, fontFamily: 'OpenSans-Regular' }, styles.value]}
+                    variant={'bodyLarge'}
+                    style={[
+                        { color: getColor(), fontSize: fontSize, letterSpacing: 0, fontFamily: 'OpenSans-Regular' },
+                        styles.value,
+                    ]}
                 >
                     {value}
                 </Text>

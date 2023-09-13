@@ -4,6 +4,8 @@ exports[`Overline Accepts style override 1`] = `[Function]`;
 
 exports[`Overline Overline Renders 1`] = `
 <Text
+  allowFontScaling={true}
+  maxFontSizeMultiplier={100}
   style={
     [
       {
@@ -23,9 +25,10 @@ exports[`Overline Overline Renders 1`] = `
         },
         [
           {
-            "color": "#424e54",
+            "color": "rgba(28, 27, 31, 1)",
             "fontSize": 12,
             "letterSpacing": 2,
+            "lineHeight": 16,
             "textTransform": "uppercase",
           },
           undefined,

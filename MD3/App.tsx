@@ -94,17 +94,15 @@ const App = (): JSX.Element => {
                                     units="%"
                                     icon={{ family: 'material-community', name: 'chart-pie' }}
                                     iconColor="red"
-                                    style={{ marginTop: 12 }}
                                 />
-                                <ChannelValue value="2.5:1" icon={{ name: 'settings' }} style={{ marginTop: 12 }} />
-                                <ChannelValue value="Concord" icon={'🍇'} style={{ marginTop: 12 }} />
-                                <ChannelValue value="1" icon={'A'} iconColor="blue" style={{ marginTop: 12 }} />
+                                <ChannelValue value="2.5:1" icon={{ name: 'settings' }} />
+                                <ChannelValue value="Concord" icon={'🍇'} />
+                                <ChannelValue value="1" icon={'A'} iconColor="blue" />
                                 <ChannelValue
                                     value="1"
                                     icon={{
                                         uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/packages/png/png48/account_settings_black500_48dp.png',
                                     }}
-                                    style={{ marginTop: 12 }}
                                 />
                             </Card.Content>
                         </Card>
