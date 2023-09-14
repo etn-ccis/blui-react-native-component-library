@@ -23,6 +23,7 @@ import { MD3BluiLightTheme } from './md3-themes';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { ListItemTag } from './components/ListItemTag';
 import { Overline } from './components/Overline';
+const AvatarTestImage = require('./assets/images/test-avatar.png');
 
 const styles = (): any =>
     StyleSheet.create({
@@ -98,12 +99,7 @@ const App = (): JSX.Element => {
                                 <ChannelValue value="2.5:1" icon={{ name: 'settings' }} />
                                 <ChannelValue value="Concord" icon={'🍇'} />
                                 <ChannelValue value="1" icon={'A'} iconColor="blue" />
-                                <ChannelValue
-                                    value="1"
-                                    icon={{
-                                        uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/packages/png/png48/account_settings_black500_48dp.png',
-                                    }}
-                                />
+                                <ChannelValue value="1" icon={AvatarTestImage} />
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>

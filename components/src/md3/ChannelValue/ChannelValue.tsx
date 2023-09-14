@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../icon';
+import { Icon } from '../Icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
 
@@ -110,7 +110,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const getIcon = useCallback(() => {
         if (icon) {
             return (
-                <View style={[{ marginRight: Math.round(fontSize / 3), paddingTop: 2 }]}>
+                <View style={[{ marginRight: Math.round(fontSize / 3) }]}>
                     <Icon source={icon} size={iconSize || fontSize} color={iconColor || getColor()} />
                 </View>
             );
