@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../Icon';
+import { Icon } from '../icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
 
@@ -172,13 +172,27 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
-                style={[{ color: getColor(), fontSize: fontSize, letterSpacing: 0, fontFamily: 'OpenSans-Regular' }]}
+                style={[
+                    {
+                        color: getColor(),
+                        fontSize: fontSize,
+                        letterSpacing: 0,
+                        fontFamily: 'OpenSans-Regular',
+                        fontWeight: '600',
+                    },
+                ]}
             >
                 {prefixUnits()}
                 <Text
                     variant={'bodyLarge'}
                     style={[
-                        { color: getColor(), fontSize: fontSize, letterSpacing: 0, fontFamily: 'OpenSans-Regular' },
+                        {
+                            color: getColor(),
+                            fontSize: fontSize,
+                            letterSpacing: 0,
+                            fontFamily: 'OpenSans-Regular',
+                            fontWeight: '600',
+                        },
                         styles.value,
                     ]}
                 >
