@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Icon } from '../icon';
+import { Icon } from '../Icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
 
