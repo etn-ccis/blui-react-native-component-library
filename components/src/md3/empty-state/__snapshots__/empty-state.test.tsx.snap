@@ -1,0 +1,1261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyState Tests  Actions Renders 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 20,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "marginTop": 32,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Test
+  </Text>
+  <View
+    style={
+      [
+        {
+          "marginTop": 32,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "transparent",
+          "borderColor": "transparent",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "elevation": 0,
+          "minWidth": 64,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
+        }
+      }
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          {
+            "disabled": true,
+          }
+        }
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          [
+            {
+              "overflow": "hidden",
+            },
+            {
+              "borderRadius": 4,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "marginLeft": 12,
+                "marginRight": -4,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                [
+                  {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  undefined,
+                  {
+                    "fontFamily": "Material Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  {},
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+          <Text
+            numberOfLines={1}
+            selectable={false}
+            style={
+              [
+                {
+                  "color": "#000000",
+                  "fontFamily": "System",
+                  "fontWeight": "400",
+                },
+                {
+                  "textAlign": "left",
+                },
+                [
+                  {
+                    "letterSpacing": 1,
+                    "marginHorizontal": 16,
+                    "marginVertical": 9,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                  {
+                    "textTransform": "uppercase",
+                  },
+                  {
+                    "color": "#6200ee",
+                    "fontFamily": "System",
+                    "fontWeight": "500",
+                  },
+                  {
+                    "fontFamily": "System",
+                    "fontWeight": "500",
+                  },
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Add Device
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`EmptyState Tests  Description Renders 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 20,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "marginTop": 32,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Test
+  </Text>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 14,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "color": "#000000",
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState Tests  Icon Renders 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    selectable={false}
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontSize": 100,
+        },
+        {},
+        {
+          "fontFamily": "Material Design Icons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        {},
+      ]
+    }
+  >
+    󰞱
+  </Text>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 20,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "marginTop": 32,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Test
+  </Text>
+</View>
+`;
+
+exports[`EmptyState Tests  Only Title Renders 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 20,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "marginTop": 32,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    EmptyState
+  </Text>
+</View>
+`;
+
+exports[`EmptyState Tests  Title, actions, Description Renders 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 20,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "marginTop": 32,
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    EmptyState
+  </Text>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    style={
+      [
+        {
+          "color": "#000000",
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {},
+        {
+          "fontFamily": "System",
+          "fontSize": 14,
+          "fontWeight": "500",
+          "letterSpacing": 0,
+        },
+        {},
+        undefined,
+        [
+          {
+            "color": "#000000",
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Description
+  </Text>
+  <View
+    style={
+      [
+        {
+          "marginTop": 32,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "transparent",
+          "borderColor": "transparent",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "elevation": 0,
+          "minWidth": 64,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
+        }
+      }
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          {
+            "disabled": true,
+          }
+        }
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          [
+            {
+              "overflow": "hidden",
+            },
+            {
+              "borderRadius": 4,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "marginLeft": 12,
+                "marginRight": -4,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                [
+                  {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  undefined,
+                  {
+                    "fontFamily": "Material Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  {},
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+          <Text
+            numberOfLines={1}
+            selectable={false}
+            style={
+              [
+                {
+                  "color": "#000000",
+                  "fontFamily": "System",
+                  "fontWeight": "400",
+                },
+                {
+                  "textAlign": "left",
+                },
+                [
+                  {
+                    "letterSpacing": 1,
+                    "marginHorizontal": 16,
+                    "marginVertical": 9,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                  {
+                    "textTransform": "uppercase",
+                  },
+                  {
+                    "color": "#6200ee",
+                    "fontFamily": "System",
+                    "fontWeight": "500",
+                  },
+                  {
+                    "fontFamily": "System",
+                    "fontWeight": "500",
+                  },
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Add Device
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`EmptyState renders correctly with accessibility props 1`] = `
+<View
+  accessibilityLabel="custom-accessibility-label"
+  accessible={true}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "rgba(103, 80, 164, 1)",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with actions provided 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "rgba(103, 80, 164, 1)",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+  <View
+    style={
+      Array [
+        Object {
+          "marginTop": 32,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "borderRadius": 20,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
+        }
+      }
+      testID="button-container-outer-layer"
+    >
+      <View
+        collapsable={false}
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "borderColor": "transparent",
+            "borderRadius": 20,
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "flex": undefined,
+            "minWidth": 64,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 0,
+            "shadowRadius": 0,
+          }
+        }
+        testID="button-container"
+        title="Click Me"
+      >
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 20,
+              },
+            ]
+          }
+          testID="button"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              selectable={false}
+              style={
+                Array [
+                  Object {
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  Array [
+                    Object {
+                      "fontFamily": "System",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.1,
+                      "lineHeight": 20,
+                    },
+                    Array [
+                      Object {
+                        "marginHorizontal": 16,
+                        "marginVertical": 9,
+                        "textAlign": "center",
+                      },
+                      false,
+                      Object {
+                        "marginHorizontal": 12,
+                      },
+                      undefined,
+                      false,
+                      Object {
+                        "color": "rgba(103, 80, 164, 1)",
+                        "fontFamily": "System",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "letterSpacing": 0.1,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                    ],
+                  ],
+                ]
+              }
+              testID="button-text"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`EmptyState renders correctly with custom icon size and color 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with custom styles 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      Object {
+        "backgroundColor": "red",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        Object {
+          "fontSize": 24,
+        },
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "rgba(103, 80, 164, 1)",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        Object {
+          "color": "green",
+        },
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with different icon sources 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Image
+    accessibilityElementsHidden={true}
+    importantForAccessibility="no-hide-descendants"
+    source={
+      Object {
+        "uri": "https://example.com/icon.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "height": 100,
+          "resizeMode": "contain",
+          "tintColor": "rgba(103, 80, 164, 1)",
+          "width": 100,
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with different theme overrides 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "purple",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with dynamic data 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    No Data
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "rgba(103, 80, 164, 1)",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Data is present
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with edge case inputs 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`EmptyState renders correctly with empty props 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`EmptyState renders correctly with long title and description 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    This is a very long title that should wrap to the next line
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "rgba(103, 80, 164, 1)",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    This is a very long description that should wrap to the next line. It contains more information about the empty state.
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with title and description 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 20,
+          "letterSpacing": 0,
+          "marginTop": 32,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "rgba(103, 80, 164, 1)",
+          "fontSize": 14,
+          "letterSpacing": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
