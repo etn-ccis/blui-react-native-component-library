@@ -33,6 +33,7 @@
         "@brightlayer-ui/eslint-config": "^3.0.0",
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "@react-native-community/eslint-config": "^2.0.0",
+        "@testing-library/react-native": "^12.3.0",
         "@tsconfig/react-native": "^2.0.2",
         "@types/color": "^3.0.3",
         "@types/jest": "^26.0.23",

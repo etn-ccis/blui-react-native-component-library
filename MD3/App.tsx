@@ -23,6 +23,7 @@ import { MD3BluiLightTheme } from './md3-themes';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { ListItemTag } from './components/ListItemTag';
 import { Overline } from './components/Overline';
+import EmptyState from './components/empty-state/empty-state';
 
 const styles = (): any =>
     StyleSheet.create({
@@ -70,6 +71,18 @@ const App = (): JSX.Element => {
                                 />
                             </Card.Content>
                         </Card>
+                        
+                        <Card style={defaultStyles.demoCard}>
+                            <Card.Title title="empty State" />
+                            <Card.Content style={[defaultStyles.demoCardContent, { alignItems: 'center' }]}>
+                                <EmptyState
+                                    title={'Nothing Found'}
+                                    description={'Not a single thing'}
+                                    icon={{ family: 'brightlayer-ui', name: 'battery' }}
+                                />
+                            </Card.Content>
+                        </Card>
+
                         <Card style={defaultStyles.demoCard}>
                             <Card.Title title="Icon Button" />
                             <Card.Content style={defaultStyles.demoCardContent}>
