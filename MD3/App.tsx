@@ -24,6 +24,7 @@ import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { ListItemTag } from './components/ListItemTag';
 import { Overline } from './components/Overline';
 import EmptyState from './components/empty-state/empty-state';
+const PublicDomainAlice = require('./assets/images/public-domain-alice.png');
 
 const styles = (): any =>
     StyleSheet.create({
@@ -94,7 +95,7 @@ const App = (): JSX.Element => {
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>
-                            <Card.Title title="Icons (in ChannelValue)" />
+                            <Card.Title title="ChannelValue" />
                             <Card.Content style={defaultStyles.demoCardContent}>
                                 <ChannelValue
                                     value="2"
@@ -107,18 +108,11 @@ const App = (): JSX.Element => {
                                     units="%"
                                     icon={{ family: 'material-community', name: 'chart-pie' }}
                                     iconColor="red"
-                                    style={{ marginTop: 12 }}
                                 />
-                                <ChannelValue value="2.5:1" icon={{ name: 'settings' }} style={{ marginTop: 12 }} />
-                                <ChannelValue value="Concord" icon={'🍇'} style={{ marginTop: 12 }} />
-                                <ChannelValue value="1" icon={'A'} iconColor="blue" style={{ marginTop: 12 }} />
-                                <ChannelValue
-                                    value="1"
-                                    icon={{
-                                        uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/packages/png/png48/account_settings_black500_48dp.png',
-                                    }}
-                                    style={{ marginTop: 12 }}
-                                />
+                                <ChannelValue value="2.5:1" icon={{ name: 'settings' }} />
+                                <ChannelValue value="Concord" icon={'🍇'} />
+                                <ChannelValue value="1" icon={'A'} iconColor="blue" />
+                                <ChannelValue value="1" icon={PublicDomainAlice} />
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>
