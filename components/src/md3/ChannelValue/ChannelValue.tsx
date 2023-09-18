@@ -127,9 +127,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                                 unitSpace === 'auto' &&
                                 !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
                         <Text
-                            variant={'bodyMedium'}
-                            // font={'light'}
-                            // fontSize={fontSize}
+                            variant={'bodyLarge'}
                             style={[
                                 {
                                     color: getColor(),
@@ -169,18 +167,31 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
             <Text
-                variant={'bodyMedium'}
+                variant={'bodyLarge'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
-                // fontSize={fontSize}
-                style={[{ color: getColor(), fontSize: fontSize, fontFamily: 'OpenSans-Regular' }]}
+                style={[
+                    {
+                        color: getColor(),
+                        fontSize: fontSize,
+                        fontFamily: 'OpenSans-Regular',
+                        fontWeight: '600',
+                    },
+                ]}
             >
                 {prefixUnits()}
                 <Text
-                    variant={'labelMedium'}
-                    // fontSize={fontSize}
-                    style={[{ color: getColor(), fontSize: fontSize, fontFamily: 'OpenSans-Regular' }, styles.value]}
+                    variant={'bodyLarge'}
+                    style={[
+                        {
+                            color: getColor(),
+                            fontSize: fontSize,
+                            fontFamily: 'OpenSans-Regular',
+                            fontWeight: '600',
+                        },
+                        styles.value,
+                    ]}
                 >
                     {value}
                 </Text>
