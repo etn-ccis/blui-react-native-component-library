@@ -24,11 +24,11 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
         title: {
             textAlign: 'center',
             marginTop: 16 * fontScale,
-            fontSize: 20, // Customize as needed
+            fontSize: 22, // Customize as needed
             letterSpacing: 0, // Customize as needed
         },
         description: {
-            //   color: theme.colors.primary,
+              color: theme.colors.onSurface,
             textAlign: 'center',
             fontSize: 14, // Customize as needed
             letterSpacing: 0, // Customize as needed
