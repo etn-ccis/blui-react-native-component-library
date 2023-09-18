@@ -23,7 +23,7 @@ import { MD3BluiLightTheme } from './md3-themes';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { ListItemTag } from './components/ListItemTag';
 import { Overline } from './components/Overline';
-const AvatarTestImage = require('./assets/images/test-avatar.png');
+const PublicDomainAlice = require('./assets/images/public-domain-alice.png');
 
 const styles = (): any =>
     StyleSheet.create({
@@ -82,7 +82,7 @@ const App = (): JSX.Element => {
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>
-                            <Card.Title title="Icons (in ChannelValue)" />
+                            <Card.Title title="ChannelValue" />
                             <Card.Content style={defaultStyles.demoCardContent}>
                                 <ChannelValue
                                     value="2"
@@ -99,7 +99,7 @@ const App = (): JSX.Element => {
                                 <ChannelValue value="2.5:1" icon={{ name: 'settings' }} />
                                 <ChannelValue value="Concord" icon={'🍇'} />
                                 <ChannelValue value="1" icon={'A'} iconColor="blue" />
-                                <ChannelValue value="1" icon={AvatarTestImage} />
+                                <ChannelValue value="1" icon={PublicDomainAlice} />
                             </Card.Content>
                         </Card>
                         <Card style={defaultStyles.demoCard}>
