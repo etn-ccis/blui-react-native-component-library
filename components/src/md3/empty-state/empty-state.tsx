@@ -26,9 +26,10 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             marginTop: 16 * fontScale,
             fontSize: 22, // Customize as needed
             letterSpacing: 0, // Customize as needed
+            color: theme.colors.onSurface,
         },
         description: {
-              color: theme.colors.onSurface,
+            color: theme.colors.onSurface,
             textAlign: 'center',
             fontSize: 14, // Customize as needed
             letterSpacing: 0, // Customize as needed
@@ -76,7 +77,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props :EmptyStateProps) =>
         return Math.max(100, Math.min(200, iconSize));
     }, [iconSize]);
 
-    const getColor = useCallback((color: string | undefined): string => color || theme.colors.primary, [theme]);
+    const getColor = useCallback((color: string | undefined): string => color || theme.colors.outlineVariant, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
