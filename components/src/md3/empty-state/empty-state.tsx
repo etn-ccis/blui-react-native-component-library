@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps, Text } from 'react-native';
-import { useTheme, MD3Theme } from 'react-native-paper';
+import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
+import { useTheme, MD3Theme, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
 import { Icon } from '../Icon';
@@ -88,8 +88,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props :EmptyStateProps) =>
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
-            <Text style={[defaultStyles.title, styles.title]}>{title}</Text>
-            {description ? <Text style={[defaultStyles.description, styles.description]}>{description}</Text> : null}
+            <Text variant={'titleLarge'} style={[defaultStyles.title, styles.title]}>{title}</Text>
+            {description ? <Text variant={'bodyMedium'} style={[defaultStyles.description, styles.description]}>{description}</Text> : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>
     );
