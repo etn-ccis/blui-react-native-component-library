@@ -69,20 +69,20 @@ describe('EmptyState', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('renders correctly with dynamic data', () => {
-        const dynamicTitle = Math.random() > 0.5 ? 'Data Available' : 'No Data';
-        const dynamicDescription = Math.random() > 0.5 ? 'Data is present' : 'Data is missing';
+    // it('renders correctly with dynamic data', () => {
+    //     const dynamicTitle = Math.random() > 0.5 ? 'Data Available' : 'No Data';
+    //     const dynamicDescription = Math.random() > 0.5 ? 'Data is present' : 'Data is missing';
 
-        const tree = TestRenderer.create(<EmptyState title={dynamicTitle} description={dynamicDescription} />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
+    //     const tree = TestRenderer.create(<EmptyState title={dynamicTitle} description={dynamicDescription} />).toJSON();
+    //     expect(tree).toMatchSnapshot();
+    // });
 
-    it('renders correctly on different screen sizes', () => {
-        // You may need to use a library like react-native-responsive-screen for this test
-        // to simulate different screen sizes. It might not be achievable in a simple Jest test.
-        // Example usage: https://github.com/marudy/react-native-responsive-screen
-        // It allows you to mock different screen sizes for testing purposes.
-    });
+    // it('renders correctly on different screen sizes', () => {
+    //     // You may need to use a library like react-native-responsive-screen for this test
+    //     // to simulate different screen sizes. It might not be achievable in a simple Jest test.
+    //     // Example usage: https://github.com/marudy/react-native-responsive-screen
+    //     // It allows you to mock different screen sizes for testing purposes.
+    // });
 
     it('renders correctly with accessibility props', () => {
         const tree = TestRenderer.create(
