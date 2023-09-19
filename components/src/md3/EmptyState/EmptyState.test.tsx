@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react-native';
 import TestRenderer from 'react-test-renderer';
-import EmptyState from './empty-state';
+import { EmptyState } from '.';
 
 describe('EmptyState', () => {
     afterEach(cleanup);
@@ -35,7 +35,7 @@ describe('EmptyState', () => {
     });
 
     it('renders correctly with empty props', () => {
-        const tree = TestRenderer.create(<EmptyState />).toJSON();
+        const tree = TestRenderer.create(<EmptyState title="Empty State Title" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
@@ -60,11 +60,6 @@ describe('EmptyState', () => {
         const themeOverride = {
             colors: {
                 primary: 'purple',
-            },
-            fonts: {
-                default: {
-                    fontSize: 18,
-                },
             },
         };
 
@@ -102,7 +97,7 @@ describe('EmptyState', () => {
     });
 
     it('renders correctly with edge case inputs', () => {
-        const tree = TestRenderer.create(<EmptyState title={null} description="" />).toJSON();
+        const tree = TestRenderer.create(<EmptyState title={''} description="" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

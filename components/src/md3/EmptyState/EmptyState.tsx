@@ -24,15 +24,15 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
         title: {
             textAlign: 'center',
             marginTop: 16 * fontScale,
-            fontSize: 22, // Customize as needed
-            letterSpacing: 0, // Customize as needed
+            fontSize: 22,
+            letterSpacing: 0,
             color: theme.colors.onSurface,
         },
         description: {
             color: theme.colors.onSurface,
             textAlign: 'center',
-            fontSize: 14, // Customize as needed
-            letterSpacing: 0, // Customize as needed
+            fontSize: 14,
+            letterSpacing: 0,
         },
         actions: {
             marginTop: 16 * fontScale,
@@ -55,7 +55,7 @@ export type EmptyStateProps = ViewProps & {
     theme?: $DeepPartial<MD3Theme>;
 };
 
-export const EmptyState: React.FC<EmptyStateProps> = (props :EmptyStateProps) => {
+export const EmptyState: React.FC<EmptyStateProps> = (props: EmptyStateProps) => {
     const {
         title,
         description,
@@ -76,7 +76,8 @@ export const EmptyState: React.FC<EmptyStateProps> = (props :EmptyStateProps) =>
         if (!iconSize) return 100;
         return Math.max(100, Math.min(200, iconSize));
     }, [iconSize]);
-    // @TODO: change the colour to theme.colors.disabled once the theme is in place
+
+    // @TODO: change the color to theme.colors.disabled once the theme is in place
     const getColor = useCallback((color: string | undefined): string => color || theme.colors.outlineVariant, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
@@ -88,10 +89,15 @@ export const EmptyState: React.FC<EmptyStateProps> = (props :EmptyStateProps) =>
     return (
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
-            <Text variant={'titleLarge'} style={[defaultStyles.title, styles.title]}>{title}</Text>
-            {description ? <Text variant={'bodyMedium'} style={[defaultStyles.description, styles.description]}>{description}</Text> : null}
+            <Text variant={'titleLarge'} style={[defaultStyles.title, styles.title]}>
+                {title}
+            </Text>
+            {description ? (
+                <Text variant={'bodyMedium'} style={[defaultStyles.description, styles.description]}>
+                    {description}
+                </Text>
+            ) : null}
             {actions ? <View style={[defaultStyles.actions, styles.actions]}>{actions}</View> : null}
         </View>
     );
 };
-
