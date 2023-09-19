@@ -1,5 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Icon Tests  renders in a component 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    allowFontScaling={true}
+    maxFontSizeMultiplier={100}
+    selectable={false}
+    style={
+      [
+        {
+          "color": "rgba(202, 196, 208, 1)",
+          "fontSize": 100,
+        },
+        {},
+        {
+          "fontFamily": "BrightlayerUIIcons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        {},
+      ]
+    }
+  >
+    
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Test
+  </Text>
+</View>
+`;
+
 exports[`Icon Tests  renders with blui object source 1`] = `
 <Text
   allowFontScaling={true}

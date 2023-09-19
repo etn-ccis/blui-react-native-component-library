@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Icon } from './Icon';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
+import { EmptyState } from '../EmptyState';
 
 describe('Icon Tests ', () => {
     it('renders with string source', () => {
@@ -52,10 +53,10 @@ describe('Icon Tests ', () => {
         const tree = renderer.create(<Icon source={require('../../images/default-avatar.png')} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    // it('renders in a component', () => {
-    //     const tree = renderer
-    //         .create(<EmptyState title={'Test'} icon={{ family: 'brightlayer-ui', name: 'broccoli' }} />)
-    //         .toJSON();
-    //     expect(tree).toMatchSnapshot();
-    // });
+    it('renders in a component', () => {
+        const tree = renderer
+            .create(<EmptyState title={'Test'} icon={{ family: 'brightlayer-ui', name: 'broccoli' }} />)
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
