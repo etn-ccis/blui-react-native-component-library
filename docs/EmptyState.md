@@ -20,15 +20,15 @@ import { EmptyState } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto">
 
-| Prop Name   | Description                                    | Type                                   | Required | Default                        |
-| ----------- | ---------------------------------------------- | -------------------------------------- | -------- | ------------------------------ |
-| title       | The primary text to display (first line)       | `string`                               | yes      |                                |
-| description | The secondary text to display (second line)    | `string`                               | no       |                                |
-| icon        | A component to render for the primary icon     | [`IconSource`](./Icons.md)             | no       |                                |
-| iconSize    | The size of the primary icon (100-200)         | `number`                               | no       | 100                            |
-| iconColor   | The color of the primary icon                  | `string`                               | no       | `theme.colors.outlineVariant`  |
-| actions     | Additional components to render below the text | `JSX.Element`                          | no       |                                |
-| theme       | Theme value overrides                          | `$DeepPartial<MD3Theme>`               | no       |                                |
+| Prop Name   | Description                                    | Type                       | Required | Default                       |
+| ----------- | ---------------------------------------------- | -------------------------- | -------- | ----------------------------- |
+| title       | The primary text to display (first line)       | `string`                   | yes      |                               |
+| description | The secondary text to display (second line)    | `string`                   | no       |                               |
+| icon        | A component to render for the primary icon     | [`IconSource`](./Icons.md) | no       |                               |
+| iconSize    | The size of the primary icon (100-200)         | `number`                   | no       | 100                           |
+| iconColor   | The color of the primary icon                  | `string`                   | no       | `theme.colors.outlineVariant` |
+| actions     | Additional components to render below the text | `JSX.Element`              | no       |                               |
+| theme       | Theme value overrides                          | `$DeepPartial<MD3Theme>`   | no       |                               |
 
 </div>
 
