@@ -10,7 +10,7 @@ import { useFontScale } from '../__contexts__/font-scale-context';
 type HeroStyles = {
     root?: ViewStyle;
     iconWrapper?: ViewStyle;
-    values?: ViewStyle;
+    channelValues?: ViewStyle;
     label?: TextStyle;
 };
 
@@ -32,7 +32,7 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             height: 36 * fontScale,
             width: 36 * fontScale,
         },
-        values: {
+        channelValues: {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
@@ -59,7 +59,7 @@ export type HeroProps = ViewProps & {
     styles?: {
         root?: StyleProp<ViewStyle>;
         iconWrapper?: StyleProp<ViewStyle>;
-        values?: StyleProp<ViewStyle>;
+        channelValues?: StyleProp<ViewStyle>;
         label?: StyleProp<TextStyle>;
     };
     theme?: $DeepPartial<MD3Theme>;
@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         return Math.max(10, Math.min(48, iconSize));
     }, [iconSize]);
     // @TODO update the color once the theme creation is complete
-    const getColor = useCallback((color: string | undefined): string => color || theme.colors.onSurface, [theme]);
+    const getColor = useCallback((color: string | undefined): string => color || theme.colors.onSurfaceVariant, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
@@ -105,8 +105,8 @@ export const Hero: React.FC<HeroProps> = (props) => {
             {...viewProps}
         >
             <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
-            <View style={[defaultStyles.values, styles.values]}>
-                {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={20} {...ChannelValueProps} />}
+            <View style={[defaultStyles.channelValues, styles.channelValues]}>
+                {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={22} {...ChannelValueProps} />}
                 {children}
             </View>
             <Text
