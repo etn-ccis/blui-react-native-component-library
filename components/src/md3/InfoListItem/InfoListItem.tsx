@@ -1,0 +1,468 @@
+import React, { useCallback } from 'react';
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    ViewProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    I18nManager,
+} from 'react-native';
+import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useTheme, Divider as PaperDivider, MD3Theme, Text } from 'react-native-paper';
+import * as Colors from '@brightlayer-ui/colors';
+import color from 'color';
+import { renderableSubtitleComponent, renderableInfoComponent, withKeys, separate } from './utilities';
+import { $DeepPartial } from '@callstack/react-theme-provider';
+import { Icon } from '../Icon';
+import { IconSource } from '../__types__';
+import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+
+type IconAlign = 'left' | 'center' | 'right';
+
+const getIconAlignment = (iconAlign?: IconAlign): 'flex-start' | 'center' | 'flex-end' => {
+    switch (iconAlign) {
+        case 'right':
+            return 'flex-end';
+        case 'center':
+            return 'center';
+        case 'left':
+        default:
+            return 'flex-start';
+    }
+};
+
+type DividerProps = {
+    /** The width of the divider
+     * - partial: inset divider
+     * - full: full-width of parent container
+     */
+    divider?: 'full' | 'partial';
+    style?: StyleProp<ViewStyle>;
+};
+/**
+ * Divider component
+ *
+ * A utility component for rendering a horizontal rule. This is a wrapper around the
+ * react-native-paper Divider component that gives us the ability to do a partial or
+ * full width divider.
+ */
+const Divider: React.FC<DividerProps> = (props) => {
+    const { divider, style } = props;
+    if (divider) {
+        return (
+            <View
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    alignItems: 'stretch',
+                }}
+            >
+                <PaperDivider horizontalInset={divider === 'partial'} style={style} />
+            </View>
+        );
+    }
+    return null;
+};
+
+const infoListItemStyles = (
+    props: InfoListItemProps,
+    theme: MD3Theme,
+    fontScale: number
+): StyleSheet.NamedStyles<{
+    root: ViewStyle;
+    title: TextStyle;
+    subtitle: TextStyle;
+    subtitleWrapper: ViewStyle;
+    icon: ViewStyle;
+    info: TextStyle;
+    infoWrapper: ViewStyle;
+    statusStripe: ViewStyle;
+    iconWrapper: ViewStyle;
+    avatar: ViewStyle;
+    mainContent: ViewStyle;
+    flipIcon: ViewStyle;
+}> => {
+    const isWrapEnabled = props.wrapSubtitle || props.wrapTitle || props.wrapInfo;
+    console.log(fontScale,'fontScale');
+    return StyleSheet.create({
+        root: {
+            backgroundColor: props.backgroundColor || 'transparent',
+            minHeight: isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
+            height: !isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingLeft: 16,
+            paddingRight: 16,
+            paddingTop: 8,
+            paddingBottom: 8,
+            borderColor: 'green',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        title: {
+            color: props.fontColor || theme.colors.onSurface,
+            borderColor: 'yellow',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        subtitleWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            overflow: 'hidden',
+            borderColor: 'gray',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        subtitle: {
+            color: props.fontColor || theme.colors.onSurfaceVariant,
+            borderColor: 'pink',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        infoWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            borderColor: 'blue',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        info: {
+            color: props.fontColor || theme.colors.onSurfaceVariant,
+            borderColor: 'magenta',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        statusStripe: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: 6,
+            backgroundColor: props.statusColor,
+            borderColor: 'green',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        iconWrapper: {
+            marginLeft: 16,
+            width: 40 * fontScale,
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            borderColor: 'green',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        avatar: {
+            width: 40 * fontScale,
+            height: 40 * fontScale,
+            borderRadius: 20 * fontScale,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: props.statusColor || theme.colors.onSurface,
+            borderColor: 'green',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        icon: {
+            width: 40 * fontScale,
+            justifyContent: 'center',
+            backgroundColor: 'transparent',
+            alignItems: getIconAlignment(props.iconAlign),
+            borderColor: 'red',
+            borderWidth: 1,
+            borderStyle: 'solid'
+        },
+        mainContent: {
+            flex: 1,
+            paddingHorizontal: 16,
+            border: '1px solid gray'
+        },
+        flipIcon: {
+            transform: [{ scaleX: -1 }],
+        },
+    });
+};
+
+export type InfoListItemProps = ViewProps & {
+    /**
+     * Show a colored background behind the icon
+     *
+     * Default: false
+     */
+    avatar?: boolean;
+
+    /** The color used for the background of the InfoListItem */
+    backgroundColor?: string;
+
+    /**
+     * Add a chevron icon on the right
+     *
+     * Default: false
+     */
+    chevron?: boolean;
+
+    /**
+     * Smaller height rows with less padding
+     *
+     * Default: false
+     */
+    dense?: boolean;
+
+    /**
+     * Show a dividing line below the row
+     * - partial: aligns with the main text keyline of the row
+     * - full: spans the full width of the row
+     *
+     * Default: none
+     */
+    divider?: 'full' | 'partial';
+
+    /**
+     * Color to use for text elements
+     *
+     * Default: Theme.colors.text
+     */
+    fontColor?: string;
+
+    /**
+     * Hide the padding reserved for icons when there is no icon. If this is set to false, the text for the InfoListItem will align
+     * together even if there is a mix of items with icons and items without. If this is set to true, the extra padding
+     * for items without icons is removed and the text will align with the icon of other rows.
+     *
+     * Default: false
+     */
+    hidePadding?: boolean;
+
+    /**
+     * Icon alignment when avatar prop is set to false
+     *
+     * Default: 'left'
+     */
+    iconAlign?: IconAlign;
+
+    /** A component to render for the icon */
+    icon?: IconSource;
+
+    /** Color to use for the icon */
+    iconColor?: string;
+
+    /** The text to show on the third line.
+     *
+     * If an array is supplied, array items will be separated by the `subtitleSeparator`.
+     * */
+    info?: string | React.ReactNode[];
+
+    /** Custom content to render between the icon and the text elements */
+    leftComponent?: JSX.Element;
+
+    /** Callback function to execute when the list item is pressed. */
+    onPress?: () => void;
+
+    /** Custom content to render to the right of the text elements */
+    rightComponent?: JSX.Element;
+
+    /** Color to use indicating status. This will apply to the status stripe and icon */
+    statusColor?: string;
+
+    /**
+     * Separator character used between subtitle or info elements when an array is passed.
+     *
+     * Default: '·'
+     */
+    subtitleSeparator?: string;
+
+    /** The text to show on the second line.
+     *
+     * If an array is supplied, array items will be separated by the `subtitleSeparator`.
+     * */
+    subtitle?: string | React.ReactNode[];
+
+    /** The text to show on the first line */
+    title: string;
+
+    /** Whether the info line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
+    wrapInfo?: boolean;
+
+    /** Whether the subtitle line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
+    wrapSubtitle?: boolean;
+
+    /** Whether the title line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
+    wrapTitle?: boolean;
+
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        statusStripe?: StyleProp<ViewStyle>;
+        iconWrapper?: StyleProp<ViewStyle>;
+        avatar?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
+        mainContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        subtitleWrapper?: StyleProp<ViewStyle>;
+        info?: StyleProp<TextStyle>;
+        infoWrapper?: StyleProp<ViewStyle>;
+        divider?: StyleProp<ViewStyle>;
+    };
+
+    /**
+     * Theme value overrides specific to this component.
+     */
+    theme?: $DeepPartial<MD3Theme>;
+};
+
+/**
+ * [InfoListItem](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--info-list-item) component
+ *
+ * The InfoListItem is a component used to render lists. It extends the basic implementation
+ * of a list item with additional features, such as icons and status stripes and supplies all of
+ * the correct Brightlayer UI styles.
+ */
+export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+    const {
+        avatar,
+        title,
+        wrapTitle,
+        leftComponent,
+        rightComponent,
+        chevron,
+        divider,
+        subtitle,
+        wrapSubtitle,
+        subtitleSeparator,
+        info,
+        wrapInfo,
+        statusColor,
+        dense, //eslint-disable-line @typescript-eslint/no-unused-vars
+        fontColor, //eslint-disable-line @typescript-eslint/no-unused-vars
+        iconAlign, //eslint-disable-line @typescript-eslint/no-unused-vars
+        iconColor,
+        backgroundColor, //eslint-disable-line @typescript-eslint/no-unused-vars
+        onPress,
+        icon,
+        hidePadding,
+        styles = {},
+        theme: themeOverride,
+        style,
+        ...viewProps
+    } = props;
+    const theme = useTheme(themeOverride);
+    const fontScale = useFontScale();
+    const { disableScaling, maxScale } = useFontScaleSettings();
+    const defaultStyles = infoListItemStyles(props, theme, fontScale);
+
+    const getIconColor = useCallback((): string => {
+        if (iconColor) return iconColor;
+        if (avatar) {
+            return statusColor
+                ? color(statusColor).isDark()
+                    ? Colors.white[50]
+                    : Colors.black[500]
+                : Colors.white[50]; // default avatar is dark gray -> white text
+        }
+        return statusColor ? statusColor : theme.colors.onSurface;
+    }, [iconColor, avatar, statusColor, theme]);
+
+    const getIcon = useCallback((): JSX.Element | undefined => {
+        if (icon) {
+            return (
+                <View style={avatar ? [defaultStyles.avatar, styles.avatar] : [defaultStyles.icon, styles.icon]}>
+                    <Icon source={icon} size={24} color={getIconColor()} />
+                </View>
+            );
+        }
+    }, [icon, avatar, getIconColor, defaultStyles, styles]);
+
+    const getSubtitle = useCallback((): JSX.Element[] | null => {
+        if (!subtitle) {
+            return null;
+        }
+        const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
+        const renderableSubtitleParts = subtitleParts.map((element) =>
+            renderableSubtitleComponent(
+                element,
+                Object.assign({}, defaultStyles.subtitle, styles.subtitle),
+                wrapSubtitle
+            )
+        );
+
+        return withKeys(separate(renderableSubtitleParts, subtitleSeparator));
+    }, [subtitle, subtitleSeparator, styles]);
+
+    const getInfo = useCallback((): JSX.Element[] | null => {
+        if (!info) {
+            return null;
+        }
+        const infoParts = Array.isArray(info) ? [...info] : [info];
+        const renderableInfoParts = infoParts.map((element) =>
+            renderableInfoComponent(element, Object.assign({}, defaultStyles.info, styles.info), wrapInfo)
+        );
+
+        return withKeys(separate(renderableInfoParts, subtitleSeparator));
+    }, [info, subtitleSeparator, styles]);
+
+    const getRightComponent = useCallback(
+        (): JSX.Element | undefined => (
+            <>
+                {rightComponent && rightComponent}
+                {chevron && (
+                    <MatCommunityIcon
+                        name="chevron-right"
+                        size={24}
+                        color={theme.colors.onSurfaceVariant}
+                        allowFontScaling={!disableScaling}
+                        maxFontSizeMultiplier={maxScale}
+                        style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                    />
+                )}
+            </>
+        ),
+        [rightComponent, chevron, theme]
+    );
+
+    return (
+        <TouchableOpacity
+            accessible={true}
+            testID={`list-item-${title.replace(/\s+/g, '-').toLowerCase()}`}
+            accessibilityLabel={`list-item-${title.replace(/\s+/g, '-').toLowerCase()}`}
+            onPress={onPress}
+            style={[defaultStyles.root, styles.root, style]}
+            disabled={!onPress}
+            activeOpacity={0.7}
+            {...viewProps}
+        >
+            <View style={[defaultStyles.statusStripe, styles.statusStripe]} />
+            {icon || !hidePadding ? (
+                <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
+            ) : null}
+            {leftComponent}
+            <View style={[defaultStyles.mainContent, styles.mainContent]}>
+                <Text
+                    variant={'titleMedium'}
+                    style={[defaultStyles.title, styles.title]}
+                    numberOfLines={wrapTitle ? 0 : 1}
+                    ellipsizeMode={'tail'}
+                >
+                    {`${title}-${fontScale}`}
+                </Text>
+                <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
+                <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
+            </View>
+            {getRightComponent()}
+            <Divider divider={divider} style={styles.divider} />
+        </TouchableOpacity>
+    );
+};
