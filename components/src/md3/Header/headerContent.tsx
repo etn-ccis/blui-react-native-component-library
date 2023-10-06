@@ -106,12 +106,6 @@ type HeaderSubtitleProps = {
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
 
-    /**
-     * @experimental
-     *
-     * Set to true to use the alternative subtitle styling (larger size, light weight)
-     */
-    washingtonStyle?: boolean;
 };
 /**
  * HeaderSubtitle component
@@ -120,19 +114,19 @@ type HeaderSubtitleProps = {
  * used for displaying and resizing the subtitle text.
  */
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
-    const { subtitle, theme, style, washingtonStyle } = props;
+    const { subtitle, theme, style } = props;
     const { color: textColor } = useColor();
     const { maxScale, disableScaling } = useFontScaleSettings();
 
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: washingtonStyle ? theme.fonts.titleSmall : theme.fonts.titleMedium,
-            fontSize: washingtonStyle ? 18 : 16,
+            fontFamily: 'OpenSans-Regular',
+            // fontFamily: theme.fonts.titleMedium,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, theme, washingtonStyle]
+        [textColor, theme]
     );
 
     if (subtitle) {
@@ -193,7 +187,8 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 outputRange: [0, 1],
                 extrapolate: 'clamp',
             }),
-            fontFamily: theme.fonts.bodyMedium,
+            fontFamily: 'OpenSans-Regular',
+            // fontFamily: theme.fonts.bodyMedium,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20],
@@ -310,12 +305,6 @@ export type HeaderContentProps = {
      */
     theme: MD3Theme;
 
-    /**
-     * @experimental
-     *
-     * Set to true to use the alternative subtitle styling (larger size, light weight)
-     */
-    washingtonStyle?: boolean;
 };
 
 /**
@@ -332,7 +321,6 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         actions = { components: { count: 0, width: 0 }, icons: { count: 0 } },
         theme,
         styles = {},
-        washingtonStyle,
     } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
@@ -354,7 +342,6 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                 key="subtitle_key"
                 theme={theme}
                 style={[styles.subtitle]}
-                washingtonStyle={washingtonStyle}
             />,
         ];
     }

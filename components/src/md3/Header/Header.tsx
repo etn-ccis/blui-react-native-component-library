@@ -219,12 +219,7 @@ export type HeaderProps = ViewProps & {
      */
     variant?: 'dynamic' | 'static';
 
-    /**
-     * @experimental
-     *
-     * Set to true to use the alternative subtitle styling (larger size, light weight)
-     */
-    washingtonStyle?: boolean;
+
 };
 
 export const Header: React.FC<HeaderProps> = (props) => {
@@ -248,7 +243,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
         theme: themeOverride,
         title,
         variant = 'static',
-        washingtonStyle,
         updateScrollView = (): void => {},
         ...viewProps
     } = props;
@@ -736,7 +730,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                             info: styles.info,
                                             search: styles.search,
                                         }}
-                                        washingtonStyle={washingtonStyle}
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}
