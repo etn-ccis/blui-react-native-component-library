@@ -1,19 +1,19 @@
 import React, { useCallback, useState, useRef, useEffect, ReactNode } from 'react';
 import {
-  Animated,
-  ImageSourcePropType,
-  SafeAreaView,
-  StyleSheet,
-  StatusBar,
-  TextInput,
-  TouchableWithoutFeedback,
-  ViewProps,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  ImageStyle,
-  TextInputProps,
-  Platform,
+    Animated,
+    ImageSourcePropType,
+    SafeAreaView,
+    StyleSheet,
+    StatusBar,
+    TextInput,
+    TouchableWithoutFeedback,
+    ViewProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+    ImageStyle,
+    TextInputProps,
+    Platform,
 } from 'react-native';
 import color from 'color';
 import { MD3Theme, useTheme } from 'react-native-paper';
@@ -33,235 +33,234 @@ import { useFontScale } from '../__contexts__/font-scale-context';
 const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
-  props: HeaderProps,
-  theme: MD3Theme,
-  fontScale: number
+    props: HeaderProps,
+    theme: MD3Theme,
+    fontScale: number
 ): StyleSheet.NamedStyles<{
-  root: ViewStyle;
-  content: ViewStyle;
-  search: ViewStyle;
+    root: ViewStyle;
+    content: ViewStyle;
+    search: ViewStyle;
 }> => {
-  return {
-    root: {
-      width: '100%',
-      backgroundColor:
-        props.backgroundColor ||
-        // @change color once have a correct color
-        // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
-        (theme.dark ? theme.colors.surface : theme.colors.primary),
-      shadowColor: 'rgba(0, 0, 0, 0.3)',
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowRadius: 2,
-      shadowOpacity: 1,
-      elevation: 0,
-      paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    },
-    content: {
-      flex: 1,
-      paddingHorizontal: 16,
-      flexDirection: 'row',
-      minHeight: 56 * fontScale,
-    },
-    search: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingHorizontal: 16,
-    },
-  };
+    return {
+        root: {
+            width: '100%',
+            backgroundColor:
+                props.backgroundColor ||
+                // @change color once have a correct color
+                // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
+                (theme.dark ? theme.colors.surface : theme.colors.primary),
+            shadowColor: 'rgba(0, 0, 0, 0.3)',
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowRadius: 2,
+            shadowOpacity: 1,
+            elevation: 0,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        },
+        content: {
+            flex: 1,
+            paddingHorizontal: 16,
+            flexDirection: 'row',
+            minHeight: 56 * fontScale,
+        },
+        search: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 16,
+        },
+    };
 };
 
 export type SearchableConfig = {
-  /**
-   * Determines how the search input will be capitalized
-   *
-   * Default: 'none'
-   */
-  autoCapitalize?: TextInputProps['autoCapitalize'];
+    /**
+     * Determines how the search input will be capitalized
+     *
+     * Default: 'none'
+     */
+    autoCapitalize?: TextInputProps['autoCapitalize'];
 
-  /**
-   * Determines whether auto-correct is enabled in the search input
-   *
-   * Default: false
-   */
-  autoCorrect?: boolean;
+    /**
+     * Determines whether auto-correct is enabled in the search input
+     *
+     * Default: false
+     */
+    autoCorrect?: boolean;
 
-  /**
-   * Determines whether the search input will be focused on when it is rendered / opened
-   *
-   * Default: false
-   */
-  autoFocus?: boolean;
+    /**
+     * Determines whether the search input will be focused on when it is rendered / opened
+     *
+     * Default: false
+     */
+    autoFocus?: boolean;
 
-  /** Icon to override default search icon */
-  icon?: IconSource;
+    /** Icon to override default search icon */
+    icon?: IconSource;
 
-  /** Callback for when the text in the search input changes */
-  onChangeText?: (text: string) => void;
+    /** Callback for when the text in the search input changes */
+    onChangeText?: (text: string) => void;
 
-  /**
-   * Placeholder text for the search input
-   *
-   * Default: 'Search'
-   */
-  placeholder?: string;
+    /**
+     * Placeholder text for the search input
+     *
+     * Default: 'Search'
+     */
+    placeholder?: string;
 };
 
-
 export type HeaderProps = ViewProps & {
-  /** Array of icons / actions to display on the right */
-  actionItems?: Array<HeaderIcon | HeaderActionComponent>;
+    /** Array of icons / actions to display on the right */
+    actionItems?: Array<HeaderIcon | HeaderActionComponent>;
 
-  /**
-   * The color used for the background
-   *
-   * Default: Theme.colors.primary
-   */
-  backgroundColor?: string;
+    /**
+     * The color used for the background
+     *
+     * Default: Theme.colors.primary
+     */
+    backgroundColor?: string;
 
-  /**
-   * An image to blend with the colored background in the header
-   */
-  backgroundImage?: ImageSourcePropType;
+    /**
+     * An image to blend with the colored background in the header
+     */
+    backgroundImage?: ImageSourcePropType;
 
-  /**
-   * Height of the Header when fully collapsed
-   *
-   * Default: 56
-   */
-  collapsedHeight?: number;
+    /**
+     * Height of the Header when fully collapsed
+     *
+     * Default: 56
+     */
+    collapsedHeight?: number;
 
-  /**
-   * Allow the header to be expanded / collapsed by tapping
-   *
-   * Default: false
-   */
-  expandable?: boolean;
+    /**
+     * Allow the header to be expanded / collapsed by tapping
+     *
+     * Default: false
+     */
+    expandable?: boolean;
 
-  /**
-   * Height of the Header when fully expanded
-   *
-   * Default: 200
-   */
-  expandedHeight?: number;
+    /**
+     * Height of the Header when fully expanded
+     *
+     * Default: 200
+     */
+    expandedHeight?: number;
 
-  /**
-   * Color of the title, subtitle, info, and icons in the header
-   *
-   * Default: Theme.colors.onPrimary
-   */
-  fontColor?: string;
+    /**
+     * Color of the title, subtitle, info, and icons in the header
+     *
+     * Default: Theme.colors.onPrimary
+     */
+    fontColor?: string;
 
-  /** Optional header third line of text (hidden when collapsed) */
-  info?: ReactNode;
+    /** Optional header third line of text (hidden when collapsed) */
+    info?: ReactNode;
 
-  /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
-  icon?: IconSource;
+    /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
+    icon?: IconSource;
 
-  /** Callback to execute when the icon is pressed */
-  onIconPress?: () => void;
+    /** Callback to execute when the icon is pressed */
+    onIconPress?: () => void;
 
-  /**
-   * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
-   */
-  scrollPosition?: Animated.Value;
+    /**
+     * Y-value of the scroll position of the linked ScrollView (dynamic variant only)
+     */
+    scrollPosition?: Animated.Value;
 
-  /** Configuration object for search behavior */
-  searchableConfig?: SearchableConfig;
+    /** Configuration object for search behavior */
+    searchableConfig?: SearchableConfig;
 
-  /**
-   * Renders the header in the expanded state to start
-   *
-   * Default: false
-   */
-  startExpanded?: boolean;
+    /**
+     * Renders the header in the expanded state to start
+     *
+     * Default: false
+     */
+    startExpanded?: boolean;
 
-  /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
-  styles?: {
-      root?: StyleProp<ViewStyle>;
-      backgroundImage?: StyleProp<ImageStyle>;
-      component?: StyleProp<ViewStyle>;
-      content?: StyleProp<ViewStyle>;
-      icon?: StyleProp<ViewStyle>;
-      textContent?: StyleProp<ViewStyle>;
-      title?: StyleProp<TextStyle>;
-      subtitle?: StyleProp<TextStyle>;
-      info?: StyleProp<TextStyle>;
-      search?: StyleProp<TextStyle>;
-      actionPanel?: StyleProp<ViewStyle>;
-      actionItem?: StyleProp<ViewStyle>;
-  };
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        backgroundImage?: StyleProp<ImageStyle>;
+        component?: StyleProp<ViewStyle>;
+        content?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
+        textContent?: StyleProp<ViewStyle>;
+        title?: StyleProp<TextStyle>;
+        subtitle?: StyleProp<TextStyle>;
+        info?: StyleProp<TextStyle>;
+        search?: StyleProp<TextStyle>;
+        actionPanel?: StyleProp<ViewStyle>;
+        actionItem?: StyleProp<ViewStyle>;
+    };
 
-  /** The text to display on the second line */
-  subtitle?: ReactNode;
+    /** The text to display on the second line */
+    subtitle?: ReactNode;
 
-  /**
-   * Theme value overrides specific to this component.
-   */
-  theme?: $DeepPartial<MD3Theme>;
+    /**
+     * Theme value overrides specific to this component.
+     */
+    theme?: $DeepPartial<MD3Theme>;
 
-  /** The test to display on the first line */
-  title: ReactNode;
+    /** The test to display on the first line */
+    title: ReactNode;
 
-  /**
-   * Callback function to make updates to the linked scrollView (dynamic variant only)
-   */
-  updateScrollView?: (data: { padding: number | null; animate: boolean; scrollTo: number | null }) => void;
+    /**
+     * Callback function to make updates to the linked scrollView (dynamic variant only)
+     */
+    updateScrollView?: (data: { padding: number | null; animate: boolean; scrollTo: number | null }) => void;
 
-  /**
-   * Current resize mode of the Header:
-   * - 'static': Header does not resize based on scroll position,
-   * - 'dynamic' Header resizes based on the provided scrollPosition.
-   *
-   * Default: static
-   */
-  variant?: 'dynamic' | 'static';
+    /**
+     * Current resize mode of the Header:
+     * - 'static': Header does not resize based on scroll position,
+     * - 'dynamic' Header resizes based on the provided scrollPosition.
+     *
+     * Default: static
+     */
+    variant?: 'dynamic' | 'static';
 
-  /**
-   * @experimental
-   *
-   * Set to true to use the alternative subtitle styling (larger size, light weight)
-   */
-  washingtonStyle?: boolean;
+    /**
+     * @experimental
+     *
+     * Set to true to use the alternative subtitle styling (larger size, light weight)
+     */
+    washingtonStyle?: boolean;
 };
 
 export const Header: React.FC<HeaderProps> = (props) => {
-  const {
-    actionItems,
-    backgroundColor,
-    backgroundImage,
-    expandable = false,
-    expandedHeight: expandedHeightProp = 200,
-    collapsedHeight: collapsedHeightProp = 56,
-    fontColor,
-    info,
-    icon,
-    onIconPress,
-    scrollPosition = new Animated.Value(0),
-    searchableConfig,
-    startExpanded,
-    subtitle,
-    style,
-    styles = {},
-    theme: themeOverride,
-    title,
-    variant = 'static',
-    washingtonStyle,
-    updateScrollView = (): void => {},
-    ...viewProps
-  } = props;
+    const {
+        actionItems,
+        backgroundColor,
+        backgroundImage,
+        expandable = false,
+        expandedHeight: expandedHeightProp = 200,
+        collapsedHeight: collapsedHeightProp = 56,
+        fontColor,
+        info,
+        icon,
+        onIconPress,
+        scrollPosition = new Animated.Value(0),
+        searchableConfig,
+        startExpanded,
+        subtitle,
+        style,
+        styles = {},
+        theme: themeOverride,
+        title,
+        variant = 'static',
+        washingtonStyle,
+        updateScrollView = (): void => {},
+        ...viewProps
+    } = props;
 
-  const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
-  const fontScale = useFontScale();
+    const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
+    const fontScale = useFontScale();
 
-  const theme = useTheme(themeOverride);
-  const defaultStyles = headerStyles(props, theme, fontScale);
-  const searchRef = useRef<TextInput>(null);
+    const theme = useTheme(themeOverride);
+    const defaultStyles = headerStyles(props, theme, fontScale);
+    const searchRef = useRef<TextInput>(null);
 
-  const collapsedHeight = getScaledHeight(collapsedHeightProp);
+    const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);
     const previousExpandedHeight = usePrevious(expandedHeight);
@@ -505,13 +504,13 @@ export const Header: React.FC<HeaderProps> = (props) => {
         return (
             backgroundColor ||
             // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
-        (theme.dark ? theme.colors.surface : theme.colors.primary)
+            (theme.dark ? theme.colors.surface : theme.colors.primary)
         );
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {
         if (searching) {
-          // @change color once have a correct color
+            // @change color once have a correct color
             return theme.colors.onSurface;
         }
         return fontColor || 'white';
@@ -756,6 +755,5 @@ export const Header: React.FC<HeaderProps> = (props) => {
             </TouchableWithoutFeedback>
         </>
     );
-
 };
 Header.displayName = 'Header';
