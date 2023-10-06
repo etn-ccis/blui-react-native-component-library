@@ -17,6 +17,7 @@ import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+import { MD3Theme } from 'react-native-paper';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -43,7 +44,7 @@ type HeaderTitleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -64,7 +65,8 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: theme.fonts.medium.fontFamily,
+            fontFamily: 'OpenSans-Semibold',
+            // fontFamily: theme.fonts.headlineMedium,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
@@ -99,7 +101,7 @@ type HeaderSubtitleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -125,7 +127,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: washingtonStyle ? theme.fonts.light.fontFamily : theme.fonts.regular.fontFamily,
+            fontFamily: washingtonStyle ? theme.fonts.titleSmall : theme.fonts.titleMedium,
             fontSize: washingtonStyle ? 18 : 16,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -159,7 +161,7 @@ type HeaderInfoProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -191,7 +193,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 outputRange: [0, 1],
                 extrapolate: 'clamp',
             }),
-            fontFamily: theme.fonts.regular.fontFamily,
+            fontFamily: theme.fonts.bodyMedium,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 20],
@@ -226,7 +228,7 @@ type SearchContentProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -253,8 +255,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
                 {
                     padding: 0,
                     color: textColor,
-                    fontSize: 20,
-                    ...theme.fonts.light,
+                    ...theme.fonts.titleMedium,
                 },
                 style,
             ]}
@@ -307,7 +308,7 @@ export type HeaderContentProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /**
      * @experimental
