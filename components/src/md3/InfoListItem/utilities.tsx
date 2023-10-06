@@ -34,7 +34,9 @@ export const renderableInfoComponent = (
 ): React.ReactNode => renderBodyComponent(element, style, wrapInfo);
 
 export const interpunct = (separator?: string, style?: StyleProp<TextStyle>): JSX.Element => (
-    <Text variant={'bodySmall'} style={[{ marginHorizontal: 4 }, style]}>{separator || '\u00B7'}</Text>
+    <Text variant={'bodySmall'} style={[{ marginHorizontal: 4 }, style]}>
+        {separator || '\u00B7'}
+    </Text>
 );
 export const withKeys = (array: React.ReactNode[]): JSX.Element[] =>
     array.map((element, index) => <Fragment key={index}>{element}</Fragment>);

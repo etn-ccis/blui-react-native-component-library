@@ -87,74 +87,49 @@ const infoListItemStyles = (
     flipIcon: ViewStyle;
 }> => {
     const isWrapEnabled = props.wrapSubtitle || props.wrapTitle || props.wrapInfo;
-    console.log(fontScale,'fontScale');
     return StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || 'transparent',
-            minHeight: isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
-            height: !isWrapEnabled ? (props.dense ? 52 : 72) * fontScale : 'auto',
+            minHeight: isWrapEnabled ? (props.dense ? 56 : 72) * fontScale : 'initial',
+            height: !isWrapEnabled ? (props.dense ? 56 : 72) * fontScale : 'auto',
             flexDirection: 'row',
             alignItems: 'center',
             paddingLeft: 16,
             paddingRight: 16,
             paddingTop: 8,
             paddingBottom: 8,
-            borderColor: 'green',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         title: {
             color: props.fontColor || theme.colors.onSurface,
-            borderColor: 'yellow',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         subtitleWrapper: {
             flexDirection: 'row',
             alignItems: 'center',
             overflow: 'hidden',
-            borderColor: 'gray',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         subtitle: {
             color: props.fontColor || theme.colors.onSurfaceVariant,
-            borderColor: 'pink',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         infoWrapper: {
             flexDirection: 'row',
             alignItems: 'center',
-            borderColor: 'blue',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         info: {
             color: props.fontColor || theme.colors.onSurfaceVariant,
-            borderColor: 'magenta',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         statusStripe: {
             position: 'absolute',
             top: 0,
             left: 0,
-            height: '100%',
+            bottom: 0,
             width: 6,
             backgroundColor: props.statusColor,
-            borderColor: 'green',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         iconWrapper: {
             marginLeft: 16,
             width: 40 * fontScale,
             alignItems: 'flex-start',
             justifyContent: 'center',
-            borderColor: 'green',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         avatar: {
             width: 40 * fontScale,
@@ -163,23 +138,16 @@ const infoListItemStyles = (
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: props.statusColor || theme.colors.onSurface,
-            borderColor: 'green',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         icon: {
             width: 40 * fontScale,
             justifyContent: 'center',
             backgroundColor: 'transparent',
             alignItems: getIconAlignment(props.iconAlign),
-            borderColor: 'red',
-            borderWidth: 1,
-            borderStyle: 'solid'
         },
         mainContent: {
             flex: 1,
             paddingHorizontal: 16,
-            border: '1px solid gray'
         },
         flipIcon: {
             transform: [{ scaleX: -1 }],
@@ -456,7 +424,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     numberOfLines={wrapTitle ? 0 : 1}
                     ellipsizeMode={'tail'}
                 >
-                    {`${title}-${fontScale}`}
+                    {title}
                 </Text>
                 <View style={[defaultStyles.subtitleWrapper, styles.subtitleWrapper]}>{getSubtitle()}</View>
                 <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
