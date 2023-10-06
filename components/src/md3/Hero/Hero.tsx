@@ -74,6 +74,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         iconColor,
         iconSize,
         children,
+        iconBackgroundColor,
         styles = {},
         style,
         theme: themeOverride,
@@ -104,7 +105,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
             style={[defaultStyles.root, styles.root, style]}
             {...viewProps}
         >
-            <View style={[defaultStyles.iconWrapper, styles.iconWrapper]}>{getIcon()}</View>
+            <View style={[defaultStyles.iconWrapper,{ backgroundColor: iconBackgroundColor || theme.colors.surface }, styles.iconWrapper]}>{getIcon()}</View>
             <View style={[defaultStyles.channelValues, styles.channelValues]}>
                 {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={22} {...ChannelValueProps} />}
                 {children}
