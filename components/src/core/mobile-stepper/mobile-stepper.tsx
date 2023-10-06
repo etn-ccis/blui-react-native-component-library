@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, ViewProps } from 'react-native';
-import { ProgressBar, useTheme } from 'react-native-paper';
+import { MD3Theme, ProgressBar, useTheme } from 'react-native-paper';
 import * as Colors from '@brightlayer-ui/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Body1 } from '../typography';
@@ -8,7 +8,7 @@ import { getPrimary500 } from '../utility/shared';
 
 const makeStyles = (
     props: MobileStepperProps,
-    theme: ReactNativePaper.Theme
+    theme: MD3Theme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     stepperContainer: ViewStyle;
@@ -36,11 +36,10 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
+            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.onBackground : Colors.gray[200]),
         },
         filled: {
-            backgroundColor:
-                props.activeColor || (theme.dark ? theme.colors.primaryPalette.dark : theme.colors.primary),
+            backgroundColor: props.activeColor || (theme.dark ? theme.colors.primary : theme.colors.primary),
         },
         progressBar: {},
         text: {},
@@ -99,7 +98,7 @@ export type MobileStepperProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<ReactNativePaper.Theme>;
+    theme?: $DeepPartial<MD3Theme>;
 };
 
 /**
