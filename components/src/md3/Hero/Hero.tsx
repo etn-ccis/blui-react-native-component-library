@@ -10,7 +10,7 @@ import { useFontScale } from '../__contexts__/font-scale-context';
 type HeroStyles = {
     root?: ViewStyle;
     iconWrapper?: ViewStyle;
-    channelValues?: ViewStyle;
+    values?: ViewStyle;
     label?: TextStyle;
 };
 
@@ -32,7 +32,7 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             height: 36 * fontScale,
             width: 36 * fontScale,
         },
-        channelValues: {
+        values: {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
@@ -59,7 +59,7 @@ export type HeroProps = ViewProps & {
     styles?: {
         root?: StyleProp<ViewStyle>;
         iconWrapper?: StyleProp<ViewStyle>;
-        channelValues?: StyleProp<ViewStyle>;
+        values?: StyleProp<ViewStyle>;
         label?: StyleProp<TextStyle>;
     };
     theme?: $DeepPartial<MD3Theme>;
@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
             {...viewProps}
         >
             <View style={[defaultStyles.iconWrapper,{ backgroundColor: iconBackgroundColor || theme.colors.surface }, styles.iconWrapper]}>{getIcon()}</View>
-            <View style={[defaultStyles.channelValues, styles.channelValues]}>
+            <View style={[defaultStyles.values, styles.values]}>
                 {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={22} {...ChannelValueProps} />}
                 {children}
             </View>
