@@ -105,7 +105,6 @@ type HeaderSubtitleProps = {
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
-
 };
 /**
  * HeaderSubtitle component
@@ -304,7 +303,6 @@ export type HeaderContentProps = {
      * Theme value overrides specific to this component.
      */
     theme: MD3Theme;
-
 };
 
 /**
@@ -337,12 +335,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         content = [
             <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
             <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
-            <HeaderSubtitle
-                subtitle={subtitle}
-                key="subtitle_key"
-                theme={theme}
-                style={[styles.subtitle]}
-            />,
+            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} />,
         ];
     }
 

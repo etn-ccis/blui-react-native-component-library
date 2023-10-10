@@ -40,8 +40,7 @@ const headerStyles = (
     root: ViewStyle;
     content: ViewStyle;
     search: ViewStyle;
-}> => {
-    return {
+}> => ({
         root: {
             width: '100%',
             backgroundColor:
@@ -71,8 +70,7 @@ const headerStyles = (
             alignItems: 'center',
             paddingHorizontal: 16,
         },
-    };
-};
+    });
 
 export type SearchableConfig = {
     /**
@@ -218,8 +216,6 @@ export type HeaderProps = ViewProps & {
      * Default: static
      */
     variant?: 'dynamic' | 'static';
-
-
 };
 
 export const Header: React.FC<HeaderProps> = (props) => {
