@@ -41,36 +41,36 @@ const headerStyles = (
     content: ViewStyle;
     search: ViewStyle;
 }> => ({
-        root: {
-            width: '100%',
-            backgroundColor:
-                props.backgroundColor ||
-                // @change color once have a correct color
-                // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
-                (theme.dark ? theme.colors.surface : theme.colors.primary),
-            shadowColor: 'rgba(0, 0, 0, 0.3)',
-            shadowOffset: {
-                width: 0,
-                height: 1,
-            },
-            shadowRadius: 2,
-            shadowOpacity: 1,
-            elevation: 0,
-            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    root: {
+        width: '100%',
+        backgroundColor:
+            props.backgroundColor ||
+            // @change color once have a correct color
+            // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
+            (theme.dark ? theme.colors.surface : theme.colors.primary),
+        shadowColor: 'rgba(0, 0, 0, 0.3)',
+        shadowOffset: {
+            width: 0,
+            height: 1,
         },
-        content: {
-            flex: 1,
-            paddingHorizontal: 16,
-            flexDirection: 'row',
-            minHeight: 56 * fontScale,
-        },
-        search: {
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 16,
-        },
-    });
+        shadowRadius: 2,
+        shadowOpacity: 1,
+        elevation: 0,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    },
+    content: {
+        flex: 1,
+        paddingHorizontal: 16,
+        flexDirection: 'row',
+        minHeight: 56 * fontScale,
+    },
+    search: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+    },
+});
 
 export type SearchableConfig = {
     /**
