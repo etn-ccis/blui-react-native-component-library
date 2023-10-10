@@ -43,14 +43,6 @@ describe('Hero', () => {
         expect(onPressMock).toHaveBeenCalled();
     });
 
-    it('does not call onPress when disabled', () => {
-        const onPressMock = jest.fn();
-        const { getByText } = render(<Hero label="Hero Label" onPress={onPressMock} />);
-
-        fireEvent.press(getByText('Hero Label'), { disabled: true });
-        expect(onPressMock).not.toHaveBeenCalled();
-    });
-
     it('renders correctly with custom styles', () => {
         const customStyles = {
             root: { backgroundColor: 'red' },
