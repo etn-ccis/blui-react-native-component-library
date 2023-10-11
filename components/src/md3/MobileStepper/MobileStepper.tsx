@@ -1,10 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, ViewProps } from 'react-native';
-import { MD3Theme, ProgressBar, useTheme } from 'react-native-paper';
+import { MD3Theme, ProgressBar, Text, useTheme } from 'react-native-paper';
 import * as Colors from '@brightlayer-ui/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { Body1 } from '../../core/typography';
-import { getPrimary500 } from '../../core/utility/shared';
 
 const makeStyles = (
     props: MobileStepperProps,
@@ -39,7 +37,7 @@ const makeStyles = (
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.onBackground : Colors.gray[200]),
         },
         filled: {
-            backgroundColor: props.activeColor || (theme.dark ? theme.colors.primary : theme.colors.primary),
+            backgroundColor: props.activeColor || theme.colors.primary,
         },
         progressBar: {},
         text: {},
@@ -133,7 +131,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     const theme = useTheme(props.theme);
     const {
-        activeColor = getPrimary500(theme) || theme.colors.primary,
+        activeColor = theme.colors.primary,
         activeStep,
         leftButton,
         rightButton,
@@ -172,9 +170,9 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                     })}
 
                 {variant === 'text' && (
-                    <Body1 style={[defaultStyles.text, styles.text]}>
+                    <Text style={[defaultStyles.text, styles.text]}>
                         {adjustedActiveStep + 1} / {adjustedSteps}
-                    </Body1>
+                    </Text>
                 )}
 
                 {variant === 'progress' && (
