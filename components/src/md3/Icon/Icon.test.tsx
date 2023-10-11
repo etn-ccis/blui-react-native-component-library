@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Icon } from './Icon';
+import { Icon } from './index';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { EmptyState } from '../EmptyState';
 
