@@ -40,6 +40,7 @@ type DividerProps = {
      */
     divider?: 'full' | 'partial';
     style?: StyleProp<ViewStyle>;
+    fontScale?: number;
 };
 /**
  * Divider component
@@ -48,20 +49,21 @@ type DividerProps = {
  * react-native-paper Divider component that gives us the ability to do a partial or
  * full width divider.
  */
+
 const Divider: React.FC<DividerProps> = (props) => {
-    const { divider, style } = props;
+    const { divider, style, fontScale = 1 } = props;
     if (divider) {
         return (
             <View
                 style={{
                     position: 'absolute',
                     bottom: 0,
-                    right: 0,
-                    left: 0,
+                    right: I18nManager.isRTL ? (divider === 'full' ? 0 : 72 * fontScale) : 0,
+                    left: !I18nManager.isRTL ? (divider === 'full' ? 0 : 72 * fontScale) : 0,
                     alignItems: 'stretch',
                 }}
             >
-                <PaperDivider horizontalInset={divider === 'partial'} style={style} />
+                <PaperDivider leftInset={divider === 'partial'} style={style} />
             </View>
         );
     }
@@ -90,7 +92,7 @@ const infoListItemStyles = (
     return StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || 'transparent',
-            minHeight: isWrapEnabled ? (props.dense ? 56 : 72) * fontScale : 'initial',
+            minHeight: isWrapEnabled ? (props.dense ? 56 : 72) * fontScale : 'auto',
             height: !isWrapEnabled ? (props.dense ? 56 : 72) * fontScale : 'auto',
             flexDirection: 'row',
             alignItems: 'center',
@@ -126,7 +128,6 @@ const infoListItemStyles = (
             backgroundColor: props.statusColor,
         },
         iconWrapper: {
-            marginLeft: 16,
             width: 40 * fontScale,
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -141,9 +142,9 @@ const infoListItemStyles = (
         },
         icon: {
             width: 40 * fontScale,
-            justifyContent: 'center',
+            height: 40 * fontScale,
             backgroundColor: 'transparent',
-            alignItems: getIconAlignment(props.iconAlign),
+            justifyContent: getIconAlignment(props.iconAlign),
         },
         mainContent: {
             flex: 1,
@@ -430,7 +431,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
             </View>
             {getRightComponent()}
-            <Divider divider={divider} style={styles.divider} />
+            <Divider divider={divider} fontScale={fontScale} style={styles.divider} />
         </TouchableOpacity>
     );
 };

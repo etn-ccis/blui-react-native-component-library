@@ -3,7 +3,7 @@ import { interleave } from '../Helpers/Utils';
 import { StyleProp, TextStyle } from 'react-native';
 import { Text } from 'react-native-paper';
 
-const renderBodyComponent = (
+const renderSubtitleComponent = (
     element: React.ReactNode,
     style?: StyleProp<TextStyle>,
     isWrapped = false
@@ -21,17 +21,35 @@ const renderBodyComponent = (
     }
 };
 
+const renderInfoComponent = (
+    element: React.ReactNode,
+    style?: StyleProp<TextStyle>,
+    isWrapped = false
+): React.ReactNode => {
+    switch (typeof element) {
+        case 'string':
+        case 'number':
+            return (
+                <Text variant={'bodySmall'} numberOfLines={isWrapped ? 0 : 1} style={style}>
+                    {`${element}`}
+                </Text>
+            );
+        default:
+            return element;
+    }
+};
+
 export const renderableSubtitleComponent = (
     element: React.ReactNode,
     style?: StyleProp<TextStyle>,
     wrapSubtitle = false
-): React.ReactNode => renderBodyComponent(element, style, wrapSubtitle);
+): React.ReactNode => renderSubtitleComponent(element, style, wrapSubtitle);
 
 export const renderableInfoComponent = (
     element: React.ReactNode,
     style?: StyleProp<TextStyle>,
     wrapInfo = false
-): React.ReactNode => renderBodyComponent(element, style, wrapInfo);
+): React.ReactNode => renderInfoComponent(element, style, wrapInfo);
 
 export const interpunct = (separator?: string, style?: StyleProp<TextStyle>): JSX.Element => (
     <Text variant={'bodySmall'} style={[{ marginHorizontal: 4 }, style]}>
