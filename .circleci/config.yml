@@ -224,6 +224,9 @@ jobs:
                       cd demos/showcase
                       yarn prettier:check
             - run:
+                  name: 'Link Components'
+                  command: yarn link:components
+            - run:
                   name: Build Showcase
                   command: |
                       cd demos/showcase
