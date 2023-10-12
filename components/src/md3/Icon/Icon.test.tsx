@@ -18,7 +18,9 @@ describe('Icon Tests ', () => {
         expect(tree).toMatchSnapshot();
     });
     it('renders with material community object source', () => {
-        const tree = TestRenderer.create(<Icon source={{ family: 'material-community', name: 'chart-pie' }} />).toJSON();
+        const tree = TestRenderer.create(
+            <Icon source={{ family: 'material-community', name: 'chart-pie' }} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it('renders with material object source', () => {
@@ -28,25 +30,19 @@ describe('Icon Tests ', () => {
         expect(tree2).toMatchSnapshot();
     });
     it('renders with function source', () => {
-        const tree = TestRenderer
-            .create(
-                <Icon
-                    source={({ size, color }): JSX.Element => <BLUIIcon name={'broccoli'} size={size} color={color} />}
-                />
-            )
-            .toJSON();
+        const tree = TestRenderer.create(
+            <Icon source={({ size, color }): JSX.Element => <BLUIIcon name={'broccoli'} size={size} color={color} />} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it('renders with remote image source', () => {
-        const tree = TestRenderer
-            .create(
-                <Icon
-                    source={{
-                        uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/png/png48/account_settings_black500_48dp.png',
-                    }}
-                />
-            )
-            .toJSON();
+        const tree = TestRenderer.create(
+            <Icon
+                source={{
+                    uri: 'https://raw.githubusercontent.com/etn-ccis/blui-icons/dev/png/png48/account_settings_black500_48dp.png',
+                }}
+            />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it('renders with local image source', () => {
@@ -54,9 +50,9 @@ describe('Icon Tests ', () => {
         expect(tree).toMatchSnapshot();
     });
     it('renders in a component', () => {
-        const tree = TestRenderer
-            .create(<EmptyState title={'Test'} icon={{ family: 'brightlayer-ui', name: 'broccoli' }} />)
-            .toJSON();
+        const tree = TestRenderer.create(
+            <EmptyState title={'Test'} icon={{ family: 'brightlayer-ui', name: 'broccoli' }} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
