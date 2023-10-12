@@ -37,6 +37,7 @@ jobs:
             - run:
                   name: Test
                   command: |
+                      yarn test -u
                       yarn test --maxWorkers=2 --coverage --watchAll=false
             - run:
                   name: Build Library
