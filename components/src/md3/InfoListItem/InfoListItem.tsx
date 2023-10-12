@@ -39,7 +39,6 @@ type DividerProps = {
      * - full: full-width of parent container
      */
     divider?: 'full' | 'partial';
-    style?: StyleProp<ViewStyle>;
     fontScale?: number;
 };
 /**
@@ -51,7 +50,7 @@ type DividerProps = {
  */
 
 const Divider: React.FC<DividerProps> = (props) => {
-    const { divider, style, fontScale = 1 } = props;
+    const { divider, fontScale = 1 } = props;
     if (divider) {
         return (
             <View
@@ -63,7 +62,7 @@ const Divider: React.FC<DividerProps> = (props) => {
                     alignItems: 'stretch',
                 }}
             >
-                <PaperDivider leftInset={divider === 'partial'} style={style} />
+                <PaperDivider />
             </View>
         );
     }
@@ -148,7 +147,7 @@ const infoListItemStyles = (
         },
         mainContent: {
             flex: 1,
-            paddingHorizontal: 16,
+            paddingHorizontal: props.hidePadding ? 0 : 16,
         },
         flipIcon: {
             transform: [{ scaleX: -1 }],
@@ -431,7 +430,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 <View style={[defaultStyles.infoWrapper, styles.infoWrapper]}>{getInfo()}</View>
             </View>
             {getRightComponent()}
-            <Divider divider={divider} fontScale={fontScale} style={styles.divider} />
+            <Divider divider={divider} fontScale={fontScale} />
         </TouchableOpacity>
     );
 };
