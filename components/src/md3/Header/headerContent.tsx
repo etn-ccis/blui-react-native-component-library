@@ -116,11 +116,18 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const { subtitle, theme, style } = props;
     const { color: textColor } = useColor();
     const { maxScale, disableScaling } = useFontScaleSettings();
+    const { headerHeight } = useHeaderHeight();
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
             fontFamily: 'OpenSans-Regular',
+            fontSize: headerHeight.interpolate({
+                inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                outputRange: [14, 16],
+                extrapolate: 'clamp',
+            }),
             // fontFamily: theme.fonts.titleMedium,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
@@ -190,7 +197,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
             // fontFamily: theme.fonts.bodyMedium,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [0.1, 20],
+                outputRange: [0.1, 14],
                 extrapolate: 'clamp',
             }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
@@ -334,8 +341,8 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     } else {
         content = [
             <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
-            <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
             <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} />,
+            <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
         ];
     }
 
