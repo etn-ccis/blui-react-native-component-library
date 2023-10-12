@@ -66,7 +66,6 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
         () => ({
             color: textColor,
             fontFamily: 'OpenSans-Semibold',
-            // fontFamily: theme.fonts.headlineMedium,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
@@ -128,7 +127,6 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
                 outputRange: [14, 16],
                 extrapolate: 'clamp',
             }),
-            // fontFamily: theme.fonts.titleMedium,
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
@@ -194,7 +192,6 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 extrapolate: 'clamp',
             }),
             fontFamily: 'OpenSans-Regular',
-            // fontFamily: theme.fonts.bodyMedium,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 14],
