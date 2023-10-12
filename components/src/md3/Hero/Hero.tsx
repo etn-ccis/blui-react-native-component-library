@@ -90,7 +90,10 @@ export const Hero: React.FC<HeroProps> = (props) => {
         return Math.max(10, Math.min(48, iconSize));
     }, [iconSize]);
     // @TODO update the color once the theme creation is complete
-    const getColor = useCallback((color: string | undefined): string => color || theme.colors.onSurfaceVariant, [theme]);
+    const getColor = useCallback(
+        (color: string | undefined): string => color || theme.colors.onSurfaceVariant,
+        [theme]
+    );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
@@ -105,7 +108,15 @@ export const Hero: React.FC<HeroProps> = (props) => {
             style={[defaultStyles.root, styles.root, style]}
             {...viewProps}
         >
-            <View style={[defaultStyles.iconWrapper,{ backgroundColor: iconBackgroundColor || theme.colors.surface }, styles.iconWrapper]}>{getIcon()}</View>
+            <View
+                style={[
+                    defaultStyles.iconWrapper,
+                    { backgroundColor: iconBackgroundColor || theme.colors.surface },
+                    styles.iconWrapper,
+                ]}
+            >
+                {getIcon()}
+            </View>
             <View style={[defaultStyles.values, styles.values]}>
                 {!children && !!ChannelValueProps?.value && <ChannelValue fontSize={22} {...ChannelValueProps} />}
                 {children}
