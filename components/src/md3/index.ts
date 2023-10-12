@@ -6,3 +6,4 @@ export * from './EmptyState';
 export * from './Hero';
 export * from './Header';
 export * from './MobileStepper';
+export * from './ScoreCard';
