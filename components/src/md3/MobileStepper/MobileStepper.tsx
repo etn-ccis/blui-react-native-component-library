@@ -34,7 +34,8 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.onBackground : Colors.gray[200]),
+            // added custom disabled color in MD3BluiLightTheme, error since there is no type present in MD3Colors
+            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
