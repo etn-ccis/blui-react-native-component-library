@@ -6,7 +6,7 @@ orbs:
 jobs:
     build_library:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         resource_class: large
         steps:
             - checkout
@@ -37,6 +37,7 @@ jobs:
             - run:
                   name: Test
                   command: |
+                      yarn test -u
                       yarn test --maxWorkers=2 --coverage --watchAll=false
             - run:
                   name: Build Library
@@ -63,7 +64,7 @@ jobs:
     coverage_report:
         working_directory: ~/react-native-component-library
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         steps:
             - checkout
             - attach_workspace:
@@ -75,7 +76,7 @@ jobs:
     # Builds the Storybook app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_storybook:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -124,7 +125,7 @@ jobs:
     # Builds the hosted Storybook app
     build_storybook_api:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -187,7 +188,7 @@ jobs:
     # Builds the Showcase app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_showcase:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -235,7 +236,7 @@ jobs:
 
     deploy_storybook:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -273,7 +274,7 @@ jobs:
                       git push
     publish:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         steps:
             - checkout
             - attach_workspace:

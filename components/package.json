@@ -83,7 +83,8 @@
         "README.md",
         "CHANGELOG.md",
         "core/",
-        "themed/"
+        "themed/",
+        "md3/"
     ],
     "directories": {
         "doc": "../docs"
