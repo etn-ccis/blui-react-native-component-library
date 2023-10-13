@@ -87,6 +87,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
             <Text
                 testID={'header_title'}
                 style={[{ color: textColor }, styles.title]}
+                variant="titleLarge"
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
             >
@@ -96,6 +97,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                 <Text
                     testID={'header_subtitle'}
                     style={[{ color: textColor }, styles.subtitle]}
+                    variant="bodyMedium"
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                 >
@@ -106,6 +108,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
                 <Text
                     testID={'header_info'}
                     style={[{ color: textColor }, styles.info]}
+                    variant="bodySmall"
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                 >
@@ -252,7 +255,7 @@ const scoreCardStyles = (
             flex: 1,
         },
         header: {
-            height: 100 * fontScale,
+            height: 112 * fontScale,
             overflow: 'hidden',
             backgroundColor: props.headerColor || theme.colors.primary,
             borderTopLeftRadius: theme.roundness,
