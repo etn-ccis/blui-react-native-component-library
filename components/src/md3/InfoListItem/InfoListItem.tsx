@@ -337,9 +337,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (avatar) {
             return statusColor
                 ? color(statusColor).isDark()
-                    ? Colors.white[50]
-                    : Colors.black[500]
-                : Colors.white[50]; // default avatar is dark gray -> white text
+                    // @ts-ignore
+                    ? theme.colors.neutralVariant.neutral100
+                    // @TODO Currently neutral30 is #4242E4 and as per color pallete black[500] is #4142E4 Add Figma Variable
+                    // @ts-ignore 
+                    : theme.colors.neutralVariant.neutral30
+                    // @ts-ignore
+                : theme.colors.neutralVariant.neutral100; // default avatar is dark gray -> white text
         }
         return statusColor ? statusColor : theme.colors.onSurface;
     }, [iconColor, avatar, statusColor, theme]);
