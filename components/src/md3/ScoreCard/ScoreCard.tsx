@@ -10,8 +10,7 @@ import {
     ImageStyle,
     TextStyle,
 } from 'react-native';
-import * as Typography from '../../core/typography';
-import { useTheme, Card, Divider, MD3Theme } from 'react-native-paper';
+import { useTheme, Card, Divider, MD3Theme, Text } from 'react-native-paper';
 import { HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
@@ -85,36 +84,33 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const textColor = color || 'white';
     return (
         <View style={[{ flex: 1 }, styles.root]}>
-            <Typography.H6
+            <Text
                 testID={'header_title'}
                 style={[{ color: textColor }, styles.title]}
-                font={'medium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
             >
                 {title}
-            </Typography.H6>
+            </Text>
             {subtitle ? (
-                <Typography.Subtitle2
+                <Text
                     testID={'header_subtitle'}
                     style={[{ color: textColor }, styles.subtitle]}
-                    font={'regular'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                 >
                     {subtitle}
-                </Typography.Subtitle2>
+                </Text>
             ) : null}
             {info ? (
-                <Typography.Subtitle2
+                <Text
                     testID={'header_info'}
                     style={[{ color: textColor }, styles.info]}
-                    font={'light'}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                 >
                     {info}
-                </Typography.Subtitle2>
+                </Text>
             ) : null}
         </View>
     );
