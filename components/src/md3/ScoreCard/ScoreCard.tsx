@@ -253,13 +253,14 @@ const scoreCardStyles = (
     StyleSheet.create({
         root: {
             flex: 1,
+            backgroundColor: theme.colors.surface,
         },
         header: {
             height: 112 * fontScale,
             overflow: 'hidden',
-            backgroundColor: props.headerColor || theme.colors.primary,
-            borderTopLeftRadius: theme.roundness,
-            borderTopRightRadius: theme.roundness,
+            backgroundColor: props.headerColor || theme.colors.primaryContainer,
+            borderTopLeftRadius: 12,
+            borderTopRightRadius: 12,
         },
         headerContent: {
             flexDirection: 'row',
@@ -365,7 +366,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         headerTitle,
         headerSubtitle,
         headerInfo,
-        headerFontColor,
+        headerFontColor = theme.colors.onPrimaryContainer,
         styles = {},
         style,
         ...cardProps
