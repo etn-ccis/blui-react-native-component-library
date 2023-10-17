@@ -7,3 +7,4 @@ export * from './Hero';
 export * from './InfoListItem';
 export * from './Header';
 export * from './MobileStepper';
+export * from './Drawer';
