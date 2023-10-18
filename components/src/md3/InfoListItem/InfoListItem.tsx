@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider, MD3Theme, Text } from 'react-native-paper';
-import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 import { renderableSubtitleComponent, renderableInfoComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
