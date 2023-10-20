@@ -12,7 +12,7 @@ import * as Colors from '@brightlayer-ui/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
-import { Icon } from '../icon';
+import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { getPrimary500 } from '../utility/Shared';

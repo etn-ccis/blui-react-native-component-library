@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, ScrollViewProps, ViewStyle } from 'react-native';
-import { DrawerNavGroup } from './drawer-nav-group';
+import { DrawerNavGroup } from './DrawerNavGroup';
 import { AllSharedProps } from './types';
 import { inheritSharedProps } from './utilities';
 

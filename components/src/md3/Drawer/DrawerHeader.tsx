@@ -41,7 +41,7 @@ const makeStyles = (
             paddingTop: insets.top,
             backgroundColor: props.backgroundColor || theme.colors.surface,
             height: height,
-            borderTopRightRadius:15
+            borderTopRightRadius: 15,
         },
         icon: {
             marginLeft: 16,
@@ -59,23 +59,23 @@ const makeStyles = (
             paddingLeft: 16,
             flex: 1,
             height: '100%',
-            fontFamily:'OpenSans-SemiBold'
+            fontFamily: 'OpenSans-SemiBold',
         },
         title: {
             color: props.fontColor || theme.colors.primary,
             lineHeight: 30,
             fontSize: 24,
             letterSpacing: 0,
-            fontFamily:'OpenSans-SemiBold',
-            fontWeight:'500'
+            fontFamily: 'OpenSans-SemiBold',
+            fontWeight: '500',
         },
         subtitle: {
             color: props.fontColor || theme.colors.onSurfaceVariant,
             lineHeight: 16,
             fontSize: 16,
             letterSpacing: 0,
-            fontFamily:'OpenSans-Regular',
-            fontWeight:'400'
+            fontFamily: 'OpenSans-Regular',
+            fontWeight: '400',
         },
         backgroundImageWrapper: {
             position: 'absolute',
@@ -191,7 +191,12 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                         style={{ padding: 8, marginLeft: -8 }}
                         disabled={!onIconPress}
                     >
-                        <Icon source={icon} size={24} color={fontColor || theme.colors.onSurface} allowFontScaling={!disableScaling} />
+                        <Icon
+                            source={icon}
+                            size={24}
+                            color={fontColor || theme.colors.onSurface}
+                            allowFontScaling={!disableScaling}
+                        />
                     </TouchableOpacity>
                 </View>
             );

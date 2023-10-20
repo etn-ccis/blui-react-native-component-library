@@ -10,18 +10,14 @@ import { DrawerContext } from './context';
 type DrawerStyles = {
     root?: ViewStyle;
 };
-const makeStyles = (
-    props: DrawerProps,
-    theme: MD3Theme,
-    insets: EdgeInsets
-): StyleSheet.NamedStyles<DrawerStyles> =>
+const makeStyles = (props: DrawerProps, theme: MD3Theme, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
     StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || theme.colors.surface,
             zIndex: 2,
             flex: 1,
             height: '100%',
-            borderTopRightRadius:15,
+            borderTopRightRadius: 15,
             paddingBottom: insets.bottom,
         },
     });
