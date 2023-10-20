@@ -8,7 +8,7 @@ type DrawerSubheaderProps = {
      * Default: true
      */
     divider?: boolean;
-    children: JSX.Element
+    children: JSX.Element;
 };
 
 /**
