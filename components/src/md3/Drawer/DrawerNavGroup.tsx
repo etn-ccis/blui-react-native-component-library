@@ -56,12 +56,13 @@ const makeStyles = (
         },
         title: {
             paddingHorizontal: 16,
-            color: props.titleColor || theme.colors.onSurfaceVariant,
+            color: props.titleColor || theme.colors.onSurface,
             fontSize: 12,
             letterSpacing: 2,
+            lineHeight: 16,
             textTransform: 'uppercase',
             fontFamily: 'OpenSans-Regular',
-            fontWeight: '400',
+            fontWeight: '600',
         },
         divider: {
             position: 'absolute',
@@ -174,7 +175,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     React.cloneElement(child, {
                         // Inherited Props
                         ...inheritSharedProps(props, child.props),
-                        depth: 0,
+                        // depth: 0,
                         isInActiveTree: activeHierarchyItems.includes(child.props.itemID),
                         notifyActiveParent: (ids: string[]): void => {
                             if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
@@ -208,7 +209,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         key={`itemList_${index}`}
                         {...item}
                         {...inheritSharedProps(props, item)}
-                        depth={0}
+                        // depth={1}
                         isInActiveTree={activeHierarchyItems.includes(item.itemID)}
                         notifyActiveParent={(ids: string[]): void => {
                             if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {

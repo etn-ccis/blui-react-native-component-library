@@ -8,6 +8,10 @@ type DrawerFooterProps = {
      * Default: true
      */
     divider?: boolean;
+    /**
+     * children element that need to be rendered inside footer
+     */
+    children?: JSX.Element;
 };
 
 /**

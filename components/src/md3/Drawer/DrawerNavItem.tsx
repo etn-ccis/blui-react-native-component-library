@@ -124,16 +124,16 @@ const makeStyles = (
     flipIcon: ViewStyle;
 }> => {
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primary)
+    const fivePercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primaryContainer)
         .alpha(0.05)
         .string();
-    const twentyPercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primary)
+    const twentyPercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primaryContainer)
         .alpha(0.2)
         .string();
 
     const {
         // Shared style props
-        activeItemBackgroundColor = !theme.dark ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary,
+        activeItemBackgroundColor = theme.colors.primaryContainer,
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
@@ -342,16 +342,18 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             onPress={hasAction ? onPressAction : undefined}
                             hidePadding={hidePadding}
                             styles={{
-                                root: Object.assign({ paddingLeft: calcNestedPadding(depth, insets) }, iliRoot),
+                                root: Object.assign({ marginLeft: calcNestedPadding(depth, insets) }, iliRoot),
                                 title: Object.assign(
                                     active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
-                                              fontWeight: theme.fonts.bodyMedium,
-                                              fontFamily: theme.fonts.bodyMedium,
+                                              fontWeight: theme.fonts.titleMedium,
+                                              fontFamily: theme.fonts.titleMedium,
+                                              color: theme.colors.onPrimaryContainer,
                                           }
                                         : {
-                                              fontWeight: theme.fonts.default,
-                                              fontFamily: theme.fonts.default,
+                                              fontWeight: theme.fonts.bodyLarge,
+                                              fontFamily: theme.fonts.bodyLarge,
+                                              color: theme.colors.onSurface,
                                           },
                                     iliTitle
                                 ),

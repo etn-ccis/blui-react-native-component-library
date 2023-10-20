@@ -18,6 +18,7 @@ const makeStyles = (props: DrawerProps, theme: MD3Theme, insets: EdgeInsets): St
             flex: 1,
             height: '100%',
             borderTopRightRadius: 15,
+            borderBottomRightRadius: 15,
             paddingBottom: insets.bottom,
         },
     });
