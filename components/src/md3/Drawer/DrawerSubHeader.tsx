@@ -1,4 +1,4 @@
-import React, { JSXElementConstructor } from 'react';
+import React from 'react';
 import { Divider } from 'react-native-paper';
 
 type DrawerSubheaderProps = {

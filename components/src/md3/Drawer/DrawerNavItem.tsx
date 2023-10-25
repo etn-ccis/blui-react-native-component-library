@@ -111,7 +111,7 @@ export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (depth: number, insets: EdgeInsets): number =>
-    insets.left + (depth > 0 ? (depth - 1) * 32 : 0);
+    insets.left + 16 + (depth > 0 ? depth * 32 : 0);
 
 const makeStyles = (
     props: DrawerNavItemProps,
@@ -123,13 +123,6 @@ const makeStyles = (
     expandIcon: ViewStyle;
     flipIcon: ViewStyle;
 }> => {
-    // Primary color manipulation
-    const fivePercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primaryContainer)
-        .alpha(0.05)
-        .string();
-    const twentyPercentOpacityPrimary = color(getPrimary500(theme) || theme.colors.primaryContainer)
-        .alpha(0.2)
-        .string();
 
     const {
         // Shared style props
@@ -313,7 +306,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
 
     const infoListItemStyles = styles.infoListItem || {};
     const { root: iliRoot, title: iliTitle, statusStripe: iliStatusStripe, ...otherILI } = infoListItemStyles;
-
     return (
         <>
             {!hidden && (
@@ -342,17 +334,17 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             onPress={hasAction ? onPressAction : undefined}
                             hidePadding={hidePadding}
                             styles={{
-                                root: Object.assign({ marginLeft: calcNestedPadding(depth, insets) }, iliRoot),
+                                root: Object.assign({ paddingLeft: calcNestedPadding(depth, insets) }, iliRoot),
                                 title: Object.assign(
                                     active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
-                                              fontWeight: theme.fonts.titleMedium,
-                                              fontFamily: theme.fonts.titleMedium,
+                                              fontWeight: 600,
+                                              fontFamily: 'OpenSans-SemiBold',
                                               color: theme.colors.onPrimaryContainer,
                                           }
                                         : {
-                                              fontWeight: theme.fonts.bodyLarge,
-                                              fontFamily: theme.fonts.bodyLarge,
+                                              fontWeight: 400,
+                                              fontFamily: 'OpenSans-Regular',
                                               color: theme.colors.onSurface,
                                           },
                                     iliTitle

@@ -61,7 +61,7 @@ const makeStyles = (
             letterSpacing: 2,
             lineHeight: 16,
             textTransform: 'uppercase',
-            fontFamily: 'OpenSans-Regular',
+            fontFamily: 'OpenSans-SemiBold',
             fontWeight: '600',
         },
         divider: {
