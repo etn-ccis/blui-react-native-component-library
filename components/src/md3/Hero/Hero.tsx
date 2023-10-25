@@ -29,8 +29,6 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'hidden',
-            // height: typeof iconSize === 'number' ? normalizeIconSize() : iconSize * fontScale,
-            // width: typeof iconSize === 'number' ? normalizeIconSize() : iconSize * fontScale,
         },
         values: {
             flexDirection: 'row',
