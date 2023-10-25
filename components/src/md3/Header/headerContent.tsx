@@ -65,7 +65,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: 'OpenSans-Semibold',
+            fontFamily: 'OpenSans-SemiBold',
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
