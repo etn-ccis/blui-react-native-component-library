@@ -27,7 +27,6 @@ const makeStyles = (
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
-            marginHorizontal: 16,
         },
         circle: {
             height: 8,
