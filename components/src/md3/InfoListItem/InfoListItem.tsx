@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme, Divider as PaperDivider, MD3Theme, Text } from 'react-native-paper';
-import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 import { renderableSubtitleComponent, renderableInfoComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -337,13 +336,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (avatar) {
             return statusColor
                 ? color(statusColor).isDark()
-                    // @ts-ignore TODO
-                    ? theme.colors.neutralVariant.neutral100
-                    // @TODO Currently neutral30 is #4242E4 and as per color pallete black[500] is #4142E4 Add Figma Variable
-                    // @ts-ignore 
-                    : theme.colors.neutralVariant.neutral30
-                    // @ts-ignore TODO
-                : theme.colors.neutralVariant.neutral100; // default avatar is dark gray -> white text
+                    ? // @ts-ignore TODO
+                      theme.colors.neutralVariant.neutral100
+                    : // @TODO Currently neutral30 is #4242E4 and as per color pallete black[500] is #4142E4 Add Figma Variable
+                      // @ts-ignore
+                      theme.colors.neutralVariant.neutral30
+                : // @ts-ignore TODO
+                  theme.colors.neutralVariant.neutral100; // default avatar is dark gray -> white text
         }
         return statusColor ? statusColor : theme.colors.onSurface;
     }, [iconColor, avatar, statusColor, theme]);
