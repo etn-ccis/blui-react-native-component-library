@@ -8,3 +8,4 @@ export * from './InfoListItem';
 export * from './Header';
 export * from './MobileStepper';
 export * from './UserMenu';
+export * from './CollapsableHeaderLayout';
