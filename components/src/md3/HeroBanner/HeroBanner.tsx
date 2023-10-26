@@ -8,6 +8,12 @@ const defaultStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    divider: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
 });
 
 export type HeroBannerProps = ViewProps & {
@@ -39,8 +45,12 @@ export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
         <React.Fragment>
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
                 {childrenArray}
+                {divider && (
+                    <View style={defaultStyles.divider}>
+                        <Divider />
+                    </View>
+                )}
             </View>
-            {divider && <Divider style={styles.divider} />}
         </React.Fragment>
     );
 };
