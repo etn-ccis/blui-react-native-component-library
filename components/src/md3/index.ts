@@ -9,3 +9,4 @@ export * from './Header';
 export * from './MobileStepper';
 export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
+export * from './utility';
