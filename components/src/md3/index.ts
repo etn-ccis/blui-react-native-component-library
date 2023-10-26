@@ -8,5 +8,6 @@ export * from './InfoListItem';
 export * from './Header';
 export * from './MobileStepper';
 export * from './Drawer';
+export * from './UserMenu';
 export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
