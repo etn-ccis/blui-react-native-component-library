@@ -29,8 +29,6 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'hidden',
-            height: 36 * fontScale,
-            width: 36 * fontScale,
         },
         values: {
             flexDirection: 'row',
@@ -97,7 +95,13 @@ export const Hero: React.FC<HeroProps> = (props) => {
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
+            return (
+                <Icon
+                    source={icon}
+                    size={typeof iconSize === 'number' ? normalizeIconSize() : iconSize}
+                    color={getColor(iconColor)}
+                />
+            );
         }
     }, [icon, normalizeIconSize, getColor, iconColor]);
 
@@ -111,7 +115,11 @@ export const Hero: React.FC<HeroProps> = (props) => {
             <View
                 style={[
                     defaultStyles.iconWrapper,
-                    { backgroundColor: iconBackgroundColor || theme.colors.surface },
+                    {
+                        backgroundColor: iconBackgroundColor || theme.colors.surface,
+                        height: typeof iconSize === 'number' ? normalizeIconSize() : iconSize ?? 36 * fontScale,
+                        width: typeof iconSize === 'number' ? normalizeIconSize() : iconSize ?? 36 * fontScale,
+                    },
                     styles.iconWrapper,
                 ]}
             >
