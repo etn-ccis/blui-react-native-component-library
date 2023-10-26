@@ -27,6 +27,7 @@ const makeStyles = (
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
+            marginHorizontal: 24,
         },
         circle: {
             height: 8,
@@ -152,7 +153,13 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     return (
         <View {...viewProps} style={[defaultStyles.root, styles.root, style]}>
             {leftButton}
-            <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
+            <View
+                style={[
+                    defaultStyles.stepperContainer,
+                    styles.stepperContainer,
+                    variant === 'progress' ? { flex: 1 } : { flex: 0 },
+                ]}
+            >
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
                         const active = i === adjustedActiveStep;
