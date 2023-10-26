@@ -63,7 +63,7 @@ const makeStyles = (
         },
         title: {
             color: props.fontColor || theme.colors.primary,
-            lineHeight: 30,
+            lineHeight: 32,
             fontSize: 24,
             letterSpacing: 0,
             fontFamily: 'OpenSans-SemiBold',
@@ -71,7 +71,7 @@ const makeStyles = (
         },
         subtitle: {
             color: props.fontColor || theme.colors.onSurfaceVariant,
-            lineHeight: 16,
+            lineHeight: 20,
             fontSize: 16,
             letterSpacing: 0,
             fontFamily: 'OpenSans-Regular',
@@ -210,7 +210,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                     <Text variant={'headlineSmall'} style={[defaultStyles.title, styles.title]} numberOfLines={1}>
                         {title}
                     </Text>
-                    <Text variant={'titleMedium'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
+                    <Text variant={'bodyMedium'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
                         {subtitle}
                     </Text>
                 </View>
