@@ -72,7 +72,7 @@ const makeStyles = (
         subtitle: {
             color: props.fontColor || theme.colors.onSurfaceVariant,
             lineHeight: 20,
-            fontSize: 16,
+            fontSize: 14,
             letterSpacing: 0,
             fontFamily: 'OpenSans-Regular',
             fontWeight: '400',
