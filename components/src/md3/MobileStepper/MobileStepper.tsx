@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, ViewProps } from 'react-native';
 import { MD3Theme, ProgressBar, Text, useTheme } from 'react-native-paper';
-import * as Colors from '@brightlayer-ui/colors';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
 const makeStyles = (
@@ -36,8 +35,10 @@ const makeStyles = (
             marginHorizontal: 4,
             overflow: 'hidden',
             // added custom disabled color in MD3BluiLightTheme, error since there is no type present in MD3Colors
-            // @ts-ignore
-            backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
+            // @TODO Currently neutral80 is #BDCAD1 and as per color pallete gray[200] is #B9BFC2 Add Figma Variable
+            backgroundColor:
+                // @ts-ignore
+                props.inactiveColor || (theme.dark ? theme.colors.disabled : theme.colors.neutralVariant.neutral80),
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
