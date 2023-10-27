@@ -27,6 +27,7 @@ const makeStyles = (
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
+            marginHorizontal: 24,
         },
         circle: {
             height: 8,
@@ -35,6 +36,7 @@ const makeStyles = (
             marginHorizontal: 4,
             overflow: 'hidden',
             // added custom disabled color in MD3BluiLightTheme, error since there is no type present in MD3Colors
+            // @ts-ignore
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
@@ -152,7 +154,13 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
     return (
         <View {...viewProps} style={[defaultStyles.root, styles.root, style]}>
             {leftButton}
-            <View style={[defaultStyles.stepperContainer, styles.stepperContainer]}>
+            <View
+                style={[
+                    defaultStyles.stepperContainer,
+                    styles.stepperContainer,
+                    variant === 'progress' ? { flex: 1 } : { flex: 0 },
+                ]}
+            >
                 {variant === 'dots' &&
                     pageIndices.map((i) => {
                         const active = i === adjustedActiveStep;
