@@ -13,7 +13,7 @@ type DrawerStyles = {
 const makeStyles = (props: DrawerProps, theme: MD3Theme, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.surface,
+            backgroundColor: props.backgroundColor || theme.colors.surfaceContainerLow,
             zIndex: 2,
             flex: 1,
             height: '100%',

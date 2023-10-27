@@ -123,14 +123,13 @@ const makeStyles = (
     expandIcon: ViewStyle;
     flipIcon: ViewStyle;
 }> => {
-
     const {
         // Shared style props
         activeItemBackgroundColor = theme.colors.primaryContainer,
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.background, // TODO: don't hardcode?
+        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.surfaceContainer, // TODO: don't hardcode?
     } = props;
 
     return StyleSheet.create({
