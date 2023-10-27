@@ -10,3 +10,4 @@ export * from './MobileStepper';
 export * from './UserMenu';
 export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
+export * from './utility';
