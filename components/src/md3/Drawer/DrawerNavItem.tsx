@@ -279,7 +279,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 <Icon
                     source={collapseIcon && expanded ? collapseIcon : expandIcon}
                     size={24}
-                    color={theme.colors.tertiary}
+                    color={theme.colors.onSurfaceVariant}
                     allowFontScaling={!disableScaling}
                 />
             </View>
