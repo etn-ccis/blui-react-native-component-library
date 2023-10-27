@@ -111,7 +111,7 @@ export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (depth: number, insets: EdgeInsets): number =>
-    insets.left + 16 + (depth > 0 ? depth * 32 : 0);
+    insets.left + 16 + (depth > 0 ? depth * 40 : 0);
 
 const makeStyles = (
     props: DrawerNavItemProps,
@@ -201,7 +201,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         expandIcon = { family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more' },
         hidePadding,
         itemFontColor = theme.colors.tertiary,
-        itemIconColor = theme.colors.tertiary,
+        itemIconColor = theme.colors.onSurfaceVariant,
         nestedBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         nestedDivider,
         // Drawer Nav Item specific props

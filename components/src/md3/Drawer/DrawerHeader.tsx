@@ -56,7 +56,7 @@ const makeStyles = (
         textContent: {
             flexDirection: 'column',
             paddingVertical: 4 * fontScale,
-            paddingLeft: 16,
+            // paddingLeft: 16,
             flex: 1,
             height: '100%',
             fontFamily: 'OpenSans-SemiBold',
