@@ -129,7 +129,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        nestedBackgroundColor = theme.dark ? Colors.darkBlack[100] : theme.colors.surfaceContainer, // TODO: don't hardcode?
+        nestedBackgroundColor = theme.dark ? theme.colors.darkBlackVariant.darkBlack100 : theme.colors.surfaceContainer, // TODO: don't hardcode?
     } = props;
 
     return StyleSheet.create({
