@@ -283,7 +283,7 @@ const scoreCardStyles = (
         },
     });
 
-export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children'> & {
+export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' | 'theme'> & {
     /**
      * Array of icons to render to the right of the header text.
      * A maximum of six will be rendered.

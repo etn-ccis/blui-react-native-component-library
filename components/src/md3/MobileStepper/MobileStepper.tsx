@@ -36,6 +36,7 @@ const makeStyles = (
             marginHorizontal: 4,
             overflow: 'hidden',
             // added custom disabled color in MD3BluiLightTheme, error since there is no type present in MD3Colors
+            // @ts-ignore
             backgroundColor: props.inactiveColor || (theme.dark ? theme.colors.disabled : Colors.gray[200]),
         },
         filled: {
