@@ -66,7 +66,7 @@ const listItemTagStyles = (
                 props.fontColor ||
                 (Color(props.backgroundColor || theme.colors.primary).isLight()
                     ? theme.dark
-                        ? // @TODO Currently neutral30 is #4242E4 and as per color pallete black[500] is #4142E4 Add Figma Variable
+                        ? // @TODO Currently neutral30 is #414E54 and as per color pallete black[500] is #424E54 Add Figma Variable
                           // @ts-ignore
                           theme.colors.neutralVariant.neutral30
                         : theme.colors.primary
