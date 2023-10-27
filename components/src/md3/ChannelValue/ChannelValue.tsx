@@ -175,7 +175,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                     {
                         color: getColor(),
                         fontSize: fontSize,
-                        fontFamily: 'OpenSans-Regular',
+                        fontFamily: 'OpenSans-SemiBold',
                         fontWeight: '600',
                     },
                 ]}
@@ -187,7 +187,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         {
                             color: getColor(),
                             fontSize: fontSize,
-                            fontFamily: 'OpenSans-Regular',
+                            fontFamily: 'OpenSans-SemiBold',
                             fontWeight: '600',
                         },
                         styles.value,
