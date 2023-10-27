@@ -102,7 +102,7 @@ const infoListItemStyles = (
         title: {
             color: props.fontColor || theme.colors.onSurface,
             fontFamily: 'OpenSans-Bold',
-        fontWeight: '600'
+            fontWeight: '600',
         },
         subtitleWrapper: {
             flexDirection: 'row',
