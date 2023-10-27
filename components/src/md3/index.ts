@@ -4,6 +4,7 @@ export * from './Icon';
 export * from './Overline';
 export * from './EmptyState';
 export * from './Hero';
+export * from './HeroBanner';
 export * from './InfoListItem';
 export * from './Header';
 export * from './MobileStepper';
