@@ -8,7 +8,6 @@ import color from 'color';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
-import * as Colors from '@brightlayer-ui/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
@@ -129,7 +128,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        nestedBackgroundColor = theme.dark ? theme.colors.neutralVariant.neutral10 : theme.colors.surfaceContainer, // TODO: don't hardcode?
+        nestedBackgroundColor = theme.colors.surfaceContainer, // TODO: don't hardcode?
     } = props;
 
     return StyleSheet.create({
@@ -190,8 +189,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         // Shared style props
         activeItemBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemBackgroundShape /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-        activeItemFontColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
-        activeItemIconColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
+        activeItemFontColor = theme.colors.onPrimaryContainer,
+        activeItemIconColor = theme.colors.onPrimaryContainer,
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         collapseIcon = { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },

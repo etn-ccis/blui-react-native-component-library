@@ -38,7 +38,7 @@ const makeStyles = (
             // @TODO Currently neutral80 is #BDCAD1 and as per color pallete gray[200] is #B9BFC2 Add Figma Variable
             backgroundColor:
                 // @ts-ignore
-                props.inactiveColor || (theme.dark ? theme.colors.disabled : theme.colors.neutralVariant.neutral80),
+                props.inactiveColor || theme.colors.disabled,
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
