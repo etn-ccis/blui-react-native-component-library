@@ -2,7 +2,6 @@ import React from 'react';
 import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import Color from 'color';
-import { white, black } from '@brightlayer-ui/colors';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
@@ -66,10 +65,11 @@ const listItemTagStyles = (
             color:
                 props.fontColor ||
                 (Color(props.backgroundColor || theme.colors.primary).isLight()
-                    ? theme.dark
-                        ? black[500]
-                        : theme.colors.primary
-                    : white[50]),
+                    ? // @TODO Currently neutral30 is #414E54 and as per color pallete black[500] is #424E54 Add Figma Variable
+                      // @ts-ignore
+                      theme.colors.neutralVariant.neutral30
+                    : // @ts-ignore
+                      theme.colors.neutralVariant.neutral100),
             height: 16 * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,
