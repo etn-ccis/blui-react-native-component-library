@@ -8,7 +8,6 @@ import color from 'color';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
-import * as Colors from '@brightlayer-ui/colors';
 import Collapsible from 'react-native-collapsible';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
