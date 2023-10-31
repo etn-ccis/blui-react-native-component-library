@@ -29,6 +29,7 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'hidden',
+            borderRadius: 50,
         },
         values: {
             flexDirection: 'row',
@@ -41,7 +42,7 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
             overflow: 'hidden',
             textAlign: 'center',
             fontFamily: 'OpenSans-SemiBold',
-            fontWeight: '500',
+            fontWeight: '600',
             color: theme.colors.onSurfaceVariant,
         },
     });
@@ -119,7 +120,6 @@ export const Hero: React.FC<HeroProps> = (props) => {
                         backgroundColor: iconBackgroundColor || theme.colors.surface,
                         height: typeof iconSize === 'number' ? normalizeIconSize() : iconSize ?? 36 * fontScale,
                         width: typeof iconSize === 'number' ? normalizeIconSize() : iconSize ?? 36 * fontScale,
-                        borderRadius:25,
                     },
                     styles.iconWrapper,
                 ]}
