@@ -11,7 +11,7 @@ export type GradeProps = ViewProps & {
 
 export type FixedGradeProps = Omit<GradeProps, 'label' | 'color' | 'backgroundColor'>;
 
-const GradeBase = (props: GradeProps) => {
+const GradeBase = (props: GradeProps): JSX.Element => {
     const theme = useTheme();
     const {
         label,
