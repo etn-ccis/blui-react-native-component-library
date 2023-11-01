@@ -9,12 +9,19 @@ export type GradeProps = ViewProps & {
     size?: number;
 };
 
-export type FixedGradeProps = Pick<GradeProps, 'size'>;
+export type FixedGradeProps = Omit<GradeProps, 'label' | 'color' | 'backgroundColor'>;
 
 const GradeBase = (props: GradeProps) => {
     const theme = useTheme();
-    const { label, color = theme.colors.onPrimary, backgroundColor = theme.colors.primary, size = 40, style, ...otherViewProps } = props;
-    
+    const {
+        label,
+        color = theme.colors.onPrimary,
+        backgroundColor = theme.colors.primary,
+        size = 40,
+        style,
+        ...otherViewProps
+    } = props;
+
     const avatarStyle = {
         backgroundColor,
     };
@@ -39,43 +46,43 @@ const GradeBase = (props: GradeProps) => {
 };
 
 GradeBase.APlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'A+'} color="#FFFFFF" backgroundColor="#198900" size={props.size} />
+    <GradeBase label={'A+'} color="#FFFFFF" backgroundColor="#198900" {...props} />
 );
 GradeBase.A = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'A'} color="#FFFFFF" backgroundColor="#198900" size={props.size} />
+    <GradeBase label={'A'} color="#FFFFFF" backgroundColor="#198900" {...props} />
 );
 GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'A-'} color="#FFFFFF" backgroundColor="#64a721" size={props.size} />
+    <GradeBase label={'A-'} color="#FFFFFF" backgroundColor="#64a721" {...props} />
 );
 GradeBase.BPlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'B+'} color="#524700" backgroundColor="#afc543" size={props.size} />
+    <GradeBase label={'B+'} color="#524700" backgroundColor="#afc543" {...props} />
 );
 GradeBase.B = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'B'} color="#524700" backgroundColor="#FBE365" size={props.size} />
+    <GradeBase label={'B'} color="#524700" backgroundColor="#FBE365" {...props} />
 );
 GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'B-'} color="#524700" backgroundColor="#f6c543" size={props.size} />
+    <GradeBase label={'B-'} color="#524700" backgroundColor="#f6c543" {...props} />
 );
 GradeBase.CPlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'C+'} color="#4B2800" backgroundColor="#f1a821" size={props.size} />
+    <GradeBase label={'C+'} color="#4B2800" backgroundColor="#f1a821" {...props} />
 );
 GradeBase.C = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'C'} color="#4B2800" backgroundColor="#ED8B00" size={props.size} />
+    <GradeBase label={'C'} color="#4B2800" backgroundColor="#ED8B00" {...props} />
 );
 GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'C-'} color="#4B2800" backgroundColor="#dc6508" size={props.size} />
+    <GradeBase label={'C-'} color="#4B2800" backgroundColor="#dc6508" {...props} />
 );
 GradeBase.DPlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'D+'} color="#FFFFFF" backgroundColor="#cb3f11" size={props.size} />
+    <GradeBase label={'D+'} color="#FFFFFF" backgroundColor="#cb3f11" {...props} />
 );
 GradeBase.D = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'D'} color="#FFFFFF" backgroundColor="#BA1A1A" size={props.size} />
+    <GradeBase label={'D'} color="#FFFFFF" backgroundColor="#BA1A1A" {...props} />
 );
 GradeBase.DMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'D-'} color="#FFFFFF" backgroundColor="#BA1A1A" size={props.size} />
+    <GradeBase label={'D-'} color="#FFFFFF" backgroundColor="#BA1A1A" {...props} />
 );
 GradeBase.F = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'F'} color="#FFFFFF" backgroundColor="#9F45F6" size={props.size} />
+    <GradeBase label={'F'} color="#FFFFFF" backgroundColor="#9F45F6" {...props} />
 );
 
 export const Grade = GradeBase;
