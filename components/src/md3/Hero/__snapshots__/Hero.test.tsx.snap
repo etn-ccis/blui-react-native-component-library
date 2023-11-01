@@ -96,7 +96,7 @@ exports[`Hero renders correctly with ChannelValueProps 1`] = `
               [
                 {
                   "color": "rgba(28, 27, 31, 1)",
-                  "fontFamily": "OpenSans-Regular",
+                  "fontFamily": "OpenSans-SemiBold",
                   "fontSize": 22,
                   "fontWeight": "600",
                 },
@@ -127,7 +127,7 @@ exports[`Hero renders correctly with ChannelValueProps 1`] = `
                 [
                   {
                     "color": "rgba(28, 27, 31, 1)",
-                    "fontFamily": "OpenSans-Regular",
+                    "fontFamily": "OpenSans-SemiBold",
                     "fontSize": 22,
                     "fontWeight": "600",
                   },

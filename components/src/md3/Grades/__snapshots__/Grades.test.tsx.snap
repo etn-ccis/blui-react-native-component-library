@@ -1,0 +1,1594 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grades.A renders Grades.A component with custom label 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#198900",
+        "borderRadius": 25,
+        "height": 50,
+        "width": 50,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 25,
+            "lineHeight": 25,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom A
+  </Text>
+</View>
+`;
+
+exports[`Grades.A renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#198900",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    A
+  </Text>
+</View>
+`;
+
+exports[`Grades.AMinus renders Grades.AMinus component with custom label 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#64a721",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom A-
+  </Text>
+</View>
+`;
+
+exports[`Grades.AMinus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#64a721",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    A-
+  </Text>
+</View>
+`;
+
+exports[`Grades.APlus renders Grades.APlus component with custom label 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#198900",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom A+
+  </Text>
+</View>
+`;
+
+exports[`Grades.APlus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#198900",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    A+
+  </Text>
+</View>
+`;
+
+exports[`Grades.B renders Grades.B component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#FBE365",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#524700",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#524700",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom B
+  </Text>
+</View>
+`;
+
+exports[`Grades.B renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#FBE365",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#524700",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#524700",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    B
+  </Text>
+</View>
+`;
+
+exports[`Grades.BMinus renders Grades.BMinus component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#f6c543",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#524700",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#524700",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom B-
+  </Text>
+</View>
+`;
+
+exports[`Grades.BMinus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#f6c543",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#524700",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#524700",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    B-
+  </Text>
+</View>
+`;
+
+exports[`Grades.BPlus renders Grades.BPlus component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#afc543",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#524700",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#524700",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom B+
+  </Text>
+</View>
+`;
+
+exports[`Grades.BPlus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#afc543",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#524700",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#524700",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    B+
+  </Text>
+</View>
+`;
+
+exports[`Grades.C renders Grades.C component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#ED8B00",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#4B2800",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#4B2800",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom C
+  </Text>
+</View>
+`;
+
+exports[`Grades.C renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#ED8B00",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#4B2800",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#4B2800",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    C
+  </Text>
+</View>
+`;
+
+exports[`Grades.CMinus renders Grades.CMinus component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#dc6508",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#4B2800",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#4B2800",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom C-
+  </Text>
+</View>
+`;
+
+exports[`Grades.CMinus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#dc6508",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#4B2800",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#4B2800",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    C-
+  </Text>
+</View>
+`;
+
+exports[`Grades.CPlus renders Grades.CPlus component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#f1a821",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#4B2800",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#4B2800",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom C+
+  </Text>
+</View>
+`;
+
+exports[`Grades.CPlus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#f1a821",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#4B2800",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#4B2800",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    C+
+  </Text>
+</View>
+`;
+
+exports[`Grades.Custom renders with custom label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#66CCFF",
+        "borderRadius": 25,
+        "height": 50,
+        "width": 50,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FF5733",
+            "fontSize": 25,
+            "lineHeight": 25,
+          },
+          {
+            "color": "#FF5733",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom Grade
+  </Text>
+</View>
+`;
+
+exports[`Grades.D renders Grades.D component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#BA1A1A",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom D
+  </Text>
+</View>
+`;
+
+exports[`Grades.D renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#BA1A1A",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    D
+  </Text>
+</View>
+`;
+
+exports[`Grades.DMinus renders Grades.DMinus component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#BA1A1A",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom D-
+  </Text>
+</View>
+`;
+
+exports[`Grades.DMinus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#BA1A1A",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    D-
+  </Text>
+</View>
+`;
+
+exports[`Grades.DPlus renders Grades.DPlus component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#cb3f11",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom D+
+  </Text>
+</View>
+`;
+
+exports[`Grades.DPlus renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#cb3f11",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    D+
+  </Text>
+</View>
+`;
+
+exports[`Grades.F renders Grades.F component with custom label and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#9F45F6",
+        "borderRadius": 15,
+        "height": 30,
+        "width": 30,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 15,
+            "lineHeight": 15,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom F
+  </Text>
+</View>
+`;
+
+exports[`Grades.F renders with default label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#9F45F6",
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 20,
+            "lineHeight": 20,
+          },
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    F
+  </Text>
+</View>
+`;
