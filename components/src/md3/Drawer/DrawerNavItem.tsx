@@ -128,6 +128,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
+        // @ts-ignore TODO
         nestedBackgroundColor = theme.colors.surfaceContainer, // TODO: don't hardcode?
     } = props;
 
@@ -180,6 +181,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const previousActive = usePrevious(activeItem || '');
 
     // approximating primary[200] but we don't have access to it directly from the theme
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */ //TODO: Do we need this variable?
     const lightenedPrimary = color(getPrimary500(theme) || theme.colors.primary)
         .lighten(0.83)
         .desaturate(0.39)
