@@ -8,6 +8,7 @@ import { IconSource } from '../__types__';
 
 const prefixUnitWhitelist = ['$'];
 const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
+const calculateHeight = (fontSize: number): number => Math.ceil((fontSize * 1.25) / 4) * 4;
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -127,13 +128,14 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                                 unitSpace === 'auto' &&
                                 !suffixUnitWhitelist.includes(units))) && <Spacer flex={0} width={fontSize / 4} />}
                         <Text
-                            variant={'bodyLarge'}
+                            variant={'titleMedium'}
                             style={[
                                 {
                                     color: getColor(),
                                     fontSize: fontSize,
                                     fontWeight: '300',
                                     fontFamily: 'OpenSans-Regular',
+                                    lineHeight: calculateHeight(fontSize),
                                 },
                                 styles.units,
                             ]}
@@ -167,7 +169,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
             {getIcon()}
             <Text
-                variant={'bodyLarge'}
+                variant={'titleMedium'}
                 numberOfLines={1}
                 ellipsizeMode={'tail'}
                 testID={'text-wrapper'}
@@ -175,6 +177,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                     {
                         color: getColor(),
                         fontSize: fontSize,
+                        lineHeight: calculateHeight(fontSize),
                         fontFamily: 'OpenSans-SemiBold',
                         fontWeight: '600',
                     },
@@ -182,13 +185,14 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
             >
                 {prefixUnits()}
                 <Text
-                    variant={'bodyLarge'}
+                    variant={'titleMedium'}
                     style={[
                         {
                             color: getColor(),
                             fontSize: fontSize,
                             fontFamily: 'OpenSans-SemiBold',
                             fontWeight: '600',
+                            lineHeight: calculateHeight(fontSize),
                         },
                         styles.value,
                     ]}
