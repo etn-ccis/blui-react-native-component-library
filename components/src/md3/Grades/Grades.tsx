@@ -1,42 +1,54 @@
 import React from 'react';
 import { Platform, ViewProps } from 'react-native';
-import { Avatar, useTheme } from 'react-native-paper';
+import { Avatar, MD3Theme, useTheme } from 'react-native-paper';
+import { $DeepPartial } from '@callstack/react-theme-provider';
 
-// Define the prop types for the Grade component
+
 export type GradeProps = ViewProps & {
+    // the text that you want to display
     label: string;
+    // Text color for the Label (Default is theme.colors.onPrimary)
     fontColor?: string;
+    // Background color of the Label (Default is theme.colors.primary)
     backgroundColor?: string;
+    // the diameter of the circular view
     size?: number;
+    // Theme value overrides specific to this component.
+    theme?: $DeepPartial<MD3Theme>;
 };
 
-// Omit certain props from GradeProps to create FixedGradeProps
 export type FixedGradeProps = Omit<GradeProps, 'label' | 'fontColor' | 'backgroundColor'>;
 
 // GradeBase component definition
 const GradeBase = (props: GradeProps): JSX.Element => {
-    const theme = useTheme();
+    const defaultTheme = useTheme();
     const {
         label,
-        fontColor = theme.colors.onPrimary,
-        backgroundColor = theme.colors.primary,
+        fontColor,
+        backgroundColor,
         size = 40,
         style,
+        theme: themeOverride,
         ...otherViewProps
     } = props;
 
+    const theme = useTheme(themeOverride || props.theme || defaultTheme);
+
     // Define styles for Avatar.Text component
     const avatarStyle = {
-        backgroundColor,
+        backgroundColor: backgroundColor || theme.colors.primary,
     };
 
     // Define styles for text within Avatar.Text
     const textStyle = {
-        color: fontColor,
+        color: fontColor || theme.colors.onPrimary,
         fontFamily: 'OpenSans-Bold', // Font family for text
         fontWeight: Platform.OS === 'ios' ? ('700' as const) : ('600' as const), // Font weight
     };
-    // Render Avatar.Text component with specified props and styles
+    /* 
+    * This component is primarily used for Grading. It is a stylized
+    * Avatar with a colored background and text color.
+    */
     return (
         <Avatar.Text
             label={label}
@@ -50,7 +62,10 @@ const GradeBase = (props: GradeProps): JSX.Element => {
     );
 };
 
-// Define grade Sub Components (APlus, A, AMinus, etc.)
+/*
+ *This component is primarily used for Grading. 
+ *It is a stylized Grade with a predefined text, background color and text color.
+ */
 GradeBase.APlus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'A+'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
 );

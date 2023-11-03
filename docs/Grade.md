@@ -18,9 +18,10 @@ import { Grade } from '@brightlayer-ui/react-native-components';
 | Prop Name           | Description                                | Type                                   | Required | Default                |
 | ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
 | label               | The text shown in Grade                    | string                                 | yes      |                        |
-| fontColor           | The color of the text label.               | string                                 | no       | theme.colors.surface   |
+| fontColor           | The color of the text label.               | string                                 | no       | theme.colors.onPrimary |
 | backgroundColor     | The background color of Grade              | string                                 | no       | theme.colors.primary   |
 | size                | The radius of Grade component              | number                                 | no       | 40                     |
+| theme           	  | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |         				|
 
 
 ## Grade Subcomponent
