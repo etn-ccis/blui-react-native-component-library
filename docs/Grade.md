@@ -2,6 +2,8 @@
 
 The `Grade` component is a customizable avatar-based component that represents different grades. It allows you to display a label with a specified background color and font color.
 
+<img width="110" alt="Gradecomponent" src="./images/grade.png">
+
 ## Usage
 
 ```tsx
@@ -15,17 +17,19 @@ import { Grade } from '@brightlayer-ui/react-native-components';
 
 | Prop Name           | Description                                | Type                                   | Required | Default                |
 | ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
-| label               | The Text shown in Grade                    | String                                 | yes      |                        |
-| fontColor           | The color of the text label.               | string                                 | yes      |                        |
-| backgroundColor     | The Background color of Grade              | string                                 | yes      |                        |
-| size                | The radius of Grade component              | number                                 | yes      |                        |
+| label               | The text shown in Grade                    | string                                 | yes      |                        |
+| fontColor           | The color of the text label.               | string                                 | no       | theme.colors.surface   |
+| backgroundColor     | The background color of Grade              | string                                 | no       | theme.colors.primary   |
+| size                | The radius of Grade component              | number                                 | no       | 40                     |
 
 
-## SubComponent
+## Grade Subcomponent
 
-The Subcomponents gives you a set of preconfigured components that can directly be used 
+The subcomponents gives you a set of preconfigured components that can directly be used 
 
-### USAGE
+<img width="100%" style="max-width: 200px; display: block;" alt="grade subcomponent" src="./images/gradesSubcomponent.png">
+
+### Grade Subcomponents USAGE
 
 ```tsx
 import Grade from '@brightlayer-ui/react-native-components';
@@ -45,7 +49,7 @@ import Grade from '@brightlayer-ui/react-native-components';
 	<Grade.F/> {/* Renders F grade */}
 </View>
 ```
-### Grade API
+### Grade Subcomponents API
 
 All Grade Subcomponents have the following Props
 
@@ -55,4 +59,12 @@ All Grade Subcomponents have the following Props
 
 ### Styles
 
-You can override the internal style used by Brightlayer UI by passing a `style` prop. It supports all the View Props on Text Container
+You can override the internal style used by Brightlayer UI by passing a `style` prop. The Grade supports the following keys:
+
+```tsx
+<Grade style={{ marginBottom: 10 }} />
+```
+
+| Name | Description                                 |
+| ---- | ------------------------------------------- |
+| root | Style override for the root View element |
