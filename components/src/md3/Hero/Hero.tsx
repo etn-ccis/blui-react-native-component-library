@@ -117,7 +117,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
                 style={[
                     defaultStyles.iconWrapper,
                     {
-                        backgroundColor: iconBackgroundColor || theme.colors.surface,
+                        backgroundColor: iconBackgroundColor || 'rgba(255, 255, 255, 0)',
                         height: typeof iconSize === 'number' ? normalizeIconSize() : iconSize ?? 36 * fontScale,
                         width: typeof iconSize === 'number' ? normalizeIconSize() : iconSize ?? 36 * fontScale,
                     },
