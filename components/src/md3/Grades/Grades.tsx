@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewProps } from 'react-native';
+import { Platform, ViewProps } from 'react-native';
 import { Avatar, useTheme } from 'react-native-paper';
 
 // Define the prop types for the Grade component
@@ -34,9 +34,8 @@ const GradeBase = (props: GradeProps): JSX.Element => {
     const textStyle = {
         color: fontColor,
         fontFamily: 'OpenSans-Bold', // Font family for text
-        fontWeight: '700' as const, // Font weight
+        fontWeight: Platform.OS === 'ios' ? ('700' as const) : ('600' as const), // Font weight
     };
-
     // Render Avatar.Text component with specified props and styles
     return (
         <Avatar.Text
