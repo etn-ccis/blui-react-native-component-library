@@ -60,12 +60,4 @@ All Grade Subcomponents have the following Props
 
 ### Styles
 
-You can override the internal style used by Brightlayer UI by passing a `style` prop. The Grade supports the following keys:
-
-```tsx
-<Grade style={{ marginBottom: 10 }} />
-```
-
-| Name | Description                                 |
-| ---- | ------------------------------------------- |
-| root | Style override for the root View element |
+You can override the internal style used by Brightlayer UI by passing a `style` prop. 
