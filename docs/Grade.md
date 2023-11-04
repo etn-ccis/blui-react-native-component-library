@@ -26,7 +26,7 @@ import { Grade } from '@brightlayer-ui/react-native-components';
 
 ## Grade Subcomponent
 
-The subcomponents gives you a set of preconfigured components that can directly be used 
+The subcomponents gives you a set of preconfigured components that can directly be used for specific grades with in-built styling.
 
 <img width="100%" style="max-width: 200px; display: block;" alt="grade subcomponent" src="./images/gradesSubcomponent.png">
 
