@@ -4,7 +4,6 @@ import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../Inf
 import { MD3Theme, useTheme } from 'react-native-paper';
 import { usePrevious } from '../__hooks__/usePrevious';
 import { AllSharedProps } from './types';
-import color from 'color';
 import { useDrawerContext } from './context/drawer-context';
 import { useNavGroupContext } from './context/nav-group-context';
 import { findChildByType, inheritSharedProps } from './utilities';
@@ -14,7 +13,6 @@ import { IconSource } from '../__types__';
 import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { getPrimary500 } from '../utility/Shared';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -128,7 +126,8 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        nestedBackgroundColor = theme.dark ? theme.colors.neutralVariant.neutral10 : theme.colors.surfaceContainer, // TODO: don't hardcode?
+        // @ts-ignore TODO
+        nestedBackgroundColor = theme.colors.surfaceContainer, // TODO: don't hardcode?
     } = props;
 
     return StyleSheet.create({
@@ -179,18 +178,12 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem || '');
 
-    // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(getPrimary500(theme) || theme.colors.primary)
-        .lighten(0.83)
-        .desaturate(0.39)
-        .string();
-
     const {
         // Shared style props
         activeItemBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemBackgroundShape /* eslint-disable-line @typescript-eslint/no-unused-vars */,
-        activeItemFontColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
-        activeItemIconColor = !theme.dark ? theme.colors.primary : lightenedPrimary,
+        activeItemFontColor = theme.colors.onPrimaryContainer,
+        activeItemIconColor = theme.colors.onPrimaryContainer,
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         collapseIcon = { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },

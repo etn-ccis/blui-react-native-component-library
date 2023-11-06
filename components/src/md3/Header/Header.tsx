@@ -47,7 +47,7 @@ const headerStyles = (
             props.backgroundColor ||
             // @change color once have a correct color
             // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
-            (theme.dark ? theme.colors.surface : theme.colors.primary),
+            theme.colors.primaryContainer,
         shadowColor: 'rgba(0, 0, 0, 0.3)',
         shadowOffset: {
             width: 0,
@@ -494,7 +494,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         return (
             backgroundColor ||
             // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
-            (theme.dark ? theme.colors.surface : theme.colors.primary)
+            theme.colors.primaryContainer
         );
     }, [searching, theme, backgroundColor]);
 
