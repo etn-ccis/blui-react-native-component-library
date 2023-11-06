@@ -30,7 +30,7 @@ import { Hero } from '@brightlayer-ui/react-native-components';
 | ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
 | ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
 | icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                        |
-| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
+| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | transparent |
 | iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
 | iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
 | label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                        |

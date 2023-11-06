@@ -33,6 +33,7 @@ exports[`Hero renders correctly with ChannelValueProps 1`] = `
       [
         {
           "alignItems": "center",
+          "borderRadius": 50,
           "justifyContent": "center",
           "marginBottom": 16,
           "overflow": "hidden",
@@ -96,7 +97,7 @@ exports[`Hero renders correctly with ChannelValueProps 1`] = `
               [
                 {
                   "color": "rgba(28, 27, 31, 1)",
-                  "fontFamily": "OpenSans-Regular",
+                  "fontFamily": "OpenSans-SemiBold",
                   "fontSize": 22,
                   "fontWeight": "600",
                 },
@@ -127,7 +128,7 @@ exports[`Hero renders correctly with ChannelValueProps 1`] = `
                 [
                   {
                     "color": "rgba(28, 27, 31, 1)",
-                    "fontFamily": "OpenSans-Regular",
+                    "fontFamily": "OpenSans-SemiBold",
                     "fontSize": 22,
                     "fontWeight": "600",
                   },
@@ -165,6 +166,8 @@ exports[`Hero renders correctly with ChannelValueProps 1`] = `
           [
             {
               "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
               "overflow": "hidden",
               "textAlign": "center",
               "width": "100%",
@@ -213,6 +216,7 @@ exports[`Hero renders correctly with custom icon size and color 1`] = `
       [
         {
           "alignItems": "center",
+          "borderRadius": 50,
           "justifyContent": "center",
           "marginBottom": 16,
           "overflow": "hidden",
@@ -294,6 +298,8 @@ exports[`Hero renders correctly with custom icon size and color 1`] = `
           [
             {
               "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
               "overflow": "hidden",
               "textAlign": "center",
               "width": "100%",
@@ -343,6 +349,7 @@ exports[`Hero renders correctly with custom styles 1`] = `
       [
         {
           "alignItems": "center",
+          "borderRadius": 50,
           "justifyContent": "center",
           "marginBottom": 16,
           "overflow": "hidden",
@@ -397,6 +404,8 @@ exports[`Hero renders correctly with custom styles 1`] = `
           [
             {
               "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
               "overflow": "hidden",
               "textAlign": "center",
               "width": "100%",
@@ -447,6 +456,7 @@ exports[`Hero renders correctly with icon 1`] = `
       [
         {
           "alignItems": "center",
+          "borderRadius": 50,
           "justifyContent": "center",
           "marginBottom": 16,
           "overflow": "hidden",
@@ -528,6 +538,8 @@ exports[`Hero renders correctly with icon 1`] = `
           [
             {
               "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
               "overflow": "hidden",
               "textAlign": "center",
               "width": "100%",
@@ -576,6 +588,7 @@ exports[`Hero renders correctly with icon background color 1`] = `
       [
         {
           "alignItems": "center",
+          "borderRadius": 50,
           "justifyContent": "center",
           "marginBottom": 16,
           "overflow": "hidden",
@@ -657,6 +670,8 @@ exports[`Hero renders correctly with icon background color 1`] = `
           [
             {
               "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
               "overflow": "hidden",
               "textAlign": "center",
               "width": "100%",
@@ -705,6 +720,7 @@ exports[`Hero renders correctly with label 1`] = `
       [
         {
           "alignItems": "center",
+          "borderRadius": 50,
           "justifyContent": "center",
           "marginBottom": 16,
           "overflow": "hidden",
@@ -755,6 +771,8 @@ exports[`Hero renders correctly with label 1`] = `
           [
             {
               "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
               "overflow": "hidden",
               "textAlign": "center",
               "width": "100%",
