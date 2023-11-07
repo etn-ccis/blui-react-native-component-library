@@ -39,7 +39,7 @@ exports[`ChannelValue ChannelValue Renders 1`] = `
           [
             {
               "color": "rgba(28, 27, 31, 1)",
-              "fontFamily": "OpenSans-Regular",
+              "fontFamily": "OpenSans-SemiBold",
               "fontSize": 16,
               "fontWeight": "600",
             },
@@ -70,7 +70,7 @@ exports[`ChannelValue ChannelValue Renders 1`] = `
             [
               {
                 "color": "rgba(28, 27, 31, 1)",
-                "fontFamily": "OpenSans-Regular",
+                "fontFamily": "OpenSans-SemiBold",
                 "fontSize": 16,
                 "fontWeight": "600",
               },
