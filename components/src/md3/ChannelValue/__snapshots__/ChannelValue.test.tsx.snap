@@ -32,7 +32,7 @@ exports[`ChannelValue ChannelValue Renders 1`] = `
           {
             "fontFamily": "System",
             "fontSize": 16,
-            "fontWeight": "400",
+            "fontWeight": "500",
             "letterSpacing": 0.15,
             "lineHeight": 24,
           },
@@ -42,6 +42,7 @@ exports[`ChannelValue ChannelValue Renders 1`] = `
               "fontFamily": "OpenSans-SemiBold",
               "fontSize": 16,
               "fontWeight": "600",
+              "lineHeight": 20,
             },
           ],
         ],
@@ -63,7 +64,7 @@ exports[`ChannelValue ChannelValue Renders 1`] = `
             {
               "fontFamily": "System",
               "fontSize": 16,
-              "fontWeight": "400",
+              "fontWeight": "500",
               "letterSpacing": 0.15,
               "lineHeight": 24,
             },
@@ -73,6 +74,7 @@ exports[`ChannelValue ChannelValue Renders 1`] = `
                 "fontFamily": "OpenSans-SemiBold",
                 "fontSize": 16,
                 "fontWeight": "600",
+                "lineHeight": 20,
               },
               undefined,
             ],
