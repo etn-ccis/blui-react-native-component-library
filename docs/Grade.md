@@ -1,6 +1,6 @@
 # Grade
 
-The `Grade` component is a customizable [avatar](https://callstack.github.io/react-native-paper/4.0/avatar-text.html)-based component that represents different grades. It allows you to display a label with a specified background color and font color.
+The Grade component is a customizable [avatar](https://callstack.github.io/react-native-paper/4.0/avatar-text.html)-based component that represents different grades. It allows you to display a label with a specified background color and font color.
 
 <img width="110" alt="Gradecomponent" src="./images/grade.png">
 
@@ -16,10 +16,10 @@ import { Grade } from '@brightlayer-ui/react-native-components';
 
 | Prop Name       | Description                   | Type                                   | Required | Default                  |
 | --------------- | ----------------------------- | -------------------------------------- | -------- | ------------------------ |
-| label           | The text shown in Grade       | string                                 | yes      |                          |
-| fontColor       | The color of the text label   | string                                 | no       | `theme.colors.onPrimary` |
-| backgroundColor | The background color of Grade | string                                 | no       | `theme.colors.primary`   |
-| size            | The radius of Grade           | number                                 | no       | 40                       |
+| label           | The text shown in Grade       | `string`                               | yes      |                          |
+| fontColor       | The color of the text label   | `string`                               | no       | `theme.colors.onPrimary` |
+| backgroundColor | The background color of Grade | `string`                               | no       | `theme.colors.primary`   |
+| size            | The radius of Grade           | `number`                               | no       | 40                       |
 | theme           | Theme value overrides         | `$DeepPartial<ReactNativePaper.Theme>` | no       |                          |
 
 ## Grade Subcomponent
@@ -52,9 +52,9 @@ import Grade from '@brightlayer-ui/react-native-components';
 
 All Grade Subcomponents have the following Props
 
-| Prop Name | Description         | Type   | Required | Default |
-| --------- | ------------------- | ------ | -------- | ------- |
-| size      | The radius of Grade | number | No       | 40      |
+| Prop Name | Description         | Type     | Required | Default |
+| --------- | ------------------- | -------- | -------- | ------- |
+| size      | The radius of Grade | `number` | No       | 40      |
 
 ### Styles
 
