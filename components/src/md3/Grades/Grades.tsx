@@ -8,7 +8,6 @@ import { Platform, ViewProps } from 'react-native';
 import { Avatar, MD3Theme, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 
-
 /**
  * Props for the Grade component.
  * @typedef {object} GradeProps
@@ -47,35 +46,27 @@ export type FixedGradeProps = Omit<GradeProps, 'label' | 'fontColor' | 'backgrou
  */
 const GradeBase = (props: GradeProps): JSX.Element => {
     const defaultTheme = useTheme();
-    const {
-        label,
-        fontColor,
-        backgroundColor,
-        size = 40,
-        style,
-        theme: themeOverride,
-        ...otherViewProps
-    } = props;
+    const { label, fontColor, backgroundColor, size = 40, style, theme: themeOverride, ...otherViewProps } = props;
 
     const theme = useTheme(themeOverride || props.theme || defaultTheme);
 
-        // Define styles for Avatar.Text component
+    // Define styles for Avatar.Text component
 
     const avatarStyle = {
         backgroundColor: backgroundColor || theme.colors.primary,
     };
 
-        // Define styles for text within Avatar.Text
+    // Define styles for text within Avatar.Text
     const textStyle = {
         color: fontColor || theme.colors.onPrimary,
         fontFamily: 'OpenSans-Bold',
         fontWeight: Platform.OS === 'ios' ? ('700' as const) : ('600' as const),
     };
 
-    /* 
-    * This component is primarily used for Grading. It is a stylized
-    * Avatar with a colored background and text color.
-    */
+    /*
+     * This component is primarily used for Grading. It is a stylized
+     * Avatar with a colored background and text color.
+     */
     return (
         <Avatar.Text
             label={label}
@@ -90,7 +81,7 @@ const GradeBase = (props: GradeProps): JSX.Element => {
 };
 
 /*
- *This component is primarily used for Grading. 
+ *This component is primarily used for Grading.
  *It is a stylized Grade with a predefined text, background color and text color.
  */
 
@@ -102,11 +93,11 @@ const GradeBase = (props: GradeProps): JSX.Element => {
  * @returns {JSX.Element} The rendered component.
  */
 GradeBase.APlus = (props: FixedGradeProps): JSX.Element => (
-        <GradeBase label={'A+'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
-    );
+    <GradeBase label={'A+'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
+);
 /**
  * A Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -116,7 +107,7 @@ GradeBase.A = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * AMinus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -126,7 +117,7 @@ GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * BPlus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -136,7 +127,7 @@ GradeBase.BPlus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * B Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -146,7 +137,7 @@ GradeBase.B = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * BMinus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -156,7 +147,7 @@ GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * CPlus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -166,7 +157,7 @@ GradeBase.CPlus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * C Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -176,7 +167,7 @@ GradeBase.C = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * CMinus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -186,7 +177,7 @@ GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * DPlus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -196,7 +187,7 @@ GradeBase.DPlus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * D Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -206,7 +197,7 @@ GradeBase.D = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * DMinus Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -216,7 +207,7 @@ GradeBase.DMinus = (props: FixedGradeProps): JSX.Element => (
 );
 /**
  * F Grade component.
-* @param {FixedGradeProps} props - The props for the APlus Grade component.
+ * @param {FixedGradeProps} props - The props for the APlus Grade component.
  * @prop {number} [size=40] - The diameter of the circular view. Default is 40.
  * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
  * @returns {JSX.Element} The rendered component.
@@ -228,4 +219,3 @@ GradeBase.F = (props: FixedGradeProps): JSX.Element => (
 export const Grade = GradeBase;
 
 export default Grade;
-
