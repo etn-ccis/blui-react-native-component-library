@@ -66,7 +66,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     // IconFamily Object
     if (typeof source === 'object' && isIconFamily(source)) {
         const scale = source.allowFontScaling === undefined ? allowFontScaling : source.allowFontScaling;
-        const flip = (source.direction !== 'ltr' && deviceDirection === 'rtl') || source.direction === 'rtl';
+        const flip = (source.direction === 'auto' && deviceDirection === 'rtl') || source.direction === 'rtl';
         switch (source.family) {
             case 'material-community':
                 return (
