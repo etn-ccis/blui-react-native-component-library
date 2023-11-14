@@ -17,8 +17,8 @@
     },
     "homepage": "https://github.com/etn-ccis/blui-react-native-component-library#readme",
     "license": "BSD-3-Clause",
-    "main": "md3/index.js",
-    "types": "md3/index.d.ts",
+    "main": "core/index.js",
+    "types": "core/index.d.ts",
     "scripts": {
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
@@ -83,8 +83,7 @@
         "README.md",
         "CHANGELOG.md",
         "core/",
-        "themed/",
-        "md3/"
+        "themed/"
     ],
     "directories": {
         "doc": "../docs"

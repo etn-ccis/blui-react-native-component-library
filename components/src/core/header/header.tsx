@@ -16,7 +16,7 @@ import {
     Platform,
 } from 'react-native';
 import color from 'color';
-import { useTheme } from 'react-native-paper';
+import { MD3Theme, useTheme } from 'react-native-paper';
 import { ANIMATION_LENGTH } from './constants';
 import { HeaderBackgroundImage } from './headerBackgroundImage';
 import { HeaderNavigationIcon } from './headerNavigationIcon';
@@ -27,51 +27,50 @@ import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
 import { HeaderActionComponent, HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-
-import createAnimatedComponent = Animated.createAnimatedComponent;
 import { usePrevious } from '../__hooks__/usePrevious';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale } from '../__contexts__/font-scale-context';
-const AnimatedSafeAreaView = createAnimatedComponent(SafeAreaView);
+const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
-    theme: ReactNativePaper.Theme,
+    theme: MD3Theme,
     fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     content: ViewStyle;
     search: ViewStyle;
-}> =>
-    StyleSheet.create({
-        root: {
-            width: '100%',
-            backgroundColor:
-                props.backgroundColor ||
-                (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
-            shadowColor: 'rgba(0, 0, 0, 0.3)',
-            shadowOffset: {
-                width: 0,
-                height: 1,
-            },
-            shadowRadius: 2,
-            shadowOpacity: 1,
-            elevation: 0,
-            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+}> => ({
+    root: {
+        width: '100%',
+        backgroundColor:
+            props.backgroundColor ||
+            // @change color once have a correct color
+            // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
+            theme.colors.primaryContainer,
+        shadowColor: 'rgba(0, 0, 0, 0.3)',
+        shadowOffset: {
+            width: 0,
+            height: 1,
         },
-        content: {
-            flex: 1,
-            paddingHorizontal: 16,
-            flexDirection: 'row',
-            minHeight: 56 * fontScale,
-        },
-        search: {
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 16,
-        },
-    });
+        shadowRadius: 2,
+        shadowOpacity: 1,
+        elevation: 0,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    },
+    content: {
+        flex: 1,
+        paddingHorizontal: 16,
+        flexDirection: 'row',
+        minHeight: 56 * fontScale,
+    },
+    search: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+    },
+});
 
 export type SearchableConfig = {
     /**
@@ -199,7 +198,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<ReactNativePaper.Theme>;
+    theme?: $DeepPartial<MD3Theme>;
 
     /** The test to display on the first line */
     title: ReactNode;
@@ -217,22 +216,8 @@ export type HeaderProps = ViewProps & {
      * Default: static
      */
     variant?: 'dynamic' | 'static';
-
-    /**
-     * @experimental
-     *
-     * Set to true to use the alternative subtitle styling (larger size, light weight)
-     */
-    washingtonStyle?: boolean;
 };
 
-/**
- * [Header](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--header) component
- *
- * The Header is used as the main banner at the top of application screens. It can display page information
- * via the `title`, `subtitle`, and `info` properties, as well as customizable backgrounds, colors, action items,
- * and more. The header can be configured to expand / collapse on press or on scroll (when using the [CollapsibleHeaderLayout](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--collapsible-header-layout) component).
- */
 export const Header: React.FC<HeaderProps> = (props) => {
     const {
         actionItems,
@@ -254,7 +239,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
         theme: themeOverride,
         title,
         variant = 'static',
-        washingtonStyle,
         updateScrollView = (): void => {},
         ...viewProps
     } = props;
@@ -266,7 +250,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const defaultStyles = headerStyles(props, theme, fontScale);
     const searchRef = useRef<TextInput>(null);
 
-    // Utility variables
     const collapsedHeight = getScaledHeight(collapsedHeightProp);
     const previousCollapsedHeight = usePrevious(collapsedHeight);
     const expandedHeight = getScaledHeight(expandedHeightProp);
@@ -507,15 +490,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
         if (searching) {
             return theme.colors.surface;
         }
+        // @change color once have a correct color
         return (
             backgroundColor ||
-            (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
+            // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
+            theme.colors.primaryContainer
         );
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {
         if (searching) {
-            return theme.colors.text;
+            // @change color once have a correct color
+            return theme.colors.onSurface;
         }
         return fontColor || 'white';
     }, [theme, fontColor, searching]);
@@ -740,7 +726,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                             info: styles.info,
                                             search: styles.search,
                                         }}
-                                        washingtonStyle={washingtonStyle}
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}

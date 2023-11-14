@@ -1,47 +1,56 @@
 import React from 'react';
-import TestRenderer, { ReactTestInstance } from 'react-test-renderer';
-import { Hero, ChannelValue } from '..';
-import { Text } from 'react-native';
-import { IconFamily } from '../__types__';
-import { cleanup } from '@testing-library/react-native';
-
-const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
+import { cleanup, fireEvent, render } from '@testing-library/react-native';
+import TestRenderer from 'react-test-renderer';
+import { Hero } from './Hero';
 
 describe('Hero', () => {
-    describe('with only a label and icon', () => {
-        afterEach(cleanup);
-        let instance: ReactTestInstance;
-        beforeEach(() => {
-            instance = TestRenderer.create(<Hero label={'Hero'} icon={Line} />).root;
-        });
+    afterEach(cleanup);
 
-        it('renders without a ChannelValue', () => {
-            expect(instance.findAllByType(ChannelValue)).toHaveLength(0);
-        });
-
-        it('renders the label', () => {
-            const textElements = instance.findAllByType(Text);
-
-            expect(textElements).toHaveLength(2); // first element is the icon
-            expect(textElements[1].props.children).toEqual('Hero');
-        });
+    it('renders correctly with label', () => {
+        const tree = TestRenderer.create(<Hero label="Hero Label" />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
-    describe('with all props', () => {
-        afterEach(cleanup);
-        let instance: ReactTestInstance;
-        beforeEach(() => {
-            instance = TestRenderer.create(
-                <Hero label={'Hero'} icon={Line} ChannelValueProps={{ value: '100', units: '%' }} onPress={jest.fn()} />
-            ).root;
-        });
+    it('renders correctly with icon', () => {
+        const tree = TestRenderer.create(<Hero label="Hero Label" icon="your-icon-source" />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 
-        it('renders a ChannelValue', () => {
-            const channelValue = instance.findByType(ChannelValue);
+    it('renders correctly with custom icon size and color', () => {
+        const tree = TestRenderer.create(
+            <Hero label="Hero Label" icon="your-icon-source" iconSize={30} iconColor="blue" />
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 
-            expect(channelValue).toBeTruthy();
-            expect(channelValue.props.value).toEqual('100');
-            expect(channelValue.props.units).toEqual('%');
-        });
+    it('renders correctly with icon background color', () => {
+        const tree = TestRenderer.create(
+            <Hero label="Hero Label" icon="your-icon-source" iconBackgroundColor="yellow" />
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('renders correctly with ChannelValueProps', () => {
+        const tree = TestRenderer.create(<Hero label="Hero Label" ChannelValueProps={{ value: 100 }} />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('calls onPress when pressed', () => {
+        const onPressMock = jest.fn();
+        const { getByText } = render(<Hero label="Hero Label" onPress={onPressMock} />);
+
+        fireEvent.press(getByText('Hero Label'));
+        expect(onPressMock).toHaveBeenCalled();
+    });
+    it('renders correctly with custom styles', () => {
+        const customStyles = {
+            root: { backgroundColor: 'red' },
+            iconWrapper: { borderColor: 'green' },
+            values: { padding: 10 },
+            label: { color: 'blue' },
+        };
+
+        const tree = TestRenderer.create(<Hero label="Hero Label" styles={customStyles} />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 });

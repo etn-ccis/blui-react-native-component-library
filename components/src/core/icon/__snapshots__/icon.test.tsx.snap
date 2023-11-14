@@ -22,7 +22,7 @@ exports[`Icon Tests  renders in a component 1`] = `
     style={
       [
         {
-          "color": "#000000",
+          "color": "rgba(202, 196, 208, 1)",
           "fontSize": 100,
         },
         {},
@@ -38,31 +38,33 @@ exports[`Icon Tests  renders in a component 1`] = `
     
   </Text>
   <Text
-    allowFontScaling={true}
-    maxFontSizeMultiplier={100}
     style={
       [
         {
-          "color": "#000000",
+          "textAlign": "left",
         },
         {
+          "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        {},
-        {
-          "fontFamily": "System",
-          "fontSize": 20,
-          "fontWeight": "500",
-          "letterSpacing": 0,
-        },
-        {},
-        undefined,
         [
           {
-            "marginTop": 32,
-            "textAlign": "center",
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
           },
-          undefined,
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
         ],
       ]
     }
@@ -80,7 +82,7 @@ exports[`Icon Tests  renders with blui object source 1`] = `
   style={
     [
       {
-        "color": "#000000",
+        "color": "rgba(28, 27, 31, 1)",
         "fontSize": 24,
       },
       {},
@@ -99,30 +101,29 @@ exports[`Icon Tests  renders with blui object source 1`] = `
 
 exports[`Icon Tests  renders with emoji source 1`] = `
 <Text
-  allowFontScaling={true}
-  maxFontSizeMultiplier={100}
   style={
     [
       {
-        "color": "#000000",
+        "textAlign": "left",
       },
       {
+        "color": "rgba(28, 27, 31, 1)",
         "writingDirection": "ltr",
       },
-      {},
-      {
-        "fontFamily": "System",
-        "fontSize": 16,
-        "fontWeight": "400",
-        "letterSpacing": 0,
-      },
-      {},
-      undefined,
       [
         {
-          "color": "#000000",
-          "fontSize": 24,
+          "fontFamily": "System",
+          "fontSize": 14,
+          "fontWeight": "400",
+          "letterSpacing": 0.25,
+          "lineHeight": 20,
         },
+        [
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "fontSize": 24,
+          },
+        ],
       ],
     ]
   }
@@ -138,7 +139,7 @@ exports[`Icon Tests  renders with function source 1`] = `
   style={
     [
       {
-        "color": "#000000",
+        "color": "rgba(28, 27, 31, 1)",
         "fontSize": 24,
       },
       undefined,
@@ -165,7 +166,7 @@ exports[`Icon Tests  renders with material community object source 1`] = `
   style={
     [
       {
-        "color": "#000000",
+        "color": "rgba(28, 27, 31, 1)",
         "fontSize": 24,
       },
       {},
@@ -190,7 +191,7 @@ exports[`Icon Tests  renders with material object source 1`] = `
   style={
     [
       {
-        "color": "#000000",
+        "color": "rgba(28, 27, 31, 1)",
         "fontSize": 24,
       },
       {},
@@ -215,7 +216,7 @@ exports[`Icon Tests  renders with material object source 2`] = `
   style={
     [
       {
-        "color": "#000000",
+        "color": "rgba(28, 27, 31, 1)",
         "fontSize": 24,
       },
       {},
@@ -246,6 +247,7 @@ exports[`Icon Tests  renders with remote image source 1`] = `
       {
         "height": 24,
         "resizeMode": "contain",
+        "tintColor": "rgba(28, 27, 31, 1)",
         "width": 24,
       },
     ]
@@ -255,30 +257,29 @@ exports[`Icon Tests  renders with remote image source 1`] = `
 
 exports[`Icon Tests  renders with string source 1`] = `
 <Text
-  allowFontScaling={true}
-  maxFontSizeMultiplier={100}
   style={
     [
       {
-        "color": "#000000",
+        "textAlign": "left",
       },
       {
+        "color": "rgba(28, 27, 31, 1)",
         "writingDirection": "ltr",
       },
-      {},
-      {
-        "fontFamily": "System",
-        "fontSize": 16,
-        "fontWeight": "400",
-        "letterSpacing": 0,
-      },
-      {},
-      undefined,
       [
         {
-          "color": "#000000",
-          "fontSize": 24,
+          "fontFamily": "System",
+          "fontSize": 14,
+          "fontWeight": "400",
+          "letterSpacing": 0.25,
+          "lineHeight": 20,
         },
+        [
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "fontSize": 24,
+          },
+        ],
       ],
     ]
   }
@@ -286,5 +287,3 @@ exports[`Icon Tests  renders with string source 1`] = `
   String
 </Text>
 `;
-
-exports[`Icon Tests  renders with wrapped source 1`] = `<View />`;

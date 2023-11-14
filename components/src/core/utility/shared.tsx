@@ -1,2 +1,3 @@
-export const getPrimary500 = (theme: ReactNativePaper.Theme): string | undefined =>
-    theme.dark ? theme.colors.primaryPalette?.dark : theme.colors.primaryPalette?.main;
+import { MD3Theme } from 'react-native-paper';
+
+export const getPrimary500 = (theme: MD3Theme): string | undefined => theme.colors.primary;
