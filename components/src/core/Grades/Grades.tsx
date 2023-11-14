@@ -10,6 +10,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 
 /**
  * Props for the Grade component.
+ * @typedef {object} GradeProps
  * @prop {string} label - The text that you want to display.
  * @prop {string} [fontColor] - Text color for the Label (Default is theme.colors.onPrimary).
  * @prop {string} [backgroundColor] - Background color of the Label (Default is theme.colors.primary).
