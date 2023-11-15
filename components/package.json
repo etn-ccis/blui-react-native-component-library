@@ -82,8 +82,7 @@
         "LICENSE",
         "README.md",
         "CHANGELOG.md",
-        "core/",
-        "themed/"
+        "core/"
     ],
     "directories": {
         "doc": "../docs"

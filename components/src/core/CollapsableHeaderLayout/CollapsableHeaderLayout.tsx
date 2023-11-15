@@ -51,7 +51,8 @@ export type CollapsibleLayoutProps = ViewProps & {
     HeaderProps: BLUIHeaderProps;
 
     /** Scroll component passed as a prop */
-    scrollComponent?: (
+    /* eslint-disable @typescript-eslint/naming-convention */
+    ScrollComponent?: (
         handleScroll: (e: any) => void,
         contentPadding: Animated.Value,
         contentOffset: { x: number; y: number }
@@ -94,7 +95,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         ScrollViewProps = {},
         styles = {},
         style,
-        scrollComponent,
+        ScrollComponent,
         ...viewProps
     } = props;
 
@@ -188,8 +189,8 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
                     { position: 'absolute', zIndex: 100 },
                 ]}
             />
-            {scrollComponent ? (
-                scrollComponent(handleScroll, contentPadding, contentOffset)
+            {ScrollComponent ? (
+                ScrollComponent(handleScroll, contentPadding, contentOffset)
             ) : (
                 /* TODO: Refactor this to use a scroll component passed as a children to CollapsibleHeaderLayout in the next major release 
                  (
