@@ -14,3 +14,4 @@ export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
 export * from './utility';
 export * from './Grades';
+export * from './ProgressBar';
