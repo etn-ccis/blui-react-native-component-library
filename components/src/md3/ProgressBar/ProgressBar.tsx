@@ -21,7 +21,7 @@ export type ProgressBarProps = Omit<PaperProgressBarProps, 'theme'> & {
 
 export const ProgressBar: React.FC<ProgressBarProps> = (props) => {
     const { theme: themeOverride, ...otherProgressBarProps } = props;
-    const theme = useTheme(themeOverride) as MD3Theme;
+    const theme = useTheme(themeOverride);
 
     return <PaperProgressBar {...otherProgressBarProps} theme={theme} />;
 };
