@@ -78,79 +78,79 @@ const GradeBase = (props: GradeProps): JSX.Element => {
 };
 
 /**
- * A component used to render an A+ Grade 
+ * A component used to render an A+ Grade
  */
 GradeBase.APlus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'A+'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
 );
 /**
- * A component used to render an A Grade 
+ * A component used to render an A Grade
  */
 GradeBase.A = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'A'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
 );
 /**
- * A component used to render an A- Grade 
+ * A component used to render an A- Grade
  */
 GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'A-'} fontColor="#FFFFFF" backgroundColor="#64a721" {...props} />
 );
 /**
- * A component used to render a B+ Grade 
+ * A component used to render a B+ Grade
  */
 GradeBase.BPlus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'B+'} fontColor="#524700" backgroundColor="#afc543" {...props} />
 );
 /**
- * A component used to render a B Grade 
+ * A component used to render a B Grade
  */
 GradeBase.B = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'B'} fontColor="#524700" backgroundColor="#FBE365" {...props} />
 );
 /**
- * A component used to render a B- Grade 
+ * A component used to render a B- Grade
  */
 GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'B-'} fontColor="#524700" backgroundColor="#f6c543" {...props} />
 );
 /**
- * A component used to render a C+ Grade 
+ * A component used to render a C+ Grade
  */
 GradeBase.CPlus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'C+'} fontColor="#4B2800" backgroundColor="#f1a821" {...props} />
 );
 /**
- * A component used to render a C Grade 
+ * A component used to render a C Grade
  */
 GradeBase.C = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'C'} fontColor="#4B2800" backgroundColor="#ED8B00" {...props} />
 );
 /**
- * A component used to render a C- Grade 
+ * A component used to render a C- Grade
  */
 GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'C-'} fontColor="#4B2800" backgroundColor="#dc6508" {...props} />
 );
 /**
- * A component used to render a D+ Grade 
+ * A component used to render a D+ Grade
  */
 GradeBase.DPlus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'D+'} fontColor="#FFFFFF" backgroundColor="#cb3f11" {...props} />
 );
 /**
- * A component used to render a D Grade 
+ * A component used to render a D Grade
  */
 GradeBase.D = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'D'} fontColor="#FFFFFF" backgroundColor="#BA1A1A" {...props} />
 );
 /**
- * A component used to render a D- Grade 
+ * A component used to render a D- Grade
  */
 GradeBase.DMinus = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'D-'} fontColor="#FFFFFF" backgroundColor="#BA1A1A" {...props} />
 );
 /**
- * A component used to render an F Grade 
+ * A component used to render an F Grade
  */
 GradeBase.F = (props: FixedGradeProps): JSX.Element => (
     <GradeBase label={'F'} fontColor="#FFFFFF" backgroundColor="#9F45F6" {...props} />
