@@ -5,7 +5,7 @@ import TestRenderer from 'react-test-renderer';
 
 describe('ProgressBar', () => {
     afterEach(cleanup);
-    it('ProgressBar Renders', () => {
+    it('renders without crashing', () => {
         const tree = TestRenderer.create(<ProgressBar progress={0.5} />).toJSON();
         expect(tree).toMatchSnapshot();
     });

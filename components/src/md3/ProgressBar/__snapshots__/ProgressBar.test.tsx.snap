@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgressBar ProgressBar Renders 1`] = `
+exports[`ProgressBar renders without crashing 1`] = `
 <View
   accessibilityRole="progressbar"
   accessibilityState={
