@@ -4,6 +4,7 @@ import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { BLUIColors } from '@brightlayer-ui/colors';
 
 export type TypographyProps = {
     /**
@@ -67,9 +68,9 @@ const listItemTagStyles = (
                 (Color(props.backgroundColor || theme.colors.primary).isLight()
                     ? // @TODO Currently neutral30 is #414E54 and as per color pallete black[500] is #424E54 Add Figma Variable
                       // @ts-ignore
-                      theme.colors.neutralVariant.neutral30
+                      BLUIColors.neutral[30]
                     : // @ts-ignore
-                      theme.colors.neutralVariant.neutral100),
+                      BLUIColors.primary[100]),
             height: 16 * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,
