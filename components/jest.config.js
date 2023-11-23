@@ -8,6 +8,5 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
-  modulePathIgnorePatterns: ["src/core/"],
   transformIgnorePatterns: ["node_modules/(?!(react-native|@react-native/*|react-native-vector-icons|react-native-animatable|react-native-iphone-x-helper|react-native-modal|react-native-collapsible|@react-native/polyfills)/)"]
 };

@@ -54,4 +54,4 @@
 // }
 
 // export * from './core';
-export * from './md3';
+export * from './core';

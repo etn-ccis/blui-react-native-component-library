@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '../icon';
+import { Icon } from '../Icon';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { IconSource } from '../__types__';
 import { ICON_SIZE } from './constants';

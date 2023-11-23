@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
+import { MD3Theme } from 'react-native-paper';
 
 export type DrawerContextProps = {
     activeItem: string;
@@ -41,7 +42,7 @@ export type SharedStyleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<ReactNativePaper.Theme>;
+    theme?: $DeepPartial<MD3Theme>;
 };
 
 export type NavItemSharedStyleProps = {

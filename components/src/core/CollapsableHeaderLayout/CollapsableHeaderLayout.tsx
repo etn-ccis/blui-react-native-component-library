@@ -8,10 +8,12 @@ import {
     ViewStyle,
     ScrollView,
 } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { MD3Theme, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../header';
+import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../Header';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
+
+// Rest of your imports...
 
 const useUpdateScrollView = (
     contentPaddingValue: number,
@@ -49,6 +51,7 @@ export type CollapsibleLayoutProps = ViewProps & {
     HeaderProps: BLUIHeaderProps;
 
     /** Scroll component passed as a prop */
+    /* eslint-disable @typescript-eslint/naming-convention */
     ScrollComponent?: (
         handleScroll: (e: any) => void,
         contentPadding: Animated.Value,
@@ -73,7 +76,7 @@ export type CollapsibleLayoutProps = ViewProps & {
     };
 
     /** Theme value overrides specific to this component. */
-    theme?: $DeepPartial<ReactNativePaper.Theme>;
+    theme?: $DeepPartial<MD3Theme>;
 };
 
 /**
@@ -176,7 +179,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         <View {...viewProps} style={[{ flex: 1, backgroundColor: theme.colors.background }, styles.root, style]}>
             <Header
                 testID={'blui-header'}
-                // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+                // Spread the props...anything above can be overridden by user, anything below will be merged or explicitly controlled by this component
                 {...HeaderProps}
                 updateScrollView={updateScrollView}
                 scrollPosition={animatedScrollValue}
@@ -189,14 +192,15 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
             {ScrollComponent ? (
                 ScrollComponent(handleScroll, contentPadding, contentOffset)
             ) : (
-                /* TODO: Refactor this to use scroll component passed as a children to CollapsibleHeaderLayout in the next major release 
+                /* TODO: Refactor this to use a scroll component passed as a children to CollapsibleHeaderLayout in the next major release 
                  (
                      <>{props.children && props.children(handleScroll, contentPadding, contentOffset)}</>
                  )
-                */ <ScrollView
+                */
+                <ScrollView
                     testID={'blui-scrollview'}
                     scrollEventThrottle={32}
-                    // Spread the props...anything above can be overridden by user, anything below wil be merged or explicitly controlled by this component
+                    // Spread the props...anything above can be overridden by user, anything below will be merged or explicitly controlled by this component
                     {...ScrollViewProps}
                     ref={scrollRef}
                     contentOffset={contentOffset}

@@ -4,8 +4,7 @@ import { IconComponentProps, IconFamily, IconSource, IconSourceBase } from '../_
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
-import { Body1 } from '../typography';
-import { useTheme } from 'react-native-paper';
+import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 
 export type IconProps = IconComponentProps & {
@@ -13,7 +12,7 @@ export type IconProps = IconComponentProps & {
     /**
      * @optional
      */
-    theme?: ReactNativePaper.Theme;
+    theme?: MD3Theme;
 };
 
 const isImageSource = (source: any): boolean =>
@@ -42,9 +41,16 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
  */
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const theme = useTheme(themeOverride);
     const { maxScale, disableScaling } = useFontScaleSettings();
-    const { color = theme.colors.text, size = 24, allowFontScaling = !disableScaling, source, ...rest } = otherProps;
+    const {
+        color = theme.colors.onSurface,
+        size = 24,
+        allowFontScaling = !disableScaling,
+        source,
+        ...rest
+    } = otherProps;
     const deviceDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
 
     // const flipIcon = (directionProp === 'auto' && deviceDirection === 'rtl') || directionProp === 'rtl';
@@ -60,7 +66,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     // IconFamily Object
     if (typeof source === 'object' && isIconFamily(source)) {
         const scale = source.allowFontScaling === undefined ? allowFontScaling : source.allowFontScaling;
-        const flip = (source.direction !== 'ltr' && deviceDirection === 'rtl') || source.direction === 'rtl';
+        const flip = (source.direction === 'auto' && deviceDirection === 'rtl') || source.direction === 'rtl';
         switch (source.family) {
             case 'material-community':
                 return (
@@ -68,6 +74,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
+                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -79,6 +86,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
+                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -91,6 +99,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
+                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -102,7 +111,15 @@ export const Icon: React.FC<IconProps> = (props) => {
     // Function component or wrapIcon output
     if (typeof source === 'function') {
         const Component = source;
-        return <Component size={size} color={color} direction={deviceDirection} allowFontScaling={allowFontScaling} />;
+        return (
+            <Component
+                size={size}
+                // @ts-ignore
+                color={color}
+                direction={deviceDirection}
+                allowFontScaling={allowFontScaling}
+            />
+        );
     }
 
     // Image source
@@ -112,10 +129,11 @@ export const Icon: React.FC<IconProps> = (props) => {
                 {...rest}
                 source={source as ImageSourcePropType}
                 style={[
+                    // @ts-ignore
                     {
                         width: size,
                         height: size,
-                        // tintColor: color,
+                        tintColor: color,
                         resizeMode: 'contain',
                     },
                 ]}
@@ -127,7 +145,20 @@ export const Icon: React.FC<IconProps> = (props) => {
 
     // String
     if (typeof source === 'string') {
-        return <Body1 style={[{ fontSize: size, color: color }]}>{source}</Body1>;
+        return (
+            <Text
+                variant={'bodyMedium'}
+                style={[
+                    // @ts-ignore
+                    {
+                        fontSize: size,
+                        color: color,
+                    },
+                ]}
+            >
+                {source}
+            </Text>
+        );
     }
 
     return null;

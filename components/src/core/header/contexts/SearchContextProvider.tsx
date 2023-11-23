@@ -1,5 +1,5 @@
 import { Ref, createContext, useContext } from 'react';
-import { SearchableConfig } from '../header';
+import { SearchableConfig } from '../Header';
 import { TextInput } from 'react-native';
 
 type SearchContextType = {
