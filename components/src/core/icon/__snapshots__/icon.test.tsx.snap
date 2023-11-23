@@ -35,7 +35,7 @@ exports[`Icon Tests  renders in a component 1`] = `
       ]
     }
   >
-    
+    
   </Text>
   <Text
     style={
@@ -95,7 +95,7 @@ exports[`Icon Tests  renders with blui object source 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;
 
@@ -152,7 +152,7 @@ exports[`Icon Tests  renders with function source 1`] = `
     ]
   }
 >
-  
+  
 </Text>
 `;
 
