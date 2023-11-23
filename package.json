@@ -47,9 +47,5 @@
     "jest": {
         "coverageDirectory": "./components/coverage/",
         "collectCoverage": true
-    },
-    "dependencies": {
-        "@react-navigation/stack": "^6.3.20",
-        "react-native-restart": "^0.0.27"
     }
 }
