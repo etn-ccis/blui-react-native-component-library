@@ -1,4 +1,4 @@
-import { interleave, groupBy } from './utils';
+import { interleave, groupBy } from './Utils';
 
 describe('utils', () => {
     describe('interleave', () => {

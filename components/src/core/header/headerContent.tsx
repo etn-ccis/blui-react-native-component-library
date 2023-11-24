@@ -17,6 +17,7 @@ import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+import { MD3Theme } from 'react-native-paper';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -43,7 +44,7 @@ type HeaderTitleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -64,7 +65,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: theme.fonts.medium.fontFamily,
+            fontFamily: 'OpenSans-SemiBold',
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
@@ -99,17 +100,10 @@ type HeaderSubtitleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
-
-    /**
-     * @experimental
-     *
-     * Set to true to use the alternative subtitle styling (larger size, light weight)
-     */
-    washingtonStyle?: boolean;
 };
 /**
  * HeaderSubtitle component
@@ -118,19 +112,25 @@ type HeaderSubtitleProps = {
  * used for displaying and resizing the subtitle text.
  */
 const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
-    const { subtitle, theme, style, washingtonStyle } = props;
+    const { subtitle, theme, style } = props;
     const { color: textColor } = useColor();
     const { maxScale, disableScaling } = useFontScaleSettings();
+    const { headerHeight } = useHeaderHeight();
+    const { REGULAR_HEIGHT, EXTENDED_HEIGHT } = useHeaderDimensions();
 
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: washingtonStyle ? theme.fonts.light.fontFamily : theme.fonts.regular.fontFamily,
-            fontSize: washingtonStyle ? 18 : 16,
+            fontFamily: 'OpenSans-Regular',
+            fontSize: headerHeight.interpolate({
+                inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
+                outputRange: [14, 16],
+                extrapolate: 'clamp',
+            }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
             textAlign: Platform.OS === 'android' ? 'left' : ('auto' as TextAlign),
         }),
-        [textColor, theme, washingtonStyle]
+        [textColor, theme]
     );
 
     if (subtitle) {
@@ -159,7 +159,7 @@ type HeaderInfoProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -191,10 +191,10 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 outputRange: [0, 1],
                 extrapolate: 'clamp',
             }),
-            fontFamily: theme.fonts.regular.fontFamily,
+            fontFamily: 'OpenSans-Regular',
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
-                outputRange: [0.1, 20],
+                outputRange: [0.1, 14],
                 extrapolate: 'clamp',
             }),
             writingDirection: I18nManager.isRTL ? 'rtl' : ('ltr' as WritingDirection),
@@ -226,7 +226,7 @@ type SearchContentProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
+    theme: MD3Theme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -253,8 +253,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
                 {
                     padding: 0,
                     color: textColor,
-                    fontSize: 20,
-                    ...theme.fonts.light,
+                    ...theme.fonts.titleMedium,
                 },
                 style,
             ]}
@@ -307,14 +306,7 @@ export type HeaderContentProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: ReactNativePaper.Theme;
-
-    /**
-     * @experimental
-     *
-     * Set to true to use the alternative subtitle styling (larger size, light weight)
-     */
-    washingtonStyle?: boolean;
+    theme: MD3Theme;
 };
 
 /**
@@ -331,7 +323,6 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
         actions = { components: { count: 0, width: 0 }, icons: { count: 0 } },
         theme,
         styles = {},
-        washingtonStyle,
     } = props;
     const { headerHeight } = useHeaderHeight();
     const { searching, searchConfig } = useSearch();
@@ -347,14 +338,8 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
     } else {
         content = [
             <HeaderTitle title={title} key="title_key" theme={theme} style={[styles.title]} />,
+            <HeaderSubtitle subtitle={subtitle} key="subtitle_key" theme={theme} style={[styles.subtitle]} />,
             <HeaderInfo info={info} key="info_key" theme={theme} style={[styles.info]} />,
-            <HeaderSubtitle
-                subtitle={subtitle}
-                key="subtitle_key"
-                theme={theme}
-                style={[styles.subtitle]}
-                washingtonStyle={washingtonStyle}
-            />,
         ];
     }
 

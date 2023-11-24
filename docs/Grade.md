@@ -14,13 +14,13 @@ import { Grade } from '@brightlayer-ui/react-native-components';
 
 ### Grade API
 
-| Prop Name       | Description                   | Type                                   | Required | Default                  |
-| --------------- | ----------------------------- | -------------------------------------- | -------- | ------------------------ |
+| Prop Name       | Description                        | Type                                   | Required | Default                  |
+| --------------- | ---------------------------------- | -------------------------------------- | -------- | ------------------------ |
 | label           | The text shown in the circle       | `string`                               | yes      |                          |
-| fontColor       | The color of the text label   | `string`                               | no       | `theme.colors.onPrimary` |
+| fontColor       | The color of the text label        | `string`                               | no       | `theme.colors.onPrimary` |
 | backgroundColor | The background color of the circle | `string`                               | no       | `theme.colors.primary`   |
-| size            | The size of the circle in px           | `number`                               | no       | 40                       |
-| theme           | Theme value overrides         | `$DeepPartial<ReactNativePaper.Theme>` | no       |                          |
+| size            | The size of the circle in px       | `number`                               | no       | 40                       |
+| theme           | Theme value overrides              | `$DeepPartial<ReactNativePaper.Theme>` | no       |                          |
 
 ## Grade Subcomponent
 

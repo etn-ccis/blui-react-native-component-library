@@ -17,13 +17,13 @@
     },
     "homepage": "https://github.com/etn-ccis/blui-react-native-component-library#readme",
     "license": "BSD-3-Clause",
-    "main": "md3/index.js",
-    "types": "md3/index.d.ts",
+    "main": "core/index.js",
+    "types": "core/index.d.ts",
     "scripts": {
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
         "build": "tsc --p tsconfig.lib.json",
-        "test": "jest --maxWorkers=2",
+        "test": "jest",
         "test:watch": "jest --watch",
         "verify-build": "tsc --noEmit",
         "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@brightlayer-ui/react-native-components",
@@ -75,16 +75,14 @@
         "react-native-vector-icons": "^9.2.0",
         "react-test-renderer": "^18.2.0",
         "ts-jest": "^29.0.0",
-        "typescript": "^4.8.3"
+        "typescript": "4.9.5"
     },
     "files": [
         "package.json",
         "LICENSE",
         "README.md",
         "CHANGELOG.md",
-        "core/",
-        "themed/",
-        "md3/"
+        "core/"
     ],
     "directories": {
         "doc": "../docs"

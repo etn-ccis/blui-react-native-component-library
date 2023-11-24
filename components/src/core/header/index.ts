@@ -1,2 +1,2 @@
-export * from './header';
+export * from './Header';
 export * from './constants';
