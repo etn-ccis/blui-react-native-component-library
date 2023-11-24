@@ -10,7 +10,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 /**
  * ProgressBar component
  *
- * This component is a wrapper around the React Native Paper [ProgressBar](https://callstack.github.io/react-native-paper/progress-bar.html)
+ * This component is a wrapper around the React Native Paper [ProgressBar](https://callstack.github.io/react-native-paper/docs/components/ProgressBar)
  * component. It accepts all the same props as the RNP component. The wrapper simply performs some minor theme / style overrides
  * in order to make the component look the way we want for Brightlayer UI projects.
  */

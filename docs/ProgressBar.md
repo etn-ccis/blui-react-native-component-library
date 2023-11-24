@@ -2,7 +2,7 @@
 
 The `<ProgressBar>` component is a wrapper around React Native Paper's [ProgressBar](https://callstack.github.io/react-native-paper/docs/components/ProgressBar) component. It is used as a progress indicator of an activity. The wrapper simply performs some minor theme / style overrides in order to make the component look the way we want for Brightlayer UI projects.
 
-<img width="100%" alt="Gradecomponent" src="./images/progressBar.png">
+<img width="100%" alt="ProgressBarcomponent" src="./images/progressBar.png">
 
 ## Usage
 
