@@ -4,7 +4,7 @@ import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { BLUIColors } from '@brightlayer-ui/colors';
+import * as BLUIColors from '@brightlayer-ui/colors';
 
 export type TypographyProps = {
     /**

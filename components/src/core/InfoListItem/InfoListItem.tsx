@@ -17,7 +17,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
-import { BLUIColors } from '@brightlayer-ui/colors';
+import * as BLUIColors from '@brightlayer-ui/colors';
 
 type IconAlign = 'left' | 'center' | 'right';
 
