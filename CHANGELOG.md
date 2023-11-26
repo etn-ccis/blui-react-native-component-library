@@ -5,6 +5,7 @@
 ### Changed
 
 - The default direction of `IconFamily` to `rtl` ([#180](https://github.com/etn-ccis/blui-react-native-component-library/issues/180)).
+- The default icon background color for Hero changed from `theme.colors.surface` to 'transparent'.
 
 ## v7.1.0 (April 12, 2023)
 
