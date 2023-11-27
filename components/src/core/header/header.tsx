@@ -479,7 +479,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
     /* STYLE FUNCTIONS */
 
     // Returns the clamped header height based on scroll position
-    const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation =>
+    const getDynamicHeaderHeight = (): Animated.Value | Animated.AnimatedInterpolation<string | number> =>
         dynamicHeaderHeight.interpolate({
             inputRange: [collapsedHeight, expandedHeight],
             outputRange: [collapsedHeight, expandedHeight],

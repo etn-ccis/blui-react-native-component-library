@@ -6,6 +6,7 @@ import MatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
+import { calculateHeight } from '../utility/shared';
 
 export type IconProps = IconComponentProps & {
     source: IconSource;
@@ -153,6 +154,7 @@ export const Icon: React.FC<IconProps> = (props) => {
                     {
                         fontSize: size,
                         color: color,
+                        lineHeight: calculateHeight(size),
                     },
                 ]}
             >

@@ -5,6 +5,7 @@ import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import * as BLUIColors from '@brightlayer-ui/colors';
+import { calculateHeight } from '../utility/shared';
 
 export type TypographyProps = {
     /**
@@ -56,7 +57,8 @@ export type ListItemTagProps = TypographyProps & {
 const listItemTagStyles = (
     props: ListItemTagProps,
     theme: MD3Theme,
-    fontScale: number
+    fontScale: number,
+    fontSize: number
 ): StyleSheet.NamedStyles<{
     root: TextStyle;
 }> =>
@@ -79,8 +81,8 @@ const listItemTagStyles = (
             fontWeight: '700',
             fontFamily: 'OpenSans-Bold',
             overflow: 'hidden',
-            lineHeight: 16,
-            fontSize: 10,
+            lineHeight: calculateHeight(fontSize),
+            fontSize: fontSize,
             letterSpacing: 1,
             textTransform: 'uppercase',
         },
@@ -107,7 +109,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
     } = props;
     const theme = useTheme(themeOverride);
     const fontScale = useFontScale();
-    const defaultStyles = listItemTagStyles(props, theme, fontScale);
+    const defaultStyles = listItemTagStyles(props, theme, fontScale, props.fontSize || 10);
 
     return (
         <Text variant={'bodyMedium'} style={[defaultStyles.root, styles.root, style]} {...otherTextProps}>
