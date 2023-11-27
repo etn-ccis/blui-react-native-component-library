@@ -73,7 +73,7 @@ const listItemTagStyles = (
                       BLUIColors.neutral[30]
                     : // @ts-ignore
                       BLUIColors.primary[100]),
-            height: 16 * fontScale,
+            height: calculateHeight(fontSize) * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,
             paddingRight: 3 * fontScale, // to account for the 1px letter spacing on the last letter
