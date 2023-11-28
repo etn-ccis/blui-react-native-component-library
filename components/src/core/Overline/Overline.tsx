@@ -42,7 +42,7 @@ const overlineStyles = (
     StyleSheet.create({
         root: {
             color: props.color || theme.colors.onSurface,
-            fontSize: fontSize,
+            fontSize,
             letterSpacing: 2,
             textTransform: 'uppercase',
             lineHeight: calculateHeight(fontSize),

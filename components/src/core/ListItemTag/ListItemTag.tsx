@@ -82,7 +82,7 @@ const listItemTagStyles = (
             fontFamily: 'OpenSans-Bold',
             overflow: 'hidden',
             lineHeight: calculateHeight(fontSize),
-            fontSize: fontSize,
+            fontSize,
             letterSpacing: 1,
             textTransform: 'uppercase',
         },
