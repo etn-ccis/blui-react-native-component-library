@@ -48,22 +48,50 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
     });
 
 export type HeroProps = ViewProps & {
+    /** The text shown below the `ChannelValue` */
     label: string;
+
+    /** The primary icon */
     icon?: IconSource;
+
+    /** The size of the primary icon (min 10px)
+     *
+     * Default: 36
+     */
     iconSize?: number;
+
+    /** Color override for the row icon */
     iconColor?: string;
+
+    /** The color used behind the primary icon
+     *
+     * Default: 'transparent
+     */
     iconBackgroundColor?: string;
+
+    /** Props to be passed through to ChannelValue child component */
     ChannelValueProps?: ChannelValuePropsType;
+
+    /** Callback to execute when the drawer header is pressed */
     onPress?: () => void;
+
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
         iconWrapper?: StyleProp<ViewStyle>;
         values?: StyleProp<ViewStyle>;
         label?: StyleProp<TextStyle>;
     };
+
+    /** Theme value overrides specific to this component. */
     theme?: $DeepPartial<MD3Theme>;
 };
 
+/**
+ * [Hero](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--hero) component
+ *
+ * The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/etn-ccis/blui-icons), or [Progress Icon](https://github.com/etn-ccis/blui-progress-icons). It will also accept Text/Emoji values.
+ */
 export const Hero: React.FC<HeroProps> = (props) => {
     const {
         label,
