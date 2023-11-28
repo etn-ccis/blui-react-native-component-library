@@ -255,6 +255,7 @@ exports[`Hero renders correctly with custom icon size and color 1`] = `
               {
                 "color": "blue",
                 "fontSize": 30,
+                "lineHeight": 40,
               },
             ],
           ],
@@ -495,6 +496,7 @@ exports[`Hero renders correctly with icon 1`] = `
               {
                 "color": "rgba(73, 69, 79, 1)",
                 "fontSize": 24,
+                "lineHeight": 32,
               },
             ],
           ],
@@ -627,6 +629,7 @@ exports[`Hero renders correctly with icon background color 1`] = `
               {
                 "color": "rgba(73, 69, 79, 1)",
                 "fontSize": 24,
+                "lineHeight": 32,
               },
             ],
           ],
