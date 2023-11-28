@@ -40,21 +40,41 @@ const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<
     });
 
 export type EmptyStateProps = ViewProps & {
+    /** The main text to display */
     title: string;
+
+    /** The secondary text to display */
     description?: string;
+
+    /** The primary icon */
     icon?: IconSource;
+
+    /** The size of the primary icon */
     iconSize?: number;
+
+    /** Color override for the row icon */
     iconColor?: string;
+
+    /** Additional components to render below */
     actions?: JSX.Element;
+
+    /** Style overrides for the elements */
     styles?: {
         root?: StyleProp<ViewStyle>;
         title?: StyleProp<TextStyle>;
         description?: StyleProp<TextStyle>;
         actions?: StyleProp<ViewStyle>;
     };
+
+    /** Theme value overrides specific to this component. */
     theme?: $DeepPartial<MD3Theme>;
 };
 
+/**
+ * [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component
+ *
+ * The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://brightlayer-ui.github.io/patterns/empty-states)).
+ */
 export const EmptyState: React.FC<EmptyStateProps> = (props: EmptyStateProps) => {
     const {
         title,
