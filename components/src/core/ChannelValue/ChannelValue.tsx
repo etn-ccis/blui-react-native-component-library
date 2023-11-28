@@ -5,10 +5,10 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { Spacer } from '../utility';
 import { IconSource } from '../__types__';
+import { calculateHeight } from '../utility/shared';
 
 const prefixUnitWhitelist = ['$'];
 const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
-const calculateHeight = (fontSize: number): number => Math.ceil((fontSize * 1.25) / 4) * 4;
 
 const defaultStyles = StyleSheet.create({
     root: {
