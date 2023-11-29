@@ -18,10 +18,10 @@ import {
 import color from 'color';
 import { MD3Theme, useTheme } from 'react-native-paper';
 import { ANIMATION_LENGTH } from './constants';
-import { HeaderBackgroundImage } from './headerBackgroundImage';
-import { HeaderNavigationIcon } from './headerNavigationIcon';
-import { HeaderContent } from './headerContent';
-import { HeaderActionItems } from './headerActionItems';
+import { HeaderBackgroundImage } from './HaderBackgroundImage';
+import { HeaderNavigationIcon } from './HeaderNavigationIcon';
+import { HeaderContent } from './HeaderContent';
+import { HeaderActionItems } from './HeaderActionItems';
 import { SearchContext } from './contexts/SearchContextProvider';
 import { ColorContext } from './contexts/ColorContextProvider';
 import { HeaderHeightContext } from './contexts/HeaderHeightContextProvider';
