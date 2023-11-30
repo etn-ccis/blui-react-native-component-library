@@ -16,3 +16,4 @@ export * from './utility';
 export * from './Grades';
 export * from './ProgressBar';
 export * from './Badge';
+export * from './Chip';
