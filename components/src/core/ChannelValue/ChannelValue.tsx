@@ -3,9 +3,9 @@ import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManag
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
-import { Spacer } from '../utility';
+import { Spacer } from '../Utility';
 import { IconSource } from '../__types__';
-import { calculateHeight } from '../utility/shared';
+import { calculateHeight } from '../Utility/shared';
 
 const prefixUnitWhitelist = ['$'];
 const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];

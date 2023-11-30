@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, ViewStyle, ViewProps } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { MD3Theme, Surface, useTheme } from 'react-native-paper';
+import { Surface, useTheme } from 'react-native-paper';
 import { EdgeInsets } from '../__types__';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
@@ -10,10 +10,11 @@ import { DrawerContext } from './context';
 type DrawerStyles = {
     root?: ViewStyle;
 };
-const makeStyles = (props: DrawerProps, theme: MD3Theme, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
+
+const makeStyles = (props: DrawerProps, colors: any, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.surfaceContainerLow,
+            backgroundColor: props.backgroundColor || colors.surfaceContainerLow,
             zIndex: 2,
             flex: 1,
             height: '100%',
@@ -72,7 +73,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
 
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const defaultStyles = makeStyles(props, theme, insets);
+    const defaultStyles = makeStyles(props, theme.colors, insets);
 
     const getSectionByDisplayName = useCallback(
         (displayName: string, inherit = false): JSX.Element[] =>

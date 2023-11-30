@@ -3,7 +3,7 @@ import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
 import { MD3Theme, Text, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
-import { calculateHeight } from '../utility/shared';
+import { calculateHeight } from '../Utility/shared';
 
 type TypographyProps = {
     /**
