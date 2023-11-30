@@ -4,9 +4,6 @@ module.exports = {
   moduleNameMapper: {
     '\\.svg$': 'identity-obj-proxy'
   },
-  modulePaths: [
-    "<rootDir>"
-  ],
   testRegex: 'src/.*(test|spec)\\.[jt]sx?$',
   transform: {
     "^.+\\.tsx?$": "ts-jest"
