@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
-import { HeaderIcon } from './headerIcon';
+import { HeaderIcon } from './HeaderIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { HeaderActionComponent, HeaderIcon as HeaderIconType, IconFamily } from '../__types__';
 import { useFontScale } from '../__contexts__/font-scale-context';

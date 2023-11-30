@@ -4,6 +4,7 @@ import { HeroBanner, Hero } from '..';
 import { View } from 'react-native';
 import { IconFamily } from '../__types__';
 import { cleanup } from '@testing-library/react-native';
+import { Divider } from 'react-native-paper';
 const Line: IconFamily = { family: 'material-community', name: 'chart-line-variant' };
 
 describe('HeroBanner', () => {
@@ -31,8 +32,7 @@ describe('HeroBanner', () => {
 
         it('does render if the prop is set to true', () => {
             const instance = TestRenderer.create(<HeroBanner divider={true} />).root;
-
-            expect(instance.findAllByType(View)).toHaveLength(2);
+            expect(instance.findAllByType(Divider)).toHaveLength(1);
         });
     });
 });

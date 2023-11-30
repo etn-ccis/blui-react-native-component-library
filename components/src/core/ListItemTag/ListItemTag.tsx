@@ -5,7 +5,7 @@ import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import * as BLUIColors from '@brightlayer-ui/colors';
-import { calculateHeight } from '../utility/shared';
+import { calculateHeight } from '../Utility/shared';
 
 export type TypographyProps = {
     /**
