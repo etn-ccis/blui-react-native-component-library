@@ -135,8 +135,6 @@ exports[`Chip component renders correctly in elevated mode 1`] = `
                   [
                     {
                       "color": "rgba(73, 69, 79, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -289,8 +287,6 @@ exports[`Chip component renders correctly in outlined mode 1`] = `
                   [
                     {
                       "color": "rgba(73, 69, 79, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -443,8 +439,6 @@ exports[`Chip component renders correctly when disabled 1`] = `
                   [
                     {
                       "color": undefined,
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -597,8 +591,6 @@ exports[`Chip component renders correctly when selected 1`] = `
                   [
                     {
                       "color": "rgba(33, 0, 93, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -821,8 +813,6 @@ exports[`Chip component renders correctly with an avatar 1`] = `
                   [
                     {
                       "color": "rgba(73, 69, 79, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -956,7 +946,7 @@ exports[`Chip component renders correctly with an icon 1`] = `
             style={
               [
                 {
-                  "color": "rgba(73, 69, 79, 1)",
+                  "color": "rgba(28, 27, 31, 1)",
                   "fontSize": 18,
                 },
                 {},
@@ -1012,8 +1002,6 @@ exports[`Chip component renders correctly with an icon 1`] = `
                   [
                     {
                       "color": "rgba(73, 69, 79, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -1147,7 +1135,7 @@ exports[`Chip component renders correctly with both icon and avatar (priority to
             style={
               [
                 {
-                  "color": "rgba(73, 69, 79, 1)",
+                  "color": "rgba(28, 27, 31, 1)",
                   "fontSize": 18,
                 },
                 {},
@@ -1203,8 +1191,6 @@ exports[`Chip component renders correctly with both icon and avatar (priority to
                   [
                     {
                       "color": "rgba(73, 69, 79, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,
@@ -1357,8 +1343,6 @@ exports[`Chip component renders correctly with default props 1`] = `
                   [
                     {
                       "color": "rgba(73, 69, 79, 1)",
-                    },
-                    {
                       "fontFamily": "OpenSans-Regular",
                     },
                     undefined,

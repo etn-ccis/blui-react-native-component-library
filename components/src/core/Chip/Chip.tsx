@@ -1,23 +1,44 @@
+/**
+ * @format
+ * @flow
+ */
+
 import React from 'react';
 import { MD3Theme, Chip as PaperChip, ChipProps as PaperChipProps, useTheme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { TextStyle } from 'react-native';
 import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 
-type ChipStyles = {
-    label?: TextStyle;
-};
+/**
+ * Props for the Chip component.
+ *
+ * @typedef {object} ChipProps
+ * @prop {string} [children] - The content to be displayed inside the Chip.
+ * @prop {IconSource} [icon] - The source for the Icon displayed in the Chip.
+ * @prop {string} [iconColor] - The color of the Icon in the Chip.
+ * @prop {string} [textColor] - The color of the text content in the Chip.
+ * @prop {string} [chipColor] - The background color of the Chip.
+ * @prop {string} [borderColor] - The border color of the Chip.
+ * @prop {boolean} [selected] - Whether the Chip is in a selected state.
+ * @prop {boolean} [disabled] - Whether the Chip is in a disabled state.
+ * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
+ * @prop {React.ReactElement} [avatar] - Avatar component to be displayed in the Chip.
+ * @prop {string} [mode='outlined'] - Chip mode, either 'outlined' or 'elevated'.
+ */
 
-const makeStyles = (): ChipStyles => ({
-    label: {
-        fontFamily: 'OpenSans-Regular', // Customize with your desired font family
-    },
-});
+/**
+ * A customizable Chip component.
+ *
+ * @param {ChipProps} props - The props for the Chip component.
+ * @returns {JSX.Element} - The rendered Chip component.
+ */
 
-export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode'> & {
+export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> & {
     theme?: $DeepPartial<MD3Theme>;
     iconColor?: string;
+    textColor?: string;
+    chipColor?: string;
+    borderColor?: string;
     icon?: IconSource;
     mode?: 'elevated' | 'outlined'; // Updated modes
     avatar?: React.ReactElement; // New prop for passing Avatar component
@@ -35,18 +56,20 @@ export const Chip: React.FC<ChipProps> = (props) => {
         disabled,
         theme: themeOverride,
         avatar,
+        chipColor,
+        borderColor,
+        textColor,
         ...rest
     } = props;
 
     //@ts-ignore
     const theme = useTheme(themeOverride) as MD3Theme;
-    const defaultStyles = makeStyles();
 
     const isOutlined = mode === 'outlined';
     const isElevated = mode === 'elevated';
 
     // @TODO update the disabled colors once the condition is set in place
-    const chipColor = isOutlined
+    const defaultChipColor = isOutlined
         ? disabled
             ? theme.colors.onPrimary
             : selected
@@ -62,7 +85,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
               theme.colors.surfaceContainerLow
         : undefined;
 
-    const borderColor = isOutlined
+    const defaultBorderColor = isOutlined
         ? disabled
             ? //@ts-ignore
               theme.colors.surfaceContainerHighest
@@ -79,7 +102,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
               theme.colors.surfaceContainerLow
         : undefined;
 
-    const textColor = isOutlined
+    const DefaultTextColor = isOutlined
         ? disabled
             ? //@ts-ignore
               theme.colors.surfaceContainerHighest
@@ -105,13 +128,20 @@ export const Chip: React.FC<ChipProps> = (props) => {
 
     return (
         <PaperChip
-            style={[{ backgroundColor: chipColor, borderWidth: 1, borderColor: borderColor }, style]}
-            textStyle={[{ color: textColor }, defaultStyles.label, textStyle]}
+            style={[
+                {
+                    backgroundColor: chipColor ? chipColor : defaultChipColor,
+                    borderWidth: 1,
+                    borderColor: borderColor ? borderColor : defaultBorderColor,
+                },
+                style,
+            ]}
+            textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
             showSelectedCheck={false}
             selected={selected}
             disabled={disabled}
             avatar={getIcon()}
-            elevated={isElevated ? true : false}
+            elevated={isElevated}
             {...rest}
         >
             {children}
