@@ -7,7 +7,7 @@ The Grade component is a customizable [chip](https://callstack.github.io/react-n
 ## Usage
 
 ```tsx
-import {  } from '@brightlayer-ui/react-native-components';
+import { Chip } from '@brightlayer-ui/react-native-components';
 
 <Chip> Unselect </Chip>;
 <Chip mode="elevated">Select</Chip>
