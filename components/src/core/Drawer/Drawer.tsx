@@ -6,13 +6,13 @@ import { EdgeInsets } from '../__types__';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { DrawerContext } from './context';
-import { BluiColors, getThemeColors } from '../Utility/shared';
+import { AppColors, getThemeColors } from '../Utility/shared';
 
 type DrawerStyles = {
     root?: ViewStyle;
 };
 
-const makeStyles = (props: DrawerProps, colors:BluiColors, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
+const makeStyles = (props: DrawerProps, colors: AppColors, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
     StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || colors.surfaceContainerLow,
