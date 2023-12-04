@@ -148,6 +148,8 @@ export const Chip: React.FC<ChipProps> = (props) => {
     };
 
     return (
+        <>
+        {icon ? (
         <PaperChip
             style={[
                 {
@@ -161,11 +163,53 @@ export const Chip: React.FC<ChipProps> = (props) => {
             showSelectedCheck={false}
             selected={selected}
             disabled={disabled}
-            avatar={getIcon()}
+            elevated={isElevated}
+            icon={()=>getIcon()}
+            {...rest}
+        >
+            {children}
+        </PaperChip>)
+        :avatar?( 
+    <PaperChip
+            style={[
+                {
+                    backgroundColor: chipColor ? chipColor : defaultChipColor,
+                    borderWidth: 1,
+                    borderColor: borderColor ? borderColor : defaultBorderColor,
+                },
+                style,
+            ]}
+            textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
+            showSelectedCheck={false}
+            selected={selected}
+            disabled={disabled}
+            avatar={avatar}
             elevated={isElevated}
             {...rest}
         >
             {children}
         </PaperChip>
+):(
+    <PaperChip
+            style={[
+                {
+                    backgroundColor: chipColor ? chipColor : defaultChipColor,
+                    borderWidth: 1,
+                    borderColor: borderColor ? borderColor : defaultBorderColor,
+                },
+                style,
+            ]}
+            textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
+            showSelectedCheck={false}
+            selected={selected}
+            disabled={disabled}
+            elevated={isElevated}
+            {...rest}
+        >
+            {children}
+        </PaperChip>
+)
+}
+</>
     );
 };
