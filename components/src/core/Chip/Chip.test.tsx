@@ -47,7 +47,7 @@ describe('Chip component', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('renders correctly with both icon and avatar (priority to icon)', () => {
+    it('renders only the icon when both an icon and an avatar are provided', () => {
         const avatar = <Avatar.Text label="AB" />;
         const tree = TestRenderer.create(
             <Chip icon={{ family: 'material-community', name: 'chart-pie' }} avatar={avatar}>

@@ -71,55 +71,76 @@ export const Chip: React.FC<ChipProps> = (props) => {
     // @TODO update the disabled colors once the condition is set in place
     const defaultChipColor = isOutlined
         ? disabled
+        //the chip background color should be primary[100] in case it is set to disable in outline mode
             ? theme.colors.onPrimary
             : selected
+            //the chip background color should be primary[80] in case it is set to selected in outline mode
             ? theme.colors.primaryContainer
+            //the chip background color should be primary[100] in case it is set to unselected in outline mode
             : theme.colors.onPrimary
         : isElevated
         ? disabled
-            ? //@ts-ignore
+            ?
+            //the chip background color should be neutral[94] in case it is set to disable in elevated mode 
+            //@ts-ignore
               theme.colors.surfaceContainer
             : selected
+
+            //the chip background color should be primary[80] in case it is set to selected in elevated mode
             ? theme.colors.primaryContainer
+
+            //the chip background color should be neutral[97] in case it is set to unselected in elevated mode
             : //@ts-ignore
               theme.colors.surfaceContainerLow
         : undefined;
 
     const defaultBorderColor = isOutlined
         ? disabled
+        //the chip border color should be neutral[90] in case it is set to disable in outline mode
             ? //@ts-ignore
               theme.colors.surfaceContainerHighest
             : selected
+            //the chip border color should be primary[80] in case it is set to selected in outline mode
             ? theme.colors.primaryContainer
+            //the chip border color should be neutralVariant[30] in case it is set to unselected in outline mode
             : theme.colors.onSurfaceVariant
         : isElevated
         ? disabled
+              //the chip border color should be neutral[97] in case it is set to disable in elevated mode
             ? //@ts-ignore
               theme.colors.surfaceContainerLow
             : selected
+            //the chip border color should be primary[80] in case it is set to selected in elevated mode
             ? theme.colors.primaryContainer
+            //the chip border color should be neutral[97] in case it is set to unselected in elevated mode
             : //@ts-ignore
               theme.colors.surfaceContainerLow
         : undefined;
 
     const DefaultTextColor = isOutlined
         ? disabled
+        //the chip text color should be neutral[90] in case it is set to disable in outline mode
             ? //@ts-ignore
               theme.colors.surfaceContainerHighest
             : selected
+            //the chip text color should be primary[80] in case it is set to selected in outline mode
             ? theme.colors.onPrimaryContainer
+            //the chip text color should be neutralVariant[30] in case it is set to unselected in outline mode
             : theme.colors.onSurfaceVariant
         : isElevated
         ? disabled
+            //the chip text color should be neutralVariant[50] in case it is set to disable in elevated mode
             ? theme.colors.outline
             : selected
+            //the chip text color should be BLUIColors.primary[30] in case it is set to selected in elevated mode
             ? theme.colors.onPrimaryContainer
+            //the chip text color should be neutralVariant[30] in case it is set to unselected in elevated mode
             : theme.colors.onSurfaceVariant
         : undefined;
 
     const getIcon = (): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} size={18} color={iconColor ? iconColor : textColor} />;
+            return <Icon source={icon} size={18} color={iconColor ? iconColor : textColor? textColor:DefaultTextColor} />;
         } else if (avatar) {
             return avatar; // Show the passed Avatar component
         }
