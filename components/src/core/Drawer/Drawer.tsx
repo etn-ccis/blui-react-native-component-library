@@ -6,16 +6,16 @@ import { EdgeInsets } from '../__types__';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { DrawerContext } from './context';
-import { AppTheme, useAppTheme } from '../Utility/shared';
+import { BluiColors, getThemeColors } from '../Utility/shared';
 
 type DrawerStyles = {
     root?: ViewStyle;
 };
 
-const makeStyles = (props: DrawerProps, appTheme:AppTheme, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
+const makeStyles = (props: DrawerProps, colors:BluiColors, insets: EdgeInsets): StyleSheet.NamedStyles<DrawerStyles> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || appTheme.colors.orangeNonText,
+            backgroundColor: props.backgroundColor || colors.surfaceContainerLow,
             zIndex: 2,
             flex: 1,
             height: '100%',
@@ -73,9 +73,9 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     } = props;
 
     const theme = useTheme(themeOverride);
-    const appTheme = useAppTheme();
+    const appTheme = getThemeColors(theme.dark);
     const insets = useSafeAreaInsets();
-    const defaultStyles = makeStyles(props, appTheme, insets);
+    const defaultStyles = makeStyles(props, appTheme.colors, insets);
 
     const getSectionByDisplayName = useCallback(
         (displayName: string, inherit = false): JSX.Element[] =>
