@@ -71,19 +71,19 @@ export const Chip: React.FC<ChipProps> = (props) => {
     // @TODO update the disabled colors once the condition is set in place
     const defaultChipColor = isOutlined
         ? disabled
-        //the chip background color should be primary[100] in case it is set to disable in outline mode
-            ? theme.colors.onPrimary
+        //the chip background color should be transparent in case it is set to disable in outline mode
+            ? 'transparent'
             : selected
             //the chip background color should be primary[80] in case it is set to selected in outline mode
             ? theme.colors.primaryContainer
-            //the chip background color should be primary[100] in case it is set to unselected in outline mode
-            : theme.colors.onPrimary
+            //the chip background color should be transparent in case it is set to unselected in outline mode
+            : 'transparent'
         : isElevated
         ? disabled
             ?
             //the chip background color should be neutral[94] in case it is set to disable in elevated mode 
             //@ts-ignore
-              theme.colors.surfaceContainer
+              theme.colors.disabledContainer
             : selected
 
             //the chip background color should be primary[80] in case it is set to selected in elevated mode
@@ -94,34 +94,11 @@ export const Chip: React.FC<ChipProps> = (props) => {
               theme.colors.surfaceContainerLow
         : undefined;
 
-    const defaultBorderColor = isOutlined
-        ? disabled
-        //the chip border color should be neutral[90] in case it is set to disable in outline mode
-            ? //@ts-ignore
-              theme.colors.surfaceContainerHighest
-            : selected
-            //the chip border color should be primary[80] in case it is set to selected in outline mode
-            ? theme.colors.primaryContainer
-            //the chip border color should be neutralVariant[30] in case it is set to unselected in outline mode
-            : theme.colors.onSurfaceVariant
-        : isElevated
-        ? disabled
-              //the chip border color should be neutral[97] in case it is set to disable in elevated mode
-            ? //@ts-ignore
-              theme.colors.surfaceContainerLow
-            : selected
-            //the chip border color should be primary[80] in case it is set to selected in elevated mode
-            ? theme.colors.primaryContainer
-            //the chip border color should be neutral[97] in case it is set to unselected in elevated mode
-            : //@ts-ignore
-              theme.colors.surfaceContainerLow
-        : undefined;
-
     const DefaultTextColor = isOutlined
         ? disabled
         //the chip text color should be neutral[90] in case it is set to disable in outline mode
             ? //@ts-ignore
-              theme.colors.surfaceContainerHighest
+              theme.colors.disabled
             : selected
             //the chip text color should be primary[80] in case it is set to selected in outline mode
             ? theme.colors.onPrimaryContainer
@@ -129,8 +106,9 @@ export const Chip: React.FC<ChipProps> = (props) => {
             : theme.colors.onSurfaceVariant
         : isElevated
         ? disabled
+        //@ts-ignore
             //the chip text color should be neutralVariant[50] in case it is set to disable in elevated mode
-            ? theme.colors.outline
+            ? theme.colors.onDisabledContainer
             : selected
             //the chip text color should be BLUIColors.primary[30] in case it is set to selected in elevated mode
             ? theme.colors.onPrimaryContainer
@@ -146,6 +124,8 @@ export const Chip: React.FC<ChipProps> = (props) => {
         }
         return undefined;
     };
+    //@ts-ignore
+    const chipStyle = isElevated ? {} : selected ? {} :{ borderWidth: 1, borderColor: borderColor ? borderColor : disabled? theme.colors.disabled : theme.colors.outline };
 
     return (
         <>
@@ -154,10 +134,9 @@ export const Chip: React.FC<ChipProps> = (props) => {
             style={[
                 {
                     backgroundColor: chipColor ? chipColor : defaultChipColor,
-                    borderWidth: 1,
-                    borderColor: borderColor ? borderColor : defaultBorderColor,
                 },
                 style,
+                chipStyle,
             ]}
             textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
             showSelectedCheck={false}
@@ -174,10 +153,9 @@ export const Chip: React.FC<ChipProps> = (props) => {
             style={[
                 {
                     backgroundColor: chipColor ? chipColor : defaultChipColor,
-                    borderWidth: 1,
-                    borderColor: borderColor ? borderColor : defaultBorderColor,
                 },
                 style,
+                chipStyle,
             ]}
             textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
             showSelectedCheck={false}
@@ -194,10 +172,9 @@ export const Chip: React.FC<ChipProps> = (props) => {
             style={[
                 {
                     backgroundColor: chipColor ? chipColor : defaultChipColor,
-                    borderWidth: 1,
-                    borderColor: borderColor ? borderColor : defaultBorderColor,
                 },
                 style,
+                chipStyle,
             ]}
             textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
             showSelectedCheck={false}
