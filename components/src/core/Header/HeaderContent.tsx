@@ -18,6 +18,7 @@ import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { MD3Theme } from 'react-native-paper';
+import { useAppTheme } from '../Utility/shared';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -239,12 +240,14 @@ type SearchContentProps = {
  * the useSearch hook.
  */
 const SearchContent: React.FC<SearchContentProps> = (props) => {
-    const { theme, style } = props;
+    const { style } = props;
     const { searchConfig = {}, onQueryChange, searchRef } = useSearch();
     const { color: textColor } = useColor();
     const { maxScale, disableScaling } = useFontScaleSettings();
     const placeholderTextColor = color(textColor).fade(0.4).string();
-
+    const {
+        fonts: { customVariant },
+    } = useAppTheme();
     return (
         <TextInput
             key={'search-input'}
@@ -253,7 +256,7 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
                 {
                     padding: 0,
                     color: textColor,
-                    ...theme.fonts.titleMedium,
+                    ...customVariant,
                 },
                 style,
             ]}
