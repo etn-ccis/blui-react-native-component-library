@@ -12,13 +12,14 @@ import Animated, {
 import { Icon } from '../Icon/Icon';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { MD3Theme, useTheme } from 'react-native-paper';
+import Color from 'color';
 
 export type IconSwitchProps = ViewProps & {
     checkedIcon?: boolean;
-    disabledSwitch?: boolean;
-    color?: string;
+    disabled?: boolean;
+    // switchColor?: string;
     value?: boolean;
-    onValueChange?: Function;
+    onValueChange?: (arg: boolean) => void;
     theme?: $DeepPartial<MD3Theme>;
 };
 
@@ -26,7 +27,7 @@ const SWITCH_BUTTON_PADDING = 4;
 const InterpolateXInput = [0, 1];
 
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
-    const { checkedIcon = false, disabledSwitch = false, color = 'white', value = false, onValueChange } = props;
+    const { checkedIcon = false, disabled = false, value = false, onValueChange } = props;
     const theme = useTheme(props.theme);
 
     const BUTTON_WIDTH = 52;
@@ -40,26 +41,24 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         width: BUTTON_WIDTH,
     };
     const switchScale = {
-        // height: SWITCH_BUTTON_AREA,
-        // width: SWITCH_BUTTON_AREA,
-        width: 24,
-        height: 24,
+        width: toggled ? 24 : checkedIcon ? 24 : 16,
+        height: toggled ? 24 : checkedIcon ? 24 : 16,
     };
 
-    const onChangeToggle = () => {
+    const onChangeToggle = (): void => {
         setToggled(!toggled);
         onValueChange?.(!toggled);
     };
 
-    const onPressSwitch = () => {
+    const onPressSwitch = (): void => {
         if (shareValue.value === 0) {
             shareValue.value = withTiming(1, {
-                duration: 800,
+                duration: 100,
                 easing: Easing.bezier(0.4, 0.0, 0.2, 1),
             });
         } else {
             shareValue.value = withTiming(0, {
-                duration: 800,
+                duration: 100,
                 easing: Easing.bezier(0.4, 0.0, 0.2, 1),
             });
         }
@@ -68,17 +67,30 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
 
     const styles = StyleSheet.create({
         containerStyle: {
+            display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: theme.colors.primary,
+            backgroundColor: disabled
+                ? Color('#BDCAD1').alpha(0.3).rgb().string()
+                : toggled
+                ? theme.colors.primary
+                : // @ts-ignore
+                  theme.colors.surfaceContainerHighest,
+            // @ts-ignore
+            borderColor: toggled ? undefined : disabled ? theme.colors.disabled : theme.colors.outline,
+            borderWidth: toggled ? 0 : 2,
             borderRadius: 100,
         },
         switchButton: {
-            position: 'absolute',
-            left: SWITCH_BUTTON_PADDING,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             borderRadius: 23,
+            marginLeft: 4,
         },
     });
+
+    const toggleOffColor = disabled ? Color('#192024').alpha(0.25).rgb().string() : theme.colors.onBackground;
+    const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
     const switchAreaStyles = useAnimatedStyle(() => {
         return {
@@ -92,19 +104,42 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                     ),
                 },
             ],
-            backgroundColor: interpolateColor(shareValue.value, InterpolateXInput, [color, color]),
+            backgroundColor: disabled
+                ? theme.colors.surface
+                : interpolateColor(shareValue.value, InterpolateXInput, [toggleOffColor, toggleOnColor]),
         };
     });
 
     return (
         <TouchableOpacity
-            disabled={disabledSwitch}
+            disabled={disabled}
             onPress={onPressSwitch}
             activeOpacity={1}
             style={[styles.containerStyle, containerScale]}
         >
             <Animated.View style={[styles.switchButton, switchScale, switchAreaStyles]}>
-                {checkedIcon ? <Icon source={{ family: 'brightlayer-ui', name: 'right' }} /> : null}
+                {checkedIcon && (
+                    <View
+                        style={{
+                            width: 16,
+                            height: 16,
+                        }}
+                    >
+                        {toggled ? (
+                            <Icon
+                                source={{ family: 'material', name: 'check' }}
+                                color={theme.colors.onSurface}
+                                size={16}
+                            />
+                        ) : (
+                            <Icon
+                                source={{ family: 'material', name: 'close' }}
+                                color={theme.colors.onPrimary}
+                                size={16}
+                            />
+                        )}
+                    </View>
+                )}
             </Animated.View>
         </TouchableOpacity>
     );
