@@ -36,7 +36,7 @@ import { IconSource } from '../__types__';
 export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> & {
     /**
      * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
-    */
+     */
     theme?: $DeepPartial<MD3Theme>;
     /**
      * @prop {string} [iconColor] - The color of the Icon in the Chip.
@@ -95,125 +95,142 @@ export const Chip: React.FC<ChipProps> = (props) => {
     // @TODO update the disabled colors once the condition is set in place
     const defaultChipColor = isOutlined
         ? disabled
-        //the chip background color should be transparent in case it is set to disable in outline mode
-            ? 'transparent'
+            ? //the chip background color should be transparent in case it is set to disable in outline mode
+              'transparent'
             : selected
-            //the chip background color should be primary[80] in case it is set to selected in outline mode
-            ? theme.colors.primaryContainer
-            //the chip background color should be transparent in case it is set to unselected in outline mode
-            : 'transparent'
-        : isElevated
-        ? disabled
-            ?
-            //the chip background color should be neutral[10] 5% in case it is set to disable in elevated mode 
-            //@ts-ignore
-              theme.colors.disabledContainer
-            : selected
-
-            //the chip background color should be primary[80] in case it is set to selected in elevated mode
-            ? theme.colors.primaryContainer
-
-            //the chip background color should be neutral[97] in case it is set to unselected in elevated mode
-            : //@ts-ignore
-              theme.colors.surfaceContainerLow
-        : undefined;
+            ? //the chip background color should be primary[80] in case it is set to selected in outline mode
+              theme.colors.primaryContainer
+            : //the chip background color should be transparent in case it is set to unselected in outline mode
+              'transparent'
+        : disabled
+        ? //the chip background color should be neutral[10] 5% in case it is set to disable in elevated mode
+          //@ts-ignore
+          theme.colors.disabledContainer
+        : selected
+        ? //the chip background color should be primary[80] in case it is set to selected in elevated mode
+          theme.colors.primaryContainer
+        : //the chip background color should be neutral[97] in case it is set to unselected in elevated mode
+          //@ts-ignore
+          theme.colors.surfaceContainerLow;
 
     const DefaultTextColor = isOutlined
         ? disabled
-        //the chip text color should be neutral[10] 20% in case it is set to disable in outline mode
-            ? //@ts-ignore
+            ? //the chip text color should be neutral[10] 20% in case it is set to disable in outline mode
+              //@ts-ignore
               theme.colors.disabled
             : selected
-            //the chip text color should be primary[80] in case it is set to selected in outline mode
-            ? theme.colors.onPrimaryContainer
-            //the chip text color should be neutralVariant[30] in case it is set to unselected in outline mode
-            : theme.colors.onSurfaceVariant
-        : isElevated
-        ? disabled
-        //@ts-ignore
-            //the chip text color should be neutral[10] 25% in case it is set to disable in elevated mode
-            ? theme.colors.onDisabledContainer
-            : selected
-            //the chip text color should be BLUIColors.primary[30] in case it is set to selected in elevated mode
-            ? theme.colors.onPrimaryContainer
-            //the chip text color should be neutralVariant[30] in case it is set to unselected in elevated mode
-            : theme.colors.onSurfaceVariant
-        : undefined;
+            ? //the chip text color should be primary[80] in case it is set to selected in outline mode
+              theme.colors.onPrimaryContainer
+            : //the chip text color should be neutralVariant[30] in case it is set to unselected in outline mode
+              theme.colors.onSurfaceVariant
+        : disabled
+        ? //@ts-ignore
+          //the chip text color should be neutral[10] 25% in case it is set to disable in elevated mode
+          theme.colors.onDisabledContainer
+        : selected
+        ? //the chip text color should be BLUIColors.primary[30] in case it is set to selected in elevated mode
+          theme.colors.onPrimaryContainer
+        : //the chip text color should be neutralVariant[30] in case it is set to unselected in elevated mode
+          theme.colors.onSurfaceVariant;
 
     const getIcon = (): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} size={18} color={iconColor ? iconColor : textColor? textColor:DefaultTextColor} />;
+            return (
+                <Icon
+                    source={icon}
+                    size={18}
+                    color={iconColor ? iconColor : textColor ? textColor : DefaultTextColor}
+                />
+            );
         } else if (avatar) {
             return avatar; // Show the passed Avatar component
         }
         return undefined;
     };
     //@ts-ignore
-    const chipStyle = isElevated ? {} : selected ? {} :{ borderWidth: 1, borderColor: borderColor ? borderColor : disabled? theme.colors.disabled : theme.colors.outline };
+    const chipStyle = isElevated
+        ? {}
+        : selected
+        ? {}
+        : {
+              borderWidth: 1,
+              //@ts-ignore
+              borderColor: borderColor ? borderColor : disabled ? theme.colors.disabled : theme.colors.outline,
+          };
 
+    const renderCloseIcon = (): JSX.Element => <Icon source={{ name: 'close' }} size={18} color={DefaultTextColor} />;
+    const renderIcon = (): JSX.Element | undefined => getIcon();
     return (
         <>
-        {icon ? (
-        <PaperChip
-            style={[
-                {
-                    backgroundColor: chipColor ? chipColor : defaultChipColor,
-                },
-                style,
-                chipStyle,
-            ]}
-            textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
-            showSelectedCheck={false}
-            selected={selected}
-            disabled={disabled}
-            elevated={disabled?false:isElevated}
-            closeIcon={()=><Icon source={{name:'close'}} size={18} color={ DefaultTextColor} />}
-            icon={()=>getIcon()}
-            {...rest}
-        >
-            {children}
-        </PaperChip>)
-        :avatar?( 
-    <PaperChip
-            style={[
-                {
-                    backgroundColor: chipColor ? chipColor : defaultChipColor,
-                },
-                style,
-                chipStyle,
-            ]}
-            textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
-            showSelectedCheck={false}
-            selected={selected}
-            disabled={disabled}
-            avatar={avatar}
-            elevated={disabled?false:isElevated}
-            closeIcon={()=><Icon source={{name:'close'}} size={18} color={ DefaultTextColor} />}
-            {...rest}
-        >
-            {children}
-        </PaperChip>
-):(
-    <PaperChip
-            style={[
-                {
-                    backgroundColor: chipColor ? chipColor : defaultChipColor,
-                },
-                style,
-                chipStyle,
-            ]}
-            textStyle={[{ color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' }, textStyle]}
-            showSelectedCheck={false}
-            selected={selected}
-            disabled={disabled}
-            elevated={disabled?false:isElevated}
-            closeIcon={()=><Icon source={{name:'close'}} size={18} color={ DefaultTextColor} />}
-            {...rest}
-        >
-            {children}
-        </PaperChip>
-)
-}
-</>
+            {icon ? (
+                <PaperChip
+                    style={[
+                        {
+                            backgroundColor: chipColor ? chipColor : defaultChipColor,
+                        },
+                        style,
+                        chipStyle,
+                    ]}
+                    textStyle={[
+                        { color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' },
+                        textStyle,
+                    ]}
+                    showSelectedCheck={false}
+                    selected={selected}
+                    disabled={disabled}
+                    {...(isElevated && { elevated: !disabled })}
+                    closeIcon={renderCloseIcon}
+                    icon={renderIcon}
+                    {...rest}
+                >
+                    {children}
+                </PaperChip>
+            ) : avatar ? (
+                <PaperChip
+                    style={[
+                        {
+                            backgroundColor: chipColor ? chipColor : defaultChipColor,
+                        },
+                        style,
+                        chipStyle,
+                    ]}
+                    textStyle={[
+                        { color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' },
+                        textStyle,
+                    ]}
+                    showSelectedCheck={false}
+                    selected={selected}
+                    disabled={disabled}
+                    avatar={avatar}
+                    {...(isElevated && { elevated: !disabled })}
+                    closeIcon={renderCloseIcon}
+                    {...rest}
+                >
+                    {children}
+                </PaperChip>
+            ) : (
+                <PaperChip
+                    style={[
+                        {
+                            backgroundColor: chipColor ? chipColor : defaultChipColor,
+                        },
+                        style,
+                        chipStyle,
+                    ]}
+                    textStyle={[
+                        { color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' },
+                        textStyle,
+                    ]}
+                    showSelectedCheck={false}
+                    selected={selected}
+                    disabled={disabled}
+                    {...(isElevated && { elevated: !disabled })}
+                    closeIcon={renderCloseIcon}
+                    {...rest}
+                >
+                    {children}
+                </PaperChip>
+            )}
+        </>
     );
 };
