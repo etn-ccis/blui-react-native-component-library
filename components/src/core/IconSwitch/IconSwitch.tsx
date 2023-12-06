@@ -92,23 +92,21 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const toggleOffColor = disabled ? Color('#192024').alpha(0.25).rgb().string() : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
-    const switchAreaStyles = useAnimatedStyle(() => {
-        return {
-            transform: [
-                {
-                    translateX: interpolate(
-                        shareValue.value,
-                        InterpolateXInput,
-                        [0, BUTTON_WIDTH - SWITCH_BUTTON_AREA - 1 * SWITCH_BUTTON_PADDING],
-                        Extrapolation.CLAMP
-                    ),
-                },
-            ],
-            backgroundColor: disabled
-                ? theme.colors.surface
-                : interpolateColor(shareValue.value, InterpolateXInput, [toggleOffColor, toggleOnColor]),
-        };
-    });
+    const switchAreaStyles = useAnimatedStyle(() => ({
+        transform: [
+            {
+                translateX: interpolate(
+                    shareValue.value,
+                    InterpolateXInput,
+                    [0, BUTTON_WIDTH - SWITCH_BUTTON_AREA - 1 * SWITCH_BUTTON_PADDING],
+                    Extrapolation.CLAMP
+                ),
+            },
+        ],
+        backgroundColor: disabled
+            ? theme.colors.surface
+            : interpolateColor(shareValue.value, InterpolateXInput, [toggleOffColor, toggleOnColor]),
+    }));
 
     return (
         <TouchableOpacity
