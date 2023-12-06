@@ -34,13 +34,37 @@ import { IconSource } from '../__types__';
  */
 
 export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> & {
+    /**
+     * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
+    */
     theme?: $DeepPartial<MD3Theme>;
+    /**
+     * @prop {string} [iconColor] - The color of the Icon in the Chip.
+     */
     iconColor?: string;
+    /**
+     * @prop {string} [textColor] - The color of the text content in the Chip.
+     */
     textColor?: string;
+    /**
+     *  @prop {string} [chipColor] - The background color of the Chip.
+     */
     chipColor?: string;
+    /**
+     *  @prop {string} [borderColor] - The border color of the Chip.
+     */
     borderColor?: string;
+    /**
+     * @prop {IconSource} [icon] - The source for the Icon displayed in the Chip.
+     */
     icon?: IconSource;
+    /**
+     * @prop {string} [mode='outlined'] - Chip mode, either 'outlined' or 'elevated'.
+     */
     mode?: 'elevated' | 'outlined'; // Updated modes
+    /**
+     * @prop {React.ReactElement} [avatar] - Avatar component to be displayed in the Chip.
+     */
     avatar?: React.ReactElement; // New prop for passing Avatar component
 };
 
@@ -142,7 +166,8 @@ export const Chip: React.FC<ChipProps> = (props) => {
             showSelectedCheck={false}
             selected={selected}
             disabled={disabled}
-            elevated={isElevated}
+            elevated={disabled?false:isElevated}
+            closeIcon={()=><Icon source={{name:'close'}} size={18} color={ DefaultTextColor} />}
             icon={()=>getIcon()}
             {...rest}
         >
@@ -162,7 +187,8 @@ export const Chip: React.FC<ChipProps> = (props) => {
             selected={selected}
             disabled={disabled}
             avatar={avatar}
-            elevated={isElevated}
+            elevated={disabled?false:isElevated}
+            closeIcon={()=><Icon source={{name:'close'}} size={18} color={ DefaultTextColor} />}
             {...rest}
         >
             {children}
@@ -180,7 +206,8 @@ export const Chip: React.FC<ChipProps> = (props) => {
             showSelectedCheck={false}
             selected={selected}
             disabled={disabled}
-            elevated={isElevated}
+            elevated={disabled?false:isElevated}
+            closeIcon={()=><Icon source={{name:'close'}} size={18} color={ DefaultTextColor} />}
             {...rest}
         >
             {children}
