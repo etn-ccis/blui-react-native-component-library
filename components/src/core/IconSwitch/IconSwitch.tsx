@@ -15,34 +15,27 @@ import { MD3Theme, useTheme } from 'react-native-paper';
 import Color from 'color';
 
 export type IconSwitchProps = ViewProps & {
-    checkedIcon?: boolean;
+    showIcon?: boolean;
     disabled?: boolean;
-    // switchColor?: string;
     value?: boolean;
     onValueChange?: (arg: boolean) => void;
     theme?: $DeepPartial<MD3Theme>;
 };
 
-const SWITCH_BUTTON_PADDING = 4;
-const InterpolateXInput = [0, 1];
-
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
-    const { checkedIcon = false, disabled = false, value = false, onValueChange } = props;
+    const { showIcon = false, disabled = false, value = false, onValueChange } = props;
     const theme = useTheme(props.theme);
 
-    const BUTTON_WIDTH = 52;
-    const BUTTON_HEIGHT = 32;
-    const SWITCH_BUTTON_AREA = BUTTON_HEIGHT - SWITCH_BUTTON_PADDING;
     const [toggled, setToggled] = useState(value);
     const shareValue = useSharedValue(value ? 1 : 0);
 
     const containerScale = {
-        height: BUTTON_HEIGHT,
-        width: BUTTON_WIDTH,
+        height: 32,
+        width: 52,
     };
     const switchScale = {
-        width: toggled ? 24 : checkedIcon ? 24 : 16,
-        height: toggled ? 24 : checkedIcon ? 24 : 16,
+        width: toggled ? 24 : showIcon ? 24 : 16,
+        height: toggled ? 24 : showIcon ? 24 : 16,
     };
 
     const onChangeToggle = (): void => {
@@ -95,17 +88,12 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const switchAreaStyles = useAnimatedStyle(() => ({
         transform: [
             {
-                translateX: interpolate(
-                    shareValue.value,
-                    InterpolateXInput,
-                    [0, BUTTON_WIDTH - SWITCH_BUTTON_AREA - 1 * SWITCH_BUTTON_PADDING],
-                    Extrapolation.CLAMP
-                ),
+                translateX: interpolate(shareValue.value, [0, 1], [0, 52 - (32 - 4) - 1 * 4], Extrapolation.CLAMP),
             },
         ],
         backgroundColor: disabled
             ? theme.colors.surface
-            : interpolateColor(shareValue.value, InterpolateXInput, [toggleOffColor, toggleOnColor]),
+            : interpolateColor(shareValue.value, [0, 1], [toggleOffColor, toggleOnColor]),
     }));
 
     return (
@@ -116,7 +104,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             style={[styles.containerStyle, containerScale]}
         >
             <Animated.View style={[styles.switchButton, switchScale, switchAreaStyles]}>
-                {checkedIcon && (
+                {showIcon && (
                     <View
                         style={{
                             width: 16,
