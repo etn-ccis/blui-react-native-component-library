@@ -29,15 +29,6 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const [toggled, setToggled] = useState(value);
     const shareValue = useSharedValue(value ? 1 : 0);
 
-    const containerScale = {
-        height: 32,
-        width: 52,
-    };
-    const switchScale = {
-        width: toggled ? 24 : showIcon ? 24 : 16,
-        height: toggled ? 24 : showIcon ? 24 : 16,
-    };
-
     const onChangeToggle = (): void => {
         setToggled(!toggled);
         onValueChange?.(!toggled);
@@ -59,9 +50,11 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     };
 
     const styles = StyleSheet.create({
-        containerStyle: {
+        track: {
             display: 'flex',
             justifyContent: 'center',
+            height: 32,
+            width: 52,
             backgroundColor: disabled
                 ? Color('#BDCAD1').alpha(0.3).rgb().string()
                 : toggled
@@ -69,41 +62,41 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                 : // @ts-ignore
                   theme.colors.surfaceContainerHighest,
             // @ts-ignore
-            borderColor: toggled ? undefined : disabled ? theme.colors.disabled : theme.colors.outline,
+            borderColor: toggled
+                ? undefined
+                : disabled
+                ? // @ts-ignore
+                  Color(theme.colors.disabled).alpha(0.2).rgb().string()
+                : theme.colors.outline,
             borderWidth: toggled ? 0 : 2,
             borderRadius: 100,
         },
-        switchButton: {
+        handle: {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            width: toggled ? 24 : showIcon ? 24 : 16,
+            height: toggled ? 24 : showIcon ? 24 : 16,
             borderRadius: 23,
-            marginLeft: 4,
+            marginLeft: showIcon ? 2 : 6,
         },
     });
 
     const toggleOffColor = disabled ? Color('#192024').alpha(0.25).rgb().string() : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
-    const switchAreaStyles = useAnimatedStyle(() => ({
+    const toggleStyles = useAnimatedStyle(() => ({
         transform: [
             {
-                translateX: interpolate(shareValue.value, [0, 1], [0, 52 - (32 - 4) - 1 * 4], Extrapolation.CLAMP),
+                translateX: interpolate(shareValue.value, [0, 1], showIcon ? [0, 22] : [0, 18], Extrapolation.CLAMP),
             },
         ],
-        backgroundColor: disabled
-            ? theme.colors.surface
-            : interpolateColor(shareValue.value, [0, 1], [toggleOffColor, toggleOnColor]),
+        backgroundColor: interpolateColor(shareValue.value, [0, 1], [toggleOffColor, toggleOnColor]),
     }));
 
     return (
-        <TouchableOpacity
-            disabled={disabled}
-            onPress={onPressSwitch}
-            activeOpacity={1}
-            style={[styles.containerStyle, containerScale]}
-        >
-            <Animated.View style={[styles.switchButton, switchScale, switchAreaStyles]}>
+        <TouchableOpacity disabled={disabled} onPress={onPressSwitch} activeOpacity={1} style={[styles.track]}>
+            <Animated.View style={[styles.handle, toggleStyles]}>
                 {showIcon && (
                     <View
                         style={{
@@ -120,7 +113,8 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                         ) : (
                             <Icon
                                 source={{ family: 'material', name: 'close' }}
-                                color={theme.colors.onPrimary}
+                                // @ts-ignore
+                                color={disabled ? theme.colors.surfaceContainerHighest : theme.colors.onPrimary}
                                 size={16}
                             />
                         )}
