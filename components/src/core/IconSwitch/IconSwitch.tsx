@@ -15,13 +15,34 @@ import { MD3Theme, useTheme } from 'react-native-paper';
 import Color from 'color';
 
 export type IconSwitchProps = ViewProps & {
+    /**
+     * Flag to show the icon on the handle or not
+     * Default: false
+     */
     showIcon?: boolean;
+    /**
+     * Flag to disabled the IconSwitch
+     * Default: false
+     */
     disabled?: boolean;
+    /**
+     * Flag to pass the IconSwitch value
+     * Default: false
+     */
     value?: boolean;
+    /**
+     * Callback Event handling function to handle value change
+     */
     onValueChange?: (arg: boolean) => void;
+    /**
+     * Theme value overrides specific to this component.
+     */
     theme?: $DeepPartial<MD3Theme>;
 };
 
+/**
+ * This is a Switch component which allow us to show the check icon on ToggleOn and Close icon on ToggleOff Switch's handle.
+ */
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const { showIcon = false, disabled = false, value = false, onValueChange } = props;
     const theme = useTheme(props.theme);
