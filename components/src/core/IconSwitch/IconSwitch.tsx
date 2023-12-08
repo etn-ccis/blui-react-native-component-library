@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, ViewProps, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, ViewProps, View, I18nManager } from 'react-native';
 import Animated, {
     interpolate,
     useAnimatedStyle,
@@ -103,7 +103,9 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         },
     });
 
-    const toggleOffColor = disabled ? Color('#192024').alpha(0.25).rgb().string() : theme.colors.onBackground;
+    const toggleOffColor = disabled
+        ? Color(theme.colors.onSurface).alpha(0.25).rgb().string()
+        : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
     const toggleStyles = useAnimatedStyle(() => ({
@@ -128,7 +130,11 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                         {toggled ? (
                             <Icon
                                 source={{ family: 'material', name: 'check' }}
-                                color={theme.colors.onSurface}
+                                color={
+                                    disabled
+                                        ? Color(theme.colors.onSurface).alpha(0.2).rgb().string()
+                                        : theme.colors.onSurface
+                                }
                                 size={16}
                             />
                         ) : (
