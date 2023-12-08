@@ -77,7 +77,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             height: 32,
             width: 52,
             backgroundColor: disabled
-                ? //
+                ? // TODO: update the color variant with themes
                   Color('#BDCAD1').alpha(0.3).rgb().string()
                 : toggled
                 ? theme.colors.primary
