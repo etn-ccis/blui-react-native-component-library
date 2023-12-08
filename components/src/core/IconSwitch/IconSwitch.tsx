@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, ViewProps, View, I18nManager } from 'react-native';
+import { StyleSheet, TouchableOpacity, ViewProps, View } from 'react-native';
 import Animated, {
     interpolate,
     useAnimatedStyle,
@@ -77,7 +77,8 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             height: 32,
             width: 52,
             backgroundColor: disabled
-                ? Color('#BDCAD1').alpha(0.3).rgb().string()
+                ? //
+                  Color('#BDCAD1').alpha(0.3).rgb().string()
                 : toggled
                 ? theme.colors.primary
                 : // @ts-ignore
@@ -86,7 +87,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             borderColor: toggled
                 ? undefined
                 : disabled
-                ? // @ts-ignore
+                ? // @ts-ignore // TODO: update the color variant with themes
                   Color(theme.colors.disabled).alpha(0.2).rgb().string()
                 : theme.colors.outline,
             borderWidth: toggled ? 0 : 2,
@@ -104,7 +105,8 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     });
 
     const toggleOffColor = disabled
-        ? Color(theme.colors.onSurface).alpha(0.25).rgb().string()
+        ? // TODO: update the color variant with themes
+          Color(theme.colors.onSurface).alpha(0.25).rgb().string()
         : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
@@ -132,7 +134,8 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                                 source={{ family: 'material', name: 'check' }}
                                 color={
                                     disabled
-                                        ? Color(theme.colors.onSurface).alpha(0.2).rgb().string()
+                                        ? // // TODO: update the color variant with themes
+                                          Color(theme.colors.onSurface).alpha(0.2).rgb().string()
                                         : theme.colors.onSurface
                                 }
                                 size={16}
