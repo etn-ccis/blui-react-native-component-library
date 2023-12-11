@@ -59,7 +59,7 @@ export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> 
      */
     icon?: IconSource;
     /**
-     * @prop {string} [mode='outlined'] - Chip mode, either 'outlined' or 'elevated'.
+     * @prop {string} [mode='outlined'] - Chip mode, either 'outlined' or 'elevated' Default is outlined.
      */
     mode?: 'elevated' | 'outlined'; // Updated modes
     /**
