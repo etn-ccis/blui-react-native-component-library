@@ -244,7 +244,6 @@ const SearchContent: React.FC<SearchContentProps> = (props) => {
     const { color: textColor } = useColor();
     const { maxScale, disableScaling } = useFontScaleSettings();
     const placeholderTextColor = color(textColor).fade(0.4).string();
-
     return (
         <TextInput
             key={'search-input'}
