@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import {
     View,
     StyleSheet,
@@ -352,7 +352,7 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
  * main body is fully customizable. You can use the `badge` prop to supply elements
  * that can span between the header and the body, such as a [Hero](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--hero) with a grade icon.
  */
-export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
+export const ScoreCard: React.FC<ScoreCardProps & { children?: ReactNode }> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useTheme(themeOverride);
     const {

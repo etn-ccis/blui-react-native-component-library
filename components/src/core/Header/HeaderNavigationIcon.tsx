@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle, I18nManager } from 
 import { ICON_SIZE } from './constants';
 import { IconSource } from '../__types__';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { HeaderIcon } from './headerIcon';
+import { HeaderIcon } from './HeaderIcon';
 import { useSearch } from './contexts/SearchContextProvider';
 import { useColor } from './contexts/ColorContextProvider';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';

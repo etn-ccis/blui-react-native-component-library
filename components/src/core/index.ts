@@ -12,6 +12,6 @@ export * from './Drawer';
 export * from './UserMenu';
 export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
-export * from './utility';
+export * from './Utility';
 export * from './Grades';
 export * from './Chip';

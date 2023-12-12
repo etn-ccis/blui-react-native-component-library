@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { SafeAreaView, StyleSheet, ViewStyle } from 'react-native';
 import Modal from 'react-native-modal';
 import { MD3Theme, useTheme } from 'react-native-paper';
@@ -39,7 +39,7 @@ const useStyles = (
  * This is a utility component for the UserMenu. It handles rendering the menu items in
  * a bottom sheet that appears from the bottom of the screen.
  */
-export const BottomSheet: React.FC<BottomSheetProps> = (props) => {
+export const BottomSheet: React.FC<BottomSheetProps & { children: ReactNode }> = (props) => {
     const { show, children, onClose, styles = {} } = props;
     const theme = useTheme();
     const defaultStyles = useStyles(theme, props);
