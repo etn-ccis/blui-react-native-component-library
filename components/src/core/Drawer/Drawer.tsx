@@ -79,10 +79,9 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     const theme = useTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const {
-        colors: { surfaceContainerLow, primary },
+        colors: { surfaceContainerLow },
     } = useAppTheme();
-    console.log('surfaceContainerLow', surfaceContainerLow);
-    console.log('primary', primary);
+
     const defaultStyles = makeStyles(props, surfaceContainerLow, insets);
 
     const getSectionByDisplayName = useCallback(

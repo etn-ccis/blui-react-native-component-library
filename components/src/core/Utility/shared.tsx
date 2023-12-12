@@ -79,4 +79,4 @@ export type AppTheme = Omit<MD3Theme, 'colors' | 'fonts'> & {
     };
 };
 
-export const useAppTheme = () => useTheme<AppTheme>();
+export const useAppTheme = (): AppTheme => useTheme<AppTheme>();
