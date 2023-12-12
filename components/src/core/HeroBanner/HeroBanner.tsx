@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle, ViewProps } from 'react-native';
 import { Divider } from 'react-native-paper';
+import * as BLUIColors from '@brightlayer-ui/colors';
 
 const defaultStyles = StyleSheet.create({
     root: {
@@ -47,7 +48,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
                 {childrenArray}
                 {divider && (
                     <View style={defaultStyles.divider}>
-                        <Divider />
+                        <Divider style={{ backgroundColor: BLUIColors.neutralVariant[50] }} />
                     </View>
                 )}
             </View>
