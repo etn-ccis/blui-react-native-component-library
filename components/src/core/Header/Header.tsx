@@ -503,7 +503,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
             // @change color once have a correct color
             return theme.colors.onSurface;
         }
-        return fontColor || 'white';
+        return fontColor || theme.colors.primary;
     }, [theme, fontColor, searching]);
 
     const statusBarStyle = useCallback(
