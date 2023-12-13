@@ -4,7 +4,7 @@
 
 <img width="100%" style="max-width: 600px; display: block;" alt="List Item Tag" src="./images/listItemTag.png">
 
-In an [info list item](https://github.com/etn-ccis/blui-react-native-component-library/blob/release/md3/docs/InfoListItem.md):
+In an [info list item](./InfoListItem.md):
 <img width="360px" style="max-width: 100%; display: block; border: 1px solid #0001;" alt="List Item Tag in Info List Item" src="./images/ListItemTagInInfoListItem.png">
 
 ## Usage
