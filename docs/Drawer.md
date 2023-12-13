@@ -62,7 +62,7 @@ import {
 
 </div>
 
-Any other props will be provided to the root element ([**Surface**](https://callstack.github.io/react-native-paper/surface.html)).
+Any other props will be provided to the root element ([**Surface**](https://callstack.github.io/react-native-paper/docs/components/Surface)).
 
 #### Styles
 

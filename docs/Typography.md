@@ -34,12 +34,12 @@ All typography components in this library share a common API.
 
 <div style="overflow: auto">
 
-| Prop Name | Description                     | Type                                                                               | Required | Default             |
-| --------- | ------------------------------- | ---------------------------------------------------------------------------------- | -------- | ------------------- |
-| font      | The font style (from the theme) | keyof [`theme.fonts`](https://callstack.github.io/react-native-paper/theming.html) | no       |                     |
-| fontSize  | The font size                   | `number`                                                                           | no       |                     |
-| color     | The font color (from the theme) | `string`                                                                           | no       | `theme.colors.text` |
-| theme     | Theme value overrides           | `$DeepPartial<ReactNativePaper.Theme>`                                             | no       |                     |
+| Prop Name | Description                     | Type                                                                                      | Required | Default             |
+| --------- | ------------------------------- | ----------------------------------------------------------------------------------------- | -------- | ------------------- |
+| font      | The font style (from the theme) | keyof [`theme.fonts`](https://callstack.github.io/react-native-paper/docs/guides/theming) | no       |                     |
+| fontSize  | The font size                   | `number`                                                                                  | no       |                     |
+| color     | The font color (from the theme) | `string`                                                                                  | no       | `theme.colors.text` |
+| theme     | Theme value overrides           | `$DeepPartial<ReactNativePaper.Theme>`                                                    | no       |                     |
 
 </div>
 
