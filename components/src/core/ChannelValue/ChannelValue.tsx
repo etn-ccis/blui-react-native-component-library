@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import { View, StyleSheet, ViewProps, ViewStyle, StyleProp, TextStyle, I18nManager } from 'react-native';
-import { MD3Theme, Text, useTheme } from 'react-native-paper';
+import { MD3Theme, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { Spacer } from '../Utility';
 import { IconSource } from '../__types__';
-import { calculateHeight } from '../Utility/shared';
+import { calculateHeight, useAppTheme } from '../Utility/shared';
 
 const prefixUnitWhitelist = ['$'];
 const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
@@ -98,11 +98,10 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         prefix = false,
         styles = {},
         style,
-        theme: themeOverride,
         ...viewProps
     } = props;
-    const theme = useTheme(themeOverride);
-
+    
+    const theme = useAppTheme();
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.onSurface;
         return color;
