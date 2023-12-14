@@ -73,6 +73,8 @@ export type AppTheme = Omit<MD3Theme, 'colors' | 'fonts'> & {
         surfaceContainer: string;
         surfaceContainerHigh: string;
         surfaceContainerHighest: string;
+        onDisabledContainer: string;
+        disabledContainer: string;
     };
     fonts: MD3Typescale & {
         customVariant: MD3Type;
