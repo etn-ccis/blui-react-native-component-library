@@ -57,7 +57,7 @@ import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@brightlayer-ui
 
 </div>
 
-Any other props will be provided to the root element ([**Card**](https://callstack.github.io/react-native-paper/card.html)).
+Any other props will be provided to the root element ([**Card**](https://callstack.github.io/react-native-paper/docs/components/Card/)).
 
 ### Styles
 
