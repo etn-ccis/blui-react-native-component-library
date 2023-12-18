@@ -8,6 +8,7 @@ import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFontScale } from '../__contexts__/font-scale-context';
+import { AppTheme, useAppTheme } from '../Utility/shared';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -37,7 +38,7 @@ export type DrawerNavGroupProps = AllSharedProps &
     };
 const makeStyles = (
     props: DrawerNavGroupProps,
-    theme: MD3Theme,
+    theme: AppTheme,
     insets: EdgeInsets,
     fontScale: number
 ): StyleSheet.NamedStyles<{
@@ -138,7 +139,6 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
-        theme: themeOverride,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         // DrawerNavGroup-specific props
         title,
@@ -152,7 +152,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         children,
         ...viewProps
     } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAppTheme();
     const insets = useSafeAreaInsets();
     const fontScale = useFontScale();
     const defaultStyles = makeStyles(props, theme, insets, fontScale);

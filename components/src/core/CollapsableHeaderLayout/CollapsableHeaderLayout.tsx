@@ -8,10 +8,11 @@ import {
     ViewStyle,
     ScrollView,
 } from 'react-native';
-import { MD3Theme, useTheme } from 'react-native-paper';
+import { MD3Theme } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../Header';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
+import { useAppTheme } from '../Utility/shared';
 
 // Rest of your imports...
 
@@ -99,7 +100,7 @@ export const CollapsibleHeaderLayout: React.FC<CollapsibleLayoutProps> = (props)
         ...viewProps
     } = props;
 
-    const theme = useTheme(themeOverride);
+    const theme = useAppTheme();
     const scrollRef = useRef(null);
 
     const { getScaledHeight } = useHeaderDimensions();

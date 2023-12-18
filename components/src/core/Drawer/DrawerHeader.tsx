@@ -19,10 +19,11 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+import { AppTheme, useAppTheme } from '../Utility/shared';
 
 const makeStyles = (
     props: DrawerHeaderProps,
-    theme: MD3Theme,
+    theme: AppTheme,
     insets: EdgeInsets,
     height: number,
     fontScale: number
@@ -56,7 +57,6 @@ const makeStyles = (
         textContent: {
             flexDirection: 'column',
             paddingVertical: 4 * fontScale,
-            // paddingLeft: 16,
             flex: 1,
             height: '100%',
             fontFamily: 'OpenSans-SemiBold',
@@ -169,12 +169,11 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
-        theme: themeOverride,
         styles = {},
         style,
         ...viewProps
     } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useAppTheme();
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
     const { disableScaling } = useFontScaleSettings();
