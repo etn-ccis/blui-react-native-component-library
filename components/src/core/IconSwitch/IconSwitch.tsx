@@ -110,14 +110,22 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
-    const toggleStyles = useAnimatedStyle(() => ({
-        transform: [
-            {
-                translateX: interpolate(shareValue.value, [0, 1], showIcon ? [0, 22] : [0, 18], Extrapolation.CLAMP),
-            },
-        ],
-        backgroundColor: interpolateColor(shareValue.value, [0, 1], [toggleOffColor, toggleOnColor]),
-    }));
+    const toggleStyles = useAnimatedStyle(
+        () => ({
+            transform: [
+                {
+                    translateX: interpolate(
+                        shareValue.value,
+                        [0, 1],
+                        showIcon ? [0, 22] : [0, 18],
+                        Extrapolation.CLAMP
+                    ),
+                },
+            ],
+            backgroundColor: interpolateColor(shareValue.value, [0, 1], [toggleOffColor, toggleOnColor]),
+        }),
+        []
+    );
 
     return (
         <TouchableOpacity disabled={disabled} onPress={onPressSwitch} activeOpacity={1} style={[styles.track]}>

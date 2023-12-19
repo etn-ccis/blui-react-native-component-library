@@ -1,0 +1,657 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconSwitch component should render disabled switch  1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "rgba(189, 202, 209, 0.3)",
+      "borderColor": "rgba(0, 0, 0, 0.2)",
+      "borderRadius": 100,
+      "borderWidth": 2,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
+          "transform": [
+            {
+              "translateX": 0,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 16,
+        "justifyContent": "center",
+        "marginLeft": 6,
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+        "width": 16,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`IconSwitch component should render disabled switch with icon 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "rgba(189, 202, 209, 0.3)",
+      "borderColor": "rgba(0, 0, 0, 0.2)",
+      "borderRadius": 100,
+      "borderWidth": 2,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
+          "transform": [
+            {
+              "translateX": 0,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 24,
+        "justifyContent": "center",
+        "marginLeft": 2,
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "height": 16,
+          "width": 16,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={true}
+        maxFontSizeMultiplier={100}
+        selectable={false}
+        style={
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 16,
+            },
+            {},
+            {
+              "fontFamily": "Material Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`IconSwitch component should render disabled switch with turned on state 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "rgba(189, 202, 209, 0.3)",
+      "borderColor": undefined,
+      "borderRadius": 100,
+      "borderWidth": 0,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(255, 251, 254, 1)",
+          "transform": [
+            {
+              "translateX": 18,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255, 251, 254, 1)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 24,
+        "justifyContent": "center",
+        "marginLeft": 6,
+        "transform": [
+          {
+            "translateX": 18,
+          },
+        ],
+        "width": 24,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`IconSwitch component should render disabled switch with turned on state and icon 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "rgba(189, 202, 209, 0.3)",
+      "borderColor": undefined,
+      "borderRadius": 100,
+      "borderWidth": 0,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(255, 251, 254, 1)",
+          "transform": [
+            {
+              "translateX": 22,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255, 251, 254, 1)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 24,
+        "justifyContent": "center",
+        "marginLeft": 2,
+        "transform": [
+          {
+            "translateX": 22,
+          },
+        ],
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "height": 16,
+          "width": 16,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={true}
+        maxFontSizeMultiplier={100}
+        selectable={false}
+        style={
+          [
+            {
+              "color": "rgba(28, 27, 31, 0.2)",
+              "fontSize": 16,
+            },
+            {},
+            {
+              "fontFamily": "Material Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`IconSwitch component should render icon switch 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": undefined,
+      "borderColor": "rgba(121, 116, 126, 1)",
+      "borderRadius": 100,
+      "borderWidth": 2,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(28, 27, 31, 1)",
+          "transform": [
+            {
+              "translateX": 0,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(28, 27, 31, 1)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 24,
+        "justifyContent": "center",
+        "marginLeft": 2,
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "height": 16,
+          "width": 16,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={true}
+        maxFontSizeMultiplier={100}
+        selectable={false}
+        style={
+          [
+            {
+              "color": "rgba(255, 255, 255, 1)",
+              "fontSize": 16,
+            },
+            {},
+            {
+              "fontFamily": "Material Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`IconSwitch component should render with default props 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": undefined,
+      "borderColor": "rgba(121, 116, 126, 1)",
+      "borderRadius": 100,
+      "borderWidth": 2,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(28, 27, 31, 1)",
+          "transform": [
+            {
+              "translateX": 0,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(28, 27, 31, 1)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 16,
+        "justifyContent": "center",
+        "marginLeft": 6,
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+        "width": 16,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`IconSwitch component should render with turned on state 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "rgba(103, 80, 164, 1)",
+      "borderColor": undefined,
+      "borderRadius": 100,
+      "borderWidth": 0,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "transform": [
+            {
+              "translateX": 18,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255, 255, 255, 1)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 24,
+        "justifyContent": "center",
+        "marginLeft": 6,
+        "transform": [
+          {
+            "translateX": 18,
+          },
+        ],
+        "width": 24,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`IconSwitch component should render with turned on state and icon 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "rgba(103, 80, 164, 1)",
+      "borderColor": undefined,
+      "borderRadius": 100,
+      "borderWidth": 0,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "transform": [
+            {
+              "translateX": 22,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255, 255, 255, 1)",
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 24,
+        "justifyContent": "center",
+        "marginLeft": 2,
+        "transform": [
+          {
+            "translateX": 22,
+          },
+        ],
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "height": 16,
+          "width": 16,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={true}
+        maxFontSizeMultiplier={100}
+        selectable={false}
+        style={
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 16,
+            },
+            {},
+            {
+              "fontFamily": "Material Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</View>
+`;
