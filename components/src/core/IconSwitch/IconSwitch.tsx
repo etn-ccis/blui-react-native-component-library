@@ -44,7 +44,7 @@ export type IconSwitchProps = ViewProps & {
  * This is a Switch component which allow us to show the check icon on ToggleOn and Close icon on ToggleOff Switch's handle.
  */
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
-    const { showIcon = false, disabled = false, value = false, onValueChange } = props;
+    const { showIcon = false, disabled = false, value = false, onValueChange, style } = props;
     const theme = useTheme(props.theme);
 
     const [toggled, setToggled] = useState(value);
@@ -128,7 +128,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     );
 
     return (
-        <TouchableOpacity disabled={disabled} onPress={onPressSwitch} activeOpacity={1} style={[styles.track]}>
+        <TouchableOpacity disabled={disabled} onPress={onPressSwitch} activeOpacity={1} style={[styles.track, style]}>
             <Animated.View style={[styles.handle, toggleStyles]}>
                 {showIcon && (
                     <View
