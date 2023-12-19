@@ -4,7 +4,6 @@ import { MD3Theme, Text } from 'react-native-paper';
 import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import * as BLUIColors from '@brightlayer-ui/colors';
 import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
@@ -69,11 +68,8 @@ const listItemTagStyles = (
             color:
                 props.fontColor ||
                 (Color(props.backgroundColor || theme.colors.primary).isLight()
-                    ? // @TODO Currently neutral30 is #414E54 and as per color pallete black[500] is #424E54 Add Figma Variable
-                      // @ts-ignore
-                      BLUIColors.neutral[30]
-                    : // @ts-ignore
-                      BLUIColors.primary[100]),
+                    ? theme.colors.onNeutralShadedContainer
+                    : theme.colors.onPrimaryFilledContainer),
             height: calculateHeight(fontSize) * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,

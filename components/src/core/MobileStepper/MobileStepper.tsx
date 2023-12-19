@@ -35,11 +35,7 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            // added custom disabled color in MD3BluiLightTheme, error since there is no type present in MD3Colors
-            // @TODO Currently neutral80 is #BDCAD1 and as per color pallete gray[200] is #B9BFC2 Add Figma Variable
-            backgroundColor:
-                // @ts-ignore
-                props.inactiveColor || theme.colors.disabled,
+            backgroundColor: props.inactiveColor || theme.colors.disabled,
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,

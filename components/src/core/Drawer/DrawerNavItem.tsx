@@ -126,8 +126,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        // @ts-ignore TODO
-        nestedBackgroundColor = theme.colors.surfaceContainer, // TODO: don't hardcode?
+        nestedBackgroundColor = theme.colors.surfaceContainer,
     } = props;
 
     return StyleSheet.create({

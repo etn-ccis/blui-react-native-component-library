@@ -761,6 +761,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@brightlayer-ui/colors@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-4.0.0.tgz#5bb3706eca98e849d1e80ca4c9f9ca731380d227"
+  integrity sha512-fF7Ne7cz4yFCzR96HrP1RVBw55s+cWbqYkPallnpmmtYnPwNS/DyAbbHFEnl2bxziq3CvAR2S+D6AnjIeluOZA==
+
 "@brightlayer-ui/colors@4.0.0-alpha.0":
   version "4.0.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-4.0.0-alpha.0.tgz#d23adfe71d53633d96d5ed619a6821fa876cde28"

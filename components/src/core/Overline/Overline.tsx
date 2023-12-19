@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
-import { MD3Theme, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { calculateHeight } from '../Utility/shared';
@@ -15,7 +15,7 @@ type TypographyProps = {
     /**
      * The font style to use (from the predefined values in the Theme)
      */
-    font?: keyof MD3Theme['fonts'];
+    font?: keyof ExtendedTheme['fonts'];
 
     /**
      * The color to use for the text (from the predefined values in the Theme or custom)
@@ -36,7 +36,7 @@ type TypographyProps = {
 const overlineStyles = (
     props: TypographyProps,
     fontSize: number,
-    theme: MD3Theme
+    theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
     root: TextStyle;
 }> =>

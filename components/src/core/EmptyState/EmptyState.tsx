@@ -98,8 +98,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props: EmptyStateProps) =>
         return Math.max(100, Math.min(200, iconSize));
     }, [iconSize]);
 
-    // @TODO: change the color to theme.colors.disabled once the theme is in place
-    const getColor = useCallback((color: string | undefined): string => color || theme.colors.outlineVariant, [theme]);
+    const getColor = useCallback((color: string | undefined): string => color || theme.colors.disabled, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {

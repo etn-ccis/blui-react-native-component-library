@@ -76,7 +76,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
-                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -88,7 +87,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
-                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -101,7 +99,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
-                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -113,15 +110,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     // Function component or wrapIcon output
     if (typeof source === 'function') {
         const Component = source;
-        return (
-            <Component
-                size={size}
-                // @ts-ignore
-                color={color}
-                direction={deviceDirection}
-                allowFontScaling={allowFontScaling}
-            />
-        );
+        return <Component size={size} color={color} direction={deviceDirection} allowFontScaling={allowFontScaling} />;
     }
 
     // Image source
@@ -131,7 +120,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                 {...rest}
                 source={source as ImageSourcePropType}
                 style={[
-                    // @ts-ignore
                     {
                         width: size,
                         height: size,
@@ -151,7 +139,6 @@ export const Icon: React.FC<IconProps> = (props) => {
             <Text
                 variant={'bodyMedium'}
                 style={[
-                    // @ts-ignore
                     {
                         fontSize: size,
                         color: color,

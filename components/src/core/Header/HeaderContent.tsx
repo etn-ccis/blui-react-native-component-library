@@ -17,7 +17,7 @@ import { useColor } from './contexts/ColorContextProvider';
 import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
-import { MD3Theme } from 'react-native-paper';
+import { ExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -44,7 +44,7 @@ type HeaderTitleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: MD3Theme;
+    theme: ExtendedTheme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -100,7 +100,7 @@ type HeaderSubtitleProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: MD3Theme;
+    theme: ExtendedTheme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -159,7 +159,7 @@ type HeaderInfoProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: MD3Theme;
+    theme: ExtendedTheme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -226,7 +226,7 @@ type SearchContentProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: MD3Theme;
+    theme: ExtendedTheme;
 
     /** Style to apply to the Text element */
     style?: StyleProp<TextStyle>;
@@ -305,7 +305,7 @@ export type HeaderContentProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme: MD3Theme;
+    theme: ExtendedTheme;
 };
 
 /**

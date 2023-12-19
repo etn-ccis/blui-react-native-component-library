@@ -117,7 +117,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         if (!iconSize) return 36;
         return Math.max(10, Math.min(48, iconSize));
     }, [iconSize]);
-    // @TODO update the color once the theme creation is complete
+
     const getColor = useCallback(
         (color: string | undefined): string => color || theme.colors.onSurfaceVariant,
         [theme]
