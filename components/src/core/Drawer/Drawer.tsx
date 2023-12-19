@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, ViewStyle, ViewProps } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Surface, useTheme } from 'react-native-paper';
+import { Surface } from 'react-native-paper';
 import { EdgeInsets } from '../__types__';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { DrawerContext } from './context';
-import { useAppTheme } from '../Utility/shared';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 type DrawerStyles = {
     root?: ViewStyle;
@@ -14,12 +14,12 @@ type DrawerStyles = {
 
 const makeStyles = (
     props: DrawerProps,
-    defaultBackgroundColor: string,
+    theme: ExtendedTheme,
     insets: EdgeInsets
 ): StyleSheet.NamedStyles<DrawerStyles> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || defaultBackgroundColor,
+            backgroundColor: props.backgroundColor || theme.colors.surfaceContainerLow,
             zIndex: 2,
             flex: 1,
             height: '100%',
@@ -76,13 +76,10 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         ...viewProps
     } = props;
 
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const insets = useSafeAreaInsets();
-    const {
-        colors: { surfaceContainerLow },
-    } = useAppTheme();
 
-    const defaultStyles = makeStyles(props, surfaceContainerLow, insets);
+    const defaultStyles = makeStyles(props, theme, insets);
 
     const getSectionByDisplayName = useCallback(
         (displayName: string, inherit = false): JSX.Element[] =>

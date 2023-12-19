@@ -1,11 +1,12 @@
 import React from 'react';
 import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
-import { MD3Theme, Text, useTheme } from 'react-native-paper';
+import { MD3Theme, Text } from 'react-native-paper';
 import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import * as BLUIColors from '@brightlayer-ui/colors';
 import { calculateHeight } from '../Utility/shared';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type TypographyProps = {
     /**
@@ -31,7 +32,7 @@ export type TypographyProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 } & TextProps;
 
 export type ListItemTagProps = TypographyProps & {
@@ -56,7 +57,7 @@ export type ListItemTagProps = TypographyProps & {
 
 const listItemTagStyles = (
     props: ListItemTagProps,
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     fontScale: number,
     fontSize: number
 ): StyleSheet.NamedStyles<{
@@ -107,7 +108,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherTextProps
     } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const fontScale = useFontScale();
     const defaultStyles = listItemTagStyles(props, theme, fontScale, props.fontSize || 10);
 

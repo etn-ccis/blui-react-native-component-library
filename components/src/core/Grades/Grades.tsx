@@ -5,8 +5,9 @@
 
 import React from 'react';
 import { Platform, ViewProps } from 'react-native';
-import { Avatar, MD3Theme, useTheme } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 /**
  * Props for the Grade component.
@@ -40,16 +41,16 @@ export type GradeProps = ViewProps & {
     /**
      * Theme value overrides
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 export type FixedGradeProps = Omit<GradeProps, 'label' | 'fontColor' | 'backgroundColor'>;
 
 const GradeBase = (props: GradeProps): JSX.Element => {
-    const defaultTheme = useTheme();
+    const defaultTheme = useExtendedTheme();
     const { label, fontColor, backgroundColor, size = 40, style, theme: themeOverride, ...otherViewProps } = props;
 
-    const theme = useTheme(themeOverride || props.theme || defaultTheme);
+    const theme = useExtendedTheme(themeOverride || props.theme || defaultTheme);
 
     // Define styles for Avatar.Text component
 

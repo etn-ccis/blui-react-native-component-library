@@ -10,21 +10,21 @@ The Chip component is a customizable [chip](https://callstack.github.io/react-na
 import { Chip } from '@brightlayer-ui/react-native-components';
 
 <Chip> Unselect </Chip>;
-<Chip mode="elevated">Select</Chip>
+<Chip mode="elevated">Select</Chip>;
 ```
 
 ### Chip API
 
-| Prop Name       | Description                          | Type                                   | Required | Default                  |
-| --------------- | ------------------------------------ | -------------------------------------- | -------- | ------------------------ |
-| chipColor       | The color of the chip                | `string`                               | no       |                          |
-| textColor       | The color of the text label          | `string`                               | no       |                          |
-| iconColor       | The color of the icon                | `string`                               | no       |                          |
-| borderColor     | The color of border color            | `string`                               | no       |                          |
-| icon            | A component to render for the icon   | [`IconSource`](./Icons.md)             | no       |                          |
-| mode            | The size of the circle in px         | `string`                               | no       |                          |
-| avatar          | Avatar to display in chip            | `React.ReactNode`                      | no       |                          |
-| theme           | Theme value overrides                | `$DeepPartial<ReactNativePaper.Theme>` | no       |                          |
+| Prop Name   | Description                        | Type                                   | Required | Default |
+| ----------- | ---------------------------------- | -------------------------------------- | -------- | ------- |
+| chipColor   | The color of the chip              | `string`                               | no       |         |
+| textColor   | The color of the text label        | `string`                               | no       |         |
+| iconColor   | The color of the icon              | `string`                               | no       |         |
+| borderColor | The color of border color          | `string`                               | no       |         |
+| icon        | A component to render for the icon | [`IconSource`](./Icons.md)             | no       |         |
+| mode        | The size of the circle in px       | `string`                               | no       |         |
+| avatar      | Avatar to display in chip          | `React.ReactNode`                      | no       |         |
+| theme       | Theme value overrides              | `$DeepPartial<ReactNativePaper.Theme>` | no       |         |
 
 Other Props of chip can be found at [Chip Props](https://callstack.github.io/react-native-paper/docs/components/Chip/)
 

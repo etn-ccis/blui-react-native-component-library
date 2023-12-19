@@ -16,7 +16,6 @@ import {
     Platform,
 } from 'react-native';
 import color from 'color';
-import { MD3Theme, useTheme } from 'react-native-paper';
 import { ANIMATION_LENGTH } from './constants';
 import { HeaderBackgroundImage } from './HaderBackgroundImage';
 import { HeaderNavigationIcon } from './HeaderNavigationIcon';
@@ -30,11 +29,12 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { usePrevious } from '../__hooks__/usePrevious';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale } from '../__contexts__/font-scale-context';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 
 const headerStyles = (
     props: HeaderProps,
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -198,7 +198,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 
     /** The test to display on the first line */
     title: ReactNode;
@@ -246,7 +246,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
     const { getScaledHeight, LANDSCAPE } = useHeaderDimensions();
     const fontScale = useFontScale();
 
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const defaultStyles = headerStyles(props, theme, fontScale);
     const searchRef = useRef<TextInput>(null);
 

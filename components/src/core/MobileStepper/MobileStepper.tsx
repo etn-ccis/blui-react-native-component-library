@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, ViewProps } from 'react-native';
-import { MD3Theme, ProgressBar, Text, useTheme } from 'react-native-paper';
+import { ProgressBar, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const makeStyles = (
     props: MobileStepperProps,
-    theme: MD3Theme
+    theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     stepperContainer: ViewStyle;
@@ -100,7 +101,7 @@ export type MobileStepperProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -133,7 +134,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
  * This is based on the [MobileStepper](https://material-ui.com/components/steppers/#mobile-stepper) component from Material UI.
  */
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
-    const theme = useTheme(props.theme);
+    const theme = useExtendedTheme(props.theme);
     const {
         activeColor = theme.colors.primary,
         activeStep,

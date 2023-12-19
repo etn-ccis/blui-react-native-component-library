@@ -1,7 +1,7 @@
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import React, { ReactNode } from 'react';
 import { SafeAreaView, StyleSheet, ViewStyle } from 'react-native';
 import Modal from 'react-native-modal';
-import { MD3Theme, useTheme } from 'react-native-paper';
 
 type BottomSheetProps = {
     /** Make the bottom sheet visible */
@@ -18,7 +18,7 @@ type BottomSheetProps = {
 };
 
 const useStyles = (
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     props: BottomSheetProps
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -41,7 +41,7 @@ const useStyles = (
  */
 export const BottomSheet: React.FC<BottomSheetProps & { children: ReactNode }> = (props) => {
     const { show, children, onClose, styles = {} } = props;
-    const theme = useTheme();
+    const theme = useExtendedTheme();
     const defaultStyles = useStyles(theme, props);
 
     return (

@@ -4,11 +4,11 @@
  */
 
 import React from 'react';
-import { MD3Theme, Chip as PaperChip, ChipProps as PaperChipProps } from 'react-native-paper';
+import { Chip as PaperChip, ChipProps as PaperChipProps } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
-import { useAppTheme } from '../Utility/shared';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 /**
  * Props for the Chip component.
@@ -22,7 +22,7 @@ import { useAppTheme } from '../Utility/shared';
  * @prop {string} [borderColor] - The border color of the Chip.
  * @prop {boolean} [selected] - Whether the Chip is in a selected state.
  * @prop {boolean} [disabled] - Whether the Chip is in a disabled state.
- * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
+ * @prop {$DeepPartial<ExtendedTheme>} [theme] - Theme value overrides specific to this component.
  * @prop {React.ReactElement} [avatar] - Avatar component to be displayed in the Chip.
  * @prop {string} [mode='outlined'] - Chip mode, either 'outlined' or 'elevated'.
  */
@@ -36,9 +36,9 @@ import { useAppTheme } from '../Utility/shared';
 
 export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> & {
     /**
-     * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
+     * @prop {$DeepPartial<ExtendedTheme>} [theme] - Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
     /**
      * @prop {string} [iconColor] - The color of the Icon in the Chip.
      */
@@ -83,10 +83,11 @@ export const Chip: React.FC<ChipProps> = (props) => {
         chipColor,
         borderColor,
         textColor,
+        theme: themeOverride,
         ...rest
     } = props;
 
-    const theme = useAppTheme();
+    const theme = useExtendedTheme(themeOverride);
     const isOutlined = mode === 'outlined';
     const isElevated = mode === 'elevated';
 

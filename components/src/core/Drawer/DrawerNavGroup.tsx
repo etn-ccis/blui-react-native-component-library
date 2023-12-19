@@ -1,14 +1,14 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, ViewProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { DrawerNavItem, NavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './DrawerNavItem';
-import { Divider, MD3Theme, Text, useTheme } from 'react-native-paper';
+import { Divider, Text } from 'react-native-paper';
 import { AllSharedProps } from './types';
 import { findChildByType, inheritSharedProps } from './utilities';
 import { useDrawerContext } from './context/drawer-context';
 import { NavGroupContext } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFontScale } from '../__contexts__/font-scale-context';
-import { AppTheme, useAppTheme } from '../Utility/shared';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -38,7 +38,7 @@ export type DrawerNavGroupProps = AllSharedProps &
     };
 const makeStyles = (
     props: DrawerNavGroupProps,
-    theme: AppTheme,
+    theme: ExtendedTheme,
     insets: EdgeInsets,
     fontScale: number
 ): StyleSheet.NamedStyles<{
@@ -150,9 +150,10 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         // Other View Props
         style,
         children,
+        theme: themeOverride,
         ...viewProps
     } = props;
-    const theme = useAppTheme();
+    const theme = useExtendedTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const fontScale = useFontScale();
     const defaultStyles = makeStyles(props, theme, insets, fontScale);

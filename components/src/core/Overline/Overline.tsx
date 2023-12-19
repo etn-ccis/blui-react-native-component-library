@@ -1,9 +1,10 @@
 import React from 'react';
 import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
-import { MD3Theme, Text, useTheme } from 'react-native-paper';
+import { MD3Theme, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { calculateHeight } from '../Utility/shared';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 type TypographyProps = {
     /**
@@ -29,7 +30,7 @@ type TypographyProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 } & TextProps;
 
 const overlineStyles = (
@@ -51,7 +52,7 @@ const overlineStyles = (
 
 export const Overline: React.FC<TypographyProps> = (props) => {
     const { children, style, styles = {}, theme: themeOverride, ...otherTextProps } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const defaultStyles = overlineStyles(props, props.fontSize || 12, theme);
     const { maxScale, disableScaling } = useFontScaleSettings();
 
