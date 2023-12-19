@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, ViewProps, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, ViewProps, View, I18nManager } from 'react-native';
 import Animated, {
     interpolate,
     useAnimatedStyle,
@@ -100,7 +100,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             width: toggled ? 24 : showIcon ? 24 : 16,
             height: toggled ? 24 : showIcon ? 24 : 16,
             borderRadius: 23,
-            marginLeft: showIcon ? 2 : 6,
+            marginHorizontal: showIcon ? 2 : 6,
         },
     });
 
@@ -110,6 +110,8 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
+    const rtl = I18nManager.isRTL;
+
     const toggleStyles = useAnimatedStyle(
         () => ({
             transform: [
@@ -117,7 +119,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                     translateX: interpolate(
                         shareValue.value,
                         [0, 1],
-                        showIcon ? [0, 22] : [0, 18],
+                        showIcon ? (rtl ? [-20, -2] : [0, 22]) : rtl ? [-18, 2] : [0, 18],
                         Extrapolation.CLAMP
                     ),
                 },
