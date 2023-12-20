@@ -8,6 +8,10 @@ import { useColor } from './contexts/ColorContextProvider';
 type HeaderIconProps = {
     /** A component to render for the icon  */
     icon?: IconSource;
+
+    /** the color of the icon  */
+    color?: string;
+    
 };
 /**
  * HeaderIcon component
@@ -15,8 +19,8 @@ type HeaderIconProps = {
  * The HeaderIcon is a helper component that is used to properly size and space icons in the Header component.
  */
 export const HeaderIcon: React.FC<HeaderIconProps> = (props) => {
-    const { icon } = props;
-    const { color } = useColor();
+    const { icon, color } = props;
+    // const { color } = useColor();
     const { disableScaling } = useFontScaleSettings();
     if (icon) {
         return <Icon source={icon} size={ICON_SIZE} color={color} allowFontScaling={!disableScaling} />;

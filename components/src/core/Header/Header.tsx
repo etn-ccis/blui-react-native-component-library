@@ -111,7 +111,13 @@ export type SearchableConfig = {
 export type HeaderProps = ViewProps & {
     /** Array of icons / actions to display on the right */
     actionItems?: Array<HeaderIcon | HeaderActionComponent>;
-
+    
+    /**
+     * The color used for the action Items
+     *
+     * Default: Theme.colors.onSurfaceVariant
+     */
+    actionItemColor?: string;
     /**
      * The color used for the background
      *
@@ -157,6 +163,13 @@ export type HeaderProps = ViewProps & {
 
     /** Icon to show to the left of the title, primarily used to trigger the menu / drawer */
     icon?: IconSource;
+
+    /**
+     * The color used for the navigation Icon
+     *
+     * Default: Theme.colors.onSurface
+     */
+    navigationColor?: string;
 
     /** Callback to execute when the icon is pressed */
     onIconPress?: () => void;
@@ -221,6 +234,7 @@ export type HeaderProps = ViewProps & {
 export const Header: React.FC<HeaderProps> = (props) => {
     const {
         actionItems,
+        actionItemColor,
         backgroundColor,
         backgroundImage,
         expandable = false,
@@ -229,6 +243,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         fontColor,
         info,
         icon,
+        navigationColor,
         onIconPress,
         scrollPosition = new Animated.Value(0),
         searchableConfig,
@@ -503,7 +518,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
             // @change color once have a correct color
             return theme.colors.onSurface;
         }
-        return fontColor || 'white';
+        return fontColor || theme.colors.onPrimaryContainer;
     }, [theme, fontColor, searching]);
 
     const statusBarStyle = useCallback(
@@ -712,7 +727,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     style={styles.backgroundImage}
                                 />
                                 <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon icon={icon} onPress={onIconPress} style={styles.icon} />
+                                    <HeaderNavigationIcon icon={icon} navigationColor={navigationColor?navigationColor:theme.colors.onSurface} onPress={onIconPress} style={styles.icon} />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}
@@ -729,6 +744,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}
+                                        actionItemColor={actionItemColor?actionItemColor:theme.colors.onSurfaceVariant}
                                         styles={{
                                             root: styles.actionPanel,
                                             actionItem: styles.actionItem,

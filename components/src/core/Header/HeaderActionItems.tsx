@@ -40,6 +40,13 @@ type ActionItemProps = {
     /** Array of up to three action items on the right of the header */
     actionItems?: Array<HeaderIconType | HeaderActionComponent>;
 
+    /**
+     * The color used for the action Items
+     *
+     * Default: Theme.colors.on-surface-variant
+     */
+    actionItemColor?: string;
+
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -55,7 +62,7 @@ type ActionItemProps = {
  * used for displaying all of the action item icons and components.
  */
 export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
-    const { actionItems, styles = {} } = props;
+    const { actionItems, actionItemColor, styles = {} } = props;
     const { searchConfig, searching, query, onClear, onSearch } = useSearch();
     const fontScale = useFontScale();
     const defaultStyles = makeStyles(fontScale);
@@ -113,7 +120,7 @@ export const HeaderActionItems: React.FC<ActionItemProps> = (props) => {
                             onPress={actionItem.onPress}
                             style={[defaultStyles.actionItem, styles.actionItem]}
                         >
-                            <HeaderIcon icon={actionItem.icon} />
+                            <HeaderIcon icon={actionItem.icon} color={actionItemColor}/>
                         </TouchableOpacity>
                     );
                 })}
