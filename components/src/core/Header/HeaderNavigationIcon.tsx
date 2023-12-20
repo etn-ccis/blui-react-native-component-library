@@ -36,7 +36,7 @@ type HeaderNavigationProps = {
      *
      * Default: Theme.colors.onSurface
      */
-    navigationColor?: string;
+    navigationIconColor?: string;
 
     /** A callback function to call when the icon is pressed */
     onPress?: () => void;
@@ -50,7 +50,7 @@ type HeaderNavigationProps = {
  * The HeaderNavigationIcon is a helper component that is used to properly size and space the main navigation icon (on the left) in the Header component.
  */
 export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => {
-    const { icon, navigationColor, onPress, style } = props;
+    const { icon, navigationIconColor, onPress, style } = props;
     const { searching, onClose } = useSearch();
     const { color } = useColor();
     const defaultStyles = makeStyles();
@@ -84,7 +84,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                 style={[defaultStyles.navigation, style]}
                 disabled={!onPress}
             >
-                <HeaderIcon icon={icon} color={navigationColor} />
+                <HeaderIcon icon={icon} color={navigationIconColor} />
             </TouchableOpacity>
         );
     }

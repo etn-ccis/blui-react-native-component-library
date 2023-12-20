@@ -169,7 +169,7 @@ export type HeaderProps = ViewProps & {
      *
      * Default: Theme.colors.onSurface
      */
-    navigationColor?: string;
+    navigationIconColor?: string;
 
     /** Callback to execute when the icon is pressed */
     onIconPress?: () => void;
@@ -243,7 +243,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         fontColor,
         info,
         icon,
-        navigationColor,
+        navigationIconColor,
         onIconPress,
         scrollPosition = new Animated.Value(0),
         searchableConfig,
@@ -729,7 +729,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                 <Animated.View style={[contentStyle(), styles.content]}>
                                     <HeaderNavigationIcon
                                         icon={icon}
-                                        navigationColor={navigationColor ? navigationColor : theme.colors.onSurface}
+                                        navigationIconColor={
+                                            navigationIconColor ? navigationIconColor : theme.colors.onSurface
+                                        }
                                         onPress={onIconPress}
                                         style={styles.icon}
                                     />
