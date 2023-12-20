@@ -111,7 +111,7 @@ export type SearchableConfig = {
 export type HeaderProps = ViewProps & {
     /** Array of icons / actions to display on the right */
     actionItems?: Array<HeaderIcon | HeaderActionComponent>;
-    
+
     /**
      * The color used for the action Items
      *
@@ -727,7 +727,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     style={styles.backgroundImage}
                                 />
                                 <Animated.View style={[contentStyle(), styles.content]}>
-                                    <HeaderNavigationIcon icon={icon} navigationColor={navigationColor?navigationColor:theme.colors.onSurface} onPress={onIconPress} style={styles.icon} />
+                                    <HeaderNavigationIcon
+                                        icon={icon}
+                                        navigationColor={navigationColor ? navigationColor : theme.colors.onSurface}
+                                        onPress={onIconPress}
+                                        style={styles.icon}
+                                    />
                                     <HeaderContent
                                         theme={theme}
                                         title={title}
@@ -744,7 +749,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
                                     />
                                     <HeaderActionItems
                                         actionItems={actionItems}
-                                        actionItemColor={actionItemColor?actionItemColor:theme.colors.onSurfaceVariant}
+                                        actionItemColor={
+                                            actionItemColor ? actionItemColor : theme.colors.onSurfaceVariant
+                                        }
                                         styles={{
                                             root: styles.actionPanel,
                                             actionItem: styles.actionItem,

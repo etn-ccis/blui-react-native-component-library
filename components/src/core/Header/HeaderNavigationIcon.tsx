@@ -84,7 +84,7 @@ export const HeaderNavigationIcon: React.FC<HeaderNavigationProps> = (props) => 
                 style={[defaultStyles.navigation, style]}
                 disabled={!onPress}
             >
-                <HeaderIcon icon={icon} color={navigationColor}/>
+                <HeaderIcon icon={icon} color={navigationColor} />
             </TouchableOpacity>
         );
     }
