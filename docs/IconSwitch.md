@@ -1,6 +1,6 @@
 # Icon Switch
 
-The `<IconSwitch />` is a switch component which renders a icon in switch's handle. We can use this component with icon rendered and without.
+The `<IconSwitch />` is a switch component that can optionally renders an icon in the switch's handle.
 
 <img width="200" alt="icon switch picture" src="./images/iconswitch.png" />
 
