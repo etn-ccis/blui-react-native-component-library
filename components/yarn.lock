@@ -761,12 +761,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@brightlayer-ui/colors@4.0.0-alpha.0":
-  version "4.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-4.0.0-alpha.0.tgz#d23adfe71d53633d96d5ed619a6821fa876cde28"
-  integrity sha512-vyqJgwTK6pU621GuGvjgd/vX+82wxn/LFeL2Kvf8Uxy5EyQ6Y4uYrlJowDwVKkvTsEmKxja4uo3vdnhx6fpElQ==
-  dependencies:
-    "@brightlayer-ui/types" "^2.0.0"
+"@brightlayer-ui/colors@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-4.0.0.tgz#5bb3706eca98e849d1e80ca4c9f9ca731380d227"
+  integrity sha512-fF7Ne7cz4yFCzR96HrP1RVBw55s+cWbqYkPallnpmmtYnPwNS/DyAbbHFEnl2bxziq3CvAR2S+D6AnjIeluOZA==
 
 "@brightlayer-ui/eslint-config@^3.0.1":
   version "3.0.1"
@@ -788,23 +786,18 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-native-themes@7.0.0-alpha.0":
-  version "7.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.0-alpha.0.tgz#1bfa8a002ddc1f187e473a5efcc701b2d12de38e"
-  integrity sha512-kjGuHcjWNGI65lbe4sqpDm3XCOnsZ+67aGPH2XTwpdeHaV9jUEeVNF7hv1OTrRRFjQvTAVv8s+q+1tuY7Qtthg==
+"@brightlayer-ui/react-native-themes@7.0.0-alpha.1":
+  version "7.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.0-alpha.1.tgz#01ec91841c1efc8aee0dc49e14279a7e07f3817c"
+  integrity sha512-yeX76HYySjclQTUob60IXxg0Sm1SV1FLBiZaG+RSKHA8RSEnKFLrZniVHbbmALdc56Qxhh4WMh0o+JxxcwZCQA==
   dependencies:
-    "@brightlayer-ui/colors" "4.0.0-alpha.0"
+    "@brightlayer-ui/colors" "4.0.0"
     color "^4.2.3"
 
 "@brightlayer-ui/react-native-vector-icons@^2.0.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-2.2.0.tgz#292f0da364a4021fc5232db0dbbc41927384dbc8"
   integrity sha512-bhtaVFXK9+kVMFMRm5BAkRofsgPM1yE4ppm/w1RjUgvAX4DWxwX+3Xu+7ZlGQRuj/lm6ekp97DzXzKrFEk05tQ==
-
-"@brightlayer-ui/types@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/types/-/types-2.0.0.tgz#d8adc0cdb96c164943adbad6e74043128a8b4112"
-  integrity sha512-DTCVwND6YC9qrkQl7pkFlN6QxDReJHtjuAiFU9HkXJN368vlw+fzHQ5/j4sB1sZl2eNwOgccv5ecl2XrlolOCw==
 
 "@callstack/react-theme-provider@^3.0.9":
   version "3.0.9"
