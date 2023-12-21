@@ -7,12 +7,10 @@ import Animated, {
     withTiming,
     Easing,
     Extrapolation,
-    interpolateColor,
 } from 'react-native-reanimated';
 import { Icon } from '../Icon/Icon';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { MD3Theme, useTheme } from 'react-native-paper';
-import Color from 'color';
 
 export type IconSwitchProps = ViewProps & {
     /**
@@ -100,14 +98,16 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             height: toggled ? 24 : showIcon ? 24 : 16,
             borderRadius: 23,
             marginHorizontal: showIcon ? 2 : 6,
+            backgroundColor: disabled
+                ? toggled
+                    ? theme.colors.surface
+                    : // @ts-ignore
+                      theme.colors.onDisabledContainer
+                : toggled
+                ? theme.colors.onPrimary
+                : theme.colors.onBackground,
         },
     });
-
-    const toggleOffColor = disabled
-        ? // @ts-ignore
-          theme.colors.onDisabledContainer
-        : theme.colors.onBackground;
-    const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
     const rtl = I18nManager.isRTL;
 
@@ -123,7 +123,6 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                     ),
                 },
             ],
-            backgroundColor: interpolateColor(shareValue.value, [0, 1], [toggleOffColor, toggleOnColor]),
         }),
         []
     );
