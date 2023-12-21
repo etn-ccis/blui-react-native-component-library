@@ -16,7 +16,7 @@ import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-th
  * @prop {string} [fontColor] - Text color for the Label (Default is theme.colors.onPrimary).
  * @prop {string} [backgroundColor] - Background color of the Label (Default is theme.colors.primary).
  * @prop {number} [size] - The diameter of the circular view.
- * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
+ * @prop {$DeepPartial<ExtendedTheme>} [theme] - Theme value overrides specific to this component.
  */
 export type GradeProps = ViewProps & {
     /**

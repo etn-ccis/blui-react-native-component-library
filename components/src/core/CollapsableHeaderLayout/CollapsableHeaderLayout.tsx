@@ -13,7 +13,6 @@ import { ANIMATION_LENGTH, Header, HeaderProps as BLUIHeaderProps } from '../Hea
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
-
 const useUpdateScrollView = (
     contentPaddingValue: number,
     contentPadding: Animated.Value,
