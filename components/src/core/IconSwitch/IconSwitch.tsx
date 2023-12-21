@@ -77,18 +77,17 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             height: 32,
             width: 52,
             backgroundColor: disabled
-                ? // TODO: update the color variant with themes
-                  Color('#BDCAD1').alpha(0.3).rgb().string()
+                ? // @ts-ignore
+                  theme.colors.sliderTrackDisabled
                 : toggled
                 ? theme.colors.primary
                 : // @ts-ignore
                   theme.colors.surfaceContainerHighest,
-            // @ts-ignore
             borderColor: toggled
                 ? undefined
                 : disabled
-                ? // @ts-ignore // TODO: update the color variant with themes
-                  Color(theme.colors.disabled).alpha(0.2).rgb().string()
+                ? // @ts-ignore
+                  theme.colors.disabled
                 : theme.colors.outline,
             borderWidth: toggled ? 0 : 2,
             borderRadius: 100,
@@ -105,8 +104,8 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     });
 
     const toggleOffColor = disabled
-        ? // TODO: update the color variant with themes
-          Color(theme.colors.onSurface).alpha(0.25).rgb().string()
+        ? // @ts-ignore
+          theme.colors.onDisabledContainer
         : theme.colors.onBackground;
     const toggleOnColor = disabled ? theme.colors.surface : theme.colors.onPrimary;
 
@@ -133,21 +132,12 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         <TouchableOpacity disabled={disabled} onPress={onPressSwitch} activeOpacity={1} style={[styles.track, style]}>
             <Animated.View style={[styles.handle, toggleStyles]}>
                 {showIcon && (
-                    <View
-                        style={{
-                            width: 16,
-                            height: 16,
-                        }}
-                    >
+                    <View>
                         {toggled ? (
                             <Icon
                                 source={{ family: 'material', name: 'check' }}
-                                color={
-                                    disabled
-                                        ? // // TODO: update the color variant with themes
-                                          Color(theme.colors.onSurface).alpha(0.2).rgb().string()
-                                        : theme.colors.onSurface
-                                }
+                                // @ts-ignore
+                                color={disabled ? theme.colors.disabled : theme.colors.onBackground}
                                 size={16}
                             />
                         ) : (
