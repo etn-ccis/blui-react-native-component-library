@@ -22,7 +22,7 @@ exports[`Icon Tests  renders in a component 1`] = `
     style={
       [
         {
-          "color": "rgba(202, 196, 208, 1)",
+          "color": "rgba(28, 27, 31, 1)",
           "fontSize": 100,
         },
         {},

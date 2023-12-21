@@ -258,7 +258,7 @@ exports[`EmptyState renders correctly with different icon sources 1`] = `
         {
           "height": 100,
           "resizeMode": "contain",
-          "tintColor": "rgba(202, 196, 208, 1)",
+          "tintColor": "rgba(28, 27, 31, 1)",
           "width": 100,
         },
       ]
