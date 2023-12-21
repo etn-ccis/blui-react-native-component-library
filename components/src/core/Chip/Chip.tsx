@@ -91,7 +91,6 @@ export const Chip: React.FC<ChipProps> = (props) => {
     const isOutlined = mode === 'outlined';
     const isElevated = mode === 'elevated';
 
-    // @TODO update the disabled colors once the condition is set in place
     const defaultChipColor = isOutlined
         ? disabled
             ? //the chip background color should be transparent in case it is set to disable in outline mode
