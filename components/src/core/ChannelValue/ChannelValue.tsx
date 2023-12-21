@@ -36,7 +36,7 @@ export type ChannelValueProps = ViewProps & {
     /**
      * The color of the primary icon
      *
-     * Default: Theme.colors.surface
+     * Default: Theme.colors.onSurface
      */
     iconColor?: string;
 
