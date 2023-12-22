@@ -14,4 +14,5 @@ export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
 export * from './Utility';
 export * from './Grades';
+export * from './IconSwitch';
 export * from './Chip';
