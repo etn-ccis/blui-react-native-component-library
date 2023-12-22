@@ -40,7 +40,10 @@ const makeStyles = (
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
         },
-        progressBar: {},
+        progressBar: {
+            // @ts-ignore TODO remove once useExtendedTheme hook available
+            backgroundColor: props.inactiveColor || theme.colors.disabled,
+        },
         text: {},
     });
 

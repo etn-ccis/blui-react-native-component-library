@@ -36,7 +36,8 @@
         "color": "^4.2.3",
         "react-native-collapsible": "^1.6.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
-        "react-native-modal": ">=13.0.1"
+        "react-native-modal": ">=13.0.1",
+        "react-native-reanimated": "^3.6.1"
     },
     "peerDependencies": {
         "@brightlayer-ui/react-native-vector-icons": "^2.0.0",
