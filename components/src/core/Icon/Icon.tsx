@@ -9,10 +9,9 @@ import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { calculateHeight } from '../Utility/shared';
 
 export type IconProps = IconComponentProps & {
+    /** A component to render for the icon */
     source: IconSource;
-    /**
-     * @optional
-     */
+    /** Theme value overrides specific to this component. */
     theme?: MD3Theme;
 };
 
