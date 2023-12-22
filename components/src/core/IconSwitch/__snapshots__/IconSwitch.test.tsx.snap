@@ -19,8 +19,8 @@ exports[`IconSwitch component should render disabled switch  1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "backgroundColor": "rgba(189, 202, 209, 0.3)",
-      "borderColor": "rgba(0, 0, 0, 0.2)",
+      "backgroundColor": undefined,
+      "borderColor": undefined,
       "borderRadius": 100,
       "borderWidth": 2,
       "display": "flex",
@@ -35,7 +35,6 @@ exports[`IconSwitch component should render disabled switch  1`] = `
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
           "transform": [
             {
               "translateX": 0,
@@ -48,12 +47,12 @@ exports[`IconSwitch component should render disabled switch  1`] = `
     style={
       {
         "alignItems": "center",
-        "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
+        "backgroundColor": undefined,
         "borderRadius": 23,
         "display": "flex",
         "height": 16,
         "justifyContent": "center",
-        "marginLeft": 6,
+        "marginHorizontal": 6,
         "transform": [
           {
             "translateX": 0,
@@ -85,8 +84,8 @@ exports[`IconSwitch component should render disabled switch with icon 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "backgroundColor": "rgba(189, 202, 209, 0.3)",
-      "borderColor": "rgba(0, 0, 0, 0.2)",
+      "backgroundColor": undefined,
+      "borderColor": undefined,
       "borderRadius": 100,
       "borderWidth": 2,
       "display": "flex",
@@ -101,7 +100,6 @@ exports[`IconSwitch component should render disabled switch with icon 1`] = `
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
           "transform": [
             {
               "translateX": 0,
@@ -114,12 +112,12 @@ exports[`IconSwitch component should render disabled switch with icon 1`] = `
     style={
       {
         "alignItems": "center",
-        "backgroundColor": "rgba(28, 27, 31, 0.25098039215686274)",
+        "backgroundColor": undefined,
         "borderRadius": 23,
         "display": "flex",
         "height": 24,
         "justifyContent": "center",
-        "marginLeft": 2,
+        "marginHorizontal": 2,
         "transform": [
           {
             "translateX": 0,
@@ -129,14 +127,7 @@ exports[`IconSwitch component should render disabled switch with icon 1`] = `
       }
     }
   >
-    <View
-      style={
-        {
-          "height": 16,
-          "width": 16,
-        }
-      }
-    >
+    <View>
       <Text
         allowFontScaling={true}
         maxFontSizeMultiplier={100}
@@ -183,7 +174,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "backgroundColor": "rgba(189, 202, 209, 0.3)",
+      "backgroundColor": undefined,
       "borderColor": undefined,
       "borderRadius": 100,
       "borderWidth": 0,
@@ -199,7 +190,6 @@ exports[`IconSwitch component should render disabled switch with turned on state
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(255, 251, 254, 1)",
           "transform": [
             {
               "translateX": 18,
@@ -217,7 +207,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
         "display": "flex",
         "height": 24,
         "justifyContent": "center",
-        "marginLeft": 6,
+        "marginHorizontal": 6,
         "transform": [
           {
             "translateX": 18,
@@ -249,7 +239,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "backgroundColor": "rgba(189, 202, 209, 0.3)",
+      "backgroundColor": undefined,
       "borderColor": undefined,
       "borderRadius": 100,
       "borderWidth": 0,
@@ -265,7 +255,6 @@ exports[`IconSwitch component should render disabled switch with turned on state
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(255, 251, 254, 1)",
           "transform": [
             {
               "translateX": 22,
@@ -283,7 +272,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
         "display": "flex",
         "height": 24,
         "justifyContent": "center",
-        "marginLeft": 2,
+        "marginHorizontal": 2,
         "transform": [
           {
             "translateX": 22,
@@ -293,14 +282,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
       }
     }
   >
-    <View
-      style={
-        {
-          "height": 16,
-          "width": 16,
-        }
-      }
-    >
+    <View>
       <Text
         allowFontScaling={true}
         maxFontSizeMultiplier={100}
@@ -308,7 +290,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
         style={
           [
             {
-              "color": "rgba(28, 27, 31, 0.2)",
+              "color": "rgba(28, 27, 31, 1)",
               "fontSize": 16,
             },
             {},
@@ -363,7 +345,6 @@ exports[`IconSwitch component should render icon switch 1`] = `
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(28, 27, 31, 1)",
           "transform": [
             {
               "translateX": 0,
@@ -381,7 +362,7 @@ exports[`IconSwitch component should render icon switch 1`] = `
         "display": "flex",
         "height": 24,
         "justifyContent": "center",
-        "marginLeft": 2,
+        "marginHorizontal": 2,
         "transform": [
           {
             "translateX": 0,
@@ -391,14 +372,7 @@ exports[`IconSwitch component should render icon switch 1`] = `
       }
     }
   >
-    <View
-      style={
-        {
-          "height": 16,
-          "width": 16,
-        }
-      }
-    >
+    <View>
       <Text
         allowFontScaling={true}
         maxFontSizeMultiplier={100}
@@ -461,7 +435,6 @@ exports[`IconSwitch component should render with default props 1`] = `
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(28, 27, 31, 1)",
           "transform": [
             {
               "translateX": 0,
@@ -479,7 +452,7 @@ exports[`IconSwitch component should render with default props 1`] = `
         "display": "flex",
         "height": 16,
         "justifyContent": "center",
-        "marginLeft": 6,
+        "marginHorizontal": 6,
         "transform": [
           {
             "translateX": 0,
@@ -527,7 +500,6 @@ exports[`IconSwitch component should render with turned on state 1`] = `
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(255, 255, 255, 1)",
           "transform": [
             {
               "translateX": 18,
@@ -545,7 +517,7 @@ exports[`IconSwitch component should render with turned on state 1`] = `
         "display": "flex",
         "height": 24,
         "justifyContent": "center",
-        "marginLeft": 6,
+        "marginHorizontal": 6,
         "transform": [
           {
             "translateX": 18,
@@ -593,7 +565,6 @@ exports[`IconSwitch component should render with turned on state and icon 1`] = 
     animatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(255, 255, 255, 1)",
           "transform": [
             {
               "translateX": 22,
@@ -611,7 +582,7 @@ exports[`IconSwitch component should render with turned on state and icon 1`] = 
         "display": "flex",
         "height": 24,
         "justifyContent": "center",
-        "marginLeft": 2,
+        "marginHorizontal": 2,
         "transform": [
           {
             "translateX": 22,
@@ -621,14 +592,7 @@ exports[`IconSwitch component should render with turned on state and icon 1`] = 
       }
     }
   >
-    <View
-      style={
-        {
-          "height": 16,
-          "width": 16,
-        }
-      }
-    >
+    <View>
       <Text
         allowFontScaling={true}
         maxFontSizeMultiplier={100}
