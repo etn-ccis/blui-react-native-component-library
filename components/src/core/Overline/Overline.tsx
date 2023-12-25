@@ -12,11 +12,6 @@ type TypographyProps = {
     fontSize?: number;
 
     /**
-     * The font style to use (from the predefined values in the Theme)
-     */
-    font?: keyof MD3Theme['fonts'];
-
-    /**
      * The color to use for the text (from the predefined values in the Theme or custom)
      */
     color?: string;
