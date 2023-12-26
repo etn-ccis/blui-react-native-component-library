@@ -284,6 +284,6 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | itemIconColor                 | The color used for the DrawerNavItem icon                                      | `string`                               | no       | varies for light/dark theme                                                                       |
 | nestedBackgroundColor         | Background color for nested items                                              | `string`                               | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100]                                      |
 | nestedDivider                 | Show a dividing line between nested items                                      | `boolean`                              | no       | `false`                                                                                           |
-| theme                         | Theme value overrides                                                          | `$DeepPartial<ReactNativePaper.Theme>` | no       |                                                                                                   |
+| theme                         | Theme value overrides                                                          | `$DeepPartial<ExtendedTheme>`          | no       |                                                                                                   |
 
 </div>
