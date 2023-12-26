@@ -95,7 +95,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         iconSize,
         color,
         units,
-        theme: themOverrides,
+        theme: themeOverride,
         unitSpace = 'auto',
         prefix = false,
         styles = {},
@@ -103,7 +103,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         ...viewProps
     } = props;
 
-    const theme = useExtendedTheme(themOverrides);
+    const theme = useExtendedTheme(themeOverride);
     const getColor = useCallback((): string => {
         if (!color) return theme.colors.onSurface;
         return color;

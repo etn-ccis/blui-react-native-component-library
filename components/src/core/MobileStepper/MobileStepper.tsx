@@ -41,7 +41,6 @@ const makeStyles = (
             backgroundColor: props.activeColor || theme.colors.primary,
         },
         progressBar: {
-            // @ts-ignore TODO remove once useExtendedTheme hook available
             backgroundColor: props.inactiveColor || theme.colors.disabled,
         },
         text: {},
