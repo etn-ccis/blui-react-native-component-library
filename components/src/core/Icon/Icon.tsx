@@ -4,16 +4,17 @@ import { IconComponentProps, IconFamily, IconSource, IconSourceBase } from '../_
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import MatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import BLUIIcon from '@brightlayer-ui/react-native-vector-icons';
-import { MD3Theme, Text, useTheme } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { calculateHeight } from '../Utility/shared';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type IconProps = IconComponentProps & {
     source: IconSource;
     /**
      * @optional
      */
-    theme?: MD3Theme;
+    theme?: ExtendedTheme;
 };
 
 const isImageSource = (source: any): boolean =>
@@ -43,7 +44,7 @@ const isIconFamily = (source: JSX.Element | IconFamily | IconSourceBase): source
 export const Icon: React.FC<IconProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const { maxScale, disableScaling } = useFontScaleSettings();
     const {
         color = theme.colors.onSurface,
@@ -75,7 +76,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
-                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -87,7 +87,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
-                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -100,7 +99,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                         name={source.name}
                         size={size}
                         allowFontScaling={scale}
-                        // @ts-ignore
                         color={color}
                         style={flip ? flipIconStyle : {}}
                         maxFontSizeMultiplier={maxScale}
@@ -112,15 +110,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     // Function component or wrapIcon output
     if (typeof source === 'function') {
         const Component = source;
-        return (
-            <Component
-                size={size}
-                // @ts-ignore
-                color={color}
-                direction={deviceDirection}
-                allowFontScaling={allowFontScaling}
-            />
-        );
+        return <Component size={size} color={color} direction={deviceDirection} allowFontScaling={allowFontScaling} />;
     }
 
     // Image source
@@ -130,7 +120,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                 {...rest}
                 source={source as ImageSourcePropType}
                 style={[
-                    // @ts-ignore
                     {
                         width: size,
                         height: size,
@@ -150,7 +139,6 @@ export const Icon: React.FC<IconProps> = (props) => {
             <Text
                 variant={'bodyMedium'}
                 style={[
-                    // @ts-ignore
                     {
                         fontSize: size,
                         color: color,

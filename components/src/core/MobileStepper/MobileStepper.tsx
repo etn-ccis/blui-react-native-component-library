@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, ViewProps } from 'react-native';
-import { MD3Theme, ProgressBar, Text, useTheme } from 'react-native-paper';
+import { ProgressBar, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const makeStyles = (
     props: MobileStepperProps,
-    theme: MD3Theme
+    theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
     stepperContainer: ViewStyle;
@@ -34,17 +35,12 @@ const makeStyles = (
             borderRadius: 8,
             marginHorizontal: 4,
             overflow: 'hidden',
-            // added custom disabled color in MD3BluiLightTheme, error since there is no type present in MD3Colors
-            // @TODO Currently neutral80 is #BDCAD1 and as per color pallete gray[200] is #B9BFC2 Add Figma Variable
-            backgroundColor:
-                // @ts-ignore
-                props.inactiveColor || theme.colors.disabled,
+            backgroundColor: props.inactiveColor || theme.colors.disabled,
         },
         filled: {
             backgroundColor: props.activeColor || theme.colors.primary,
         },
         progressBar: {
-            // @ts-ignore TODO remove once useExtendedTheme hook available
             backgroundColor: props.inactiveColor || theme.colors.disabled,
         },
         text: {},
@@ -103,7 +99,7 @@ export type MobileStepperProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -136,7 +132,7 @@ const keepInRange = (value: number, min?: number, max?: number): number => {
  * This is based on the [MobileStepper](https://material-ui.com/components/steppers/#mobile-stepper) component from Material UI.
  */
 export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
-    const theme = useTheme(props.theme);
+    const theme = useExtendedTheme(props.theme);
     const {
         activeColor = theme.colors.primary,
         activeStep,

@@ -26,16 +26,16 @@ import { Hero } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto">
 
-| Prop Name           | Description                                | Type                                   | Required | Default             |
-| ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ------------------- |
-| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                     |
-| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                     |
-| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | transparent         |
-| iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text` |
-| iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                  |
-| label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                     |
-| onPress             | A function to execute when pressed         | `function`                             | no       |                     |
-| theme               | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |                     |
+| Prop Name           | Description                                | Type                          | Required | Default             |
+| ------------------- | ------------------------------------------ | ----------------------------- | -------- | ------------------- |
+| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`           | no       |                     |
+| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)    | yes      |                     |
+| iconBackgroundColor | The color behind the primary icon          | `string`                      | no       | transparent         |
+| iconColor           | The color of the primary icon              | `string`                      | no       | `theme.colors.text` |
+| iconSize            | The size of the primary icon (10-48)       | `number`                      | no       | 36                  |
+| label               | The text shown below the `ChannelValue`    | `string`                      | yes      |                     |
+| onPress             | A function to execute when pressed         | `function`                    | no       |                     |
+| theme               | Theme value overrides                      | `$DeepPartial<ExtendedTheme>` | no       |                     |
 
 </div>
 

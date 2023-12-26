@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import { View, TouchableOpacity, ViewStyle, TextStyle, StyleProp, StyleSheet, ViewProps } from 'react-native';
-import { useTheme, MD3Theme, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../ChannelValue';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { useFontScale } from '../__contexts__/font-scale-context';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -14,7 +15,7 @@ type HeroStyles = {
     label?: TextStyle;
 };
 
-const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<HeroStyles> =>
+const makeStyles = (theme: ExtendedTheme, fontScale: number): StyleSheet.NamedStyles<HeroStyles> =>
     StyleSheet.create({
         root: {
             flex: 1,
@@ -84,7 +85,7 @@ export type HeroProps = ViewProps & {
     };
 
     /** Theme value overrides specific to this component. */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -108,7 +109,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         ...viewProps
     } = props;
 
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const fontScale = useFontScale();
     const defaultStyles = makeStyles(theme, fontScale);
 
@@ -116,7 +117,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
         if (!iconSize) return 36;
         return Math.max(10, Math.min(48, iconSize));
     }, [iconSize]);
-    // @TODO update the color once the theme creation is complete
+
     const getColor = useCallback(
         (color: string | undefined): string => color || theme.colors.onSurfaceVariant,
         [theme]

@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 import { BottomSheet } from './BottomSheet';
-import { useTheme, Divider, MD3Theme } from 'react-native-paper';
+import { Divider } from 'react-native-paper';
 import { InfoListItem, InfoListItemProps } from '../InfoListItem';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFontScale } from '../__contexts__/font-scale-context';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type UserMenuProps = {
     /** Avatar component to display as the menu trigger */
@@ -31,11 +32,11 @@ export type UserMenuProps = {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 const useStyles = (
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     fontScale: number,
     avatarSize: number
 ): StyleSheet.NamedStyles<{
@@ -63,7 +64,7 @@ const useStyles = (
  * Typically used for a account-style menu with links to settings, log out, etc.
  */
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
-    const theme = useTheme(props.theme);
+    const theme = useExtendedTheme(props.theme);
     const {
         avatar,
         backgroundColor,

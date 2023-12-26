@@ -25,7 +25,7 @@ exports[`ListItemTag ListItemTag Renders 1`] = `
           {
             "backgroundColor": "rgba(103, 80, 164, 1)",
             "borderRadius": 4,
-            "color": "#FFFFFF",
+            "color": undefined,
             "fontFamily": "OpenSans-Bold",
             "fontSize": 10,
             "fontWeight": "700",
