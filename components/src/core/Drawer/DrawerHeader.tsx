@@ -225,8 +225,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                     <Image
                         source={backgroundImage}
                         resizeMethod={'resize'}
-                        // @ts-ignore typescript is being weird about the backgroundImage style type
-                        style={[defaultStyles.backgroundImage, styles.backgroundImage]}
+                        style={[defaultStyles.backgroundImage as ImageStyle, styles.backgroundImage]}
                     />
                 </View>
             );

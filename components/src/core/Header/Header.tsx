@@ -505,17 +505,12 @@ export const Header: React.FC<HeaderProps> = (props) => {
         if (searching) {
             return theme.colors.surface;
         }
-        // @change color once have a correct color
-        return (
-            backgroundColor ||
-            // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary)
-            theme.colors.primaryContainer
-        );
+
+        return backgroundColor || theme.colors.primaryContainer;
     }, [searching, theme, backgroundColor]);
 
     const getFontColor = useCallback((): string => {
         if (searching) {
-            // @change color once have a correct color
             return theme.colors.onSurface;
         }
         return fontColor || theme.colors.onPrimaryContainer;
