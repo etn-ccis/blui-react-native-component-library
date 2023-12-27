@@ -1,7 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager } from 'react-native';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../InfoListItem';
-import { MD3Theme, useTheme } from 'react-native-paper';
 import { usePrevious } from '../__hooks__/usePrevious';
 import { AllSharedProps } from './types';
 import { useDrawerContext } from './context/drawer-context';
@@ -13,6 +12,7 @@ import { IconSource } from '../__types__';
 import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -112,7 +112,7 @@ const calcNestedPadding = (depth: number, insets: EdgeInsets): number =>
 
 const makeStyles = (
     props: DrawerNavItemProps,
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -126,8 +126,7 @@ const makeStyles = (
         activeItemBackgroundShape = 'square',
         backgroundColor,
         depth,
-        // @ts-ignore TODO
-        nestedBackgroundColor = theme.colors.surfaceContainer, // TODO: don't hardcode?
+        nestedBackgroundColor = theme.colors.surfaceContainer,
     } = props;
 
     return StyleSheet.create({
@@ -170,7 +169,7 @@ const makeStyles = (
 export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     // Destructure the props
     const { theme: themeOverride, ...otherProps } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const fontScale = useFontScale();
     const { disableScaling, maxScale } = useFontScaleSettings();
     const defaultStyles = makeStyles(props, theme, fontScale);

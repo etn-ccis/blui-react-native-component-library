@@ -10,11 +10,12 @@ import {
     ImageStyle,
     TextStyle,
 } from 'react-native';
-import { useTheme, Card, Divider, MD3Theme, Text } from 'react-native-paper';
+import { Card, Divider, Text } from 'react-native-paper';
 import { HeaderIcon, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { useFontScale } from '../__contexts__/font-scale-context';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const backgroundImageStyles = StyleSheet.create({
     root: {
@@ -239,7 +240,7 @@ const ActionPanel: React.FC<ActionPanelProps> = (props) => {
 };
 
 const scoreCardStyles = (
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     props: ScoreCardProps,
     fontScale: number
 ): StyleSheet.NamedStyles<{
@@ -340,7 +341,7 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -354,7 +355,7 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
  */
 export const ScoreCard: React.FC<ScoreCardProps & { children?: ReactNode }> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const {
         actionRow,
         actionItems,

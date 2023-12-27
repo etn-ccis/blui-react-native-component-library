@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
-import { useTheme, MD3Theme, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { IconSource } from '../__types__';
 import { Icon } from '../Icon';
 import { useFontScale } from '../__contexts__/font-scale-context';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 type EmptyStateStyles = {
     root?: ViewStyle;
@@ -13,7 +14,7 @@ type EmptyStateStyles = {
     actions?: ViewStyle;
 };
 
-const makeStyles = (theme: MD3Theme, fontScale: number): StyleSheet.NamedStyles<EmptyStateStyles> =>
+const makeStyles = (theme: ExtendedTheme, fontScale: number): StyleSheet.NamedStyles<EmptyStateStyles> =>
     StyleSheet.create({
         root: {
             flex: 1,
@@ -67,7 +68,7 @@ export type EmptyStateProps = ViewProps & {
     };
 
     /** Theme value overrides specific to this component. */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -88,7 +89,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props: EmptyStateProps) =>
         theme: themeOverride,
         ...viewProps
     } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const fontScale = useFontScale();
     const defaultStyles = makeStyles(theme, fontScale);
 
@@ -97,7 +98,6 @@ export const EmptyState: React.FC<EmptyStateProps> = (props: EmptyStateProps) =>
         return Math.max(100, Math.min(200, iconSize));
     }, [iconSize]);
 
-    // @ts-ignore TODO remove once useExtendedTheme hook available
     const getColor = useCallback((color: string | undefined): string => color || theme.colors.disabled, [theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {

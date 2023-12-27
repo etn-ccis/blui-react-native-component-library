@@ -51,7 +51,7 @@ You can also supply an array of items that will be displayed as a character-sepa
 | wrapInfo          | Whether the info line text should wrap to multiple lines on overflow     | `boolean`                              | no       | `false`        |
 | wrapSubtitle      | Whether the subtitle line text should wrap to multiple lines on overflow | `boolean`                              | no       | `false`        |
 | wrapTitle         | Whether the title line text should wrap to multiple lines on overflow    | `boolean`                              | no       | `false`        |
-| theme             | Theme value overrides                                                    | `$DeepPartial<ReactNativePaper.Theme>` | no       |                |
+| theme             | Theme value overrides                                                    | `$DeepPartial<ExtendedTheme>`          | no       |                |
 
 </div>
 

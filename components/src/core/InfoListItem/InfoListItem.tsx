@@ -10,14 +10,14 @@ import {
     I18nManager,
 } from 'react-native';
 import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useTheme, Divider as PaperDivider, MD3Theme, Text } from 'react-native-paper';
+import { Divider as PaperDivider, Text } from 'react-native-paper';
 import color from 'color';
 import { renderableSubtitleComponent, renderableInfoComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
-import * as BLUIColors from '@brightlayer-ui/colors';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -71,7 +71,7 @@ const Divider: React.FC<DividerProps> = (props) => {
 
 const infoListItemStyles = (
     props: InfoListItemProps,
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     fontScale: number
 ): StyleSheet.NamedStyles<{
     root: ViewStyle;
@@ -291,7 +291,7 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -329,7 +329,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         style,
         ...viewProps
     } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const fontScale = useFontScale();
     const { disableScaling, maxScale } = useFontScaleSettings();
     const defaultStyles = infoListItemStyles(props, theme, fontScale);
@@ -339,13 +339,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (avatar) {
             return statusColor
                 ? color(statusColor).isDark()
-                    ? // @ts-ignore TODO
-                      BLUIColors.primary[100]
-                    : // @TODO Currently neutral30 is #4242E4 and as per color pallete black[500] is #4142E4 Add Figma Variable
-                      // @ts-ignore
-                      BLUIColors.neutral[30]
-                : // @ts-ignore TODO
-                  BLUIColors.primary[100]; // default avatar is dark gray -> white text
+                    ? theme.colors.onPrimaryFilledContainer
+                    : theme.colors.onNeutralShadedContainer
+                : theme.colors.onPrimaryFilledContainer; // default avatar is dark gray -> white text
         }
         return statusColor ? statusColor : theme.colors.onSurface;
     }, [iconColor, avatar, statusColor, theme]);
