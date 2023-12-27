@@ -55,6 +55,8 @@ You can also supply an array of items that will be displayed as a character-sepa
 
 </div>
 
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
 ### Styles
 
 You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:

@@ -32,6 +32,8 @@ import { EmptyState } from '@brightlayer-ui/react-native-components';
 
 </div>
 
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
 ### Styles
 
 You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:

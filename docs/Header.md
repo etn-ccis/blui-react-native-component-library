@@ -53,6 +53,8 @@ import { Header } from '@brightlayer-ui/react-native-components';
 
 </div>
 
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
 > Props marked with a star (\*) are managed automatically when using the `<CollapsibleHeaderLayout>` component.
 
 ### Styles

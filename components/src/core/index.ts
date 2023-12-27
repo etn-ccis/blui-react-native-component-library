@@ -13,6 +13,6 @@ export * from './UserMenu';
 export * from './ScoreCard';
 export * from './CollapsableHeaderLayout';
 export * from './Utility';
-export * from './Grades';
+export * from './Grade';
 export * from './IconSwitch';
 export * from './Chip';
