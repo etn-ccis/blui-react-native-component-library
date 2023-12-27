@@ -24,6 +24,7 @@ import { ListItemTag } from '@brightlayer-ui/react-native-components';
 | --------------- | ----------------------------- | ----------------------------- | -------- | ------------------------- |
 | backgroundColor | Background color of the label | `string`                      | no       | `theme.colors.primary`    |
 | fontColor       | Text color for the label      | `string`                      | no       | Varies based on the theme |
+| fontSize        | Size of the text              | `number`                      | no       | 10                        |
 | label           | The label text                | `string`                      | yes      |                           |
 | theme           | Theme value overrides         | `$DeepPartial<ExtendedTheme>` | no       |                           |
 

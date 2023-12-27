@@ -1,40 +1,29 @@
 import React from 'react';
-import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
-import { MD3Theme, Text } from 'react-native-paper';
-import Color from 'color';
+import { TextStyle, StyleProp, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+// export type TextProps = React.ComponentProps<typeof Text>;
+// export type TypographyProps = {
+//     /**
+//      * The font size to use
+//      */
+//     fontSize?: number;
 
-export type TypographyProps = {
-    /**
-     * The font size to use
-     */
-    fontSize?: number;
+//     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
+//     styles?: {
+//         root?: StyleProp<TextStyle>;
+//     };
 
-    /**
-     * The font style to use (from the predefined values in the Theme)
-     */
-    font?: keyof MD3Theme['fonts'];
+//     /**
+//      * Theme value overrides specific to this component.
+//      */
+//     theme?: $DeepPartial<ExtendedTheme>;
+// };
 
-    /**
-     * The color to use for the text (from the predefined values in the Theme or custom)
-     */
-    color?: string;
-
-    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
-    styles?: {
-        root?: StyleProp<TextStyle>;
-    };
-
-    /**
-     * Theme value overrides specific to this component.
-     */
-    theme?: $DeepPartial<ExtendedTheme>;
-} & TextProps;
-
-export type ListItemTagProps = TypographyProps & {
+export type ListItemTagProps = Omit<React.ComponentProps<typeof Text>, 'children' | 'theme' | 'variant'> & {
     /**
      * Background color for the label.
      *
@@ -45,13 +34,25 @@ export type ListItemTagProps = TypographyProps & {
     /**
      * Text color for the label.
      *
-     * Default: Theme.colors.onBackground for light background,
-     * or white[50] on dark background
+     * Default: Theme.colors.onPrimary
      */
     fontColor?: string;
+    /**
+     * The font size to use
+     */
+    fontSize?: number;
 
     /** The label text. */
     label: string;
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
+    styles?: {
+        root?: StyleProp<TextStyle>;
+    };
+
+    /**
+     * Theme value overrides specific to this component.
+     */
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 const listItemTagStyles = (
@@ -65,11 +66,7 @@ const listItemTagStyles = (
     StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || theme.colors.primary,
-            color:
-                props.fontColor ||
-                (Color(props.backgroundColor || theme.colors.primary).isLight()
-                    ? theme.colors.onNeutralShadedContainer
-                    : theme.colors.onPrimaryFilledContainer),
+            color: props.fontColor || theme.colors.onPrimary,
             height: calculateHeight(fontSize) * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,
@@ -97,11 +94,8 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         style,
         styles = {},
         theme: themeOverride,
-        // ignore unused vars so that we can do prop transferring to the root element
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         fontColor,
         backgroundColor,
-        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherTextProps
     } = props;
     const theme = useExtendedTheme(themeOverride);
