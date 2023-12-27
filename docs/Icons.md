@@ -122,7 +122,7 @@ import { Icon } from '@brightlayer-ui/react-native-components';
 
 | Prop Name | Description                        | Type                                   | Required | Default                   |
 | --------- | ---------------------------------- | -------------------------------------- | -------- | ------------------------- |
-| source    | A component to render for the icon | [`IconSource`](#icon-object)                          | yes      |                           |
+| source    | A component to render for the icon | [`IconSource`](#icon-object)           | yes      |                           |
 | theme     | Theme value overrides              | `$DeepPartial<ReactNativePaper.Theme>` | no       | Varies based on the theme |
 
 </div>
