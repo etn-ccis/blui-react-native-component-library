@@ -5,8 +5,9 @@
 
 import React from 'react';
 import { Platform, ViewProps } from 'react-native';
-import { Avatar, MD3Theme, useTheme } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 /**
  * Props for the Grade component.
@@ -15,7 +16,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
  * @prop {string} [fontColor] - Text color for the Label (Default is theme.colors.onPrimary).
  * @prop {string} [backgroundColor] - Background color of the Label (Default is theme.colors.primary).
  * @prop {number} [size] - The diameter of the circular view.
- * @prop {$DeepPartial<MD3Theme>} [theme] - Theme value overrides specific to this component.
+ * @prop {$DeepPartial<ExtendedTheme>} [theme] - Theme value overrides specific to this component.
  */
 export type GradeProps = ViewProps & {
     /**
@@ -40,16 +41,16 @@ export type GradeProps = ViewProps & {
     /**
      * Theme value overrides
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 export type FixedGradeProps = Omit<GradeProps, 'label' | 'fontColor' | 'backgroundColor'>;
 
 const GradeBase = (props: GradeProps): JSX.Element => {
-    const defaultTheme = useTheme();
+    const defaultTheme = useExtendedTheme();
     const { label, fontColor, backgroundColor, size = 40, style, theme: themeOverride, ...otherViewProps } = props;
 
-    const theme = useTheme(themeOverride || props.theme || defaultTheme);
+    const theme = useExtendedTheme(themeOverride || props.theme || defaultTheme);
 
     // Define styles for Avatar.Text component
 

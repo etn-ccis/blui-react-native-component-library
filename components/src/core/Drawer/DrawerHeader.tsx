@@ -12,17 +12,18 @@ import {
     TouchableWithoutFeedbackProps,
     TouchableWithoutFeedback,
 } from 'react-native';
-import { Divider, MD3Theme, Text, useTheme } from 'react-native-paper';
+import { Divider, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EdgeInsets, IconSource } from '../__types__';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const makeStyles = (
     props: DrawerHeaderProps,
-    theme: MD3Theme,
+    theme: ExtendedTheme,
     insets: EdgeInsets,
     height: number,
     fontScale: number
@@ -56,7 +57,6 @@ const makeStyles = (
         textContent: {
             flexDirection: 'column',
             paddingVertical: 4 * fontScale,
-            // paddingLeft: 16,
             flex: 1,
             height: '100%',
             fontFamily: 'OpenSans-SemiBold',
@@ -147,7 +147,7 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -169,12 +169,12 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         backgroundOpacity,
-        theme: themeOverride,
         styles = {},
         style,
+        theme: themeOverride,
         ...viewProps
     } = props;
-    const theme = useTheme(themeOverride);
+    const theme = useExtendedTheme(themeOverride);
     const insets = useSafeAreaInsets();
     const { REGULAR_HEIGHT } = useHeaderDimensions();
     const { disableScaling } = useFontScaleSettings();

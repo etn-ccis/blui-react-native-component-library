@@ -33,7 +33,7 @@ import { CollapsibleHeaderLayout } from '@brightlayer-ui/react-native-components
 | --------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
 | HeaderProps     | Props to spread to the underlying [Header](./Header.md)                                 | `HeaderProps`                                                                                                           | yes      |         |
 | ScrollViewProps | Props to spread to the underlying [ScrollView](https://reactnative.dev/docs/scrollview) | [`ScrollViewProps`](https://reactnative.dev/docs/scrollview#props)                                                      | no       |         |
-| theme           | Theme value overrides                                                                   | `$DeepPartial<ReactNativePaper.Theme>`                                                                                  | no       |         |
+| theme           | Theme value overrides                                                                   | `$DeepPartial<ExtendedTheme>`                                                                                           | no       |         |
 | ScrollComponent | A Custom Scroll container to render inside the `CollapsibleHeaderLayout`                | (handleScroll: (e: any) => void, contentPadding: Animated.Value,contentOffset: { x: number; y: number;}) => JSX.Element | no       |         |
 
 </div>

@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Icon } from '../Icon/Icon';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { MD3Theme, useTheme } from 'react-native-paper';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type IconSwitchProps = ViewProps & {
     /**
@@ -35,7 +35,7 @@ export type IconSwitchProps = ViewProps & {
     /**
      * Theme value overrides specific to this component.
      */
-    theme?: $DeepPartial<MD3Theme>;
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 /**
@@ -43,7 +43,7 @@ export type IconSwitchProps = ViewProps & {
  */
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const { showIcon = false, disabled = false, value = false, onValueChange, style } = props;
-    const theme = useTheme(props.theme);
+    const theme = useExtendedTheme(props.theme);
 
     const [toggled, setToggled] = useState(value);
     const shareValue = useSharedValue(value ? 1 : 0);
@@ -75,18 +75,11 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             height: 32,
             width: 52,
             backgroundColor: disabled
-                ? // @ts-ignore
-                  theme.colors.sliderTrackDisabled
+                ? theme.colors.sliderTrackDisabled
                 : toggled
                 ? theme.colors.primary
-                : // @ts-ignore
-                  theme.colors.surfaceContainerHighest,
-            borderColor: toggled
-                ? undefined
-                : disabled
-                ? // @ts-ignore
-                  theme.colors.disabled
-                : theme.colors.outline,
+                : theme.colors.surfaceContainerHighest,
+            borderColor: toggled ? undefined : disabled ? theme.colors.disabled : theme.colors.outline,
             borderWidth: toggled ? 0 : 2,
             borderRadius: 100,
         },
@@ -101,8 +94,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             backgroundColor: disabled
                 ? toggled
                     ? theme.colors.surface
-                    : // @ts-ignore
-                      theme.colors.onDisabledContainer
+                    : theme.colors.onDisabledContainer
                 : toggled
                 ? theme.colors.onPrimary
                 : theme.colors.onBackground,
@@ -135,14 +127,12 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                         {toggled ? (
                             <Icon
                                 source={{ family: 'material', name: 'check' }}
-                                // @ts-ignore
                                 color={disabled ? theme.colors.disabled : theme.colors.onBackground}
                                 size={16}
                             />
                         ) : (
                             <Icon
                                 source={{ family: 'material', name: 'close' }}
-                                // @ts-ignore
                                 color={disabled ? theme.colors.surfaceContainerHighest : theme.colors.onPrimary}
                                 size={16}
                             />

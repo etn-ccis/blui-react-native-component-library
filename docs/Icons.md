@@ -65,12 +65,13 @@ import { Battery } from '@brightlayer-ui/react-native-progress-icons';
 
 <div style="overflow: auto">
 
-| Prop Name        | Description                                                                     | Type               | Required | Default |
-| ---------------- | ------------------------------------------------------------------------------- | ------------------ | -------- | ------- |
-| size             | What size the icon / component should be                                        | `number`           | no       |         |
-| color            | What color the icon / component should be                                       | `string`           | no       |         |
-| allowFontScaling | Should the icon / component size scale with the system font size                | `boolean`          | no       |         |
-| direction        | The current device language direction (for flipping components where necessary) | `'ltr'` \| `'rtl'` | no       |         |
+| Prop Name        | Description                                                                     | Type                          | Required | Default |
+| ---------------- | ------------------------------------------------------------------------------- | ----------------------------- | -------- | ------- |
+| size             | What size the icon / component should be                                        | `number`                      | no       |         |
+| color            | What color the icon / component should be                                       | `string`                      | no       |         |
+| allowFontScaling | Should the icon / component size scale with the system font size                | `boolean`                     | no       |         |
+| direction        | The current device language direction (for flipping components where necessary) | `'ltr'` \| `'rtl'`            | no       |         |
+| theme            | Theme value overrides                                                           | `$DeepPartial<ExtendedTheme>` | no       |         |
 
 </div>
 

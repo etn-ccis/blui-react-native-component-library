@@ -22,16 +22,16 @@ import { MobileStepper } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto;">
 
-| Prop Name     | Description                                    | Type                                   | Required | Default                |
-| ------------- | ---------------------------------------------- | -------------------------------------- | -------- | ---------------------- | --- | ------ |
-| activeColor   | Color of the active page indicator             | `string`                               | no       | `theme.colors.primary` |
-| activeStep    | The index of the active step (>= 0)            | `number`                               | yes      |                        |
-| inactiveColor | Color of inactive dot when using 'dot' variant | `string`                               | no       |                        |
-| leftButton    | Left button content                            | `JSX.Element`                          | no       |                        |
-| rightButton   | Right button content                           | `JSX.Element`                          | no       |                        |
-| steps         | Total number of steps to display (>0)          | `number`                               | yes      |                        |
-| variant       | Which type of indicator to use                 | `dots                                  | text     | progress`              | no  | `dots` |
-| theme         | Theme value overrides                          | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
+| Prop Name     | Description                                    | Type                          | Required | Default                |
+| ------------- | ---------------------------------------------- | ----------------------------- | -------- | ---------------------- | --- | ------ |
+| activeColor   | Color of the active page indicator             | `string`                      | no       | `theme.colors.primary` |
+| activeStep    | The index of the active step (>= 0)            | `number`                      | yes      |                        |
+| inactiveColor | Color of inactive dot when using 'dot' variant | `string`                      | no       |                        |
+| leftButton    | Left button content                            | `JSX.Element`                 | no       |                        |
+| rightButton   | Right button content                           | `JSX.Element`                 | no       |                        |
+| steps         | Total number of steps to display (>0)          | `number`                      | yes      |                        |
+| variant       | Which type of indicator to use                 | `dots                         | text     | progress`              | no  | `dots` |
+| theme         | Theme value overrides                          | `$DeepPartial<ExtendedTheme>` | no       |                        |
 
 </div>
 
