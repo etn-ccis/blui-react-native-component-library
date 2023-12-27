@@ -62,7 +62,7 @@ import {
 
 </div>
 
-Any other props will be provided to the root element ([**Surface**](https://callstack.github.io/react-native-paper/docs/components/Surface)).
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
 #### Styles
 
@@ -267,23 +267,23 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 <div style="overflow: auto;">
 
-| Name                          | Description                                                                    | Type                                   | Required | Default                                                                                           |
-| ----------------------------- | ------------------------------------------------------------------------------ | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| activeItemBackgroundColor     | Background color for the active item                                           | `string`                               | no       | varies for light/dark theme                                                                       |
-| activeItemBackgroundShape     | Shape of the active item background highlight                                  | `'round'` \| `'square'`                | no       | square                                                                                            |
-| activeItemFontColor           | Font color for the active item                                                 | `string`                               | no       | varies for light/dark theme                                                                       |
-| activeItemIconColor           | Icon color for the active item                                                 | `string`                               | no       | varies for light/dark theme                                                                       |
-| backgroundColor               | Color used for the background of the element                                   | `string`                               | no       |                                                                                                   |
-| chevron                       | Add chevrons for all menu items                                                | `boolean`                              | no       | `false`                                                                                           |
-| collapseIcon                  | Icon used to collapse a DrawerNavGroup                                         | `JSX.Element`                          | no       | `expandIcon` rotated 180 degrees                                                                  |
-| disableActiveItemParentStyles | When true, disables the semi-bold text style on parent elements of active item | `boolean`                              | no       | `false`                                                                                           |
-| divider                       | Show a dividing line between all items                                         | `boolean`                              | no       | `false`                                                                                           |
-| expandIcon                    | Icon used to expand a DrawerNavGroup                                           | `JSX.Element`                          | no       | `<MatIcon name={'expand-more'}/>` at top-level, `<MatIcon name={'arrow-drop-down'} />` for nested |
-| hidePadding                   | Hide the padding reserved for DrawerNavItem icons                              | `boolean`                              | no       |                                                                                                   |
-| itemFontColor                 | The color used for the DrawerNavItem text                                      | `string`                               | no       | varies for light/dark theme                                                                       |
-| itemIconColor                 | The color used for the DrawerNavItem icon                                      | `string`                               | no       | varies for light/dark theme                                                                       |
-| nestedBackgroundColor         | Background color for nested items                                              | `string`                               | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100]                                      |
-| nestedDivider                 | Show a dividing line between nested items                                      | `boolean`                              | no       | `false`                                                                                           |
-| theme                         | Theme value overrides                                                          | `$DeepPartial<ExtendedTheme>`          | no       |                                                                                                   |
+| Name                          | Description                                                                    | Type                          | Required | Default                                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------ | ----------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| activeItemBackgroundColor     | Background color for the active item                                           | `string`                      | no       | varies for light/dark theme                                                                       |
+| activeItemBackgroundShape     | Shape of the active item background highlight                                  | `'round'` \| `'square'`       | no       | square                                                                                            |
+| activeItemFontColor           | Font color for the active item                                                 | `string`                      | no       | varies for light/dark theme                                                                       |
+| activeItemIconColor           | Icon color for the active item                                                 | `string`                      | no       | varies for light/dark theme                                                                       |
+| backgroundColor               | Color used for the background of the element                                   | `string`                      | no       |                                                                                                   |
+| chevron                       | Add chevrons for all menu items                                                | `boolean`                     | no       | `false`                                                                                           |
+| collapseIcon                  | Icon used to collapse a DrawerNavGroup                                         | `JSX.Element`                 | no       | `expandIcon` rotated 180 degrees                                                                  |
+| disableActiveItemParentStyles | When true, disables the semi-bold text style on parent elements of active item | `boolean`                     | no       | `false`                                                                                           |
+| divider                       | Show a dividing line between all items                                         | `boolean`                     | no       | `false`                                                                                           |
+| expandIcon                    | Icon used to expand a DrawerNavGroup                                           | `JSX.Element`                 | no       | `<MatIcon name={'expand-more'}/>` at top-level, `<MatIcon name={'arrow-drop-down'} />` for nested |
+| hidePadding                   | Hide the padding reserved for DrawerNavItem icons                              | `boolean`                     | no       |                                                                                                   |
+| itemFontColor                 | The color used for the DrawerNavItem text                                      | `string`                      | no       | varies for light/dark theme                                                                       |
+| itemIconColor                 | The color used for the DrawerNavItem icon                                      | `string`                      | no       | varies for light/dark theme                                                                       |
+| nestedBackgroundColor         | Background color for nested items                                              | `string`                      | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100]                                      |
+| nestedDivider                 | Show a dividing line between nested items                                      | `boolean`                     | no       | `false`                                                                                           |
+| theme                         | Theme value overrides                                                          | `$DeepPartial<ExtendedTheme>` | no       |                                                                                                   |
 
 </div>

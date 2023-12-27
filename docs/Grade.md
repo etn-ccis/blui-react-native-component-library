@@ -22,6 +22,8 @@ import { Grade } from '@brightlayer-ui/react-native-components';
 | size            | The size of the circle in px       | `number`                      | no       | 40                       |
 | theme           | Theme value overrides              | `$DeepPartial<ExtendedTheme>` | no       |                          |
 
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
 ## Grade Subcomponent
 
 The subcomponents are a set of preconfigured components that can be used directly for specific grades with in-built styling.

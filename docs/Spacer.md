@@ -32,7 +32,7 @@ import { Spacer } from '@brightlayer-ui/react-native-components';
 
 </div>
 
-Any other props supplied will be provided to the root element (`View`).
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
 ### Styles
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Grade from './Grades';
+import Grade from './Grade';
 
-describe('Grades.custom', () => {
+describe('Grade.custom', () => {
     it('renders with custom label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(
             <Grade label="Custom Grade" fontColor="#FF5733" backgroundColor="#66CCFF" size={50} />
@@ -27,7 +27,7 @@ describe('Grades.custom', () => {
     });
 });
 
-describe('Grades.aPlus', () => {
+describe('Grade.aPlus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.APlus />);
 
@@ -51,7 +51,7 @@ describe('Grades.aPlus', () => {
     });
 });
 
-describe('Grades.a', () => {
+describe('Grade.a', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.A />);
 
@@ -74,7 +74,7 @@ describe('Grades.a', () => {
     });
 });
 
-describe('Grades.aMinus', () => {
+describe('Grade.aMinus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.AMinus />);
 
@@ -98,7 +98,7 @@ describe('Grades.aMinus', () => {
     });
 });
 
-describe('Grades.bPlus', () => {
+describe('Grade.bPlus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.BPlus />);
 
@@ -122,7 +122,7 @@ describe('Grades.bPlus', () => {
     });
 });
 
-describe('Grades.b', () => {
+describe('Grade.b', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.B />);
 
@@ -146,7 +146,7 @@ describe('Grades.b', () => {
     });
 });
 
-describe('Grades.bMinus', () => {
+describe('Grade.bMinus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.BMinus />);
 
@@ -170,7 +170,7 @@ describe('Grades.bMinus', () => {
     });
 });
 
-describe('Grades.cPlus', () => {
+describe('Grade.cPlus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.CPlus />);
 
@@ -194,7 +194,7 @@ describe('Grades.cPlus', () => {
     });
 });
 
-describe('Grades.c', () => {
+describe('Grade.c', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.C />);
 
@@ -218,7 +218,7 @@ describe('Grades.c', () => {
     });
 });
 
-describe('Grades.cMinus', () => {
+describe('Grade.cMinus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.CMinus />);
 
@@ -242,7 +242,7 @@ describe('Grades.cMinus', () => {
     });
 });
 
-describe('Grades.dPlus', () => {
+describe('Grade.dPlus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.DPlus />);
 
@@ -266,7 +266,7 @@ describe('Grades.dPlus', () => {
     });
 });
 
-describe('Grades.d', () => {
+describe('Grade.d', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.D />);
 
@@ -290,7 +290,7 @@ describe('Grades.d', () => {
     });
 });
 
-describe('Grades.dMinus', () => {
+describe('Grade.dMinus', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.DMinus />);
 
@@ -314,7 +314,7 @@ describe('Grades.dMinus', () => {
     });
 });
 
-describe('Grades.f', () => {
+describe('Grade.f', () => {
     it('renders with default label, color, background color, and size', () => {
         const { toJSON, getByText, getByTestId } = render(<Grade.F />);
 
