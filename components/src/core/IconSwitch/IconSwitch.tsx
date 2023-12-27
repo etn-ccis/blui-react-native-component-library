@@ -110,7 +110,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                     translateX: interpolate(
                         shareValue.value,
                         [0, 1],
-                        showIcon ? (rtl ? [-20, -2] : [0, 22]) : rtl ? [-20, 2] : [0, 18],
+                        showIcon ? (rtl ? [0, -22] : [0, 22]) : rtl ? [0, -18] : [0, 18],
                         Extrapolation.CLAMP
                     ),
                 },
