@@ -165,7 +165,10 @@ export type InfoListItemProps = ViewProps & {
      */
     avatar?: boolean;
 
-    /** The color used for the background of the InfoListItem */
+    /** The color used for the background of the InfoListItem
+     *
+     * Default: 'transparent
+     */
     backgroundColor?: string;
 
     /**
@@ -194,7 +197,7 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Color to use for text elements
      *
-     * Default: Theme.colors.text
+     * Default: theme.colors.text
      */
     fontColor?: string;
 
@@ -235,7 +238,10 @@ export type InfoListItemProps = ViewProps & {
     /** Custom content to render to the right of the text elements */
     rightComponent?: JSX.Element;
 
-    /** Color to use indicating status. This will apply to the status stripe and icon */
+    /** Color to use indicating status. This will apply to the status stripe and icon
+     *
+     * Default: theme.colors.onSurface
+     */
     statusColor?: string;
 
     /**

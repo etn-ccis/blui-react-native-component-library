@@ -115,13 +115,13 @@ export type HeaderProps = ViewProps & {
     /**
      * The color used for the action Items
      *
-     * Default: Theme.colors.onSurfaceVariant
+     * Default: theme.colors.onSurfaceVariant
      */
     actionItemColor?: string;
     /**
      * The color used for the background
      *
-     * Default: Theme.colors.primary
+     * Default: theme.colors.primary
      */
     backgroundColor?: string;
 
@@ -154,7 +154,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Color of the title, subtitle, info, and icons in the header
      *
-     * Default: Theme.colors.onPrimary
+     * Default: theme.colors.onPrimary
      */
     fontColor?: string;
 
@@ -167,7 +167,7 @@ export type HeaderProps = ViewProps & {
     /**
      * The color used for the navigation Icon
      *
-     * Default: Theme.colors.onSurface
+     * Default: theme.colors.onSurface
      */
     navigationIconColor?: string;
 

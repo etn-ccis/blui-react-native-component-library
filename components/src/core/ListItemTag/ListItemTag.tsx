@@ -38,14 +38,14 @@ export type ListItemTagProps = TypographyProps & {
     /**
      * Background color for the label.
      *
-     * Default: Theme.colors.primary
+     * Default: theme.colors.primary
      **/
     backgroundColor?: string;
 
     /**
      * Text color for the label.
      *
-     * Default: Theme.colors.onBackground for light background,
+     * Default: theme.colors.onBackground for light background,
      * or white[50] on dark background
      */
     fontColor?: string;

@@ -96,7 +96,7 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * The color used for the background
      *
-     * Default: Theme.colors.primary
+     * Default: theme.colors.primary
      */
     backgroundColor?: string;
     /**
@@ -117,7 +117,7 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * Color to use for header text elements
      *
-     * Default: Theme.colors.onSurface
+     * Default: theme.colors.onSurface
      */
     fontColor?: string;
 

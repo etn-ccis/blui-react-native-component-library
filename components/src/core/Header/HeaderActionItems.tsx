@@ -43,7 +43,7 @@ type ActionItemProps = {
     /**
      * The color used for the action Items
      *
-     * Default: Theme.colors.on-surface-variant
+     * Default: theme.colors.onSurfaceVariant
      */
     actionItemColor?: string;
 
