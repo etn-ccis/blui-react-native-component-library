@@ -114,7 +114,11 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /** Callback to execute when the drawer header is pressed */
     onPress?: () => void;
 
-    /** Color to use for header text elements */
+    /**
+     * Color to use for header text elements
+     *
+     * Default: Theme.colors.onSurface
+     */
     fontColor?: string;
 
     /** Icon to use to the left of the header text */
