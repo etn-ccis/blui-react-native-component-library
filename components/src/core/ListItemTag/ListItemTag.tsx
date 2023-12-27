@@ -80,6 +80,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         /* eslint-disable @typescript-eslint/no-unused-vars */
         fontColor,
         backgroundColor,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherTextProps
     } = props;
     const theme = useExtendedTheme(themeOverride);
