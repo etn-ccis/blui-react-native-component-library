@@ -28,27 +28,30 @@ You can also supply an array of items that will be displayed as a character-sepa
 
 <div style="overflow: auto">
 
-| Prop Name         | Description                                                     | Type                                 | Required | Default                  |
-| ----------------- | --------------------------------------------------------------- | ------------------------------------ | -------- | ------------------------ |
-| avatar            | Show a colored background behind icon                           | `boolean`                            | no       | `false`                  |
-| backgroundColor   | The color used for the background of the InfoListItem           | `string`                             | no       | `transparent`            |
-| chevron           | Add a chevron icon on the right                                 | `boolean`                            | no       | `false`                  |
-| dense             | Smaller height row with less padding                            | `boolean`                            | no       | `false`                  |
-| divider           | Show a dividing line below the row                              | `'full'` \| `'partial'`              | no       |                          |
-| fontColor         | Color to use for text elements                                  | `string`                             | no       |                          |
-| hidePadding       | Hide padding reserved for icons when there is no icon           | `boolean`                            | no       | `false`                  |
-| iconAlign         | Icon alignment when `avatar` is set to`false`                   | `'left'` \| `'center'` \| `'right'`  | no       | 'left'                   |
-| icon              | A component to render for the icon                              | [`IconSource`](./Icons.md)           | no       |                          |
-| iconColor         | Color to use for the icon                                       | `string`                             | no       |                          |
-| info              | The text to show on the third line                              | `string` \| `Array<React.ReactNode>` | no       |                          |
-| leftComponent     | Custom content to render between the icon and the text elements | `JSX.Element`                        | no       |                          |
-| onPress           | A function to execute when pressed                              | `function`                           | no       |                          |
-| rightComponent    | Custom content to render to the right of the text elements      | `JSX.Element`                        | no       |                          |
-| statusColor       | Color to use for status (affects status stripe and icon)        | `string`                             | no       | `theme.colors.onSurface` |
-| subtitle          | The text to show on the second line                             | `string` \| `Array<React.ReactNode>` | no       |                          |
-| subtitleSeparator | Separator character for subtitle                                | `string`                             | no       | '·' ('\u00B7')           |
-| title             | The text to show on the first line                              | `string`                             | yes      |                          |
-| theme             | Theme value overrides                                           | `$DeepPartial<ExtendedTheme>`        | no       |                          |
+| Prop Name         | Description                                                              | Type                                   | Required | Default        |
+| ----------------- | ------------------------------------------------------------------------ | -------------------------------------- | -------- | -------------- |
+| avatar            | Show a colored background behind icon                                    | `boolean`                              | no       | `false`        |
+| backgroundColor   | The color used for the background of the InfoListItem                    | `string`                               | no       |                |
+| chevron           | Add a chevron icon on the right                                          | `boolean`                              | no       | `false`        |
+| dense             | Smaller height row with less padding                                     | `boolean`                              | no       | `false`        |
+| divider           | Show a dividing line below the row                                       | `'full'` \| `'partial'`                | no       |                |
+| fontColor         | Color to use for text elements                                           | `string`                               | no       |                |
+| hidePadding       | Hide padding reserved for icons when there is no icon                    | `boolean`                              | no       | `false`        |
+| iconAlign         | Icon alignment when `avatar` is set to`false`                            | `'left'` \| `'center'` \| `'right'`    | no       | 'left'         |
+| icon              | A component to render for the icon                                       | [`IconSource`](./Icons.md)             | no       |                |
+| iconColor         | Color to use for the icon                                                | `string`                               | no       |                |
+| info              | The text to show on the third line                                       | `string` \| `Array<React.ReactNode>`   | no       |                |
+| leftComponent     | Custom content to render between the icon and the text elements          | `JSX.Element`                          | no       |                |
+| onPress           | A function to execute when pressed                                       | `function`                             | no       |                |
+| rightComponent    | Custom content to render to the right of the text elements               | `JSX.Element`                          | no       |                |
+| statusColor       | Color to use for status (affects status stripe and icon)                 | `string`                               | no       |                |
+| subtitle          | The text to show on the second line                                      | `string` \| `Array<React.ReactNode>`   | no       |                |
+| subtitleSeparator | Separator character for subtitle                                         | `string`                               | no       | '·' ('\u00B7') |
+| title             | The text to show on the first line                                       | `string`                               | yes      |                |
+| wrapInfo          | Whether the info line text should wrap to multiple lines on overflow     | `boolean`                              | no       | `false`        |
+| wrapSubtitle      | Whether the subtitle line text should wrap to multiple lines on overflow | `boolean`                              | no       | `false`        |
+| wrapTitle         | Whether the title line text should wrap to multiple lines on overflow    | `boolean`                              | no       | `false`        |
+| theme             | Theme value overrides                                                    | `$DeepPartial<ExtendedTheme>`          | no       |                |
 
 </div>
 
