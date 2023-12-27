@@ -5,23 +5,6 @@ import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-// export type TextProps = React.ComponentProps<typeof Text>;
-// export type TypographyProps = {
-//     /**
-//      * The font size to use
-//      */
-//     fontSize?: number;
-
-//     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
-//     styles?: {
-//         root?: StyleProp<TextStyle>;
-//     };
-
-//     /**
-//      * Theme value overrides specific to this component.
-//      */
-//     theme?: $DeepPartial<ExtendedTheme>;
-// };
 
 export type ListItemTagProps = Omit<React.ComponentProps<typeof Text>, 'children' | 'theme' | 'variant'> & {
     /**
@@ -94,6 +77,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         style,
         styles = {},
         theme: themeOverride,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
         fontColor,
         backgroundColor,
         ...otherTextProps
