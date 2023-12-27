@@ -73,6 +73,19 @@ import { Battery } from '@brightlayer-ui/react-native-progress-icons';
 
 Brightlayer UI components will pass these values to you for use in your component to achieve the correct appearance. It is your responsibility to apply them.
 
+## Wrapped Icon
+
+You can use the [IconWrapper](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/IconWrapper.md) utility to create a functional component that matches the signature required for the inline option above.
+
+> **NOTE:** This was previously the only way to pass icons to Brightlayer UI components. With the introduction of the newer options in version 6.0.0, this method is no longer recommended and will be deprecated in the future.
+
+```tsx
+import Leaf from '@brightlayer-ui/icons-svg/leaf.svg';
+const LeafIcon = wrapIcon({ IconClass: Leaf });
+
+<ComponentName icon={LeafIcon} />;
+```
+
 ## JSX Element
 
 You can also pass a JSX Element directly to the icon for a component. This is a very convenient way to pass icons, but you must be very careful with the size and color of elements passed in this way. Because you are not receiving props from the Brightlayer UI component (as you do with the inline functional component), you are fully responsible for making sure that icons match the specs outlined in the documentation.
