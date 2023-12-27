@@ -49,7 +49,7 @@ import { Header } from '@brightlayer-ui/react-native-components';
 | updateScrollView\*  | Callback function to update a linked ScrollView (dynamic variant only)                                                     | `({ padding: number \| null; animate: boolean; scrollTo: number \| null }) => void` | no       |                                 |
 | title               | The text to display on the first line                                                                                      | `ReactNode`                                                                         | yes      |                                 |
 | variant             | The resize mode of the Header (static will resize only on taps, if enabled. Dynamic will resize as the screen is scrolled) | `'dynamic'` \| `'static'`                                                           | no       | 'static'                        |
-| theme               | Theme value overrides                                                                                                      | `$DeepPartial<ExtendedTheme>`                                              | no       |                                 |
+| theme               | Theme value overrides                                                                                                      | `$DeepPartial<ExtendedTheme>`                                                       | no       |                                 |
 
 </div>
 

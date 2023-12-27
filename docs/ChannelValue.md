@@ -17,7 +17,7 @@ import { ChannelValue } from '@brightlayer-ui/react-native-components';
 <div style="overflow: auto">
 
 | Prop Name   | Description                                         | Type                             | Required | Default                  |
-| ----------- | --------------------------------------------------- | -------------------------------- | -------- | -------------------      |
+| ----------- | --------------------------------------------------- | -------------------------------- | -------- | ------------------------ |
 | value       | Text to display for the value                       | `string` \| `number`             | yes      |                          |
 | icon        | A component to render for the icon                  | [`IconSource`](./Icons.md)       | no       |                          |
 | iconSize    | The size to render the icon                         | `number`                         | no       | `fontSize`               |
