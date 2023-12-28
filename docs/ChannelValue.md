@@ -31,6 +31,8 @@ import { ChannelValue } from '@brightlayer-ui/react-native-components';
 
 </div>
 
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
 > \*Setting `unitSpace` to `'auto'` will show a space for all units except for '%', '℉', '°F', '℃', '°C', and '°'. When `prefix` is true, the space will be shown for all units except for '$'.
 
 ### Styles
