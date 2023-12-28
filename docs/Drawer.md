@@ -86,10 +86,10 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 
 | Prop Name         | Description                                      | Type                          | Required | Default                |
 | ----------------- | ------------------------------------------------ | ----------------------------- | -------- | ---------------------- |
-| backgroundColor   | The color used for the background                | `string`                      | no       | `theme.colors.primary` |
+| backgroundColor   | The color used for the background                | `string`                      | no       | `theme.colors.surface` |
 | backgroundImage   | An image to display in the header                | `ImageSourcePropType`         | no       |                        |
 | backgroundOpacity | The opacity of the background image              | `number`                      | no       | `0.3`                  |
-| fontColor         | The color of the text elements                   | `string`                      | no       | `theme.colors.surface` |
+| fontColor         | The color of the text elements                   | `string`                      | no       | `theme.colors.primary` |
 | icon              | A component to render for the icon               | [`IconSource`](./Icons.md)    | no       |                        |
 | onPress           | A callback to execute when the header is pressed | `() => void`                  | no       |                        |
 | onIconPress       | A callback to execute when the icon is pressed   | `() => void`                  | no       |                        |
@@ -174,14 +174,14 @@ The `items` property supports nested items to generate collapsible sections in t
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type        | Required | Default                     |
-| ------------------------------- | ---------------------------------------------------------- | ----------- | -------- | --------------------------- |
-| items                           | List of navigation items to render                         | `NavItem[]` | yes      |                             |
-| title                           | Text to display in the group header                        | `string`    | no       |                             |
-| titleColor                      | Color used for the title text                              | `string`    | no       | varies for light/dark theme |
-| titleContent                    | Custom element, substitute for title                       | `ReactNode` | no       |                             |
-| titleDivider                    | Whether to show a divider below the title                  | `boolean`   | no       | true                        |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -           | -        |                             |
+| Prop Name                       | Description                                                | Type        | Required | Default                  |
+| ------------------------------- | ---------------------------------------------------------- | ----------- | -------- | ------------------------ |
+| items                           | List of navigation items to render                         | `NavItem[]` | yes      |                          |
+| title                           | Text to display in the group header                        | `string`    | no       |                          |
+| titleColor                      | Color used for the title text                              | `string`    | no       | `theme.colors.onSurface` |
+| titleContent                    | Custom element, substitute for title                       | `ReactNode` | no       |                          |
+| titleDivider                    | Whether to show a divider below the title                  | `boolean`   | no       | true                     |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -           | -        |                          |
 
 </div>
 
@@ -269,10 +269,10 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 | Name                          | Description                                                                    | Type                          | Required | Default                                                                                           |
 | ----------------------------- | ------------------------------------------------------------------------------ | ----------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| activeItemBackgroundColor     | Background color for the active item                                           | `string`                      | no       | varies for light/dark theme                                                                       |
-| activeItemBackgroundShape     | Shape of the active item background highlight                                  | `'round'` \| `'square'`       | no       | square                                                                                            |
-| activeItemFontColor           | Font color for the active item                                                 | `string`                      | no       | varies for light/dark theme                                                                       |
-| activeItemIconColor           | Icon color for the active item                                                 | `string`                      | no       | varies for light/dark theme                                                                       |
+| activeItemBackgroundColor     | Background color for the active item                                           | `string`                      | no       | `theme.colors.primaryContainer`                                                                   |
+| activeItemBackgroundShape     | Shape of the active item background highlight                                  | `'round'` \| `'square'`       | no       | `square`                                                                                          |
+| activeItemFontColor           | Font color for the active item                                                 | `string`                      | no       | `theme.colors.onPrimaryContainer`                                                                 |
+| activeItemIconColor           | Icon color for the active item                                                 | `string`                      | no       | `theme.colors.onPrimaryContainer`                                                                 |
 | backgroundColor               | Color used for the background of the element                                   | `string`                      | no       |                                                                                                   |
 | chevron                       | Add chevrons for all menu items                                                | `boolean`                     | no       | `false`                                                                                           |
 | collapseIcon                  | Icon used to collapse a DrawerNavGroup                                         | `JSX.Element`                 | no       | `expandIcon` rotated 180 degrees                                                                  |
@@ -280,9 +280,9 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | divider                       | Show a dividing line between all items                                         | `boolean`                     | no       | `false`                                                                                           |
 | expandIcon                    | Icon used to expand a DrawerNavGroup                                           | `JSX.Element`                 | no       | `<MatIcon name={'expand-more'}/>` at top-level, `<MatIcon name={'arrow-drop-down'} />` for nested |
 | hidePadding                   | Hide the padding reserved for DrawerNavItem icons                              | `boolean`                     | no       |                                                                                                   |
-| itemFontColor                 | The color used for the DrawerNavItem text                                      | `string`                      | no       | varies for light/dark theme                                                                       |
-| itemIconColor                 | The color used for the DrawerNavItem icon                                      | `string`                      | no       | varies for light/dark theme                                                                       |
-| nestedBackgroundColor         | Background color for nested items                                              | `string`                      | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100]                                      |
+| itemFontColor                 | The color used for the DrawerNavItem text                                      | `string`                      | no       | `theme.colors.tertiary`                                                                           |
+| itemIconColor                 | The color used for the DrawerNavItem icon                                      | `string`                      | no       | `theme.colors.onSurfaceVariant`                                                                   |
+| nestedBackgroundColor         | Background color for nested items                                              | `string`                      | no       | `theme.colors.surfaceContainer`                                                                   |
 | nestedDivider                 | Show a dividing line between nested items                                      | `boolean`                     | no       | `false`                                                                                           |
 | theme                         | Theme value overrides                                                          | `$DeepPartial<ExtendedTheme>` | no       |                                                                                                   |
 

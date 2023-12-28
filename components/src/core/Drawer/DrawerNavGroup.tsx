@@ -24,7 +24,10 @@ export type DrawerNavGroupProps = AllSharedProps &
         /** Text to display in the group header */
         title?: string;
 
-        /** Color to use for the group header title text */
+        /** Color to use for the group header title text
+         *
+         * Default: theme.colors.onSurface
+         */
         titleColor?: string;
 
         /** Custom content to use in place of the group header title (if you want to use non-string content) */

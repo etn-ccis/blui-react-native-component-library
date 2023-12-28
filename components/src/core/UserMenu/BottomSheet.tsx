@@ -8,7 +8,10 @@ type BottomSheetProps = {
     show?: boolean;
     /** Callback function to execute when the bottom sheet is dismissed */
     onClose?: () => void;
-    /** Background color to use for the bottom sheet */
+    /** Background color to use for the bottom sheet
+     *
+     * Default: theme.colors.surface
+     */
     backgroundColor?: string;
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {

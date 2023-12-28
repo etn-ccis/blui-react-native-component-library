@@ -36,7 +36,7 @@ export type ChannelValueProps = ViewProps & {
     /**
      * The color of the primary icon
      *
-     * Default: Theme.colors.onSurface
+     * Default: theme.colors.onSurface
      */
     iconColor?: string;
 
@@ -64,7 +64,10 @@ export type ChannelValueProps = ViewProps & {
      */
     fontSize?: number;
 
-    /** The color used for the text elements */
+    /** The color used for the text elements
+     *
+     * Default: theme.colors.onSurface
+     */
     color?: string;
 
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
