@@ -15,5 +15,4 @@ stories.add('List Item Tag', docFn, { notes: { markdown: getReadMe('ListItemTag.
 stories.add('Mobile Stepper', docFn, { notes: { markdown: getReadMe('MobileStepper.md') } });
 stories.add('Score Card', docFn, { notes: { markdown: getReadMe('ScoreCard.md') } });
 stories.add('Spacer', docFn, { notes: { markdown: getReadMe('Spacer.md') } });
-stories.add('Typography', docFn, { notes: { markdown: getReadMe('Typography.md') } });
 stories.add('User Menu', docFn, { notes: { markdown: getReadMe('UserMenu.md') } });
