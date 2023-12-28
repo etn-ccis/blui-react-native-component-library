@@ -33,7 +33,7 @@ import { UserMenu } from '@brightlayer-ui/react-native-components';
 | Prop Name       | Description                                              | Type                          | Required | Default                         |
 | --------------- | -------------------------------------------------------- | ----------------------------- | -------- | ------------------------------- |
 | avatar          | Avatar to display as the menu trigger                    | `JSX.Element`                 | yes      |                                 |
-| backgroundColor | Background color of the bottom sheet                     | `string`                      | no       |                                 |
+| backgroundColor | Background color of the bottom sheet                     | `string`                      | no       | `theme.colors.surface`          |
 | fontColor       | Color of text for the bottom sheet header and menu items | `string`                      | no       |                                 |
 | iconColor       | Color of icons for the bottom sheet menu items           | `string`                      | no       | `theme.colors.onSurfaceVariant` |
 | menuItems       | An array of menu items to show in the bottom sheet       | `InfoListItemProps[]`         | yes      |                                 |

@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
 import { MD3Theme, Text } from 'react-native-paper';
-import Color from 'color';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { calculateHeight } from '../Utility/shared';
@@ -38,15 +37,14 @@ export type ListItemTagProps = TypographyProps & {
     /**
      * Background color for the label.
      *
-     * Default: theme.colors.primary
+     * Default: theme.colors.primaryFilledContainer
      **/
     backgroundColor?: string;
 
     /**
      * Text color for the label.
      *
-     * Default: theme.colors.onBackground for light background,
-     * or white[50] on dark background
+     * Default: theme.colors.onPrimaryFilledContainer
      */
     fontColor?: string;
 
@@ -64,12 +62,8 @@ const listItemTagStyles = (
 }> =>
     StyleSheet.create({
         root: {
-            backgroundColor: props.backgroundColor || theme.colors.primary,
-            color:
-                props.fontColor ||
-                (Color(props.backgroundColor || theme.colors.primary).isLight()
-                    ? theme.colors.onNeutralShadedContainer
-                    : theme.colors.onPrimaryFilledContainer),
+            backgroundColor: props.backgroundColor || theme.colors.primaryFilledContainer,
+            color: props.fontColor || theme.colors.onPrimaryFilledContainer,
             height: calculateHeight(fontSize) * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,

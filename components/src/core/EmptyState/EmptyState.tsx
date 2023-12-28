@@ -53,7 +53,9 @@ export type EmptyStateProps = ViewProps & {
     /** The size of the primary icon */
     iconSize?: number;
 
-    /** Color override for the row icon */
+    /** Color override for the row icon
+     * Default: theme.colors.disabled
+     */
     iconColor?: string;
 
     /** Additional components to render below */
