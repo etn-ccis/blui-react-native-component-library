@@ -5,6 +5,7 @@ import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import Color from 'color';
 
 export type ListItemTagProps = Omit<React.ComponentProps<typeof Text>, 'children' | 'theme' | 'variant'> & {
     /**
@@ -49,7 +50,11 @@ const listItemTagStyles = (
     StyleSheet.create({
         root: {
             backgroundColor: props.backgroundColor || theme.colors.primary,
-            color: props.fontColor || theme.colors.onPrimary,
+            color:
+                props.fontColor ||
+                (Color(props.backgroundColor || theme.colors.primary).isLight()
+                    ? theme.colors.onNeutralShadedContainer
+                    : theme.colors.onPrimaryFilledContainer),
             height: calculateHeight(fontSize) * fontScale,
             padding: 0,
             paddingLeft: 4 * fontScale,
