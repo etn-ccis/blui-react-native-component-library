@@ -96,7 +96,7 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * The color used for the background
      *
-     * Default: Theme.colors.primary
+     * Default: theme.colors.primary
      */
     backgroundColor?: string;
     /**
@@ -114,7 +114,11 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /** Callback to execute when the drawer header is pressed */
     onPress?: () => void;
 
-    /** Color to use for header text elements */
+    /**
+     * Color to use for header text elements
+     *
+     * Default: theme.colors.onSurface
+     */
     fontColor?: string;
 
     /** Icon to use to the left of the header text */
@@ -225,8 +229,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                     <Image
                         source={backgroundImage}
                         resizeMethod={'resize'}
-                        // @ts-ignore typescript is being weird about the backgroundImage style type
-                        style={[defaultStyles.backgroundImage, styles.backgroundImage]}
+                        style={[defaultStyles.backgroundImage as ImageStyle, styles.backgroundImage]}
                     />
                 </View>
             );

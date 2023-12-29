@@ -41,19 +41,19 @@ import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@brightlayer-ui
 
 <div style="overflow: auto">
 
-| Prop Name             | Description                                           | Type                          | Required | Default                  |
-| --------------------- | ----------------------------------------------------- | ----------------------------- | -------- | ------------------------ |
-| actionItems           | Icons to show to the right of the header text (max 6) | `HeaderIcon[]`                | no       |                          |
-| actionRow             | Component to render for the card footer               | `React.Component`             | no       |                          |
-| badge                 | The component to render in the call-out area          | `React.Component`             | no       |                          |
-| badgeOffset           | Vertical offset for the badge component               | `number`                      | no       |                          |
-| headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`         | no       |                          |
-| headerColor           | The background color of the header                    | `string`                      | no       | `theme.colors.primary`   |
-| headerFontColor       | The color for text and icons in header                | `string`                      | no       | `theme.colors.onPrimary` |
-| headerInfo            | The third line of text in the header                  | `string`                      | no       |                          |
-| headerSubtitle        | The second line of text in the header                 | `string`                      | no       |                          |
-| headerTitle           | The first line of text in the header                  | `string`                      | yes      |                          |
-| theme                 | Theme value overrides                                 | `$DeepPartial<ExtendedTheme>` | no       |                          |
+| Prop Name             | Description                                           | Type                          | Required | Default                           |
+| --------------------- | ----------------------------------------------------- | ----------------------------- | -------- | --------------------------------- |
+| actionItems           | Icons to show to the right of the header text (max 6) | `HeaderIcon[]`                | no       |                                   |
+| actionRow             | Component to render for the card footer               | `React.Component`             | no       |                                   |
+| badge                 | The component to render in the call-out area          | `React.Component`             | no       |                                   |
+| badgeOffset           | Vertical offset for the badge component               | `number`                      | no       |                                   |
+| headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`         | no       |                                   |
+| headerColor           | The background color of the header                    | `string`                      | no       | `theme.colors.primaryContainer`   |
+| headerFontColor       | The color for text and icons in header                | `string`                      | no       | `theme.colors.onPrimaryContainer` |
+| headerInfo            | The third line of text in the header                  | `string`                      | no       |                                   |
+| headerSubtitle        | The second line of text in the header                 | `string`                      | no       |                                   |
+| headerTitle           | The first line of text in the header                  | `string`                      | yes      |                                   |
+| theme                 | Theme value overrides                                 | `$DeepPartial<ExtendedTheme>` | no       |                                   |
 
 </div>
 

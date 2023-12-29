@@ -71,7 +71,7 @@ exports[`EmptyState renders correctly with accessibility props 1`] = `
           },
           [
             {
-              "color": "rgba(28, 27, 31, 1)",
+              "color": "rgba(73, 69, 79, 1)",
               "fontSize": 14,
               "letterSpacing": 0,
               "textAlign": "center",
@@ -212,7 +212,7 @@ exports[`EmptyState renders correctly with custom styles 1`] = `
           },
           [
             {
-              "color": "rgba(28, 27, 31, 1)",
+              "color": "rgba(73, 69, 79, 1)",
               "fontSize": 14,
               "letterSpacing": 0,
               "textAlign": "center",
@@ -370,7 +370,7 @@ exports[`EmptyState renders correctly with different theme overrides 1`] = `
           },
           [
             {
-              "color": "rgba(28, 27, 31, 1)",
+              "color": "rgba(73, 69, 79, 1)",
               "fontSize": 14,
               "letterSpacing": 0,
               "textAlign": "center",
@@ -557,7 +557,7 @@ exports[`EmptyState renders correctly with long title and description 1`] = `
           },
           [
             {
-              "color": "rgba(28, 27, 31, 1)",
+              "color": "rgba(73, 69, 79, 1)",
               "fontSize": 14,
               "letterSpacing": 0,
               "textAlign": "center",
@@ -642,7 +642,7 @@ exports[`EmptyState renders correctly with title and description 1`] = `
           },
           [
             {
-              "color": "rgba(28, 27, 31, 1)",
+              "color": "rgba(73, 69, 79, 1)",
               "fontSize": 14,
               "letterSpacing": 0,
               "textAlign": "center",

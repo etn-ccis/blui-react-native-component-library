@@ -17,7 +17,7 @@ import { ChannelValue } from '@brightlayer-ui/react-native-components';
 <div style="overflow: auto">
 
 | Prop Name   | Description                                         | Type                             | Required | Default                  |
-| ----------- | --------------------------------------------------- | -------------------------------- | -------- | -------------------      |
+| ----------- | --------------------------------------------------- | -------------------------------- | -------- | ------------------------ |
 | value       | Text to display for the value                       | `string` \| `number`             | yes      |                          |
 | icon        | A component to render for the icon                  | [`IconSource`](./Icons.md)       | no       |                          |
 | iconSize    | The size to render the icon                         | `number`                         | no       | `fontSize`               |
@@ -30,6 +30,8 @@ import { ChannelValue } from '@brightlayer-ui/react-native-components';
 | theme       | Theme value overrides                               | `$DeepPartial<ExtendedTheme>`    | no       |                          |
 
 </div>
+
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
 > \*Setting `unitSpace` to `'auto'` will show a space for all units except for '%', '℉', '°F', '℃', '°C', and '°'. When `prefix` is true, the space will be shown for all units except for '$'.
 
