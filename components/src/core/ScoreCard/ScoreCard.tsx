@@ -305,10 +305,15 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
     /** Background image to blend with the header color */
     headerBackgroundImage?: ImageSourcePropType;
 
-    /** Background color of the header */
+    /** Background color of the header
+     *
+     *  Default: theme.colors.primaryContainer
+     */
     headerColor?: string;
 
-    /** The color for text and icons in the header */
+    /** The color for text and icons in the header
+     * Default: theme.colors.onPrimaryContainer
+     */
     headerFontColor?: string;
 
     /** Third line of text to show in header */

@@ -61,7 +61,10 @@ export type HeroProps = ViewProps & {
      */
     iconSize?: number;
 
-    /** Color override for the row icon */
+    /** Color override for the row icon
+     *
+     * Default: theme.colors.onSurfaceVariant
+     */
     iconColor?: string;
 
     /** The color used behind the primary icon

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Grades.a renders with default label, color, background color, and size 1`] = `
+exports[`Grade.a renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -59,7 +59,7 @@ exports[`Grades.a renders with default label, color, background color, and size 
 </View>
 `;
 
-exports[`Grades.aMinus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.aMinus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -118,7 +118,7 @@ exports[`Grades.aMinus renders with default label, color, background color, and 
 </View>
 `;
 
-exports[`Grades.aPlus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.aPlus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -177,7 +177,7 @@ exports[`Grades.aPlus renders with default label, color, background color, and s
 </View>
 `;
 
-exports[`Grades.b renders with default label, color, background color, and size 1`] = `
+exports[`Grade.b renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -236,7 +236,7 @@ exports[`Grades.b renders with default label, color, background color, and size 
 </View>
 `;
 
-exports[`Grades.bMinus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.bMinus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -295,7 +295,7 @@ exports[`Grades.bMinus renders with default label, color, background color, and 
 </View>
 `;
 
-exports[`Grades.bPlus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.bPlus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -354,7 +354,7 @@ exports[`Grades.bPlus renders with default label, color, background color, and s
 </View>
 `;
 
-exports[`Grades.c renders with default label, color, background color, and size 1`] = `
+exports[`Grade.c renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -413,7 +413,7 @@ exports[`Grades.c renders with default label, color, background color, and size 
 </View>
 `;
 
-exports[`Grades.cMinus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.cMinus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -472,7 +472,7 @@ exports[`Grades.cMinus renders with default label, color, background color, and 
 </View>
 `;
 
-exports[`Grades.cPlus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.cPlus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -531,7 +531,7 @@ exports[`Grades.cPlus renders with default label, color, background color, and s
 </View>
 `;
 
-exports[`Grades.custom renders with custom label, color, background color, and size 1`] = `
+exports[`Grade.custom renders with custom label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -590,7 +590,7 @@ exports[`Grades.custom renders with custom label, color, background color, and s
 </View>
 `;
 
-exports[`Grades.d renders with default label, color, background color, and size 1`] = `
+exports[`Grade.d renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -649,7 +649,7 @@ exports[`Grades.d renders with default label, color, background color, and size 
 </View>
 `;
 
-exports[`Grades.dMinus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.dMinus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -708,7 +708,7 @@ exports[`Grades.dMinus renders with default label, color, background color, and 
 </View>
 `;
 
-exports[`Grades.dPlus renders with default label, color, background color, and size 1`] = `
+exports[`Grade.dPlus renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [
@@ -767,7 +767,7 @@ exports[`Grades.dPlus renders with default label, color, background color, and s
 </View>
 `;
 
-exports[`Grades.f renders with default label, color, background color, and size 1`] = `
+exports[`Grade.f renders with default label, color, background color, and size 1`] = `
 <View
   style={
     [

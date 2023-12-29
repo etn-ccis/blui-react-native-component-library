@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import MatCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Divider as PaperDivider, Text } from 'react-native-paper';
-import color from 'color';
 import { renderableSubtitleComponent, renderableInfoComponent, withKeys, separate } from './utilities';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
@@ -139,7 +138,7 @@ const infoListItemStyles = (
             borderRadius: 20 * fontScale,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: props.statusColor || theme.colors.onSurface,
+            backgroundColor: props.statusColor || theme.colors.neutralFilledContainer,
         },
         icon: {
             width: 40 * fontScale,
@@ -165,7 +164,10 @@ export type InfoListItemProps = ViewProps & {
      */
     avatar?: boolean;
 
-    /** The color used for the background of the InfoListItem */
+    /** The color used for the background of the InfoListItem
+     *
+     * Default: 'transparent'
+     */
     backgroundColor?: string;
 
     /**
@@ -194,7 +196,8 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Color to use for text elements
      *
-     * Default: Theme.colors.text
+     * Default: Title: theme.colors.onSurface
+     * Subtitle, Info: theme.colors.onSurfaceVariant
      */
     fontColor?: string;
 
@@ -217,7 +220,10 @@ export type InfoListItemProps = ViewProps & {
     /** A component to render for the icon */
     icon?: IconSource;
 
-    /** Color to use for the icon */
+    /** Color to use for the icon
+     * Default: theme.colors.onSurfaceVariant
+     * With Avatar: theme.colors.onNeutralFilledContainer
+     */
     iconColor?: string;
 
     /** The text to show on the third line.
@@ -235,7 +241,10 @@ export type InfoListItemProps = ViewProps & {
     /** Custom content to render to the right of the text elements */
     rightComponent?: JSX.Element;
 
-    /** Color to use indicating status. This will apply to the status stripe and icon */
+    /** Color to use indicating status. This will apply to the status stripe and icon
+     *
+     * Default: theme.colors.onSurface
+     */
     statusColor?: string;
 
     /**
@@ -337,13 +346,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
         if (avatar) {
-            return statusColor
-                ? color(statusColor).isDark()
-                    ? theme.colors.onPrimaryFilledContainer
-                    : theme.colors.onNeutralShadedContainer
-                : theme.colors.onPrimaryFilledContainer; // default avatar is dark gray -> white text
+            return theme.colors.onNeutralFilledContainer;
         }
-        return statusColor ? statusColor : theme.colors.onSurface;
+        return statusColor ? statusColor : theme.colors.onSurfaceVariant;
     }, [iconColor, avatar, statusColor, theme]);
 
     const getIcon = useCallback((): JSX.Element | undefined => {

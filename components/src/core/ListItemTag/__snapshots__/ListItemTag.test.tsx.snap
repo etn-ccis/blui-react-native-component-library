@@ -23,7 +23,7 @@ exports[`ListItemTag ListItemTag Renders 1`] = `
         },
         [
           {
-            "backgroundColor": "rgba(103, 80, 164, 1)",
+            "backgroundColor": undefined,
             "borderRadius": 4,
             "color": undefined,
             "fontFamily": "OpenSans-Bold",

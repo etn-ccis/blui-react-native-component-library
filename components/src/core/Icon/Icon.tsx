@@ -10,7 +10,9 @@ import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type IconProps = IconComponentProps & {
+    /** An object to specify the source of the icon */
     source: IconSource;
+    /** Theme value overrides specific to this component. */
     /**
      * @optional
      */

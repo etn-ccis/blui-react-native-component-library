@@ -28,6 +28,8 @@ import { IconSwitch } from '@brightlayer-ui/react-native-components';
 
 </div>
 
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
 ### Styles
 
 You can override the internal style used by Brightlayer UI by passing a `style` prop.
