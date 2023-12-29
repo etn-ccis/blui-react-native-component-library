@@ -121,9 +121,9 @@ import { Icon } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                                                     | Type                                   | Required | Default                   |
-| --------- | --------------------------------------------------------------- | -------------------------------------- | -------- | ------------------------- |
-| source    | An object has the image source or an icon family or JSX.Element | [`IconSource`](#icon-object)           | yes      |                           |
-| theme     | Theme value overrides                                           | `$DeepPartial<ReactNativePaper.Theme>` | no       | Varies based on the theme |
+| Prop Name | Description                                 | Type                                   | Required | Default                   |
+| --------- | ------------------------------------------- | -------------------------------------- | -------- | ------------------------- |
+| source    | An object to specify the source of the icon | [`IconSource`](#icon-object)           | yes      |                           |
+| theme     | Theme value overrides                       | `$DeepPartial<ReactNativePaper.Theme>` | no       | Varies based on the theme |
 
 </div>
