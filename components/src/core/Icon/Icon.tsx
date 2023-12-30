@@ -125,7 +125,6 @@ export const Icon: React.FC<IconProps> = (props) => {
                     {
                         width: size,
                         height: size,
-                        tintColor: color,
                         resizeMode: 'contain',
                     },
                 ]}

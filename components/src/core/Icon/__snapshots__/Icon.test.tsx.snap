@@ -248,7 +248,6 @@ exports[`Icon Tests  renders with remote image source 1`] = `
       {
         "height": 24,
         "resizeMode": "contain",
-        "tintColor": "rgba(28, 27, 31, 1)",
         "width": 24,
       },
     ]
