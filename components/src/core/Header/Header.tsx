@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import color from 'color';
 import { ANIMATION_LENGTH } from './constants';
-import { HeaderBackgroundImage } from './HaderBackgroundImage';
+import { HeaderBackgroundImage } from './HeaderBackgroundImage';
 import { HeaderNavigationIcon } from './HeaderNavigationIcon';
 import { HeaderContent } from './HeaderContent';
 import { HeaderActionItems } from './HeaderActionItems';
@@ -43,11 +43,7 @@ const headerStyles = (
 }> => ({
     root: {
         width: '100%',
-        backgroundColor:
-            props.backgroundColor ||
-            // @change color once have a correct color
-            // (theme.dark ? theme.colors.actionPalette?.active || theme.colors.surface : theme.colors.primary),
-            theme.colors.primaryContainer,
+        backgroundColor: props.backgroundColor || theme.colors.primaryContainer,
         shadowColor: 'rgba(0, 0, 0, 0.3)',
         shadowOffset: {
             width: 0,
