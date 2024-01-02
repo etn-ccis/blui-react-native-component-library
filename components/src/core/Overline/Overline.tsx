@@ -3,7 +3,6 @@ import { TextStyle, StyleProp, StyleSheet } from 'react-native';
 import { Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
-import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 type OverlineProps = Omit<React.ComponentProps<typeof Text>, 'theme' | 'variant'> & {

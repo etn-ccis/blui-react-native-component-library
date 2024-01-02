@@ -18,9 +18,9 @@ import { Overline } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto">
 
-| Prop Name | Description                     | Type                                                                                            | Required | Default                  |
-| --------- | ------------------------------- | ----------------------------------------------------------------------------------------------- | -------- | ------------------------ |
-| theme     | Theme value overrides           | `$DeepPartial<ExtendedTheme>`                                                                   | no       |                          |
+| Prop Name | Description           | Type                          | Required | Default |
+| --------- | --------------------- | ----------------------------- | -------- | ------- |
+| theme     | Theme value overrides | `$DeepPartial<ExtendedTheme>` | no       |         |
 
 </div>
 
