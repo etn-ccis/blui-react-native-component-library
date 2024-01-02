@@ -400,7 +400,7 @@ export const ScoreCard: React.FC<ScoreCardProps & { children?: ReactNode }> = (p
                     />
                     <ActionPanel
                         actionItems={actionItems}
-                        color={headerFontColor}
+                        color={theme.colors.onSurfaceVariant}
                         styles={{
                             root: styles.headerActions,
                             actionItem: styles.headerActionItem,
