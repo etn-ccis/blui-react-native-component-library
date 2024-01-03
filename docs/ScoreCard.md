@@ -45,6 +45,7 @@ import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@brightlayer-ui
 | --------------------- | ----------------------------------------------------- | ----------------------------- | -------- | --------------------------------- |
 | actionItems           | Icons to show to the right of the header text (max 6) | `HeaderIcon[]`                | no       |                                   |
 | actionRow             | Component to render for the card footer               | `React.Component`             | no       |                                   |
+| actionIconColor       | The color of the action icon                          | `string`                      | no       | `theme.colors.onSurfaceVariant`   |
 | badge                 | The component to render in the call-out area          | `React.Component`             | no       |                                   |
 | badgeOffset           | Vertical offset for the badge component               | `number`                      | no       |                                   |
 | headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`         | no       |                                   |

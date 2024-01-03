@@ -294,6 +294,9 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
     /** Component to render for the card footer */
     actionRow?: JSX.Element;
 
+    /**  The color of the action icon */
+    actionIconColor?: string;
+
     /** Component to render in the call-out area on the right side of the card body.
      * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
      */
@@ -364,6 +367,7 @@ export const ScoreCard: React.FC<ScoreCardProps & { children?: ReactNode }> = (p
     const {
         actionRow,
         actionItems,
+        actionIconColor = theme.colors.onSurfaceVariant,
         badge,
         badgeOffset,
         children,
@@ -400,7 +404,7 @@ export const ScoreCard: React.FC<ScoreCardProps & { children?: ReactNode }> = (p
                     />
                     <ActionPanel
                         actionItems={actionItems}
-                        color={theme.colors.onSurfaceVariant}
+                        color={actionIconColor}
                         styles={{
                             root: styles.headerActions,
                             actionItem: styles.headerActionItem,
