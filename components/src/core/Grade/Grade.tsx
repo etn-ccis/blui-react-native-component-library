@@ -137,7 +137,7 @@ GradeBase.A = (props: FixedGradeProps): JSX.Element => {
 GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => {
     const theme=useExtendedTheme()
     return(
-    <GradeBase label={'A-'} fontColor={theme.colors.onSuccessFilledContainer} backgroundColor={mixColors('#FBE365',theme.colors.successFilledContainer,33,67)} {...props} />
+    <GradeBase label={'A-'} fontColor={theme.colors.onSuccessFilledContainer} backgroundColor={mixColors(theme.colors.warningFilledContainer,theme.colors.successFilledContainer,33,67)} {...props} />
 )};
 /**
  * A component used to render a B+ Grade"
@@ -145,7 +145,7 @@ GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => {
 GradeBase.BPlus = (props: FixedGradeProps): JSX.Element => {
     const theme = useExtendedTheme()
     return(
-    <GradeBase label={'B+'} fontColor={theme.colors.onWarningFilledContainer} backgroundColor={mixColors('#FBE365',theme.colors.successFilledContainer,67,33)} {...props} />
+    <GradeBase label={'B+'} fontColor={theme.colors.onWarningFilledContainer} backgroundColor={mixColors(theme.colors.warningFilledContainer,theme.colors.successFilledContainer,67,33)} {...props} />
 )};
 /**
  * A component used to render a B Grade
@@ -162,7 +162,7 @@ GradeBase.B = (props: FixedGradeProps): JSX.Element => {
 GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => {
     const theme = useExtendedTheme()
     return(
-    <GradeBase label={'B-'} fontColor={theme.colors.onWarningFilledContainer} backgroundColor={mixColors('#ED8B00',theme.colors.warningFilledContainer,33,67)} {...props} />
+    <GradeBase label={'B-'} fontColor={theme.colors.onWarningFilledContainer} backgroundColor={mixColors(theme.colors.orangeFilledContainer,theme.colors.warningFilledContainer,33,67)} {...props} />
 )};
 /**
  * A component used to render a C+ Grade
@@ -170,7 +170,7 @@ GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => {
 GradeBase.CPlus = (props: FixedGradeProps): JSX.Element => {
     const theme = useExtendedTheme()
     return(
-    <GradeBase label={'C+'} fontColor={theme.colors.onOrangeFilledContainer} backgroundColor={mixColors('#ED8B00',theme.colors.warningFilledContainer,67,33)} {...props} />
+    <GradeBase label={'C+'} fontColor={theme.colors.onOrangeFilledContainer} backgroundColor={mixColors(theme.colors.orangeFilledContainer,theme.colors.warningFilledContainer,67,33)} {...props} />
 )};
 /**
  * A component used to render a C Grade
@@ -186,7 +186,7 @@ GradeBase.C = (props: FixedGradeProps): JSX.Element => {
 GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => {
     const theme = useExtendedTheme()
     return(
-    <GradeBase label={'C-'} fontColor={theme.colors.onOrangeFilledContainer} backgroundColor={mixColors('#BA1A1A',theme.colors.orangeFilledContainer,33,67)} {...props} />
+    <GradeBase label={'C-'} fontColor={theme.colors.onOrangeFilledContainer} backgroundColor={mixColors(theme.colors.errorFilledContainer,theme.colors.orangeFilledContainer,33,67)} {...props} />
 )};
 /**
  * A component used to render a D+ Grade
@@ -194,7 +194,7 @@ GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => {
 GradeBase.DPlus = (props: FixedGradeProps): JSX.Element => {
     const theme = useExtendedTheme()
     return(
-    <GradeBase label={'D+'} fontColor={theme.colors.onErrorFilledContainer} backgroundColor={mixColors('#BA1A1A',theme.colors.orangeFilledContainer,67,33)} {...props} />
+    <GradeBase label={'D+'} fontColor={theme.colors.onErrorFilledContainer} backgroundColor={mixColors(theme.colors.errorFilledContainer,theme.colors.orangeFilledContainer,67,33)} {...props} />
 )};
 /**
  * A component used to render a D Grade
