@@ -38,7 +38,7 @@ export const Overline: React.FC<OverlineProps> = (props) => {
 
     return (
         <Text
-            variant={'bodyMedium'}
+            variant={'labelMedium'}
             style={[defaultStyles.root, styles.root, style]}
             allowFontScaling={!disableScaling}
             maxFontSizeMultiplier={maxScale}
