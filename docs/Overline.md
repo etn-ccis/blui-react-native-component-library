@@ -18,12 +18,9 @@ import { Overline } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto">
 
-| Prop Name | Description                     | Type                                                                                            | Required | Default                  |
-| --------- | ------------------------------- | ----------------------------------------------------------------------------------------------- | -------- | ------------------------ |
-| font      | The font style (from the theme) | keyof ExtendedTheme ['fonts'](https://callstack.github.io/react-native-paper/docs/guides/fonts) | no       |                          |
-| fontSize  | The font size                   | `number`                                                                                        | no       |                          |
-| color     | The font color (from the theme) | `string`                                                                                        | no       | `theme.colors.onSurface` |
-| theme     | Theme value overrides           | `$DeepPartial<ExtendedTheme>`                                                                   | no       |                          |
+| Prop Name | Description           | Type                          | Required | Default |
+| --------- | --------------------- | ----------------------------- | -------- | ------- |
+| theme     | Theme value overrides | `$DeepPartial<ExtendedTheme>` | no       |         |
 
 </div>
 
