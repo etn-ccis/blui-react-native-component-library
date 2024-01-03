@@ -1,39 +1,12 @@
 import React from 'react';
-import { TextStyle, TextProps, StyleProp, StyleSheet } from 'react-native';
-import { MD3Theme, Text } from 'react-native-paper';
+import { TextStyle, StyleProp, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { calculateHeight } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
-export type TypographyProps = {
-    /**
-     * The font size to use
-     */
-    fontSize?: number;
-
-    /**
-     * The font style to use (from the predefined values in the Theme)
-     */
-    font?: keyof MD3Theme['fonts'];
-
-    /**
-     * The color to use for the text (from the predefined values in the Theme or custom)
-     */
-    color?: string;
-
-    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
-    styles?: {
-        root?: StyleProp<TextStyle>;
-    };
-
-    /**
-     * Theme value overrides specific to this component.
-     */
-    theme?: $DeepPartial<ExtendedTheme>;
-} & TextProps;
-
-export type ListItemTagProps = TypographyProps & {
+export type ListItemTagProps = Omit<React.ComponentProps<typeof Text>, 'children' | 'theme' | 'variant'> & {
     /**
      * Background color for the label.
      *
@@ -47,9 +20,22 @@ export type ListItemTagProps = TypographyProps & {
      * Default: theme.colors.onPrimaryFilledContainer
      */
     fontColor?: string;
+    /**
+     * The font size to use
+     */
+    fontSize?: number;
 
     /** The label text. */
     label: string;
+    /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
+    styles?: {
+        root?: StyleProp<TextStyle>;
+    };
+
+    /**
+     * Theme value overrides specific to this component.
+     */
+    theme?: $DeepPartial<ExtendedTheme>;
 };
 
 const listItemTagStyles = (
@@ -91,7 +77,6 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         style,
         styles = {},
         theme: themeOverride,
-        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         fontColor,
         backgroundColor,
