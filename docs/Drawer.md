@@ -8,6 +8,8 @@ To learn more about the Navigation design pattern, check out our [documentation]
 
 The `<Drawer>` component is the parent container, which manages the overall state of the drawer and renders the child components.
 
+<img width='300' alt="Drawer" src="./images/drawer.png"><br/>
+
 ### Drawer Usage
 
 ```tsx
