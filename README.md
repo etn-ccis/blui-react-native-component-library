@@ -81,6 +81,10 @@ Versions 5.3.x -> 5.4.x have been updated to include warning messages if you are
 
 Version 6 also includes a new set of [wrappers](./components/src/themed) around a subset of [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to provide the correct styles. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP. These wrapper components should be used in conjunction with version 6+ of [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes), which consolidated our blueDark and blueDarkAlt themes into a single theme for simpler usage.
 
+### Upgrading from version 7 -> 8
+
+Version 8 of this library is using [React Native Paper](https://callstack.github.io/react-native-paper/) v5 components, which is adopting Material Design 3. The components should be used in conjunction with version 7+ of [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes), which is using Material Design 3 themes. For more information about react native paper v5, please follow [the migration guide](https://callstack.github.io/react-native-paper/docs/guides/migration-guide-to-5.0/).
+
 ## NOTES
 
 This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@brightlayer-ui/react-native-vector-icons](https://github.com/etn-ccis/blui-icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the Brightlayer UI components.
