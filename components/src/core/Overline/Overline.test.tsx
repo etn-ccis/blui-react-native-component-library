@@ -11,7 +11,7 @@ describe('Overline', () => {
     });
 
     it('Renders the color correctly', () => {
-        const tree = TestRenderer.create(<Overline color={'yellow'}>Overline </Overline>).toJSON;
+        const tree = TestRenderer.create(<Overline>Overline </Overline>).toJSON;
         expect(tree).toMatchSnapshot();
     });
 
