@@ -2,12 +2,16 @@
 
 The `<MobileStepper>` is used to minimally display progress when completing a workflow that requires multiple steps. There are three types of progress indicators supported, `dots` (default), `text`, and `progress`.
 
+In Dot Variant:
+
 <img width="400" style="max-width: 600px; display: block;" alt="Mobile Stepper dot variant" src="./images/mobileStepper_dot.png">
 
 In Text Variant:
+
 <img width="400" style="max-width: 600px; display: block;" alt="Mobile Stepper Text variant" src="./images/mobileStepper_text.png">
 
 In Progress Variant:
+
 <img width="400" style="max-width: 600px; display: block;" alt="Mobile Stepper Progress variant" src="./images/mobileStepper_progress.png">
 
 ## Usage
