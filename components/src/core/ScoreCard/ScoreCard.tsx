@@ -314,7 +314,7 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
      */
     headerColor?: string;
 
-    /** The color for text and icons in the header
+    /** The color for text in the header
      * Default: theme.colors.onPrimaryContainer
      */
     headerFontColor?: string;

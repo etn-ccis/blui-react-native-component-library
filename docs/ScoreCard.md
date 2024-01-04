@@ -50,7 +50,7 @@ import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@brightlayer-ui
 | badgeOffset           | Vertical offset for the badge component               | `number`                      | no       |                                   |
 | headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`         | no       |                                   |
 | headerColor           | The background color of the header                    | `string`                      | no       | `theme.colors.primaryContainer`   |
-| headerFontColor       | The color for text and icons in header                | `string`                      | no       | `theme.colors.onPrimaryContainer` |
+| headerFontColor       | The color for text in header                          | `string`                      | no       | `theme.colors.onPrimaryContainer` |
 | headerInfo            | The third line of text in the header                  | `string`                      | no       |                                   |
 | headerSubtitle        | The second line of text in the header                 | `string`                      | no       |                                   |
 | headerTitle           | The first line of text in the header                  | `string`                      | yes      |                                   |
