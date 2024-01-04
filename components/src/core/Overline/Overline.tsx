@@ -1,11 +1,11 @@
 import React from 'react';
 import { TextStyle, StyleProp, StyleSheet } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text, TextProps } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
-type OverlineProps = Omit<React.ComponentProps<typeof Text>, 'theme' | 'variant'> & {
+export type OverlineProps = Omit<TextProps<'labelMedium'>, 'theme' | 'variant'> & {
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */
     styles?: {
         root?: StyleProp<TextStyle>;
