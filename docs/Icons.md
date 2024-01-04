@@ -105,9 +105,9 @@ The icon prop will also support images in various formats, either from local res
 
 ## Icon as a component
 
-`<Icon>` component is an internal utility component used to render icons inside other components. It standardizes the implementation of the icon and handles all of the different ways to specify the icon without having to duplicate this logic inside every component that utilizes icons.
+The `<Icon>` component is used to render a standalone icon by passing an object to specify the source of the icon.
 
-<img width="100%" style="max-width: 100px; display: block;" alt="Icon" src="./images/icon.png">
+<img width="100" style="max-width: 100px; display: block;" alt="Icon" src="./images/icon.png">
 
 ### Usage
 
