@@ -294,7 +294,10 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
     /** Component to render for the card footer */
     actionRow?: JSX.Element;
 
-    /**  The color of the action icon */
+    /**  The color of the action icon
+     *
+     * Default: theme.colors.onSurfaceVariant
+     */
     actionIconColor?: string;
 
     /** Component to render in the call-out area on the right side of the card body.
