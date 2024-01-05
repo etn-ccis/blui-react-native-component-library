@@ -34,14 +34,16 @@ In version 8 of this library, following components have been added or removed:
 
 - [Chip](./docs/Chip.md)
 - [Grade](./docs/Grade.md)
-- [Icon](./docs/Icon.md)
+- [Icon](./docs/Icons#icon-as-a-component.md)
 - [IconSwitch](./docs/IconSwitch.md)
 - [Overline](./docs/Overline.md)
 
 ### Removed
 
 - Typography
+    - This component has been removed from the library can be replaced by [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component from React Native Paper.
 - IconWrapper
+    - This component has been removed from the library. Icons can be used in Brightlayer UI React Native Components in various ways. Please refer [icons usage guidelines](./docs/Icons) for more info.
 
 All the themed components have been removed.
 
