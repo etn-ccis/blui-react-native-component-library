@@ -44,8 +44,8 @@ In version 8 of this library, following components have been added or removed:
     - This component has been removed from the library can be replaced by [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component from React Native Paper.
 - IconWrapper
     - This component has been removed from the library. Icons can be used in Brightlayer UI React Native Components in various ways. Please refer [icons usage guidelines](./docs/Icons) for more info.
-
-All the themed components have been removed.
+- Themed Components
+    - All the themed components have been removed, as we have updated all the components with the Brightlayer UI's required styles and themes.
 
 ## NOTES
 
