@@ -45,7 +45,44 @@ export type GradeProps = ViewProps & {
 };
 
 export type FixedGradeProps = Omit<GradeProps, 'label' | 'fontColor' | 'backgroundColor'>;
+const hexToRgb = (hex: string): number[] => {
+    const hexcode = hex.replace('#', '');
 
+    const bigint = parseInt(hexcode, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+
+    return [r, g, b];
+};
+
+const mixColors = (
+    color1: string | number[],
+    color2: string | number[],
+    percentage1: number,
+    percentage2: number,
+    transparency = 1.0
+): string => {
+    if (percentage1 < 0 || percentage1 > 100 || percentage2 < 0 || percentage2 > 100) {
+        throw new Error('Percentages must be between 0 and 100');
+    }
+
+    if (transparency < 0 || transparency > 1) {
+        throw new Error('Transparency must be between 0 and 1');
+    }
+
+    const rgb1 = Array.isArray(color1) ? color1.slice(0, 3) : hexToRgb(color1);
+    const rgb2 = Array.isArray(color2) ? color2.slice(0, 3) : hexToRgb(color2);
+
+    const mixedRgb = [
+        Math.round(rgb1[0] * (percentage1 / 100) + rgb2[0] * (percentage2 / 100)),
+        Math.round(rgb1[1] * (percentage1 / 100) + rgb2[1] * (percentage2 / 100)),
+        Math.round(rgb1[2] * (percentage1 / 100) + rgb2[2] * (percentage2 / 100)),
+    ];
+
+    const mixedColor = `rgba(${mixedRgb[0]}, ${mixedRgb[1]}, ${mixedRgb[2]}, ${transparency})`;
+    return mixedColor;
+};
 const GradeBase = (props: GradeProps): JSX.Element => {
     const defaultTheme = useExtendedTheme();
     const { label, fontColor, backgroundColor, size = 40, style, theme: themeOverride, ...otherViewProps } = props;
@@ -81,81 +118,195 @@ const GradeBase = (props: GradeProps): JSX.Element => {
 /**
  * A component used to render an A+ Grade
  */
-GradeBase.APlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'A+'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
-);
+GradeBase.APlus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'A+'}
+            fontColor={theme.colors.onSuccessFilledContainer}
+            backgroundColor={theme.colors.successFilledContainer}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render an A Grade
  */
-GradeBase.A = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'A'} fontColor="#FFFFFF" backgroundColor="#198900" {...props} />
-);
+GradeBase.A = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'A'}
+            fontColor={theme.colors.onSuccessFilledContainer}
+            backgroundColor={theme.colors.successFilledContainer}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render an A- Grade
  */
-GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'A-'} fontColor="#FFFFFF" backgroundColor="#64a721" {...props} />
-);
+GradeBase.AMinus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'A-'}
+            fontColor={theme.colors.onSuccessFilledContainer}
+            backgroundColor={mixColors(
+                theme.colors.warningFilledContainer,
+                theme.colors.successFilledContainer,
+                33,
+                67
+            )}
+            {...props}
+        />
+    );
+};
 /**
- * A component used to render a B+ Grade
+ * A component used to render a B+ Grade"
  */
-GradeBase.BPlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'B+'} fontColor="#524700" backgroundColor="#afc543" {...props} />
-);
+GradeBase.BPlus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'B+'}
+            fontColor={theme.colors.onWarningFilledContainer}
+            backgroundColor={mixColors(
+                theme.colors.warningFilledContainer,
+                theme.colors.successFilledContainer,
+                67,
+                33
+            )}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a B Grade
  */
-GradeBase.B = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'B'} fontColor="#524700" backgroundColor="#FBE365" {...props} />
-);
+GradeBase.B = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'B'}
+            fontColor={theme.colors.onWarningFilledContainer}
+            backgroundColor={theme.colors.warningFilledContainer}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a B- Grade
  */
-GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'B-'} fontColor="#524700" backgroundColor="#f6c543" {...props} />
-);
+GradeBase.BMinus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'B-'}
+            fontColor={theme.colors.onWarningFilledContainer}
+            backgroundColor={mixColors(theme.colors.orangeFilledContainer, theme.colors.warningFilledContainer, 33, 67)}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a C+ Grade
  */
-GradeBase.CPlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'C+'} fontColor="#4B2800" backgroundColor="#f1a821" {...props} />
-);
+GradeBase.CPlus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'C+'}
+            fontColor={theme.colors.onOrangeFilledContainer}
+            backgroundColor={mixColors(theme.colors.orangeFilledContainer, theme.colors.warningFilledContainer, 67, 33)}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a C Grade
  */
-GradeBase.C = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'C'} fontColor="#4B2800" backgroundColor="#ED8B00" {...props} />
-);
+GradeBase.C = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'C'}
+            fontColor={theme.colors.onOrangeFilledContainer}
+            backgroundColor={theme.colors.orangeFilledContainer}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a C- Grade
  */
-GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'C-'} fontColor="#4B2800" backgroundColor="#dc6508" {...props} />
-);
+GradeBase.CMinus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'C-'}
+            fontColor={theme.colors.onOrangeFilledContainer}
+            backgroundColor={mixColors(theme.colors.errorFilledContainer, theme.colors.orangeFilledContainer, 33, 67)}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a D+ Grade
  */
-GradeBase.DPlus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'D+'} fontColor="#FFFFFF" backgroundColor="#cb3f11" {...props} />
-);
+GradeBase.DPlus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'D+'}
+            fontColor={theme.colors.onErrorFilledContainer}
+            backgroundColor={mixColors(theme.colors.errorFilledContainer, theme.colors.orangeFilledContainer, 67, 33)}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a D Grade
  */
-GradeBase.D = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'D'} fontColor="#FFFFFF" backgroundColor="#BA1A1A" {...props} />
-);
+GradeBase.D = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'D'}
+            fontColor={theme.colors.onErrorFilledContainer}
+            backgroundColor={theme.colors.errorFilledContainer}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render a D- Grade
  */
-GradeBase.DMinus = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'D-'} fontColor="#FFFFFF" backgroundColor="#BA1A1A" {...props} />
-);
+GradeBase.DMinus = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'D-'}
+            fontColor={theme.colors.onErrorFilledContainer}
+            backgroundColor={theme.colors.errorFilledContainer}
+            {...props}
+        />
+    );
+};
 /**
  * A component used to render an F Grade
  */
-GradeBase.F = (props: FixedGradeProps): JSX.Element => (
-    <GradeBase label={'F'} fontColor="#FFFFFF" backgroundColor="#9F45F6" {...props} />
-);
+GradeBase.F = (props: FixedGradeProps): JSX.Element => {
+    const theme = useExtendedTheme();
+    return (
+        <GradeBase
+            label={'F'}
+            fontColor={theme.colors.onPurpleFilledContainer}
+            backgroundColor={theme.colors.purpleFilledContainer}
+            {...props}
+        />
+    );
+};
 
 /**
  * A component used to render a score/grade inside of an Avatar. Includes several sub-components with predefined styles for several common grades.
