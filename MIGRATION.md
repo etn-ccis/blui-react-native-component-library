@@ -1,10 +1,8 @@
+# Upgrading from v7 to v8
 
-# Upgrading to v8
+## Dependency Updates
 
-
-## Update Dependencies
-
-First, update your @brightlayer-ui/react-native-components dependency to the latest version.
+First, update your `@brightlayer-ui/react-native-components` dependency to the latest version.
 
 ```shell
 npm install --save @brightlayer-ui/react-native-components@^8.0.0
@@ -12,7 +10,7 @@ npm install --save @brightlayer-ui/react-native-components@^8.0.0
 yarn upgrade @brightlayer-ui/react-native-components@^8.0.0
 ```
 
-You also need to update @brightlayer-ui/react-native-themes, @brightlayer-ui/colors react-native and react-native-paper.
+You also need to update `@brightlayer-ui/react-native-themes`, `@brightlayer-ui/colors`, `react-native`, and `react-native-paper`.
 
 ```shell
 npm install --save @brightlayer-ui/react-native-themes@^7.0.0 @brightlayer-ui/colors@^4.0.0 react-native@0.72.3 react-native-paper@^5.0.0
@@ -22,32 +20,36 @@ npm install --save @brightlayer-ui/react-native-themes@^7.0.0 @brightlayer-ui/co
 yarn upgrade @brightlayer-ui/react-native-themes@^7.0.0 @brightlayer-ui/colors@^4.0.0 react-native@0.72.3 react-native-paper@^5.0.0
 ```
 
+## Color Updates
+
+The Brightlayer UI color palette underwent major changes to reflect Material Design 3's new color structure. Please follow the [migration guide](https://en.wikipedia.org/wiki/First_solo_flight#Traditions) for more details.
+
 ## Themes Updates
 
- You need to update version 7+ of @brightlayer-ui/react-native-themes to make it work with @brightlayer-ui/react-native-components v8. To learn, please follow the [migration guide](https://github.com/etn-ccis/blui-react-native-themes/blob/master/README.md#upgrading-from-version-6---7).
+You need to update `@brightlayer-ui/react-native-themes` to v7+ to make it work with `@brightlayer-ui/react-native-components` v8. Please follow the [migration guide](https://github.com/etn-ccis/blui-react-native-themes/blob/master/README.md#upgrading-from-version-6---7) for more details.
 
 ## Components Updates
 
-In version 8 of this library, following components have been added or removed:
+In version 8 of this library, the following components have been added or removed:
 
 ### Added
 
-- [Chip](./docs/Chip.md)
-- [Grade](./docs/Grade.md)
-- [Icon](./docs/Icons#icon-as-a-component.md)
-- [IconSwitch](./docs/IconSwitch.md)
-- [Overline](./docs/Overline.md)
+- [Chip](./docs/Chip.md), as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
+- [Grade](./docs/Grade.md).
+- [Icon](./docs/Icons#icon-as-a-component.md), as a replacement for IconWrapper.
+- [IconSwitch](./docs/IconSwitch.md), as a better alternative to React Native Paper's [Switch](https://callstack.github.io/react-native-paper/docs/components/Switch/) component.
+- [Overline](./docs/Overline.md), as a replacement for the overline variant in Typography, which was removed in Material Design 3.
 
 ### Removed
 
 - Typography
     - This component has been removed from the library can be replaced by [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component from React Native Paper.
 - IconWrapper
-    - This component has been removed from the library. Icons can be used in Brightlayer UI React Native Components in various ways. Please refer [icons usage guidelines](./docs/Icons) for more info.
+    - This component has been removed from the library. Icons can now be used in Brightlayer UI React Native Components in various ways. Please refer [icons usage guidelines](./docs/Icons) for more info.
 - Themed Components
     - All the themed components have been removed, as we have updated all the components with the Brightlayer UI's required styles and themes.
 
-## NOTES
+## Notes
 
 <!-- TODO : Add a link to style override guide -->
-There are few React Native Paper compnents which need additional styles. To learn more about style overrides, please follow [the guidelines](#).
+A few React Native Paper components require additional style overrides to match Brightlayer UI's design specifications. To learn more about these style overrides, please follow [the guidelines](#).
