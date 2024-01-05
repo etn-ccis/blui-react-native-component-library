@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
             return (
                 <Icon
                     source={icon}
-                    size={typeof iconSize === 'number' ? normalizeIconSize() : iconSize}
+                    size={normalizeIconSize()}
                     color={getColor(iconColor)}
                 />
             );
