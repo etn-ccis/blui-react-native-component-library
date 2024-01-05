@@ -4,9 +4,86 @@ orbs:
     gh: circleci/github-cli@1.0.3
     browser-tools: circleci/browser-tools@1.4.6
 jobs:
+    install_dependencies:
+        docker:
+          - image: cimg/node:21.5.0-browsers
+        resource_class: large
+        steps:
+          - checkout
+          - restore_cache:
+              keys:
+                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+          - run:
+              name: Install Dependencies
+              command: |
+                  cd components
+                  yarn install --frozen-lockfile
+          - save_cache:
+              name: Save Cache
+              paths:
+                  - components/node_modules
+              key: v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+    prettier:
+        docker:
+          - image: cimg/node:21.5.0-browsers
+        resource_class: large
+        steps:
+          - checkout
+          - restore_cache:
+              keys:
+                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+          - run:
+              name: Install Dependencies
+              command: |
+                  cd components
+                  yarn install --frozen-lockfile
+          - run:
+              name: Prettier Check
+              command: |
+                  cd components
+                  yarn prettier:check
+    lint_check:
+        docker:
+          - image: cimg/node:21.5.0-browsers
+        resource_class: large
+        steps:
+          - checkout
+          - restore_cache:
+              keys:
+                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+          - run:
+              name: Install Dependencies
+              command: |
+                  cd components
+                  yarn install --frozen-lockfile
+          - run:
+              name: Lint
+              command: |
+                  cd components
+                  yarn lint
+    test:
+        docker:
+          - image: cimg/node:21.5.0-browsers
+        parallelism: 4
+        resource_class: large
+        steps:
+          - checkout
+          - restore_cache:
+              keys:
+                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+          - run:
+              name: Install Dependencies
+              command: |
+                  cd components
+                  yarn install --frozen-lockfile
+          - run:
+              name: Tests
+              command: |
+                  cd components
+                  yarn test --maxWorkers=2 --coverage --watchAll=false
     build_library:
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         steps:
             - checkout
@@ -24,21 +101,6 @@ jobs:
                   paths:
                       - components/node_modules
                   key: v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
-            - run:
-                  name: Prettier Check
-                  command: |
-                      cd components
-                      yarn prettier:check
-            - run:
-                  name: Lint
-                  command: |
-                      cd components
-                      yarn lint
-            - run:
-                  name: Test
-                  command: |
-                      yarn test
-                      yarn test --maxWorkers=2 --coverage --watchAll=false
             - run:
                   name: Build Library
                   command: |
@@ -64,7 +126,7 @@ jobs:
     coverage_report:
         working_directory: ~/react-native-component-library
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         steps:
             - checkout
             - attach_workspace:
@@ -76,7 +138,7 @@ jobs:
     # Builds the Storybook app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_storybook:
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -125,7 +187,7 @@ jobs:
     # Builds the hosted Storybook app
     build_storybook_api:
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -188,7 +250,7 @@ jobs:
     # Builds the Showcase app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_showcase:
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -236,7 +298,7 @@ jobs:
 
     deploy_storybook:
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -274,7 +336,7 @@ jobs:
                       git push
     publish:
         docker:
-            - image: cimg/node:18.17.1-browsers
+            - image: cimg/node:21.5.0-browsers
         steps:
             - checkout
             - attach_workspace:
@@ -293,6 +355,10 @@ workflows:
     version: 2
     react-native_library:
         jobs:
+            - install_dependencies
+            - prettier
+            - lint_check
+            - test
             - build_library
             - build_showcase:
                   requires:
