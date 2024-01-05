@@ -128,13 +128,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            return (
-                <Icon
-                    source={icon}
-                    size={normalizeIconSize()}
-                    color={getColor(iconColor)}
-                />
-            );
+            return <Icon source={icon} size={normalizeIconSize()} color={getColor(iconColor)} />;
         }
     }, [icon, normalizeIconSize, getColor, iconColor]);
 
