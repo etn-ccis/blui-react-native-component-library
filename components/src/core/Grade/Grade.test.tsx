@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import Grade from './Grade';
+import { PaperProvider } from 'react-native-paper';
+import { blue } from '@brightlayer-ui/react-native-themes';
 
 describe('Grade.custom', () => {
     it('renders with custom label, color, background color, and size', () => {
@@ -29,7 +31,11 @@ describe('Grade.custom', () => {
 
 describe('Grade.aPlus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.APlus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.APlus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -53,7 +59,11 @@ describe('Grade.aPlus', () => {
 
 describe('Grade.a', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.A />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.A />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -76,7 +86,11 @@ describe('Grade.a', () => {
 
 describe('Grade.aMinus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.AMinus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.AMinus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -92,7 +106,7 @@ describe('Grade.aMinus', () => {
         expect(color).toBe('#FFFFFF');
 
         const backgroundColor = avatarElement.props.style[0].backgroundColor;
-        expect(backgroundColor).toBe('#64a721');
+        expect(backgroundColor).toBe('rgba(100, 167, 33, 1)');
 
         expect(toJSON()).toMatchSnapshot();
     });
@@ -100,7 +114,11 @@ describe('Grade.aMinus', () => {
 
 describe('Grade.bPlus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.BPlus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.BPlus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -116,7 +134,7 @@ describe('Grade.bPlus', () => {
         expect(color).toBe('#524700');
 
         const backgroundColor = avatarElement.props.style[0].backgroundColor;
-        expect(backgroundColor).toBe('#afc543');
+        expect(backgroundColor).toBe('rgba(176, 197, 68, 1)');
 
         expect(toJSON()).toMatchSnapshot();
     });
@@ -124,7 +142,11 @@ describe('Grade.bPlus', () => {
 
 describe('Grade.b', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.B />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.B />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -148,7 +170,11 @@ describe('Grade.b', () => {
 
 describe('Grade.bMinus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.BMinus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.BMinus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -164,7 +190,7 @@ describe('Grade.bMinus', () => {
         expect(color).toBe('#524700');
 
         const backgroundColor = avatarElement.props.style[0].backgroundColor;
-        expect(backgroundColor).toBe('#f6c543');
+        expect(backgroundColor).toBe('rgba(246, 198, 68, 1)');
 
         expect(toJSON()).toMatchSnapshot();
     });
@@ -172,7 +198,11 @@ describe('Grade.bMinus', () => {
 
 describe('Grade.cPlus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.CPlus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.CPlus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -188,7 +218,7 @@ describe('Grade.cPlus', () => {
         expect(color).toBe('#4B2800');
 
         const backgroundColor = avatarElement.props.style[0].backgroundColor;
-        expect(backgroundColor).toBe('#f1a821');
+        expect(backgroundColor).toBe('rgba(242, 168, 33, 1)');
 
         expect(toJSON()).toMatchSnapshot();
     });
@@ -196,7 +226,11 @@ describe('Grade.cPlus', () => {
 
 describe('Grade.c', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.C />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.C />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -220,7 +254,11 @@ describe('Grade.c', () => {
 
 describe('Grade.cMinus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.CMinus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.CMinus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -236,7 +274,7 @@ describe('Grade.cMinus', () => {
         expect(color).toBe('#4B2800');
 
         const backgroundColor = avatarElement.props.style[0].backgroundColor;
-        expect(backgroundColor).toBe('#dc6508');
+        expect(backgroundColor).toBe('rgba(220, 102, 9, 1)');
 
         expect(toJSON()).toMatchSnapshot();
     });
@@ -244,7 +282,11 @@ describe('Grade.cMinus', () => {
 
 describe('Grade.dPlus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.DPlus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.DPlus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -260,7 +302,7 @@ describe('Grade.dPlus', () => {
         expect(color).toBe('#FFFFFF');
 
         const backgroundColor = avatarElement.props.style[0].backgroundColor;
-        expect(backgroundColor).toBe('#cb3f11');
+        expect(backgroundColor).toBe('rgba(203, 63, 17, 1)');
 
         expect(toJSON()).toMatchSnapshot();
     });
@@ -268,7 +310,11 @@ describe('Grade.dPlus', () => {
 
 describe('Grade.d', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.D />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.D />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -292,7 +338,11 @@ describe('Grade.d', () => {
 
 describe('Grade.dMinus', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.DMinus />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.DMinus />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
@@ -316,7 +366,11 @@ describe('Grade.dMinus', () => {
 
 describe('Grade.f', () => {
     it('renders with default label, color, background color, and size', () => {
-        const { toJSON, getByText, getByTestId } = render(<Grade.F />);
+        const { toJSON, getByText, getByTestId } = render(
+            <PaperProvider theme={blue}>
+                <Grade.F />
+            </PaperProvider>
+        );
 
         const avatarElement = getByTestId('grade');
         const avatarStyle = avatarElement.props.style;
