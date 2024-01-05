@@ -2,7 +2,7 @@
 
 The Chip component is a customizable [chip](https://callstack.github.io/react-native-paper/docs/components/Chip/)-based component that makes the chip component in alignment to BrightlayerUI. Chips are compact elements that can represent inputs, attributes, or actions. They can have an icon or avatar on the left, and a close button icon on the right.
 
-<img width="110" alt="Chipcomponent" src="./images/chip.png">
+<img width="400" alt="Chipcomponent" src="./images/chip.png">
 
 ## Usage
 

@@ -2,7 +2,7 @@
 
 Overline component is used to render text on the screen.
 
-<img width="100%" style="max-width:400px" alt="Overline" src="./images/overline.png">
+<img width="250" style="max-width:400px" alt="Overline" src="./images/overline.png">
 
 ## Usage
 

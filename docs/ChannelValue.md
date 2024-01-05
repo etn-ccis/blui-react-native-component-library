@@ -2,7 +2,7 @@
 
 The `<ChannelValue>` component is used to display a channel value (and units). This component abstracts the styles used to display the channel and units as well as an optional inline icon. These are used as part of the [Hero](./Hero.md) component, but can also be used inline (e.g., in a list)
 
-<img width="300" alt="Channel Value component" src="./images/channelValue.png">
+<img width="150" alt="Channel Value component" src="./images/channelValue.png">
 
 ## Usage
 

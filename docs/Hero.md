@@ -2,7 +2,7 @@
 
 Hero items are used to call attention to particular values.
 
-<img width="500" alt="Hero Banner with heroes" src="./images/hero.png">
+<img width="300" alt="Hero Banner with heroes" src="./images/hero.png">
 
 ## Hero
 
