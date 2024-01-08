@@ -1,0 +1,658 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyState renders correctly with accessibility props 1`] = `
+<View
+  accessibilityLabel="custom-accessibility-label"
+  accessible={true}
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with custom icon size and color 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with custom styles 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      {
+        "backgroundColor": "red",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            {
+              "fontSize": 24,
+            },
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "textAlign": "center",
+            },
+            {
+              "color": "green",
+            },
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with different icon sources 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Image
+    accessibilityElementsHidden={true}
+    importantForAccessibility="no-hide-descendants"
+    source={
+      {
+        "uri": "https://example.com/icon.png",
+      }
+    }
+    style={
+      [
+        {
+          "height": 100,
+          "resizeMode": "contain",
+          "width": 100,
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with different theme overrides 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with edge case inputs 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`EmptyState renders correctly with empty props 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with long title and description 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    This is a very long title that should wrap to the next line
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    This is a very long description that should wrap to the next line. It contains more information about the empty state.
+  </Text>
+</View>
+`;
+
+exports[`EmptyState renders correctly with title and description 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 16,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontWeight": "400",
+            "letterSpacing": 0,
+            "lineHeight": 28,
+          },
+          [
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "fontSize": 22,
+              "letterSpacing": 0,
+              "marginTop": 32,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Title
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "textAlign": "center",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Empty State Description
+  </Text>
+</View>
+`;

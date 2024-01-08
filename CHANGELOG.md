@@ -1,11 +1,22 @@
 # Change Log
 
+## v8.0.0 (Unreleased)
+
+### Added
+
+-   `<IconSwitch />` component to display icon on the Switch's handle.
+
+### Changed
+
+-   The default direction of `IconFamily` to `rtl` ([#180](https://github.com/etn-ccis/blui-react-native-component-library/issues/180)).
+-   The default icon background color for Hero changed from `theme.colors.surface` to 'transparent'.
+
 ## v7.1.0 (April 12, 2023)
 
 ### Fixed
 
 -   Issue with extra large accessibility sizes on iOS ([#224](https://github.com/etn-ccis/blui-react-native-component-library/issues/224)).
--   Issue with the `<Header>` not blending behind the StatusBar on android devices([#186](https://github.com/etn-ccis/blui-react-native-component-library/issues/186)). 
+-   Issue with the `<Header>` not blending behind the StatusBar on android devices ([#186](https://github.com/etn-ccis/blui-react-native-component-library/issues/186)).
 
 ### Added
 

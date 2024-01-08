@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-native-components",
-    "version": "7.1.0",
+    "version": "8.0.0",
     "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
     "description": "Reusable React Native components for Brightlayer UI applications",
     "repository": {
@@ -23,7 +23,7 @@
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
         "build": "tsc --p tsconfig.lib.json",
-        "test": "jest --maxWorkers=2",
+        "test": "jest",
         "test:watch": "jest --watch",
         "verify-build": "tsc --noEmit",
         "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@brightlayer-ui/react-native-components",
@@ -32,17 +32,18 @@
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@brightlayer-ui/colors": "^3.1.1",
+        "@brightlayer-ui/react-native-themes": "7.0.0-alpha.2",
         "color": "^4.2.3",
         "react-native-collapsible": "^1.6.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
-        "react-native-modal": ">=13.0.1"
+        "react-native-modal": ">=13.0.1",
+        "react-native-reanimated": "^3.6.1"
     },
     "peerDependencies": {
         "@brightlayer-ui/react-native-vector-icons": "^2.0.0",
         "react": "^17.0.0 || ^18.0.0",
         "react-native": "0.68.0 || 0.69.0 || ^0.70.0",
-        "react-native-paper": "^4.0.0",
+        "react-native-paper": "^5.0.0",
         "react-native-safe-area-context": "^4.0.0",
         "react-native-vector-icons": "^9.0.0"
     },
@@ -65,25 +66,24 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-react": "^7.31.8",
         "identity-obj-proxy": "^3.0.0",
-        "jest": "^29.0.3",
+        "jest": "^29.7.0",
         "prettier": "^2.7.1",
         "react": "^18.1.0",
         "react-native": "^0.70.0",
-        "react-native-paper": "^4.12.5",
+        "react-native-paper": "^5.0.0",
         "react-native-safe-area-context": "^4.3.3",
         "react-native-svg": "^13.1.0",
         "react-native-vector-icons": "^9.2.0",
         "react-test-renderer": "^18.2.0",
         "ts-jest": "^29.0.0",
-        "typescript": "^4.8.3"
+        "typescript": "4.9.5"
     },
     "files": [
         "package.json",
         "LICENSE",
         "README.md",
         "CHANGELOG.md",
-        "core/",
-        "themed/"
+        "core/"
     ],
     "directories": {
         "doc": "../docs"

@@ -73,6 +73,10 @@ to bring up a API documentation website (no interactive components).
 
 See the [documentation](https://brightlayer-ui-components.github.io/react-native) for information on using these components.
 
+### Upgrading to version 8
+
+See the [migration guide](./MIGRATION.md). 
+
 ### Upgrading from version 5 -> 6
 
 Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats.
@@ -80,6 +84,7 @@ Version 6 of this library is a major update with several breaking changes. Most 
 Versions 5.3.x -> 5.4.x have been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.4.x and addressing these warnings before upgrading to version 6.
 
 Version 6 also includes a new set of [wrappers](./components/src/themed) around a subset of [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to provide the correct styles. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP. These wrapper components should be used in conjunction with version 6+ of [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes), which consolidated our blueDark and blueDarkAlt themes into a single theme for simpler usage.
+
 
 ## NOTES
 

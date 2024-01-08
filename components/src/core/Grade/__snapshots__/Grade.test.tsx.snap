@@ -1,0 +1,1074 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grade.a renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#198900",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        A
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.aMinus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(100, 167, 33, 1)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        A-
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.aPlus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#198900",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        A+
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.b renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#FBE365",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#524700",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#524700",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        B
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.bMinus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(246, 198, 68, 1)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#524700",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#524700",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        B-
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.bPlus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(176, 197, 68, 1)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#524700",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#524700",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        B+
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.c renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#ED8B00",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#4B2800",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#4B2800",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        C
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.cMinus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(220, 102, 9, 1)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#4B2800",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#4B2800",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        C-
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.cPlus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(242, 168, 33, 1)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#4B2800",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#4B2800",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        C+
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.custom renders with custom label, color, background color, and size 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#66CCFF",
+        "borderRadius": 25,
+        "height": 50,
+        "width": 50,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {},
+    ]
+  }
+  testID="grade"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "textAlign": "center",
+            "textAlignVertical": "center",
+          },
+          {
+            "color": "#FF5733",
+            "fontSize": 25,
+            "lineHeight": 25,
+          },
+          {
+            "color": "#FF5733",
+            "fontFamily": "OpenSans-Bold",
+            "fontWeight": "700",
+          },
+        ],
+      ]
+    }
+  >
+    Custom Grade
+  </Text>
+</View>
+`;
+
+exports[`Grade.d renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#BA1A1A",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        D
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.dMinus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#BA1A1A",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        D-
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.dPlus renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(203, 63, 17, 1)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        D+
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Grade.f renders with default label, color, background color, and size 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#9F45F6",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {},
+        ]
+      }
+      testID="grade"
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#192024",
+              "fontFamily": "System",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+            },
+            {
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "textAlign": "center",
+                "textAlignVertical": "center",
+              },
+              {
+                "color": "#FFFFFF",
+                "fontSize": 20,
+                "lineHeight": 20,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "OpenSans-Bold",
+                "fontWeight": "700",
+              },
+            ],
+          ]
+        }
+      >
+        F
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

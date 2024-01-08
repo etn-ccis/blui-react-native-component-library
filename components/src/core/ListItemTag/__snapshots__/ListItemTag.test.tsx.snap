@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemTag Accepts style override 1`] = `[Function]`;
+
+exports[`ListItemTag ListItemTag Renders 1`] = `
+<Text
+  style={
+    [
+      {
+        "textAlign": "left",
+      },
+      {
+        "color": "rgba(28, 27, 31, 1)",
+        "writingDirection": "ltr",
+      },
+      [
+        {
+          "fontFamily": "System",
+          "fontSize": 14,
+          "fontWeight": "400",
+          "letterSpacing": 0.25,
+          "lineHeight": 20,
+        },
+        [
+          {
+            "backgroundColor": undefined,
+            "borderRadius": 8,
+            "color": undefined,
+            "fontFamily": "OpenSans-Bold",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "height": 32,
+            "letterSpacing": 1,
+            "lineHeight": 16,
+            "overflow": "hidden",
+            "padding": 0,
+            "paddingLeft": 8,
+            "paddingRight": 6,
+            "textTransform": "uppercase",
+          },
+          undefined,
+          undefined,
+        ],
+      ],
+    ]
+  }
+>
+  label text
+</Text>
+`;
+
+exports[`ListItemTag Renders the background color and font color correctly 1`] = `[Function]`;

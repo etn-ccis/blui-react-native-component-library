@@ -2,7 +2,7 @@
 
 Hero items are used to call attention to particular values.
 
-<img width="500" alt="Hero Banner with heroes" src="./images/hero.png">
+<img width="300" alt="Hero Banner with heroes" src="./images/hero.png">
 
 ## Hero
 
@@ -26,18 +26,20 @@ import { Hero } from '@brightlayer-ui/react-native-components';
 
 <div style="overflow: auto">
 
-| Prop Name           | Description                                | Type                                   | Required | Default                |
-| ------------------- | ------------------------------------------ | -------------------------------------- | -------- | ---------------------- |
-| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`                    | no       |                        |
-| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)             | yes      |                        |
-| iconBackgroundColor | The color behind the primary icon          | `string`                               | no       | `theme.colors.surface` |
-| iconColor           | The color of the primary icon              | `string`                               | no       | `theme.colors.text`    |
-| iconSize            | The size of the primary icon (10-48)       | `number`                               | no       | 36                     |
-| label               | The text shown below the `ChannelValue`    | `string`                               | yes      |                        |
-| onPress             | A function to execute when pressed         | `function`                             | no       |                        |
-| theme               | Theme value overrides                      | `$DeepPartial<ReactNativePaper.Theme>` | no       |                        |
+| Prop Name           | Description                                | Type                          | Required | Default                         |
+| ------------------- | ------------------------------------------ | ----------------------------- | -------- | ------------------------------- |
+| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`           | no       |                                 |
+| icon                | A component to render for the primary icon | [`IconSource`](./Icons.md)    | yes      |                                 |
+| iconBackgroundColor | The color behind the primary icon          | `string`                      | no       | transparent                     |
+| iconColor           | The color of the primary icon              | `string`                      | no       | `theme.colors.onSurfaceVariant` |
+| iconSize            | The size of the primary icon (10-48)       | `number`                      | no       | 36                              |
+| label               | The text shown below the `ChannelValue`    | `string`                      | yes      |                                 |
+| onPress             | A function to execute when pressed         | `function`                    | no       |                                 |
+| theme               | Theme value overrides                      | `$DeepPartial<ExtendedTheme>` | no       |                                 |
 
 </div>
+
+Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
 ### Styles
 
