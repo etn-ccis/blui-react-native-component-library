@@ -10,7 +10,7 @@ npm install --save @brightlayer-ui/react-native-components@^8.0.0
 yarn upgrade @brightlayer-ui/react-native-components@^8.0.0
 ```
 
-You also need to update `@brightlayer-ui/react-native-themes`, `@brightlayer-ui/colors`, `react-native`, and `react-native-paper`.
+You also need to update `@brightlayer-ui/react-native-themes`, `react-native`, and `react-native-paper`.
 
 ```shell
 npm install --save @brightlayer-ui/react-native-themes@^7.0.0 @brightlayer-ui/colors@^4.0.0 react-native@0.72.3 react-native-paper@^5.0.0
@@ -22,7 +22,7 @@ yarn upgrade @brightlayer-ui/react-native-themes@^7.0.0 @brightlayer-ui/colors@^
 
 ## Color Updates
 
-The Brightlayer UI color palette underwent major changes to reflect Material Design 3's new color structure. Please follow the [migration guide](https://en.wikipedia.org/wiki/First_solo_flight#Traditions) for more details.
+The Brightlayer UI color palette underwent major changes to reflect Material Design 3's new color structure. Please follow the [migration guide](https://github.com/etn-ccis/blui-colors/blob/master/README.md#migration-from-v3-to-v4) for more details.
 
 ## Themes Updates
 
@@ -51,5 +51,5 @@ In version 8 of this library, the following components have been added or remove
 
 ## Notes
 
-<!-- TODO : Add a link to style override guide -->
+<!-- TODO : Add a link to style override guide, once BLUI-5027 is done -->
 A few React Native Paper components require additional style overrides to match Brightlayer UI's design specifications. To learn more about these style overrides, please follow [the guidelines](#).
