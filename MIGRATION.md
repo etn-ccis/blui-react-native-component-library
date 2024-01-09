@@ -1,5 +1,7 @@
 # Upgrading from v7 to v8
 
+Version 8 of `@brightlayer-ui/react-native-components` utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, the `Typography` and `IconWrapper` components have been removed and we added 5 new components. In previous versions we exported themed components, which have been removed in this version.
+
 ## Dependency Updates
 
 First, update your `@brightlayer-ui/react-native-components` dependency to the latest version.
