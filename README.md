@@ -75,7 +75,7 @@ See the [documentation](https://brightlayer-ui-components.github.io/react-native
 
 ### Upgrading to version 8
 
-See the [migration guide](./MIGRATION.md). 
+Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, the `Typography` and `IconWrapper` components have been removed and we added 5 new components. In previous versions we exported themed components, which have been removed in this version. Please follow the [migration guide](./MIGRATION.md) for more details. 
 
 ### Upgrading from version 5 -> 6
 
