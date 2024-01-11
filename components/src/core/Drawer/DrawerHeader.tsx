@@ -60,6 +60,7 @@ const makeStyles = (
             flex: 1,
             height: '100%',
             fontFamily: 'OpenSans-SemiBold',
+            justifyContent: 'center',
         },
         title: {
             color: props.fontColor || theme.colors.primary,
@@ -211,12 +212,20 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         (): ReactNode =>
             titleContent || (
                 <View style={[defaultStyles.textContent, styles.textContent]}>
-                    <Text variant={'headlineSmall'} style={[defaultStyles.title, styles.title]} numberOfLines={1}>
-                        {title}
-                    </Text>
-                    <Text variant={'bodyMedium'} style={[defaultStyles.subtitle, styles.subtitle]} numberOfLines={1}>
-                        {subtitle}
-                    </Text>
+                    {title && (
+                        <Text variant={'headlineSmall'} style={[defaultStyles.title, styles.title]} numberOfLines={1}>
+                            {title}
+                        </Text>
+                    )}
+                    {subtitle && (
+                        <Text
+                            variant={'bodyMedium'}
+                            style={[defaultStyles.subtitle, styles.subtitle]}
+                            numberOfLines={1}
+                        >
+                            {subtitle}
+                        </Text>
+                    )}
                 </View>
             ),
         [title, subtitle, titleContent, defaultStyles, styles]
