@@ -13,19 +13,19 @@
         "@material-ui/icons": "^4.5.1",
         "@sambego/storybook-state": "^1.3.6",
         "@storybook/addon-notes": "^5.3.13",
-        "@storybook/addons": "^5.3.13",
-        "@storybook/preset-create-react-app": "^7.6.7",
-        "@storybook/react": "^5.3.13",
-        "@storybook/theming": "^5.3.13",
-        "react": "^16.11.0",
-        "react-dom": "^16.11.0",
-        "react-scripts": "3.2.0",
-        "typescript": "^3.6.4"
+        "@storybook/addons": "^7.6.7",
+        "@storybook/preset-create-react-app": "^4.1.2",
+        "@storybook/react": "^7.6.7",
+        "@storybook/theming": "^7.6.7",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-scripts": "5.0.1",
+        "typescript": "^5.3.3"
     },
     "scripts": {
         "start": "yarn storybook",
-        "storybook": "start-storybook -p 6006 -s ../../docs/,./assets",
-        "build-storybook": "build-storybook -s ../../docs/,./assets",
+        "storybook": "storybook dev -p 6006 -s ../../docs/,./assets",
+        "build-storybook": "storybook build -s ../../docs/,./assets",
         "lint": "eslint \"stories/**\"",
         "lint:fix": "eslint \"stories/**\" --fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
@@ -47,7 +47,8 @@
         "@babel/core": "^7.8.3",
         "@brightlayer-ui/eslint-config": "^1.1.5",
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "@storybook/addon-google-analytics": "^6.2.9",
+        "@storybook/cli": "^7.6.7",
+        "@storybook/react-webpack5": "^7.6.7",
         "@types/node": "12.11.7",
         "@types/react": "16.9.11",
         "@types/react-dom": "16.9.3",
@@ -60,6 +61,11 @@
         "eslint-plugin-react": "^7.17.0",
         "mini-css-extract-plugin": "^0.7.0",
         "prettier": "^1.19.1",
-        "sass-loader": "^8.0.2"
+        "sass-loader": "^8.0.2",
+        "storybook": "^7.6.7"
+    },
+    "packageManager": "yarn@4.0.2",
+    "resolutions": {
+        "jackspeak": "2.1.1"
     }
 }
