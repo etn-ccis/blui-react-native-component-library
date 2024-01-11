@@ -6,81 +6,81 @@ orbs:
 jobs:
     install_dependencies:
         docker:
-          - image: cimg/node:21.5.0-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         steps:
-          - checkout
-          - restore_cache:
-              keys:
-                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
-          - run:
-              name: Install Dependencies
-              command: |
-                  cd components
-                  yarn install --frozen-lockfile
-          - save_cache:
-              name: Save Cache
-              paths:
-                  - components/node_modules
-              key: v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+            - checkout
+            - restore_cache:
+                  keys:
+                      - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: |
+                      cd components
+                      yarn install --frozen-lockfile
+            - save_cache:
+                  name: Save Cache
+                  paths:
+                      - components/node_modules
+                  key: v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
     prettier:
         docker:
-          - image: cimg/node:21.5.0-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         steps:
-          - checkout
-          - restore_cache:
-              keys:
-                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
-          - run:
-              name: Install Dependencies
-              command: |
-                  cd components
-                  yarn install --frozen-lockfile
-          - run:
-              name: Prettier Check
-              command: |
-                  cd components
-                  yarn prettier:check
+            - checkout
+            - restore_cache:
+                  keys:
+                      - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: |
+                      cd components
+                      yarn install --frozen-lockfile
+            - run:
+                  name: Prettier Check
+                  command: |
+                      cd components
+                      yarn prettier:check
     lint_check:
         docker:
-          - image: cimg/node:21.5.0-browsers
+            - image: cimg/node:21.5.0-browsers
         resource_class: large
         steps:
-          - checkout
-          - restore_cache:
-              keys:
-                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
-          - run:
-              name: Install Dependencies
-              command: |
-                  cd components
-                  yarn install --frozen-lockfile
-          - run:
-              name: Lint
-              command: |
-                  cd components
-                  yarn lint
+            - checkout
+            - restore_cache:
+                  keys:
+                      - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: |
+                      cd components
+                      yarn install --frozen-lockfile
+            - run:
+                  name: Lint
+                  command: |
+                      cd components
+                      yarn lint
     test:
         docker:
-          - image: cimg/node:21.5.0-browsers
+            - image: cimg/node:21.5.0-browsers
         parallelism: 4
         resource_class: large
         steps:
-          - checkout
-          - restore_cache:
-              keys:
-                  - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
-          - run:
-              name: Install Dependencies
-              command: |
-                  cd components
-                  yarn install --frozen-lockfile
-          - run:
-              name: Tests
-              command: |
-                  cd components
-                  yarn test --maxWorkers=2 --coverage --watchAll=false
+            - checkout
+            - restore_cache:
+                  keys:
+                      - v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: |
+                      cd components
+                      yarn install --frozen-lockfile
+            - run:
+                  name: Tests
+                  command: |
+                      cd components
+                      yarn test --maxWorkers=2 --coverage --watchAll=false
     build_library:
         docker:
             - image: cimg/node:21.5.0-browsers
@@ -363,21 +363,21 @@ workflows:
             - build_showcase:
                   requires:
                       - build_library
-            # - build_storybook:
-            #       requires:
-            #           - build_showcase
-            # - build_storybook_api:
-            #       requires:
-            #           - build_library
-            #           - build_storybook
-            # - deploy_storybook:
-            #       requires:
-            #           - build_storybook_api
-            #       filters:
-            #           branches:
-            #               only:
-            #                   - master
-            #                   - dev
+            - build_storybook:
+                  requires:
+                      - build_showcase
+            - build_storybook_api:
+                  requires:
+                      - build_library
+                      - build_storybook
+            - deploy_storybook:
+                  requires:
+                      - build_storybook_api
+                  filters:
+                      branches:
+                          only:
+                              - master
+                              - dev
             - publish:
                   requires:
                       #   - build_storybook
