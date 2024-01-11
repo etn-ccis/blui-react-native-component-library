@@ -185,7 +185,7 @@ jobs:
                   when: always
 
     # Builds the hosted Storybook app
-    build_storybook_api:
+    build_docs:
         docker:
             - image: cimg/node:21.5.0-browsers
         resource_class: large
@@ -224,7 +224,7 @@ jobs:
                       cd demos/api
                       yarn lint
             - run:
-                  name: Build Storybook
+                  name: Build Docs
                   command: |
                       cd demos/api
                       # master and dev branches should configure Google Analytics IDs before the build.
@@ -366,9 +366,9 @@ workflows:
             # - build_storybook:
             #       requires:
             #           - build_showcase
-            # - build_storybook_api:
-            #       requires:
-            #           - build_library
+            - build_docs:
+                  requires:
+                      - build_library
             #           - build_storybook
             # - deploy_storybook:
             #       requires:
@@ -382,7 +382,7 @@ workflows:
                   requires:
                       #   - build_storybook
                       - build_showcase
-                      #   - build_storybook_api
+                      #   - build_docs
                   filters:
                       branches:
                           only:
