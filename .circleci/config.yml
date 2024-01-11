@@ -223,21 +223,21 @@ jobs:
                   command: |
                       cd demos/api
                       yarn lint
-            - run:
-                  name: Build Storybook
-                  command: |
-                      cd demos/api
-                      # master and dev branches should configure Google Analytics IDs before the build.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        STORYBOOK_GA_ID=$MASTER_GA
-                      fi
-                      if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
-                        STORYBOOK_GA_ID=$DEV_GA
-                      fi
+            # - run:
+            #       name: Build Storybook
+            #       command: |
+            #           cd demos/api
+            #           # master and dev branches should configure Google Analytics IDs before the build.
+            #           if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
+            #             STORYBOOK_GA_ID=$MASTER_GA
+            #           fi
+            #           if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
+            #             STORYBOOK_GA_ID=$DEV_GA
+            #           fi
 
-                      yarn build-storybook
-                      cd storybook-static
-                      touch .nojekyll
+            #           yarn build-storybook
+            #           cd storybook-static
+            #           touch .nojekyll
             - persist_to_workspace:
                   root: .
                   paths:
