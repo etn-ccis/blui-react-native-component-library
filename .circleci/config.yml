@@ -366,9 +366,9 @@ workflows:
             # - build_storybook:
             #       requires:
             #           - build_showcase
-            # - build_storybook_api:
-            #       requires:
-            #           - build_library
+            - build_storybook_api:
+                  requires:
+                      - build_library
             #           - build_storybook
             # - deploy_storybook:
             #       requires:

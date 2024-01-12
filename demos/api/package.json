@@ -47,7 +47,6 @@
         "@babel/core": "^7.8.3",
         "@brightlayer-ui/eslint-config": "^1.1.5",
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "@storybook/addon-google-analytics": "^6.2.9",
         "@types/node": "12.11.7",
         "@types/react": "16.9.11",
         "@types/react-dom": "16.9.3",
@@ -58,6 +57,7 @@
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.9.0",
         "eslint-plugin-react": "^7.17.0",
+        "eslint-plugin-storybook": "^0.6.15",
         "mini-css-extract-plugin": "^0.7.0",
         "prettier": "^1.19.1",
         "sass-loader": "^8.0.2"
