@@ -202,6 +202,7 @@ jobs:
             - run:
                   name: Install Dependencies
                   command: |
+                      export NODE_OPTIONS=--openssl-legacy-provider
                       cd demos/api
                       yarn install --frozen-lockfile
 
