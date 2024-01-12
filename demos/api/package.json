@@ -23,7 +23,7 @@
         "typescript": "^3.6.4"
     },
     "scripts": {
-        "start": "yarn storybook",
+        "start": "export NODE_OPTIONS=--openssl-legacy-provider && yarn storybook",
         "storybook": "start-storybook -p 6006 -s ../../docs/,./assets",
         "build-storybook": "build-storybook -s ../../docs/,./assets",
         "lint": "eslint \"stories/**\"",
