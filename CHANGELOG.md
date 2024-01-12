@@ -2,6 +2,8 @@
 
 ## v8.0.0 (January 12, 2024)
 
+Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, both `Typography` and `IconWrapper` components have been removed, and 5 new components have been added. All previously-introduced themed components have removed in this version too. Please follow the [migration guide](./MIGRATION.md) for more details. 
+
 ### Added
 
 -   `<Chip/>` as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
