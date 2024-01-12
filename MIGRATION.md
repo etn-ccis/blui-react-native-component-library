@@ -51,5 +51,4 @@ In version 8 of this library, the following components have been added or remove
 
 ## Notes
 
-<!-- TODO : Add a link to style override guide, once BLUI-5027 is done -->
-A few React Native Paper components require additional style overrides to match Brightlayer UI's design specifications. To learn more about these style overrides, please follow [the guidelines](#).
+A few React Native Paper components require additional style overrides to match Brightlayer UI's design specifications. To learn more about these style overrides, please follow [the guidelines](https://github.com/etn-ccis/blui-react-native-themes/blob/master/RNPComponents/RNPComponents.md).
