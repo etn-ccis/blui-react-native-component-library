@@ -1,6 +1,6 @@
 # Change Log
 
-## v8.0.0 (January 11, 2024)
+## v8.0.0 (January 12, 2024)
 
 ### Added
 
