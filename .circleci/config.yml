@@ -234,7 +234,6 @@ jobs:
                       if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
                         STORYBOOK_GA_ID=$DEV_GA
                       fi
-                      export NODE_OPTIONS=--openssl-legacy-provider
                       yarn build-storybook
                       cd storybook-static
                       touch .nojekyll
