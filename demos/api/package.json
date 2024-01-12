@@ -24,8 +24,8 @@
     },
     "scripts": {
         "start": "yarn storybook",
-        "storybook": "start-storybook -p 6006 -s ../../docs/,./assets",
-        "build-storybook": "build-storybook -s ../../docs/,./assets",
+        "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006 -s ../../docs/,./assets",
+        "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook -s ../../docs/,./assets",
         "lint": "eslint \"stories/**\"",
         "lint:fix": "eslint \"stories/**\" --fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
