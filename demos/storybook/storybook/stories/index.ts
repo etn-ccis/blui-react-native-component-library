@@ -13,5 +13,4 @@ import './mobile-stepper';
 import './score-card';
 // import './search-screen';
 import './spacer';
-import './typography';
 import './user-menu';

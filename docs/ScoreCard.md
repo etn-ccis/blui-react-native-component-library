@@ -3,7 +3,6 @@
 Card component that calls attention to particular values.
 
 <img width="40%" alt="Score Card with single highlighted value" src="./images/scorecard.png"><br/>
-<img width="40%" alt="Score Card with multiple highlighted values" src="./images/scorecard_alt.png">
 
 ## Usage
 
@@ -41,23 +40,24 @@ import { Hero, HeroBanner, InfoListItem, Body, ScoreCard } from '@brightlayer-ui
 
 <div style="overflow: auto">
 
-| Prop Name             | Description                                           | Type                                   | Required | Default                  |
-| --------------------- | ----------------------------------------------------- | -------------------------------------- | -------- | ------------------------ |
-| actionItems           | Icons to show to the right of the header text (max 6) | `HeaderIcon[]`                         | no       |                          |
-| actionRow             | Component to render for the card footer               | `React.Component`                      | no       |                          |
-| badge                 | The component to render in the call-out area          | `React.Component`                      | no       |                          |
-| badgeOffset           | Vertical offset for the badge component               | `number`                               | no       |                          |
-| headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`                  | no       |                          |
-| headerColor           | The background color of the header                    | `string`                               | no       | `theme.colors.primary`   |
-| headerFontColor       | The color for text and icons in header                | `string`                               | no       | `theme.colors.onPrimary` |
-| headerInfo            | The third line of text in the header                  | `string`                               | no       |                          |
-| headerSubtitle        | The second line of text in the header                 | `string`                               | no       |                          |
-| headerTitle           | The first line of text in the header                  | `string`                               | yes      |                          |
-| theme                 | Theme value overrides                                 | `$DeepPartial<ReactNativePaper.Theme>` | no       |                          |
+| Prop Name             | Description                                           | Type                          | Required | Default                           |
+| --------------------- | ----------------------------------------------------- | ----------------------------- | -------- | --------------------------------- |
+| actionItems           | Icons to show to the right of the header text (max 6) | `HeaderIcon[]`                | no       |                                   |
+| actionRow             | Component to render for the card footer               | `React.Component`             | no       |                                   |
+| actionIconColor       | The color of the action icon                          | `string`                      | no       | `theme.colors.onSurfaceVariant`   |
+| badge                 | The component to render in the call-out area          | `React.Component`             | no       |                                   |
+| badgeOffset           | Vertical offset for the badge component               | `number`                      | no       |                                   |
+| headerBackgroundImage | An image to blend with the header color               | `ImageSourcePropType`         | no       |                                   |
+| headerColor           | The background color of the header                    | `string`                      | no       | `theme.colors.primaryContainer`   |
+| headerFontColor       | The color for text in header                          | `string`                      | no       | `theme.colors.onPrimaryContainer` |
+| headerInfo            | The third line of text in the header                  | `string`                      | no       |                                   |
+| headerSubtitle        | The second line of text in the header                 | `string`                      | no       |                                   |
+| headerTitle           | The first line of text in the header                  | `string`                      | yes      |                                   |
+| theme                 | Theme value overrides                                 | `$DeepPartial<ExtendedTheme>` | no       |                                   |
 
 </div>
 
-Any other props will be provided to the root element ([**Card**](https://callstack.github.io/react-native-paper/card.html)).
+Any other props will be provided to the root element ([**Card**](https://callstack.github.io/react-native-paper/docs/components/Card/)).
 
 ### Styles
 

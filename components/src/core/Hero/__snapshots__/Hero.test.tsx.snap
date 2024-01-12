@@ -1,0 +1,794 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero renders correctly with ChannelValueProps 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "justifyContent": "center",
+          "marginBottom": 16,
+          "overflow": "hidden",
+          "padding": 0,
+        },
+        {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "height": 72,
+          "width": 72,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "maxWidth": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "maxWidth": "100%",
+          },
+          undefined,
+          undefined,
+        ]
+      }
+    >
+      <Text
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "rgba(28, 27, 31, 1)",
+              "writingDirection": "ltr",
+            },
+            [
+              {
+                "fontFamily": "System",
+                "fontSize": 16,
+                "fontWeight": "500",
+                "letterSpacing": 0.15,
+                "lineHeight": 24,
+              },
+              [
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "fontFamily": "OpenSans-SemiBold",
+                  "fontSize": 22,
+                  "fontWeight": "600",
+                  "lineHeight": 28,
+                },
+              ],
+            ],
+          ]
+        }
+        testID="text-wrapper"
+      >
+        <Text
+          style={
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "rgba(28, 27, 31, 1)",
+                "writingDirection": "ltr",
+              },
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 16,
+                  "fontWeight": "500",
+                  "letterSpacing": 0.15,
+                  "lineHeight": 24,
+                },
+                [
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "fontFamily": "OpenSans-SemiBold",
+                    "fontSize": 22,
+                    "fontWeight": "600",
+                    "lineHeight": 28,
+                  },
+                  undefined,
+                ],
+              ],
+            ]
+          }
+        >
+          100
+        </Text>
+      </Text>
+    </View>
+  </View>
+  <Text
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "textAlign": "center",
+              "width": "100%",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Hero Label
+  </Text>
+</View>
+`;
+
+exports[`Hero renders correctly with custom icon size and color 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "justifyContent": "center",
+          "marginBottom": 16,
+          "overflow": "hidden",
+          "padding": 0,
+        },
+        {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "height": 30,
+          "width": 30,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          [
+            {
+              "fontFamily": "System",
+              "fontSize": 14,
+              "fontWeight": "400",
+              "letterSpacing": 0.25,
+              "lineHeight": 20,
+            },
+            [
+              {
+                "color": "blue",
+                "fontSize": 30,
+                "lineHeight": 40,
+              },
+            ],
+          ],
+        ]
+      }
+    >
+      your-icon-source
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "maxWidth": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Text
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "textAlign": "center",
+              "width": "100%",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Hero Label
+  </Text>
+</View>
+`;
+
+exports[`Hero renders correctly with custom styles 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "red",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "justifyContent": "center",
+          "marginBottom": 16,
+          "overflow": "hidden",
+          "padding": 0,
+        },
+        {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "height": 72,
+          "width": 72,
+        },
+        {
+          "borderColor": "green",
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "maxWidth": "100%",
+        },
+        {
+          "padding": 10,
+        },
+      ]
+    }
+  />
+  <Text
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "textAlign": "center",
+              "width": "100%",
+            },
+            {
+              "color": "blue",
+            },
+          ],
+        ],
+      ]
+    }
+  >
+    Hero Label
+  </Text>
+</View>
+`;
+
+exports[`Hero renders correctly with icon 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "justifyContent": "center",
+          "marginBottom": 16,
+          "overflow": "hidden",
+          "padding": 0,
+        },
+        {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "height": 72,
+          "width": 72,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          [
+            {
+              "fontFamily": "System",
+              "fontSize": 14,
+              "fontWeight": "400",
+              "letterSpacing": 0.25,
+              "lineHeight": 20,
+            },
+            [
+              {
+                "color": "rgba(73, 69, 79, 1)",
+                "fontSize": 36,
+                "lineHeight": 48,
+              },
+            ],
+          ],
+        ]
+      }
+    >
+      your-icon-source
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "maxWidth": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Text
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "textAlign": "center",
+              "width": "100%",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Hero Label
+  </Text>
+</View>
+`;
+
+exports[`Hero renders correctly with icon background color 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "justifyContent": "center",
+          "marginBottom": 16,
+          "overflow": "hidden",
+          "padding": 0,
+        },
+        {
+          "backgroundColor": "yellow",
+          "height": 72,
+          "width": 72,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          [
+            {
+              "fontFamily": "System",
+              "fontSize": 14,
+              "fontWeight": "400",
+              "letterSpacing": 0.25,
+              "lineHeight": 20,
+            },
+            [
+              {
+                "color": "rgba(73, 69, 79, 1)",
+                "fontSize": 36,
+                "lineHeight": 48,
+              },
+            ],
+          ],
+        ]
+      }
+    >
+      your-icon-source
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "maxWidth": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Text
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "textAlign": "center",
+              "width": "100%",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Hero Label
+  </Text>
+</View>
+`;
+
+exports[`Hero renders correctly with label 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "justifyContent": "center",
+          "marginBottom": 16,
+          "overflow": "hidden",
+          "padding": 0,
+        },
+        {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "height": 72,
+          "width": 72,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "maxWidth": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Text
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          [
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "OpenSans-SemiBold",
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "textAlign": "center",
+              "width": "100%",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Hero Label
+  </Text>
+</View>
+`;
