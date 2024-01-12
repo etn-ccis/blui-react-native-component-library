@@ -11,11 +11,17 @@ import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-th
 export type UserMenuProps = {
     /** Avatar component to display as the menu trigger */
     avatar: JSX.Element;
-    /** Background color of the bottom sheet */
+    /** Background color of the bottom sheet
+     *
+     * @default: theme.colors.surface
+     */
     backgroundColor?: string;
     /** Color of text for the bottom sheet header and menu items */
     fontColor?: string;
-    /** Color of icons for the bottom sheet menu items */
+    /** Color of icons for the bottom sheet menu items
+     * @default: theme.colors.onSurfaceVariant
+     *
+     */
     iconColor?: string;
     /** An array of menu items to display in the bottom sheet */
     menuItems: InfoListItemProps[];

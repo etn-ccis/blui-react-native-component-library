@@ -29,14 +29,14 @@ export type ChannelValueProps = ViewProps & {
     /**
      * The size of the icon
      *
-     * Default: fontSize
+     * @default: fontSize
      */
     iconSize?: number;
 
     /**
      * The color of the primary icon
      *
-     * Default: theme.colors.onSurface
+     * @default: theme.colors.onSurface
      */
     iconColor?: string;
 
@@ -45,7 +45,7 @@ export type ChannelValueProps = ViewProps & {
 
     /** Whether to show a space between the value and units
      *
-     * Default: auto (shows space except for white list items)
+     * @default: auto (shows space except for white list items)
      *
      * prefixUnitWhitelist: ['$'];
      * suffixUnitWhitelist: ['%', '℉','°F','℃','°C','°']
@@ -54,19 +54,19 @@ export type ChannelValueProps = ViewProps & {
 
     /** Whether to show the units before the value (e.g., for currency)
      *
-     * Default: false
+     * @default: false
      */
     prefix?: boolean;
 
     /** The size to use for the text elements
      *
-     * Default: 16
+     * @default: 16
      */
     fontSize?: number;
 
     /** The color used for the text elements
      *
-     * Default: theme.colors.onSurface
+     * @default: theme.colors.onSurface
      */
     color?: string;
 

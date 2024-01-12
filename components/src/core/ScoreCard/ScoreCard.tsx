@@ -296,7 +296,7 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
 
     /**  The color of the action icon
      *
-     * Default: theme.colors.onSurfaceVariant
+     * @default: theme.colors.onSurfaceVariant
      */
     actionIconColor?: string;
 
@@ -313,12 +313,12 @@ export type ScoreCardProps = Omit<React.ComponentProps<typeof Card>, 'children' 
 
     /** Background color of the header
      *
-     *  Default: theme.colors.primaryContainer
+     *  @default: theme.colors.primaryContainer
      */
     headerColor?: string;
 
     /** The color for text in the header
-     * Default: theme.colors.onPrimaryContainer
+     * @default: theme.colors.onPrimaryContainer
      */
     headerFontColor?: string;
 

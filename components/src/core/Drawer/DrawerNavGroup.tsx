@@ -26,7 +26,7 @@ export type DrawerNavGroupProps = AllSharedProps &
 
         /** Color to use for the group header title text
          *
-         * Default: theme.colors.onSurface
+         * @default: theme.colors.onSurface
          */
         titleColor?: string;
 

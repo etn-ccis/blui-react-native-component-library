@@ -32,14 +32,14 @@ export type DrawerNavItemProps = AllSharedProps &
          *
          * This property is managed automatically when used inside of a DrawerNavGroup.
          *
-         * Default: 0
+         * @default: 0
          */
         depth?: number;
 
         /**
          * Hides / does not render the item (useful for hiding certain items based on user role or permissions)
          *
-         * Default: false
+         * @default: false
          */
         hidden?: boolean;
 
@@ -51,7 +51,7 @@ export type DrawerNavItemProps = AllSharedProps &
          *
          * This property is managed automatically when used inside of a DrawerNavGroup.
          *
-         * Default: false
+         * @default: false
          */
         isInActiveTree?: boolean;
 

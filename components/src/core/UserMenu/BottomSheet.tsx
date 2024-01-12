@@ -10,7 +10,7 @@ type BottomSheetProps = {
     onClose?: () => void;
     /** Background color to use for the bottom sheet
      *
-     * Default: theme.colors.surface
+     * @default: theme.colors.surface
      */
     backgroundColor?: string;
     /** Style overrides for internal elements. The styles you provide will be combined with the default styles. */

@@ -10,14 +10,14 @@ export type ListItemTagProps = Omit<TextProps<'bodyMedium'>, 'children' | 'theme
     /**
      * Background color for the label.
      *
-     * Default: theme.colors.primaryFilledContainer
+     * @default: theme.colors.primaryFilledContainer
      **/
     backgroundColor?: string;
 
     /**
      * Text color for the label.
      *
-     * Default: theme.colors.onPrimaryFilledContainer
+     * @default: theme.colors.onPrimaryFilledContainer
      */
     fontColor?: string;
     /**

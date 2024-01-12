@@ -57,19 +57,19 @@ export type HeroProps = ViewProps & {
 
     /** The size of the primary icon (min 10px)
      *
-     * Default: 36
+     * @default: 36
      */
     iconSize?: number;
 
     /** Color override for the row icon
      *
-     * Default: theme.colors.onSurfaceVariant
+     * @default: theme.colors.onSurfaceVariant
      */
     iconColor?: string;
 
     /** The color used behind the primary icon
      *
-     * Default: 'transparent
+     * @default: 'transparent
      */
     iconBackgroundColor?: string;
 

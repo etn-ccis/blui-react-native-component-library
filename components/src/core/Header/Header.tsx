@@ -72,21 +72,21 @@ export type SearchableConfig = {
     /**
      * Determines how the search input will be capitalized
      *
-     * Default: 'none'
+     * @default: 'none'
      */
     autoCapitalize?: TextInputProps['autoCapitalize'];
 
     /**
      * Determines whether auto-correct is enabled in the search input
      *
-     * Default: false
+     * @default: false
      */
     autoCorrect?: boolean;
 
     /**
      * Determines whether the search input will be focused on when it is rendered / opened
      *
-     * Default: false
+     * @default: false
      */
     autoFocus?: boolean;
 
@@ -99,7 +99,7 @@ export type SearchableConfig = {
     /**
      * Placeholder text for the search input
      *
-     * Default: 'Search'
+     * @default: 'Search'
      */
     placeholder?: string;
 };
@@ -111,13 +111,13 @@ export type HeaderProps = ViewProps & {
     /**
      * The color used for the action Items
      *
-     * Default: theme.colors.onSurfaceVariant
+     * @default: theme.colors.onSurfaceVariant
      */
     actionItemColor?: string;
     /**
      * The color used for the background
      *
-     * Default: theme.colors.primary
+     * @default: theme.colors.primaryContainer
      */
     backgroundColor?: string;
 
@@ -129,28 +129,28 @@ export type HeaderProps = ViewProps & {
     /**
      * Height of the Header when fully collapsed
      *
-     * Default: 56
+     * @default: 56
      */
     collapsedHeight?: number;
 
     /**
      * Allow the header to be expanded / collapsed by tapping
      *
-     * Default: false
+     * @default: false
      */
     expandable?: boolean;
 
     /**
      * Height of the Header when fully expanded
      *
-     * Default: 200
+     * @default: 200
      */
     expandedHeight?: number;
 
     /**
      * Color of the title, subtitle, info, and icons in the header
      *
-     * Default: theme.colors.onPrimary
+     * @default: theme.colors.onPrimary
      */
     fontColor?: string;
 
@@ -163,7 +163,7 @@ export type HeaderProps = ViewProps & {
     /**
      * The color used for the navigation Icon
      *
-     * Default: theme.colors.onSurface
+     * @default: theme.colors.onSurface
      */
     navigationIconColor?: string;
 
@@ -181,7 +181,7 @@ export type HeaderProps = ViewProps & {
     /**
      * Renders the header in the expanded state to start
      *
-     * Default: false
+     * @default: false
      */
     startExpanded?: boolean;
 
@@ -222,7 +222,7 @@ export type HeaderProps = ViewProps & {
      * - 'static': Header does not resize based on scroll position,
      * - 'dynamic' Header resizes based on the provided scrollPosition.
      *
-     * Default: static
+     * @default: static
      */
     variant?: 'dynamic' | 'static';
 };

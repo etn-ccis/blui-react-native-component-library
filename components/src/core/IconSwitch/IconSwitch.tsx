@@ -15,17 +15,17 @@ import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-th
 export type IconSwitchProps = ViewProps & {
     /**
      * Flag to show the icon on the handle or not
-     * Default: false
+     * @default: false
      */
     showIcon?: boolean;
     /**
      * Flag to disabled the IconSwitch
-     * Default: false
+     * @default: false
      */
     disabled?: boolean;
     /**
      * Flag to pass the IconSwitch value
-     * Default: false
+     * @default: false
      */
     value?: boolean;
     /**

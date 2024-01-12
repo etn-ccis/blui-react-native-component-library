@@ -52,7 +52,7 @@ export type MobileStepperProps = ViewProps & {
     /**
      * Color of the active page indicator (dots & progress only)
      *
-     * Default: theme.colors.primary
+     * @default: theme.colors.primary
      */
     activeColor?: string;
 
@@ -61,7 +61,7 @@ export type MobileStepperProps = ViewProps & {
 
     /** Color of the inactive step indicators
      *
-     *  Default: theme.colors.disabled
+     *  @default: theme.colors.disabled
      */
     inactiveColor?: string;
 
@@ -85,7 +85,7 @@ export type MobileStepperProps = ViewProps & {
      * - progress: progress bar
      * - text: text
      *
-     * Default: 'dots'
+     * @default: 'dots'
      */
     variant?: DotStepperVariant;
 

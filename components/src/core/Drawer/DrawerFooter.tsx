@@ -5,7 +5,7 @@ type DrawerFooterProps = {
     /**
      * Whether to show a dividing line above the footer
      *
-     * Default: true
+     * @default: true
      */
     divider?: boolean;
     /**

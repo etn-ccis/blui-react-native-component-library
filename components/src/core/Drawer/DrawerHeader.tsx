@@ -97,7 +97,7 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * The color used for the background
      *
-     * Default: theme.colors.primary
+     * @default: theme.colors.surface
      */
     backgroundColor?: string;
     /**
@@ -108,7 +108,7 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * Opacity to use for blending the background image into the background color
      *
-     * Default: 0.3
+     * @default: 0.3
      */
     backgroundOpacity?: number;
 
@@ -118,7 +118,14 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
      * Color to use for header text elements
      *
-     * Default: theme.colors.onSurface
+     * @default: theme.colors.onSurface
+     */
+    /**
+     * Color to use for text elements
+     *
+     * @default: Icon: theme.colors.onSurface
+     * Title: theme.colors.primary
+     * Subtitle: theme.colors.onSurfaceVariant
      */
     fontColor?: string;
 
