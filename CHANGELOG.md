@@ -2,6 +2,8 @@
 
 ## v8.0.0 (January 12, 2024)
 
+Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, both `Typography` and `IconWrapper` components have been removed, and 5 new components have been added. All previously-introduced themed components have removed in this version too. Please follow the [migration guide](./MIGRATION.md) for more details. 
+
 ### Added
 
 -   `<Chip/>` as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
@@ -82,6 +84,12 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 -   Issue regarding inability to set ref on `<ThemedTextInput>` ([#213](https://github.com/etn-ccis/blui-react-native-component-library/issues/213)).
 
 ## v6.0.0 (October 1, 2021)
+
+Version 6 of this library is a major update with several breaking changes. Most notably, the `IconClass` prop found in most components has been replaced by `icon` and supports more icon formats.
+
+Versions 5.3.x -> 5.4.x have been updated to include warning messages if you are using any deprecated props. We recommend upgrading to 5.4.x and addressing these warnings before upgrading to version 6.
+
+Version 6 also includes a new set of wrappers around a subset of [React Native Paper](https://callstack.github.io/react-native-paper/index.html) components to provide the correct styles. In order to get the correct appearance, you should use these themed wrapper components instead of the components directly from RNP. These wrapper components should be used in conjunction with version 6+ of [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes), which consolidated our blueDark and blueDarkAlt themes into a single theme for simpler usage.
 
 ### Fixed
 
