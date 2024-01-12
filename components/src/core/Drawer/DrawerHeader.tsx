@@ -95,9 +95,9 @@ const makeStyles = (
 
 export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     /**
-     * The color used for the background
+     * The header background color
      *
-     * Default: theme.colors.primary
+     * @default: theme.colors.surface
      */
     backgroundColor?: string;
     /**
@@ -106,9 +106,9 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     backgroundImage?: ImageSourcePropType;
 
     /**
-     * Opacity to use for blending the background image into the background color
+     * Background image opacity to help blend background image into the background color
      *
-     * Default: 0.3
+     * @default: 0.3
      */
     backgroundOpacity?: number;
 
@@ -116,13 +116,15 @@ export type DrawerHeaderProps = TouchableWithoutFeedbackProps & {
     onPress?: () => void;
 
     /**
-     * Color to use for header text elements
+     * Color of the icon and header texts
      *
-     * Default: theme.colors.onSurface
+     * @default: Icon: theme.colors.onSurface
+     * Title: theme.colors.primary
+     * Subtitle: theme.colors.onSurfaceVariant
      */
     fontColor?: string;
 
-    /** Icon to use to the left of the header text */
+    /** Icon  to the left of the header text */
     icon?: IconSource;
 
     /** Callback to execute when the icon is pressed */

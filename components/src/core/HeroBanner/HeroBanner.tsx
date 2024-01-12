@@ -20,7 +20,7 @@ export type HeroBannerProps = ViewProps & {
     /**
      * Whether to show a dividing line below the banner
      *
-     * Default: false
+     * @default: false
      */
     divider?: boolean;
 

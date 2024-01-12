@@ -4,8 +4,6 @@
 
 <img width="300" style="max-width: 600px; display: block;" alt="List Item Tag" src="./images/listItemTag.png">
 
-
-
 ## Usage
 
 ```tsx

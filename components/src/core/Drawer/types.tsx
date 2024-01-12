@@ -16,7 +16,7 @@ export type SharedStyleProps = {
     /**
      * Font color for the active item
      *
-     * Default: square
+     * @default: square
      */
     activeItemFontColor?: string;
 
@@ -29,7 +29,7 @@ export type SharedStyleProps = {
     /**
      * Whether to show a line between all items
      *
-     * Default: false
+     * @default: false
      */
     divider?: boolean;
 
@@ -49,7 +49,7 @@ export type NavItemSharedStyleProps = {
     /**
      * Shape of the active item background highlight
      *
-     * Default: square
+     * @default: square
      */
     activeItemBackgroundShape?: 'round' | 'square';
 
@@ -59,21 +59,21 @@ export type NavItemSharedStyleProps = {
     /**
      * Icon used to collapse a DrawerNavGroup
      *
-     * Default: `expandIcon` rotated 180-degrees
+     * @default: `expandIcon` rotated 180-degrees
      */
     collapseIcon?: IconSource;
 
     /**
      * When true, disables the semi-bold text style on parent elements of active item.
      *
-     * Default: false
+     * @default: false
      */
     disableActiveItemParentStyles?: boolean;
 
     /**
      * Icon used to expand a DrawerNavGroup
      *
-     * Default: top-level items use the 'expand-more' icon from Material. Nested items use the 'arrow-drop-down' icon.
+     * @default: top-level items use the 'expand-more' icon from Material. Nested items use the 'arrow-drop-down' icon.
      */
     expandIcon?: IconSource;
 
@@ -82,7 +82,7 @@ export type NavItemSharedStyleProps = {
      * together even if there is a mix of items with icons and items without. If this is set to true, the extra padding
      * for items without icons is removed and the text will align with the icon of DrawerNavItems with icons.
      *
-     * Default: false
+     * @default: false
      */
     hidePadding?: boolean;
 
@@ -94,7 +94,7 @@ export type NavItemSharedStyleProps = {
      * the setting used for `divider` for nested items. If this property is undefined, nested items will adhere
      * to the setting for `divider`.
      *
-     * Default: false
+     * @default: false
      */
     nestedDivider?: boolean;
 };

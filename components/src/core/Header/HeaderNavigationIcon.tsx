@@ -34,7 +34,7 @@ type HeaderNavigationProps = {
     /**
      * The color used for the navigation Icon
      *
-     * Default: theme.colors.onSurface
+     * @default: theme.colors.onSurface
      */
     navigationIconColor?: string;
 

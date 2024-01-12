@@ -7,14 +7,13 @@ export type IconComponentProps = {
     size?: number;
 
     /** The color of the icon to render
-     *
-     * Default: Theme.colors.text
+     * @default: theme.colors.onSurface
      */
     color?: string;
 
     /** If true, the icon should scale with the system font size
      *
-     * Default: true
+     * @default: true
      */
     allowFontScaling?: boolean;
 };

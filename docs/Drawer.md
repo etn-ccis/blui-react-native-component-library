@@ -91,7 +91,7 @@ The `<DrawerHeader>` is a subsection that appears at the top of `<Drawer>`. Its 
 | backgroundColor   | The color used for the background                | `string`                      | no       | `theme.colors.surface` |
 | backgroundImage   | An image to display in the header                | `ImageSourcePropType`         | no       |                        |
 | backgroundOpacity | The opacity of the background image              | `number`                      | no       | `0.3`                  |
-| fontColor         | The color of the text elements                   | `string`                      | no       | `theme.colors.primary` |
+| fontColor         | Color of the icon and header texts               | `string`                      | no       | Multiple               |
 | icon              | A component to render for the icon               | [`IconSource`](./Icons.md)    | no       |                        |
 | onPress           | A callback to execute when the header is pressed | `() => void`                  | no       |                        |
 | onIconPress       | A callback to execute when the icon is pressed   | `() => void`                  | no       |                        |

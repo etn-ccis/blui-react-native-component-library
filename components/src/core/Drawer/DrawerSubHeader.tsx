@@ -5,7 +5,7 @@ type DrawerSubheaderProps = {
     /**
      * Whether to show a dividing line below the subheader
      *
-     * Default: true
+     * @default: true
      */
     divider?: boolean;
     children: JSX.Element;

@@ -160,27 +160,27 @@ export type InfoListItemProps = ViewProps & {
     /**
      * Show a colored background behind the icon
      *
-     * Default: false
+     * @default: false
      */
     avatar?: boolean;
 
     /** The color used for the background of the InfoListItem
      *
-     * Default: 'transparent'
+     * @default: 'transparent'
      */
     backgroundColor?: string;
 
     /**
      * Add a chevron icon on the right
      *
-     * Default: false
+     * @default: false
      */
     chevron?: boolean;
 
     /**
      * Smaller height rows with less padding
      *
-     * Default: false
+     * @default: false
      */
     dense?: boolean;
 
@@ -189,14 +189,14 @@ export type InfoListItemProps = ViewProps & {
      * - partial: aligns with the main text keyline of the row
      * - full: spans the full width of the row
      *
-     * Default: none
+     * @default: none
      */
     divider?: 'full' | 'partial';
 
     /**
      * Color to use for text elements
      *
-     * Default: Title: theme.colors.onSurface
+     * @default: Title: theme.colors.onSurface
      * Subtitle, Info: theme.colors.onSurfaceVariant
      */
     fontColor?: string;
@@ -206,14 +206,14 @@ export type InfoListItemProps = ViewProps & {
      * together even if there is a mix of items with icons and items without. If this is set to true, the extra padding
      * for items without icons is removed and the text will align with the icon of other rows.
      *
-     * Default: false
+     * @default: false
      */
     hidePadding?: boolean;
 
     /**
      * Icon alignment when avatar prop is set to false
      *
-     * Default: 'left'
+     * @default: 'left'
      */
     iconAlign?: IconAlign;
 
@@ -221,7 +221,7 @@ export type InfoListItemProps = ViewProps & {
     icon?: IconSource;
 
     /** Color to use for the icon
-     * Default: theme.colors.onSurfaceVariant
+     * @default: theme.colors.onSurfaceVariant
      * With Avatar: theme.colors.onNeutralFilledContainer
      */
     iconColor?: string;
@@ -243,14 +243,14 @@ export type InfoListItemProps = ViewProps & {
 
     /** Color to use indicating status. This will apply to the status stripe and icon
      *
-     * Default: theme.colors.onSurface
+     * @default: theme.colors.onSurfaceVariant
      */
     statusColor?: string;
 
     /**
      * Separator character used between subtitle or info elements when an array is passed.
      *
-     * Default: '·'
+     * @default: '·'
      */
     subtitleSeparator?: string;
 
@@ -265,19 +265,19 @@ export type InfoListItemProps = ViewProps & {
 
     /** Whether the info line text should wrap to multiple lines on overflow
      *
-     * Default: false
+     * @default: false
      */
     wrapInfo?: boolean;
 
     /** Whether the subtitle line text should wrap to multiple lines on overflow
      *
-     * Default: false
+     * @default: false
      */
     wrapSubtitle?: boolean;
 
     /** Whether the title line text should wrap to multiple lines on overflow
      *
-     * Default: false
+     * @default: false
      */
     wrapTitle?: boolean;
 
