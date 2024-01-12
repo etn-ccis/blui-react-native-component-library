@@ -4,7 +4,6 @@
 
 ### Added
 
--   `<IconSwitch />` component to display icon on the Switch's handle.
 -   `<Chip/>` as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
 -   `<Grade>` is a customizable [avatar](https://callstack.github.io/react-native-paper/4.0/avatar-text.html)-based component that represents different grades
 -   `<Icon/>` as a replacement for IconWrapper.
