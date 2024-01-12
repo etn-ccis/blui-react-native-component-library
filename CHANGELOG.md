@@ -4,10 +4,14 @@
 
 ### Added
 
--   `<IconSwitch />` component to display icon on the Switch's handle.
+-   `<Chip/>` as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
+-   `<Grade>` is a customizable [avatar](https://callstack.github.io/react-native-paper/4.0/avatar-text.html)-based component that represents different grades
+-   `<Icon/>` as a replacement for IconWrapper.
+-   `<IconSwitch/>` as a better alternative to React Native Paper's [Switch](https://callstack.github.io/react-native-paper/docs/components/Switch/) component.
+-   `<Overline/>` as a replacement for the overline variant in Typography, which was removed in Material Design 3.
 
 ### Changed
-
+-   To support React Native Paper V5 with Material Design 3
 -   The default direction of `IconFamily` to `rtl` ([#180](https://github.com/etn-ccis/blui-react-native-component-library/issues/180)).
 -   The default icon background color for Hero changed from `theme.colors.surface` to 'transparent'.
 
