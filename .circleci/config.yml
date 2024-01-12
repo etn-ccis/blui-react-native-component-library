@@ -370,14 +370,14 @@ workflows:
                   requires:
                       - build_library
             #           - build_storybook
-            # - deploy_storybook:
-            #       requires:
-            #           - build_storybook_api
-            #       filters:
-            #           branches:
-            #               only:
-            #                   - master
-            #                   - dev
+            - deploy_storybook:
+                  requires:
+                      - build_storybook_api
+                  filters:
+                      branches:
+                          only:
+                              - master
+                              - dev
             - publish:
                   requires:
                       #   - build_storybook
