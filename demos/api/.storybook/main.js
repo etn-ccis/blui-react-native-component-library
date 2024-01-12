@@ -5,6 +5,6 @@ module.exports = {
     addons: ['@storybook/addon-notes'],
 
     docs: {
-        autodocs: true
-    }
+        autodocs: true,
+    },
 };
