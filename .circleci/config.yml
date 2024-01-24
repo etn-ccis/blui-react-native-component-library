@@ -386,7 +386,7 @@ workflows:
                               - dev
             - coverage_report:
                   requires:
-                      - build_library
+                      - store_test_results
                 #   filters:
                 #       branches:
                 #           only:
