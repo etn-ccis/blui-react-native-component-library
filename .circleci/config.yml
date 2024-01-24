@@ -61,7 +61,7 @@ jobs:
               command: |
                   cd components
                   yarn lint
-    test:
+    store_test_results:
         docker:
           - image: cimg/node:21.5.0-browsers
         parallelism: 4
