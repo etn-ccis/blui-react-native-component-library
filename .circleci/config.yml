@@ -388,8 +388,8 @@ workflows:
             - coverage_report:
                   requires:
                       - build_library
-                  filters:
-                      branches:
-                          only:
-                              - master
-                              - dev
+                #   filters:
+                #       branches:
+                #           only:
+                #               - master
+                #               - dev
