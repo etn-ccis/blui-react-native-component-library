@@ -122,7 +122,6 @@ jobs:
                   root: .
                   paths:
                       - dist
-                      - components/coverage
             - run:
                   name: Memory Usage
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
