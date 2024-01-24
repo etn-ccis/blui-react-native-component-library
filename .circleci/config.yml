@@ -355,7 +355,7 @@ workflows:
             - install_dependencies
             - prettier
             - lint_check
-            - test
+            - store_test_results
             - build_library
             - build_showcase:
                   requires:
