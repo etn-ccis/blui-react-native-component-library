@@ -61,7 +61,7 @@ jobs:
               command: |
                   cd components
                   yarn lint
-    test:
+    store_test_results:
         docker:
           - image: cimg/node:21.5.0-browsers
         parallelism: 4
@@ -81,6 +81,10 @@ jobs:
               command: |
                   cd components
                   yarn test --maxWorkers=2 --coverage --watchAll=false
+          - persist_to_workspace:
+                  root: .
+                  paths:
+                      - components/coverage
     build_library:
         docker:
             - image: cimg/node:21.5.0-browsers
@@ -118,7 +122,6 @@ jobs:
                   root: .
                   paths:
                       - dist
-                      - components/coverage
             - run:
                   name: Memory Usage
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
@@ -258,9 +261,6 @@ jobs:
             - checkout
             - attach_workspace:
                   at: .
-            # - run:
-            #       name: 'Set Max Memory'
-            #       command: NODE_OPTIONS=--max_old_space_size=2048
             - run:
                   name: 'Initialize Submodule'
                   command: yarn initialize
@@ -291,10 +291,6 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn build
-            - run:
-                  name: Memory Usage
-                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
-                  when: always
 
     deploy_storybook:
         docker:
@@ -358,7 +354,7 @@ workflows:
             - install_dependencies
             - prettier
             - lint_check
-            - test
+            - store_test_results
             - build_library
             - build_showcase:
                   requires:
@@ -390,8 +386,9 @@ workflows:
                               - dev
             - coverage_report:
                   requires:
-                      - build_library
+                      - store_test_results
                   filters:
                       branches:
                           only:
                               - master
+                              - dev
