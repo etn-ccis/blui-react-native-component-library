@@ -22,12 +22,10 @@ yarn add @brightlayer-ui/react-native-components
 This library has a few dependencies that you will need to install in your project in order to work correctly. To install them, you can run the following command in your project root:
 
 ```shell
-npm install --save react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0 react-native-modal@^12.0.0
+npm install --save react-native-paper@^5.0.0 react-native-safe-area-context@^4.0.0 react-native-vector-icons@^9.0.0
 // or
-yarn add react-native-paper@^4.0.0 react-native-safe-area-context@^3.0.0 react-native-vector-icons@^8.0.0 react-native-modal@^12.0.0
+yarn add react-native-paper@^5.0.0 react-native-safe-area-context@^4.0.0 react-native-vector-icons@^9.0.0
 ```
-
-> **NOTE**: react-native-paper@^5.0.0 is currently available, however, we only support RNP v4 at this time. Please be sure to keep peer-dependencies aligned as defined above to avoid potential conflicts.
 
 ## Building the Library
 
