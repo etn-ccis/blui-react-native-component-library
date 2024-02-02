@@ -44,8 +44,8 @@ In version 8 of this library, the following components have been added or remove
 
 - Typography
     - These components have been removed from the library and can be replaced by the [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component from React Native Paper.
-    - `Text` component does not support the `color` prop. It must be styled through the `style` prop and passing the value from the `theme` object returned by [useExtendedTheme()](https://github.com/etn-ccis/blui-react-native-themes?tab=readme-ov-file#typescript).
-    - Please follow the table below for the mapping of Typography and it's replacement:
+    - The `Text` component does not support the `color` prop. It must be styled through the `style` prop and passing the value from the `theme` object returned by [useExtendedTheme()](https://github.com/etn-ccis/blui-react-native-themes?tab=readme-ov-file#typescript).
+    - Please follow the table below for the mapping of Typography and its replacement:
 
 <div style="overflow: auto">
 
