@@ -42,10 +42,10 @@ In version 8 of this library, the following components have been added or remove
 
 ### Removed
 
-- Typography
-    - These components have been removed from the library and can be replaced by the [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component from React Native Paper.
-    - The `Text` component does not support the `color` prop. It must be styled through the `style` prop and passing the value from the `theme` object returned by [useExtendedTheme()](https://github.com/etn-ccis/blui-react-native-themes?tab=readme-ov-file#typescript).
-    - Please follow the table below for the mapping of Typography and its replacement:
+- Typography Components
+    - The typography-related components have been removed in favor of the [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component from React Native Paper.
+    - The `Text` component does not support the `color` prop available on the old typography components. In order to migrate to the new components, if you wish to preserve these colors, they must be styled through the `style` prop — if you need theme colors, use the [useExtendedTheme()](https://github.com/etn-ccis/blui-react-native-themes?tab=readme-ov-file#typescript) hook to access the theme object.
+    - Material 3 has condensed the number of typography variants, so there is not a one-to-one mapping from the old variants to the new ones. If you want to match your old type styles _exactly_, you'll need to add additional inline styles. See the table below:
 
 <div style="overflow: auto">
 
@@ -68,7 +68,7 @@ In version 8 of this library, the following components have been added or remove
 
 </div>
 
-> **NOTE**: The typography structure in Material Design 2 and Material Design 3 will not be a one-to-one mapping. It is better to reach out to a UI designer (especially for heading texts) if your project will be completely designed and developed in Material Design 3.
+> **NOTE**: If you are planning to fully embrace Material 3 design standards, it is better to reach out to a UI designer (especially for heading texts) in order to select the most appropriate new type styles for your application instead of mapping the old Material 2 styles into the new system. 
     
 - IconWrapper
     - Icons no longer requires a wrapper function. Please refer to [icons usage guidelines](./docs/Icons) for more info.
