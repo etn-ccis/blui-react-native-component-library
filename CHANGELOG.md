@@ -3,7 +3,7 @@
 ## v8.0.1 (February 9, 2024)
 
 ### Fixed
-- Chopped header for the landscape orientation ([#531](https://github.com/etn-ccis/blui-react-native-component-library/issues/531)).
+- Header contents not displaying correctly for tablets in landscape mode. ([#531](https://github.com/etn-ccis/blui-react-native-component-library/issues/531)).
 - Icon alignment in `<InfoListItem>` component.
 
 ### Changed
