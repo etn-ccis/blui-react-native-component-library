@@ -25,23 +25,17 @@ export const useHeaderDimensions = (): HeaderDimensions => {
     const fontScale = useFontScale();
     const insets = useSafeAreaInsets();
     const isLandscape = deviceWidth > deviceHeight;
-
     const heightWithStatusBar = (height: number): number => height * fontScale + insets.top;
-    const heightWithoutStatusBar = (height: number): number => height * fontScale;
 
-    const LANDSCAPE_HEIGHT = {
-        EXTENDED: heightWithoutStatusBar(200),
-        REGULAR: heightWithoutStatusBar(56),
-    };
-    const PORTRAIT_HEIGHT = {
+    const HEIGHT = {
         EXTENDED: heightWithStatusBar(200),
         REGULAR: heightWithStatusBar(56),
     };
 
-    const REGULAR_HEIGHT = isLandscape ? LANDSCAPE_HEIGHT.REGULAR : PORTRAIT_HEIGHT.REGULAR;
-    const EXTENDED_HEIGHT = isLandscape ? LANDSCAPE_HEIGHT.EXTENDED : PORTRAIT_HEIGHT.EXTENDED;
+    const REGULAR_HEIGHT = HEIGHT.REGULAR;
+    const EXTENDED_HEIGHT = HEIGHT.EXTENDED;
 
-    const getScaledHeight = isLandscape ? heightWithoutStatusBar : heightWithStatusBar;
+    const getScaledHeight = heightWithStatusBar;
 
     return {
         REGULAR_HEIGHT,

@@ -823,10 +823,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-native-themes@7.0.0-alpha.2":
-  version "7.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.0-alpha.2.tgz#ab61186436754c999ce8e94457583900fcf12d26"
-  integrity sha512-i+t3yyNfCESBene1aO86X6XEWngQ85Sv2s21eAC+bYikAhe8nUYttUCtnSJihD4+opv4wrKYldlYf6tmt0Ue3Q==
+"@brightlayer-ui/react-native-themes@7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.0.tgz#5a61f853d9f308453174802a404dbb2332f75174"
+  integrity sha512-2CYetnzjawvXjspHxw3wVv5PyDu3dKPfEQ2RkJpxV5+/ixjqJAUM5kryO63cdNTEuMYvjQEz5R3vRaHnj/uxVA==
   dependencies:
     "@brightlayer-ui/colors" "4.0.0"
     color "^4.2.3"
@@ -1515,9 +1515,9 @@
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
 "@types/node@*", "@types/node@^20.2.5":
-  version "20.9.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.0.tgz#bfcdc230583aeb891cf51e73cfdaacdd8deae298"
-  integrity sha512-nekiGu2NDb1BcVofVcEKMIwzlx4NjHlcjhoxxKBNLtz15Y1z7MYf549DFvkHSId02Ax6kGwWntIBPC3l/JZcmw==
+  version "20.11.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.14.tgz#9fdc9c2550c2f6693508ca4530f821474c4ee3bb"
+  integrity sha512-w3yWCcwULefjP9DmDDsgUskrMoOy5Z8MiwKHr1FvqGPtx7CvJzQvxD7eKpxNtklQxLruxSXWddyeRtyud0RcXQ==
   dependencies:
     undici-types "~5.26.4"
 

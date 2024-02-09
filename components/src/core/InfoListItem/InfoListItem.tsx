@@ -144,7 +144,8 @@ const infoListItemStyles = (
             width: 40 * fontScale,
             height: 40 * fontScale,
             backgroundColor: 'transparent',
-            justifyContent: getIconAlignment(props.iconAlign),
+            justifyContent: 'center',
+            alignItems: getIconAlignment(props.iconAlign),
         },
         mainContent: {
             flex: 1,

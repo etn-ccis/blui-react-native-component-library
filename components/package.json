@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-native-components",
-    "version": "8.0.0",
+    "version": "8.0.1",
     "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
     "description": "Reusable React Native components for Brightlayer UI applications",
     "repository": {
@@ -32,7 +32,7 @@
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@brightlayer-ui/react-native-themes": "7.0.0-alpha.2",
+        "@brightlayer-ui/react-native-themes": "7.0.0",
         "color": "^4.2.3",
         "react-native-collapsible": "^1.6.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
