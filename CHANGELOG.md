@@ -1,16 +1,28 @@
 # Change Log
 
+## v8.0.1 (February 9, 2024)
+
+### Fixed
+- Chopped header for the landscape orientation ([#531](https://github.com/etn-ccis/blui-react-native-component-library/issues/531)).
+- Icon alignment in `<DrawerNavItem>` component.
+
+### Changed
+- Updated the dependency on `@brightlayer-ui/react-native-themes`.
+
+### Added
+- The migration guide for deprecated `Typography` components.
+
 ## v8.0.0 (January 12, 2024)
 
 Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, both `Typography` and `IconWrapper` components have been removed, and 5 new components have been added. All previously-introduced themed components have removed in this version too. Please follow the [migration guide](./MIGRATION.md) for more details. 
 
 ### Added
 
--   `<Chip/>` as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
+-   `<Chip>` as a better alternative to React Native Paper's [Chip](https://callstack.github.io/react-native-paper/docs/components/Chip/) component.
 -   `<Grade>` is a customizable [avatar](https://callstack.github.io/react-native-paper/4.0/avatar-text.html)-based component that represents different grades
 -   `<Icon/>` as a replacement for IconWrapper.
--   `<IconSwitch/>` as a better alternative to React Native Paper's [Switch](https://callstack.github.io/react-native-paper/docs/components/Switch/) component.
--   `<Overline/>` as a replacement for the overline variant in Typography, which was removed in Material Design 3.
+-   `<IconSwitch>` as a better alternative to React Native Paper's [Switch](https://callstack.github.io/react-native-paper/docs/components/Switch/) component.
+-   `<Overline>` as a replacement for the overline variant in Typography, which was removed in Material Design 3.
 
 ### Changed
 -   To support React Native Paper V5 with Material Design 3
