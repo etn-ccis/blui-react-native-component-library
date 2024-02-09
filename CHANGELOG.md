@@ -4,7 +4,7 @@
 
 ### Fixed
 - Chopped header for the landscape orientation ([#531](https://github.com/etn-ccis/blui-react-native-component-library/issues/531)).
-- Icon alignment in `<DrawerNavItem>` component.
+- Icon alignment in `<InfoListItem>` component.
 
 ### Changed
 - Updated the dependency on `@brightlayer-ui/react-native-themes`.
