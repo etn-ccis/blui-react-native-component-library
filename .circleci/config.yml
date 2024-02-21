@@ -2,11 +2,11 @@ version: 2.1
 orbs:
     codecov: codecov/codecov@3.2.2
     gh: circleci/github-cli@1.0.3
-    browser-tools: circleci/browser-tools@1.4.6
+    browser-tools: circleci/browser-tools@1.4.7
 jobs:
     install_dependencies:
         docker:
-          - image: cimg/node:18.19.0-browsers
+          - image: cimg/node:20.4.0-browsers
         resource_class: large
         steps:
           - checkout
@@ -25,7 +25,7 @@ jobs:
               key: v2-dependencies-react-native-{{ checksum "components/yarn.lock" }}
     prettier:
         docker:
-          - image: cimg/node:18.19.0-browsers
+          - image: cimg/node:20.4.0-browsers
         resource_class: large
         steps:
           - checkout
@@ -44,7 +44,7 @@ jobs:
                   yarn prettier:check
     lint_check:
         docker:
-          - image: cimg/node:18.19.0-browsers
+          - image: cimg/node:20.4.0-browsers
         resource_class: large
         steps:
           - checkout
@@ -63,7 +63,7 @@ jobs:
                   yarn lint
     store_test_results:
         docker:
-          - image: cimg/node:18.19.0-browsers
+          - image: cimg/node:20.4.0-browsers
         parallelism: 4
         resource_class: large
         steps:
@@ -87,7 +87,7 @@ jobs:
                       - components/coverage
     build_library:
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         resource_class: large
         steps:
             - checkout
@@ -129,7 +129,7 @@ jobs:
     coverage_report:
         working_directory: ~/react-native-component-library
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         steps:
             - checkout
             - attach_workspace:
@@ -141,7 +141,7 @@ jobs:
     # Builds the Storybook app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_storybook:
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -190,7 +190,7 @@ jobs:
     # Builds the hosted Storybook app
     build_storybook_api:
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -253,7 +253,7 @@ jobs:
     # Builds the Showcase app using @brightlayer-ui/react-native-components persisted in /dist folder.
     build_showcase:
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         resource_class: large
         environment:
             - MASTER_BRANCH: master
@@ -294,7 +294,7 @@ jobs:
 
     deploy_storybook:
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -332,7 +332,7 @@ jobs:
                       git push
     publish:
         docker:
-            - image: cimg/node:18.19.0-browsers
+            - image: cimg/node:20.4.0-browsers
         steps:
             - checkout
             - attach_workspace:
