@@ -1,5 +1,10 @@
 # Change Log
 
+## v8.0.2 (Unreleased)
+
+### Changed
+- `title` and `description` props types to `ReactNode` in `<EmptyState>` component.     
+
 ## v8.0.1 (February 9, 2024)
 
 ### Fixed
