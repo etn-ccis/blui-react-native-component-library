@@ -22,8 +22,8 @@ import { EmptyState } from '@brightlayer-ui/react-native-components';
 
 | Prop Name   | Description                                    | Type                          | Required | Default                 |
 | ----------- | ---------------------------------------------- | ----------------------------- | -------- | ----------------------- |
-| title       | The primary text to display (first line)       | `string`                      | yes      |                         |
-| description | The secondary text to display (second line)    | `string`                      | no       |                         |
+| title       | The primary text to display (first line)       | `ReactNode`                   | yes      |                         |
+| description | The secondary text to display (second line)    | `ReactNode`                   | no       |                         |
 | icon        | A component to render for the primary icon     | [`IconSource`](./Icons.md)    | no       |                         |
 | iconSize    | The size of the primary icon (100-200)         | `number`                      | no       | 100                     |
 | iconColor   | The color of the primary icon                  | `string`                      | no       | `theme.colors.disabled` |
