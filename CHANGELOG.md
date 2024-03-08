@@ -1,6 +1,6 @@
 # Change Log
 
-## v8.0.2 (Unreleased)
+## v8.0.2 (March 8, 2024)
 
 ### Changed
 - `title` and `description` props types to `ReactNode` in `<EmptyState>` component ([#546](https://github.com/etn-ccis/blui-react-native-component-library/issues/546)).    
