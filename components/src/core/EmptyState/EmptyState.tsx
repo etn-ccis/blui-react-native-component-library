@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle, ViewProps } from 'react-native';
 import { Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -42,10 +42,10 @@ const makeStyles = (theme: ExtendedTheme, fontScale: number): StyleSheet.NamedSt
 
 export type EmptyStateProps = ViewProps & {
     /** The main text to display */
-    title: string;
+    title: ReactNode;
 
     /** The secondary text to display */
-    description?: string;
+    description?: ReactNode;
 
     /** The primary icon */
     icon?: IconSource;
