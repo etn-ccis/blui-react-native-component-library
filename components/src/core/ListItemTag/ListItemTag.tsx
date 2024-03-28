@@ -55,7 +55,6 @@ const listItemTagStyles = (
             paddingLeft: 4 * fontScale,
             paddingRight: 3 * fontScale, // to account for the 1px letter spacing on the last letter
             borderRadius: 4 * fontScale,
-            fontWeight: '700',
             fontFamily: 'OpenSans-Bold',
             overflow: 'hidden',
             lineHeight: calculateHeight(fontSize),
