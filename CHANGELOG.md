@@ -1,25 +1,35 @@
 # Change Log
 
+## v8.0.3 (Unreleased)
+
+### Fixed
+
+-   Remove font-weight from `<ListItemTag>` component to work properly on Android ([#557](https://github.com/etn-ccis/blui-react-native-component-library/issues/557)).
+
 ## v8.0.2 (March 8, 2024)
 
 ### Changed
-- `title` and `description` props types to `ReactNode` in `<EmptyState>` component ([#546](https://github.com/etn-ccis/blui-react-native-component-library/issues/546)).    
+
+-   `title` and `description` props types to `ReactNode` in `<EmptyState>` component ([#546](https://github.com/etn-ccis/blui-react-native-component-library/issues/546)).
 
 ## v8.0.1 (February 9, 2024)
 
 ### Fixed
-- Header contents not displaying correctly for tablets in landscape mode. ([#531](https://github.com/etn-ccis/blui-react-native-component-library/issues/531)).
-- Icon alignment in `<InfoListItem>` component.
+
+-   Header contents not displaying correctly for tablets in landscape mode. ([#531](https://github.com/etn-ccis/blui-react-native-component-library/issues/531)).
+-   Icon alignment in `<InfoListItem>` component.
 
 ### Changed
-- Updated the dependency on `@brightlayer-ui/react-native-themes`.
+
+-   Updated the dependency on `@brightlayer-ui/react-native-themes`.
 
 ### Added
-- The migration guide for deprecated `Typography` components.
+
+-   The migration guide for deprecated `Typography` components.
 
 ## v8.0.0 (January 12, 2024)
 
-Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, both `Typography` and `IconWrapper` components have been removed, and 5 new components have been added. All previously-introduced themed components have removed in this version too. Please follow the [migration guide](./MIGRATION.md) for more details. 
+Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-native-paper/) with [Material Design v3](https://m3.material.io/) and is a major update with several changes. Most particularly, both `Typography` and `IconWrapper` components have been removed, and 5 new components have been added. All previously-introduced themed components have removed in this version too. Please follow the [migration guide](./MIGRATION.md) for more details.
 
 ### Added
 
@@ -30,6 +40,7 @@ Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-nat
 -   `<Overline>` as a replacement for the overline variant in Typography, which was removed in Material Design 3.
 
 ### Changed
+
 -   To support React Native Paper V5 with Material Design 3
 -   The default direction of `IconFamily` to `rtl` ([#180](https://github.com/etn-ccis/blui-react-native-component-library/issues/180)).
 -   The default icon background color for Hero changed from `theme.colors.surface` to 'transparent'.
