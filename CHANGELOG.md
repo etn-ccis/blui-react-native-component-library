@@ -4,7 +4,7 @@
 
 ### Fixed
 
--   Remove font-weight from `<ListItemTag>` component to work properly on Android ([#557](https://github.com/etn-ccis/blui-react-native-component-library/issues/557)).
+-   Removed font-weight from `<ListItemTag>` component to work properly on Android ([#557](https://github.com/etn-ccis/blui-react-native-component-library/issues/557)).
 
 ## v8.0.2 (March 8, 2024)
 
