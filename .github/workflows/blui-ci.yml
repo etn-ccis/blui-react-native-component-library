@@ -166,43 +166,48 @@ jobs:
     - run: yarn build
       working-directory: demos/showcase
 
-  # build_storybook_api:
-  #   runs-on: ubuntu-latest
-  #   needs: npm_pack
+  build_storybook_api:
+    runs-on: ubuntu-latest
+    needs: npm_pack
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [18.x]
-  #   # env:
-  #   #     STORYBOOK_GA_ID: ${{ github.ref == 'refs/heads/master' && 'G-TODO' || 'G-TODO' }}
+    strategy:
+      matrix:
+        node-version: [18.x]
+    # env:
+    #     STORYBOOK_GA_ID: ${{ github.ref == 'refs/heads/master' && 'G-TODO' || 'G-TODO' }}
 
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v4
-  #   - name: Download tarball
-  #     uses: actions/download-artifact@v3
-  #     with:
-  #       name: tarball
-  #       path: tarball
-  #   - run: |
-  #       PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
-  #       yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
-  #   - uses: actions/checkout@v4
-  #   - name: Use Node.js ${{ matrix.node-version }}
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: ${{ matrix.node-version }}
-  #       cache: 'yarn'
-  #   - run: yarn
-  #     working-directory: demos/api
-  #   - run: yarn build-storybook
-  #     working-directory: demos/api
-  #   - name: Save build
-  #     uses: actions/upload-artifact@v3
-  #     with:
-  #       name: storybook-static
-  #       if-no-files-found: error
-  #       path: demos/api
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn
+      working-directory: demos/api
+    - name: Download tarball
+      uses: actions/download-artifact@v3
+      with:
+        name: tarball
+        path: tarball
+    - run: |
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
+        yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn build-storybook
+      working-directory: demos/api
+    - name: Save build
+      uses: actions/upload-artifact@v3
+      with:
+        name: storybook-static
+        if-no-files-found: error
+        path: demos/api
 
   # deploy_storybook_api_dev:
   #   runs-on: ubuntu-latest
