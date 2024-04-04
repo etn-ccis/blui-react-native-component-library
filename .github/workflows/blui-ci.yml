@@ -155,7 +155,7 @@ jobs:
         name: tarball
         path: tarball
     - run: |
-        PACKAGED_VERSION=`node -p "require('../../tarball/package.json').version"`
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
         yarn add ../../tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -185,7 +185,7 @@ jobs:
         name: tarball
         path: tarball
     - run: |
-        PACKAGED_VERSION=`node -p "require('../../tarball/package.json').version"`
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
         yarn add ../../dist/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
