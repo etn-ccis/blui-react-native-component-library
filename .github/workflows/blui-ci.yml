@@ -1,0 +1,279 @@
+name: CI Run
+
+on:
+  push:
+    branches: [ "dev", "master" ]
+  pull_request:
+    branches: [ "dev", "master" ]
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - '*/*'
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  prettier_lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+      working-directory: components
+    - run: yarn prettier
+      working-directory: components
+    - run: yarn lint
+      working-directory: components
+    - run: yarn install --frozen-lockfile
+      working-directory: demos/api
+    - run: yarn prettier
+      working-directory: demos/api
+    - run: yarn lint
+      working-directory: demos/api
+
+  unit_test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+      working-directory: components
+    - run: yarn coverage
+      working-directory: components
+    - name: Upload to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: ./components/coverage/
+        files: clover.xml
+        flags: unittests
+        name: codecov-report
+        verbose: true
+
+  build_library:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn --frozen-lockfile
+      working-directory: components
+    - run: yarn build
+    - name: Save build
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        if-no-files-found: error
+        path: dist
+
+  test_artifacts:
+    runs-on: ubuntu-latest
+    needs: build_library
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Download the dist folder
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist
+    - run: yarn test:artifacts
+
+  npm_pack:
+    runs-on: ubuntu-latest
+    needs: build_library
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Download the dist folder
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist
+    - run: npm pack
+      working-directory: dist
+    - name: Save npm pack
+      uses: actions/upload-artifact@v3
+      with:
+        name: tarball
+        if-no-files-found: error
+        path: tarball
+
+  build_showcase:
+    runs-on: ubuntu-latest
+    needs: npm_pack
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn initialize
+    - run: yarn --frozen-lockfile
+      working-directory: demos/showcase
+    - name: Download tarball
+      uses: actions/download-artifact@v3
+      with:
+        name: tarball
+        path: tarball
+    - run: |
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
+        yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn build
+      working-directory: demos/showcase
+
+  build_storybook_api:
+    runs-on: ubuntu-latest
+    needs: npm_pack
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+    # env:
+    #     STORYBOOK_GA_ID: ${{ github.ref == 'refs/heads/master' && 'G-TODO' || 'G-TODO' }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Download tarball
+      uses: actions/download-artifact@v3
+      with:
+        name: tarball
+        path: tarball
+    - run: |
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
+        yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn --frozen-lockfile
+      working-directory: demos/api
+    - run: yarn build-storybook
+      working-directory: demos/api
+    - name: Save build
+      uses: actions/upload-artifact@v3
+      with:
+        name: storybook-static
+        if-no-files-found: error
+        path: demos/api
+
+  # deploy_storybook_api_dev:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
+  #   needs: build_storybook_api
+  #   env:
+  #     DEV_DEPLOY_TOKEN: ${{secrets.DEV_DEPLOY_TOKEN}}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Download build
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: storybook-static
+  #         path: demos/api/storybook-static
+  #     - name: deploy
+  #       uses: JamesIves/github-pages-deploy-action@v4
+  #       with:
+  #           folder: demos/api/storybook-static
+  #           token: ${{env.DEV_DEPLOY_TOKEN}}
+  #           repository-name: brightlayer-ui-components/react-native-dev
+  #           branch: master
+  #           git-config-name: Brightlayer UI Agent
+  #           git-config-email: brightlayer-ui@eaton.com
+  #           commit-message: "Automated deployment to GitHub Pages ${{github.sha}}"
+
+  # deploy_storybook_api_prod:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+  #   needs: build_storybook_api
+  #   env:
+  #     DEV_DEPLOY_TOKEN: ${{secrets.DEV_DEPLOY_TOKEN}}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Download build
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: storybook-static
+  #         path: demos/api/storybook-static
+  #     - name: deploy
+  #       uses: JamesIves/github-pages-deploy-action@v4
+  #       with:
+  #           folder: demos/api/storybook-static
+  #           token: ${{env.DEV_DEPLOY_TOKEN}}
+  #           repository-name: brightlayer-ui-components/react-native
+  #           branch: master
+  #           git-config-name: Brightlayer UI Agent
+  #           git-config-email: brightlayer-ui@eaton.com
+  #           commit-message: "Automated deployment to GitHub Pages ${{github.sha}}"
+
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev') }}
+  #   needs: build_library
+  #   strategy:
+  #     matrix:
+  #       node-version: [18.x]
+  #   env:
+  #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #     BRANCH: ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Download dist
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: dist
+  #         path: dist
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #         registry-url: 'https://registry.npmjs.org'
+  #     - run: yarn --frozen-lockfile
+  #     - run: yarn publish:package -b ${{env.BRANCH}}
