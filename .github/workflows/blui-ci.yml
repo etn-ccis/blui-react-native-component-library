@@ -194,12 +194,12 @@ jobs:
     - run: |
         PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
         yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+    # - uses: actions/checkout@v4
+    # - name: Use Node.js ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
+    #     cache: 'yarn'
     - run: yarn build-storybook
       working-directory: demos/api
     - name: Save build
