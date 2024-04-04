@@ -25,6 +25,7 @@
         "build": "tsc --p tsconfig.lib.json",
         "test": "jest",
         "test:watch": "jest --watch",
+        "coverage": "yarn test --coverage --watchAll=false",
         "verify-build": "tsc --noEmit",
         "watch:showcase": "tsc --p tsconfig.lib.json --watch --outdir ../demos/showcase/node_modules/@brightlayer-ui/react-native-components",
         "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
