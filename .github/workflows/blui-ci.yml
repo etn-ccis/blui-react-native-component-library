@@ -67,7 +67,7 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         directory: ./components/coverage/
-        files: clover.xml
+        files: cobertura-coverage.xml
         flags: unittests
         name: codecov-report
         verbose: true
