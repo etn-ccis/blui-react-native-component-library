@@ -166,50 +166,52 @@ jobs:
     - run: yarn build
       working-directory: demos/showcase
 
-  build_storybook_api:
-    runs-on: ubuntu-latest
-    needs: npm_pack
+  # # This section is to build the new react native docs and needs updated
+  # build_react_native_docs:
+  #   runs-on: ubuntu-latest
+  #   needs: npm_pack
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-    # env:
-    #     STORYBOOK_GA_ID: ${{ github.ref == 'refs/heads/master' && 'G-TODO' || 'G-TODO' }}
+  #   strategy:
+  #     matrix:
+  #       node-version: [18.x]
+  #   env:
+  #       STORYBOOK_GA_ID: ${{ github.ref == 'refs/heads/master' && 'G-TODO' || 'G-TODO' }}
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: yarn
-      working-directory: demos/api
-    - name: Download tarball
-      uses: actions/download-artifact@v3
-      with:
-        name: tarball
-        path: tarball
-    - run: |
-        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
-        yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
-    # - uses: actions/checkout@v4
-    # - name: Use Node.js ${{ matrix.node-version }}
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
-    #     cache: 'yarn'
-    - run: yarn build-storybook
-      working-directory: demos/api
-    - name: Save build
-      uses: actions/upload-artifact@v3
-      with:
-        name: storybook-static
-        if-no-files-found: error
-        path: demos/api
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v4
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #       cache: 'yarn'
+  #   - run: yarn
+  #     working-directory: demos/api
+  #   - name: Download tarball
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: tarball
+  #       path: tarball
+  #   - run: |
+  #       PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
+  #       yarn add ./tarball/brightlayer-ui-react-native-components-$PACKAGED_VERSION.tgz
+  #   - uses: actions/checkout@v4
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #       cache: 'yarn'
+  #   - run: yarn build-storybook
+  #     working-directory: demos/api
+  #   - name: Save build
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: storybook-static
+  #       if-no-files-found: error
+  #       path: demos/api
 
-  # deploy_storybook_api_dev:
+  #   # This section is placeholder to deploy react native docs dev branch and needs updated
+  # deploy_react_native_docs_dev:
   #   runs-on: ubuntu-latest
   #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
   #   needs: build_storybook_api
@@ -234,6 +236,7 @@ jobs:
   #           git-config-email: brightlayer-ui@eaton.com
   #           commit-message: "Automated deployment to GitHub Pages ${{github.sha}}"
 
+  # # This section is placeholder to deploy react native docs prod branch and needs updated
   # deploy_storybook_api_prod:
   #   runs-on: ubuntu-latest
   #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
@@ -259,26 +262,26 @@ jobs:
   #           git-config-email: brightlayer-ui@eaton.com
   #           commit-message: "Automated deployment to GitHub Pages ${{github.sha}}"
 
-  # publish:
-  #   runs-on: ubuntu-latest
-  #   if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev') }}
-  #   needs: build_library
-  #   strategy:
-  #     matrix:
-  #       node-version: [18.x]
-  #   env:
-  #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  #     BRANCH: ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Download dist
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: dist
-  #         path: dist
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         registry-url: 'https://registry.npmjs.org'
-  #     - run: yarn --frozen-lockfile
-  #     - run: yarn publish:package -b ${{env.BRANCH}}
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev') }}
+    needs: build_library
+    strategy:
+      matrix:
+        node-version: [18.x]
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      BRANCH: ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download dist
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn --frozen-lockfile
+      - run: yarn publish:package -b ${{env.BRANCH}}
