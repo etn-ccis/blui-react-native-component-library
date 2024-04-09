@@ -37,12 +37,6 @@ jobs:
       working-directory: components
     - run: yarn lint
       working-directory: components
-    - run: yarn install --frozen-lockfile
-      working-directory: demos/api
-    - run: yarn prettier
-      working-directory: demos/api
-    - run: yarn lint
-      working-directory: demos/api
 
   unit_test:
     runs-on: ubuntu-latest
