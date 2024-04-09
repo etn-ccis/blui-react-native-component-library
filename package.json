@@ -31,7 +31,7 @@
         "lint:fix": "cd components && yarn lint:fix && cd ../demos/api && yarn lint:fix && cd ../storybook && yarn lint:fix",
         "update:submodule": "git submodule update --remote",
         "precommit": "yarn install:all && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts && yarn generate:licenses",
-        "coverage": "yarn test --coverage --watchAll=false",
+        "coverage": "cd components && yarn test --coverage --watchAll=false",
         "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "directories": {
