@@ -7,6 +7,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleSemiBold } from '../Utility/shared';
 
 export type UserMenuProps = {
     /** Avatar component to display as the menu trigger */
@@ -143,7 +144,8 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                                     title: Object.assign(
                                         {
                                             fontSize: 16,
-                                            fontFamily: 'OpenSans-SemiBold',
+                                            // fontFamily: 'OpenSans-SemiBold',
+                                            ...fontStyleSemiBold,
                                         },
                                         menuItemStyles.title
                                     ),

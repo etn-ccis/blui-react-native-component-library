@@ -6,7 +6,7 @@ import { Icon } from '../Icon';
 import { Spacer } from '../Utility';
 import { IconSource } from '../__types__';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { calculateHeight } from '../Utility/shared';
+import { calculateHeight, fontStyleLight, fontStyleSemiBold } from '../Utility/shared';
 
 const prefixUnitWhitelist = ['$'];
 const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
@@ -16,6 +16,9 @@ const defaultStyles = StyleSheet.create({
         maxWidth: '100%',
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    unitsDefaultFont: {
+        ...fontStyleLight,
     },
 });
 
@@ -137,10 +140,11 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                                 {
                                     color: getColor(),
                                     fontSize: fontSize,
-                                    fontWeight: '300',
-                                    fontFamily: 'OpenSans-Regular',
+                                    // fontWeight: '300',
+                                    // fontFamily: 'OpenSans-Regular',
                                     lineHeight: calculateHeight(fontSize),
                                 },
+                                defaultStyles.unitsDefaultFont,
                                 styles.units,
                             ]}
                         >
@@ -182,8 +186,9 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         color: getColor(),
                         fontSize: fontSize,
                         lineHeight: calculateHeight(fontSize),
-                        fontFamily: 'OpenSans-SemiBold',
-                        fontWeight: '600',
+                        // fontFamily: 'OpenSans-SemiBold',
+                        // fontWeight: '600',
+                        ...fontStyleSemiBold,
                     },
                 ]}
             >
@@ -194,8 +199,9 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         {
                             color: getColor(),
                             fontSize: fontSize,
-                            fontFamily: 'OpenSans-SemiBold',
-                            fontWeight: '600',
+                            // fontFamily: 'OpenSans-SemiBold',
+                            // fontWeight: '600',
+                            ...fontStyleSemiBold,
                             lineHeight: calculateHeight(fontSize),
                         },
                         styles.value,

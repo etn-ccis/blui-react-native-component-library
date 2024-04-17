@@ -20,6 +20,7 @@ import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleRegular, fontStyleSemiBold } from '../Utility/shared';
 
 const makeStyles = (
     props: DrawerHeaderProps,
@@ -59,7 +60,8 @@ const makeStyles = (
             paddingVertical: 4 * fontScale,
             flex: 1,
             height: '100%',
-            fontFamily: 'OpenSans-SemiBold',
+            // fontFamily: 'OpenSans-SemiBold',
+            ...fontStyleSemiBold,
             justifyContent: 'center',
         },
         title: {
@@ -67,16 +69,18 @@ const makeStyles = (
             lineHeight: 32,
             fontSize: 24,
             letterSpacing: 0,
-            fontFamily: 'OpenSans-SemiBold',
-            fontWeight: '500',
+            // fontFamily: fontStyleSemiBold.fontFamily,
+            // fontWeight: fontStyleSemiBold.fontWeight,
+            ...fontStyleSemiBold,
         },
         subtitle: {
             color: props.fontColor || theme.colors.onSurfaceVariant,
             lineHeight: 20,
             fontSize: 14,
             letterSpacing: 0,
-            fontFamily: 'OpenSans-Regular',
-            fontWeight: '400',
+            // fontFamily: 'OpenSans-Regular',
+            // fontWeight: '400',
+            ...fontStyleRegular,
         },
         backgroundImageWrapper: {
             position: 'absolute',

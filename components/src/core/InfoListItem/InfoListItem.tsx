@@ -17,6 +17,7 @@ import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleSemiBold } from '../Utility/shared';
 
 type IconAlign = 'left' | 'center' | 'right';
 
@@ -101,8 +102,9 @@ const infoListItemStyles = (
         },
         title: {
             color: props.fontColor || theme.colors.onSurface,
-            fontFamily: 'OpenSans-Bold',
-            fontWeight: '600',
+            // fontFamily: 'OpenSans-Bold',
+            // fontWeight: '600',
+            ...fontStyleSemiBold,
         },
         subtitleWrapper: {
             flexDirection: 'row',

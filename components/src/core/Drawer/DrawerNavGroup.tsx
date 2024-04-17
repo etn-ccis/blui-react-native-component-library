@@ -9,6 +9,7 @@ import { NavGroupContext } from './context';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleSemiBold } from '../Utility/shared';
 
 export type DrawerNavGroupStyles = {
     root?: StyleProp<ViewStyle>;
@@ -65,8 +66,9 @@ const makeStyles = (
             letterSpacing: 2,
             lineHeight: 16,
             textTransform: 'uppercase',
-            fontFamily: 'OpenSans-SemiBold',
-            fontWeight: '600',
+            // fontFamily: 'OpenSans-SemiBold',
+            // fontWeight: '600',
+            ...fontStyleSemiBold,
         },
         divider: {
             position: 'absolute',

@@ -7,6 +7,7 @@ import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleSemiBold } from '../Utility/shared';
 
 type HeroStyles = {
     root?: ViewStyle;
@@ -42,8 +43,9 @@ const makeStyles = (theme: ExtendedTheme, fontScale: number): StyleSheet.NamedSt
             width: '100%',
             overflow: 'hidden',
             textAlign: 'center',
-            fontFamily: 'OpenSans-SemiBold',
-            fontWeight: '600',
+            // fontFamily: 'OpenSans-SemiBold',
+            // fontWeight: '600',
+            ...fontStyleSemiBold,
             color: theme.colors.onSurfaceVariant,
         },
     });
