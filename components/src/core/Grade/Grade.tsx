@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Platform, ViewProps } from 'react-native';
+import { ViewProps } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
