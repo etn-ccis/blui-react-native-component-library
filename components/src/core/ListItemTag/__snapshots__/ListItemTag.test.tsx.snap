@@ -28,6 +28,7 @@ exports[`ListItemTag ListItemTag Renders 1`] = `
             "color": undefined,
             "fontFamily": "OpenSans-Bold",
             "fontSize": 10,
+            "fontWeight": "700",
             "height": 32,
             "letterSpacing": 1,
             "lineHeight": 16,

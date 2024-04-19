@@ -33,7 +33,7 @@
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@brightlayer-ui/react-native-themes": "7.0.1-alpha.3",
+        "@brightlayer-ui/react-native-themes": "7.0.1-alpha.4",
         "color": "^4.2.3",
         "react-native-collapsible": "^1.6.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
