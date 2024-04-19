@@ -8,7 +8,7 @@ import { Platform, ViewProps } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { fontStyleSemiBold } from '../Utility/shared';
+import { fontStyleBold } from '../Utility/shared';
 
 /**
  * Props for the Grade component.
@@ -99,9 +99,7 @@ const GradeBase = (props: GradeProps): JSX.Element => {
     // Define styles for text within Avatar.Text
     const textStyle = {
         color: fontColor || theme.colors.onPrimary,
-        // fontFamily: 'OpenSans-Bold',
-        ...fontStyleSemiBold,
-        fontWeight: Platform.OS === 'ios' ? ('700' as const) : ('600' as const), // check with Arshdeep
+        ...fontStyleBold,
     };
 
     return (

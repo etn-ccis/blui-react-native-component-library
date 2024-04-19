@@ -1,5 +1,5 @@
 import { MD3Theme } from 'react-native-paper';
-import { useFontWeight } from '@brightlayer-ui/react-native-themes'; // Add this import statement
+import { useFontWeight } from '@brightlayer-ui/react-native-themes';
 
 export const getPrimary500 = (theme: MD3Theme): string | undefined => theme.colors.primary;
 
