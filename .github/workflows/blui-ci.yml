@@ -279,3 +279,4 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn --frozen-lockfile
       - run: npm run publish:package -b ${{env.BRANCH}}
+        working-directory: components
