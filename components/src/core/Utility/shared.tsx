@@ -9,3 +9,4 @@ export const fontStyleLight = useFontWeight('300');
 export const fontStyleRegular = useFontWeight('400');
 export const fontStyleSemiBold = useFontWeight('600');
 export const fontStyleBold = useFontWeight('700');
+export const fontStyleExtraBold = useFontWeight('800');
