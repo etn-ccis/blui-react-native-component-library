@@ -277,6 +277,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
-          cache-dependency-path: components
       - run: yarn --frozen-lockfile
       - run: npm run publish:package -b ${{env.BRANCH}}
