@@ -43,8 +43,6 @@ const makeStyles = (theme: ExtendedTheme, fontScale: number): StyleSheet.NamedSt
             width: '100%',
             overflow: 'hidden',
             textAlign: 'center',
-            // fontFamily: 'OpenSans-SemiBold',
-            // fontWeight: '600',
             ...fontStyleSemiBold,
             color: theme.colors.onSurfaceVariant,
         },

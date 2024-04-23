@@ -140,8 +140,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                                 {
                                     color: getColor(),
                                     fontSize: fontSize,
-                                    // fontWeight: '300',
-                                    // fontFamily: 'OpenSans-Regular',
                                     lineHeight: calculateHeight(fontSize),
                                 },
                                 defaultStyles.unitsDefaultFont,
@@ -186,8 +184,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         color: getColor(),
                         fontSize: fontSize,
                         lineHeight: calculateHeight(fontSize),
-                        // fontFamily: 'OpenSans-SemiBold',
-                        // fontWeight: '600',
                         ...fontStyleSemiBold,
                     },
                 ]}
@@ -199,8 +195,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         {
                             color: getColor(),
                             fontSize: fontSize,
-                            // fontFamily: 'OpenSans-SemiBold',
-                            // fontWeight: '600',
                             ...fontStyleSemiBold,
                             lineHeight: calculateHeight(fontSize),
                         },

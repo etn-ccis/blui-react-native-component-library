@@ -66,7 +66,6 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            // fontFamily: 'OpenSans-SemiBold',
             ...fontStyleSemiBold,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
@@ -123,7 +122,6 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            // fontFamily: 'OpenSans-Regular',
             ...fontStyleRegular,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
@@ -194,7 +192,6 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 outputRange: [0, 1],
                 extrapolate: 'clamp',
             }),
-            // fontFamily: 'OpenSans-Regular',
             ...fontStyleRegular,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],

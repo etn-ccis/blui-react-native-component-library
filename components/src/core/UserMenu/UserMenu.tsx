@@ -144,7 +144,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                                     title: Object.assign(
                                         {
                                             fontSize: 16,
-                                            // fontFamily: 'OpenSans-SemiBold',
                                             ...fontStyleSemiBold,
                                         },
                                         menuItemStyles.title

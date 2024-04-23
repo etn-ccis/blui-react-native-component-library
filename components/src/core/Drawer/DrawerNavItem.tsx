@@ -329,14 +329,10 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                 title: Object.assign(
                                     active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
-                                              //   fontWeight: 600,
-                                              //   fontFamily: 'OpenSans-SemiBold',
                                               ...fontStyleSemiBold,
                                               color: theme.colors.onPrimaryContainer,
                                           }
                                         : {
-                                              //   fontWeight: 400,
-                                              //   fontFamily: 'OpenSans-Regular',
                                               ...fontStyleRegular,
                                               color: theme.colors.onSurface,
                                           },

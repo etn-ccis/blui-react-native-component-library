@@ -60,7 +60,6 @@ const makeStyles = (
             paddingVertical: 4 * fontScale,
             flex: 1,
             height: '100%',
-            // fontFamily: 'OpenSans-SemiBold',
             ...fontStyleSemiBold,
             justifyContent: 'center',
         },
@@ -69,8 +68,6 @@ const makeStyles = (
             lineHeight: 32,
             fontSize: 24,
             letterSpacing: 0,
-            // fontFamily: fontStyleSemiBold.fontFamily,
-            // fontWeight: fontStyleSemiBold.fontWeight,
             ...fontStyleSemiBold,
         },
         subtitle: {
@@ -78,8 +75,6 @@ const makeStyles = (
             lineHeight: 20,
             fontSize: 14,
             letterSpacing: 0,
-            // fontFamily: 'OpenSans-Regular',
-            // fontWeight: '400',
             ...fontStyleRegular,
         },
         backgroundImageWrapper: {
