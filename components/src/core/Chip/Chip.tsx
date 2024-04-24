@@ -9,6 +9,7 @@ import { $DeepPartial } from '@callstack/react-theme-provider';
 import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleRegular } from '../Utility/shared';
 
 /**
  * Props for the Chip component.
@@ -163,10 +164,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         style,
                         chipStyle,
                     ]}
-                    textStyle={[
-                        { color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' },
-                        textStyle,
-                    ]}
+                    textStyle={[{ color: textColor ? textColor : DefaultTextColor, ...fontStyleRegular }, textStyle]}
                     showSelectedCheck={false}
                     selected={selected}
                     disabled={disabled}
@@ -186,10 +184,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         style,
                         chipStyle,
                     ]}
-                    textStyle={[
-                        { color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' },
-                        textStyle,
-                    ]}
+                    textStyle={[{ color: textColor ? textColor : DefaultTextColor, ...fontStyleRegular }, textStyle]}
                     showSelectedCheck={false}
                     selected={selected}
                     disabled={disabled}
@@ -209,10 +204,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         style,
                         chipStyle,
                     ]}
-                    textStyle={[
-                        { color: textColor ? textColor : DefaultTextColor, fontFamily: 'OpenSans-Regular' },
-                        textStyle,
-                    ]}
+                    textStyle={[{ color: textColor ? textColor : DefaultTextColor, ...fontStyleRegular }, textStyle]}
                     showSelectedCheck={false}
                     selected={selected}
                     disabled={disabled}

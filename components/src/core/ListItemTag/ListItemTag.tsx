@@ -3,7 +3,7 @@ import { TextStyle, StyleProp, StyleSheet } from 'react-native';
 import { Text, TextProps } from 'react-native-paper';
 import { useFontScale } from '../__contexts__/font-scale-context';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-import { calculateHeight } from '../Utility/shared';
+import { calculateHeight, fontStyleBold } from '../Utility/shared';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export type ListItemTagProps = Omit<TextProps<'bodyMedium'>, 'children' | 'theme' | 'variant'> & {
@@ -55,7 +55,7 @@ const listItemTagStyles = (
             paddingLeft: 4 * fontScale,
             paddingRight: 3 * fontScale, // to account for the 1px letter spacing on the last letter
             borderRadius: 4 * fontScale,
-            fontFamily: 'OpenSans-Bold',
+            ...fontStyleBold,
             overflow: 'hidden',
             lineHeight: calculateHeight(fontSize),
             fontSize,
