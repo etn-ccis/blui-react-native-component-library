@@ -40,7 +40,7 @@
     "prettier": "@brightlayer-ui/prettier-config",
     "devDependencies": {
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-hooks": "^4.6.2",
         "npm-license-crawler": "^0.2.1",
         "prettier": "^3.2.5"
     },
