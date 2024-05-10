@@ -18,6 +18,7 @@ import { useHeaderHeight } from './contexts/HeaderHeightContextProvider';
 import { useHeaderDimensions } from '../__hooks__/useHeaderDimensions';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { ExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleRegular, fontStyleSemiBold } from '../Utility/shared';
 
 const headerContentStyles = StyleSheet.create({
     titleContainer: {
@@ -65,7 +66,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = (props) => {
     const getTitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: 'OpenSans-SemiBold',
+            ...fontStyleSemiBold,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [20, 30],
@@ -121,7 +122,7 @@ const HeaderSubtitle: React.FC<HeaderSubtitleProps> = (props) => {
     const getSubtitleStyle = useCallback(
         () => ({
             color: textColor,
-            fontFamily: 'OpenSans-Regular',
+            ...fontStyleRegular,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [14, 16],
@@ -191,7 +192,7 @@ const HeaderInfo: React.FC<HeaderInfoProps> = (props) => {
                 outputRange: [0, 1],
                 extrapolate: 'clamp',
             }),
-            fontFamily: 'OpenSans-Regular',
+            ...fontStyleRegular,
             fontSize: headerHeight.interpolate({
                 inputRange: [REGULAR_HEIGHT, EXTENDED_HEIGHT],
                 outputRange: [0.1, 14],

@@ -13,6 +13,7 @@ import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { fontStyleRegular, fontStyleSemiBold } from '../Utility/shared';
 
 export type DrawerNavItemStyles = {
     root?: StyleProp<ViewStyle>;
@@ -328,13 +329,11 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                 title: Object.assign(
                                     active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
-                                              fontWeight: 600,
-                                              fontFamily: 'OpenSans-SemiBold',
+                                              ...fontStyleSemiBold,
                                               color: theme.colors.onPrimaryContainer,
                                           }
                                         : {
-                                              fontWeight: 400,
-                                              fontFamily: 'OpenSans-Regular',
+                                              ...fontStyleRegular,
                                               color: theme.colors.onSurface,
                                           },
                                     iliTitle

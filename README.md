@@ -1,6 +1,6 @@
 # Brightlayer UI React Native Components
 
-[![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-native-component-library/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-native-component-library/tree/master)
+[![Build](https://github.com/etn-ccis/blui-react-native-component-library/actions/workflows/blui-ci.yml/badge.svg?branch=master)](https://github.com/etn-ccis/blui-react-native-component-library/actions/workflows/blui-ci.yml)
 ![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-native-components?label=%40brightlayer-ui%2Freact-native-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-native-component-library/branch/master/graph/badge.svg?token=HQ7P6R23KZ)](https://codecov.io/gh/etn-ccis/blui-react-native-component-library)
 
 This is a library of re-usable React Native components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
@@ -22,9 +22,9 @@ yarn add @brightlayer-ui/react-native-components
 This library has a few dependencies that you will need to install in your project in order to work correctly. To install them, you can run the following command in your project root:
 
 ```shell
-npm install --save react-native-paper@^5.0.0 react-native-safe-area-context@^4.0.0 react-native-vector-icons@^9.0.0
+npm install --save react-native-paper@^5.0.0 react-native-safe-area-context@^4.0.0 react-native-vector-icons@^9.0.0 @brightlayer-ui/react-native-vector-icons@^2.2.0
 // or
-yarn add react-native-paper@^5.0.0 react-native-safe-area-context@^4.0.0 react-native-vector-icons@^9.0.0
+yarn add react-native-paper@^5.0.0 react-native-safe-area-context@^4.0.0 react-native-vector-icons@^9.0.0 @brightlayer-ui/react-native-vector-icons@^2.2.0
 ```
 
 ## Building the Library
