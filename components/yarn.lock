@@ -823,10 +823,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-native-themes@7.0.1-alpha.5":
-  version "7.0.1-alpha.5"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.1-alpha.5.tgz#8e1508606c5e670ad434ffcc82781af3118e2a28"
-  integrity sha512-D99P8QiHzNEPZdzd8XFEGTmg/M0rcwiBF7fKpaT1PlqlXFVteAJHS+bCK3yC7LQlrK5eQ0YqJROhtVMZVT478Q==
+"@brightlayer-ui/react-native-themes@7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.1.tgz#0276c5264c9d00f86fd8bcac51dfddaeb912f8d5"
+  integrity sha512-KQTT5q1Ekq/aIoGNYyEZ3pmtTfZNiWBXw5uvvIJPGL2xVvxs3lGCZjZKC/XS+sXNH2C6s5wnzF8sjNLPCYtMLQ==
   dependencies:
     "@brightlayer-ui/colors" "4.0.0"
     color "^4.2.3"
