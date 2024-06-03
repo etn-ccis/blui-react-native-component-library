@@ -4,9 +4,12 @@ exports[`Grade.a renders with default label, color, background color, and size 1
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -82,9 +85,12 @@ exports[`Grade.aMinus renders with default label, color, background color, and s
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -160,9 +166,12 @@ exports[`Grade.aPlus renders with default label, color, background color, and si
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -238,9 +247,12 @@ exports[`Grade.b renders with default label, color, background color, and size 1
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -316,9 +328,12 @@ exports[`Grade.bMinus renders with default label, color, background color, and s
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -394,9 +409,12 @@ exports[`Grade.bPlus renders with default label, color, background color, and si
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -472,9 +490,12 @@ exports[`Grade.c renders with default label, color, background color, and size 1
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -550,9 +571,12 @@ exports[`Grade.cMinus renders with default label, color, background color, and s
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -628,9 +652,12 @@ exports[`Grade.cPlus renders with default label, color, background color, and si
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -765,9 +792,12 @@ exports[`Grade.d renders with default label, color, background color, and size 1
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -843,9 +873,12 @@ exports[`Grade.dMinus renders with default label, color, background color, and s
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -921,9 +954,12 @@ exports[`Grade.dPlus renders with default label, color, background color, and si
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -999,9 +1035,12 @@ exports[`Grade.f renders with default label, color, background color, and size 1
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
