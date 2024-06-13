@@ -84,7 +84,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const { title, subtitle, info, color, styles = {} } = props;
     const textColor = color || 'white';
     return (
-        <View style={[{ flex: 1, flexBasis: 'auto' }, styles.root]}>
+        <View style={[{ flex: 1 }, styles.root]}>
             <Text
                 testID={'header_title'}
                 style={[{ color: textColor }, styles.title]}
