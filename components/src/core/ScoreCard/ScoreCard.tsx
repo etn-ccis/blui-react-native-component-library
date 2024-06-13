@@ -84,7 +84,7 @@ const HeaderText: React.FC<HeaderTextProps> = (props) => {
     const { title, subtitle, info, color, styles = {} } = props;
     const textColor = color || 'white';
     return (
-        <View style={[{ flex: 1 }, styles.root]}>
+        <View style={[{ flex: 1, flexBasis: 'auto' }, styles.root]}>
             <Text
                 testID={'header_title'}
                 style={[{ color: textColor }, styles.title]}
@@ -163,7 +163,7 @@ type HeroPanelProps = {
 const HeroPanel: React.FC<HeroPanelProps> = (props) => {
     const { badge, badgeOffset = 0, style } = props;
     if (badge) {
-        return <View style={[{ flex: 0, marginTop: badgeOffset }, style]}>{badge}</View>;
+        return <View style={[{ flex: 0, flexBasis: 'auto', marginTop: badgeOffset }, style]}>{badge}</View>;
     }
     return null;
 };
