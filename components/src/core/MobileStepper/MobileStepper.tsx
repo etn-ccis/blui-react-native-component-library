@@ -161,7 +161,7 @@ export const MobileStepper: React.FC<MobileStepperProps> = (props) => {
                 style={[
                     defaultStyles.stepperContainer,
                     styles.stepperContainer,
-                    variant === 'progress' ? { flex: 1 } : { flex: 0 },
+                    variant === 'progress' ? { flex: 1 } : { flex: 0, flexBasis: 'auto' },
                 ]}
             >
                 {variant === 'dots' &&
