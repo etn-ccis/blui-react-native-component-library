@@ -2,7 +2,7 @@ export const updateTitle = (): void => {
     setTimeout(() => {
         window.top.document.title = 'Brightlayer UI | React Native Components';
     }, 10);
-    (function() {
+    (function () {
         var link = window.top.document.querySelector("link[rel*='icon']") || document.createElement('link');
         // @ts-ignore
         link.type = 'image/x-icon';

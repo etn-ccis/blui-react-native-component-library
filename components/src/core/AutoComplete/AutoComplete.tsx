@@ -1,8 +1,20 @@
 import React, { useRef, useState } from 'react';
-import { TextStyle, StyleProp, StyleSheet, View, TouchableWithoutFeedback, ScrollView, TouchableOpacity, Platform, ViewStyle, TextInput as RNTextInput, ViewProps, TextInputProps } from 'react-native';
+import {
+    TextStyle,
+    StyleProp,
+    StyleSheet,
+    View,
+    ScrollView,
+    TouchableOpacity,
+    Platform,
+    ViewStyle,
+    TextInput as RNTextInput,
+    ViewProps,
+    TextInputProps,
+    TouchableHighlight,
+} from 'react-native';
 import { HelperText, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
-// import { useFontScaleSettings } from '../__contexts__/font-scale-context';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Chip, ChipProps } from '../Chip';
 
@@ -13,12 +25,12 @@ export type AutocompleteProps = ViewProps & {
     tagInputFieldProps?: TextInputProps;
     chipProps?: ChipProps; // Only use Label prop from ChipPros
     limitTags?: number; // default is 6;
-    limitCharacterCountTag?: number //default is 16
+    limitCharacterCountTag?: number; //default is 16
     onChange?: (details?: string[]) => void;
     onDelete?: (option: string) => void;
     disabled?: boolean; // verify and delete and use TextInputFieldProps
     value?: string[]; // pre-populated chips to display inside TextField
-    addCustomTag: boolean; // if this is true only then the user can add new tags default false
+    addCustomTag?: boolean; // if this is true only then the user can add new tags default false
 
     styles?: {
         root?: StyleProp<TextStyle>;
@@ -32,7 +44,7 @@ export type AutocompleteProps = ViewProps & {
 
 const AutocompleteStyles = (
     theme: ExtendedTheme,
-    filterOptions: string[],
+    filterOptions: string[]
 ): StyleSheet.NamedStyles<{
     root: TextStyle;
     optionText: ViewStyle;
@@ -63,7 +75,6 @@ const AutocompleteStyles = (
         },
         inputHorizontal: {
             paddingTop: 12,
-
         },
         chip: {
             height: 35,
@@ -143,102 +154,89 @@ const AutocompleteStyles = (
     });
 
 export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
-    const { 
-        styles = {}, 
-        theme: themeOverride, 
-        value = [], 
+    const {
+        theme: themeOverride,
+        value = [],
         options = [],
-        limitTags=6,
-    limitCharacterCountTag=16,
-    helperText,
-    tagInputFieldProps,
-    chipProps,
-    onChange,
-    onDelete,
-    disabled= false,
-    addCustomTag=false,
- } = props;
+        limitTags = 6,
+        limitCharacterCountTag = 16,
+        helperText,
+        tagInputFieldProps,
+        chipProps,
+        onChange,
+        onDelete,
+        disabled = false,
+        addCustomTag = false,
+    } = props;
     const theme = useExtendedTheme(themeOverride);
-    const [chipValue, setChipValue] = useState(value)
-    // const [chipOptions, setChipOptions] = useState(options)
-    const [filterOptions, setFilterOptions] = useState(filterChips(options,value))
-    const [hideDropDownTags, setHideDropDownTags] = useState(true)
-    const [textInput, setTextInput] = useState('')
+    function filterChips(chipOptions: string[], chipValue: string[]): string[] {
+        return chipOptions.filter((option) => chipValue.findIndex((item) => item === option) === -1);
+    }
+    const [chipValue, setChipValue] = useState(value);
+    const [filterOptions, setFilterOptions] = useState(filterChips(options, value));
+    const [hideDropDownTags, setHideDropDownTags] = useState(true);
+    const [textInput, setTextInput] = useState('');
     const tagInputRef = useRef(null as unknown as RNTextInput);
     const defaultStyles = AutocompleteStyles(theme, filterOptions);
 
-    function filterChips(chipOptions: string[], chipValue: string[]): string[] {
-        // Use filter and findIndex for membership checking
-        return chipOptions.filter(option => chipValue.findIndex(value => value === option) === -1);
-      }
-
     const handleTextInputPress = (): void => {
         tagInputRef.current?.focus();
-        setHideDropDownTags(false)
+        setHideDropDownTags(false);
     };
     const handleOnBlurTags = (): void => {
         setHideDropDownTags(true);
     };
     const handleOnChangeText = (text: string): void => {
-        if (text.length<limitCharacterCountTag && chipValue.length<limitTags){
-            setTextInput(text)
-            let arr
-            if(text===''){
-                arr= filterChips(options,chipValue)
+        if (text.length <= limitCharacterCountTag && chipValue.length < limitTags) {
+            setTextInput(text);
+            let arr;
+            if (text === '') {
+                arr = filterChips(options, chipValue);
+            } else {
+                arr = filterOptions.filter((str) => str.toLowerCase().includes(text.toLowerCase()));
             }
-            else{
-            arr =filterOptions.filter(str => str.toLowerCase().includes(text.toLowerCase()));
-            }console.log(arr,text)
-            setFilterOptions(arr)
+            setFilterOptions(arr);
         }
-    }
-    const handleSubmitText = ():void =>{
-        if(chipValue.length<limitTags){
-            if(addCustomTag===true ||filterOptions.includes(textInput)){
-            let newChip=chipValue
-            newChip.push(textInput)
-            setChipValue(newChip)
-            console.log(newChip)
-            setFilterOptions(filterChips(options,newChip))
-            setTextInput('')
-            if(onChange){
-                onChange(newChip)
-            }
-        }
-        }
-    }
-    const onTagsSelected = (tag:string): void => {
-        if(chipValue.length<limitTags){
-            let newChip=chipValue
-            newChip.push(tag)
-            setChipValue(newChip)
-            console.log(newChip)
-            setFilterOptions(filterChips(options,newChip))
-            setTextInput('')
-            if(onChange){
-                onChange(newChip)
+    };
+    const handleSubmitText = (): void => {
+        if (chipValue.length < limitTags) {
+            if (addCustomTag === true || filterOptions.includes(textInput)) {
+                const newChip = chipValue;
+                newChip.push(textInput);
+                setChipValue(newChip);
+                setFilterOptions(filterChips(options, newChip));
+                setTextInput('');
+                if (onChange) {
+                    onChange(newChip);
+                }
             }
         }
-    }
-    const removeChipItem = (item: string): void =>{
-        let arr = chipValue.filter(str => str !== item)
-        setChipValue(arr)
-        setFilterOptions(filterChips(options,arr))
-        if(onDelete){
-            onDelete(item)
+    };
+    const onTagsSelected = (tag: string): void => {
+        if (chipValue.length < limitTags) {
+            const newChip = chipValue;
+            newChip.push(tag);
+            setChipValue(newChip);
+            setFilterOptions(filterChips(options, newChip));
+            setTextInput('');
+            if (onChange) {
+                onChange(newChip);
+            }
         }
-    }
+    };
+    const removeChipItem = (item: string): void => {
+        const arr = chipValue.filter((str) => str !== item);
+        setChipValue(arr);
+        setFilterOptions(filterChips(options, arr));
+        if (onDelete) {
+            onDelete(item);
+        }
+    };
     return (
-        <View
-            style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper]}
-        >
+        <View style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper]}>
             <View style={[defaultStyles.inputHorizontal]}>
-                <TouchableWithoutFeedback
-                    onPress={handleTextInputPress}
-                >
-                    <View
-                        style={[defaultStyles.tagInput]}
-                    >
+                <TouchableHighlight onPress={handleTextInputPress}>
+                    <View style={[defaultStyles.tagInput]}>
                         {chipValue.map((item) => (
                             <Chip
                                 key={item}
@@ -262,7 +260,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                             value={textInput}
                             placeholderTextColor={'#818181'}
                             placeholder="Tags"
-                            onChangeText={(e) => handleOnChangeText(e)}
+                            onChangeText={(e): any => handleOnChangeText(e)}
                             style={[defaultStyles.inidividualItem, defaultStyles.tagTextInput]}
                             onBlur={handleOnBlurTags}
                             blurOnSubmit={false}
@@ -272,26 +270,28 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                             {...tagInputFieldProps}
                         />
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableHighlight>
             </View>
 
-            {!hideDropDownTags && !disabled && <View
-                style={[defaultStyles.dropDownMenuTags]}
-            >
-                <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps="handled">
-                    {filterOptions.map((item, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            style={defaultStyles.dropDownItem}
-                            onPress={(): void => onTagsSelected(item)}
-                        >
-                            <Text
-                                style={[defaultStyles.optionText]}
-                            >{item}</Text>
-                        </TouchableOpacity>
-                    ))}
-                </ScrollView>
-            </View>}
+            {!hideDropDownTags && !disabled && (
+                <View style={[defaultStyles.dropDownMenuTags]}>
+                    <ScrollView
+                        testID="dropDownMenuTags"
+                        nestedScrollEnabled={true}
+                        keyboardShouldPersistTaps="handled"
+                    >
+                        {filterOptions.map((item, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                style={defaultStyles.dropDownItem}
+                                onPress={(): void => onTagsSelected(item)}
+                            >
+                                <Text style={[defaultStyles.optionText]}>{item}</Text>
+                            </TouchableOpacity>
+                        ))}
+                    </ScrollView>
+                </View>
+            )}
             <View style={defaultStyles.helpersWrapper}>
                 <HelperText type="info" style={defaultStyles.helper} visible={true}>
                     {helperText}
@@ -300,9 +300,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                     {textInput.length} / {16}
                 </HelperText>
             </View>
-            <View
-                style={[defaultStyles.bottomMargin]}
-            ></View>
+            <View style={[defaultStyles.bottomMargin]}></View>
         </View>
     );
 };
