@@ -250,7 +250,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
                 {getBackgroundImage()}
-                <View style={[defaultStyles.content, styles.content]}>
+                <View style={[defaultStyles.content, styles.content, {paddingLeft: icon ? 0 : 15}]}>
                     {icon && getIcon()}
                     {getHeaderContent()}
                 </View>
