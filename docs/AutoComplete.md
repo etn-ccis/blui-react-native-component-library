@@ -14,7 +14,8 @@ import { AutoComplete } from '@brightlayer-ui/react-native-components';
 
 note: this component should be wrapped inside scroll view with the following props
 
-```nestedScrollEnabled:true,
+```
+   nestedScrollEnabled:true,
    keyboardShouldPersistTaps:"handled"
 ```
 
@@ -25,6 +26,7 @@ note: this component should be wrapped inside scroll view with the following pro
 | Prop Name              | Description                                                                                   | Type                          | Required | Default |
 | ---------------------- | --------------------------------------------------------------------------------------------- | ----------------------------- | -------- | ------- |
 | helperText             | Text to display the Helper Text                                                               | `string`                      | yes      |         |
+| label              | Text to display as component label                                                                    | `string`                      | no       |         |
 | options                | List of Options to show in dropdown                                                           | `string[]`                    | no       |         |
 | tagInputFieldProps     | Props to spread to the TextInput component                                                    | `TextInputProps`              | no       |         |
 | chipProps              | Props to spread to the Chip component                                                         | `ChipProps`                   | no       |         |
