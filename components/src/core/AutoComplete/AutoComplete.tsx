@@ -19,21 +19,55 @@ import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-th
 import { Chip, ChipProps } from '../Chip';
 
 export type AutocompleteProps = ViewProps & {
-    /** Style overrides for internal elements. The styles you provide will be combined with the default defaultStyles. */
+    /** Text to display the Helper Text */
     helperText: string;
-    options?: string[]; // if options are available then only then show the list section
+    /** List of Options to show in dropdown */
+    options?: string[];
+    /** Props to spread to the TextInput component. */
     tagInputFieldProps?: TextInputProps;
-    chipProps?: ChipProps; // Only use Label prop from ChipPros
-    limitTags?: number; // default is 6;
-    limitCharacterCountTag?: number; //default is 16
+    /** Props to spread to the Chip component. */
+    chipProps?: ChipProps;
+    /** Number of Chip to be shown
+     *
+     *  @default: 6
+     *
+     */
+    limitTags?: number;
+    /** Number of character count for a Chip
+     *
+     *  @default: 16
+     *
+     */
+    limitCharacterCountTag?: number;
+    /** Callback for when the text in the Textinput changes */
     onChange?: (details?: string[]) => void;
+    /** Callback for when the chip close icon is clicked */
     onDelete?: (option: string) => void;
-    disabled?: boolean; // verify and delete and use TextInputFieldProps
-    value?: string[]; // pre-populated chips to display inside TextField
+    /** Prop to disable the AutoComplete Component
+     *
+     *  @default: false
+     *
+     */
+    disabled?: boolean;
+    /** List of  pre-populated chips to display inside TextField */
+    value?: string[];
+    /** Prop to let user pass a custom text to chip (inCase of false can only pass text from options)
+     *
+     *  @default: false
+     *
+     */
     addCustomTag?: boolean; // if this is true only then the user can add new tags default false
 
     styles?: {
-        root?: StyleProp<TextStyle>;
+        root?: StyleProp<ViewStyle>;
+        textInputContainer?: StyleProp<ViewStyle>;
+        chip?: StyleProp<ViewStyle>;
+        textInput?: StyleProp<ViewStyle>;
+        dropdownContainer?: StyleProp<ViewStyle>;
+        dropdownItem?: StyleProp<ViewStyle>;
+        helperContainer?: StyleProp<ViewStyle>;
+        helperText?: StyleProp<TextStyle>;
+        helperCounter?: StyleProp<TextStyle>;
     };
 
     /**
@@ -44,12 +78,11 @@ export type AutocompleteProps = ViewProps & {
 
 const AutocompleteStyles = (
     theme: ExtendedTheme,
-    filterOptions: string[]
+    filterOptions: string[],
+    selected: boolean
 ): StyleSheet.NamedStyles<{
-    root: TextStyle;
     optionText: ViewStyle;
     individualTextInputWrapper: ViewStyle;
-    inidividualItem: ViewStyle;
     chip: ViewStyle;
     dropDownItem: ViewStyle;
     tagTextInput: ViewStyle;
@@ -63,15 +96,13 @@ const AutocompleteStyles = (
     inputHorizontal: ViewStyle;
 }> =>
     StyleSheet.create({
-        root: {
-            color: theme.colors.surface,
-            letterSpacing: 2,
-            textTransform: 'uppercase',
-        },
-        optionText: { color: '#424E54' },
-        individualTextInputWrapper: { marginHorizontal: -1, marginVertical: 5, minHeight: 20, overflow: 'hidden' },
-        inidividualItem: {
-            // backgroundColor: '#F7F8F8',
+        optionText: { color: theme.colors.onSurfaceVariant },
+        individualTextInputWrapper: {
+            marginHorizontal: -1,
+            marginVertical: 5,
+            minHeight: 20,
+            overflow: 'hidden',
+            backgroundColor: 'rgba(255, 255, 255, 0)',
         },
         inputHorizontal: {
             paddingTop: 12,
@@ -86,14 +117,12 @@ const AutocompleteStyles = (
 
         dropDownItem: {
             paddingBottom: 13,
-            color: 'red',
             paddingHorizontal: 13,
             flexDirection: 'row',
             flex: 1,
         },
         tagTextInput: {
             fontSize: 16,
-            // backgroundColor:'yellow',
             // paddingLeft: 5,
             marginTop: Platform.OS === 'android' ? 10 : 25,
             marginLeft: Platform.OS === 'android' ? 4 : 8,
@@ -101,12 +130,11 @@ const AutocompleteStyles = (
             marginBottom: Platform.OS === 'android' ? 5 : 21,
         },
         tagInput: {
-            // minHeight:inputHeight,
             backgroundColor: theme.colors.surfaceVariant,
             borderTopLeftRadius: 4,
             borderTopRightRadius: 4,
             borderBottomWidth: 2,
-            borderBottomColor: theme.colors.primary,
+            borderBottomColor: selected ? theme.colors.surfaceVariant : theme.colors.primary,
             flexDirection: 'row',
             flexWrap: 'wrap',
             flexGrow: 0,
@@ -124,22 +152,15 @@ const AutocompleteStyles = (
             backgroundColor: theme.colors.surfaceVariant,
             paddingTop: filterOptions.length < 1 ? 0 : 15,
             paddingBottom: filterOptions.length < 1 ? 0 : 6,
-            borderBottomWidth: 1,
-            borderLeftWidth: 1,
-            borderRightWidth: 1,
             maxHeight: 150,
 
             // maxHeight:  150,
-            borderBottomColor: '#424E544D',
-            borderLeftColor: '#424E544D',
-            borderRightColor: '#424E544D',
             borderBottomLeftRadius: 4,
             borderBottomRightRadius: 4,
         },
         tagInputWrapper: { paddingTop: 5, paddingHorizontal: 2, flexShrink: 1 },
         bottomMargin: {
             paddingBottom: 18,
-            // backgroundColor: 'red'
         },
         helpersWrapper: {
             flexDirection: 'row',
@@ -165,6 +186,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         chipProps,
         onChange,
         onDelete,
+        styles,
         disabled = false,
         addCustomTag = false,
     } = props;
@@ -177,10 +199,12 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
     const [hideDropDownTags, setHideDropDownTags] = useState(true);
     const [textInput, setTextInput] = useState('');
     const tagInputRef = useRef(null as unknown as RNTextInput);
-    const defaultStyles = AutocompleteStyles(theme, filterOptions);
+    const defaultStyles = AutocompleteStyles(theme, filterOptions, hideDropDownTags);
 
     const handleTextInputPress = (): void => {
         tagInputRef.current?.focus();
+    };
+    const handleTextInputFocus = (): void => {
         setHideDropDownTags(false);
     };
     const handleOnBlurTags = (): void => {
@@ -199,7 +223,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         }
     };
     const handleSubmitText = (): void => {
-        if (chipValue.length < limitTags) {
+        if (chipValue.length < limitTags && textInput.length >= 1) {
             if (addCustomTag === true || filterOptions.includes(textInput)) {
                 const newChip = chipValue;
                 newChip.push(textInput);
@@ -233,14 +257,14 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         }
     };
     return (
-        <View style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper]}>
+        <View style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper, styles?.root]}>
             <View style={[defaultStyles.inputHorizontal]}>
                 <TouchableHighlight onPress={handleTextInputPress}>
-                    <View style={[defaultStyles.tagInput]}>
+                    <View style={[defaultStyles.tagInput, styles?.textInputContainer]}>
                         {chipValue.map((item) => (
                             <Chip
                                 key={item}
-                                style={[defaultStyles.chip]}
+                                style={[defaultStyles.chip, styles?.chip]}
                                 // borderColor={theme.colors.outline}
                                 // textColor={theme.colors.onSurfaceVariant}
                                 disabled={disabled}
@@ -256,17 +280,20 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                         <RNTextInput
                             testID="tagInput"
                             ref={tagInputRef}
-                            selectionColor={'#007BC1'}
+                            selectionColor={theme.colors.primary}
                             value={textInput}
-                            placeholderTextColor={'#818181'}
+                            placeholderTextColor={
+                                hideDropDownTags ? theme.colors.onSurfaceVariant : 'rgba(255, 255, 255, 0)'
+                            }
                             placeholder="Tags"
                             onChangeText={(e): any => handleOnChangeText(e)}
-                            style={[defaultStyles.inidividualItem, defaultStyles.tagTextInput]}
+                            style={[defaultStyles.tagTextInput, styles?.textInput]}
                             onBlur={handleOnBlurTags}
+                            onFocus={handleTextInputFocus}
                             blurOnSubmit={false}
                             onSubmitEditing={handleSubmitText}
                             autoCorrect={false}
-                            editable={!disabled}
+                            editable={!disabled || chipValue.length <= limitTags}
                             {...tagInputFieldProps}
                         />
                     </View>
@@ -274,7 +301,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
             </View>
 
             {!hideDropDownTags && !disabled && (
-                <View style={[defaultStyles.dropDownMenuTags]}>
+                <View style={[defaultStyles.dropDownMenuTags, styles?.dropdownContainer]}>
                     <ScrollView
                         testID="dropDownMenuTags"
                         nestedScrollEnabled={true}
@@ -283,7 +310,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                         {filterOptions.map((item, index) => (
                             <TouchableOpacity
                                 key={index}
-                                style={defaultStyles.dropDownItem}
+                                style={[defaultStyles.dropDownItem, styles?.dropdownItem]}
                                 onPress={(): void => onTagsSelected(item)}
                             >
                                 <Text style={[defaultStyles.optionText]}>{item}</Text>
@@ -292,12 +319,12 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                     </ScrollView>
                 </View>
             )}
-            <View style={defaultStyles.helpersWrapper}>
-                <HelperText type="info" style={defaultStyles.helper} visible={true}>
+            <View style={[defaultStyles.helpersWrapper, styles?.helperContainer]}>
+                <HelperText type="info" style={[defaultStyles.helper, styles?.helperText]} visible={true}>
                     {helperText}
                 </HelperText>
-                <HelperText type="info" visible={true} style={defaultStyles.counterHelper}>
-                    {textInput.length} / {16}
+                <HelperText type="info" visible={true} style={[defaultStyles.counterHelper, styles?.helperCounter]}>
+                    {textInput.length} / {limitCharacterCountTag}
                 </HelperText>
             </View>
             <View style={[defaultStyles.bottomMargin]}></View>
