@@ -17,10 +17,13 @@ import { HelperText, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Chip, ChipProps } from '../Chip';
+import { Icon } from '../Icon';
 
 export type AutocompleteProps = ViewProps & {
     /** Text to display the Helper Text */
     helperText: string;
+    /** Text to display as component label */
+    label?: string;
     /** List of Options to show in dropdown */
     options?: string[];
     /** Props to spread to the TextInput component. */
@@ -94,9 +97,15 @@ const AutocompleteStyles = (
     helper: ViewStyle;
     counterHelper: ViewStyle;
     inputHorizontal: ViewStyle;
+    labelStyle: TextStyle;
 }> =>
     StyleSheet.create({
         optionText: { color: theme.colors.onSurfaceVariant },
+        labelStyle: {
+            paddingTop: 4,
+            paddingVertical: 0,
+            color: selected ? theme.colors.onSurfaceVariant : theme.colors.primary,
+        },
         individualTextInputWrapper: {
             marginHorizontal: -1,
             marginVertical: 5,
@@ -108,11 +117,10 @@ const AutocompleteStyles = (
             paddingTop: 12,
         },
         chip: {
-            height: 35,
             // marginRight: 5,
             // marginBottom: 15,
             marginLeft: 5,
-            marginTop: Platform.OS === 'android' ? 16 : 15,
+            marginTop: Platform.OS === 'android' ? 16 : 5,
         },
 
         dropDownItem: {
@@ -124,17 +132,17 @@ const AutocompleteStyles = (
         tagTextInput: {
             fontSize: 16,
             // paddingLeft: 5,
-            marginTop: Platform.OS === 'android' ? 10 : 25,
-            marginLeft: Platform.OS === 'android' ? 4 : 8,
+            marginTop: 13,
+            marginLeft: 8,
             // paddingBottom:20,
-            marginBottom: Platform.OS === 'android' ? 5 : 21,
+            marginBottom: 13,
         },
         tagInput: {
-            backgroundColor: theme.colors.surfaceVariant,
-            borderTopLeftRadius: 4,
-            borderTopRightRadius: 4,
-            borderBottomWidth: 2,
-            borderBottomColor: selected ? theme.colors.surfaceVariant : theme.colors.primary,
+            // backgroundColor: theme.colors.surfaceVariant,
+            // borderTopLeftRadius: 4,
+            // borderTopRightRadius: 4,
+            // borderBottomWidth: 2,
+            // borderBottomColor: selected ? theme.colors.surfaceVariant : theme.colors.primary,
             flexDirection: 'row',
             flexWrap: 'wrap',
             flexGrow: 0,
@@ -186,6 +194,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         chipProps,
         onChange,
         onDelete,
+        label = '',
         styles,
         disabled = false,
         addCustomTag = false,
@@ -256,46 +265,74 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
             onDelete(item);
         }
     };
+
     return (
         <View style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper, styles?.root]}>
             <View style={[defaultStyles.inputHorizontal]}>
                 <TouchableHighlight onPress={handleTextInputPress}>
-                    <View style={[defaultStyles.tagInput, styles?.textInputContainer]}>
-                        {chipValue.map((item) => (
-                            <Chip
-                                key={item}
-                                style={[defaultStyles.chip, styles?.chip]}
-                                // borderColor={theme.colors.outline}
-                                // textColor={theme.colors.onSurfaceVariant}
-                                disabled={disabled}
-                                onClose={(): void => {
-                                    removeChipItem(item);
-                                }}
-                                {...chipProps}
-                            >
-                                {item}
-                            </Chip>
-                        ))}
+                    <View
+                        style={{
+                            backgroundColor: theme.colors.surfaceVariant,
+                            borderTopLeftRadius: 4,
+                            borderTopRightRadius: 4,
+                            borderBottomWidth: 2,
+                            paddingTop: 5,
+                            borderBottomColor: hideDropDownTags ? theme.colors.onSurfaceVariant : theme.colors.primary,
+                            flexDirection: 'row',
+                            flexWrap: 'wrap',
+                            flexGrow: 0,
+                            flex: 1,
+                        }}
+                    >
+                        <View style={{ width: '94%' }}>
+                            <HelperText style={defaultStyles.labelStyle} type="info">
+                                {!hideDropDownTags || chipValue.length > 0 ? label : ''}{' '}
+                            </HelperText>
+                            <View style={[defaultStyles.tagInput, styles?.textInputContainer]}>
+                                {chipValue.map((item) => (
+                                    <Chip
+                                        key={item}
+                                        style={[defaultStyles.chip, styles?.chip]}
+                                        // borderColor={theme.colors.outline}
+                                        // textColor={theme.colors.onSurfaceVariant}
+                                        disabled={disabled}
+                                        onClose={(): void => {
+                                            removeChipItem(item);
+                                        }}
+                                        {...chipProps}
+                                    >
+                                        {item}
+                                    </Chip>
+                                ))}
 
-                        <RNTextInput
-                            testID="tagInput"
-                            ref={tagInputRef}
-                            selectionColor={theme.colors.primary}
-                            value={textInput}
-                            placeholderTextColor={
-                                hideDropDownTags ? theme.colors.onSurfaceVariant : 'rgba(255, 255, 255, 0)'
-                            }
-                            placeholder="Tags"
-                            onChangeText={(e): any => handleOnChangeText(e)}
-                            style={[defaultStyles.tagTextInput, styles?.textInput]}
-                            onBlur={handleOnBlurTags}
-                            onFocus={handleTextInputFocus}
-                            blurOnSubmit={false}
-                            onSubmitEditing={handleSubmitText}
-                            autoCorrect={false}
-                            editable={!disabled || chipValue.length <= limitTags}
-                            {...tagInputFieldProps}
-                        />
+                                <RNTextInput
+                                    testID="tagInput"
+                                    ref={tagInputRef}
+                                    selectionColor={theme.colors.primary}
+                                    value={textInput}
+                                    placeholderTextColor={
+                                        hideDropDownTags ? theme.colors.onSurfaceVariant : 'rgba(255, 255, 255, 0)'
+                                    }
+                                    placeholder={hideDropDownTags && chipValue.length < 1 ? label : ''}
+                                    onChangeText={(e): any => handleOnChangeText(e)}
+                                    style={[defaultStyles.tagTextInput, styles?.textInput]}
+                                    onBlur={handleOnBlurTags}
+                                    onFocus={handleTextInputFocus}
+                                    blurOnSubmit={false}
+                                    onSubmitEditing={handleSubmitText}
+                                    autoCorrect={false}
+                                    editable={!disabled && chipValue.length < limitTags}
+                                    {...tagInputFieldProps}
+                                />
+                            </View>
+                        </View>
+                        <View style={{ width: '6%', paddingTop: 5 }}>
+                            {hideDropDownTags ? (
+                                <Icon source={{ family: 'material-community', name: 'chevron-down' }} />
+                            ) : (
+                                <Icon source={{ family: 'material-community', name: 'chevron-up' }} />
+                            )}
+                        </View>
                     </View>
                 </TouchableHighlight>
             </View>
