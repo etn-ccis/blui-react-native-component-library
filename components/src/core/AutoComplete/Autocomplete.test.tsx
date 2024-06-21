@@ -35,7 +35,7 @@ describe('AutoComplete', () => {
         const helperText = await getByText('This is a helper text');
         expect(helperText).toBeTruthy();
     });
-
+    // @todo
     // it('toggles dropdown menu on input click and selecting an option', async () => {
     //     const { getByTestId } = render(<AutoComplete helperText="Helper Text" options={['Option 1', 'Option 2']} />);
 

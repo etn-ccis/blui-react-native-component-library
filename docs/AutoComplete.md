@@ -9,7 +9,7 @@ The Autocomplete is a component that features a standard text input accompanied 
 ```tsx
 import { AutoComplete } from '@brightlayer-ui/react-native-components';
 
-<AutoComplete helperText="helper text" label="label" value={['tag1']} options={['tag1', 'tag2', 'tag3', 'tag4']} />;
+<AutoComplete helperText="helper text" label="label" value={['Tag1']} options={['Tag1', 'Tag2', 'Tag3', 'Tag4']} />;
 ```
 
 #### Note: this component should be wrapped inside scroll view with the following props

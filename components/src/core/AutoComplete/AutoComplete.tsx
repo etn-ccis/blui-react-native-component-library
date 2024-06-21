@@ -296,9 +296,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                                     ref={tagInputRef}
                                     selectionColor={theme.colors.primary}
                                     value={textInput}
-                                    placeholderTextColor={
-                                        hideDropDownTags ? theme.colors.onSurfaceVariant : 'rgba(255, 255, 255, 0)'
-                                    }
+                                    placeholderTextColor={theme.colors.onSurfaceVariant}
                                     placeholder={hideDropDownTags && chipValue.length < 1 ? label : ''}
                                     onChangeText={(e): any => handleOnChangeText(e)}
                                     style={[defaultStyles.tagTextInput, styles?.textInput]}
