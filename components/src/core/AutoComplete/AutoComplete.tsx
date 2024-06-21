@@ -58,7 +58,7 @@ export type AutocompleteProps = ViewProps & {
      *  @default: false
      *
      */
-    addCustomTag?: boolean; // if this is true only then the user can add new tags default false
+    allowCustomtag?: boolean;
 
     styles?: {
         root?: StyleProp<ViewStyle>;
@@ -108,12 +108,12 @@ const AutocompleteStyles = (
         },
         individualTextInputWrapper: {
             marginHorizontal: -1,
-            marginVertical: 5,
+            marginVertical: 4,
             minHeight: 20,
             overflow: 'hidden',
             backgroundColor: 'rgba(255, 255, 255, 0)',
         },
-        iconWrapper: { width: '7%', paddingTop: 5 },
+        iconWrapper: { width: '7%', paddingTop: 8 },
         selectorContainer: {
             backgroundColor: theme.colors.surfaceVariant,
             borderTopLeftRadius: 4,
@@ -141,18 +141,11 @@ const AutocompleteStyles = (
         },
         tagTextInput: {
             fontSize: 16,
-            // paddingLeft: 5,
             marginTop: 13,
             marginLeft: 8,
-            // paddingBottom:20,
             marginBottom: 13,
         },
         tagInput: {
-            // backgroundColor: theme.colors.surfaceVariant,
-            // borderTopLeftRadius: 4,
-            // borderTopRightRadius: 4,
-            // borderBottomWidth: 2,
-            // borderBottomColor: selected ? theme.colors.surfaceVariant : theme.colors.primary,
             flexDirection: 'row',
             flexWrap: 'wrap',
             flexGrow: 0,
@@ -160,9 +153,6 @@ const AutocompleteStyles = (
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
             paddingRight: 12,
-            // marginTop:5,
-            // paddingBottom:15,
-            // maxHeight:80
         },
         dropDownMenuTags: {
             paddingRight: 10,
@@ -170,8 +160,6 @@ const AutocompleteStyles = (
             paddingTop: filterOptions.length < 1 ? 0 : 15,
             paddingBottom: filterOptions.length < 1 ? 0 : 6,
             maxHeight: 150,
-
-            // maxHeight:  150,
             borderBottomLeftRadius: 4,
             borderBottomRightRadius: 4,
         },
@@ -206,7 +194,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         label = '',
         styles,
         disabled = false,
-        addCustomTag = false,
+        allowCustomtag = false,
     } = props;
     const theme = useExtendedTheme(themeOverride);
     function filterChips(chipOptions: string[], chipValue: string[]): string[] {
@@ -242,7 +230,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
     };
     const handleSubmitText = (): void => {
         if (chipValue.length < limitTags && textInput.length >= 1) {
-            if (addCustomTag === true || filterOptions.includes(textInput)) {
+            if (allowCustomtag === true || filterOptions.includes(textInput)) {
                 const newChip = chipValue;
                 newChip.push(textInput);
                 setChipValue(newChip);

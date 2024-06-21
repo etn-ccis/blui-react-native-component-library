@@ -36,7 +36,7 @@ import { AutoComplete } from '@brightlayer-ui/react-native-components';
 | onDelete               | Callback for when the chip close icon is clicked                                              | `function`                    | no       |         |
 | disabled               | Prop to disable the AutoComplete Component                                                    | `boolean`                     | no       | false   |
 | value                  | List of pre-populated chips to display inside TextField                                       | `string[]`                    | no       |         |
-| addCustomTag           | Prop to let user pass a custom text to chip (inCase of false can only pass text from options) | `boolean`                     | no       | false   |
+| allowCustomtag         | Prop to let user pass a custom text to chip (inCase of false can only pass text from options) | `boolean`                     | no       | false   |
 | theme                  | Theme value overrides specific to this component                                              | `$DeepPartial<ExtendedTheme>` | no       |         |
 
 </div>
