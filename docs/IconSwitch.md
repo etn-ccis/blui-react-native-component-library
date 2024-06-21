@@ -32,4 +32,9 @@ Any other props will be provided to the root element ([**View**](https://reactna
 
 ### Styles
 
-You can override the internal style used by Brightlayer UI by passing a `style` prop.
+You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
+
+| Name   | Description                          |
+| ------ | ------------------------------------ |
+| root   | Styles applied to the root element   |
+| handle | Styles applied to the handle element |

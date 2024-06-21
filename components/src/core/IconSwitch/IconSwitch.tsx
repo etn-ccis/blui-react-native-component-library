@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, ViewProps, View, I18nManager, StyleProp, ViewStyle } from 'react-native';
+import { StyleSheet, TouchableOpacity, ViewProps, I18nManager, StyleProp, ViewStyle } from 'react-native';
 import Animated, {
     interpolate,
     useAnimatedStyle,
@@ -144,7 +144,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         >
             <Animated.View style={[defaultStyles.handle, toggleStyles, styles.handle]}>
                 {showIcon && (
-                    <View>
+                    <>
                         {toggled ? (
                             <Icon
                                 source={{ family: 'material', name: 'check' }}
@@ -158,7 +158,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                                 size={16}
                             />
                         )}
-                    </View>
+                    </>
                 )}
             </Animated.View>
         </TouchableOpacity>
