@@ -6,7 +6,6 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    Platform,
     ViewStyle,
     TextInput as RNTextInput,
     ViewProps,
@@ -17,7 +16,7 @@ import { HelperText, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Chip, ChipProps } from '../Chip';
-import { Icon } from '../Icon';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 export type AutocompleteProps = ViewProps & {
     /** Text to display the Helper Text */
@@ -88,6 +87,8 @@ const AutocompleteStyles = (
     individualTextInputWrapper: ViewStyle;
     chip: ViewStyle;
     dropDownItem: ViewStyle;
+    iconWrapper: ViewStyle;
+    selectorContainer: ViewStyle;
     tagTextInput: ViewStyle;
     tagInput: ViewStyle;
     dropDownMenuTags: ViewStyle;
@@ -96,7 +97,6 @@ const AutocompleteStyles = (
     helpersWrapper: ViewStyle;
     helper: ViewStyle;
     counterHelper: ViewStyle;
-    inputHorizontal: ViewStyle;
     labelStyle: TextStyle;
 }> =>
     StyleSheet.create({
@@ -113,14 +113,24 @@ const AutocompleteStyles = (
             overflow: 'hidden',
             backgroundColor: 'rgba(255, 255, 255, 0)',
         },
-        inputHorizontal: {
-            paddingTop: 12,
+        iconWrapper: { width: '7%', paddingTop: 5 },
+        selectorContainer: {
+            backgroundColor: theme.colors.surfaceVariant,
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+            borderBottomWidth: 2,
+            paddingTop: 8,
+            paddingBottom: 8,
+            paddingHorizontal: 16,
+            borderBottomColor: selected ? theme.colors.onSurfaceVariant : theme.colors.primary,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            flexGrow: 0,
+            flex: 1,
         },
         chip: {
-            // marginRight: 5,
-            // marginBottom: 15,
-            marginLeft: 5,
-            marginTop: Platform.OS === 'android' ? 16 : 5,
+            marginHorizontal: 6,
+            marginVertical: 6,
         },
 
         dropDownItem: {
@@ -149,8 +159,7 @@ const AutocompleteStyles = (
             flex: 1,
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
-            paddingLeft: 3,
-            paddingRight: 7,
+            paddingRight: 12,
             // marginTop:5,
             // paddingBottom:15,
             // maxHeight:80
@@ -268,33 +277,22 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
 
     return (
         <View style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper, styles?.root]}>
-            <View style={[defaultStyles.inputHorizontal]}>
+            <View>
                 <TouchableHighlight onPress={handleTextInputPress}>
-                    <View
-                        style={{
-                            backgroundColor: theme.colors.surfaceVariant,
-                            borderTopLeftRadius: 4,
-                            borderTopRightRadius: 4,
-                            borderBottomWidth: 2,
-                            paddingTop: 5,
-                            borderBottomColor: hideDropDownTags ? theme.colors.onSurfaceVariant : theme.colors.primary,
-                            flexDirection: 'row',
-                            flexWrap: 'wrap',
-                            flexGrow: 0,
-                            flex: 1,
-                        }}
-                    >
-                        <View style={{ width: '94%' }}>
-                            <HelperText style={defaultStyles.labelStyle} type="info">
-                                {!hideDropDownTags || chipValue.length > 0 ? label : ''}{' '}
-                            </HelperText>
+                    <View style={defaultStyles.selectorContainer}>
+                        <View style={{ width: '93%' }}>
+                            {!hideDropDownTags || chipValue.length > 0 ? (
+                                <HelperText style={defaultStyles.labelStyle} type="info">
+                                    {!hideDropDownTags || chipValue.length > 0 ? label : ''}{' '}
+                                </HelperText>
+                            ) : null}
                             <View style={[defaultStyles.tagInput, styles?.textInputContainer]}>
                                 {chipValue.map((item) => (
                                     <Chip
                                         key={item}
                                         style={[defaultStyles.chip, styles?.chip]}
-                                        // borderColor={theme.colors.outline}
-                                        // textColor={theme.colors.onSurfaceVariant}
+                                        borderColor={theme.colors.outline}
+                                        textColor={theme.colors.onSurfaceVariant}
                                         disabled={disabled}
                                         onClose={(): void => {
                                             removeChipItem(item);
@@ -326,11 +324,11 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                                 />
                             </View>
                         </View>
-                        <View style={{ width: '6%', paddingTop: 5 }}>
+                        <View style={defaultStyles.iconWrapper}>
                             {hideDropDownTags ? (
-                                <Icon source={{ family: 'material-community', name: 'chevron-down' }} />
+                                <MatIcon name="arrow-drop-down" size={24} />
                             ) : (
-                                <Icon source={{ family: 'material-community', name: 'chevron-up' }} />
+                                <MatIcon name="arrow-drop-up" size={24} />
                             )}
                         </View>
                     </View>
