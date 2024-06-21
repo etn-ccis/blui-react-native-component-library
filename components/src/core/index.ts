@@ -16,3 +16,4 @@ export * from './Utility';
 export * from './Grade';
 export * from './IconSwitch';
 export * from './Chip';
+export * from './AutoComplete';
