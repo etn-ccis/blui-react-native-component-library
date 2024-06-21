@@ -100,9 +100,10 @@ const AutocompleteStyles = (
     labelStyle: TextStyle;
 }> =>
     StyleSheet.create({
-        optionText: { color: theme.colors.onSurfaceVariant },
+        optionText: { color: theme.colors.onSurfaceVariant, marginHorizontal: 16 },
         labelStyle: {
             paddingTop: 4,
+            paddingHorizontal: 6,
             paddingVertical: 0,
             color: selected ? theme.colors.onSurfaceVariant : theme.colors.primary,
         },
@@ -121,7 +122,7 @@ const AutocompleteStyles = (
             borderBottomWidth: 2,
             paddingTop: 8,
             paddingBottom: 8,
-            paddingHorizontal: 16,
+            paddingHorizontal: 10,
             borderBottomColor: selected ? theme.colors.onSurfaceVariant : theme.colors.primary,
             flexDirection: 'row',
             flexWrap: 'wrap',
@@ -134,8 +135,7 @@ const AutocompleteStyles = (
         },
 
         dropDownItem: {
-            paddingBottom: 13,
-            paddingHorizontal: 13,
+            paddingBottom: 12,
             flexDirection: 'row',
             flex: 1,
         },
@@ -155,9 +155,9 @@ const AutocompleteStyles = (
             paddingRight: 12,
         },
         dropDownMenuTags: {
-            paddingRight: 10,
+            paddingRight: 16,
             backgroundColor: theme.colors.surfaceVariant,
-            paddingTop: filterOptions.length < 1 ? 0 : 15,
+            paddingTop: filterOptions.length < 1 ? 0 : 12,
             paddingBottom: filterOptions.length < 1 ? 0 : 6,
             maxHeight: 150,
             borderBottomLeftRadius: 4,

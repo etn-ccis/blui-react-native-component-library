@@ -1,6 +1,6 @@
 # AutoComplete
 
-The Autocomplete is a component that features a standard text input accompanied by a list of suggested options. In this component, users can select an option from the available list. After selection, it will appear as a chip component with a delete icon inside the text input. Users can add new options by typing inside the input, and upon clicking on it, the new option should be available in the options list.
+The Autocomplete is a component that features a standard text input accompanied by a list of suggested options. In this component, users can select an option from the available list. After selection, it will appear as a chip component with a delete icon inside the text input.
 
 <img width="250" style="max-width:400px" alt="Autocomplete" src="./images/autocomplete.png">
 
