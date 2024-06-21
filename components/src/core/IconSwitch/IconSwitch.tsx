@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, ViewProps, View, I18nManager } from 'react-native';
+import { StyleSheet, TouchableOpacity, ViewProps, View, I18nManager, StyleProp, ViewStyle } from 'react-native';
 import Animated, {
     interpolate,
     useAnimatedStyle,
@@ -36,13 +36,28 @@ export type IconSwitchProps = ViewProps & {
      * Theme value overrides specific to this component.
      */
     theme?: $DeepPartial<ExtendedTheme>;
+    /**
+     * Style overrides for internal elements. The styles you provide will be combined with the default styles.
+     */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        handle?: StyleProp<ViewStyle>;
+    };
 };
 
 /**
  * This is a Switch component which allow us to show the check icon on ToggleOn and Close icon on ToggleOff Switch's handle.
  */
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
-    const { showIcon = false, disabled = false, value = false, onValueChange, style, ...viewProps } = props;
+    const {
+        showIcon = false,
+        disabled = false,
+        value = false,
+        onValueChange,
+        styles = {},
+        style,
+        ...viewProps
+    } = props;
     const theme = useExtendedTheme(props.theme);
 
     const [toggled, setToggled] = useState(value);
@@ -68,7 +83,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
         onChangeToggle();
     };
 
-    const styles = StyleSheet.create({
+    const defaultStyles = StyleSheet.create({
         track: {
             display: 'flex',
             justifyContent: 'center',
@@ -124,10 +139,10 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             disabled={disabled}
             onPress={onPressSwitch}
             activeOpacity={1}
-            style={[styles.track, style]}
+            style={[defaultStyles.track, styles.root, style]}
             {...viewProps}
         >
-            <Animated.View style={[styles.handle, toggleStyles]}>
+            <Animated.View style={[defaultStyles.handle, toggleStyles, styles.handle]}>
                 {showIcon && (
                     <View>
                         {toggled ? (

@@ -10,6 +10,7 @@ import { Icon } from '../Icon';
 import { IconSource } from '../__types__';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { fontStyleRegular } from '../Utility/shared';
+import { StyleProp, ViewStyle } from 'react-native';
 
 /**
  * Props for the Chip component.
@@ -68,6 +69,14 @@ export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> 
      * @prop {React.ReactElement} [avatar] - Avatar component to be displayed in the Chip.
      */
     avatar?: React.ReactElement; // New prop for passing Avatar component
+    /**
+     * Style overrides for internal elements. The styles you provide will be combined with the default styles.
+     */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+        icon?: StyleProp<ViewStyle>;
+        avatar?: StyleProp<ViewStyle>;
+    };
 };
 
 export const Chip: React.FC<ChipProps> = (props) => {
@@ -85,6 +94,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
         borderColor,
         textColor,
         theme: themeOverride,
+        styles = {},
         ...rest
     } = props;
 
@@ -161,6 +171,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
                         },
+                        styles.icon,
                         style,
                         chipStyle,
                     ]}
@@ -181,6 +192,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
                         },
+                        styles.avatar,
                         style,
                         chipStyle,
                     ]}
@@ -201,6 +213,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
                         },
+                        styles.root,
                         style,
                         chipStyle,
                     ]}
