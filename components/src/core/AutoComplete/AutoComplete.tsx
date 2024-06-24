@@ -200,7 +200,6 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
     function filterChips(chipOptions: string[], chipValue: string[]): string[] {
         return chipOptions.filter((option) => chipValue.findIndex((item) => item === option) === -1);
     }
-    const [chipValue, setChipValue] = useState(value);
     const [filterOptions, setFilterOptions] = useState(filterChips(options, value));
     const [hideDropDownTags, setHideDropDownTags] = useState(true);
     const [textInput, setTextInput] = useState('');
@@ -217,23 +216,23 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         setHideDropDownTags(true);
     };
     const handleOnChangeText = (text: string): void => {
-        if (text.length <= limitCharacterCountTag && chipValue.length < limitTags) {
+        if (text.length <= limitCharacterCountTag && value.length < limitTags) {
             setTextInput(text);
+            const filterarr = filterChips(options, value);
             let arr;
             if (text === '') {
-                arr = filterChips(options, chipValue);
+                arr = filterarr;
             } else {
-                arr = filterOptions.filter((str) => str.toLowerCase().includes(text.toLowerCase()));
+                arr = filterarr.filter((str) => str.toLowerCase().includes(text.toLowerCase()));
             }
             setFilterOptions(arr);
         }
     };
     const handleSubmitText = (): void => {
-        if (chipValue.length < limitTags && textInput.length >= 1) {
+        if (value.length < limitTags && textInput.length >= 1) {
             if (allowCustomtag === true || filterOptions.includes(textInput)) {
-                const newChip = chipValue;
+                const newChip = [...value];
                 newChip.push(textInput);
-                setChipValue(newChip);
                 setFilterOptions(filterChips(options, newChip));
                 setTextInput('');
                 if (onChange) {
@@ -243,10 +242,9 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         }
     };
     const onTagsSelected = (tag: string): void => {
-        if (chipValue.length < limitTags) {
-            const newChip = chipValue;
+        if (value.length < limitTags) {
+            const newChip = [...value];
             newChip.push(tag);
-            setChipValue(newChip);
             setFilterOptions(filterChips(options, newChip));
             setTextInput('');
             if (onChange) {
@@ -255,27 +253,25 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
         }
     };
     const removeChipItem = (item: string): void => {
-        const arr = chipValue.filter((str) => str !== item);
-        setChipValue(arr);
+        const arr = value.filter((str) => str !== item);
         setFilterOptions(filterChips(options, arr));
         if (onDelete) {
             onDelete(item);
         }
     };
-
     return (
         <View style={[defaultStyles.individualTextInputWrapper, defaultStyles.tagInputWrapper, styles?.root]}>
             <View>
                 <TouchableHighlight onPress={handleTextInputPress}>
                     <View style={defaultStyles.selectorContainer}>
                         <View style={{ width: '93%' }}>
-                            {!hideDropDownTags || chipValue.length > 0 ? (
+                            {!hideDropDownTags || value.length > 0 ? (
                                 <HelperText style={defaultStyles.labelStyle} type="info">
-                                    {!hideDropDownTags || chipValue.length > 0 ? label : ''}{' '}
+                                    {!hideDropDownTags || value.length > 0 ? label : ''}{' '}
                                 </HelperText>
                             ) : null}
                             <View style={[defaultStyles.tagInput, styles?.textInputContainer]}>
-                                {chipValue.map((item) => (
+                                {value.map((item) => (
                                     <Chip
                                         key={item}
                                         style={[defaultStyles.chip, styles?.chip]}
@@ -297,7 +293,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                                     selectionColor={theme.colors.primary}
                                     value={textInput}
                                     placeholderTextColor={theme.colors.onSurfaceVariant}
-                                    placeholder={hideDropDownTags && chipValue.length < 1 ? label : ''}
+                                    placeholder={hideDropDownTags && value.length < 1 ? label : ''}
                                     onChangeText={(e): any => handleOnChangeText(e)}
                                     style={[defaultStyles.tagTextInput, styles?.textInput]}
                                     onBlur={handleOnBlurTags}
@@ -305,7 +301,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
                                     blurOnSubmit={false}
                                     onSubmitEditing={handleSubmitText}
                                     autoCorrect={false}
-                                    editable={!disabled && chipValue.length < limitTags}
+                                    editable={!disabled && value.length < limitTags}
                                     {...tagInputFieldProps}
                                 />
                             </View>
