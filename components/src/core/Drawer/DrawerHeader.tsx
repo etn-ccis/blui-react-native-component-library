@@ -175,7 +175,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         onPress,
         onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        backgroundOpacity,
+        backgroundOpacity = 0.3,
         styles = {},
         style,
         theme: themeOverride,
@@ -262,6 +262,3 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 };
 
 DrawerHeader.displayName = 'DrawerHeader';
-DrawerHeader.defaultProps = {
-    backgroundOpacity: 0.3,
-};

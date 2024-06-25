@@ -51,16 +51,16 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         // Inheritable Props
         /* eslint-disable @typescript-eslint/no-unused-vars */
         activeItemBackgroundColor,
-        activeItemBackgroundShape,
+        activeItemBackgroundShape = 'square',
         activeItemFontColor,
         activeItemIconColor,
         backgroundColor,
-        chevron,
+        chevron = false,
         collapseIcon,
         disableActiveItemParentStyles,
-        divider,
+        divider = false,
         expandIcon,
-        hidePadding,
+        hidePadding = false,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -110,11 +110,4 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
             </Surface>
         </DrawerContext.Provider>
     );
-};
-
-Drawer.defaultProps = {
-    activeItemBackgroundShape: 'square',
-    chevron: false,
-    divider: false,
-    hidePadding: true,
 };
