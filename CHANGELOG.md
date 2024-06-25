@@ -4,7 +4,7 @@
 
 ### Added
 
--   Added `<AutoComplete>` component.
+-   The `<Autocomplete>` is a component that features a standard text input accompanied by a list of suggested options.
 
 ## v8.0.3 (May 10, 2024)
 
