@@ -1,5 +1,11 @@
 # Change Log
 
+## v8.0.4 (June 25, 2024)
+
+### Added
+
+-   The `<Autocomplete>` is a component that features a standard text input accompanied by a list of suggested options.
+
 ## v8.0.3 (May 10, 2024)
 
 ### Fixed
