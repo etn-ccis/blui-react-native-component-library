@@ -218,12 +218,12 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
     const handleOnChangeText = (text: string): void => {
         if (text.length <= limitCharacterCountTag && value.length < limitTags) {
             setTextInput(text);
-            const filterarr = filterChips(options, value);
+            const searchData = filterChips(options, value);
             let arr;
             if (text === '') {
-                arr = filterarr;
+                arr = searchData;
             } else {
-                arr = filterarr.filter((str) => str.toLowerCase().includes(text.toLowerCase()));
+                arr = searchData.filter((str) => str.toLowerCase().includes(text.toLowerCase()));
             }
             setFilterOptions(arr);
         }
