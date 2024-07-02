@@ -142,9 +142,9 @@ const AutocompleteStyles = (
         },
         tagTextInput: {
             fontSize: 16,
-            marginTop: Platform.OS === 'android' ? 0 :13,
-            marginLeft: Platform.OS === 'android' ? 4 :8,
-            marginBottom: Platform.OS === 'android' ? 0 :13,
+            marginTop: Platform.OS === 'android' ? 0 : 13,
+            marginLeft: Platform.OS === 'android' ? 4 : 8,
+            marginBottom: Platform.OS === 'android' ? 0 : 13,
         },
         tagInput: {
             flexDirection: 'row',
@@ -339,7 +339,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
             )}
             <View style={[defaultStyles.helpersWrapper, styles?.helperContainer]}>
                 <HelperText type="info" style={[defaultStyles.helper, styles?.helperText]} visible={true}>
-                    {helperText? helperText: ''}
+                    {helperText ? helperText : ''}
                 </HelperText>
                 <HelperText type="info" visible={true} style={[defaultStyles.counterHelper, styles?.helperCounter]}>
                     {textInput.length} / {limitCharacterCountTag}
