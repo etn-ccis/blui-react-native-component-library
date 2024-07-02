@@ -11,6 +11,7 @@ import {
     ViewProps,
     TextInputProps,
     TouchableHighlight,
+    Platform,
 } from 'react-native';
 import { HelperText, Text } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
@@ -20,7 +21,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 export type AutocompleteProps = ViewProps & {
     /** Text to display the Helper Text */
-    helperText: string;
+    helperText?: string;
     /** Text to display as component label */
     label?: string;
     /** List of Options to show in dropdown */
@@ -141,9 +142,9 @@ const AutocompleteStyles = (
         },
         tagTextInput: {
             fontSize: 16,
-            marginTop: 13,
-            marginLeft: 8,
-            marginBottom: 13,
+            marginTop: Platform.OS === 'android' ? 0 :13,
+            marginLeft: Platform.OS === 'android' ? 4 :8,
+            marginBottom: Platform.OS === 'android' ? 0 :13,
         },
         tagInput: {
             flexDirection: 'row',
@@ -338,7 +339,7 @@ export const AutoComplete: React.FC<AutocompleteProps> = (props) => {
             )}
             <View style={[defaultStyles.helpersWrapper, styles?.helperContainer]}>
                 <HelperText type="info" style={[defaultStyles.helper, styles?.helperText]} visible={true}>
-                    {helperText}
+                    {helperText? helperText: ''}
                 </HelperText>
                 <HelperText type="info" visible={true} style={[defaultStyles.counterHelper, styles?.helperCounter]}>
                     {textInput.length} / {limitCharacterCountTag}
