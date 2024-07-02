@@ -25,7 +25,7 @@ import { AutoComplete } from '@brightlayer-ui/react-native-components';
 
 | Prop Name              | Description                                                                                   | Type                          | Required | Default |
 | ---------------------- | --------------------------------------------------------------------------------------------- | ----------------------------- | -------- | ------- |
-| helperText             | Text to display the Helper Text                                                               | `string`                      | yes      |         |
+| helperText             | Text to display the Helper Text                                                               | `string`                      | no       |         |
 | label                  | Text to display as component label                                                            | `string`                      | no       |         |
 | options                | List of Options to show in dropdown                                                           | `string[]`                    | no       |         |
 | tagInputFieldProps     | Props to spread to the TextInput component                                                    | `TextInputProps`              | no       |         |
