@@ -82,7 +82,7 @@ export type NavItemSharedStyleProps = {
      * together even if there is a mix of items with icons and items without. If this is set to true, the extra padding
      * for items without icons is removed and the text will align with the icon of DrawerNavItems with icons.
      *
-     * @default: false
+     * @default: true
      */
     hidePadding?: boolean;
 
