@@ -4,8 +4,6 @@ There are two ways you can include icons in your application. The first is passi
 
 ## Icon as a prop
 
-> For icon usage before v6.0.0, [check here](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/IconWrapper.md).
-
 Many Brightlayer UI components support the use of icons. These components will support passing in an icon in a variety of different formats.
 
 ### Icon Object
