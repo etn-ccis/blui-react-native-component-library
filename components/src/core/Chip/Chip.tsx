@@ -191,6 +191,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                     style={[
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
+                            paddingHorizontal: 4,
                         },
                         styles.avatar,
                         style,
