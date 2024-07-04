@@ -60,7 +60,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         disableActiveItemParentStyles,
         divider = false,
         expandIcon,
-        hidePadding = false,
+        hidePadding = true,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
