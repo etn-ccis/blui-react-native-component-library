@@ -223,6 +223,10 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         // other View props
     } = otherProps;
 
+    const defaultProps: Partial<DrawerNavItemProps> = {
+        hidePadding: true,
+    };
+
     const insets = useSafeAreaInsets();
 
     const [expanded, setExpanded] = useState(isInActiveTree); // isInActiveTree: there is a bug in the react-native-collapsible that incorrectly calculates the initial panel height when using nested collapse panels
@@ -352,7 +356,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                     <DrawerNavItem
                                         key={`itemList_${index}`}
                                         {...subItem}
-                                        {...inheritSharedProps(props, subItem)}
+                                        {...inheritSharedProps({ ...defaultProps, ...props }, subItem)}
                                         depth={depth + 1}
                                         isInActiveTree={activeHierarchy.includes(subItem.itemID)}
                                         notifyActiveParent={(ids: string[] = []): void => {

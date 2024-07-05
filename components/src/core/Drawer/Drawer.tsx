@@ -76,6 +76,13 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         ...viewProps
     } = props;
 
+    const defaultProps: Partial<DrawerProps> = {
+        activeItemBackgroundShape: 'square',
+        chevron: false,
+        divider: false,
+        hidePadding: true,
+    };
+
     const theme = useExtendedTheme(themeOverride);
     const insets = useSafeAreaInsets();
 
@@ -88,7 +95,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
                 .map((child) => {
                     let inheritableProps = {};
                     if (inherit) {
-                        inheritableProps = inheritSharedProps({ ...props, theme }, child.props);
+                        inheritableProps = inheritSharedProps({ ...defaultProps, ...props, theme }, child.props);
                     }
                     return React.cloneElement(child, inheritableProps);
                 }),
