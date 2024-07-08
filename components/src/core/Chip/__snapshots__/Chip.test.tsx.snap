@@ -641,7 +641,6 @@ exports[`Chip component renders correctly with an avatar 1`] = `
         "borderWidth": 1,
         "flex": undefined,
         "flexDirection": "column",
-        "paddingHorizontal": 4,
         "shadowColor": "#000",
         "shadowOffset": {
           "height": 0,
