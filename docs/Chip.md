@@ -26,8 +26,6 @@ import { Chip } from '@brightlayer-ui/react-native-components';
 | avatar      | Avatar to display in chip          | `React.ReactNode`             | no       |         |
 | theme       | Theme value overrides              | `$DeepPartial<ExtendedTheme>` | no       |         |
 
-#### If you are passing avatar of size greater than 24px, you should pass in the height, width and border-radius in the style of avatar component as well.
-
 Other Props of chip can be found at [Chip Props](https://callstack.github.io/react-native-paper/docs/components/Chip/)
 
 ### Styles
