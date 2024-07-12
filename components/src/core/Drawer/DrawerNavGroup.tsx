@@ -163,7 +163,9 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const { activeItem } = useDrawerContext();
 
     const defaultProps: Partial<DrawerNavGroupProps> = {
-        hidePadding: true,
+        titleDivider: true,
+        items: [],
+        styles: {},
     };
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */

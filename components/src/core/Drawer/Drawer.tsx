@@ -81,6 +81,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         chevron: false,
         divider: false,
         hidePadding: true,
+        styles: {},
     };
 
     const theme = useExtendedTheme(themeOverride);
