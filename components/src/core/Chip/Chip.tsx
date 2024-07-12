@@ -74,8 +74,6 @@ export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> 
      */
     styles?: {
         root?: StyleProp<ViewStyle>;
-        icon?: StyleProp<ViewStyle>;
-        avatar?: StyleProp<ViewStyle>;
     };
 };
 
@@ -172,7 +170,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
                         },
-                        styles.icon,
+                        styles.root,
                         style,
                         chipStyle,
                     ]}
@@ -194,7 +192,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
                             paddingVertical: avatar.props.size > 24 ? 4 : 0,
                         },
-                        styles.avatar,
+                        styles.root,
                         style,
                         chipStyle,
                     ]}
