@@ -190,7 +190,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                     style={[
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
-                            paddingVertical: avatar.props.size > 24 ? 4 : 0,
+                            paddingVertical: avatar.props.size ? (avatar.props.size > 24 ? 4 : 0) : 0,
                         },
                         styles.root,
                         style,
