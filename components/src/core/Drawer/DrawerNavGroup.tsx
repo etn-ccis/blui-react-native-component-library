@@ -162,6 +162,12 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const defaultStyles = makeStyles(props, theme, insets, fontScale);
     const { activeItem } = useDrawerContext();
 
+    const defaultProps: Partial<DrawerNavGroupProps> = {
+        titleDivider: true,
+        items: [],
+        styles: {},
+    };
+
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
     const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
 
@@ -212,7 +218,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     <DrawerNavItem
                         key={`itemList_${index}`}
                         {...item}
-                        {...inheritSharedProps(props, item)}
+                        {...inheritSharedProps({ ...defaultProps, ...props }, item)}
                         // depth={1}
                         isInActiveTree={activeHierarchyItems.includes(item.itemID)}
                         notifyActiveParent={(ids: string[]): void => {

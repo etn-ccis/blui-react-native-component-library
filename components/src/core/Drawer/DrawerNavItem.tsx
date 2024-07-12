@@ -223,6 +223,34 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         // other View props
     } = otherProps;
 
+    const defaultProps: Partial<DrawerNavItemProps> = {
+        activeItemFontColor: theme.colors.onPrimaryContainer,
+        activeItemIconColor: theme.colors.onPrimaryContainer,
+        collapseIcon: { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },
+        disableActiveItemParentStyles: false,
+        expandIcon: { family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more' },
+        itemFontColor: theme.colors.tertiary,
+        itemIconColor: theme.colors.onSurfaceVariant,
+        styles: {},
+        depth: 0,
+        icon: itemIcon,
+        InfoListItemProps: {} as BLUIInfoListItemProps,
+        notifyActiveParent: (): void => {},
+        rightComponent:
+            props.chevron && !props.items && !props.children ? (
+                <MatIcon
+                    name={'chevron-right'}
+                    size={24}
+                    color={theme.colors.tertiary}
+                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                    allowFontScaling={!disableScaling}
+                    maxFontSizeMultiplier={maxScale}
+                />
+            ) : undefined,
+        subtitle: itemSubtitle,
+        title: itemTitle,
+    };
+
     const insets = useSafeAreaInsets();
 
     const [expanded, setExpanded] = useState(isInActiveTree); // isInActiveTree: there is a bug in the react-native-collapsible that incorrectly calculates the initial panel height when using nested collapse panels
@@ -352,7 +380,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                     <DrawerNavItem
                                         key={`itemList_${index}`}
                                         {...subItem}
-                                        {...inheritSharedProps(props, subItem)}
+                                        {...inheritSharedProps({ ...defaultProps, ...props }, subItem)}
                                         depth={depth + 1}
                                         isInActiveTree={activeHierarchy.includes(subItem.itemID)}
                                         notifyActiveParent={(ids: string[] = []): void => {

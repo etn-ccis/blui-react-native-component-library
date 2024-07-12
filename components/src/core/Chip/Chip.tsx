@@ -74,8 +74,6 @@ export type ChipProps = Omit<PaperChipProps, 'icon' | 'mode' | 'selectedColor'> 
      */
     styles?: {
         root?: StyleProp<ViewStyle>;
-        icon?: StyleProp<ViewStyle>;
-        avatar?: StyleProp<ViewStyle>;
     };
 };
 
@@ -163,6 +161,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
 
     const renderCloseIcon = (): JSX.Element => <Icon source={{ name: 'close' }} size={18} color={DefaultTextColor} />;
     const renderIcon = (): JSX.Element | undefined => getIcon();
+
     return (
         <>
             {icon ? (
@@ -171,7 +170,7 @@ export const Chip: React.FC<ChipProps> = (props) => {
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
                         },
-                        styles.icon,
+                        styles.root,
                         style,
                         chipStyle,
                     ]}
@@ -191,8 +190,9 @@ export const Chip: React.FC<ChipProps> = (props) => {
                     style={[
                         {
                             backgroundColor: chipColor ? chipColor : defaultChipColor,
+                            paddingVertical: avatar.props.size ? (avatar.props.size > 24 ? 4 : 0) : 0,
                         },
-                        styles.avatar,
+                        styles.root,
                         style,
                         chipStyle,
                     ]}
@@ -200,7 +200,16 @@ export const Chip: React.FC<ChipProps> = (props) => {
                     showSelectedCheck={false}
                     selected={selected}
                     disabled={disabled}
-                    avatar={avatar}
+                    avatar={React.cloneElement(avatar, {
+                        style: avatar.props.size
+                            ? {
+                                  height: avatar.props.size,
+                                  width: avatar.props.size,
+                                  borderRadius: avatar.props.size,
+                                  ...avatar.props.style,
+                              }
+                            : {},
+                    })}
                     {...(isElevated && { elevated: !disabled })}
                     closeIcon={renderCloseIcon}
                     {...rest}

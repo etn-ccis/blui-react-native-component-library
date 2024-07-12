@@ -32,8 +32,6 @@ Other Props of chip can be found at [Chip Props](https://callstack.github.io/rea
 
 You can override the internal styles used by Brightlayer UI by passing a `styles` prop. It supports the following keys:
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| root   | Styles applied to the root element   |
-| icon   | Styles applied to the icon element   |
-| avatar | Styles applied to the avatar element |
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |
