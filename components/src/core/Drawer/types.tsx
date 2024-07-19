@@ -26,6 +26,9 @@ export type SharedStyleProps = {
     /** Color used for the background of the element */
     backgroundColor?: string;
 
+    /** Color override for the chevron icon */
+    chevronColor?: string;
+
     /**
      * Whether to show a line between all items
      *
@@ -109,6 +112,7 @@ export const SharedStylePropTypes = {
     divider: PropTypes.bool,
     itemFontColor: PropTypes.string,
     itemIconColor: PropTypes.string,
+    chevronColor: PropTypes.string,
 };
 
 export const NavItemSharedStylePropTypes = {
