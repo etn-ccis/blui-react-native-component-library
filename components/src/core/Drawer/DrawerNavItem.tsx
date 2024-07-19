@@ -180,6 +180,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
 
     const {
         // Shared style props
+        activeChevronColor = theme.colors.onPrimaryContainer,
         activeItemBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemBackgroundShape /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemFontColor = theme.colors.onPrimaryContainer,
@@ -212,7 +213,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
             <MatIcon
                 name={'chevron-right'}
                 size={24}
-                color={chevronColor}
+                color={activeItem === itemID ? activeChevronColor : chevronColor}
                 style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 allowFontScaling={!disableScaling}
                 maxFontSizeMultiplier={maxScale}
@@ -242,7 +243,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                 <MatIcon
                     name={'chevron-right'}
                     size={24}
-                    color={chevronColor}
+                    color={activeItem === itemID ? activeChevronColor : chevronColor}
                     style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                     allowFontScaling={!disableScaling}
                     maxFontSizeMultiplier={maxScale}

@@ -10,6 +10,9 @@ export type DrawerContextProps = {
 };
 
 export type SharedStyleProps = {
+    /** chevron color for the active item */
+    activeChevronColor?: string;
+
     /** Background color for the active item */
     activeItemBackgroundColor?: string;
 
@@ -26,7 +29,7 @@ export type SharedStyleProps = {
     /** Color used for the background of the element */
     backgroundColor?: string;
 
-    /** Color override for the chevron icon */
+    /** The color used for the chevron icon */
     chevronColor?: string;
 
     /**
@@ -105,14 +108,15 @@ export type NavItemSharedStyleProps = {
 export type AllSharedProps = SharedStyleProps & NavItemSharedStyleProps;
 
 export const SharedStylePropTypes = {
+    activeChevronColor: PropTypes.string,
     activeItemBackgroundColor: PropTypes.string,
     activeItemFontColor: PropTypes.string,
     activeItemIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
+    chevronColor: PropTypes.string,
     divider: PropTypes.bool,
     itemFontColor: PropTypes.string,
     itemIconColor: PropTypes.string,
-    chevronColor: PropTypes.string,
 };
 
 export const NavItemSharedStylePropTypes = {
