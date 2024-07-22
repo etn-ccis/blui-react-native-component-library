@@ -30,12 +30,14 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
     const {
         // Inheritable Props
         /* eslint-disable @typescript-eslint/no-unused-vars */
+        activeChevronColor,
         activeItemBackgroundColor,
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
         backgroundColor,
         chevron,
+        chevronColor,
         collapseIcon,
         disableActiveItemParentStyles,
         divider,

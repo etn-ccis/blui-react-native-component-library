@@ -5,6 +5,11 @@
 ### Added
 
 -   The `<Autocomplete>` is a component that features a standard text input accompanied by a list of suggested options.
+-   Added `activeChevronColor` and `chevronColor` prop to Drawer Component
+
+### Fixed
+
+-   Drawer not using activeFontColor and chevron duplicacy. ([#597](https://github.com/etn-ccis/blui-react-native-component-library/issues/597)).
 
 ## v8.0.3 (May 10, 2024)
 
