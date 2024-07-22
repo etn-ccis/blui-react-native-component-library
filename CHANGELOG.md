@@ -1,6 +1,6 @@
 # Change Log
 
-## v8.0.4 (June 25, 2024)
+## v8.0.4 (July 22, 2024)
 
 ### Added
 
