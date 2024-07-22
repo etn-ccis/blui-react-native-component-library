@@ -372,7 +372,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = (props) => {
                 styles.root,
             ]}
         >
-            <View style={{ flex: 0, justifyContent: 'center' }}>{content}</View>
+            <View style={{ flex: 0, flexBasis: 'auto', justifyContent: 'center' }}>{content}</View>
         </Animated.View>
     );
 };

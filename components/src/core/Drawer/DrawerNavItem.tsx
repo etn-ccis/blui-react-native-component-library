@@ -180,12 +180,14 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
 
     const {
         // Shared style props
+        activeChevronColor = theme.colors.onPrimaryContainer,
         activeItemBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemBackgroundShape /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         activeItemFontColor = theme.colors.onPrimaryContainer,
         activeItemIconColor = theme.colors.onPrimaryContainer,
         backgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         chevron /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        chevronColor = theme.colors.onSurfaceVariant,
         collapseIcon = { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },
         disableActiveItemParentStyles = false,
         divider,
@@ -211,7 +213,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
             <MatIcon
                 name={'chevron-right'}
                 size={24}
-                color={theme.colors.tertiary}
+                color={activeItem === itemID ? activeChevronColor : chevronColor}
                 style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
                 allowFontScaling={!disableScaling}
                 maxFontSizeMultiplier={maxScale}
@@ -222,6 +224,34 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         title: itemTitle,
         // other View props
     } = otherProps;
+
+    const defaultProps: Partial<DrawerNavItemProps> = {
+        activeItemFontColor: theme.colors.onPrimaryContainer,
+        activeItemIconColor: theme.colors.onPrimaryContainer,
+        collapseIcon: { family: 'material', name: props.depth ? 'arrow-drop-up' : 'expand-less' },
+        disableActiveItemParentStyles: false,
+        expandIcon: { family: 'material', name: props.depth ? 'arrow-drop-down' : 'expand-more' },
+        itemFontColor: theme.colors.tertiary,
+        itemIconColor: theme.colors.onSurfaceVariant,
+        styles: {},
+        depth: 0,
+        icon: itemIcon,
+        InfoListItemProps: {} as BLUIInfoListItemProps,
+        notifyActiveParent: (): void => {},
+        rightComponent:
+            props.chevron && !props.items && !props.children ? (
+                <MatIcon
+                    name={'chevron-right'}
+                    size={24}
+                    color={activeItem === itemID ? activeChevronColor : chevronColor}
+                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
+                    allowFontScaling={!disableScaling}
+                    maxFontSizeMultiplier={maxScale}
+                />
+            ) : undefined,
+        subtitle: itemSubtitle,
+        title: itemTitle,
+    };
 
     const insets = useSafeAreaInsets();
 
@@ -312,7 +342,6 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             fontColor={active ? activeItemFontColor : itemFontColor}
                             icon={icon}
                             iconColor={active ? activeItemIconColor : itemIconColor}
-                            chevron={chevron && !props.items && !props.children}
                             rightComponent={
                                 (actionComponent || rightComponent) && (
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -330,11 +359,11 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                     active || (isInActiveTree && !disableActiveItemParentStyles)
                                         ? {
                                               ...fontStyleSemiBold,
-                                              color: theme.colors.onPrimaryContainer,
+                                              color: activeItemFontColor,
                                           }
                                         : {
                                               ...fontStyleRegular,
-                                              color: theme.colors.onSurface,
+                                              color: itemFontColor,
                                           },
                                     iliTitle
                                 ),
@@ -352,7 +381,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                                     <DrawerNavItem
                                         key={`itemList_${index}`}
                                         {...subItem}
-                                        {...inheritSharedProps(props, subItem)}
+                                        {...inheritSharedProps({ ...defaultProps, ...props }, subItem)}
                                         depth={depth + 1}
                                         isInActiveTree={activeHierarchy.includes(subItem.itemID)}
                                         notifyActiveParent={(ids: string[] = []): void => {

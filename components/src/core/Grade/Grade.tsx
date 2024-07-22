@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { ViewProps } from 'react-native';
+import { StyleProp, ViewProps, ViewStyle } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -43,6 +43,12 @@ export type GradeProps = ViewProps & {
      * Theme value overrides
      */
     theme?: $DeepPartial<ExtendedTheme>;
+    /**
+     * Style overrides for internal elements. The styles you provide will be combined with the default styles.
+     */
+    styles?: {
+        root?: StyleProp<ViewStyle>;
+    };
 };
 
 export type FixedGradeProps = Omit<GradeProps, 'label' | 'fontColor' | 'backgroundColor'>;
@@ -86,7 +92,16 @@ const mixColors = (
 };
 const GradeBase = (props: GradeProps): JSX.Element => {
     const defaultTheme = useExtendedTheme();
-    const { label, fontColor, backgroundColor, size = 40, style, theme: themeOverride, ...otherViewProps } = props;
+    const {
+        label,
+        fontColor,
+        backgroundColor,
+        size = 40,
+        styles = {},
+        style,
+        theme: themeOverride,
+        ...otherViewProps
+    } = props;
 
     const theme = useExtendedTheme(themeOverride || props.theme || defaultTheme);
 
@@ -105,7 +120,7 @@ const GradeBase = (props: GradeProps): JSX.Element => {
     return (
         <Avatar.Text
             label={label}
-            style={[avatarStyle, style]}
+            style={[avatarStyle, styles.root, style]}
             color={fontColor}
             labelStyle={textStyle}
             size={size}

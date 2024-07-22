@@ -163,7 +163,7 @@ type HeroPanelProps = {
 const HeroPanel: React.FC<HeroPanelProps> = (props) => {
     const { badge, badgeOffset = 0, style } = props;
     if (badge) {
-        return <View style={[{ flex: 0, marginTop: badgeOffset }, style]}>{badge}</View>;
+        return <View style={[{ flex: 0, flexBasis: 'auto', marginTop: badgeOffset }, style]}>{badge}</View>;
     }
     return null;
 };

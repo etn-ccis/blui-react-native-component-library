@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle, ViewProps } from 'react-native';
 
-const spacerStyles = (props: SpacerProps): StyleSheet.NamedStyles<{ root: ViewStyle }> =>
+const spacerStyles = (props: SpacerProps, flex: number): StyleSheet.NamedStyles<{ root: ViewStyle }> =>
     StyleSheet.create({
         root: {
-            flex: props.flex,
+            flex: flex,
             height: props.height || 'auto',
             width: props.width || 'auto',
         },
@@ -40,13 +40,13 @@ export const Spacer: React.FC<SpacerProps> = (props) => {
         styles = {},
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
-        flex,
+        flex = 1,
         height,
         width,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherViewProps
     } = props;
-    const defaultStyles = spacerStyles(props);
+    const defaultStyles = spacerStyles(props, flex);
 
     return (
         <View testID={'spacer-root'} style={[defaultStyles.root, styles.root, style]} {...otherViewProps}>
@@ -56,6 +56,3 @@ export const Spacer: React.FC<SpacerProps> = (props) => {
 };
 
 Spacer.displayName = 'Spacer';
-Spacer.defaultProps = {
-    flex: 1,
-};

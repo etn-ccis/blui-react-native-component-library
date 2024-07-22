@@ -54,6 +54,7 @@ const makeStyles = (
         content: {
             flexDirection: 'row',
             paddingLeft: insets.left,
+            height: '100%',
         },
         textContent: {
             flexDirection: 'column',
@@ -174,7 +175,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         onPress,
         onIconPress,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        backgroundOpacity,
+        backgroundOpacity = 0.3,
         styles = {},
         style,
         theme: themeOverride,
@@ -250,7 +251,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={[defaultStyles.root, styles.root, style]} {...viewProps}>
                 {getBackgroundImage()}
-                <View style={[defaultStyles.content, styles.content]}>
+                <View style={[defaultStyles.content, styles.content, { paddingLeft: icon ? 0 : 16 }]}>
                     {icon && getIcon()}
                     {getHeaderContent()}
                 </View>
@@ -261,6 +262,3 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 };
 
 DrawerHeader.displayName = 'DrawerHeader';
-DrawerHeader.defaultProps = {
-    backgroundOpacity: 0.3,
-};

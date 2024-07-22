@@ -30,12 +30,14 @@ export const mergeStyleProp = <T extends unknown>(parentValue: T, childValue: T)
  * @returns an object representing the child props with any undefined properties replaced by the parent values.
  */
 export const inheritSharedProps = (parent: AllSharedProps, child: AllSharedProps): AllSharedProps => ({
+    activeChevronColor: mergeStyleProp(parent.activeChevronColor, child.activeChevronColor),
     activeItemBackgroundColor: mergeStyleProp(parent.activeItemBackgroundColor, child.activeItemBackgroundColor),
     activeItemBackgroundShape: mergeStyleProp(parent.activeItemBackgroundShape, child.activeItemBackgroundShape),
     activeItemFontColor: mergeStyleProp(parent.activeItemFontColor, child.activeItemFontColor),
     activeItemIconColor: mergeStyleProp(parent.activeItemIconColor, child.activeItemIconColor),
     backgroundColor: mergeStyleProp(parent.backgroundColor, child.backgroundColor),
     chevron: mergeStyleProp(parent.chevron, child.chevron),
+    chevronColor: mergeStyleProp(parent.chevronColor, child.chevronColor),
     collapseIcon: mergeStyleProp(parent.collapseIcon, child.collapseIcon),
     disableActiveItemParentStyles: mergeStyleProp(
         parent.disableActiveItemParentStyles,
