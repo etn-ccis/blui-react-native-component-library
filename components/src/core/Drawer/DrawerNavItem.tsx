@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, StyleProp, ViewStyle, ViewProps, I18nManager } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle, ViewProps } from 'react-native';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../InfoListItem';
 import { usePrevious } from '../__hooks__/usePrevious';
 import { AllSharedProps } from './types';
@@ -11,7 +11,6 @@ import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSource } from '../__types__';
 import { Icon } from '../Icon';
 import { useFontScale, useFontScaleSettings } from '../__contexts__/font-scale-context';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { fontStyleRegular, fontStyleSemiBold } from '../Utility/shared';
 
@@ -172,7 +171,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
     const { theme: themeOverride, ...otherProps } = props;
     const theme = useExtendedTheme(themeOverride);
     const fontScale = useFontScale();
-    const { disableScaling, maxScale } = useFontScaleSettings();
+    const { disableScaling } = useFontScaleSettings();
     const defaultStyles = makeStyles(props, theme, fontScale);
     const { activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
@@ -209,16 +208,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         items,
         notifyActiveParent = (): void => {},
         onPress,
-        rightComponent = props.chevron && !props.items && !props.children ? (
-            <MatIcon
-                name={'chevron-right'}
-                size={24}
-                color={activeItem === itemID ? activeChevronColor : chevronColor}
-                style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
-                allowFontScaling={!disableScaling}
-                maxFontSizeMultiplier={maxScale}
-            />
-        ) : undefined,
+        rightComponent,
         statusColor,
         subtitle: itemSubtitle,
         title: itemTitle,
@@ -238,17 +228,7 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
         icon: itemIcon,
         InfoListItemProps: {} as BLUIInfoListItemProps,
         notifyActiveParent: (): void => {},
-        rightComponent:
-            props.chevron && !props.items && !props.children ? (
-                <MatIcon
-                    name={'chevron-right'}
-                    size={24}
-                    color={activeItem === itemID ? activeChevronColor : chevronColor}
-                    style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
-                    allowFontScaling={!disableScaling}
-                    maxFontSizeMultiplier={maxScale}
-                />
-            ) : undefined,
+        rightComponent: undefined,
         subtitle: itemSubtitle,
         title: itemTitle,
     };
@@ -341,6 +321,8 @@ export const DrawerNavItem: React.FC<DrawerNavItemProps> = (props) => {
                             statusColor={statusColor}
                             fontColor={active ? activeItemFontColor : itemFontColor}
                             icon={icon}
+                            chevron={!items && !children ? chevron : false}
+                            chevronColor={active ? activeChevronColor : chevronColor}
                             iconColor={active ? activeItemIconColor : itemIconColor}
                             rightComponent={
                                 (actionComponent || rightComponent) && (
