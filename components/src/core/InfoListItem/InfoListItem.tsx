@@ -179,6 +179,13 @@ export type InfoListItemProps = ViewProps & {
     chevron?: boolean;
 
     /**
+     * The color used for chevron icon
+     *
+     * @default: theme.colors.onSurfaceVariant
+     */
+    chevronColor?: string;
+
+    /**
      * Smaller height rows with less padding
      *
      * @default: false
@@ -312,6 +319,12 @@ export type InfoListItemProps = ViewProps & {
  * the correct Brightlayer UI styles.
  */
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+    const { theme: themeOverride, ...otherProps } = props;
+    const theme = useExtendedTheme(themeOverride);
+    const fontScale = useFontScale();
+    const { disableScaling, maxScale } = useFontScaleSettings();
+    const defaultStyles = infoListItemStyles(props, theme, fontScale);
+
     const {
         avatar,
         title,
@@ -319,6 +332,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         leftComponent,
         rightComponent,
         chevron,
+        chevronColor = theme.colors.onSurfaceVariant,
         divider,
         subtitle,
         wrapSubtitle,
@@ -335,14 +349,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         icon,
         hidePadding,
         styles = {},
-        theme: themeOverride,
         style,
         ...viewProps
-    } = props;
-    const theme = useExtendedTheme(themeOverride);
-    const fontScale = useFontScale();
-    const { disableScaling, maxScale } = useFontScaleSettings();
-    const defaultStyles = infoListItemStyles(props, theme, fontScale);
+    } = otherProps;
 
     const getIconColor = useCallback((): string => {
         if (iconColor) return iconColor;
@@ -398,7 +407,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     <MatCommunityIcon
                         name="chevron-right"
                         size={24}
-                        color={theme.colors.onSurfaceVariant}
+                        color={chevronColor}
                         allowFontScaling={!disableScaling}
                         maxFontSizeMultiplier={maxScale}
                         style={I18nManager.isRTL ? defaultStyles.flipIcon : {}}
