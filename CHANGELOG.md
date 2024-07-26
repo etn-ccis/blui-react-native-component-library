@@ -1,4 +1,10 @@
 # Change Log
+## v8.0.5 (July 22, 2024)
+
+### Added
+
+-   Added `chevronColor` prop to InfoListItem
+
 
 ## v8.0.4 (July 22, 2024)
 
