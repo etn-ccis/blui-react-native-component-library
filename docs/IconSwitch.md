@@ -22,8 +22,8 @@ import { IconSwitch } from '@brightlayer-ui/react-native-components';
 | ------------- | -------------------------------- | ----------------------------- | -------- | ------- |
 | showIcon      | To display icon or not           | `boolean`                     | no       |         |
 | disabled      | Flag for render disabled switch  | `boolean`                     | no       |         |
-| value         | Pass state to the component      | `boolean`                     | no       |         |
-| onValueChange | Callback event handling function | `Function`                    | no       |         |
+| value         | Pass state to the component      | `boolean`                     | yes      |         |
+| onValueChange | Callback event handling function | `Function`                    | yes      |         |
 | theme         | Theme value overrides            | `$DeepPartial<ExtendedTheme>` | no       |         |
 
 </div>

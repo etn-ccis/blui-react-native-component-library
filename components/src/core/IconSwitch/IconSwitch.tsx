@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, TouchableOpacity, ViewProps, I18nManager, StyleProp, ViewStyle } from 'react-native';
 import Animated, {
     interpolate,
@@ -27,11 +27,11 @@ export type IconSwitchProps = ViewProps & {
      * Flag to pass the IconSwitch value
      * @default: false
      */
-    value?: boolean;
+    value: boolean;
     /**
      * Callback Event handling function to handle value change
      */
-    onValueChange?: (arg: boolean) => void;
+    onValueChange: (arg: boolean) => void;
     /**
      * Theme value overrides specific to this component.
      */
@@ -49,39 +49,22 @@ export type IconSwitchProps = ViewProps & {
  * This is a Switch component which allow us to show the check icon on ToggleOn and Close icon on ToggleOff Switch's handle.
  */
 export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
-    const {
-        showIcon = false,
-        disabled = false,
-        value = false,
-        onValueChange,
-        styles = {},
-        style,
-        ...viewProps
-    } = props;
+    const { showIcon = false, disabled = false, value, onValueChange, styles = {}, style, ...viewProps } = props;
     const theme = useExtendedTheme(props.theme);
 
-    const [toggled, setToggled] = useState(value);
     const shareValue = useSharedValue(value ? 1 : 0);
 
-    const onChangeToggle = (): void => {
-        setToggled(!toggled);
-        onValueChange?.(!toggled);
+    const onPressSwitch = (): void => {
+        const newValue = !value;
+        onValueChange(newValue);
     };
 
-    const onPressSwitch = (): void => {
-        if (shareValue.value === 0) {
-            shareValue.value = withTiming(1, {
-                duration: 100,
-                easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-            });
-        } else {
-            shareValue.value = withTiming(0, {
-                duration: 100,
-                easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-            });
-        }
-        onChangeToggle();
-    };
+    useEffect(() => {
+        shareValue.value = withTiming(value ? 1 : 0, {
+            duration: 100,
+            easing: Easing.bezier(0.4, 0.0, 0.2, 1),
+        });
+    }, [value]);
 
     const defaultStyles = StyleSheet.create({
         track: {
@@ -91,26 +74,26 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             width: 52,
             backgroundColor: disabled
                 ? theme.colors.sliderTrackDisabled
-                : toggled
+                : value
                 ? theme.colors.primary
                 : theme.colors.surfaceContainerHighest,
-            borderColor: toggled ? undefined : disabled ? theme.colors.disabled : theme.colors.outline,
-            borderWidth: toggled ? 0 : 2,
+            borderColor: value ? undefined : disabled ? theme.colors.disabled : theme.colors.outline,
+            borderWidth: value ? 0 : 2,
             borderRadius: 100,
         },
         handle: {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            width: toggled ? 24 : showIcon ? 24 : 16,
-            height: toggled ? 24 : showIcon ? 24 : 16,
+            width: value ? 24 : showIcon ? 24 : 16,
+            height: value ? 24 : showIcon ? 24 : 16,
             borderRadius: 23,
             marginHorizontal: showIcon ? 2 : 6,
             backgroundColor: disabled
-                ? toggled
+                ? value
                     ? theme.colors.surface
                     : theme.colors.onDisabledContainer
-                : toggled
+                : value
                 ? theme.colors.onPrimary
                 : theme.colors.onBackground,
         },
@@ -145,7 +128,7 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
             <Animated.View style={[defaultStyles.handle, toggleStyles, styles.handle]}>
                 {showIcon && (
                     <>
-                        {toggled ? (
+                        {value ? (
                             <Icon
                                 source={{ family: 'material', name: 'check' }}
                                 color={disabled ? theme.colors.disabled : theme.colors.onBackground}
