@@ -65,6 +65,71 @@ exports[`IconSwitch component should render disabled switch  1`] = `
 </View>
 `;
 
+exports[`IconSwitch component should render disabled switch 1`] = `
+<View
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": undefined,
+      "borderColor": undefined,
+      "borderRadius": 100,
+      "borderWidth": 2,
+      "display": "flex",
+      "height": 32,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 52,
+    }
+  }
+>
+  <View
+    animatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "translateX": 0,
+            },
+          ],
+        },
+      }
+    }
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": undefined,
+        "borderRadius": 23,
+        "display": "flex",
+        "height": 16,
+        "justifyContent": "center",
+        "marginHorizontal": 6,
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+        "width": 16,
+      }
+    }
+  />
+</View>
+`;
+
 exports[`IconSwitch component should render disabled switch with icon 1`] = `
 <View
   accessibilityState={
