@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IconSwitch component should render disabled switch  1`] = `
+exports[`IconSwitch component should render disabled switch 1`] = `
 <View
   accessibilityState={
     {

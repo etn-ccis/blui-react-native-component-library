@@ -16,6 +16,7 @@
 ### Fixed
 
 -   Drawer not using activeFontColor and chevron duplicacy. ([#597](https://github.com/etn-ccis/blui-react-native-component-library/issues/597)).
+-   Icon Switch Component is not updating Value in Value Prop. ([#608](https://github.com/etn-ccis/blui-react-native-component-library/issues/608))
 
 ## v8.0.3 (May 10, 2024)
 
