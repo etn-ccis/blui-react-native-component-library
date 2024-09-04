@@ -1,13 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, TouchableOpacity, ViewProps, I18nManager, StyleProp, ViewStyle } from 'react-native';
-import Animated, {
-    interpolate,
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
-    Easing,
-    Extrapolation,
-} from 'react-native-reanimated';
+import { StyleSheet, TouchableOpacity, ViewProps, I18nManager, StyleProp, ViewStyle, Animated } from 'react-native';
 import { Icon } from '../Icon/Icon';
 import { $DeepPartial } from '@callstack/react-theme-provider';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -52,18 +44,14 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const { showIcon = false, disabled = false, value, onValueChange, styles = {}, style, ...viewProps } = props;
     const theme = useExtendedTheme(props.theme);
 
-    const shareValue = useSharedValue(value ? 1 : 0);
-
     const onPressSwitch = (): void => {
         const newValue = !value;
         onValueChange(newValue);
     };
 
     useEffect(() => {
-        shareValue.value = withTiming(value ? 1 : 0, {
-            duration: 100,
-            easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-        });
+        // Update the toggleStyles based on the current value
+        toggleStyles.transform = [{ translateX: value ? (showIcon ? (rtl ? -22 : 22) : rtl ? -18 : 18) : 0 }];
     }, [value]);
 
     const defaultStyles = StyleSheet.create({
@@ -101,21 +89,10 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
 
     const rtl = I18nManager.isRTL;
 
-    const toggleStyles = useAnimatedStyle(
-        () => ({
-            transform: [
-                {
-                    translateX: interpolate(
-                        shareValue.value,
-                        [0, 1],
-                        showIcon ? (rtl ? [0, -22] : [0, 22]) : rtl ? [0, -18] : [0, 18],
-                        Extrapolation.CLAMP
-                    ),
-                },
-            ],
-        }),
-        []
-    );
+    const toggleStyles = {
+        transform: [{ translateX: value ? (showIcon ? (rtl ? -22 : 22) : rtl ? -18 : 18) : 0 }],
+        transition: 'transform 50ms ease-in-out',
+    };
 
     return (
         <TouchableOpacity
