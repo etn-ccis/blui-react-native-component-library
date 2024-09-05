@@ -21,32 +21,44 @@ describe('IconSwitch component', () => {
     });
 
     test('should render with turned on state and icon', () => {
-        const tree = TestRenderer.create(<IconSwitch value={true} showIcon onValueChange={mockOnValueChange} />).toJSON();
+        const tree = TestRenderer.create(
+            <IconSwitch value={true} showIcon onValueChange={mockOnValueChange} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     test('should render icon switch', () => {
-        const tree = TestRenderer.create(<IconSwitch value={false} showIcon onValueChange={mockOnValueChange} />).toJSON();
+        const tree = TestRenderer.create(
+            <IconSwitch value={false} showIcon onValueChange={mockOnValueChange} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     test('should render disabled switch with turned on state', () => {
-        const tree = TestRenderer.create(<IconSwitch value={true} disabled onValueChange={mockOnValueChange} />).toJSON();
+        const tree = TestRenderer.create(
+            <IconSwitch value={true} disabled onValueChange={mockOnValueChange} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     test('should render disabled switch with turned on state and icon', () => {
-        const tree = TestRenderer.create(<IconSwitch value={true} showIcon disabled onValueChange={mockOnValueChange} />).toJSON();
+        const tree = TestRenderer.create(
+            <IconSwitch value={true} showIcon disabled onValueChange={mockOnValueChange} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     test('should render disabled switch', () => {
-        const tree = TestRenderer.create(<IconSwitch value={false} disabled onValueChange={mockOnValueChange} />).toJSON();
+        const tree = TestRenderer.create(
+            <IconSwitch value={false} disabled onValueChange={mockOnValueChange} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     test('should render disabled switch with icon', () => {
-        const tree = TestRenderer.create(<IconSwitch value={false} disabled showIcon onValueChange={mockOnValueChange} />).toJSON();
+        const tree = TestRenderer.create(
+            <IconSwitch value={false} disabled showIcon onValueChange={mockOnValueChange} />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

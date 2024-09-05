@@ -44,6 +44,11 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
     const { showIcon = false, disabled = false, value, onValueChange, styles = {}, style, ...viewProps } = props;
     const theme = useExtendedTheme(props.theme);
 
+    const rtl = I18nManager.isRTL;
+    const toggleStyles = {
+        transform: [{ translateX: value ? (showIcon ? (rtl ? -22 : 22) : rtl ? -18 : 18) : 0 }],
+        transition: 'transform 50ms ease-in-out',
+    };
     const onPressSwitch = (): void => {
         const newValue = !value;
         onValueChange(newValue);
@@ -86,13 +91,6 @@ export const IconSwitch: React.FC<IconSwitchProps> = (props) => {
                 : theme.colors.onBackground,
         },
     });
-
-    const rtl = I18nManager.isRTL;
-
-    const toggleStyles = {
-        transform: [{ translateX: value ? (showIcon ? (rtl ? -22 : 22) : rtl ? -18 : 18) : 0 }],
-        transition: 'transform 50ms ease-in-out',
-    };
 
     return (
         <TouchableOpacity
