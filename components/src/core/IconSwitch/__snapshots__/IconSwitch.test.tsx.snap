@@ -32,17 +32,6 @@ exports[`IconSwitch component should render disabled switch 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 0,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -58,6 +47,7 @@ exports[`IconSwitch component should render disabled switch 1`] = `
             "translateX": 0,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 16,
       }
     }
@@ -97,17 +87,6 @@ exports[`IconSwitch component should render disabled switch with icon 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 0,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -123,6 +102,7 @@ exports[`IconSwitch component should render disabled switch with icon 1`] = `
             "translateX": 0,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 24,
       }
     }
@@ -185,17 +165,6 @@ exports[`IconSwitch component should render disabled switch with turned on state
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 18,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -211,6 +180,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
             "translateX": 18,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 24,
       }
     }
@@ -250,17 +220,6 @@ exports[`IconSwitch component should render disabled switch with turned on state
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 22,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -276,6 +235,7 @@ exports[`IconSwitch component should render disabled switch with turned on state
             "translateX": 22,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 24,
       }
     }
@@ -338,17 +298,6 @@ exports[`IconSwitch component should render icon switch 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 0,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -364,6 +313,7 @@ exports[`IconSwitch component should render icon switch 1`] = `
             "translateX": 0,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 24,
       }
     }
@@ -426,17 +376,6 @@ exports[`IconSwitch component should render with default props 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 0,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -452,6 +391,7 @@ exports[`IconSwitch component should render with default props 1`] = `
             "translateX": 0,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 16,
       }
     }
@@ -491,17 +431,6 @@ exports[`IconSwitch component should render with turned on state 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 18,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -517,6 +446,7 @@ exports[`IconSwitch component should render with turned on state 1`] = `
             "translateX": 18,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 24,
       }
     }
@@ -556,17 +486,6 @@ exports[`IconSwitch component should render with turned on state and icon 1`] = 
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {
-          "transform": [
-            {
-              "translateX": 22,
-            },
-          ],
-        },
-      }
-    }
     collapsable={false}
     style={
       {
@@ -582,6 +501,7 @@ exports[`IconSwitch component should render with turned on state and icon 1`] = 
             "translateX": 22,
           },
         ],
+        "transition": "transform 50ms ease-in-out",
         "width": 24,
       }
     }
