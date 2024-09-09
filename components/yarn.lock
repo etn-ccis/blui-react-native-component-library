@@ -1415,9 +1415,9 @@
     "@sinonjs/commons" "^3.0.0"
 
 "@testing-library/react-native@^12.1.2":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-12.4.0.tgz#ebc71b15256753006c123dd574064cb10dc88ed7"
-  integrity sha512-FPc/0LPL+xoYxt10IUyYv19I9BRL6FtZ8EGzOvlyT7wXXARzryASQmz4pj2ZBtp5Xn43bYzpbNZO8kIWNv0rLA==
+  version "12.6.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-12.6.1.tgz#dbb6b00246a3cffbffa18bbbb618fab968c0de28"
+  integrity sha512-ykXKeQEkqJ/lk0dqGfEspODjV5skmUh/6vVtyGZQsneFrcqGZJrO4uGhmChICLbnEKkstxXkjXeyoB7z8k9InQ==
   dependencies:
     jest-matcher-utils "^29.7.0"
     pretty-format "^29.7.0"
