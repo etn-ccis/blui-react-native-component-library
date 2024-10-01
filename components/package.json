@@ -53,7 +53,7 @@
         "@brightlayer-ui/icons-svg": "^1.11.0",
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "@brightlayer-ui/react-native-vector-icons": "^2.0.0",
-        "@faker-js/faker": "^7.5.0",
+        "@faker-js/faker": "^9.0.3",
         "@testing-library/react-native": "^12.1.2",
         "@types/color": "^3.0.3",
         "@types/jest": "^29.0.1",
