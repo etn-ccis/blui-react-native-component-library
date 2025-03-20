@@ -80,3 +80,7 @@ Version 8 utilizes [React Native Paper v5](https://callstack.github.io/react-nat
 This component library relies on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) and [@brightlayer-ui/react-native-vector-icons](https://github.com/etn-ccis/blui-icons/tree/master/rn-vector) - these libraries must be installed in your project in order to use the Brightlayer UI components.
 
 Additionally, if using [@brightlayer-ui/icons-svg](https://github.com/etn-ccis/blui-icons), SVGs must be transformed using [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer). Follow the instructions on their readme for setting up or start your project using the Brightlayer UI [CLI Templates](https://github.com/etn-ccis/blui-react-native-cli-templates/blob/master/README.md) and this will be configured for you automatically.
+
+> **Important Migration Notice:**
+>
+> This repository has been migrated to a monorepo to consolidate All the React Native libraries developed by Brightlayer Team into a single workspace. Future development and updates will now occur in the following location: [https://github.com/etn-ccis/blui-react-native/tree/dev/packages/component-library]. Please update your bookmarks and contribute to the monorepo for the latest changes.
